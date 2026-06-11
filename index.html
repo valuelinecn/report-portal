@@ -230,6 +230,44 @@ h1 span{color:var(--accent)}
 .result-bar-wrap{max-width:280px;margin-left:auto;margin-right:auto}
 .result-stat-bar{height:6px;background:var(--b1);border-radius:3px;overflow:hidden}
 .result-stat-fill{height:100%;border-radius:3px;transition:width 1s;background:linear-gradient(90deg,var(--accent),#d4a017)}
+
+/* ===== GAME HUB ===== */
+.game-hub{padding:30px 16px;max-width:600px;margin:0 auto}
+.hub-intro{text-align:center;margin-bottom:20px}
+.hub-icon{font-size:50px;margin-bottom:8px}
+.hub-title{font-size:24px;color:var(--t1);font-weight:700}
+.hub-subtitle{font-size:12px;color:var(--m4);margin-top:4px}
+.hub-cards{display:flex;flex-direction:column;gap:14px}
+.hub-card{background:var(--card);border-radius:14px;padding:20px;border:1px solid var(--b1);cursor:pointer;transition:all .25s}
+.hub-card:active{transform:scale(.98);border-color:var(--accent2)}
+.hub-card-icon{font-size:36px;margin-bottom:6px}
+.hub-card-title{font-size:16px;color:var(--t1);font-weight:600;margin-bottom:4px}
+.hub-card-desc{font-size:12px;color:var(--t5);line-height:1.5;margin-bottom:10px}
+.hub-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.game-container{display:none}
+.game-container.active{display:block}
+.game-topbar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--b2);background:var(--bg4)}
+.game-top-title{font-size:13px;color:var(--t3)}
+
+/* ===== MATCH GAME ===== */
+.match-levels{padding:20px 16px;max-width:500px;margin:0 auto}
+.match-level-card{background:var(--card);border-radius:12px;padding:16px;border:1px solid var(--b1);margin-bottom:10px;cursor:pointer;transition:all .25s}
+.match-level-card:active{transform:scale(.98)}
+.ml-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;border:1px solid;margin-bottom:6px}
+.ml-title{font-size:15px;color:var(--t1);font-weight:600;margin-bottom:2px}
+.ml-desc{font-size:11px;color:var(--m4)}
+.match-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--b2)}
+.match-board{display:flex;gap:10px;padding:12px 10px;max-width:600px;margin:0 auto}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px}
+.match-cell{background:var(--card);border:1px solid var(--b1);border-radius:10px;padding:12px 10px;font-size:12px;color:var(--t3);text-align:center;cursor:pointer;transition:all .2s;line-height:1.5;min-height:60px;display:flex;align-items:center;justify-content:center}
+.match-cell small{font-size:10px;color:var(--m5);display:block;margin-top:2px}
+.match-cell .mhint{font-size:9px;color:var(--m5);display:block;margin-top:4px;font-style:italic}
+.match-cell:active{transform:scale(.96)}
+.match-cell.selected{border-color:var(--accent);background:var(--accent3)}
+.match-cell.matched{border-color:#4caf50!important;background:#4caf5015!important;pointer-events:none}
+.match-cell.matched .mhint{color:var(--m3)}
+.match-cell.wrong{border-color:#f44336!important;background:#f4433615!important}
+.match-result{padding:30px 16px;text-align:center;max-width:500px;margin:0 auto}
 </style>
 </head>
 <body>
@@ -298,81 +336,147 @@ h1 span{color:var(--accent)}
 
 <!-- ===== TAB: GAMES ===== -->
 <div class="tab-content" id="tab-games">
-  <div class="quiz-page" id="quizPage">
-    <!-- Intro screen -->
-    <div class="quiz-intro" id="quizIntro">
-      <div class="quiz-icon">🎮</div>
-      <h2 class="quiz-title">投资人格 & 段位解密</h2>
-      <div class="quiz-subtitle">15 道题 · 揭开你的投资基因</div>
-      <div class="quiz-rules">
-        <div class="quiz-rule"><span>🧬</span> 测出你的投资人格类型</div>
-        <div class="quiz-rule"><span>📊</span> 知识题检验你的价值投资功底</div>
-        <div class="quiz-rule"><span>🎭</span> 获得专属人格解读 + 段位</div>
-      </div>
-      <button class="quiz-start-btn" onclick="startQuiz()">开始解密 →</button>
+  <!-- === Game Hub === -->
+  <div class="game-hub" id="gameHub">
+    <div class="hub-intro">
+      <div class="hub-icon">🎮</div>
+      <h2 class="hub-title">投资游戏厅</h2>
+      <div class="hub-subtitle">边玩边学，巩固价值投资知识</div>
     </div>
-
-    <!-- Quiz screen -->
-    <div class="quiz-screen" id="quizScreen" style="display:none">
-      <div class="quiz-progress">
-        <div class="quiz-progress-bar" id="quizProgressBar"></div>
+    <div class="hub-cards">
+      <div class="hub-card" onclick="switchToQuiz()">
+        <div class="hub-card-icon">🎭</div>
+        <div class="hub-card-title">投资人格 & 段位解密</div>
+        <div class="hub-card-desc">15道题揭开你的投资基因，测出你是格雷厄姆门徒还是利弗莫尔传人</div>
+        <div class="hub-card-tags">
+          <span class="tag" style="background:var(--accent3);color:var(--accent);border-color:var(--accent2)">人格测试</span>
+          <span class="tag" style="background:#4caf5020;color:#4caf50;border-color:#4caf5030">段位评分</span>
+        </div>
       </div>
-      <div class="quiz-progress-text">第 <span id="quizNum">1</span> / <span id="quizTotal">15</span> 题</div>
-      <div class="quiz-card" id="quizCard">
-        <div class="quiz-q" id="quizQ">题目</div>
-        <div class="quiz-opts" id="quizOpts"></div>
-      </div>
-      <div class="quiz-explain" id="quizExplain" style="display:none">
-        <div class="quiz-explain-icon" id="quizExplainIcon"></div>
-        <div class="quiz-explain-msg" id="quizExplainMsg"></div>
-        <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuestion()">下一题 →</button>
+      <div class="hub-card" onclick="switchToMatch()">
+        <div class="hub-card-icon">📊</div>
+        <div class="hub-card-title">财报指标连连看</div>
+        <div class="hub-card-desc">三关挑战 · 掌握ROE、PE、毛利率等核心财务指标</div>
+        <div class="hub-card-tags">
+          <span class="tag" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f730">初级</span>
+          <span class="tag" style="background:#f0c04020;color:#f0c040;border-color:#f0c04030">中级</span>
+          <span class="tag" style="background:#f4433620;color:#f44336;border-color:#f4433630">高级</span>
+        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Result screen -->
-    <div class="quiz-result" id="quizResult" style="display:none">
-      <div class="result-section">
-        <div style="font-size:40px;margin-bottom:4px" id="resultTypeIcon">🏛️</div>
-        <div class="result-title">你的投资人格</div>
-        <div class="result-rank" id="resultTypeName">格雷厄姆门徒</div>
-        <div style="font-size:12px;color:var(--m4);margin-bottom:8px" id="resultTypeSub">Grahamite</div>
-        <div style="font-size:11px;color:var(--accent);font-style:italic;margin-bottom:14px" id="resultMotto">「价格是你支付的，价值是你得到的。」</div>
-        <div class="result-desc" id="resultTypeDesc"></div>
-        <div class="result-bar-wrap" style="margin-top:10px"><div class="result-stat-bar"><div class="result-stat-fill" id="resultTypeBar"></div></div><div style="font-size:10px;color:var(--m5);margin-top:2px" id="resultTypePct">70%</div></div>
+  <!-- === Quiz Game Container === -->
+  <div class="game-container" id="quizContainer" style="display:none">
+    <div class="game-topbar"><button class="back-btn" onclick="backToHub()">← 游戏厅</button><span class="game-top-title">🎭 投资人格测试</span></div>
+    <div class="quiz-page" id="quizPage">
+      <div class="quiz-intro" id="quizIntro">
+        <div class="quiz-icon">🎮</div>
+        <h2 class="quiz-title">投资人格 & 段位解密</h2>
+        <div class="quiz-subtitle">15 道题 · 揭开你的投资基因</div>
+        <div class="quiz-rules">
+          <div class="quiz-rule"><span>🧬</span> 测出你的投资人格类型</div>
+          <div class="quiz-rule"><span>📊</span> 知识题检验你的价值投资功底</div>
+          <div class="quiz-rule"><span>🎭</span> 获得专属人格解读 + 段位</div>
+        </div>
+        <button class="quiz-start-btn" onclick="startQuiz()">开始解密 →</button>
       </div>
-
-      <div style="height:2px;background:var(--b2);margin:16px 0"></div>
-
-      <div class="result-section">
-        <div style="font-size:11px;color:var(--m4);margin-bottom:6px">次要人格</div>
-        <div style="font-size:16px;color:var(--t3)" id="resultSecondary">巴芒传人</div>
-        <div class="result-bar-wrap" style="margin-top:6px"><div class="result-stat-bar"><div class="result-stat-fill" id="resultSecondaryBar"></div></div><div style="font-size:10px;color:var(--m5);margin-top:2px" id="resultSecondaryPct">20%</div></div>
+      <div class="quiz-screen" id="quizScreen" style="display:none">
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+        <div class="quiz-progress-text">第 <span id="quizNum">1</span> / <span id="quizTotal">15</span> 题</div>
+        <div class="quiz-card" id="quizCard">
+          <div class="quiz-q" id="quizQ">题目</div>
+          <div class="quiz-opts" id="quizOpts"></div>
+        </div>
+        <div class="quiz-explain" id="quizExplain" style="display:none">
+          <div class="quiz-explain-icon" id="quizExplainIcon"></div>
+          <div class="quiz-explain-msg" id="quizExplainMsg"></div>
+          <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuestion()">下一题 →</button>
+        </div>
       </div>
-
-      <div style="height:2px;background:var(--b2);margin:16px 0"></div>
-
-      <div class="result-section">
-        <div style="font-size:11px;color:var(--m4);margin-bottom:4px">知识段位</div>
-        <div style="font-size:20px;color:var(--accent);font-weight:700" id="resultScoreDisplay">8 / 15</div>
-        <div class="result-bar-wrap"><div class="result-stat-bar"><div class="result-stat-fill" id="resultScoreBar"></div></div></div>
-        <div style="font-size:11px;color:var(--t5);margin-top:6px;line-height:1.6" id="resultGrade">📗 巴菲特学徒</div>
+      <div class="quiz-result" id="quizResult" style="display:none">
+        <div class="result-section">
+          <div style="font-size:40px;margin-bottom:4px" id="resultTypeIcon">🏛️</div>
+          <div class="result-title">你的投资人格</div>
+          <div class="result-rank" id="resultTypeName">格雷厄姆门徒</div>
+          <div style="font-size:12px;color:var(--m4);margin-bottom:8px" id="resultTypeSub">Grahamite</div>
+          <div style="font-size:11px;color:var(--accent);font-style:italic;margin-bottom:14px" id="resultMotto">「价格是你支付的，价值是你得到的。」</div>
+          <div class="result-desc" id="resultTypeDesc"></div>
+          <div class="result-bar-wrap" style="margin-top:10px"><div class="result-stat-bar"><div class="result-stat-fill" id="resultTypeBar"></div></div><div style="font-size:10px;color:var(--m5);margin-top:2px" id="resultTypePct">70%</div></div>
+        </div>
+        <div style="height:2px;background:var(--b2);margin:16px 0"></div>
+        <div class="result-section">
+          <div style="font-size:11px;color:var(--m4);margin-bottom:6px">次要人格</div>
+          <div style="font-size:16px;color:var(--t3)" id="resultSecondary">巴芒传人</div>
+          <div class="result-bar-wrap" style="margin-top:6px"><div class="result-stat-bar"><div class="result-stat-fill" id="resultSecondaryBar"></div></div><div style="font-size:10px;color:var(--m5);margin-top:2px" id="resultSecondaryPct">20%</div></div>
+        </div>
+        <div style="height:2px;background:var(--b2);margin:16px 0"></div>
+        <div class="result-section">
+          <div style="font-size:11px;color:var(--m4);margin-bottom:4px">知识段位</div>
+          <div style="font-size:20px;color:var(--accent);font-weight:700" id="resultScoreDisplay">8 / 15</div>
+          <div class="result-bar-wrap"><div class="result-stat-bar"><div class="result-stat-fill" id="resultScoreBar"></div></div></div>
+          <div style="font-size:11px;color:var(--t5);margin-top:6px;line-height:1.6" id="resultGrade">📗 巴菲特学徒</div>
+        </div>
+        <div style="height:2px;background:var(--b2);margin:16px 0"></div>
+        <div class="result-section"><div style="font-size:12px;color:var(--m4);margin-bottom:6px">💡 给你的建议</div><div style="font-size:12px;color:var(--t5);line-height:1.7" id="resultAdvice"></div></div>
+        <div style="height:2px;background:var(--b2);margin:16px 0"></div>
+        <div class="result-section"><div style="font-size:12px;color:var(--m4);margin-bottom:6px">👤 你的同道中人</div><div style="font-size:13px;color:var(--t3)" id="resultWho"></div></div>
+        <div style="display:flex;gap:10px;margin-top:22px;justify-content:center">
+          <button class="quiz-start-btn" onclick="resetQuiz()" style="flex:1;max-width:200px">再来一次 🔄</button>
+          <button class="quiz-start-btn" onclick="backToHub()" style="flex:1;max-width:200px;background:var(--bg5);color:var(--t3)">← 游戏厅</button>
+        </div>
       </div>
+    </div>
+  </div>
 
-      <div style="height:2px;background:var(--b2);margin:16px 0"></div>
-
-      <div class="result-section">
-        <div style="font-size:12px;color:var(--m4);margin-bottom:6px">💡 给你的建议</div>
-        <div style="font-size:12px;color:var(--t5);line-height:1.7" id="resultAdvice"></div>
+  <!-- === Match Game Container === -->
+  <div class="game-container" id="matchContainer" style="display:none">
+    <div class="game-topbar"><button class="back-btn" onclick="backToHub()">← 游戏厅</button><span class="game-top-title">📊 财报指标连连看</span></div>
+    <!-- Level select -->
+    <div class="match-levels" id="matchLevels">
+      <div class="match-level-card" onclick="startMatch('初级')">
+        <div class="ml-badge" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f7">初级</div>
+        <div class="ml-title">基础指标</div>
+        <div class="ml-desc">ROE · 毛利率 · 净利率 · 资产负债率</div>
       </div>
-
-      <div style="height:2px;background:var(--b2);margin:16px 0"></div>
-
-      <div class="result-section">
-        <div style="font-size:12px;color:var(--m4);margin-bottom:6px">👤 你的同道中人</div>
-        <div style="font-size:13px;color:var(--t3)" id="resultWho"></div>
+      <div class="match-level-card" onclick="startMatch('中级')">
+        <div class="ml-badge" style="background:#f0c04020;color:#f0c040;border-color:#f0c040">中级</div>
+        <div class="ml-title">估值 & 效率</div>
+        <div class="ml-desc">PE · PB · 股息率 · 营业利润率</div>
       </div>
-
-      <button class="quiz-start-btn" onclick="resetQuiz()" style="margin-top:22px">再来一次 🔄</button>
+      <div class="match-level-card" onclick="startMatch('高级')">
+        <div class="ml-badge" style="background:#f4433620;color:#f44336;border-color:#f44336">高级</div>
+        <div class="ml-title">进阶拆解</div>
+        <div class="ml-desc">资产周转率 · 权益乘数 · EPS · 自由现金流</div>
+      </div>
+    </div>
+    <!-- Match game screen -->
+    <div class="match-screen" id="matchScreen" style="display:none">
+      <div class="match-hdr">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="ml-badge" id="matchLevelBadge" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f7">初级</span>
+          <span style="font-size:12px;color:var(--m5)" id="matchCounter">0/4</span>
+        </div>
+        <span style="font-size:11px;color:var(--m5)" id="matchTimer">⏱ 0s</span>
+      </div>
+      <div class="match-board" id="matchBoard">
+        <div class="match-col" id="matchLeftCol"></div>
+        <div class="match-col" id="matchRightCol"></div>
+      </div>
+    </div>
+    <!-- Match result screen -->
+    <div class="match-result" id="matchResult" style="display:none">
+      <div style="font-size:48px;margin-bottom:8px" id="matchResultIcon">🏆</div>
+      <div class="result-rank" style="font-size:22px" id="matchResultTitle">通关成功！</div>
+      <div style="font-size:12px;color:var(--m4);margin:4px 0 12px" id="matchResultSub">初级 · 基础指标</div>
+      <div class="result-bar-wrap"><div class="result-stat-bar"><div class="result-stat-fill" id="matchResultBar" style="width:100%"></div></div></div>
+      <div style="font-size:12px;color:var(--t5);margin:8px 0 4px" id="matchResultTime">用时 32秒</div>
+      <div style="font-size:11px;color:var(--m5);margin-bottom:16px;line-height:1.6" id="matchResultMsg">全部正确！你对基础财务指标掌握得很好。</div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="quiz-start-btn" onclick="retryMatch()" style="flex:1;max-width:180px">重来 🔄</button>
+        <button class="quiz-start-btn" onclick="backToMatchLevels()" style="flex:1;max-width:180px;background:var(--bg5);color:var(--t3)">选关 🎯</button>
+        <button class="quiz-start-btn" onclick="backToHub()" style="flex:1;max-width:180px;background:var(--bg5);color:var(--t3)">← 游戏厅</button>
+      </div>
     </div>
   </div>
 </div>
@@ -405,6 +509,7 @@ h1 span{color:var(--accent)}
 
 <script src="books-data.js"></script>
 <script src="games/quiz-v2.js"></script>
+<script src="games/financial-match.js"></script>
 <script>
 const COMPANIES = [
   {id:'maotai',name:'贵州茅台',nameEn:'Kweichow Moutai',score:7.0,scoreMax:10,color:'#f0c040',industry:'食品饮料 · 白酒',desc:'中国高端白酒行业绝对龙头，A股最具代表性的消费类核心资产。',tags:['核心资产','国酒','高毛利'],metrics:{营收:'1,899亿',净利:'910亿',毛利率:'91%+',PE:'20.7x',ROE:'28%',股息率:'3.2%'},file:'maotai.html'},
@@ -771,6 +876,125 @@ function showResult() {
 function resetQuiz() {
   document.getElementById('quizResult').style.display='none'
   document.getElementById('quizIntro').style.display='block'
+}
+
+// ===== GAME HUB =====
+function backToHub() {
+  document.querySelectorAll('.game-container').forEach(el => { el.style.display='none'; el.classList.remove('active') })
+  document.getElementById('gameHub').style.display='block'
+}
+function switchToQuiz() { document.getElementById('gameHub').style.display='none'; const c=document.getElementById('quizContainer'); c.style.display='block'; c.classList.add('active') }
+function switchToMatch() { document.getElementById('gameHub').style.display='none'; const c=document.getElementById('matchContainer'); c.style.display='block'; c.classList.add('active') }
+
+// ===== MATCH GAME =====
+let matchData = [], matchSelected = null, matchPairs = 0, matchDone = 0, matchTimer = null, matchSec = 0, matchLevel = ''
+const matchColors = {初级:'#4fc3f7',中级:'#f0c040',高级:'#f44336'}
+
+function startMatch(level) {
+  matchLevel = level
+  const pairs = MATCH_DATA[level].pairs
+  matchPairs = pairs.length; matchDone = 0; matchSec = 0; matchSelected = null
+
+  // Shuffle term order and def order independently
+  const terms = pairs.map((p,i) => ({id:i, html:p.term, side:'left'}))
+  const defs = pairs.map((p,i) => ({id:i, html:p.def, side:'right'}))
+  const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a }
+  matchData = shuffle(terms).concat(shuffle(defs))
+
+  document.getElementById('matchLevels').style.display='none'
+  document.getElementById('matchScreen').style.display='block'
+  document.getElementById('matchResult').style.display='none'
+  document.getElementById('matchLevelBadge').textContent = level
+  document.getElementById('matchLevelBadge').style.cssText = `background:${matchColors[level]}20;color:${matchColors[level]};border-color:${matchColors[level]}`
+  document.getElementById('matchCounter').textContent = '0/'+matchPairs
+
+  const leftIds = matchData.filter(d => d.side==='left').map(d => d.id)
+  const rightIds = matchData.filter(d => d.side==='right').map(d => d.id)
+
+  document.getElementById('matchLeftCol').innerHTML = matchData.filter(d => d.side==='left').map(d =>
+    `<div class="match-cell" data-id="${d.id}" data-side="left" onclick="clickMatch(${d.id},'left')">${d.html}</div>`
+  ).join('')
+  document.getElementById('matchRightCol').innerHTML = matchData.filter(d => d.side==='right').map(d =>
+    `<div class="match-cell" data-id="${d.id}" data-side="right" onclick="clickMatch(${d.id},'right')">${d.html}</div>`
+  ).join('')
+
+  // Timer
+  clearInterval(matchTimer)
+  matchTimer = setInterval(() => { matchSec++; document.getElementById('matchTimer').textContent = '⏱ '+matchSec+'s' }, 1000)
+}
+
+function clickMatch(id, side) {
+  if (matchDone >= matchPairs) return
+  const el = document.querySelector(`.match-cell[data-id="${id}"][data-side="${side}"]`)
+  if (el.classList.contains('matched') || el.classList.contains('wrong')) return
+
+  if (!matchSelected) {
+    // First selection
+    if (matchSelected && matchSelected.side === side) return // same side
+    matchSelected = {id, side, el}
+    el.classList.add('selected')
+  } else {
+    // Second selection - check same side
+    if (matchSelected.side === side) {
+      // Same side - reselect
+      matchSelected.el.classList.remove('selected')
+      matchSelected = {id, side, el}
+      el.classList.add('selected')
+      return
+    }
+    // Different sides - check match
+    el.classList.add('selected')
+    const first = matchSelected
+    matchSelected = null
+
+    if (first.id === id) {
+      // Match!
+      setTimeout(() => {
+        document.querySelectorAll(`.match-cell[data-id="${id}"]`).forEach(e => {
+          e.classList.remove('selected'); e.classList.add('matched')
+        })
+        matchDone++
+        document.getElementById('matchCounter').textContent = matchDone+'/'+matchPairs
+        if (matchDone >= matchPairs) {
+          clearInterval(matchTimer)
+          setTimeout(showMatchResult, 400)
+        }
+      }, 200)
+    } else {
+      // Wrong
+      [first.el, el].forEach(e => { e.classList.remove('selected'); e.classList.add('wrong') })
+      setTimeout(() => {
+        document.querySelectorAll('.match-cell.wrong').forEach(e => e.classList.remove('wrong'))
+      }, 500)
+    }
+  }
+}
+
+function showMatchResult() {
+  document.getElementById('matchScreen').style.display='none'
+  document.getElementById('matchResult').style.display='block'
+  const levelDesc = {初级:'基础财务指标',中级:'估值与效率指标',高级:'进阶拆解指标'}
+  document.getElementById('matchResultIcon').textContent = '🏆'
+  document.getElementById('matchResultTitle').textContent = '全部配对成功！'
+  document.getElementById('matchResultSub').textContent = matchLevel + ' · ' + levelDesc[matchLevel]
+  document.getElementById('matchResultTime').textContent = '用时 ' + matchSec + ' 秒'
+  document.getElementById('matchResultMsg').textContent = MATCH_DATA[matchLevel].desc
+
+  // Save best time to localStorage
+  const key = 'match_best_' + matchLevel
+  const prev = localStorage.getItem(key)
+  if (!prev || matchSec < parseInt(prev)) {
+    localStorage.setItem(key, matchSec)
+    document.getElementById('matchResultMsg').textContent += ' 🎉 刷新了最快记录！'
+  }
+}
+
+function retryMatch() { startMatch(matchLevel) }
+function backToMatchLevels() {
+  clearInterval(matchTimer)
+  document.getElementById('matchScreen').style.display='none'
+  document.getElementById('matchResult').style.display='none'
+  document.getElementById('matchLevels').style.display='block'
 }
 </script>
 </body>
