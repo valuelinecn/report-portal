@@ -108,6 +108,14 @@ h1 span{color:var(--accent)}
 /* ===== WALINE COMMENTS ===== */
 .waline-wrap{max-width:720px;margin:0 auto;padding:16px}
 :root{--waline-font-size:13px;--waline-theme-color:var(--accent);--waline-active-color:var(--accent);--waline-bgcolor:var(--bg2);--waline-bgcolor-light:var(--bg3);--waline-bgcolor-hover:var(--bg3);--waline-color:var(--t2);--waline-boder-color:var(--b2);--waline-border-color:var(--b2);--waline-bgcolor-dark:var(--bg2);--waline-color-dark:var(--t2);--waline-border-color-dark:var(--b2);--waline-boder-color-dark:var(--b2);}
+
+/* ===== HOME COMMENT OVERLAY ===== */
+.home-comment-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);flex-direction:column}
+.home-comment-overlay.active{display:flex}
+.home-comment-overlay .overlay-header{display:flex;align-items:center;padding:12px 16px;background:var(--bg4);border-bottom:1px solid var(--b2);flex-shrink:0}
+.home-comment-overlay .overlay-title{font-size:14px;color:var(--t1);font-weight:600;flex:1}
+.home-comment-overlay .overlay-close{background:none;border:1px solid var(--b3);color:var(--t4);padding:4px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit}
+.home-comment-overlay .overlay-body{flex:1;overflow-y:auto;background:var(--bg)}
 .report-frame-wrap .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--m5);font-size:12px;flex-direction:column;gap:8px}
 
 /* ===== DETAIL VIEW (books) ===== */
@@ -524,9 +532,15 @@ h1 span{color:var(--accent)}
   <div class="waline-wrap"><div id="waline-book"></div></div>
 </div>
 
-<!-- ===== HOME COMMENTS ===== -->
-<div class="tab-content" id="tab-comments" style="padding:16px;max-width:720px;margin:0 auto">
-  <div class="waline-wrap" style="padding-top:0"><div id="waline-home"></div></div>
+<!-- ===== HOME COMMENT OVERLAY ===== -->
+<div class="home-comment-overlay" id="homeCommentOverlay">
+  <div class="overlay-header">
+    <span class="overlay-title">💬 留言讨论</span>
+    <button class="overlay-close" onclick="toggleHomeComments()">关闭</button>
+  </div>
+  <div class="overlay-body">
+    <div class="waline-wrap"><div id="waline-home"></div></div>
+  </div>
 </div>
 
 <script src="books-data.js"></script>
@@ -1116,14 +1130,14 @@ function backToMatchLevels() {
 }
 // ===== HOME COMMENTS TOGGLE =====
 function toggleHomeComments() {
-  const tab = document.getElementById('tab-comments')
-  const isVisible = tab.classList.contains('active')
-  if (isVisible) { switchTab('reports'); return }
-  // Show comment tab
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'))
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'))
-  tab.classList.add('active')
-  tab.style.display = 'block'
+  const overlay = document.getElementById('homeCommentOverlay')
+  if (overlay.classList.contains('active')) {
+    overlay.classList.remove('active')
+    overlay.style.display = 'none'
+    return
+  }
+  overlay.style.display = 'flex'
+  overlay.classList.add('active')
   // Init Waline on first visit
   if (!window._homeWalineLoaded) {
     window._homeWalineLoaded = true
