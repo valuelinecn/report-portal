@@ -2,145 +2,704 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>迈瑞医疗 (300760) - 深度分析报告</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>迈瑞医疗 · 完整投资研究报告</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:20px;min-height:100vh}
-.container{max-width:1200px;margin:0 auto}
-.header{text-align:center;padding:40px 20px;background:linear-gradient(135deg,#12122a,#1a1a3a);border-radius:16px;margin-bottom:30px;border:1px solid #2a2a4a}
-.header h1{font-size:2.4em;color:#f0c040;margin-bottom:8px}
-.header .code{color:#888;font-size:1.1em}
-.header .subtitle{color:#aaa;margin-top:8px;font-size:1em}
-.score-section{display:flex;justify-content:center;align-items:center;gap:40px;margin:20px 0}
-.score-ring{position:relative;width:160px;height:160px}
-.score-ring svg{width:160px;height:160px;transform:rotate(-90deg)}
-.score-ring .score-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
-.score-ring .score-text .num{font-size:2.5em;font-weight:700;color:#f0c040}
-.score-ring .score-text .label{font-size:0.85em;color:#888}
-.score-desc{max-width:400px;line-height:1.7}
-.score-desc .tag{display:inline-block;background:#f0c04022;color:#f0c040;padding:4px 14px;border-radius:20px;font-size:0.85em;margin-top:6px;border:1px solid #f0c04044}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:30px}
-.card{background:#12122a;border-radius:12px;padding:20px;border:1px solid #2a2a4a;transition:all .2s}
-.card:hover{border-color:#f0c04055;transform:translateY(-2px);box-shadow:0 6px 20px rgba(240,192,64,.08)}
-.card .label{font-size:0.82em;color:#888;margin-bottom:3px}
-.card .value{font-size:1.5em;font-weight:600;color:#f0c040}
-.card .sub{font-size:0.78em;color:#666;margin-top:4px}
-.card .change{font-size:0.78em;margin-top:2px}
-.card .change.green{color:#4caf50}
-.card .change.red{color:#f44336}
-.full-card{background:#12122a;border-radius:12px;padding:24px;border:1px solid #2a2a4a;margin-bottom:16px}
-.full-card h2{color:#f0c040;font-size:1.3em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.full-card h2::before{content:'';display:inline-block;width:4px;height:18px;background:#f0c040;border-radius:2px}
-.full-card p{line-height:1.8;color:#ccc;font-size:0.95em;margin-bottom:8px}
-.full-card ul{list-style:none;padding:0}
-.full-card ul li{padding:6px 0;padding-left:18px;position:relative;color:#ccc;line-height:1.6}
-.full-card ul li::before{content:'▸';position:absolute;left:0;color:#f0c040}
-.row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-@media(max-width:768px){.row-2{grid-template-columns:1fr}}
-.section-title{font-size:1.1em;color:#f0c040;margin:30px 0 16px;border-bottom:1px solid #2a2a4a;padding-bottom:8px}
-.footer{text-align:center;padding:24px;color:#555;font-size:0.8em;border-top:1px solid #2a2a4a;margin-top:30px}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
+h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
+h2{font-size:16px;color:#f0c040;margin:20px 0 10px;border-left:3px solid #f0c040;padding-left:10px}
+h3{font-size:14px;color:#ccc;margin:14px 0 6px}
+h4{font-size:13px;color:#aaa;margin:10px 0 4px}
+.desc{font-size:12px;color:#888;margin-bottom:10px}
+.card{background:#12122a;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid #1e1e3a}
+.sc-wrap{text-align:center;margin-bottom:16px}
+.score-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(#8bc34a 0deg 270deg,#333 270deg 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.score-inner{width:62px;height:62px;border-radius:50%;background:#12122a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:24px;font-weight:bold;color:#8bc34a;line-height:1}
+.score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e1e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
+.c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a}
+.tbl tr:last-child td{border-bottom:none}
+.gold{color:#f0c040;font-weight:bold}.green{color:#4caf50}.red{color:#f44336}.orange{color:#ff9800}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{background:#0d0d20;border-radius:8px;padding:10px;text-align:center}
+.mv{font-size:18px;font-weight:bold;color:#fff}
+.ml{font-size:10px;color:#888;margin-top:2px}
+.hb{display:flex;align-items:flex-start;margin:4px 0;min-height:20px}
+.hl{width:72px;font-size:11px;color:#aaa;flex-shrink:0;padding-top:2px}
+.ht{flex:1;height:16px;background:#1e1e3a;border-radius:8px;overflow:visible;margin:0 6px;position:relative}
+.hf{height:16px;border-radius:8px;display:flex;align-items:center;padding-left:6px;font-size:10px;color:#fff;overflow:visible;white-space:nowrap;text-shadow:0 0 3px rgba(0,0,0,.8);min-width:0}
+.hv{font-size:10px;color:#999;white-space:nowrap;flex-shrink:0;padding-top:2px;margin-left:2px}
+.scn{display:flex;gap:6px;margin:8px 0}
+.scc{flex:1;border-radius:8px;padding:10px;text-align:center}
+.scc h4{font-size:12px;margin-bottom:4px;color:#fff}
+.scc .pct{font-size:18px;font-weight:bold}
+.scc .dt{font-size:10px;color:#ccc;margin-top:3px}
+.sc1{background:#1a3a1a;border:1px solid #2a5a2a}.sc1 .pct{color:#4caf50}
+.sc2{background:#1a2a3a;border:1px solid #2a3a5a}.sc2 .pct{color:#f0c040}
+.sc3{background:#3a1a1a;border:1px solid #5a2a2a}.sc3 .pct{color:#f44336}
+.tg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;margin:1px}
+.tgg{background:#1a3a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgr{background:#3a1a1a;color:#f44336;border:1px solid #5a2a2a}
+.tgo{background:#3a2a1a;color:#f0c040;border:1px solid #5a3a2a}
+.tgy{background:#222;color:#aaa;border:1px solid #333}
+.txt{padding:6px 0;font-size:13px;color:#ccc;line-height:1.7}
+.txt .dot{color:#f0c040;margin-right:4px}
+.bq{padding:10px;background:#0d0d20;border-radius:8px;border-left:3px solid #8bc34a;margin:8px 0;font-size:13px;color:#ddd;line-height:1.7}
+.cp{display:flex;align-items:center;margin:4px 0;font-size:12px}
+.cp .nm{width:88px;color:#aaa;flex-shrink:0}
+.cp .bt{flex:1;height:14px;background:#1e1e3a;border-radius:7px;overflow:hidden;margin:0 6px}
+.cp .bf{height:100%;border-radius:7px}
+.cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
+.footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e1e3a;line-height:1.8}
+.sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e1e3a;margin-bottom:12px}
+.toc{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
+.toc a{font-size:11px;color:#888;text-decoration:none;padding:3px 8px;border-radius:12px;border:1px solid #333}
+.toc a:active{background:#1e1e3a;color:#f0c040}
 </style>
 </head>
 <body>
-<div class="container">
-<div class="header">
-<h1>迈瑞医疗</h1>
-<div class="code">300760.SZ · 深圳迈瑞生物医疗电子股份有限公司</div>
-<div class="subtitle">中国医疗器械龙头 · 综合评分 7.5 / 10</div>
+
+<!-- ========== 顶部导航 ========== -->
+<div class="sticky-top">
+  <div style="text-align:center;font-size:11px;color:#555;margin-bottom:4px;">📌 点击跳转</div>
+  <div class="toc">
+    <a href="#s0">评分</a><a href="#s1">综合评价</a><a href="#s2">M1商业模式</a>
+    <a href="#s3">M2壁垒</a><a href="#s4">M3管理层</a><a href="#s5">M4财务</a>
+    <a href="#s6">M5产业链</a><a href="#s7">M6估值</a><a href="#s8">M7市占率</a>
+    <a href="#s9">M8催化剂</a><a href="#s10">M9预期差</a><a href="#s11">M10风险</a>
+    <a href="#s12">综合评级</a><a href="#s13">附录</a>
+  </div>
 </div>
 
-<div class="score-section">
-<div class="score-ring">
-<svg viewBox="0 0 100 100">
-<circle cx="50" cy="50" r="42" fill="none" stroke="#2a2a4a" stroke-width="7"/>
-<circle cx="50" cy="50" r="42" fill="none" stroke="#f0c040" stroke-width="7" stroke-dasharray="263.9" stroke-dashoffset="66.0" stroke-linecap="round"/>
-</svg>
-<div class="score-text">
-<div class="num">7.5</div>
-<div class="label">综合评分</div>
-</div>
-</div>
-<div class="score-desc">
-<strong>A股顶级医疗器械标的</strong><br>
-迈瑞医疗是中国最大、全球领先的医疗器械综合解决方案提供商。生命信息与支持、体外诊断、医学影像三大业务线齐头并进，全球化布局初见成效，国产替代最大受益者。
-<div class="tag">🏆 器械龙头</div>
-<div class="tag">🌍 全球化</div>
-<div class="tag">🔬 研发驱动</div>
-</div>
+<!-- ========== 综合评分 ========== -->
+<div id="s0" class="sc-wrap">
+  <div class="score-ring"><div class="score-inner"><div class="score-num">7.5</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">迈瑞医疗 <span style="font-size:14px;color:#888;font-weight:400;">300760</span></h1>
+  <div class="desc">评级：良好 → 中国医疗器械行业核心资产观察</div>
+  <div><span class="tg tgg">综合评级 7.5/10</span><span class="tg tgy">数据截至 2026-06-11</span></div>
 </div>
 
-<div class="section-title">📊 核心财务指标</div>
-<div class="grid">
-<div class="card"><div class="label">营业收入 (2024)</div><div class="value">368.9亿</div><div class="change green">▲ +10.2% YoY</div><div class="sub">人民币</div></div>
-<div class="card"><div class="label">归母净利润 (2024)</div><div class="value">118.6亿</div><div class="change green">▲ +12.8% YoY</div><div class="sub">人民币</div></div>
-<div class="card"><div class="label">毛利率</div><div class="value">65.8%</div><div class="change green">▲ +0.5 pct</div><div class="sub">高端医疗器械特征</div></div>
-<div class="card"><div class="label">净利率</div><div class="value">32.1%</div><div class="change green">▲ +0.7 pct</div><div class="sub">盈利能力极强</div></div>
-<div class="card"><div class="label">ROE 净资产收益率</div><div class="value">28.3%</div><div class="sub">连续10年>25%</div></div>
-<div class="card"><div class="label">资产负债率</div><div class="value">28.6%</div><div class="change green">▼ 财务稳健</div><div class="sub">低杠杆运营</div></div>
-<div class="card"><div class="label">每股收益 (EPS)</div><div class="value">9.82元</div><div class="change green">▲ +12.9%</div><div class="sub">高每股收益</div></div>
-<div class="card"><div class="label">每股净资产</div><div class="value">34.65元</div><div class="sub">每股账面价值</div></div>
-<div class="card"><div class="label">市盈率 (PE TTM)</div><div class="value">32.8x</div><div class="sub">医疗板块估值中枢</div></div>
-<div class="card"><div class="label">股息率</div><div class="value">1.5%</div><div class="sub">分红率约45%</div></div>
-<div class="card"><div class="label">经营现金流</div><div class="value">131.5亿</div><div class="change green">▲ +14.2%</div><div class="sub">净利润现金含量>110%</div></div>
-<div class="card"><div class="label">市值</div><div class="value">3,892亿</div><div class="sub">人民币</div></div>
-<div class="card"><div class="label">营收5年CAGR</div><div class="value">14.6%</div><div class="sub">2019-2024</div></div>
-<div class="card"><div class="label">研发投入占比</div><div class="value">9.8%</div><div class="sub">年研发投入约36亿</div></div>
+<!-- ========== 一、综合评价 ========== -->
+<div id="s1" class="card">
+  <h2>一、综合评价</h2>
+  
+  <h3>1. 总评分：7.5分</h3>
+  <div class="txt">评级理由：迈瑞医疗作为中国最大的医疗器械综合解决方案提供商，是中国医疗器械行业绝对龙头。2025年公司营收约406亿元，同比增长约10.0%，归母净利润约131亿元，同比增长约10.5%，在医疗行业政策和宏观经济波动背景下保持稳健增长。2026年Q1营收约102亿元同比+9.5%，净利约33.5亿元同比+11.2%。公司核心看点在于：生命信息与支持、体外诊断、医学影像三大业务线齐头并进，研发驱动的高端替代逻辑持续兑现（年研发投入超40亿），全球化布局深入（海外收入占比约40%），以及65%+高毛利率和30%+净利率的顶级盈利能力。但需关注集采政策扩面压力、国际业务地缘风险、以及高端医疗设备领域与国际巨头（美敦力、GE、飞利浦）的竞争差距。</div>
+
+  <h3>2. 风险等级：中低</h3>
+  <table class="tbl">
+    <tr><th>风险类别</th><th>等级</th><th>说明</th></tr>
+    <tr><td>经营风险</td><td><span style="color:#ffc107;">中低</span></td><td style="text-align:left;font-size:11px;">客户群体分散（国内超9万家医疗机构、海外190+国家），单一客户依赖度极低；集采政策对部分业务有压力但总体可控</td></tr>
+    <tr><td>财务风险</td><td><span class="green">极低</span></td><td style="text-align:left;font-size:11px;">资产负债率约28.6%，货币资金超150亿，有息负债极低，经营现金流超140亿，净利润现金含量>110%</td></tr>
+    <tr><td>市场风险</td><td><span style="color:#ffc107;">中低</span></td><td style="text-align:left;font-size:11px;">\"医疗新基建+国产替代\"政策持续利好行业龙头，但中美贸易摩擦对海外业务可能有影响；估值从高点回落已消化大部分风险</td></tr>
+  </table>
+
+  <h3>3. 核心结论（一句话逻辑）</h3>
+  <div class="bq">"迈瑞医疗凭借中国医疗器械行业最全的产品线布局、年超40亿的研发投入、覆盖全球190+国家的销售网络、以及持续兑现的国产替代逻辑，是中国医疗器械领域最具确定性的核心资产。2025年营收约406亿、净利约131亿创新高，2026年Q1营收增速9.5%验证需求韧性。65%+的毛利率、32%+的净利率、28%+的ROE、超越100%的净利润现金含量，构成了A股极为稀缺的财务组合。但需关注集采政策对体外诊断板块的潜在压力、高端产品突破的节奏、以及海外市场的地缘政治不确定性。公司处于'高确定性+稳健增长'的价值成长定位，中国医疗新基建和老龄化趋势为长期增长提供坚实支撑。"</div>
+
+  <h3>4. 三年预估增长空间</h3>
+  <div class="txt">
+    <span class="dot">·</span> 业绩增长：预计归母净利润从2025年的约131亿元增至2028年的175-200亿元，年化增速约10-15%（取决于高端产品突破速度和海外市场拓展）<br>
+    <span class="dot">·</span> 估值修复：当前PE(TTM)约29.5倍，处于近5年历史低位（历史PE中枢约40-50倍）；参考全球医疗器械龙头PE约15-30倍，考虑到A股医疗器械龙头的稀缺性和更高增速，合理PE中枢应在30-35倍<br>
+    <span class="dot">·</span> 股价目标：业绩增长约33-52% × 估值修复约10-18% ≈ 3年预期收益约45-80%（基准情景，含约1.5%年化股息）
+  </div>
+
+  <h3>5. 季度监控关键点</h3>
+  <div class="txt">
+    <span class="dot">·</span> Q1/Q2：集采中标结果对IVD业务影响、海外高端医院市场突破情况、研发管线进展（高端超声、内窥镜等）<br>
+    <span class="dot">·</span> Q3/Q4：\"医疗新基建\"落地订单验收节奏、全年营收目标完成进度、海外大额订单获取情况<br>
+    <span class="dot">·</span> 风险关注：体外诊断集采降价幅度是否超预期、海外业务增速是否低于10%
+  </div>
+
+  <h3>6. 逻辑证伪/止损触发点</h3>
+  <div class="txt">
+    1. 如果综合毛利率跌破62%，说明集采降价或竞争加剧严重侵蚀盈利能力<br>
+    2. 如果海外业务增速连续3个季度低于5%，全球化扩张逻辑存疑<br>
+    3. 如果ROE跌破20%，说明资本回报效率出现实质性问题<br>
+    4. 如果国内业务增速连续2个季度低于5%，国产替代逻辑可能趋弱<br>
+    5. 如果经营性现金流/净利润连续低于0.8，盈利质量恶化
+  </div>
 </div>
 
-<div class="row-2">
-<div class="full-card">
-<h2>🏢 商业模式分析</h2>
-<p>迈瑞医疗是全球领先的医疗器械与解决方案供应商，以"生命信息与支持、体外诊断、医学影像"三大业务线为核心，为全球医疗机构提供整体解决方案。</p>
-<p><strong>业务结构：</strong>生命信息与支持（占比约38%）包括监护仪、呼吸机、麻醉机、除颤仪等，为传统优势业务；体外诊断（约36%）包括生化分析、免疫分析、凝血检测、血液细胞分析等，为最大增长引擎；医学影像（约24%）以超声设备为核心，从中低端向高端突破；其他（约2%）。</p>
-<p><strong>盈利驱动：</strong>国产替代+全球化扩张。在国内三级医院市场持续突破高端设备进口替代（监护仪国产市占率第一、彩超国产第一）；海外业务覆盖190多个国家，收入占比约40%，欧美高端医院市场为增长重点。</p>
-<p><strong>核心竞争力：</strong>研发驱动（年投入36亿+、专利超8,000项）、全产品线覆盖（综合解决方案能力最强）、全球化的销售和服务网络（海外40+家子公司）。</p>
-</div>
-<div class="full-card">
-<h2>📈 行业地位</h2>
-<p><strong>市场地位：</strong>中国医疗器械行业绝对龙头——营业收入和市值常年位列中国医疗器械企业第一。国内监护仪市占率约38%（第一）、超声约22%（国产第一、整体第二）、体外诊断约12%（国产第一、整体前三）。全球医疗器械企业排名第32位（2024年）。</p>
-<p><strong>竞争格局：</strong>国内医疗器械市场约8,000亿规模，进口品牌（美敦力、飞利浦、GE医疗、西门子医疗等）占据约60%份额，国产替代空间巨大。迈瑞是国内唯一能与国际巨头在各大领域正面竞争的医疗器械企业。</p>
-<p><strong>行业趋势：</strong>国家"医疗新基建+国产替代"政策持续加码，县级医院综合能力提升工程、千县工程等为迈瑞创造直接增量需求。老龄化加速（2035年60岁以上人口超4亿）推动医疗设备需求长期增长。</p>
-<p><strong>全球市场：</strong>全球医疗器械市场规模超5,000亿美元，中国占比约15%。迈瑞海外收入占比约40%，为A股医疗器械国际化程度最高的企业。在高性价比策略下持续渗透新兴市场和欧美中低端市场。</p>
-</div>
+<!-- ========== M1 商业模式 ========== -->
+<div id="s2" class="card">
+  <h2>M1 商业模式 & 收入结构</h2>
+  
+  <h3>核心定位</h3>
+  <div class="txt">中国最大、全球领先的医疗器械综合解决方案提供商——迈瑞医疗成立于1991年，2006年纽交所上市（2016年完成私有化退市），2018年在深交所创业板重新上市。公司为全球医疗机构提供"生命信息与支持、体外诊断、医学影像"三大核心业务领域的设备、试剂和服务综合解决方案，覆盖医院手术室、ICU、检验科、影像科等核心场景。</div>
+
+  <h3>年度财务报表（亿元）</h3>
+  <table class="tbl">
+    <tr><th>年份</th><th>营收</th><th>YoY</th><th>归母净利</th><th>净利率</th><th>毛利率</th></tr>
+    <tr><td>2020</td><td>210.0</td><td class="green">+27.0%</td><td>66.6</td><td>31.7%</td><td>64.6%</td></tr>
+    <tr><td>2021</td><td>252.7</td><td>+20.3%</td><td>80.0</td><td>31.7%</td><td>65.0%</td></tr>
+    <tr><td>2022</td><td>303.7</td><td class="green">+20.2%</td><td>96.1</td><td>31.6%</td><td>64.2%</td></tr>
+    <tr><td>2023</td><td>334.8</td><td>+10.2%</td><td>106.0</td><td>31.7%</td><td>65.3%</td></tr>
+    <tr><td>2024</td><td>368.9</td><td>+10.2%</td><td>118.6</td><td>32.1%</td><td>65.8%</td></tr>
+    <tr><td class="gold">2025</td><td class="gold">406.0</td><td>+10.0%</td><td class="gold">131.0</td><td>32.3%</td><td class="gold">66.0%</td></tr>
+  </table>
+  <div class="desc" style="margin-top:6px;">备注：2020-2022年疫情期间受益于呼吸机、监护仪等抗疫设备需求爆发，营收CAGR约20%+。2023年起增速回归常态化（10%左右），主要驱动力转为国产替代和海外市场渗透。毛利率从64%提升至66%，反映了高端产品占比提升和规模效应。净利率稳定在31-32%，管理费用率和研发费用率持续优化。</div>
+
+  <h3>分业务收入结构（2025年）</h3>
+  <div class="hb"><span class="hl">生命信息与支持</span><div class="ht"><div class="hf" style="width:38%;background:linear-gradient(90deg,#4caf50,#2e7d32);">38%</div></div><span class="hv">≈154亿</span></div>
+  <div class="hb"><span class="hl">其中：监护仪</span><div class="ht"><div class="hf" style="width:14%;background:linear-gradient(90deg,#4caf50,#388e3c);"></div></div><span class="hv">≈14% · 57亿</span></div>
+  <div class="hb"><span class="hl">呼吸机/麻醉机</span><div class="ht"><div class="hf" style="width:12%;background:linear-gradient(90deg,#43a047,#2e7d32);"></div></div><span class="hv">≈12% · 49亿</span></div>
+  <div class="hb"><span class="hl">体外诊断</span><div class="ht"><div class="hf" style="width:36%;background:linear-gradient(90deg,#f0c040,#b8860b);">36%</div></div><span class="hv">≈146亿</span></div>
+  <div class="hb"><span class="hl">其中：生化/免疫</span><div class="ht"><div class="hf" style="width:20%;background:linear-gradient(90deg,#f0c040,#d4a017);"></div></div><span class="hv">≈20% · 81亿</span></div>
+  <div class="hb"><span class="hl">凝血/血球/微生物</span><div class="ht"><div class="hf" style="width:16%;background:linear-gradient(90deg,#ffc107,#ff8f00);"></div></div><span class="hv">≈16% · 65亿</span></div>
+  <div class="hb"><span class="hl">医学影像</span><div class="ht"><div class="hf" style="width:24%;background:linear-gradient(90deg,#2196f3,#0d47a1);">24%</div></div><span class="hv">≈97亿</span></div>
+  <div class="hb"><span class="hl">其他</span><div class="ht"><div class="hf" style="width:2%;background:#555;"></div></div><span class="hv">2% · 约9亿</span></div>
+
+  <table class="tbl" style="margin-top:10px;">
+    <tr><th>品类</th><th>收入</th><th>占比</th><th>趋势</th><th>毛利率</th></tr>
+    <tr><td>生命信息与支持</td><td>约154亿</td><td>约38%</td><td>→ 稳健</td><td class="green">68-72%</td></tr>
+    <tr><td>监护仪</td><td>约57亿</td><td>约14%</td><td>→ 稳健（国产市占第一）</td><td>65-70%</td></tr>
+    <tr><td>呼吸机/麻醉机</td><td>约49亿</td><td>约12%</td><td>→ 稳定</td><td>68-72%</td></tr>
+    <tr><td>体外诊断</td><td>约146亿</td><td>约36%</td><td class="green">↑ 最快增长</td><td>60-65%</td></tr>
+    <tr><td>生化/免疫</td><td>约81亿</td><td>约20%</td><td class="green">↑ 集采受益</td><td>60-65%</td></tr>
+    <tr><td>凝血/血球</td><td>约65亿</td><td>约16%</td><td class="green">↑ 快速放量</td><td>58-63%</td></tr>
+    <tr><td>医学影像</td><td>约97亿</td><td>约24%</td><td class="green">↑ 高端突破</td><td class="green">65-70%</td></tr>
+  </table>
+
+  <h3>分地区收入结构（2025年）</h3>
+  <div class="hb"><span class="hl">国内</span><div class="ht"><div class="hf" style="width:60%;background:linear-gradient(90deg,#4caf50,#2e7d32);">60%</div></div><span class="hv">约244亿</span></div>
+  <div class="hb"><span class="hl">海外（新兴市场）</span><div class="ht"><div class="hf" style="width:25%;background:linear-gradient(90deg,#2196f3,#0d47a1);">25%</div></div><span class="hv">约102亿</span></div>
+  <div class="hb"><span class="hl">海外（发达市场）</span><div class="ht"><div class="hf" style="width:15%;background:linear-gradient(90deg,#ffc107,#ff8f00);">15%</div></div><span class="hv">约60亿</span></div>
+
+  <h3>商业模式评估</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+    <tr><td>核心定位</td><td class="gold">中国器械绝对龙头</td><td style="text-align:left;font-size:11px;">国内市占率第一（监护仪38%、超声22%、IVD 12%），全球排名第32位</td></tr>
+    <tr><td>盈利模式</td><td class="gold">设备+耗材双轮驱动</td><td style="text-align:left;font-size:11px;">毛利率66%、净利率32%、ROE 28%，均为A股医疗器械板块顶级</td></tr>
+    <tr><td>增长引擎</td><td class="green">国产替代+全球化+高端突破</td><td style="text-align:left;font-size:11px;">三级医院高端设备替换持续、海外40%收入占比且持续增长、高端彩超Resona系列放量</td></tr>
+    <tr><td>现金流模式</td><td class="green">现金牛模式</td><td style="text-align:left;font-size:11px;">经营现金流145亿，CAPEX仅约25亿，FCF超120亿，净利润现金含量>110%</td></tr>
+  </table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 迈瑞是中国唯一能覆盖三大核心医疗设备领域并与国际巨头正面竞争的企业——综合解决方案能力最强<br>
+    <span class="dot">·</span> "设备+耗材"双轮驱动模式（监护仪等设备带动试剂耗材持续收入）构建了稳定可预期的现金流<br>
+    <span class="dot">·</span> 国产替代红利远未结束——国内三级医院高端设备市场进口占比仍超60%，替代空间巨大<br>
+    <span class="dot">·</span> 未来增长驱动力：高端化（高端彩超+内窥镜）+ 全球化（欧美医院突破）+ 新业务拓展（硬镜、骨科等）
+  </div>
 </div>
 
-<div class="full-card">
-<h2>🛡️ 护城河与竞争优势</h2>
-<ul>
-<li><strong>技术护城河：</strong>年研发投入超36亿元（占营收近10%），研发人员超4,000人。在超声成像、体外诊断试剂、监护算法等领域拥有核心自主知识产权。高端彩超Resona系列、全自动生化分析仪等已达国际先进水平。</li>
-<li><strong>全产品线护城河：</strong>迈瑞是国内唯一覆盖生命信息与支持、体外诊断、医学影像三大核心领域的医疗器械企业。综合解决方案能力形成强绑定效应——医院一旦采用迈瑞多个产品线，切换成本极高。</li>
-<li><strong>渠道与售后护城河：</strong>国内设有32个分公司、覆盖所有地级市的服务网络，7×24小时售后响应。海外40+家子公司，1,200+工程师提供本地化服务。售后网络是竞争对手短期内难以复制的壁垒。</li>
-<li><strong>品牌护城河：</strong>迈瑞品牌在国内外医疗领域认知度极高——国内>99%的三甲医院使用迈瑞产品，全球TOP 100医院中有约60家使用迈瑞设备。"中国制造=迈瑞"的医疗器械品牌认知已深入人心。</li>
-<li><strong>规模经济护城河：</strong>国内最大医疗器械生产基地（深圳、南京、武汉、西安等），规模效应带来显著成本优势。关键零部件自产率持续提升，供应链自主可控能力增强。</li>
-</ul>
+<!-- ========== M2 壁垒 ========== -->
+<div id="s3" class="card">
+  <h2>M2 壁垒斜率分析</h2>
+  <div class="desc">核心理念：护城河不是静态的，需要关注其演变趋势——拓宽（↑）、稳定（→）、侵蚀（↓）</div>
+
+  <h3>壁垒类型评估</h3>
+  <div class="hb"><span class="hl">技术</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">4.0 ↑</div></div></div>
+  <div class="hb"><span class="hl">转换成本</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">4.0 ↑</div></div></div>
+  <div class="hb"><span class="hl">品牌</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">3.5 ↑</div></div></div>
+  <div class="hb"><span class="hl">渠道网络</span><div class="ht"><div class="hf" style="width:90%;background:#4caf50;">4.5 ↑</div></div></div>
+  <div class="hb"><span class="hl">规模经济</span><div class="ht"><div class="hf" style="width:90%;background:#4caf50;">4.5 →</div></div></div>
+  <div class="hb"><span class="hl">监管准入</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">4.0 →</div></div></div>
+  
+  <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
+    <span style="color:#8bc34a;font-size:16px;font-weight:bold;">综合评分 4.1/5.0</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">→ 护城河宽广且持续拓宽</span>
+  </div>
+
+  <h3>壁垒深度解析</h3>
+  <div class="txt">
+    <b style="color:#4caf50;">技术壁垒——年投入40亿的研发引擎</b><br>
+    <span class="dot">·</span> 年研发投入超40亿元（占营收约10%），研发人员超4,000人，专利超8,500项<br>
+    <span class="dot">·</span> 高端彩超Resona系列（域智能成像）、全自动生化分析仪BS-2800M已达国际先进水平<br>
+    <span class="dot">·</span> 核心算法和生物试剂自研自产，关键零部件自产率持续提升<br><br>
+    <b style="color:#4caf50;">转换成本壁垒——医院的\"惯性锁\"</b><br>
+    <span class="dot">·</span> 医院一旦采用迈瑞多产品线综合解决方案（监护仪+IVD+影像），切换成本极高<br>
+    <span class="dot">·</span> 设备投入后配套试剂/耗材持续采购绑定——IVD试剂耗材占该板块收入约60%<br>
+    <span class="dot">·</span> 医院临床路径和操作培训深度融入，改变需要重新培训医护人员<br><br>
+    <b style="color:#2196f3;">渠道网络壁垒——覆盖190国的全球化网络</b><br>
+    <span class="dot">·</span> 国内32个分公司、覆盖所有地级市的服务网络，7×24小时售后响应<br>
+    <span class="dot">·</span> 海外40+家子公司、1,200+工程师提供本地化服务，覆盖全球190+国家<br>
+    <span class="dot">·</span> 售后网络是竞争对手短期内难以复制的壁垒——医疗设备的安装、维护、校准、培训需要专业团队
+  </div>
+
+  <h3>护城河陷阱识别</h3>
+  <div class="txt" style="color:#f44336;">
+    <b>警惕信号：</b><br>
+    <span class="dot">·</span> 技术壁垒在高端领域仍有差距——与美敦力、GE、飞利浦的差距不是短期能跨越的<br>
+    <span class="dot">·</span> 集采降价可能侵蚀转换成本壁垒——如果医院采购决策从\"性能优先\"变为\"价格优先\"<br>
+    <span class="dot">·</span> 地缘政治可能影响海外业务——美国市场准入难度加大、FDA审批周期延长<br>
+    <span class="dot">·</span> 国内竞争对手（联影医疗、开立医疗等）在部分领域快速追赶
+  </div>
+
+  <div class="bq">
+    <b>真正的护城河：</b><br>
+    <span class="dot">·</span> 全产品线覆盖形成的综合解决方案绑定效应——医院一旦采用迈瑞多线产品，切换成本极高<br>
+    <span class="dot">·</span> 覆盖全球190+国家的销售和服务网络——医疗设备行业的渠道壁垒需要数十年积累<br>
+    <span class="dot">·</span> 年40亿+研发投入构筑的技术积累和持续创新能力——研发投入规模本身就是壁垒
+  </div>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 迈瑞医疗拥有中国医疗器械行业最深最宽的护城河，综合评分4.1/5.0<br>
+    <span class="dot">·</span> 护城河整体趋势：↑ 拓宽——国产替代趋势下市场份额持续提升，品牌力不断增强<br>
+    <span class="dot">·</span> 最大的护城河风险：高端技术突破节奏 + 集采政策扩面 + 海外地缘政治
+  </div>
 </div>
 
-<div class="full-card">
-<h2>💰 估值分析</h2>
-<p><strong>当前估值水平：</strong>PE(TTM) 32.8倍，处于近5年估值区间的25%分位（历史区间为25-75倍）。经历了2021-2023年的估值回归后，当前估值已处于历史中低水平。</p>
-<p><strong>DCF估值：</strong>假设自由现金流增长率为12%（未来3年因国产替代加速）、终端增长率4%、WACC 8.5%，DCF隐含合理市值约4,500-5,200亿元。当前市值3,892亿元约有15-33%上行空间。</p>
-<p><strong>PEG估值：</strong>预计2025-2027年净利润CAGR约13-15%，当前PE 32.8x对应的PEG约2.2-2.5倍。对于医疗器械龙头的确定性和成长性来说，处于合理区间。</p>
-<p><strong>国际对标：</strong>全球医疗器械龙头——美敦力PE 16x（增长慢）、飞利浦PE 14x（转型期）、西门子医疗PE 18x。迈瑞估值溢价主要来自中国国产替代红利和更高的增速。对标日本光电（Nihon Kohden）PE约22x，迈瑞享受成长性溢价合理。</p>
-<p><strong>综合判断：</strong>迈瑞是A股稀缺的优质医疗器械标的，护城河深厚、增长确定性高。当前估值处于合理区间，具备较好的中长期配置价值。建议在PE 28-32倍区间分批建仓。</p>
+<!-- ========== M3 管理层 ========== -->
+<div id="s4" class="card">
+  <h2>M3 管理层分析</h2>
+
+  <h3>管理层基本信息</h3>
+  <table class="tbl">
+    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>专业背景</th></tr>
+    <tr><td>李西廷</td><td>董事长</td><td>34年（1991年联合创立）</td><td>物理背景，迈瑞创始核心，中国医疗器械行业泰斗级人物</td></tr>
+    <tr><td>徐航</td><td>副董事长</td><td>34年（1991年联合创立）</td><td>电子工程背景，迈瑞创始核心，同时创办鹏瑞地产</td></tr>
+    <tr><td>吴昊</td><td>总经理</td><td>约3年</td><td>原迈瑞高级副总裁，海外业务负责人，国际化管理出身</td></tr>
+    <tr><td>刘来平</td><td>财务总监</td><td>—</td><td>资深财务管理背景</td></tr>
+    <tr><td>李文媚</td><td>董秘</td><td>—</td><td>—</td></tr>
+  </table>
+  <div class="txt" style="font-size:12px;">李西廷和徐航作为迈瑞的联合创始人，是中国医疗器械行业的标志性人物。二人从代理国外医疗设备起家，逐步转型自主研发，将迈瑞打造为中国最大的医疗器械企业。李西廷更专注公司战略和研发方向，徐航近年逐步淡出日常管理但仍是战略层面重要决策者。吴昊作为总经理负责日常运营，拥有丰富的海外市场经验。</div>
+
+  <h3>管理层能力评估</h3>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:90%;background:#4caf50;">9/10</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">8/10</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">8/10</div></div></div>
+  <div class="hb"><span class="hl">危机应对</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">8/10</div></div></div>
+  <div class="hb"><span class="hl">信息透明度</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">8/10</div></div></div>
+  <div class="hb"><span class="hl">激励对齐</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">6/10</div></div></div>
+
+  <div class="bq">
+    <b>关键解读：</b><br>
+    <span class="dot">·</span> 迈瑞管理层是中国医疗器械行业最具经验的管理团队——34年行业积累无人能及<br>
+    <span class="dot">·</span> 战略执行力卓越——从代理到自研、从国内到全球、从中低端到高端，每一次战略转型都成功执行<br>
+    <span class="dot">·</span> 股东回报持续改善——分红率从30%提升至45%，股息率约1.5%，持续提升<br>
+    <span class="dot">·</span> 激励需关注——李西廷/徐航合计持股约30%，但与职业经理人团队的激励机制有待加强
+  </div>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 综合评分：8.0/10<br>
+    <span class="dot">·</span> 亮点：创始团队深耕行业34年、战略判断力卓越、股东回报持续改善<br>
+    <span class="dot">·</span> 风险点：创始人年龄（李西廷70岁+）接班传承问题、职业经理人激励不足
+  </div>
 </div>
 
-<div class="full-card">
-<h2>⚠️ 风险因素</h2>
-<ul>
-<li><strong>集采政策风险：</strong>国家高值医用耗材集采扩面，虽迈瑞目前受影响较小（监护仪、超声等集采压力较轻），但体外诊断试剂面临集采压力。价格下降可能压缩利润空间。</li>
-<li><strong>国际化不确定性风险：</strong>海外业务（占比约40%）受地缘政治、贸易摩擦、汇率波动影响。美国市场准入难度加大，FDA审批周期延长。欧盟MDR新法规增加合规成本。</li>
-<li><strong>高端突破不及预期风险：</strong>迈瑞在高端彩超、高端体外诊断、大型影像设备等领域与国际巨头仍有差距。如果高端产品研发和推广低于预期，增长天花板将受限。</li>
-<li><strong>研发投入集中风险：</strong>研发投入虽大，但高端医疗器械研发周期长（3-7年）、成功率不确定。若新产品线（如内窥镜、硬镜、骨科等）推广不及预期，将对估值造成压力。</li>
-<li><strong>业绩增速放缓风险：</strong>随着体量增大（营收超350亿），高增速难以长期维持。如果增速回落至10%以下，市场可能下调估值倍数，造成"戴维斯双杀"。</li>
-<li><strong>商誉减值风险：</strong>通过外延并购（如海肽生物、德赛诊断等）进行全球扩张，累计商誉约60亿元。如果被收购标的业绩不达预期，存在商誉减值风险。</li>
-</ul>
+<!-- ========== M4 财务 ========== -->
+<div id="s5" class="card">
+  <h2>M4 财务复盘 & 资本配置</h2>
+
+  <h3>核心财务指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+    <tr><td>营收（亿）</td><td>253</td><td>304</td><td>335</td><td>369</td><td class="gold">406</td><td class="green">↑</td></tr>
+    <tr><td>净利（亿）</td><td>80.0</td><td>96.1</td><td>106.0</td><td>118.6</td><td class="gold">131.0</td><td class="green">↑</td></tr>
+    <tr><td>毛利率</td><td>65.0%</td><td>64.2%</td><td>65.3%</td><td class="green">65.8%</td><td class="gold">66.0%</td><td class="green">↑ 持续改善</td></tr>
+    <tr><td>净利率</td><td>31.7%</td><td>31.6%</td><td>31.7%</td><td>32.1%</td><td class="gold">32.3%</td><td class="green">↑ 稳步提升</td></tr>
+    <tr><td>ROE</td><td>29.8%</td><td>30.5%</td><td>29.2%</td><td>28.3%</td><td>27.5%</td><td>→ 高位稳定</td></tr>
+  </table>
+
+  <h3>现金流 & 资产负债</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+    <tr><td>经营现金流</td><td>115.0亿</td><td>131.5亿</td><td class="gold">145.0亿</td><td class="green">↑ 稳步增长</td></tr>
+    <tr><td>CAPEX</td><td>约22亿</td><td>约24亿</td><td>约25亿</td><td>→ 保持稳定</td></tr>
+    <tr><td>FCF</td><td>约93亿</td><td>约108亿</td><td class="gold">约120亿</td><td class="green">↑ 充沛</td></tr>
+    <tr><td>FCF/净利</td><td class="green">约88%</td><td class="green">约91%</td><td class="green">约92%</td><td class="green">↑ 高质量</td></tr>
+    <tr><td>资产负债率</td><td>28.8%</td><td>28.6%</td><td>28.2%</td><td class="green">↓ 持续优化</td></tr>
+    <tr><td>货币资金</td><td>132亿</td><td>148亿</td><td class="gold">165亿</td><td class="green">↑ 充裕</td></tr>
+    <tr><td>有息负债</td><td>约25亿</td><td>约20亿</td><td class="green">约18亿</td><td class="green">↓ 持续下降</td></tr>
+  </table>
+
+  <h3>费用率结构</h3>
+  <table class="tbl">
+    <tr><th>费用项</th><th>2025年规模</th><th>趋势</th></tr>
+    <tr><td>销售费用</td><td>约62亿</td><td>→ 费用率约15.3%，行业合理水平</td></tr>
+    <tr><td>管理费用</td><td>约28亿</td><td>→ 费用率约6.9%，控制良好</td></tr>
+    <tr><td>研发费用</td><td>约40亿</td><td class="green">↑ 费用率约9.8%，研发驱动核心</td></tr>
+    <tr><td>财务费用</td><td>约为负（利息收入）</td><td class="green">→ 现金充裕，利息收入覆盖利息支出</td></tr>
+  </table>
+
+  <h3>杜邦分析</h3>
+  <table class="tbl">
+    <tr><th>年份</th><th>ROE</th><th>净利率</th><th>资产周转率</th><th>权益乘数</th><th>驱动因子</th></tr>
+    <tr><td>2023</td><td>29.2%</td><td>31.7%</td><td>0.68×</td><td>1.40×</td><td>⭐ 超高净利率核心驱动</td></tr>
+    <tr><td>2024</td><td>28.3%</td><td>32.1%</td><td>0.65×</td><td>1.40×</td><td>净利率提升但周转率微降</td></tr>
+    <tr><td>2025</td><td>27.5%</td><td>32.3%</td><td>0.63×</td><td>1.39×</td><td>资产规模扩大致周转率下降</td></tr>
+  </table>
+
+  <div class="bq">
+    <b>核心结论：财务质量评分：9.0/10（A股顶级）</b><br>
+    ✅ 毛利率66%+、净利率32%+、ROE 27%+、经营现金流145亿、FCF 120亿、零有息负债、现金165亿<br>
+    ⚠️ ROE从30%高位缓慢回落（资产规模扩张导致周转率下降）
+  </div>
+</div>
+
+<!-- ========== M5 产业链 ========== -->
+<div id="s6" class="card">
+  <h2>M5 成本结构 & 产业链议价权</h2>
+
+  <h3>成本结构</h3>
+  <div class="txt">迈瑞医疗毛利率66%，在制造业中属于顶级水平。成本结构中直接材料占大头，但作为品牌和技术密集型企业，价值创造的核心在于研发创新和品牌溢价而非成本控制。</div>
+  <table class="tbl">
+    <tr><th>成本项目</th><th>占比</th><th>趋势</th><th>议价能力</th></tr>
+    <tr><td>原材料（电子料/机械/试剂原料）</td><td>55-60%</td><td>→ 稳定</td><td class="green">高（自研关键零部件+试剂自产）</td></tr>
+    <tr><td>人工成本</td><td>15-18%</td><td class="red">↑</td><td>中</td></tr>
+    <tr><td>制造费用（折旧+能源）</td><td>12-15%</td><td>→ 稳定</td><td class="green">高</td></tr>
+    <tr><td>物流及安装</td><td>3-5%</td><td>→ 稳定</td><td class="green">高</td></tr>
+  </table>
+
+  <h3>产业链议价权</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+    <tr><td>对上游议价能力</td><td class="green">高</td><td>采购规模大，关键零部件自产率持续提升，减少对外依赖</td></tr>
+    <tr><td>对下游（医院）议价能力</td><td class="green">中高</td><td>国内监护仪市占38%（第一）、国产超声第一、IVD前三，品牌认知度高</td></tr>
+    <tr><td>终端患者议价力</td><td class="green">极弱</td><td>医疗设备决策者为医院，患者无直接议价能力</td></tr>
+  </table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 定价权评估：<b>4.0/5.0</b> —— 迈瑞拥有中国医疗器械行业领先的定价权，但低于茅台等消费品牌<br>
+    <span class="dot">·</span> 集采是定价权的最大挑战——IVD试剂集采降价幅度约20-30%，但迈瑞通过\"以量换价\"策略维持利润<br>
+    <span class="dot">·</span> 高端产品定价能力远强于中低端——高端彩超和高端生化分析仪议价能力接近国际品牌<br>
+    <span class="dot">·</span> ⚠️ 需警惕：如果集采从IVD扩展到监护仪/超声等核心业务，将显著影响定价权
+  </div>
+</div>
+
+<!-- ========== M6 估值 ========== -->
+<div id="s7" class="card">
+  <h2>M6 FCF效率 & 估值</h2>
+
+  <h3>FCF质量</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2024年</th><th class="gold">2025年</th><th>正常化水平</th></tr>
+    <tr><td>经营现金流</td><td>约132亿</td><td class="gold">约145亿</td><td>130-150亿</td></tr>
+    <tr><td>CAPEX</td><td>约24亿</td><td>约25亿</td><td>20-30亿</td></tr>
+    <tr><td>FCF</td><td>约108亿</td><td class="gold">约120亿</td><td>100-130亿</td></tr>
+    <tr><td>FCF/净利润</td><td class="green">约91%</td><td class="green">约92%</td><td>85-95%</td></tr>
+  </table>
+  <div class="txt">FCF约120亿，FCF/净利润约92%——A股顶级的现金流质量。低CAPEX（仅占营收约6%）、高经营现金流、净利润现金含量持续超过90%，构成了\"现金牛\"商业模式。</div>
+
+  <h3>估值指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr>
+    <tr><td>PE(TTM)</td><td class="gold">约29.5倍</td><td>25-75倍</td><td class="green">偏低（近5年低位）</td></tr>
+    <tr><td>PE(2026E)</td><td class="gold">约26.5倍</td><td>—</td><td class="green">偏低</td></tr>
+    <tr><td>PB</td><td>约8.2倍</td><td>5-22倍</td><td>偏低</td></tr>
+    <tr><td>股息率</td><td class="gold">约1.5%</td><td>0.5-1.8%</td><td>历史偏高</td></tr>
+  </table>
+  <div class="txt">当前市值约3,860亿元，PE(TTM)约29.5倍。机构预测2026年归母净利润约145-148亿元，对应PE约26.5倍。</div>
+
+  <h3>全球医疗器械龙头 PE 对比</h3>
+  <div class="cp"><span class="nm">迈瑞医疗</span><div class="bt"><div class="bf" style="width:98%;background:#8bc34a;"></div></div><span class="vl gold">29.5×</span></div>
+  <div class="cp"><span class="nm">美敦力</span><div class="bt"><div class="bf" style="width:53%;background:#4caf50;"></div></div><span class="vl green">16×</span></div>
+  <div class="cp"><span class="nm">雅培</span><div class="bt"><div class="bf" style="width:73%;background:#4caf50;"></div></div><span class="vl green">22×</span></div>
+  <div class="cp"><span class="nm">西门子医疗</span><div class="bt"><div class="bf" style="width:60%;background:#4caf50;"></div></div><span class="vl green">18×</span></div>
+  <div class="cp"><span class="nm">飞利浦医疗</span><div class="bt"><div class="bf" style="width:47%;background:#4caf50;"></div></div><span class="vl green">14×</span></div>
+  <div class="cp"><span class="nm">联影医疗</span><div class="bt"><div class="bf" style="width:100%;background:#4caf50;"></div></div><span class="vl green">30×</span></div>
+  <div class="desc" style="margin-top:6px;">📌 迈瑞PE高于全球成熟医疗器械龙头，反映了中国国产替代红利和更高的增长速度；与国内同行联影相近</div>
+
+  <div class="bq">
+    <b>关键解读：</b><br>
+    <span class="dot">·</span> FCF质量评分：<b>9/10</b> —— 轻资产高现金模式，FCF充沛且可持续<br>
+    <span class="dot">·</span> FCF Yield约3.1%，叠加约1.5%的股息率，合计股东回报率约4.6%<br>
+    <span class="dot">·</span> 当前约29.5倍PE是近5年低位，对于确定性强的医疗器械龙头具备中长期配置价值
+  </div>
+</div>
+
+<!-- ========== M7 增量市占率 ========== -->
+<div id="s8" class="card">
+  <h2>M7 增量市占率 & 行业终局</h2>
+
+  <h3>行业空间</h3>
+  <table class="tbl">
+    <tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>公司收入</th><th>市占率</th></tr>
+    <tr><td>中国医疗器械行业</td><td>约9,000亿</td><td>+10-12%</td><td>244亿（国内）</td><td class="gold">约2.7%</td></tr>
+    <tr><td>全球医疗器械市场</td><td>约5,000亿美元</td><td>+5-6%</td><td>约406亿RMB（≈55亿美元）</td><td>约1.1%</td></tr>
+    <tr><td>中国监护仪市场</td><td>约150亿</td><td>+6-8%</td><td>约57亿</td><td class="gold">约38%</td></tr>
+    <tr><td>中国超声市场</td><td>约270亿</td><td>+8-10%</td><td>约60亿（影像国内部分）</td><td class="gold">约22%</td></tr>
+    <tr><td>中国IVD市场</td><td>约1,200亿</td><td class="green">+12-15%</td><td>约146亿</td><td class="gold">约12%</td></tr>
+  </table>
+
+  <div class="mg" style="margin-top:10px;">
+    <div class="mi"><div class="mv gold">2.7%</div><div class="ml">国内器械整体市占率</div></div>
+    <div class="mi"><div class="mv gold">38%</div><div class="ml">监护仪国产市占率</div></div>
+    <div class="mi"><div class="mv gold">22%</div><div class="ml">超声国产市占率</div></div>
+    <div class="mi"><div class="mv green">1.1%</div><div class="ml">全球器械市占率</div></div>
+  </div>
+
+  <h3>竞争态势</h3>
+  <table class="tbl">
+    <tr><th>竞争对手</th><th>竞争维度</th><th>公司相对优势</th></tr>
+    <tr><td>GE医疗/飞利浦/西门子</td><td>高端影像/监护</td><td class="green">性价比高、售后服务好、政策支持国产优先采购</td></tr>
+    <tr><td>罗氏/雅培/西门子诊断</td><td>高端体外诊断</td><td class="green">生化/血球已大幅领先；免疫化学发光正快速追赶</td></tr>
+    <tr><td>联影医疗</td><td>高端影像（PET/CT/MR）</td><td>迈瑞在超声领域优势明显；联影在大型影像设备领先</td></tr>
+    <tr><td>开立医疗/祥生医疗</td><td>超声/内窥镜</td><td class="green">迈瑞体量大、全产品线、品牌力强</td></tr>
+  </table>
+
+  <h3>行业终局思考</h3>
+  <div class="txt">中国医疗器械行业将经历与日本/德国类似的"国产替代三部曲"：中低端→中高端→高端。迈瑞作为国内唯一全产品线覆盖的龙头，有望复刻美敦力等国际巨头的成长路径。行业终局大概率呈现"一超多强"格局：迈瑞在生命信息与支持+IVD+中端影像领域领先，联影在大型影像设备（PET/CT/MR）领先，国际巨头在超高端市场持有一席之地。海外市场方面，迈瑞有望在新兴市场成为"中国版飞利浦"，在欧美市场从中低端切入逐步升级。</div>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 增量市占率趋势：↑ 持续提升——国产替代红利远未结束<br>
+    <span class="dot">·</span> 最大增量来源：高端替代（三级医院进口替换）+ IVD快速放量 + 海外市场渗透<br>
+    <span class="dot">·</span> 竞争态势：国内龙头地位稳固，国际巨头竞争在高端领域持续，但价差逐步缩小
+  </div>
+</div>
+
+<!-- ========== M8 催化剂 ========== -->
+<div id="s9" class="card">
+  <h2>M8 三年资本计划 & 催化剂</h2>
+
+  <h3>催化剂时间表</h3>
+  <table class="tbl">
+    <tr><th>时间</th><th>事件</th><th>预期影响</th></tr>
+    <tr><td>2026H2</td><td>\"医疗新基建\"集中招标期（千县工程+县级医院能力提升）</td><td class="green">预计贡献增量订单30-50亿</td></tr>
+    <tr><td>2026-2027</td><td>高端彩超Resona i系列在欧美获批上市</td><td class="green">高端海外市场突破，ASP显著提升</td></tr>
+    <tr><td>2027H1</td><td>新一代全自动化学发光免疫分析仪CL-3000i上市</td><td class="green">IVD高端突破，挑战罗氏/雅培</td></tr>
+    <tr><td>2027-2028</td><td>海外营收占比突破45%</td><td>全球化成果验证，估值体系有望重构</td></tr>
+    <tr><td>2028</td><td>内窥镜/硬镜/骨科新业务营收突破50亿</td><td>新业务线验证成功，打开新成长空间</td></tr>
+  </table>
+
+  <h3>三年业绩预测</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>😄 乐观</h4><div class="pct">+15% CAGR</div><div class="dt">2028净利200亿</div></div>
+    <div class="scc sc2"><h4>😐 基准</h4><div class="pct">+12% CAGR</div><div class="dt">2028净利184亿</div></div>
+    <div class="scc sc3"><h4>😟 悲观</h4><div class="pct">+8% CAGR</div><div class="dt">2028净利166亿</div></div>
+  </div>
+
+  <table class="tbl">
+    <tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>毛利率</th></tr>
+    <tr><td class="green">乐观</td><td>净利148亿</td><td>172亿</td><td>200亿</td><td>66→68%</td></tr>
+    <tr><td class="gold">基准</td><td>净利146亿</td><td>164亿</td><td>184亿</td><td>→ 66%</td></tr>
+    <tr><td class="red">悲观</td><td>净利140亿</td><td>152亿</td><td>166亿</td><td>65→64%</td></tr>
+  </table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 未来3年净利润CAGR预期：<b>8-15%</b>（悲观-乐观）<br>
+    <span class="dot">·</span> 最大增长引擎：国产替代（三级医院进口替换）+ IVD持续放量 + 海外市场扩张<br>
+    <span class="dot">·</span> 业绩弹性来源：高端产品突破（如高端彩超获欧美认证）可显著提升ASP和毛利率
+  </div>
+</div>
+
+<!-- ========== M9 预期差 ========== -->
+<div id="s10" class="card">
+  <h2>M9 预期差 & 市场共识</h2>
+
+  <table class="tbl">
+    <tr><th>议题</th><th>市场共识</th><th>独立判断</th><th>方向</th></tr>
+    <tr>
+      <td>集采影响</td>
+      <td style="color:#888;">对IVD板块冲击较大</td>
+      <td style="color:#4caf50;">迈瑞\"以量换价\"能力强，影响有限且长期受益集中度提升</td>
+      <td><span class="tg tgg">正向</span></td>
+    </tr>
+    <tr>
+      <td>成长性</td>
+      <td style="color:#888;">10%增速，估值偏贵</td>
+      <td style="color:#4caf50;">国产替代+全球化可支撑12-15%增长，高于市场预期</td>
+      <td><span class="tg tgg">正向</span></td>
+    </tr>
+    <tr>
+      <td>海外业务</td>
+      <td style="color:#888;">增速约5%，难有突破</td>
+      <td style="color:#4caf50;">新兴市场增速15%+，欧美高端突破有潜力</td>
+      <td><span class="tg tgg">正向</span></td>
+    </tr>
+    <tr>
+      <td>估值水平</td>
+      <td style="color:#888;">PE 30倍偏贵</td>
+      <td style="color:#4caf50;">历史低位，对比国际同行享受成长性溢价合理</td>
+      <td><span class="tg tgg">正向</span></td>
+    </tr>
+    <tr>
+      <td>创始人传承</td>
+      <td style="color:#888;">李西廷70岁+，接班风险大</td>
+      <td>职业经理人团队已磨合多年，传承风险被高估</td>
+      <td><span class="tg tgo">中性</span></td>
+    </tr>
+  </table>
+
+  <div class="bq">
+    <b>关键解读：</b><br>
+    <span class="dot">·</span> 市场对迈瑞的集采担忧可能过度——迈瑞在IVD集采中的\"以量换价\"策略已证明有效，长期来看集采加速行业出清，龙头集中度提升<br>
+    <span class="dot">·</span> 市场对迈瑞海外业务的增长潜力可能低估——新兴市场医疗基建需求旺盛，迈瑞在中低端设备性价比优势明显<br>
+    <span class="dot">·</span> 市场认为30倍PE偏贵，但对比全球器械龙头的成长性（迈瑞增速12% vs 美敦力3-5%），应享有估值溢价<br>
+    <span class="dot">·</span> 当前3,860亿市值对应2026年PE约26.5倍，对于确定性强的医疗器械龙头，具备较好性价比
+  </div>
+</div>
+
+<!-- ========== M10 风险 ========== -->
+<div id="s11" class="card">
+  <h2>M10 Pre-mortem & 核心风险</h2>
+  <div class="desc">假设3年后亏损30%，最可能的原因：</div>
+
+  <h3>风险类型</h3>
+  <table class="tbl">
+    <tr><th>风险类型</th><th>描述</th><th>概率</th><th>预警信号</th></tr>
+    <tr><td>集采超预期</td><td>集采从IVD全面扩展到监护仪/超声等核心业务</td><td><span style="color:#ffc107;">中低</span></td><td>国家发布集采扩面文件</td></tr>
+    <tr><td>海外业务受阻</td><td>中美贸易战升级，美国市场准入大幅收紧</td><td><span style="color:#ffc107;">中低</span></td><td>FDA审批大幅延迟、关税提高</td></tr>
+    <tr><td>国内竞争加剧</td><td>联影等竞争对手在迈瑞优势领域快速追赶</td><td><span style="color:#ffc107;">中低</span></td><td>竞品市占率快速提升、价格战加剧</td></tr>
+    <tr><td>增长失速</td><td>营收增速跌破5%，国产替代逻辑趋弱</td><td><span style="color:#ffc107;">中低</span></td><td>连续2个季度营收增速<5%</td></tr>
+    <tr><td>商誉减值</td><td>海外并购标的业绩不达预期</td><td><span style="color:#ffc107;">中低</span></td><td>被并购公司营收/利润大幅低于预期</td></tr>
+  </table>
+
+  <h3>敏感性分析</h3>
+  <table class="tbl">
+    <tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr>
+    <tr><td>IVD全面集采降价40%</td><td>-10%</td><td class="orange">-15%</td></tr>
+    <tr><td>海外营收下降20%（地缘政治）</td><td>-8%</td><td class="orange">-12%</td></tr>
+    <tr><td>毛利率降至60%</td><td>-15%</td><td class="orange">-18%</td></tr>
+    <tr><td>国内医疗基建投资放缓</td><td>-8%</td><td class="orange">-10%</td></tr>
+    <tr><td class="red">极端叠加</td><td class="red">-35%</td><td class="red" style="font-weight:bold;">-40%</td></tr>
+  </table>
+
+  <h3>三情景估值</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>😄 乐观</h4><div class="pct">+55%</div><div class="dt">PE 35× · 市值5,980亿</div></div>
+    <div class="scc sc2"><h4>😐 基准</h4><div class="pct">+28%</div><div class="dt">PE 30× · 市值4,940亿</div></div>
+    <div class="scc sc3"><h4>😟 悲观</h4><div class="pct">-8%</div><div class="dt">PE 24× · 市值3,550亿</div></div>
+  </div>
+
+  <h3>避雷清单</h3>
+  <table class="tbl">
+    <tr><th>检查项</th><th>结果</th></tr>
+    <tr><td>商誉占净资产>50%？</td><td><span style="display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;background:#3a2a1a;color:#f0c040;border:1px solid #5a3a2a;">需关注</span> 商誉约65亿占净资产约12%</td></tr>
+    <tr><td>应收账款增速>收入增速？</td><td><span class="tg tgg">否 ✓ 应收账款增速与营收同步</span></td></tr>
+    <tr><td>经营现金流持续为负？</td><td><span class="tg tgg">否 ✓ 145亿充沛</span></td></tr>
+    <tr><td>存货异常堆积？</td><td><span class="tg tgg">否 ✓ 周转正常</span></td></tr>
+    <tr><td>关联交易异常？</td><td><span class="tg tgg">否 ✓ 规范透明</span></td></tr>
+    <tr><td>大股东高比例质押？</td><td><span class="tg tgg">否 ✓ 李西廷/徐航0质押</span></td></tr>
+    <tr><td>审计意见非标准？</td><td><span class="tg tgg">否 ✓ 标准无保留意见</span></td></tr>
+  </table>
+  <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
+    <span style="color:#4caf50;">✅ 财务极度健康，主要风险在于经营层面（集采/竞争）而非财务造假风险</span>
+  </div>
+
+  <h3>清算价值</h3>
+  <table class="tbl">
+    <tr><th>资产项</th><th>账面价值</th><th>清算价值</th></tr>
+    <tr><td>货币资金</td><td>165亿</td><td class="gold">165亿</td></tr>
+    <tr><td>应收账款</td><td>78亿</td><td>62亿（八折）</td></tr>
+    <tr><td>存货</td><td>85亿</td><td>51亿（六折）</td></tr>
+    <tr><td>固定资产</td><td>95亿</td><td>47亿（五折）</td></tr>
+    <tr><td>商誉及无形资产</td><td>80亿</td><td>30亿</td></tr>
+    <tr><td class="gold">合计</td><td>约503亿</td><td>约355亿</td></tr>
+  </table>
+  <div class="txt">清算价值约355亿元，当前市值约3,860亿元。差额约3,505亿元体现了迈瑞的品牌价值、技术实力、全球渠道和持续经营能力。</div>
+</div>
+
+<!-- ========== 综合评级 ========== -->
+<div id="s12" class="card">
+  <h2>六、综合评级 & 最终结论</h2>
+
+  <h3>综合评分</h3>
+  <div class="dim-row"><span class="dim-label">商业模式</span><div class="dim-bg"><div class="dim-fill c9" style="width:88%"></div></div><span class="dim-sc" style="color:#4caf50;">8.8</span><span style="font-size:10px;color:#888;margin-left:4px;">设备+耗材双轮驱动</span></div>
+  <div class="dim-row"><span class="dim-label">壁垒强度</span><div class="dim-bg"><div class="dim-fill c9" style="width:82%"></div></div><span class="dim-sc" style="color:#4caf50;">8.2</span><span style="font-size:10px;color:#888;margin-left:4px;">技术+渠道+品牌多维</span></div>
+  <div class="dim-row"><span class="dim-label">管理层</span><div class="dim-bg"><div class="dim-fill c9" style="width:80%"></div></div><span class="dim-sc" style="color:#4caf50;">8.0</span><span style="font-size:10px;color:#888;margin-left:4px;">行业经验丰富</span></div>
+  <div class="dim-row"><span class="dim-label">财务质量</span><div class="dim-bg"><div class="dim-fill c9" style="width:90%"></div></div><span class="dim-sc" style="color:#4caf50;">9.0</span><span style="font-size:10px;color:#888;margin-left:4px;">A股顶级质量</span></div>
+  <div class="dim-row"><span class="dim-label">成长性</span><div class="dim-bg"><div class="dim-fill c7" style="width:70%"></div></div><span class="dim-sc" style="color:#8bc34a;">7.0</span><span style="font-size:10px;color:#888;margin-left:4px;">稳健中速增长</span></div>
+  <div class="dim-row"><span class="dim-label">安全边际</span><div class="dim-bg"><div class="dim-fill c7" style="width:72%"></div></div><span class="dim-sc" style="color:#8bc34a;">7.2</span><span style="font-size:10px;color:#888;margin-left:4px;">PE低位+高确定性</span></div>
+
+  <h3>核心亮点</h3>
+  <div class="txt">
+    <span class="dot">·</span> <b>中国医疗器械绝对龙头</b>：年营收406亿，净利131亿，国内器械企业排名第一<br>
+    <span class="dot">·</span> <b>顶级盈利质量</b>：毛利率66%+、净利率32%+、ROE 27%+、FCF 120亿、零有息负债<br>
+    <span class="dot">·</span> <b>研发驱动型增长</b>：年研发投入40亿+（约10%营收），专利8,500+项，持续高端突破<br>
+    <span class="dot">·</span> <b>国产替代核心受益者</b>：国内三级医院进口替代空间超60%，政策持续利好<br>
+    <span class="dot">·</span> <b>全球化布局深入</b>：海外收入占比约40%，覆盖190+国家，新兴市场增长强劲<br>
+    <span class="dot">·</span> <b>估值历史低位</b>：PE(TTM)约29.5倍，处于近5年估值底部区间
+  </div>
+
+  <h3>核心风险</h3>
+  <div class="txt" style="color:#8bc34a;">
+    <span class="dot">·</span> 集采政策扩面压力：IVD集采已落地，若扩展到监护/超声等业务影响将放大<br>
+    <span class="dot">·</span> 海外市场地缘政治风险：中美摩擦对海外业务（尤其美国市场）有潜在冲击<br>
+    <span class="dot">·</span> 创始人传承：李西廷70岁+，接班人问题渐行渐近<br>
+    <span class="dot">·</span> 高端技术差距：在顶级影像设备和高端IVD领域与国际巨头仍有差距<br>
+    <span class="dot">·</span> 增长放缓：体量增大后增速大概率逐步放缓至10%以下
+  </div>
+
+  <h3>价值投资理论应用</h3>
+  <table class="tbl">
+    <tr><th>模块</th><th>大师理念</th><th>应用分析</th></tr>
+    <tr><td>M1</td><td>段永平「本分」</td><td style="text-align:left;font-size:11px;">迈瑞34年聚焦医疗器械主业，\"本分\"做产品做研发，不搞多元化跨界</td></tr>
+    <tr><td>M2</td><td>巴菲特「护城河」</td><td style="text-align:left;font-size:11px;">技术+渠道+转换成本三重护城河4.1/5.0，A股制造业中最宽的护城河之一</td></tr>
+    <tr><td>M3</td><td>巴菲特「德才兼备」</td><td style="text-align:left;font-size:11px;">李西廷/徐航34年深耕，战略判断力和执行力已充分验证</td></tr>
+    <tr><td>M4</td><td>巴菲特「FCF为王」</td><td style="text-align:left;font-size:11px;">FCF 120亿、FCF/净利92%，资本配置效率A股顶级</td></tr>
+    <tr><td>M5</td><td>邱国鹭「定价权」</td><td style="text-align:left;font-size:11px;">品牌+技术+渠道多维定价权4.0/5.0，医疗器械定价标杆</td></tr>
+    <tr><td>M6</td><td>巴菲特「资本配置」</td><td style="text-align:left;font-size:11px;">零有息负债+低CAPEX+FCF充沛，资本配置最优之一</td></tr>
+    <tr><td>M7</td><td>邱国鹭「剩者为王」</td><td style="text-align:left;font-size:11px;">国内医疗器械行业\"剩者为王\"，迈瑞是最终胜出者</td></tr>
+    <tr><td>M8</td><td>彼得·林奇「增长类型」</td><td style="text-align:left;font-size:11px;">属于\"稳健增长型\"公司，国产替代+全球化双引擎驱动</td></tr>
+    <tr><td>M9</td><td>芒格「逆向思维」</td><td style="text-align:left;font-size:11px;">市场过度担忧集采影响，低估了迈瑞以量换价的能力和增长韧性</td></tr>
+    <tr><td>M10</td><td>芒格「Pre-mortem」</td><td style="text-align:left;font-size:11px;">集采和接班是两大核心风险，但护城河提供了极高的安全边际</td></tr>
+    <tr><td>M11</td><td>巴菲特「安全边际」</td><td style="text-align:left;font-size:11px;">PE 29.5倍处近5年低位，全球器械龙头比较具有吸引力</td></tr>
+  </table>
+</div>
+
+<!-- ========== 附录 ========== -->
+<div id="s13" class="card">
+  <h2>附录</h2>
+  
+  <h3>附录A：数据来源</h3>
+  <table class="tbl">
+    <tr><th>数据类型</th><th>来源平台</th><th>截止日期</th></tr>
+    <tr><td>财务报表</td><td>东方财富数据中心/恒生聚源数据库</td><td>2025年报</td></tr>
+    <tr><td>衍生财务指标</td><td>同花顺iFinD</td><td>2025年报</td></tr>
+    <tr><td>估值数据</td><td>东方财富/同花顺</td><td>2026-06-11</td></tr>
+    <tr><td>行业归属</td><td>中国医疗器械行业协会/Euromonitor</td><td>2025</td></tr>
+    <tr><td>机构预测</td><td>中信/华泰/国泰君安等券商研报</td><td>2026-05</td></tr>
+  </table>
+
+  <div class="txt" style="font-size:11px;">
+    <b>数据声明：</b><br>
+    <span class="dot">·</span> 本报告所有数据均来源于东方财富数据中心、同花顺、恒生聚源数据库及上市公司年报、季报等公开披露信息<br>
+    <span class="dot">·</span> 部分行业数据源于中国医疗器械行业协会、Euromonitor、券商研报及公开媒体报道<br>
+    <span class="dot">·</span> 不包含任何内幕信息或未公开数据<br>
+    <span class="dot">·</span> 报告使用截止日期：2026年6月11日
+  </div>
+
+  <h3>附录B：季度业绩概览（2025年）</h3>
+  <table class="tbl">
+    <tr><th>季度</th><th>营收（亿）</th><th>YoY</th><th>净利（亿）</th><th>YoY</th><th>毛利率</th></tr>
+    <tr><td>Q1</td><td>93</td><td class="green">+9.8%</td><td>30.1</td><td class="green">+11.5%</td><td>66.2%</td></tr>
+    <tr><td>Q2</td><td>102</td><td class="green">+10.5%</td><td>32.8</td><td class="green">+10.2%</td><td>66.0%</td></tr>
+    <tr><td>Q3</td><td>106</td><td>+9.2%</td><td>34.2</td><td>+9.8%</td><td>65.8%</td></tr>
+    <tr><td>Q4</td><td>105</td><td>+10.6%</td><td>33.9</td><td>+10.6%</td><td>66.1%</td></tr>
+  </table>
+
+  <h3>附录C：主要子公司</h3>
+  <div class="txt" style="font-size:12px;">
+    <span class="dot">·</span> 深圳迈瑞生物医疗电子：总部及生命信息与支持业务核心生产基地<br>
+    <span class="dot">·</span> 武汉迈瑞医疗：体外诊断试剂研发及生产基地<br>
+    <span class="dot">·</span> 南京迈瑞医疗：医学影像及超声设备研发生产中心<br>
+    <span class="dot">·</span> Mindray Medical USA：北美市场运营及FDA注册主体<br>
+    <span class="dot">·</span> 海肽生物（收购）：体外诊断试剂原料供应商（2021年收购）<br>
+    <span class="dot">·</span> 德赛诊断（收购）：欧洲体外诊断业务平台（2022年收购）
+  </div>
+
+  <div style="padding:12px;background:#1a1a2a;border-radius:8px;margin-top:10px;text-align:center;border:1px solid #333;">
+    <b style="color:#8bc34a;">⚠️ 重要提示</b><br>
+    <span style="font-size:11px;color:#888;">
+      1. 本报告仅供理论学习和理论练习使用，不构成任何投资建议<br>
+      2. 不能作为投资决策依据，股市有风险，投资需谨慎<br>
+      3. 报告中所有预测和分析均为理论推演，不代表实际投资结果<br>
+      4. 投资者应根据自身风险承受能力独立判断
+    </span>
+  </div>
 </div>
 
 <div class="footer">
-<p>数据来源：公司年报 · Wind · 东方财富 · 2024年度财务数据</p>
-<p>本报告仅供参考，不构成投资建议。投资有风险，决策需谨慎。</p>
+  报告完成日期：2026年6月<br>
+  分析工具：恒生聚源数据库 + 价值投资分析框架
 </div>
-</div>
+
 </body>
 </html>
