@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>价值投资研究报告 · 企业门户</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@waline/client@2/dist/waline.css" />
 <style>
 /* ===== THEME VARIABLES ===== */
 :root{
@@ -105,11 +104,33 @@ h1 span{color:var(--accent)}
 .report-frame-wrap{flex:1;position:relative;overflow:hidden}
 .report-frame{width:100%;height:100%;border:none;display:none}
 
-/* ===== WALINE COMMENTS ===== */
-.report-comments{background:var(--bg2);border-top:1px solid var(--b2);padding:24px 20px 40px}
+/* ===== COMMENTS (self-contained, no CDN) ===== */
+.report-comments{display:none;background:var(--bg2);border-top:1px solid var(--b2);padding:20px 16px 32px}
 .comments-title{font-size:15px;font-weight:600;color:var(--t2);margin-bottom:4px}
-.comments-subtitle{font-size:11px;color:var(--m3);margin-bottom:16px}
-#waline{--waline-font-size:13px;--waline-theme-color:var(--accent);--waline-active-color:var(--accent);--waline-bgcolor:var(--bg2);--waline-bgcolor-light:var(--bg3);--waline-bgcolor-hover:var(--bg3);--waline-color:var(--t2);--waline-boder-color:var(--b2);--waline-border-color:var(--b2);}
+.comments-subtitle{font-size:11px;color:var(--m3);margin-bottom:4px}
+.comment-login-hint{font-size:11px;color:var(--accent);margin-bottom:14px;cursor:pointer;display:inline-block}
+.comment-login-hint:hover{opacity:.8}
+
+/* Comment form */
+.cmt-form{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.cmt-row{display:flex;gap:8px}
+.cmt-row input{flex:1;background:var(--bg3);border:1px solid var(--b2);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--t2);outline:none}
+.cmt-row input:focus{border-color:var(--accent)}
+.cmt-form textarea{background:var(--bg3);border:1px solid var(--b2);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--t2);outline:none;resize:vertical;min-height:56px;font-family:inherit}
+.cmt-form textarea:focus{border-color:var(--accent)}
+.cmt-submit{background:var(--accent);color:#000;border:none;border-radius:6px;padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;align-self:flex-end}
+.cmt-submit:hover{opacity:.85}
+.cmt-submit:disabled{opacity:.4;cursor:default}
+
+/* Comment list */
+.cmt-list{display:flex;flex-direction:column;gap:10px}
+.cmt-item{background:var(--bg3);border-radius:8px;padding:10px 12px;border:1px solid var(--b2)}
+.cmt-meta{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.cmt-avatar{width:24px;height:24px;border-radius:50%;background:var(--accent2);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.cmt-name{font-size:12px;font-weight:600;color:var(--t2)}
+.cmt-time{font-size:10px;color:var(--m4)}
+.cmt-text{font-size:12px;color:var(--t3);line-height:1.5;word-break:break-word}
+.cmt-empty{text-align:center;color:var(--m4);font-size:12px;padding:20px 0}
 .report-frame-wrap .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--m5);font-size:12px;flex-direction:column;gap:8px}
 
 /* ===== DETAIL VIEW (books) ===== */
@@ -290,6 +311,9 @@ h1 span{color:var(--accent)}
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">🌙</button>
   </div>
   <div class="subtitle">VALUE INVESTING RESEARCH PORTAL</div>
+  <div style="margin-top:6px;font-size:11px">
+    <a href="javascript:void(0)" onclick="toggleHomeComments()" style="color:var(--accent);text-decoration:none;font-weight:600">💬 留言讨论</a>
+  </div>
 </header>
 
 <!-- ===== NAV TABS ===== -->
@@ -504,11 +528,12 @@ h1 span{color:var(--accent)}
     </div>
     <iframe class="report-frame" id="reportFrame" onload="onFrameLoaded()"></iframe>
   </div>
-  <!-- ===== WALINE COMMENTS ===== -->
-  <div class="report-comments" id="reportComments" style="display:none">
+  <!-- ===== COMMENTS SECTION ===== -->
+  <div class="report-comments" id="reportComments">
     <div class="comments-title">💬 讨论区</div>
-    <p class="comments-subtitle">填写昵称和邮箱即可留言 · 非公开显示</p>
-    <div id="waline"></div>
+    <div class="comments-subtitle">对本报告的看法？欢迎留言交流</div>
+    <a class="comment-login-hint" href="javascript:void(0)" onclick="scrollToTop()">📝 点此留言</a>
+    <div id="cmtArea"></div>
   </div>
 </div>
 
@@ -523,10 +548,16 @@ h1 span{color:var(--accent)}
   </div>
 </div>
 
+<!-- ===== HOME COMMENTS ===== -->
+<div class="tab-content" id="tab-comments" style="padding:16px;max-width:720px;margin:0 auto">
+  <div class="comments-title">💬 留言讨论</div>
+  <div class="comments-subtitle">对门户的建议、报告的想法、投资心得，欢迎畅所欲言</div>
+  <div id="homeCmtArea"></div>
+</div>
+
 <script src="books-data.js"></script>
 <script src="games/quiz-v2.js"></script>
 <script src="games/financial-match.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@waline/client@2/dist/waline.js"></script>
 <script>
 const COMPANIES = [
   {id:'maotai',name:'贵州茅台',nameEn:'Kweichow Moutai',score:7.0,scoreMax:10,color:'#f0c040',industry:'食品饮料 · 白酒',desc:'中国高端白酒行业绝对龙头，A股最具代表性的消费类核心资产。',tags:['核心资产','国酒','高毛利'],metrics:{营收:'1,899亿',净利:'910亿',毛利率:'91%+',PE:'20.7x',ROE:'28%',股息率:'3.2%'},file:'maotai.html'},
@@ -610,6 +641,8 @@ function renderCatalog(query) {
 function onSearch(val) { searchQuery=val; document.getElementById('searchClear').classList.toggle('visible',val.length>0); renderCatalog(val) }
 function clearSearch() { document.getElementById('searchInput').value=''; document.getElementById('searchClear').classList.remove('visible'); onSearch('') }
 
+const WALINE_API = 'https://waline-production-c9d2.up.railway.app'
+
 function openReport(id) {
   const c = COMPANIES.find(x=>x.id===id); if(!c) return
   window._currentCompany = id
@@ -618,42 +651,94 @@ function openReport(id) {
   document.getElementById('reportLoading').style.display='flex'
   document.getElementById('reportFrame').style.display='none'
   document.getElementById('reportFrame').src='reports/'+c.file
-  // Init Waline comments
-  setTimeout(() => {
-    const el = document.getElementById('reportComments')
-    el.style.display = 'block'
-    if (window._walineInstance) {
-      try { window._walineInstance.destroy() } catch(e) {}
-    }
-    window._walineInstance = new Waline({
-      el: '#waline',
-      serverURL: 'https://waline-production-c9d2.up.railway.app',
-      path: '/' + id,
-      lang: 'zh-CN',
-      dark: 'html[data-theme="dark"]',
-      requiredMeta: ['nick','mail'],
-      login: 'disable',
-    })
-    // 加载失败提示
-    setTimeout(() => {
-      const walineEl = document.querySelector('#waline .wl-comment')
-      if (!walineEl) {
-        document.getElementById('waline').innerHTML = '<p style="color:var(--m3);font-size:12px;padding:12px;text-align:center">⏳ 评论区加载中，若长时间未显示请刷新页面重试</p>'
-      }
-    }, 5000)
-  }, 100)
+  // Load comments
+  loadComments(id)
 }
 function closeReport() {
   document.getElementById('reportView').classList.remove('active')
   document.getElementById('reportFrame').src=''
   document.getElementById('reportFrame').style.display='none'
   document.getElementById('reportLoading').style.display='flex'
-  // Destroy Waline
-  document.getElementById('reportComments').style.display = 'none'
-  if (window._walineInstance) {
-    try { window._walineInstance.destroy() } catch(e) {}
-    window._walineInstance = null
+}
+
+// ===== COMMENT SYSTEM =====
+function loadComments(companyId) {
+  const area = document.getElementById('cmtArea')
+  area.innerHTML = '<div class="cmt-empty">⏳ 加载留言中…</div>'
+  // Build form + list
+  area.innerHTML = `
+    <div class="cmt-form" id="cmtForm">
+      <div class="cmt-row">
+        <input type="text" id="cmtName" placeholder="你的昵称" maxlength="20">
+        <input type="email" id="cmtMail" placeholder="邮箱（可选）" maxlength="60">
+      </div>
+      <textarea id="cmtText" placeholder="写下你的看法…" maxlength="500"></textarea>
+      <button class="cmt-submit" id="cmtBtn" onclick="submitComment('${companyId}')">发表留言</button>
+    </div>
+    <div class="cmt-list" id="cmtList"></div>
+  `
+  fetchComments(companyId)
+}
+
+async function fetchComments(companyId) {
+  const list = document.getElementById('cmtList')
+  try {
+    const r = await fetch(`${WALINE_API}/api/comment?path=/${companyId}&lang=zh-CN`)
+    const data = await r.json()
+    const comments = data.data || []
+    if (!comments.length) {
+      list.innerHTML = '<div class="cmt-empty">暂无留言，来写第一条吧 ✍️</div>'
+      return
+    }
+    list.innerHTML = comments.map(c => {
+      const initial = (c.nick || '?')[0].toUpperCase()
+      const time = new Date(c.created_at * 1000 || c.created_at).toLocaleString('zh-CN')
+      return `<div class="cmt-item">
+        <div class="cmt-meta">
+          <div class="cmt-avatar">${initial}</div>
+          <span class="cmt-name">${escHtml(c.nick || '匿名')}</span>
+          <span class="cmt-time">${time}</span>
+        </div>
+        <div class="cmt-text">${escHtml(c.comment || c.text || '')}</div>
+      </div>`
+    }).join('')
+  } catch(e) {
+    list.innerHTML = '<div class="cmt-empty">⚠️ 加载留言失败，请稍后重试</div>'
   }
+}
+
+async function submitComment(companyId) {
+  const name = document.getElementById('cmtName').value.trim()
+  const text = document.getElementById('cmtText').value.trim()
+  const mail = document.getElementById('cmtMail').value.trim()
+  if (!name) { alert('请填写昵称'); return }
+  if (!text) { alert('请填写留言内容'); return }
+  const btn = document.getElementById('cmtBtn')
+  btn.disabled = true; btn.textContent = '发表中…'
+  try {
+    await fetch(`${WALINE_API}/api/comment`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({path:'/'+companyId, comment:text, nick:name, mail:mail || undefined})
+    })
+    document.getElementById('cmtName').value = ''
+    document.getElementById('cmtMail').value = ''
+    document.getElementById('cmtText').value = ''
+    fetchComments(companyId)
+  } catch(e) {
+    alert('留言失败，请稍后重试')
+  }
+  btn.disabled = false; btn.textContent = '发表留言'
+}
+
+function escHtml(s) {
+  const d = document.createElement('div')
+  d.textContent = s
+  return d.innerHTML
+}
+
+function scrollToTop() {
+  document.getElementById('reportFrameWrap').scrollIntoView({behavior:'smooth'})
 }
 function onFrameLoaded() {
   document.getElementById('reportLoading').style.display='none'
@@ -1072,6 +1157,86 @@ function backToMatchLevels() {
   document.getElementById('matchScreen').style.display='none'
   document.getElementById('matchResult').style.display='none'
   document.getElementById('matchLevels').style.display='block'
+}
+// ===== HOME COMMENTS TOGGLE =====
+let _homeCommentsLoaded = false
+function toggleHomeComments() {
+  const tab = document.getElementById('tab-comments')
+  const isVisible = tab.style.display !== 'none' && tab.classList.contains('active')
+  // Hide all tabs
+  document.querySelectorAll('.tab-content').forEach(t => { t.classList.remove('active'); t.style.display = 'none' })
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'))
+  if (isVisible) {
+    // Switch back to reports tab
+    switchTab('reports')
+    return
+  }
+  tab.style.display = 'block'
+  tab.classList.add('active')
+  // Load comments if first time
+  if (!_homeCommentsLoaded) {
+    _homeCommentsLoaded = true
+    const area = document.getElementById('homeCmtArea')
+    area.innerHTML = `
+      <div class="cmt-form" id="homeCmtForm">
+        <div class="cmt-row">
+          <input type="text" id="homeCmtName" placeholder="你的昵称" maxlength="20">
+          <input type="email" id="homeCmtMail" placeholder="邮箱（可选）" maxlength="60">
+        </div>
+        <textarea id="homeCmtText" placeholder="写下你的想法…" maxlength="500"></textarea>
+        <button class="cmt-submit" onclick="submitHomeComment()">发表留言</button>
+      </div>
+      <div class="cmt-list" id="homeCmtList"></div>
+    `
+    fetchHomeComments()
+  }
+}
+async function fetchHomeComments() {
+  const list = document.getElementById('homeCmtList')
+  if (!list) return
+  try {
+    const r = await fetch(`${WALINE_API}/api/comment?path=/home&lang=zh-CN`)
+    const data = await r.json()
+    const comments = data.data || []
+    if (!comments.length) {
+      list.innerHTML = '<div class="cmt-empty">暂无留言，来写第一条吧 ✍️</div>'
+      return
+    }
+    list.innerHTML = comments.map(c => {
+      const initial = (c.nick || '?')[0].toUpperCase()
+      const time = new Date(c.created_at * 1000 || c.created_at).toLocaleString('zh-CN')
+      return `<div class="cmt-item">
+        <div class="cmt-meta">
+          <div class="cmt-avatar">${initial}</div>
+          <span class="cmt-name">${escHtml(c.nick || '匿名')}</span>
+          <span class="cmt-time">${time}</span>
+        </div>
+        <div class="cmt-text">${escHtml(c.comment || c.text || '')}</div>
+      </div>`
+    }).join('')
+  } catch(e) {
+    list.innerHTML = '<div class="cmt-empty">⚠️ 加载留言失败</div>'
+  }
+}
+async function submitHomeComment() {
+  const name = document.getElementById('homeCmtName').value.trim()
+  const text = document.getElementById('homeCmtText').value.trim()
+  const mail = document.getElementById('homeCmtMail').value.trim()
+  if (!name) { alert('请填写昵称'); return }
+  if (!text) { alert('请填写留言内容'); return }
+  try {
+    await fetch(`${WALINE_API}/api/comment`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({path:'/home', comment:text, nick:name, mail:mail || undefined})
+    })
+    document.getElementById('homeCmtName').value = ''
+    document.getElementById('homeCmtMail').value = ''
+    document.getElementById('homeCmtText').value = ''
+    fetchHomeComments()
+  } catch(e) {
+    alert('留言失败，请稍后重试')
+  }
 }
 </script>
 </body>
