@@ -109,15 +109,6 @@ h1 span{color:var(--accent)}
 .waline-wrap{max-width:720px;margin:0 auto;padding:16px}
 :root{--waline-font-size:13px;--waline-theme-color:var(--accent);--waline-active-color:var(--accent);--waline-bgcolor:var(--bg2);--waline-bgcolor-light:var(--bg3);--waline-bgcolor-hover:var(--bg3);--waline-color:var(--t2);--waline-boder-color:var(--b2);--waline-border-color:var(--b2);--waline-bgcolor-dark:var(--bg2);--waline-color-dark:var(--t2);--waline-border-color-dark:var(--b2);--waline-boder-color-dark:var(--b2);}
 
-/* ===== LOGIN OVERLAY ===== */
-.login-overlay{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.7);flex-direction:column}
-.login-overlay.active{display:flex}
-.login-overlay .lo-header{display:flex;align-items:center;padding:10px 16px;background:var(--bg4);border-bottom:1px solid var(--b2);flex-shrink:0}
-.login-overlay .lo-title{font-size:14px;color:var(--t1);flex:1;font-weight:600}
-.login-overlay .lo-close{background:none;border:1px solid var(--b3);color:var(--t4);padding:4px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit}
-.login-overlay .lo-body{flex:1;position:relative;background:var(--bg)}
-.login-overlay .lo-body iframe{width:100%;height:100%;border:none}
-
 /* ===== HEADER USER BUTTON ===== */
 .header-user{font-size:11px;padding:3px 10px;border-radius:8px;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:inherit}
 .header-user.guest{background:var(--accent);color:#1a1a1a;border:none;font-weight:600}
@@ -295,17 +286,6 @@ h1 span{color:var(--accent)}
 </style>
 </head>
 <body>
-
-<!-- ===== LOGIN OVERLAY ===== -->
-<div class="login-overlay" id="loginOverlay">
-  <div class="lo-header">
-    <span class="lo-title">📧 邮箱验证登录</span>
-    <button class="lo-close" onclick="closeLogin()">关闭</button>
-  </div>
-  <div class="lo-body">
-    <iframe id="loginFrame" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
-  </div>
-</div>
 
 <!-- ===== HEADER ===== -->
 <header>
@@ -671,6 +651,7 @@ function initWaline(el, path) {
 
 function openReport(id) {
   const c = COMPANIES.find(x=>x.id===id); if(!c) return
+  window._currentCid = id
   document.getElementById('reportTitle').innerHTML = `<span>${c.name}</span> · ${c.industry}`
   document.getElementById('reportView').classList.add('active')
   document.getElementById('reportLoading').style.display='flex'
@@ -815,6 +796,7 @@ function clearBookSearch() { document.getElementById('bookSearch').value=''; doc
 
 function openBook(id) {
   const b = BOOKS.find(x=>x.id===id); if(!b) return
+  window._currentBid = id
   document.getElementById('bookDetailTitle').innerHTML = `<span>${b.title}</span> · ${b.author}`
   document.getElementById('bookDetailView').classList.add('active')
   // Init Waline for book
@@ -1144,7 +1126,7 @@ function updateHeaderBtn() {
   if (user && user.token) {
     btn.className = 'header-user logged-in'
     btn.innerHTML = `<span>👤</span> ${user.display_name || user.nick || '已登录'}`
-    btn.onclick = () => openLogin()
+    btn.onclick = () => {}
   } else {
     btn.className = 'header-user guest'
     btn.textContent = '登录 / 注册'
@@ -1154,43 +1136,47 @@ function updateHeaderBtn() {
 
 function openLogin() {
   const user = getStoredUser()
-  if (user && user.token) {
-    // Already logged in - open Waline profile
-    const w = 500, h = 600
-    const left = (screen.width - w) / 2
-    const top = (screen.height - h) / 2
-    window.open(
-      `${WALINE_SRV}/ui/profile?lng=zh-CN&token=${user.token}`,
-      '_blank',
-      `width=${w},height=${h},left=${left},top=${top}`
-    )
-    return
-  }
-  // Show login iframe
-  document.getElementById('loginOverlay').classList.add('active')
-  document.getElementById('loginFrame').src = `${WALINE_SRV}/ui/login?lng=zh-CN`
+  if (user && user.token) return
+  const w = 450, h = 550
+  const left = Math.max(0, (screen.width - w) / 2)
+  const top = Math.max(0, (screen.height - h) / 2)
+  window.open(
+    `${WALINE_SRV}/ui/login?lng=zh-CN`,
+    'waline-login',
+    `width=${w},height=${h},left=${left},top=${top},scrollbars=yes,resizable=yes`
+  )
 }
 
-function closeLogin() {
-  document.getElementById('loginOverlay').classList.remove('active')
-  document.getElementById('loginFrame').src = ''
-}
-
-// Listen for login success
+// Listen for login success from Waline popup
 window.addEventListener('message', (event) => {
-  if (!event.origin.includes('waline-production-c9d2.up.railway.app')) return
-  const data = event.data
-  if (data && typeof data === 'object' && data.type === 'userInfo' && data.data && data.data.token) {
-    localStorage.setItem('WALINE_USER', JSON.stringify(data.data))
-    closeLogin()
+  if (!event.origin || !event.origin.includes('waline-production-c9d2.up.railway.app')) return
+  const d = event.data
+  if (d && typeof d === 'object' && d.type === 'userInfo' && d.data && d.data.token) {
+    localStorage.setItem('WALINE_USER', JSON.stringify(d.data))
     updateHeaderBtn()
-    // Re-init Waline for current view
+    // Re-init Waline widgets for current view so they pick up the new user
     const activeTab = document.querySelector('.tab-content.active')
     if (activeTab) switchTab(activeTab.id.replace('tab-', ''))
+    const rv = document.getElementById('reportView')
+    if (rv.classList.contains('active') && window._currentCid) {
+      const id = window._currentCid
+      setTimeout(() => {
+        destroyWaline(window._walineReport)
+        window._walineReport = new Waline({el:'#waline-report',serverURL:WALINE_SRV,path:'/'+id,lang:'zh-CN',dark:'html[data-theme="dark"]',login:'force'})
+      }, 200)
+    }
+    const bv = document.getElementById('bookDetailView')
+    if (bv.classList.contains('active') && window._currentBid) {
+      const id = window._currentBid
+      setTimeout(() => {
+        destroyWaline(window._walineBook)
+        window._walineBook = new Waline({el:'#waline-book',serverURL:WALINE_SRV,path:'/book/'+id,lang:'zh-CN',dark:'html[data-theme="dark"]',login:'force'})
+      }, 200)
+    }
   }
 })
 
-// Init header on load
+// Init on load
 document.addEventListener('DOMContentLoaded', () => {
   updateHeaderBtn()
   renderCatalog()
