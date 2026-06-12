@@ -157,6 +157,14 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     if(document.getElementById('hermes-theme-override')){
       document.getElementById('s-mcap').classList.add('mcap-light');
     }
+    var themeWatcher = new MutationObserver(function(){
+      var isLight = !!document.getElementById('hermes-theme-override');
+      var card = document.getElementById('s-mcap');
+      if(isLight) card.classList.add('mcap-light');
+      else card.classList.remove('mcap-light');
+      if(chartData.length) render();
+    });
+    if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
     document.querySelectorAll('.mcap-btn').forEach(function(btn){
       btn.addEventListener('click', function(){
         document.querySelectorAll('.mcap-btn').forEach(function(b){b.classList.remove('active')});
