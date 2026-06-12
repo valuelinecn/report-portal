@@ -49,7 +49,7 @@ const PERSONALITY_TYPES = {
     good: '盘感敏锐，小行情中也能找到交易机会',
     bad: '没有系统，情绪化交易，赚小亏大是常态',
     advice: '建立简单的交易规则（比如：-8%必须止损），用规则代替感觉',
-    who: '大多数散户'
+    who: '林园'
   },
   'INFP': {
     dims: 'I N F P', icon: '🌈', name: '信仰持仓者', sub: '逻辑情绪灵活 · 情怀价投型',
@@ -58,7 +58,7 @@ const PERSONALITY_TYPES = {
     good: '拿得住十倍股，信仰坚定的人往往能吃到最肥美的段落',
     bad: '容易陷入\"价值陷阱\"，为信仰支付过高代价',
     advice: '信仰也需要锚点——设定逻辑证伪条件，破了就走',
-    who: 'Cathie Wood、早期特斯拉投资者'
+    who: '凯茜·伍德、彼得·林奇'
   },
   'ESFP': {
     dims: 'E S F P', icon: '🌿', name: '情绪跟风者', sub: '数据情绪社交 · 新手散户型',
@@ -67,7 +67,7 @@ const PERSONALITY_TYPES = {
     good: '市场好时也能赚钱，社交能力强，信息获取快',
     bad: '追涨杀跌、没有独立判断、容易被收割',
     advice: '先停止交易，读三本书：《聪明的投资者》《彼得·林奇的成功投资》《股票大作手回忆录》',
-    who: '大多数新股民'
+    who: '追涨杀跌的新股民'
   },
   'ENFP': {
     dims: 'E N F P', icon: '🔥', name: '题材猎妖者', sub: '逻辑情绪社交 · 题材炒作型',
@@ -76,7 +76,7 @@ const PERSONALITY_TYPES = {
     good: '抓题材能力一流，市场情绪感知力极强',
     bad: '换票太频繁、手续费高、长期收益率不稳定',
     advice: '用10%的资金做题材练手，90%做有逻辑的配置',
-    who: '游资、题材炒家'
+    who: '赵老哥'
   },
   // ── TP组: 理性灵活派 ──
   'INTP': {
@@ -86,7 +86,7 @@ const PERSONALITY_TYPES = {
     good: '策略思维强，不情绪化，长期可复制',
     bad: '容易过度拟合，实盘和回测差距大，执行时犹豫',
     advice: '简单策略往往比复杂策略更鲁棒——减少参数，增加容错',
-    who: '詹姆斯·西蒙斯、量化私募研究员'
+    who: '詹姆斯·西蒙斯、肯·格里芬'
   },
   'ISTP': {
     dims: 'I S T P', icon: '⚡', name: '短线狙击手', sub: '数据理性灵活 · 短线高手型',
@@ -95,7 +95,7 @@ const PERSONALITY_TYPES = {
     good: '风险控制极好，回撤小，适应各种市场环境',
     bad: '格局不够大，容易卖飞牛股，大牛市跑不赢持有者',
     advice: '适当放大交易周期——有的利润用\"持有\"来赚比\"交易\"更轻松',
-    who: '顶级游资、短线交易员'
+    who: '瑞鹤仙、方新侠'
   },
   'ENTP': {
     dims: 'E N T P', icon: '🔄', name: '轮动套利者', sub: '逻辑理性灵活 · 套利/轮动型',
@@ -104,7 +104,7 @@ const PERSONALITY_TYPES = {
     good: '适应性强，牛熊都能赚钱，资金使用效率高',
     bad: '过度交易，容易因精力分散而错过重仓大机会',
     advice: '学会\"舍\"——放弃80%的机会，只做最确定的20%',
-    who: '大卫·泰珀、板块轮动策略机构'
+    who: '大卫·泰珀、章盟主'
   },
   'ESTP': {
     dims: 'E S T P', icon: '📈', name: '事件驱动者', sub: '数据理性灵活 · 波段/事件型',
@@ -113,7 +113,7 @@ const PERSONALITY_TYPES = {
     good: '事件交易胜率高，信息处理速度快，交易节奏好',
     bad: '容易在假突破中受伤，耐心不够，左侧交易容易止损',
     advice: '等右侧确认再入场虽然少赚几个点，但胜率大幅提升',
-    who: '事件驱动基金、资深波段交易者'
+    who: '卡尔·伊坎、冯柳'
   },
   // ── FJ组: 情绪计划派 ──
   'INFJ': {
@@ -123,7 +123,7 @@ const PERSONALITY_TYPES = {
     good: '投资认知水平高，学习能力强，方向感好',
     bad: '知行不合一，计划与执行严重脱节',
     advice: '减少决策频率——一年只做3-5次交易，每次严格执行书面计划',
-    who: '许多\"道理都懂但做不到\"的投资者'
+    who: '但斌'
   },
   'ISFJ': {
     dims: 'I S F J', icon: '🛡️', name: '稳健纠结者', sub: '数据情绪计划 · 保守与焦虑',
@@ -132,7 +132,7 @@ const PERSONALITY_TYPES = {
     good: '选股偏稳健，整体组合风险不高',
     bad: '止损执行差，一次大亏可能吃掉多年收益',
     advice: '止损单不要手动执行——用条件单自动触发，别给自己犹豫的机会',
-    who: '银行理财客户转型股民'
+    who: '追求稳健却舍不得止损的价值投资者'
   },
   'ENFJ': {
     dims: 'E N F J', icon: '📢', name: '市场布道者', sub: '逻辑情绪社交 · 群主/大V型',
@@ -141,7 +141,7 @@ const PERSONALITY_TYPES = {
     good: '信息渠道广，学习动力强，能影响他人',
     bad: '被粉丝或群友情绪反噬，为维持人设而做出错误交易',
     advice: '公开分享和私人交易要分开——你的交易不需要对任何人负责',
-    who: '雪球大V、财经博主、投资群群主'
+    who: '段永平（大道无形我有型）'
   },
   'ESFJ': {
     dims: 'E S F J', icon: '🐢', name: '跟风稳健派', sub: '数据情绪社交 · 大V跟随者',
@@ -150,7 +150,7 @@ const PERSONALITY_TYPES = {
     good: '跟随优质信息来源，长期看能跟上市场平均收益',
     bad: '没有独立判断能力，被带偏时毫无防范',
     advice: '从\"抄作业\"到\"独立分析\"——每跟一笔，写清楚买入理由和卖出条件',
-    who: '基金投资者、大V跟单族'
+    who: '跟投大V配置的基金投资者'
   }
 };
 
@@ -292,6 +292,9 @@ function showQuestion(idx) {
 }
 
 function selectOpt(qIdx, score, btn) {
+  // Guard: prevent double-click / re-selection
+  if (quizState.answers[qIdx] !== undefined) return;
+
   // Save answer
   quizState.answers[qIdx] = { qIdx: qIdx, score: score };
 
@@ -301,8 +304,15 @@ function selectOpt(qIdx, score, btn) {
   btns.forEach(function(b) { b.classList.remove('selected'); });
   btn.classList.add('selected');
 
-  // Show next button
-  document.getElementById('quizNextBtn').style.display = 'block';
+  // Disable buttons briefly to prevent rapid re-clicks during transition
+  btns.forEach(function(b) { b.disabled = true; });
+
+  // Auto advance to next question after a brief pause (user sees their selection)
+  setTimeout(function() {
+    // Re-enable (though DOM will be replaced by showQuestion)
+    btns.forEach(function(b) { b.disabled = false; });
+    nextQuestion();
+  }, 350);
 }
 
 function nextQuestion() {
