@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>价值投资研究报告 · 企业门户</title>
-<link rel="stylesheet" href="waline/waline.css">
+
 <style>
 /* ===== THEME VARIABLES ===== */
 :root{
@@ -105,9 +105,35 @@ h1 span{color:var(--accent)}
 .report-frame-wrap{flex:1;position:relative;overflow:hidden}
 .report-frame{width:100%;height:100%;border:none;display:none}
 
-/* ===== WALINE COMMENTS ===== */
+/* ===== COMMENTS ===== */
 .waline-wrap{max-width:720px;margin:0 auto;padding:16px}
-:root{--waline-font-size:13px;--waline-theme-color:var(--accent);--waline-active-color:var(--accent);--waline-bgcolor:var(--bg2);--waline-bgcolor-light:var(--bg3);--waline-bgcolor-hover:var(--bg3);--waline-color:var(--t2);--waline-boder-color:var(--b2);--waline-border-color:var(--b2);--waline-bgcolor-dark:var(--bg2);--waline-color-dark:var(--t2);--waline-border-color-dark:var(--b2);--waline-boder-color-dark:var(--b2);}
+.comment-section{font-size:13px}
+.comment-heading{font-size:15px;color:var(--t1);margin:16px 0 12px}
+.comment-form{margin:12px 0;padding:12px;background:var(--bg3);border-radius:8px;border:1px solid var(--b2)}
+.comment-input{width:100%;padding:8px 10px;border:1px solid var(--b2);border-radius:6px;background:var(--bg1);color:var(--t1);font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box}
+.comment-input:focus{outline:none;border-color:var(--accent)}
+.comment-form-actions{display:flex;align-items:center;gap:8px;margin-top:8px}
+.comment-user-label{font-size:12px;color:var(--t2)}
+.comment-submit{padding:5px 14px;border:none;border-radius:6px;background:var(--accent);color:#fff;font-size:12px;cursor:pointer}
+.comment-submit:disabled{opacity:.5;cursor:not-allowed}
+.comment-logout-btn{padding:5px 10px;border:1px solid var(--b2);border-radius:6px;background:transparent;color:var(--t2);font-size:11px;cursor:pointer}
+.comment-login-hint{text-align:center;padding:20px;color:var(--t2);font-size:13px}
+.comment-login-hint a{color:var(--accent)}
+.comment-empty{text-align:center;padding:20px;color:var(--t2);font-size:13px}
+.comment-loading,.comment-error{text-align:center;padding:12px;color:var(--t2)}
+.comment-list{margin-top:8px}
+.comment-card{padding:12px;border-bottom:1px solid var(--b2)}
+.comment-card:last-child{border-bottom:none}
+.comment-meta{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.comment-author{font-weight:600;font-size:13px;color:var(--t1)}
+.comment-time{font-size:11px;color:var(--t3)}
+.comment-body{font-size:13px;line-height:1.5;color:var(--t1);margin:4px 0}
+.comment-actions{margin-top:4px}
+.comment-reply-btn{font-size:11px;color:var(--accent);text-decoration:none}
+.comment-reply-form{margin:8px 0 8px 24px;padding:8px;background:var(--bg3);border-radius:6px}
+.comment-replies{margin:8px 0 0 24px;border-left:2px solid var(--b2);padding-left:12px}
+.reply-card{padding:8px 0;border-bottom:1px solid var(--b2)}
+.reply-card:last-child{border-bottom:none}
 
 /* ===== HEADER USER BUTTON ===== */
 .header-user{font-size:11px;padding:3px 10px;border-radius:8px;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:inherit}
@@ -593,7 +619,7 @@ h1 span{color:var(--accent)}
     </div>
   </div>
   <!-- ===== COMMENTS SECTION (games) ===== -->
-  <div class="waline-wrap"><div id="waline-game"></div></div>
+  <div class="waline-wrap"><div id="comment-game"></div></div>
 </div>
 
 <!-- ===== REPORT VIEW (fullscreen) ===== -->
@@ -610,7 +636,7 @@ h1 span{color:var(--accent)}
     <iframe class="report-frame" id="reportFrame" onload="onFrameLoaded()"></iframe>
   </div>
   <!-- ===== COMMENTS SECTION (report) ===== -->
-  <div class="waline-wrap"><div id="waline-report"></div></div>
+  <div class="waline-wrap"><div id="comment-report"></div></div>
 </div>
 
 <!-- ===== BOOK DETAIL VIEW (fullscreen) ===== -->
@@ -623,7 +649,7 @@ h1 span{color:var(--accent)}
     <div class="loading"><div class="spinner"></div><span>加载中…</span></div>
   </div>
   <!-- ===== COMMENTS SECTION (book) ===== -->
-  <div class="waline-wrap"><div id="waline-book"></div></div>
+  <div class="waline-wrap"><div id="comment-book"></div></div>
 </div>
 
 
@@ -631,7 +657,6 @@ h1 span{color:var(--accent)}
 <script src="games/quiz-v2.js"></script>
 <script src="games/financial-match.js"></script>
 <script src="games/purchase-check.js"></script>
-<script src="waline/waline.js"></script>
 <script>
 const COMPANIES = [
   {id:'ningde',name:'宁德时代',nameEn:'CATL',score:7.5,scoreMax:10,color:'#4fc3f7',heat:9,industry:'新能源 · 动力电池',desc:'全球动力电池装机量第一，新能源产业链核心。',tags:['电池龙头','新能源','全球第一'],metrics:{营收:'4,650亿',净利:'578亿',毛利率:'24.5%',PE:'22.4x',ROE:'21%',全球市占率:'38%'},file:'ningde.html'},
@@ -692,20 +717,9 @@ function switchTab(name) {
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'))
   document.getElementById('tab-'+name).classList.add('active')
   document.querySelector(`.tab-btn[data-tab="${name}"]`).classList.add('active')
-  // Init Waline for games tab on first visit
+  // Games tab - first visit handled by comment loading
   if (name === 'games' && !window._gamesWalineLoaded) {
     window._gamesWalineLoaded = true
-    setTimeout(() => {
-      destroyWaline(_walineGame)
-      _walineGame = new Waline({
-        el: '#waline-game',
-        serverURL: WALINE_SRV,
-        path: '/games',
-        lang: 'zh-CN',
-        dark: 'html[data-theme="dark"]',
-        login: 'force',
-      })
-    }, 200)
   }
 }
 
@@ -740,24 +754,6 @@ function renderCatalog(query) {
 function onSearch(val) { searchQuery=val; document.getElementById('searchClear').classList.toggle('visible',val.length>0); renderCatalog(val) }
 function clearSearch() { document.getElementById('searchInput').value=''; document.getElementById('searchClear').classList.remove('visible'); onSearch('') }
 
-let _walineReport = null, _walineBook = null, _walineGame = null
-
-function destroyWaline(inst) {
-  if (inst) try { inst.destroy() } catch(e) {}
-}
-
-function initWaline(el, path) {
-  destroyWaline(window._walineReport)
-  return new Waline({
-    el: el,
-    serverURL: WALINE_SRV,
-    path: path,
-    lang: 'zh-CN',
-    dark: 'html[data-theme="dark"]',
-    login: 'force',
-  })
-}
-
 function openReport(id) {
   const c = COMPANIES.find(x=>x.id===id); if(!c) return
   window._currentCid = id
@@ -766,13 +762,11 @@ function openReport(id) {
   document.getElementById('reportLoading').style.display='flex'
   document.getElementById('reportFrame').style.display='none'
   document.getElementById('reportFrame').src='reports/'+c.file+'?t='+Date.now()
-  // Init Waline for report
-  setTimeout(() => {
-    _walineReport = initWaline('#waline-report', '/' + id)
-  }, 200)
+  // Load comments
+  setTimeout(function() { loadComments('/' + id, 'comment-report') }, 200)
 }
 function closeReport() {
-  destroyWaline(_walineReport); _walineReport = null
+  // comment removed
   document.getElementById('reportView').classList.remove('active')
   document.getElementById('reportFrame').src=''
   document.getElementById('reportFrame').style.display='none'
@@ -908,18 +902,8 @@ function openBook(id) {
   window._currentBid = id
   document.getElementById('bookDetailTitle').innerHTML = `<span>${b.title}</span> · ${b.author}`
   document.getElementById('bookDetailView').classList.add('active')
-  // Init Waline for book
-  setTimeout(() => {
-    destroyWaline(_walineBook)
-    _walineBook = new Waline({
-      el: '#waline-book',
-      serverURL: WALINE_SRV,
-      path: '/book/' + id,
-      lang: 'zh-CN',
-      dark: 'html[data-theme="dark"]',
-      login: 'force',
-    })
-  }, 200)
+  // Load comments for book
+  setTimeout(function() { loadComments('/book/' + id, 'comment-book') }, 200)
   const stars = '★'.repeat(b.rating)+'☆'.repeat(5-b.rating)
   const tagsHTML = b.tags.map(t => `<span class="tag" style="background:${b.color}15;color:${b.color};border-color:${b.color}20">${t}</span>`).join('')
   const archHTML = b.architecture.map((a,i) => `
@@ -960,7 +944,7 @@ function formatSummary(text) {
   return items.map(item => '<div class="summary-item">'+item+'</div>').join('')
 }
 
-function closeBookDetail() { destroyWaline(_walineBook); _walineBook = null; document.getElementById('bookDetailView').classList.remove('active'); document.getElementById('bookDetailContent').innerHTML = '<div class="loading"><div class="spinner"></div><span>加载中…</span></div>' }
+function closeBookDetail() { // comment removed; document.getElementById('bookDetailView').classList.remove('active'); document.getElementById('bookDetailContent').innerHTML = '<div class="loading"><div class="spinner"></div><span>加载中…</span></div>' }
 function toggleArch(i) { document.getElementById('archBody'+i).classList.toggle('open'); document.getElementById('archToggle'+i).classList.toggle('open') }
 function toggleChapter(bookId,archIdx,chIdx) { document.getElementById('chB_'+bookId+'_'+archIdx+'_'+chIdx).classList.toggle('open'); document.getElementById('chT_'+bookId+'_'+archIdx+'_'+chIdx).classList.toggle('open') }
 
@@ -1109,21 +1093,19 @@ function backToMatchLevels() {
   document.getElementById('matchResult').style.display='none'
   document.getElementById('matchLevels').style.display='block'
 }
-// ===== LOGIN GATE =====
-const WALINE_SRV = 'https://waline-production-c9d2.up.railway.app'
+// ===== SUPABASE AUTH + COMMENTS =====
+const SUPABASE_URL = 'https://awhdlskpkmklmvyodbue.supabase.co'
+const SUPABASE_ANON_KEY = 'sb_publishable_imB63UIMl9JN050rK4oPCQ_hTJcYVj5'
+let _supabase = null
 
-function getStoredUser() {
-  try {
-    const data = localStorage.getItem('WALINE_USER') || sessionStorage.getItem('WALINE_USER')
-    if (data && data !== 'null') return JSON.parse(data)
-  } catch(e) {}
-  return null
+function getSupabase() {
+  if (!_supabase) _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  return _supabase
 }
 
-// ===== HEADER LOGIN =====
 function getStoredUser() {
   try {
-    const d = localStorage.getItem('WALINE_USER') || sessionStorage.getItem('WALINE_USER')
+    const d = localStorage.getItem('SUPABASE_USER')
     if (d && d !== 'null') return JSON.parse(d)
   } catch(e) {}
   return null
@@ -1132,9 +1114,10 @@ function getStoredUser() {
 function updateHeaderBtn() {
   const btn = document.getElementById('headerUserBtn')
   const user = getStoredUser()
-  if (user && user.token) {
+  if (user && user.email) {
     btn.className = 'header-user logged-in'
-    btn.innerHTML = `<span>👤</span> ${user.display_name || user.nick || '已登录'}`
+    const name = user.user_metadata?.name || user.email.split('@')[0]
+    btn.innerHTML = '👤 ' + name
     btn.onclick = () => {}
   } else {
     btn.className = 'header-user guest'
@@ -1143,54 +1126,237 @@ function updateHeaderBtn() {
   }
 }
 
+// Show login popup using Supabase magic link
 function openLogin() {
   const user = getStoredUser()
-  if (user && user.token) return
-  const w = 450, h = 550
-  const left = Math.max(0, (screen.width - w) / 2)
-  const top = Math.max(0, (screen.height - h) / 2)
-  window.open(
-    `${WALINE_SRV}/ui/login?lng=zh-CN`,
-    'waline-login',
-    `width=${w},height=${h},left=${left},top=${top},scrollbars=yes,resizable=yes`
-  )
+  if (user && user.email) return
+  const email = prompt('请输入邮箱，我们将发送登录链接：')
+  if (!email) return
+  const btn = document.getElementById('headerUserBtn')
+  btn.textContent = '发送中...'
+  btn.disabled = true
+  getSupabase().auth.signInWithOtp({
+    email: email,
+    options: { shouldCreateUser: true }
+  }).then(({ error }) => {
+    if (error) {
+      alert('发送失败: ' + error.message)
+      btn.textContent = '登录 / 注册'
+      btn.disabled = false
+    } else {
+      alert('登录链接已发送到 ' + email + '，请查看邮箱并点击链接登录')
+      btn.textContent = '等待验证...'
+      btn.disabled = false
+    }
+  })
 }
 
-// Listen for login success from Waline popup
-window.addEventListener('message', (event) => {
-  if (!event.origin || !event.origin.includes('waline-production-c9d2.up.railway.app')) return
-  const d = event.data
-  if (d && typeof d === 'object' && d.type === 'userInfo' && d.data && d.data.token) {
-    localStorage.setItem('WALINE_USER', JSON.stringify(d.data))
+function logout() {
+  getSupabase().auth.signOut().then(() => {
+    localStorage.removeItem('SUPABASE_USER')
     updateHeaderBtn()
-    // Re-init Waline widgets for current view so they pick up the new user
-    const activeTab = document.querySelector('.tab-content.active')
-    if (activeTab) switchTab(activeTab.id.replace('tab-', ''))
-    const rv = document.getElementById('reportView')
-    if (rv.classList.contains('active') && window._currentCid) {
-      const id = window._currentCid
-      setTimeout(() => {
-        destroyWaline(window._walineReport)
-        window._walineReport = new Waline({el:'#waline-report',serverURL:WALINE_SRV,path:'/'+id,lang:'zh-CN',dark:'html[data-theme="dark"]',login:'force'})
-      }, 200)
-    }
-    const bv = document.getElementById('bookDetailView')
-    if (bv.classList.contains('active') && window._currentBid) {
-      const id = window._currentBid
-      setTimeout(() => {
-        destroyWaline(window._walineBook)
-        window._walineBook = new Waline({el:'#waline-book',serverURL:WALINE_SRV,path:'/book/'+id,lang:'zh-CN',dark:'html[data-theme="dark"]',login:'force'})
-      }, 200)
-    }
+    reloadComments()
+  })
+}
+
+// Load comments for a given path
+function loadComments(path, containerId) {
+  const el = document.getElementById(containerId)
+  if (!el) return
+  el.innerHTML = '<div class="comment-loading">加载评论...</div>'
+  getSupabase()
+    .from('comments')
+    .select('*, user_id')
+    .eq('path', path)
+    .is('parent_id', null)
+    .order('created_at', { ascending: false })
+    .then(({ data, error }) => {
+      if (error) { el.innerHTML = '<div class="comment-error">加载失败</div>'; return }
+      // Also load replies
+      getSupabase()
+        .from('comments')
+        .select('*')
+        .eq('path', path)
+        .not('parent_id', 'is', null)
+        .order('created_at', { ascending: true })
+        .then(({ data: replies }) => {
+          renderComments(el, data || [], replies || [], path)
+        })
+    })
+}
+
+function renderComments(el, comments, replies, path) {
+  const user = getStoredUser()
+  let html = '<div class="comment-section">'
+  html += '<h3 class="comment-heading">💬 评论 (' + comments.length + ')</h3>'
+
+  // Comment form (only for logged-in users)
+  if (user && user.email) {
+    html += '<div class="comment-form">'
+    html += '<textarea class="comment-input" id="commentInput-' + path.replace(/[^a-zA-Z0-9]/g,'') + '" placeholder="写下你的评论..." rows="3"></textarea>'
+    html += '<div class="comment-form-actions">'
+    html += '<span class="comment-user-label">' + (user.user_metadata?.name || user.email.split('@')[0]) + '</span>'
+    html += '<button class="comment-submit" onclick="submitComment('' + path + '')">发表评论</button>'
+    html += '<button class="comment-logout-btn" onclick="logout()">退出</button>'
+    html += '</div></div>'
+  } else {
+    html += '<div class="comment-login-hint">请先<a href="#" onclick="openLogin();return false">登录</a>后发表评论</div>'
   }
+
+  // Comment list
+  if (comments.length === 0) {
+    html += '<div class="comment-empty">暂无评论</div>'
+  } else {
+    html += '<div class="comment-list">'
+    comments.forEach(c => {
+      html += renderCommentCard(c, replies.filter(r => r.parent_id === c.id), path)
+    })
+    html += '</div>'
+  }
+
+  html += '</div>'
+  el.innerHTML = html
+}
+
+function renderCommentCard(comment, childReplies, path) {
+  const user = getStoredUser()
+  const date = new Date(comment.created_at).toLocaleDateString('zh-CN')
+  const isOwn = user && user.email && comment.author_email === user.email
+  let html = '<div class="comment-card" id="c-' + comment.id + '">'
+  html += '<div class="comment-meta">'
+  html += '<span class="comment-author">' + escHtml(comment.author_name) + '</span>'
+  html += '<span class="comment-time">' + date + '</span>'
+  html += '</div>'
+  html += '<div class="comment-body">' + escHtml(comment.content).replace(/\n/g, '<br>') + '</div>'
+  html += '<div class="comment-actions">'
+  if (user && user.email) {
+    html += '<a href="#" class="comment-reply-btn" onclick="showReplyForm('' + comment.id + '','' + path + '');return false">回复</a>'
+  }
+  html += '</div>'
+
+  // Reply form (hidden)
+  html += '<div class="comment-reply-form" id="replyForm-' + comment.id + '" style="display:none">'
+  html += '<textarea class="comment-input" id="replyInput-' + comment.id + '" placeholder="回复 ' + escHtml(comment.author_name) + '..." rows="2"></textarea>'
+  html += '<button class="comment-submit" onclick="submitReply('' + comment.id + '','' + path + '')">回复</button>'
+  html += '</div>'
+
+  // Replies
+  if (childReplies.length > 0) {
+    html += '<div class="comment-replies">'
+    childReplies.forEach(r => {
+      html += renderReplyCard(r)
+    })
+    html += '</div>'
+  }
+
+  html += '</div>'
+  return html
+}
+
+function renderReplyCard(reply) {
+  const date = new Date(reply.created_at).toLocaleDateString('zh-CN')
+  return '<div class="reply-card"><span class="comment-author">' + escHtml(reply.author_name) + '</span> <span class="comment-time">' + date + '</span><div class="comment-body">' + escHtml(reply.content).replace(/\n/g, '<br>') + '</div></div>'
+}
+
+function submitComment(path) {
+  const inputId = 'commentInput-' + path.replace(/[^a-zA-Z0-9]/g,'')
+  const input = document.getElementById(inputId)
+  if (!input || !input.value.trim()) return
+  const user = getStoredUser()
+  if (!user || !user.email) { alert('请先登录'); return }
+  const btn = input.parentElement.querySelector('.comment-submit')
+  btn.textContent = '发表中...'
+  btn.disabled = true
+  getSupabase().from('comments').insert({
+    user_id: user.id,
+    author_name: user.user_metadata?.name || user.email.split('@')[0],
+    author_email: user.email,
+    content: input.value.trim(),
+    path: path,
+    approved: false
+  }).then(({ error }) => {
+    btn.textContent = '发表评论'
+    btn.disabled = false
+    if (error) { alert('发表失败: ' + error.message); return }
+    input.value = ''
+    alert('评论已提交，待审核后显示')
+  })
+}
+
+function showReplyForm(commentId, path) {
+  const form = document.getElementById('replyForm-' + commentId)
+  if (form) form.style.display = form.style.display === 'none' ? 'block' : 'none'
+}
+
+function submitReply(parentId, path) {
+  const input = document.getElementById('replyInput-' + parentId)
+  if (!input || !input.value.trim()) return
+  const user = getStoredUser()
+  if (!user || !user.email) { alert('请先登录'); return }
+  const btn = input.parentElement.querySelector('.comment-submit')
+  btn.textContent = '回复中...'
+  btn.disabled = true
+  getSupabase().from('comments').insert({
+    user_id: user.id,
+    author_name: user.user_metadata?.name || user.email.split('@')[0],
+    author_email: user.email,
+    content: input.value.trim(),
+    path: path,
+    parent_id: parentId,
+    approved: false
+  }).then(({ error }) => {
+    btn.textContent = '回复'
+    btn.disabled = false
+    if (error) { alert('回复失败: ' + error.message); return }
+    input.value = ''
+    document.getElementById('replyForm-' + parentId).style.display = 'none'
+    alert('回复已提交，待审核后显示')
+  })
+}
+
+function reloadComments() {
+  const reportView = document.getElementById('reportView')
+  if (reportView && reportView.classList.contains('active') && window._currentCid) {
+    loadComments('/' + window._currentCid, 'comment-report')
+  }
+  const bookView = document.getElementById('bookDetailView')
+  if (bookView && bookView.classList.contains('active')){
+    // book comments - handle separately
+  }
+}
+
+function escHtml(s) {
+  const d = document.createElement('div')
+  d.textContent = s
+  return d.innerHTML
+}
+
+// Auth state listener
+getSupabase().auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_IN' && session) {
+    localStorage.setItem('SUPABASE_USER', JSON.stringify(session.user))
+    updateHeaderBtn()
+    reloadComments()
+  } else if (event === 'SIGNED_OUT') {
+    localStorage.removeItem('SUPABASE_USER')
+    updateHeaderBtn()
+  }
+})
+
+// Check if user is already logged in on load
+getSupabase().auth.getSession().then(({ data: { session } }) => {
+  if (session) {
+    localStorage.setItem('SUPABASE_USER', JSON.stringify(session.user))
+  }
+  updateHeaderBtn()
 })
 
 // Init on load
 document.addEventListener('DOMContentLoaded', () => {
-  updateHeaderBtn()
   renderCatalog()
   renderBooks()
 })
 </script>
+<script src="waline/supabase.js"></script>
 </body>
 </html>
