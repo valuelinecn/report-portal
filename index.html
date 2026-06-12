@@ -1169,7 +1169,10 @@ function openLogin() {
   btn.disabled = true
   getSupabase().auth.signInWithOtp({
     email: email,
-    options: { shouldCreateUser: true }
+    options: {
+      shouldCreateUser: true,
+      redirectTo: 'https://valuelinecn.github.io/report-portal'
+    }
   }).then(function(res) {
     btn.textContent = '登录 / 注册'
     btn.disabled = false
