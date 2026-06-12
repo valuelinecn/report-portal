@@ -123,6 +123,15 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 .mcap-v{color:#ff9800;font-weight:bold}
 .mcap-axis text{fill:#666;font-size:10px}
 .mcap-grid line{stroke:#1e1e3a;stroke-width:0.5;stroke-dasharray:3,3}
+.mcap-light .mcap-btn{border-color:#c8c0b0;background:#e8e4dc;color:#707070}
+.mcap-light .mcap-btn:hover{border-color:#bf6a00;color:#bf6a00}
+.mcap-light .mcap-btn.active{background:#bf6a00;color:#fff;border-color:#bf6a00}
+.mcap-light .mcap-chart-wrap{background:#f4f1ea;border-color:#d8d4c8}
+.mcap-light .mcap-tooltip{background:rgba(255,255,255,.95);border-color:#bf6a00;color:#3d3d3d}
+.mcap-light .mcap-tooltip .tt-date{color:#808080}
+.mcap-light .mcap-tooltip .tt-val{color:#bf6a00}
+.mcap-light .mcap-info{background:#e8e4dc;color:#808080}
+.mcap-light .mcap-v{color:#bf6a00}
 </style>
 
 <script>
@@ -136,15 +145,27 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   var W = 0, H = 380;
   var M = {top:20, right:20, bottom:35, left:65};
 
+  function applyThemeClass(){
+    var isLight = false;
+    try {
+      isLight = parent && parent.document && parent.document.documentElement.getAttribute('data-theme') === 'light';
+    } catch(e) {
+      isLight = !!document.getElementById('hermes-theme-override');
+    }
+    var card = document.getElementById('s-mcap');
+    if(!card) return;
+    if(isLight){ card.classList.add('mcap-light'); } else { card.classList.remove('mcap-light'); }
+    if(chartData.length) render();
+  }
+
   function init(){
     svg = document.getElementById('mcapSvg');
     tooltip = document.getElementById('mcapTooltip');
     wrap = svg.parentElement;
     svg.style.cursor = 'crosshair';
 
-    if(document.getElementById('hermes-theme-override')){
-      document.getElementById('s-mcap').classList.add('mcap-light');
-    }
+    applyThemeClass();
+    setInterval(applyThemeClass, 1000);
 
     document.querySelectorAll('.mcap-btn').forEach(function(btn){
       btn.addEventListener('click', function(){
@@ -182,7 +203,9 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   }
 
   function getThemeColors(){
-    var light=!!document.getElementById('hermes-theme-override');
+    var light = false;
+    try { light = parent && parent.document && parent.document.documentElement.getAttribute('data-theme') === 'light'; }
+    catch(e){ light = !!document.getElementById('hermes-theme-override'); }
     return{
       line:light?'#bf6a00':'#ff9800',
       grid:light?'#e0dcd0':'#1e1e3a',
