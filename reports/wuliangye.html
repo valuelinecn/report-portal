@@ -779,7 +779,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   }
 
   function loadPeriod(period){
-    var url = '../kline/' + stockCode + '_' + period + '.json';
+    var url = '../kline/' + stockCode + '_' + period + '.json?t=' + Date.now();
     fetch(url).then(function(r){return r.json()}).then(function(data){
       chartData = data;
       // Default: show last 300 points for day, all for others

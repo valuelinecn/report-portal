@@ -656,7 +656,7 @@ function openReport(id) {
   document.getElementById('reportView').classList.add('active')
   document.getElementById('reportLoading').style.display='flex'
   document.getElementById('reportFrame').style.display='none'
-  document.getElementById('reportFrame').src='reports/'+c.file
+  document.getElementById('reportFrame').src='reports/'+c.file+'?t='+Date.now()
   // Init Waline for report
   setTimeout(() => {
     _walineReport = initWaline('#waline-report', '/' + id)
