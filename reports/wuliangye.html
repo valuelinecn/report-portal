@@ -689,16 +689,18 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   var isLoading = false;
   var errorDiv = null;
 
+  console.log('Kline chart initializing...');
   // Check if lightweight-charts loaded
   if (typeof LightweightCharts === 'undefined') {
     showError('图表库加载失败，请检查网络（vendor/lightweight-charts.js 是否可访问）');
     return;
   }
 
+  console.log('initChart called, mcap-chart element:', document.getElementById('mcap-chart'));
   function initChart() {
     chart = LightweightCharts.createChart(document.getElementById('mcap-chart'), {
       layout: {
-        background: { type: 'solid', color: 'transparent' },
+        background: { type: 'solid', color: '#0d0d20' },
         textColor: '#888',
         fontSize: 11,
         fontFamily: "-apple-system,'PingFang SC','Helvetica Neue',sans-serif"
@@ -780,6 +782,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
         return r.json();
       })
       .then(function(data) {
+        console.log('Data loaded:', data.length, 'entries, first:', data[0]);
         isLoading = false;
         if (btn) btn.textContent = periodNames[period] || period;
 
