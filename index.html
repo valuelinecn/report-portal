@@ -291,7 +291,7 @@ h1 span{color:var(--accent)}
 <header>
   <div class="hdr-row">
     <div class="hero-icon">📊</div>
-    <h1>价值投资 <span>研究门户</span></h1>
+    <h1 onclick="goHome()" style="cursor:pointer">价值投资 <span>研究门户</span></h1>
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">🌙</button>
     <button class="header-user guest" id="headerUserBtn" onclick="headerLogin()">登录 / 注册</button>
   </div>
@@ -855,6 +855,15 @@ function backToHub() {
 }
 function switchToQuiz() { document.getElementById('gameHub').style.display='none'; const c=document.getElementById('quizContainer'); c.style.display='block'; c.classList.add('active') }
 function switchToMatch() { document.getElementById('gameHub').style.display='none'; const c=document.getElementById('matchContainer'); c.style.display='block'; c.classList.add('active') }
+function goHome() {
+  // Close all overlays and return to reports tab
+  closeReport()
+  closeBookDetail()
+  document.querySelectorAll('.game-container').forEach(el => { el.style.display='none'; el.classList.remove('active') })
+  document.getElementById('gameHub').style.display='none'
+  switchTab('reports')
+  window.scrollTo({top:0,behavior:'smooth'})
+}
 
 // ===== MATCH GAME =====
 let matchData = [], matchSelected = null, matchPairs = 0, matchDone = 0, matchTimer = null, matchSec = 0, matchLevel = ''
