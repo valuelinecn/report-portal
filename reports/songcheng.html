@@ -288,21 +288,24 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   function doZoom(dir, cx){
     var n = chartData.length;
     var range = viewEnd - viewStart;
-    var center = cx !== undefined ? viewStart + (cx-M.left)/(Mchart())*range : (viewStart+viewEnd)/2;
-    var newRange = dir > 0 ? Math.max(20, range * 0.7) : Math.min(n, range * 1.4);
-    var cIdx = Math.max(0, Math.min(n, center));
-    viewStart = Math.max(0, Math.round(cIdx - newRange/2));
-    viewEnd = Math.min(n, viewStart + Math.round(newRange));
-    if(viewEnd-viewStart < newRange) viewStart = Math.max(0, viewEnd - Math.round(newRange));
+    if(dir > 0) range = Math.max(10, Math.round(range * 0.75));
+    else range = Math.min(n, Math.round(range * 1.35));
+    if(range < 2) range = 2;
+    if(range > n) range = n;
+    var rect = svg.getBoundingClientRect();
+    var mx = (cx || rect.left + rect.width/2) - rect.left - M.left;
+    var cw = Mchart();
+    var ratio = mx / cw;
+    var centerIdx = viewStart + (viewEnd - viewStart) * Math.max(0, Math.min(1, ratio));
+    var halfRange = range / 2;
+    viewStart = Math.round(centerIdx - halfRange);
+    viewEnd = viewStart + range;
+    if(viewStart < 0){ viewStart = 0; viewEnd = range; }
+    if(viewEnd > n){ viewEnd = n; viewStart = n - range; }
     render();
   }
 
-  function onWheel(e){
-    e.preventDefault();
-    var rect = svg.getBoundingClientRect();
-    var cx = e.clientX - rect.left;
-    doZoom(e.deltaY < 0 ? 1 : -1, cx);
-  }
+  function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
 
   function onDragStart(e){
     isDragging = true;
