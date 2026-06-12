@@ -148,8 +148,11 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 
   function applyThemeClass(){
     var isLight = false;
-    try { isLight = parent && parent.document && parent.document.documentElement.getAttribute('data-theme') === 'light'; }
-    catch(e){ isLight = !!document.getElementById('hermes-theme-override'); }
+    try {
+      isLight = parent && parent.document && parent.document.documentElement.getAttribute('data-theme') === 'light';
+    } catch(e) {
+      isLight = !!document.getElementById('hermes-theme-override');
+    }
     var card = document.getElementById('s-mcap');
     if(!card) return;
     if(isLight){ card.classList.add('mcap-light'); } else { card.classList.remove('mcap-light'); }
@@ -267,6 +270,8 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
       var lx = xScale(li);
       html += '<text x="'+lx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx.toFixed(1)+','+(H-10)+')">'+visible[li].time+'</text>';
     }
+    var lx2 = xScale(n-1);
+    html += '<text x="'+lx2.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx2.toFixed(1)+','+(H-10)+')">'+visible[n-1].time+'</text>';
     html += '</g>';
     var fillPath = 'M'+M.left+','+(M.top+ch)+' ';
     for(var i=0;i<n;i++){fillPath += 'L'+xScale(i).toFixed(1)+','+yScale(visible[i].value).toFixed(1)+' ';}
@@ -306,50 +311,50 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   }
 
   function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
-
-  function onDragStart(e){
-    isDragging = true;
-    dragStartX = e.clientX;
-    dragViewStart = viewStart;
-    svg.style.cursor = 'grabbing';
-  }
-
+  function onDragStart(e){isDragging=true;dragStartX=e.clientX;dragViewStart=viewStart;svg.style.cursor='grabbing';}
   function onDragMove(e){
     if(!isDragging) return;
-    var n = chartData.length;
-    var range = viewEnd - viewStart;
     var dx = e.clientX - dragStartX;
+    var range = viewEnd - viewStart;
+    var n = chartData.length;
     var dataPerPx = range / Mchart();
     viewStart = Math.max(0, Math.min(n - range, Math.round(dragViewStart - dx * dataPerPx)));
     viewEnd = viewStart + range;
     render();
   }
-
   function onDragEnd(){isDragging=false;svg.style.cursor='crosshair';}
-
   function onHover(e){
     if(isDragging || !chartData.length) return;
     var rect = svg.getBoundingClientRect();
-    var mx = e.clientX - rect.left;
+    var mx = e.clientX - rect.left - M.left;
+    var cw = Mchart();
+    if(cw <= 0 || viewEnd-viewStart <= 0) return;
+    var idx = viewStart + Math.round(mx / cw * (viewEnd - viewStart - 1));
+    if(idx < 0 || idx >= chartData.length) return;
+    var pt = chartData[idx];
+    var relIdx = idx - viewStart;
+    var n = viewEnd - viewStart;
+    var px = M.left + (relIdx/(n-1||1))*cw;
     var visible = chartData.slice(viewStart, viewEnd);
-    var n = visible.length;
-    if(n < 2) return;
-    var idx = Math.round((mx - M.left) / Mchart() * (n-1));
-    idx = Math.max(0, Math.min(n-1, idx));
-    var pt = visible[idx];
-    var cw2 = Mchart();
-    var px = M.left + (idx/(n-1))*cw2;
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<visible.length;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad);
+    maxVal = maxVal + pad;
+    var py = M.top + (H-M.top-M.bottom) - (pt.value-minVal)/(maxVal-minVal)*(H-M.top-M.bottom);
     tooltip.innerHTML = '<div class="tt-date">'+pt.time+'</div><div class="tt-val">'+fmtVal(pt.value)+'</div>';
     tooltip.style.left = px + 'px';
-    tooltip.style.top = (M.top+10) + 'px';
+    tooltip.style.top = (py - 10) + 'px';
     tooltip.style.display = 'block';
     var cv=svg.querySelector('#mcapCrossV');if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.7');}
+    var ch2=svg.querySelector('#mcapCrossH');if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.7');}
+    var cd=svg.querySelector('#mcapCrossDot');if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
   }
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
-})();
-</script>
+})();</script>
+
 
 <div id="s1" class="card">
   <h2>一、综合评价</h2>
