@@ -161,6 +161,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     svg = document.getElementById('mcapSvg');
     tooltip = document.getElementById('mcapTooltip');
     wrap = svg.parentElement;
+    svg.style.cursor = 'crosshair';
 
     // Detect light theme (portal injects #hermes-theme-override into iframe)
     if(document.getElementById('hermes-theme-override')){
@@ -192,7 +193,12 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     window.addEventListener('mousemove', onDragMove);
     window.addEventListener('mouseup', onDragEnd);
     svg.addEventListener('mousemove', onHover);
-    svg.addEventListener('mouseleave', function(){tooltip.style.display='none'});
+    svg.addEventListener('mouseleave', function(){
+      tooltip.style.display='none';
+      var cv=svg.querySelector('#mcapCrossV');if(cv)cv.setAttribute('opacity','0');
+      var ch2=svg.querySelector('#mcapCrossH');if(ch2)ch2.setAttribute('opacity','0');
+      var cd=svg.querySelector('#mcapCrossDot');if(cd)cd.setAttribute('opacity','0');
+    });
 
     // Touch events
     var touchStartX = 0, touchStartY = 0, touchDist = 0;
@@ -346,6 +352,12 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     // Line
     html += '<polyline points="'+points+'" fill="none" stroke="'+tc.line+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
 
+    // Crosshair lines (hidden by default)
+    var ch = H - M.top - M.bottom;
+    html += '<line id="mcapCrossV" x1="0" y1="'+M.top+'" x2="0" y2="'+(M.top+ch)+'" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    html += '<line id="mcapCrossH" x1="'+M.left+'" y1="0" x2="'+(M.left+cw)+'" y2="0" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    html += '<circle id="mcapCrossDot" cx="0" cy="0" r="4" fill="'+tc.line+'" stroke="#fff" stroke-width="1.5" opacity="0" pointer-events="none"/>';
+
     // Gradient def
     var defs = '<defs><linearGradient id="mcapGrad" x1="0" y1="0" x2="0" y2="1">'+
       '<stop offset="0%" stop-color="'+tc.gradTop+'" stop-opacity="'+tc.gradTopOpacity+'"/>'+
@@ -424,8 +436,27 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     var idx = viewStart + Math.round(mx / cw * (viewEnd - viewStart - 1));
     if(idx < 0 || idx >= chartData.length) return;
     var pt = chartData[idx];
-    var px = M.left + ((idx-viewStart)/(viewEnd-viewStart-1||1))*cw;
-    var py = M.top + 20;
+    var relIdx = idx - viewStart;
+    var n = viewEnd - viewStart;
+    var px = M.left + (relIdx/(n-1||1))*cw;
+    var py;
+    // Calculate y position: must match render's yScale
+    var visible = chartData.slice(viewStart, viewEnd);
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<visible.length;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad);
+    maxVal = maxVal + pad;
+    var ch = H - M.top - M.bottom;
+    py = M.top + ch - (pt.value - minVal)/(maxVal-minVal)*ch;
+
+    // Position crosshair
+    var cv = svg.querySelector('#mcapCrossV');
+    var ch2 = svg.querySelector('#mcapCrossH');
+    var cd = svg.querySelector('#mcapCrossDot');
+    if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.6');}
+    if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.6');}
+    if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
 
     tooltip.innerHTML = '<span class="tt-date">'+pt.time+'</span> · 市值 <span class="tt-val">'+pt.value.toFixed(1)+'亿</span>';
     tooltip.style.display = 'block';
