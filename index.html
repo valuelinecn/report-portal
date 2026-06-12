@@ -619,7 +619,7 @@ h1 span{color:var(--accent)}
     </div>
   </div>
   <!-- ===== COMMENTS SECTION (games) ===== -->
-  <div class="waline-wrap"><div id="comment-game"></div></div>
+  <div class="waline-wrap"><div id="waline-game"></div></div>
 </div>
 
 <!-- ===== REPORT VIEW (fullscreen) ===== -->
@@ -718,9 +718,20 @@ function switchTab(name) {
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'))
   document.getElementById('tab-'+name).classList.add('active')
   document.querySelector(`.tab-btn[data-tab="${name}"]`).classList.add('active')
-  // Games tab - first visit handled by comment loading
+  // Init Waline for games tab on first visit
   if (name === 'games' && !window._gamesWalineLoaded) {
     window._gamesWalineLoaded = true
+    setTimeout(() => {
+      destroyWaline(_walineGame)
+      _walineGame = new Waline({
+        el: '#waline-game',
+        serverURL: WALINE_SRV,
+        path: '/games',
+        lang: 'zh-CN',
+        dark: 'html[data-theme="dark"]',
+        login: 'force',
+      })
+    }, 200)
   }
 }
 
@@ -755,6 +766,22 @@ function renderCatalog(query) {
 function onSearch(val) { searchQuery=val; document.getElementById('searchClear').classList.toggle('visible',val.length>0); renderCatalog(val) }
 function clearSearch() { document.getElementById('searchInput').value=''; document.getElementById('searchClear').classList.remove('visible'); onSearch('') }
 
+function destroyWaline(inst) {
+  if (inst) try { inst.destroy() } catch(e) {}
+}
+
+function initWaline(el, path) {
+  destroyWaline(window._walineReport)
+  return new Waline({
+    el: el,
+    serverURL: WALINE_SRV,
+    path: path,
+    lang: 'zh-CN',
+    dark: 'html[data-theme="dark"]',
+    login: 'force',
+  })
+}
+
 function openReport(id) {
   const c = COMPANIES.find(x=>x.id===id); if(!c) return
   window._currentCid = id
@@ -763,11 +790,9 @@ function openReport(id) {
   document.getElementById('reportLoading').style.display='flex'
   document.getElementById('reportFrame').style.display='none'
   document.getElementById('reportFrame').src='reports/'+c.file+'?t='+Date.now()
-  // Load comments
-  setTimeout(function() { loadComments('/' + id, 'comment-report') }, 200)
+  setTimeout(function() { loadComments('/' + id, 'comment-report') }, 500)
 }
 function closeReport() {
-  // comment removed
   document.getElementById('reportView').classList.remove('active')
   document.getElementById('reportFrame').src=''
   document.getElementById('reportFrame').style.display='none'
@@ -903,8 +928,18 @@ function openBook(id) {
   window._currentBid = id
   document.getElementById('bookDetailTitle').innerHTML = `<span>${b.title}</span> · ${b.author}`
   document.getElementById('bookDetailView').classList.add('active')
-  // Load comments for book
-  setTimeout(function() { loadComments('/book/' + id, 'comment-book') }, 200)
+  // Init Waline for book
+  setTimeout(() => {
+    destroyWaline(_walineBook)
+    _walineBook = new Waline({
+      el: '#waline-book',
+      serverURL: WALINE_SRV,
+      path: '/book/' + id,
+      lang: 'zh-CN',
+      dark: 'html[data-theme="dark"]',
+      login: 'force',
+    })
+  }, 200)
   const stars = '★'.repeat(b.rating)+'☆'.repeat(5-b.rating)
   const tagsHTML = b.tags.map(t => `<span class="tag" style="background:${b.color}15;color:${b.color};border-color:${b.color}20">${t}</span>`).join('')
   const archHTML = b.architecture.map((a,i) => `
@@ -945,7 +980,7 @@ function formatSummary(text) {
   return items.map(item => '<div class="summary-item">'+item+'</div>').join('')
 }
 
-function closeBookDetail() { // comment removed; document.getElementById('bookDetailView').classList.remove('active'); document.getElementById('bookDetailContent').innerHTML = '<div class="loading"><div class="spinner"></div><span>加载中…</span></div>' }
+function closeBookDetail() { document.getElementById('bookDetailView').classList.remove('active'); document.getElementById('bookDetailContent').innerHTML = '<div class="loading"><div class="spinner"></div><span>加载中…</span></div>' }
 function toggleArch(i) { document.getElementById('archBody'+i).classList.toggle('open'); document.getElementById('archToggle'+i).classList.toggle('open') }
 function toggleChapter(bookId,archIdx,chIdx) { document.getElementById('chB_'+bookId+'_'+archIdx+'_'+chIdx).classList.toggle('open'); document.getElementById('chT_'+bookId+'_'+archIdx+'_'+chIdx).classList.toggle('open') }
 
@@ -1094,282 +1129,224 @@ function backToMatchLevels() {
   document.getElementById('matchResult').style.display='none'
   document.getElementById('matchLevels').style.display='block'
 }
-// ===== SUPABASE AUTH + COMMENTS =====
-const SUPABASE_URL = 'https://awhdlskpkmklmvyodbue.supabase.co'
-const SUPABASE_ANON_KEY = 'sb_publishable_imB63UIMl9JN050rK4oPCQ_hTJcYVj5'
-let _supabase = null
+// ===== LOGIN GATE =====
+// ===== SUPABASE AUTH =====
 
 function getSupabase() {
-  if (!_supabase) _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-  return _supabase
+  window._supabase = window._supabase || supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  return window._supabase
 }
 
 function getStoredUser() {
   try {
-    const d = localStorage.getItem('SUPABASE_USER')
+    var d = localStorage.getItem('SUPABASE_USER')
     if (d && d !== 'null') return JSON.parse(d)
   } catch(e) {}
   return null
 }
 
 function updateHeaderBtn() {
-  const btn = document.getElementById('headerUserBtn')
-  const user = getStoredUser()
+  var btn = document.getElementById('headerUserBtn')
+  var user = getStoredUser()
   if (user && user.email) {
     btn.className = 'header-user logged-in'
-    const name = user.user_metadata?.name || user.email.split('@')[0]
-    btn.innerHTML = '👤 ' + name
-    btn.onclick = () => {}
+    btn.innerHTML = '👤 ' + (user.user_metadata && user.user_metadata.name ? user.user_metadata.name : user.email.split('@')[0])
+    btn.onclick = function() { logout() }
   } else {
     btn.className = 'header-user guest'
     btn.textContent = '登录 / 注册'
-    btn.onclick = () => openLogin()
+    btn.onclick = function() { openLogin() }
   }
 }
 
-// Show login popup using Supabase magic link
 function openLogin() {
-  const user = getStoredUser()
+  var user = getStoredUser()
   if (user && user.email) return
-  const email = prompt('请输入邮箱，我们将发送登录链接：')
+  var email = prompt('请输入邮箱，我们将发送登录链接：')
   if (!email) return
-  const btn = document.getElementById('headerUserBtn')
+  var btn = document.getElementById('headerUserBtn')
   btn.textContent = '发送中...'
   btn.disabled = true
   getSupabase().auth.signInWithOtp({
     email: email,
     options: { shouldCreateUser: true }
-  }).then(({ error }) => {
-    if (error) {
-      alert('发送失败: ' + error.message)
-      btn.textContent = '登录 / 注册'
-      btn.disabled = false
+  }).then(function(res) {
+    btn.textContent = '登录 / 注册'
+    btn.disabled = false
+    if (res.error) {
+      alert('发送失败: ' + res.error.message)
     } else {
       alert('登录链接已发送到 ' + email + '，请查看邮箱并点击链接登录')
-      btn.textContent = '等待验证...'
-      btn.disabled = false
     }
   })
 }
 
 function logout() {
-  getSupabase().auth.signOut().then(() => {
+  getSupabase().auth.signOut().then(function() {
     localStorage.removeItem('SUPABASE_USER')
     updateHeaderBtn()
-    reloadComments()
   })
 }
 
-// Load comments for a given path
-function loadComments(path, containerId) {
-  const el = document.getElementById(containerId)
-  if (!el) return
-  el.innerHTML = '<div class="comment-loading">加载评论...</div>'
-  getSupabase()
-    .from('comments')
-    .select('*, user_id')
-    .eq('path', path)
-    .is('parent_id', null)
-    .order('created_at', { ascending: false })
-    .then(({ data, error }) => {
-      if (error) { el.innerHTML = '<div class="comment-error">加载失败</div>'; return }
-      // Also load replies
-      getSupabase()
-        .from('comments')
-        .select('*')
-        .eq('path', path)
-        .not('parent_id', 'is', null)
-        .order('created_at', { ascending: true })
-        .then(({ data: replies }) => {
-          renderComments(el, data || [], replies || [], path)
-        })
-    })
-}
 
-function renderComments(el, comments, replies, path) {
-  const user = getStoredUser()
-  let html = '<div class="comment-section">'
-  html += '<h3 class="comment-heading">💬 评论 (' + comments.length + ')</h3>'
 
-  // Comment form (only for logged-in users)
-  if (user && user.email) {
-    html += '<div class="comment-form">'
-    html += '<textarea class="comment-input" id="commentInput-' + path.replace(/[^a-zA-Z0-9]/g,'') + '" placeholder="写下你的评论..." rows="3"></textarea>'
-    html += '<div class="comment-form-actions">'
-    html += '<span class="comment-user-label">' + (user.user_metadata?.name || user.email.split('@')[0]) + '</span>'
-    html += '<button class="comment-submit" onclick="submitComment(\"' + path + '\")">发表评论</button>'
-    html += '<button class="comment-logout-btn" onclick="logout()">退出</button>'
-    html += '</div></div>'
-  } else {
-    html += '<div class="comment-login-hint">请先<a href="#" onclick="openLogin();return false">登录</a>后发表评论</div>'
-  }
+// Init on load
 
-  // Comment list
-  if (comments.length === 0) {
-    html += '<div class="comment-empty">暂无评论</div>'
-  } else {
-    html += '<div class="comment-list">'
-    comments.forEach(c => {
-      html += renderCommentCard(c, replies.filter(r => r.parent_id === c.id), path)
-    })
-    html += '</div>'
-  }
+// ===== SUPABASE COMMENTS =====
+var SUPABASE_URL = 'https://awhdlskpkmklmvyodbue.supabase.co';
+var SUPABASE_ANON_KEY = 'sb_publishable_imB63UIMl9JN050rK4oPCQ_hTJcYVj5';
 
-  html += '</div>'
-  el.innerHTML = html
-}
-
-function renderCommentCard(comment, childReplies, path) {
-  const user = getStoredUser()
-  const date = new Date(comment.created_at).toLocaleDateString('zh-CN')
-  const isOwn = user && user.email && comment.author_email === user.email
-  let html = '<div class="comment-card" id="c-' + comment.id + '">'
-  html += '<div class="comment-meta">'
-  html += '<span class="comment-author">' + escHtml(comment.author_name) + '</span>'
-  html += '<span class="comment-time">' + date + '</span>'
-  html += '</div>'
-  html += '<div class="comment-body">' + escHtml(comment.content).replace(/\n/g, '<br>') + '</div>'
-  html += '<div class="comment-actions">'
-  if (user && user.email) {
-    html += '<a href="#" class="comment-reply-btn" data-action="showreply" data-cid="' + comment.id + '" data-path="' + path + '">回复</a>'
-  }
-  html += '</div>'
-
-  // Reply form (hidden)
-  html += '<div class="comment-reply-form" id="replyForm-' + comment.id + '" style="display:none">'
-  html += '<textarea class="comment-input" id="replyInput-' + comment.id + '" placeholder="回复 ' + escHtml(comment.author_name) + '..." rows="2"></textarea>'
-  html += '<button class="comment-submit" data-action="reply" data-cid="' + comment.id + '" data-path="' + path + '">回复</button>'
-  html += '</div>'
-
-  // Replies
-  if (childReplies.length > 0) {
-    html += '<div class="comment-replies">'
-    childReplies.forEach(r => {
-      html += renderReplyCard(r)
-    })
-    html += '</div>'
-  }
-
-  html += '</div>'
-  return html
-}
-
-function renderReplyCard(reply) {
-  const date = new Date(reply.created_at).toLocaleDateString('zh-CN')
-  return '<div class="reply-card"><span class="comment-author">' + escHtml(reply.author_name) + '</span> <span class="comment-time">' + date + '</span><div class="comment-body">' + escHtml(reply.content).replace(/\n/g, '<br>') + '</div></div>'
-}
-
-function submitComment(path) {
-  const inputId = 'commentInput-' + path.replace(/[^a-zA-Z0-9]/g,'')
-  const input = document.getElementById(inputId)
-  if (!input || !input.value.trim()) return
-  const user = getStoredUser()
-  if (!user || !user.email) { alert('请先登录'); return }
-  const btn = input.parentElement.querySelector('.comment-submit')
-  btn.textContent = '发表中...'
-  btn.disabled = true
-  getSupabase().from('comments').insert({
-    user_id: user.id,
-    author_name: user.user_metadata?.name || user.email.split('@')[0],
-    author_email: user.email,
-    content: input.value.trim(),
-    path: path,
-    approved: false
-  }).then(({ error }) => {
-    btn.textContent = '发表评论'
-    btn.disabled = false
-    if (error) { alert('发表失败: ' + error.message); return }
-    input.value = ''
-    alert('评论已提交，待审核后显示')
-  })
-}
-
-function showReplyForm(commentId, path) {
-  const form = document.getElementById('replyForm-' + commentId)
-  if (form) form.style.display = form.style.display === 'none' ? 'block' : 'none'
-}
-
-function submitReply(parentId, path) {
-  const input = document.getElementById('replyInput-' + parentId)
-  if (!input || !input.value.trim()) return
-  const user = getStoredUser()
-  if (!user || !user.email) { alert('请先登录'); return }
-  const btn = input.parentElement.querySelector('.comment-submit')
-  btn.textContent = '回复中...'
-  btn.disabled = true
-  getSupabase().from('comments').insert({
-    user_id: user.id,
-    author_name: user.user_metadata?.name || user.email.split('@')[0],
-    author_email: user.email,
-    content: input.value.trim(),
-    path: path,
-    parent_id: parentId,
-    approved: false
-  }).then(({ error }) => {
-    btn.textContent = '回复'
-    btn.disabled = false
-    if (error) { alert('回复失败: ' + error.message); return }
-    input.value = ''
-    document.getElementById('replyForm-' + parentId).style.display = 'none'
-    alert('回复已提交，待审核后显示')
-  })
-}
-
-function reloadComments() {
-  const reportView = document.getElementById('reportView')
-  if (reportView && reportView.classList.contains('active') && window._currentCid) {
-    loadComments('/' + window._currentCid, 'comment-report')
-  }
-  const bookView = document.getElementById('bookDetailView')
-  if (bookView && bookView.classList.contains('active')){
-    // book comments - handle separately
-  }
+function getSupabase() {
+  window._supabase = window._supabase || supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  return window._supabase;
 }
 
 function escHtml(s) {
-  const d = document.createElement('div')
-  d.textContent = s
-  return d.innerHTML
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
 }
 
-// Auth state listener
-try { getSupabase().auth.onAuthStateChange(function(event, session) {
-  if (event === 'SIGNED_IN' && session) {
-    localStorage.setItem('SUPABASE_USER', JSON.stringify(session.user))
-    updateHeaderBtn()
-    reloadComments()
-  } else if (event === 'SIGNED_OUT') {
-    localStorage.removeItem('SUPABASE_USER')
-    updateHeaderBtn()
-  }
-}) } catch(e) { console.warn('Supabase auth init:', e) }
+function renderComments(el, data, path) {
+  var user = getStoredUser();
+  var topLevel = data.filter(function(c) { return !c.parent_id; });
+  var html = '<div class="comment-section">';
+  html += '<h3 class="comment-heading">💬 评论 (' + topLevel.length + ')</h3>';
 
-// Check if user is already logged in on load
-try { getSupabase().auth.getSession().then(function(res) {
-  if (res.data && res.data.session) {
-    localStorage.setItem('SUPABASE_USER', JSON.stringify(res.data.session.user))
+  if (user && user.email) {
+    var safePath = path.replace(/[^a-zA-Z0-9]/g, '');
+    html += '<div class="comment-form">';
+    html += '<textarea class="comment-input" id="ci-' + safePath + '" placeholder="写下你的评论..." rows="3"></textarea>';
+    html += '<div class="comment-form-actions">';
+    html += '<span class="comment-user-label">' + (user.user_metadata && user.user_metadata.name ? user.user_metadata.name : user.email.split('@')[0]) + '</span>';
+    html += '<button class="comment-submit" onclick="window.submitComment(\'' + path + '\')">发表评论</button>';
+    html += '<button class="comment-logout-btn" onclick="window.logout()">退出</button>';
+    html += '</div></div>';
+  } else {
+    html += '<div class="comment-login-hint">请先<a href="#" onclick="window.openLogin();return false">登录</a>后发表评论</div>';
   }
-  updateHeaderBtn()
-}) } catch(e) { console.warn('Supabase session:', e); updateHeaderBtn() }
 
-// Event delegation for dynamic comment buttons
-document.addEventListener('click', function(e) {
-  var target = e.target
-  if (target.getAttribute('data-action') === 'showreply') {
-    var cid = target.getAttribute('data-cid')
-    var form = document.getElementById('replyForm-' + cid)
-    if (form) form.style.display = form.style.display === 'none' ? 'block' : 'none'
-    e.preventDefault()
+  if (topLevel.length === 0) {
+    html += '<div class="comment-empty">暂无评论</div>';
+  } else {
+    html += '<div class="comment-list">';
+    for (var i = 0; i < topLevel.length; i++) {
+      var c = topLevel[i];
+      var replies = data.filter(function(r) { return r.parent_id === c.id; });
+      var date = new Date(c.created_at).toLocaleDateString('zh-CN');
+      html += '<div class="comment-card">';
+      html += '<div class="comment-meta"><span class="comment-author">' + escHtml(c.author_name) + '</span><span class="comment-time">' + date + '</span></div>';
+      html += '<div class="comment-body">' + escHtml(c.content).replace(/\n/g, '<br>') + '</div>';
+      if (user && user.email) {
+        html += '<div class="comment-actions"><a href="#" class="comment-reply-btn" onclick="window.showReplyForm(\'' + c.id + '\',\'' + path + '\');return false">回复</a></div>';
+        html += '<div class="comment-reply-form" id="rf-' + c.id + '" style="display:none">';
+        html += '<textarea class="comment-input" id="ri-' + c.id + '" placeholder="回复 ' + escHtml(c.author_name) + '..." rows="2"></textarea>';
+        html += '<button class="comment-submit" onclick="window.submitReply(\'' + c.id + '\',\'' + path + '\')">回复</button>';
+        html += '</div>';
+      }
+      if (replies.length > 0) {
+        html += '<div class="comment-replies">';
+        for (var j = 0; j < replies.length; j++) {
+          var r = replies[j];
+          var rd = new Date(r.created_at).toLocaleDateString('zh-CN');
+          html += '<div class="reply-card"><span class="comment-author">' + escHtml(r.author_name) + '</span> <span class="comment-time">' + rd + '</span><div class="comment-body">' + escHtml(r.content).replace(/\n/g, '<br>') + '</div></div>';
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
   }
-  if (target.getAttribute('data-action') === 'reply') {
-    var cid = target.getAttribute('data-cid')
-    var path = target.getAttribute('data-path')
-    submitReply(cid, path)
-  }
-})
+  html += '</div>';
+  el.innerHTML = html;
+}
 
-// Init on load
+function loadComments(path, containerId) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '<div class="comment-loading">加载评论...</div>';
+  getSupabase().from('comments').select('*').eq('path', path).order('created_at', { ascending: false }).then(function(res) {
+    if (res.error) { el.innerHTML = '<div class="comment-error">加载失败</div>'; return; }
+    renderComments(el, res.data || [], path);
+  });
+}
+
+function submitComment(path) {
+  var safePath = path.replace(/[^a-zA-Z0-9]/g, '');
+  var input = document.getElementById('ci-' + safePath);
+  if (!input || !input.value.trim()) return;
+  var user = getStoredUser();
+  if (!user || !user.email) { alert('请先登录'); return; }
+  var btn = input.parentElement.querySelector('.comment-submit');
+  btn.textContent = '发表中...';
+  btn.disabled = true;
+  getSupabase().from('comments').insert({
+    user_id: user.id,
+    author_name: user.user_metadata && user.user_metadata.name ? user.user_metadata.name : user.email.split('@')[0],
+    author_email: user.email,
+    content: input.value.trim(),
+    path: path
+  }).then(function(res) {
+    btn.textContent = '发表评论';
+    btn.disabled = false;
+    if (res.error) { alert('发表失败: ' + res.error.message); return; }
+    input.value = '';
+    loadComments(path, 'comment-report');
+  });
+}
+
+function showReplyForm(commentId, path) {
+  var form = document.getElementById('rf-' + commentId);
+  if (form) form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+function submitReply(parentId, path) {
+  var input = document.getElementById('ri-' + parentId);
+  if (!input || !input.value.trim()) return;
+  var user = getStoredUser();
+  if (!user || !user.email) { alert('请先登录'); return; }
+  var btn = input.parentElement.querySelector('.comment-submit');
+  btn.textContent = '回复中...';
+  btn.disabled = true;
+  getSupabase().from('comments').insert({
+    user_id: user.id,
+    author_name: user.user_metadata && user.user_metadata.name ? user.user_metadata.name : user.email.split('@')[0],
+    author_email: user.email,
+    content: input.value.trim(),
+    path: path,
+    parent_id: parentId
+  }).then(function(res) {
+    btn.textContent = '回复';
+    btn.disabled = false;
+    if (res.error) { alert('回复失败: ' + res.error.message); return; }
+    input.value = '';
+    document.getElementById('rf-' + parentId).style.display = 'none';
+    if (window._currentCid) loadComments('/' + window._currentCid, 'comment-report');
+  });
+}
+
+// Init supabase auth
+try {
+  getSupabase().auth.onAuthStateChange(function(event, session) {
+    if (event === 'SIGNED_IN' && session) {
+      localStorage.setItem('SUPABASE_USER', JSON.stringify(session.user));
+      updateHeaderBtn();
+    } else if (event === 'SIGNED_OUT') {
+      localStorage.removeItem('SUPABASE_USER');
+      updateHeaderBtn();
+    }
+  });
+  getSupabase().auth.getSession().then(function(res) {
+    if (res.data && res.data.session) {
+      localStorage.setItem('SUPABASE_USER', JSON.stringify(res.data.session.user));
+    }
+    updateHeaderBtn();
+  });
+} catch(e) {}
+
+
 document.addEventListener('DOMContentLoaded', () => {
+  updateHeaderBtn()
   renderCatalog()
   renderBooks()
 })
