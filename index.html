@@ -388,12 +388,12 @@ h1 span{color:var(--accent)}
     <div class="quiz-page" id="quizPage">
       <div class="quiz-intro" id="quizIntro">
         <div class="quiz-icon">🎮</div>
-        <h2 class="quiz-title">投资人格 & 段位解密</h2>
-        <div class="quiz-subtitle">15 道题 · 揭开你的投资基因</div>
+        <h2 class="quiz-title">投资人格解密</h2>
+        <div class="quiz-subtitle">24 道题 · 测出你的二级市场投资基因</div>
         <div class="quiz-rules">
-          <div class="quiz-rule"><span>🧬</span> 测出你的投资人格类型</div>
-          <div class="quiz-rule"><span>📊</span> 知识题检验你的价值投资功底</div>
-          <div class="quiz-rule"><span>🎭</span> 获得专属人格解读 + 段位</div>
+          <div class="quiz-rule"><span>🧬</span> 四维度解析你的投资行为模式</div>
+          <div class="quiz-rule"><span>🎯</span> 16种交易人格 × 专属解读</div>
+          <div class="quiz-rule"><span>💡</span> 获得定制建议 + 同道中人</div>
         </div>
         <button class="quiz-start-btn" onclick="startQuiz()">开始解密 →</button>
       </div>
@@ -412,26 +412,17 @@ h1 span{color:var(--accent)}
       </div>
       <div class="quiz-result" id="quizResult" style="display:none">
         <div class="result-section">
-          <div style="font-size:40px;margin-bottom:4px" id="resultTypeIcon">🏛️</div>
+          <div style="font-size:40px;margin-bottom:4px" id="resultTypeIcon">🧬</div>
           <div class="result-title">你的投资人格</div>
-          <div class="result-rank" id="resultTypeName">格雷厄姆门徒</div>
-          <div style="font-size:12px;color:var(--m4);margin-bottom:8px" id="resultTypeSub">Grahamite</div>
-          <div style="font-size:11px;color:var(--accent);font-style:italic;margin-bottom:14px" id="resultMotto">「价格是你支付的，价值是你得到的。」</div>
+          <div class="result-rank" id="resultTypeName">类型</div>
+          <div style="font-size:12px;color:var(--m4);margin-bottom:8px" id="resultTypeSub">16种交易人格 · 专属解读</div>
+          <div style="font-size:11px;color:var(--accent);font-style:italic;margin-bottom:14px" id="resultMotto"></div>
           <div class="result-desc" id="resultTypeDesc"></div>
-          <div class="result-bar-wrap" style="margin-top:10px"><div class="result-stat-bar"><div class="result-stat-fill" id="resultTypeBar"></div></div><div style="font-size:10px;color:var(--m5);margin-top:2px" id="resultTypePct">70%</div></div>
         </div>
         <div style="height:2px;background:var(--b2);margin:16px 0"></div>
         <div class="result-section">
-          <div style="font-size:11px;color:var(--m4);margin-bottom:6px">次要人格</div>
-          <div style="font-size:16px;color:var(--t3)" id="resultSecondary">巴芒传人</div>
-          <div class="result-bar-wrap" style="margin-top:6px"><div class="result-stat-bar"><div class="result-stat-fill" id="resultSecondaryBar"></div></div><div style="font-size:10px;color:var(--m5);margin-top:2px" id="resultSecondaryPct">20%</div></div>
-        </div>
-        <div style="height:2px;background:var(--b2);margin:16px 0"></div>
-        <div class="result-section">
-          <div style="font-size:11px;color:var(--m4);margin-bottom:4px">知识段位</div>
-          <div style="font-size:20px;color:var(--accent);font-weight:700" id="resultScoreDisplay">8 / 15</div>
-          <div class="result-bar-wrap"><div class="result-stat-bar"><div class="result-stat-fill" id="resultScoreBar"></div></div></div>
-          <div style="font-size:11px;color:var(--t5);margin-top:6px;line-height:1.6" id="resultGrade">📗 巴菲特学徒</div>
+          <div style="font-size:11px;color:var(--m4);margin-bottom:6px">📊 四维度解析</div>
+          <div id="resultDims"></div>
         </div>
         <div style="height:2px;background:var(--b2);margin:16px 0"></div>
         <div class="result-section"><div style="font-size:12px;color:var(--m4);margin-bottom:6px">💡 给你的建议</div><div style="font-size:12px;color:var(--t5);line-height:1.7" id="resultAdvice"></div></div>
