@@ -114,7 +114,8 @@ html{scroll-behavior:smooth}
 .comment-toggle .arrow{font-size:11px;margin-left:auto}
 .comment-toggle .count{margin-left:4px;color:var(--accent);font-weight:600}
 .comment-fullscreen{display:none;position:fixed;inset:0;z-index:999;background:var(--bg);flex-direction:column}
-.comment-fullscreen.active{display:flex}
+.comment-fullscreen.peek{display:flex;top:auto;bottom:0;height:40vh;border-top-left-radius:12px;border-top-right-radius:12px;box-shadow:0 -4px 20px rgba(0,0,0,.4);overflow:hidden;transition:height .3s ease,top .3s ease}
+.comment-fullscreen.active{display:flex;top:0;height:100%;border-radius:0;box-shadow:none}
 .comment-fs-header{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--b2);flex-shrink:0;font-size:14px;color:var(--t1);font-weight:600}
 .comment-fs-close{margin-left:auto;border:none;background:var(--bg5);color:var(--t2);font-size:12px;padding:5px 12px;border-radius:6px;cursor:pointer;font-family:inherit}
 .comment-fs-close:active{opacity:.7}
@@ -661,9 +662,9 @@ html{scroll-behavior:smooth}
     <span class="arrow">▲</span>
   </div>
   <div class="comment-fullscreen" id="commentFs-game">
-    <div class="comment-fs-header">
+    <div class="comment-fs-header" onclick="if(document.getElementById('commentFs-game').classList.contains('peek'))expandComments('game')">
       💬 评论 <span class="count" id="commentFsCount-game">0</span>
-      <button class="comment-fs-close" onclick="toggleComments('game')">▼ 收起</button>
+      <button class="comment-fs-close" onclick="event.stopPropagation();toggleComments('game')">▼ 收起</button>
     </div>
     <div class="comment-fs-body" id="commentFsBody-game">
       <div class="waline-wrap"><div id="waline-game"></div></div>
@@ -690,9 +691,9 @@ html{scroll-behavior:smooth}
     <span class="arrow">▲</span>
   </div>
   <div class="comment-fullscreen" id="commentFs-report">
-    <div class="comment-fs-header">
+    <div class="comment-fs-header" onclick="if(document.getElementById('commentFs-report').classList.contains('peek'))expandComments('report')">
       💬 评论 <span class="count" id="commentFsCount-report">0</span>
-      <button class="comment-fs-close" onclick="toggleComments('report')">▼ 收起</button>
+      <button class="comment-fs-close" onclick="event.stopPropagation();toggleComments('report')">▼ 收起</button>
     </div>
     <div class="comment-fs-body" id="commentFsBody-report">
       <div class="waline-wrap"><div id="comment-report"></div></div>
@@ -715,9 +716,9 @@ html{scroll-behavior:smooth}
     <span class="arrow">▲</span>
   </div>
   <div class="comment-fullscreen" id="commentFs-book">
-    <div class="comment-fs-header">
+    <div class="comment-fs-header" onclick="if(document.getElementById('commentFs-book').classList.contains('peek'))expandComments('book')">
       💬 评论 <span class="count" id="commentFsCount-book">0</span>
-      <button class="comment-fs-close" onclick="toggleComments('book')">▼ 收起</button>
+      <button class="comment-fs-close" onclick="event.stopPropagation();toggleComments('book')">▼ 收起</button>
     </div>
     <div class="comment-fs-body" id="commentFsBody-book">
       <div class="waline-wrap"><div id="comment-book"></div></div>
@@ -883,10 +884,7 @@ function onFrameLoaded() {
       scrollTimer = setTimeout(function() {
         var d = iframeDoc.documentElement;
         if (d.scrollHeight - d.scrollTop - d.clientHeight < 60) {
-          var fs = document.getElementById('commentFs-report');
-          if (fs && !fs.classList.contains('active')) {
-            toggleComments('report');
-          }
+          peekComments('report');
         }
       }, 150);
     }, {passive: true});
@@ -1470,17 +1468,36 @@ function toggleComments(type) {
   var fs = document.getElementById('commentFs-' + type);
   var toggle = document.getElementById('commentToggle-' + type);
   if (!fs || !toggle) return;
-  var isOpen = fs.classList.toggle('active');
-  // Load comments if opening
-  if (isOpen) {
-    var containerMap = {report:'comment-report', book:'comment-book', game:'waline-game'};
-    var cid = containerMap[type];
-    if (cid) {
-      var el = document.getElementById(cid);
-      if (el && !el.querySelector('.comment-card, .comment-loading, .comment-error')) {
-        loadComments('/' + (type === 'report' ? (window._currentCid || '') : type), cid);
-      }
-    }
+  // Close if open, otherwise open full screen
+  if (fs.classList.contains('active') || fs.classList.contains('peek')) {
+    fs.classList.remove('active', 'peek');
+    return;
+  }
+  fs.classList.add('active');
+  loadCommentsIfNeeded(type);
+}
+
+function peekComments(type) {
+  var fs = document.getElementById('commentFs-' + type);
+  if (!fs || fs.classList.contains('active') || fs.classList.contains('peek')) return;
+  fs.classList.add('peek');
+  loadCommentsIfNeeded(type);
+}
+
+function expandComments(type) {
+  var fs = document.getElementById('commentFs-' + type);
+  if (!fs) return;
+  fs.classList.remove('peek');
+  fs.classList.add('active');
+}
+
+function loadCommentsIfNeeded(type) {
+  var containerMap = {report:'comment-report', book:'comment-book', game:'waline-game'};
+  var cid = containerMap[type];
+  if (!cid) return;
+  var el = document.getElementById(cid);
+  if (el && !el.querySelector('.comment-card, .comment-loading, .comment-error')) {
+    loadComments('/' + (type === 'report' ? (window._currentCid || '') : type), cid);
   }
 }
 
