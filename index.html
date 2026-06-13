@@ -1312,7 +1312,7 @@ function saveNickname() {
       msg.textContent = '该昵称已被使用'; btn.disabled = false; btn.textContent = '确定'; return
     }
     getSupabase().from('profiles').upsert({id: user.id, nickname: nick, updated_at: new Date().toISOString()}, {onConflict: 'id'}).then(function(res2) {
-      if (res2.error) { msg.textContent = '保存失败'; btn.disabled = false; btn.textContent = '确定'; return }
+      if (res2.error) { msg.textContent = '保存失败: ' + res2.error.message; btn.disabled = false; btn.textContent = '确定'; return }
       localStorage.setItem('SUPABASE_NICKNAME', nick)
       closeNicknameDialog()
       // Update all historical comments
