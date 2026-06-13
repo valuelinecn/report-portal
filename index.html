@@ -108,7 +108,15 @@ html{scroll-behavior:smooth}
 .report-frame{width:100%;height:100%;border:none;display:none}
 
 /* ===== COMMENTS ===== */
-.waline-wrap{max-width:720px;margin:0 auto;padding:16px}
+.waline-wrap{max-width:720px;margin:0 auto;padding:12px 16px}
+.comment-toggle{display:flex;align-items:center;gap:6px;padding:8px 16px;cursor:pointer;border-top:1px solid var(--b2);background:var(--bg4);flex-shrink:0;user-select:none;font-size:12px;color:var(--t2)}
+.comment-toggle:hover{background:var(--bg5)}
+.comment-toggle .arrow{font-size:10px;transition:transform .2s;margin-left:auto}
+.comment-toggle.open .arrow{transform:rotate(90deg)}
+.comment-toggle .count{margin-left:4px;color:var(--accent);font-weight:600}
+.comment-body{max-height:0;overflow:hidden;transition:max-height .3s ease;flex-shrink:0;background:var(--bg)}
+.comment-body.open{max-height:40vh;overflow-y:auto}
+.comment-body .waline-wrap{padding:8px 16px 16px}
 .comment-section{font-size:13px}
 .comment-heading{font-size:15px;color:var(--t1);margin:16px 0 12px}
 .comment-form{margin:12px 0;padding:12px;background:var(--bg3);border-radius:8px;border:1px solid var(--b2)}
@@ -645,7 +653,13 @@ html{scroll-behavior:smooth}
     </div>
   </div>
   <!-- ===== COMMENTS SECTION (games) ===== -->
-  <div class="waline-wrap"><div id="waline-game"></div></div>
+  <div class="comment-toggle" id="commentToggle-game" onclick="toggleComments('game')">
+    💬 评论 <span class="count" id="commentCount-game">0</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="comment-body" id="commentBody-game">
+    <div class="waline-wrap"><div id="waline-game"></div></div>
+  </div>
 </div>
 
 <!-- ===== REPORT VIEW (fullscreen) ===== -->
@@ -662,7 +676,13 @@ html{scroll-behavior:smooth}
     <iframe class="report-frame" id="reportFrame" onload="onFrameLoaded()"></iframe>
   </div>
   <!-- ===== COMMENTS SECTION (report) ===== -->
-  <div class="waline-wrap"><div id="comment-report"></div></div>
+  <div class="comment-toggle" id="commentToggle-report" onclick="toggleComments('report')">
+    💬 评论 <span class="count" id="commentCount-report">0</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="comment-body" id="commentBody-report">
+    <div class="waline-wrap"><div id="comment-report"></div></div>
+  </div>
 </div>
 
 <!-- ===== BOOK DETAIL VIEW (fullscreen) ===== -->
@@ -675,7 +695,13 @@ html{scroll-behavior:smooth}
     <div class="loading"><div class="spinner"></div><span>加载中…</span></div>
   </div>
   <!-- ===== COMMENTS SECTION (book) ===== -->
-  <div class="waline-wrap"><div id="comment-book"></div></div>
+  <div class="comment-toggle" id="commentToggle-book" onclick="toggleComments('book')">
+    💬 评论 <span class="count" id="commentCount-book">0</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="comment-body" id="commentBody-book">
+    <div class="waline-wrap"><div id="comment-book"></div></div>
+  </div>
 </div>
 
 
@@ -816,7 +842,6 @@ function openReport(id) {
   document.getElementById('reportLoading').style.display='flex'
   document.getElementById('reportFrame').style.display='none'
   document.getElementById('reportFrame').src='reports/'+c.file+'?t='+Date.now()
-  setTimeout(function() { loadComments('/' + id, 'comment-report') }, 500)
 }
 function closeReport() {
   document.getElementById('reportView').classList.remove('active')
@@ -1391,7 +1416,32 @@ function loadComments(path, containerId) {
   getSupabase().from('comments').select('*').eq('path', path).order('created_at', { ascending: false }).then(function(res) {
     if (res.error) { el.innerHTML = '<div class="comment-error">加载失败</div>'; return; }
     renderComments(el, res.data || [], path);
+    // Update comment count on toggle bar
+    var prefix = containerId === 'comment-report' ? 'report' : containerId === 'comment-book' ? 'book' : containerId === 'waline-game' ? 'game' : '';
+    if (prefix) {
+      var cnt = document.getElementById('commentCount-' + prefix);
+      if (cnt) cnt.textContent = (res.data || []).length;
+    }
   });
+}
+
+function toggleComments(type) {
+  var body = document.getElementById('commentBody-' + type);
+  var toggle = document.getElementById('commentToggle-' + type);
+  if (!body || !toggle) return;
+  var isOpen = body.classList.toggle('open');
+  toggle.classList.toggle('open', isOpen);
+  // Load comments if opening for the first time
+  if (isOpen) {
+    var containerMap = {report:'comment-report', book:'comment-book', game:'waline-game'};
+    var cid = containerMap[type];
+    if (cid) {
+      var el = document.getElementById(cid);
+      if (el && !el.querySelector('.comment-card, .comment-loading, .comment-error')) {
+        loadComments('/' + (type === 'report' ? (window._currentCid || '') : type), cid);
+      }
+    }
+  }
 }
 
 function submitComment(path) {
