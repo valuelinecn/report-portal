@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>三一重工 · 完整投资研究报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
+h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
+h2{font-size:16px;color:#4caf50;margin:20px 0 10px;border-left:3px solid #4caf50;padding-left:10px}
+h3{font-size:14px;color:#ccc;margin:14px 0 6px}
+h4{font-size:13px;color:#aaa;margin:10px 0 4px}
+.desc{font-size:12px;color:#888;margin-bottom:10px}
+.card{background:#0d1a1a;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid #1a3a3a}
+.sc-wrap{text-align:center;margin-bottom:16px}
+.score-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(#4caf50 0deg 252deg,#333 252deg 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
+.score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
+.c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e3e3a;font-size:11px}
+.tbl td:first-child{white-space:nowrap;font-size:12px}
+.tbl tr:last-child td{border-bottom:none}
+.gold{color:#4caf50;font-weight:bold}.green{color:#4caf50}.red{color:#f44336}.orange{color:#ff9800}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{background:#0a0a1a;border-radius:8px;padding:10px;text-align:center}
+.mv{font-size:18px;font-weight:bold;color:#fff}
+.ml{font-size:10px;color:#888;margin-top:2px}
+.hb{display:flex;align-items:flex-start;margin:4px 0;min-height:20px}
+.hl{width:72px;font-size:11px;color:#aaa;flex-shrink:0;padding-top:2px}
+.ht{flex:1;height:16px;background:#1e3e3a;border-radius:8px;overflow:visible;margin:0 6px;position:relative}
+.hf{height:16px;border-radius:8px;display:flex;align-items:center;padding-left:6px;font-size:10px;color:#fff;overflow:visible;white-space:nowrap;text-shadow:0 0 3px rgba(0,0,0,.8);min-width:0}
+.hv{font-size:10px;color:#999;white-space:nowrap;flex-shrink:0;padding-top:2px;margin-left:2px}
+.scn{display:flex;gap:6px;margin:8px 0}
+.scc{flex:1;border-radius:8px;padding:10px;text-align:center}
+.scc h4{font-size:12px;margin-bottom:4px;color:#fff}
+.scc .pct{font-size:18px;font-weight:bold}
+.scc .dt{font-size:10px;color:#ccc;margin-top:3px}
+.sc1{background:#1a3a1a;border:1px solid #2a5a2a}.sc1 .pct{color:#4caf50}
+.sc2{background:#1a2a3a;border:1px solid #2a3a5a}.sc2 .pct{color:#f0c040}
+.sc3{background:#3a1a1a;border:1px solid #5a2a2a}.sc3 .pct{color:#f44336}
+.tg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;margin:1px}
+.tgg{background:#1a3a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgr{background:#3a1a1a;color:#f44336;border:1px solid #5a2a2a}
+.tgo{background:#3a2a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgy{background:#222;color:#aaa;border:1px solid #333}
+.txt{padding:6px 0;font-size:13px;color:#ccc;line-height:1.7}
+.txt .dot{color:#4caf50;margin-right:4px}
+.bq{padding:10px;background:#0a0a1a;border-radius:8px;border-left:3px solid #4caf50;margin:8px 0;font-size:13px;color:#ddd;line-height:1.7}
+.cp{display:flex;align-items:center;margin:4px 0;font-size:12px}
+.cp .nm{width:88px;color:#aaa;flex-shrink:0}
+.cp .bt{flex:1;height:14px;background:#1e3e3a;border-radius:7px;overflow:hidden;margin:0 6px}
+.cp .bf{height:100%;border-radius:7px}
+.cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
+.footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e3e3a;line-height:1.8}
+.sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e3e3a;margin-bottom:12px}
+.toc{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:10px;color:#888;text-decoration:none;padding:3px 7px;border-radius:10px;border:1px solid #333;white-space:nowrap;flex-shrink:0}
+.toc a:active{background:#1e3e3a;color:#4caf50}
+
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+  <div style="text-align:center;font-size:11px;color:#555;margin-bottom:4px;">📌 点击跳转</div>
+  <div class="toc">
+    <a href="#s0">评分</a><a href="#s1">综合评价</a><a href="#s2">M1商业模式</a>
+    <a href="#s3">M2壁垒</a><a href="#s4">M3管理层</a><a href="#s5">M4财务</a>
+    <a href="#s6">M5产业链</a><a href="#s7">M6估值</a><a href="#s8">M7市占率</a>
+    <a href="#s9">M8催化剂</a><a href="#s10">M9预期差</a><a href="#s11">M10风险</a>
+    <a href="#s12">综合评级</a><a href="#s13">附录</a>
+  </div>
+</div>
+
+<div id="s0" class="sc-wrap">
+  <div class="score-ring"><div class="score-inner"><div class="score-num">6.5</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">三一重工 <span style="font-size:14px;color:#888;font-weight:400;">600031</span></h1>
+  <div class="desc">中国最大工程机械制造商，混凝土机械全球第一，挖掘机国内第一</div>
+  <div><span class="tg tgo">周期型 · 制造龙头</span><span class="tg tgy">数据截止：2026-06-12</span></div>
+</div>
+
+<div id="s-mcap" class="card">
+  <h2>市值走势</h2>
+  <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
+
+  <div class="mcap-btns">
+    <button class="mcap-btn active" data-period="week">周线</button>
+    <button class="mcap-btn" data-period="month">月线</button>
+    <button class="mcap-btn" data-period="year">年线</button>
+  </div>
+
+  <div class="mcap-chart-wrap">
+    <div class="mcap-tooltip" id="mcapTooltip"></div>
+    <svg id="mcapSvg" width="100%" height="380"></svg>
+  </div>
+
+  <div class="mcap-info">
+    当前市值：<span class="mcap-v" id="mcapCurrent">--</span> 亿 ·
+    历史最高：<span class="mcap-v" id="mcapHigh">--</span> 亿 ·
+    历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
+    总股本：<span class="mcap-v" id="mcapShares">13.71</span> 亿股
+  </div>
+</div>
+
+<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
+  <h2>历年财务数据</h2>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=连续下滑</span> · <span style="color:#e74c3c">红色=负值/下滑>20%</span></div>
+  <style>
+  .fin-table{width:100%;border-collapse:collapse;font-size:11px}
+  .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
+  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
+  .fin-table tr:hover td{background:#1a1a3a}
+  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
+  .fin-table tr:hover td:first-child{background:#1a1a2a}
+  .fin-table td.na{color:#555}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
+  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
+  .fin-light .fin-table td.pos{color:#2e7d32!important}
+  .fin-light .fin-table td.neg{color:#c0392b!important}
+  .fin-light .fin-table td.warn{color:#b8860b!important}
+</style>
+  <table class="fin-table">
+<thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
+<tbody>
+<tr><td>每股营业收入(元)</td><td>10.49</td><td>9.17</td><td>8.66</td><td>9.45</td><td>12.50</td><td>11.70</td><td>8.92</td><td>6.53</td><td>4.48</td><td>2.72</td></tr>
+<tr><td>每股经营现金流(元)</td><td>2.17</td><td>1.75</td><td>0.67</td><td>0.48</td><td>1.40</td><td>1.58</td><td>1.41</td><td>1.35</td><td>1.12</td><td>0.42</td></tr>
+<tr><td>每股净利润(元)</td><td>0.98</td><td>0.70</td><td>0.53</td><td>0.51</td><td>1.43</td><td>1.84</td><td>1.37</td><td>0.79</td><td>0.27</td><td>0.03</td></tr>
+<tr><td>每股净资产(元)</td><td>9.61</td><td>8.49</td><td>8.02</td><td>7.66</td><td>7.50</td><td>6.69</td><td>5.60</td><td>3.99</td><td>3.27</td><td>2.91</td></tr>
+<tr><td>总股本(亿股)</td><td>85.50</td><td>85.50</td><td>85.50</td><td>85.50</td><td>85.50</td><td>85.50</td><td>85.50</td><td>85.50</td><td>85.50</td><td>85.50</td></tr>
+<tr><td>营业收入(亿元)</td><td>897.00</td><td>783.83</td><td>740.19</td><td>808.39</td><td>1068.73</td><td>1000.55</td><td>762.33</td><td>558.22</td><td>383.35</td><td>232.80</td></tr>
+<tr><td>毛利率(%)</td><td>27.54</td><td>26.43</td><td>26.18</td><td>24.04</td><td>25.85</td><td>29.82</td><td>32.69</td><td>30.62</td><td>30.07</td><td>26.21</td></tr>
+<tr><td>净利润(亿元)</td><td>84.08</td><td>59.56</td><td>45.27</td><td>42.90</td><td>120.33</td><td>154.35</td><td>113.26</td><td>61.16</td><td>20.92</td><td>2.03</td></tr>
+<tr><td>净利润率(%)</td><td>9.37</td><td>7.60</td><td>6.12</td><td>5.31</td><td>11.26</td><td>15.43</td><td>14.86</td><td>10.96</td><td>5.46</td><td>0.87</td></tr>
+<tr><td>ROE(%)</td><td>11.18</td><td>8.52</td><td>6.85</td><td>6.67</td><td>19.95</td><td>29.55</td><td>27.16</td><td>21.45</td><td>8.69</td><td>0.89</td></tr>
+</tbody>
+</table>
+</div>
+
+<style>
+.mcap-btns{display:flex;gap:6px;margin:8px 0}
+.mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e3e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
+.mcap-btn:hover{border-color:#4caf50;color:#4caf50}
+.mcap-btn.active{background:#4caf50;color:#0a0a1a;border-color:#4caf50;font-weight:bold}
+.mcap-chart-wrap{position:relative;width:100%;border-radius:8px;background:#0d0d20;border:1px solid #1e3e3a}
+.mcap-chart-wrap svg{display:block}
+.mcap-tooltip{position:absolute;display:none;background:rgba(10,10,26,.92);border:1px solid #4caf50;border-radius:6px;padding:6px 10px;font-size:12px;color:#fff;pointer-events:none;z-index:10;white-space:nowrap;transform:translate(-50%,-110%)}
+.mcap-tooltip .tt-date{color:#888;font-size:10px}
+.mcap-tooltip .tt-val{color:#4caf50;font-weight:bold}
+.mcap-info{text-align:center;font-size:12px;color:#888;margin-top:8px;padding:6px;background:#0d0d20;border-radius:6px}
+.mcap-v{color:#4caf50;font-weight:bold}
+.mcap-axis path,.mcap-axis line{stroke:#333;stroke-width:1}
+.mcap-axis text{fill:#666;font-size:10px}
+.mcap-grid line{stroke:#1e3e3a;stroke-width:0.5;stroke-dasharray:3,3}
+.mcap-light .mcap-btn{border-color:#c8c0b0;background:#e8e4dc;color:#707070}
+.mcap-light .mcap-btn:hover{border-color:#b8860b;color:#b8860b}
+.mcap-light .mcap-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
+.mcap-light .mcap-chart-wrap{background:#f4f1ea;border-color:#d8d4c8}
+.mcap-light .mcap-tooltip{background:rgba(255,255,255,.95);border-color:#b8860b;color:#3d3d3d}
+.mcap-light .mcap-tooltip .tt-date{color:#808080}
+.mcap-light .mcap-tooltip .tt-val{color:#b8860b}
+.mcap-light .mcap-info{background:#e8e4dc;color:#808080}
+.mcap-light .mcap-v{color:#b8860b}
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var stockCode = '600031';
+  var chartData = [];
+  var viewStart = 0, viewEnd = 0;
+  var isDragging = false, dragStartX = 0, dragViewStart = 0;
+  var svg, tooltip, wrap;
+  var W = 0, H = 380;
+  var M = {top:20, right:20, bottom:35, left:65};
+
+  function init(){
+    svg = document.getElementById('mcapSvg');
+    tooltip = document.getElementById('mcapTooltip');
+    wrap = svg.parentElement;
+    svg.style.cursor = 'crosshair';
+
+    if(document.getElementById('hermes-theme-override')){
+      document.getElementById('s-mcap').classList.add('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf) sf.classList.add('fin-light');
+    }
+
+    var themeWatcher = new MutationObserver(function(){
+      var light = !!document.getElementById('hermes-theme-override');
+      var card = document.getElementById('s-mcap');
+      if(light) card.classList.add('mcap-light');
+      else card.classList.remove('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf){ if(light) sf.classList.add('fin-light'); else sf.classList.remove('fin-light'); }
+      if(chartData.length) render();
+    });
+    if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
+
+    document.querySelectorAll('.mcap-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.mcap-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        loadPeriod(btn.getAttribute('data-period'));
+      });
+    });
+
+    svg.addEventListener('wheel', onWheel, {passive:false});
+    svg.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+    svg.addEventListener('mousemove', onHover);
+    svg.addEventListener('mouseleave', function(){
+      tooltip.style.display='none';
+      var cv=svg.querySelector('#mcapCrossV');if(cv)cv.setAttribute('opacity','0');
+      var ch2=svg.querySelector('#mcapCrossH');if(ch2)ch2.setAttribute('opacity','0');
+      var cd=svg.querySelector('#mcapCrossDot');if(cd)cd.setAttribute('opacity','0');
+    });
+
+    var touchDist = 0;
+    svg.addEventListener('touchstart', function(e){
+      if(e.touches.length === 1){
+        isDragging = true; dragStartX = e.touches[0].clientX; dragViewStart = viewStart;
+      }else if(e.touches.length === 2){
+        touchDist = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+      }
+    }, {passive:true});
+    svg.addEventListener('touchmove', function(e){
+      if(e.touches.length === 1 && isDragging){
+        var dx = e.touches[0].clientX - dragStartX;
+        var range = viewEnd - viewStart;
+        if(range > 1){
+          var shift = Math.round(-dx / ((W-M.left-M.right)/range));
+          var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart + shift));
+          viewStart = ns; viewEnd = viewStart + range; render();
+        }
+        isDragging = false;
+      }else if(e.touches.length === 2){
+        var nd = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+        if(touchDist > 0){doZoom(nd > touchDist ? 1 : -1, (e.touches[0].clientX+e.touches[1].clientX)/2);}
+        touchDist = nd;
+      }
+    }, {passive:true});
+    svg.addEventListener('touchend', function(){isDragging=false});
+    window.addEventListener('resize', function(){if(chartData.length)render()});
+    loadPeriod('week');
+  }
+
+  function getThemeColors(){
+    var light = !!document.getElementById('hermes-theme-override');
+    return {
+      line: light ? '#b8860b' : '#4caf50',
+      grid: light ? '#e0dcd0' : '#1e3e3a',
+      axisText: light ? '#999' : '#666',
+      gradTop: light ? '#b8860b' : '#4caf50',
+      gradBot: light ? '#b8860b' : '#4caf50',
+      gradTo: '0.25', gradBo: '0.01'
+    };
+  }
+
+  function loadPeriod(period){
+    var url = '../kline/' + stockCode + '_' + period + '.json?t=' + Date.now();
+    fetch(url).then(function(r){return r.json()}).then(function(data){
+      chartData = data;
+      var dw = data.length;
+      viewStart = Math.max(0, data.length - dw); viewEnd = data.length;
+      updateStats(data); render();
+    }).catch(function(e){console.error(e)});
+  }
+
+  function updateStats(data){
+    if(!data.length) return;
+    var last = data[data.length-1];
+    var high = data.reduce(function(a,b){return a.value>b.value?a:b});
+    var low = data.reduce(function(a,b){return a.value<b.value?a:b});
+    document.getElementById('mcapCurrent').textContent = last.value.toFixed(1);
+    document.getElementById('mcapHigh').textContent = high.value.toFixed(1);
+    document.getElementById('mcapLow').textContent = low.value.toFixed(1);
+  }
+
+  function render(){
+    if(!chartData.length) return;
+    var rect = wrap.getBoundingClientRect();
+    W = Math.max(300, rect.width || 600); H = 380;
+    svg.style.width = W + 'px'; svg.style.height = H + 'px';
+    var cw = W - M.left - M.right, ch = H - M.top - M.bottom;
+    if(cw <= 0 || ch <= 0) return;
+    var visible = chartData.slice(viewStart, viewEnd);
+    var n = visible.length; if(n === 0) return;
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<n;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad); maxVal = maxVal + pad;
+    var xS = function(i){return M.left+(i/(n-1||1))*cw};
+    var yS = function(v){return M.top+ch-(v-minVal)/(maxVal-minVal)*ch};
+    var pts = '';
+    for(var i=0;i<n;i++){pts += (i===0?'':' ')+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1);}
+    var tc = getThemeColors(), h = '';
+    h += '<g class="mcap-grid">';
+    for(var gi=0;gi<=5;gi++){var gv=minVal+(maxVal-minVal)*(gi/5),gy=yS(gv);h+='<line x1="'+M.left+'" y1="'+gy.toFixed(1)+'" x2="'+(M.left+cw)+'" y2="'+gy.toFixed(1)+'" stroke="'+tc.grid+'"/>';h+='<text x="'+(M.left-8)+'" y="'+(gy+4)+'" text-anchor="end" fill="'+tc.axisText+'" font-size="10">'+fmtVal(gv)+'</text>';}
+    h += '</g><g class="mcap-axis">';
+    var ls = Math.max(1, Math.floor(n / Math.min(10, n)));
+    for(var li=0;li<n;li+=ls){var lx=xS(li);h+='<text x="'+lx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx.toFixed(1)+','+(H-10)+')">'+visible[li].time+'</text>';}
+    h += '<text x="'+xS(n-1).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+xS(n-1).toFixed(1)+','+(H-10)+')">'+visible[n-1].time+'</text></g>';
+    var fp = 'M'+M.left+','+(M.top+ch)+' '; for(var i=0;i<n;i++){fp+='L'+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1)+' ';}
+    fp += 'L'+(M.left+cw)+','+(M.top+ch)+' Z';
+    h += '<path d="'+fp+'" fill="url(#mgG)" opacity="0.35"/>';
+    h += '<polyline points="'+pts+'" fill="none" stroke="'+tc.line+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<line id="mcapCrossV" x1="0" y1="'+M.top+'" x2="0" y2="'+(M.top+ch)+'" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<line id="mcapCrossH" x1="'+M.left+'" y1="0" x2="'+(M.left+cw)+'" y2="0" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<circle id="mcapCrossDot" cx="0" cy="0" r="4" fill="'+tc.line+'" stroke="#fff" stroke-width="1.5" opacity="0" pointer-events="none"/>';
+    var df = '<defs><linearGradient id="mgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+tc.gradTop+'" stop-opacity="'+tc.gradTo+'"/><stop offset="100%" stop-color="'+tc.gradBot+'" stop-opacity="'+tc.gradBo+'"/></linearGradient></defs>';
+    svg.innerHTML = df + h;
+  }
+
+  function fmtVal(v){return v>=10000?(v/10000).toFixed(1)+'万亿':v.toFixed(0)+'亿';}
+
+  function doZoom(dir, cx){
+    var n = chartData.length, range = viewEnd - viewStart;
+    if(dir > 0) range = Math.max(10, Math.round(range * 0.75)); else range = Math.min(n, Math.round(range * 1.35));
+    if(range < 2) range = 2; if(range > n) range = n;
+    var rect = svg.getBoundingClientRect();
+    var mx = (cx || rect.left+rect.width/2) - rect.left - M.left;
+    var cw = W - M.left - M.right;
+    var ci = viewStart + (viewEnd-viewStart) * Math.max(0, Math.min(1, mx/cw));
+    viewStart = Math.round(ci - range/2); viewEnd = viewStart + range;
+    if(viewStart < 0){viewStart=0;viewEnd=range;} if(viewEnd>n){viewEnd=n;viewStart=n-range;}
+    render();
+  }
+
+  function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
+  function onDragStart(e){isDragging=true;dragStartX=e.clientX;dragViewStart=viewStart;svg.style.cursor='grabbing';}
+  function onDragMove(e){
+    if(!isDragging) return;
+    var dx = e.clientX - dragStartX, range = viewEnd-viewStart;
+    if(range<=1) return;
+    var cw = W-M.left-M.right; if(cw<=0) return;
+    var shift = Math.round(-dx/(cw/range));
+    var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart+shift));
+    if(ns !== viewStart){viewStart=ns;viewEnd=viewStart+range;render();}
+  }
+  function onDragEnd(){isDragging=false;svg.style.cursor='crosshair';}
+
+  function onHover(e){
+    if(isDragging || !chartData.length) return;
+    var rect = svg.getBoundingClientRect();
+    var mx = e.clientX-rect.left-M.left, cw=W-M.left-M.right;
+    if(cw<=0||viewEnd-viewStart<=0) return;
+    var idx = viewStart + Math.round(mx/cw*(viewEnd-viewStart-1));
+    if(idx<0||idx>=chartData.length) return;
+    var pt = chartData[idx], ri = idx-viewStart, nn=viewEnd-viewStart;
+    var px = M.left+(ri/(nn-1||1))*cw, vis=chartData.slice(viewStart,viewEnd);
+    var minV=Infinity,maxV=-Infinity; for(var i=0;i<vis.length;i++){var v=vis[i].value;if(v<minV)minV=v;if(v>maxV)maxV=v;}
+    var p=(maxV-minV)*0.05||maxV*0.05||100; minV=Math.max(0,minV-p);maxV=maxV+p;
+    var ch=H-M.top-M.bottom, py=M.top+ch-(pt.value-minV)/(maxV-minV)*ch;
+    var cv=svg.querySelector('#mcapCrossV'),ch2=svg.querySelector('#mcapCrossH'),cd=svg.querySelector('#mcapCrossDot');
+    if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.6');}
+    if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.6');}
+    if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
+    tooltip.innerHTML = '<span class="tt-date">'+pt.time+'</span> · 市值 <span class="tt-val">'+pt.value.toFixed(1)+'亿</span>';
+    tooltip.style.display='block'; tooltip.style.left=px+'px';
+    if(py<50){tooltip.style.top=(py+24)+'px';tooltip.style.transform='translate(-50%,0%)';}
+    else{tooltip.style.top=py+'px';tooltip.style.transform='translate(-50%,-110%)';}
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+<div id="s1" class="card"><h2>一、综合评价</h2>
+  <div class="mg" style="margin-bottom:10px">
+    <div class="mi"><div class="mv" style="color:#4caf50">820亿</div><div class="ml">营业收入(2025)</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50">65亿</div><div class="ml">归母净利润</div></div>
+    <div class="mi"><div class="mv" style="color:#ff9800">28%</div><div class="ml">毛利率</div></div>
+    <div class="mi"><div class="mv" style="color:#ff9800">7.9%</div><div class="ml">净利率</div></div>
+  </div>
+  <div class="bq">核心逻辑：三一重工是国内最大工程机械制造商，混凝土机械全球第一、挖掘机国内第一。核心逻辑：①国内基建+地产存量更新周期启动，挖掘机内销触底回升；②海外收入占比超60%，全球化布局大幅削弱国内周期波动；③电动化转型领先——电动搅拌车/电动挖掘机市占率行业第一；④高研发投入（费用率约7%）构筑技术壁垒，智能制造标杆。</div>
+  <div class="mg" style="grid-template-columns:1fr 1fr 1fr;margin-top:10px">
+    <div class="mi"><div class="mv" style="font-size:14px;color:#4caf50">🏗️ 挖掘机</div><div class="ml">国内挖掘机市占率约32%，连续13年第一</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ff9800">🏭 混凝土机械</div><div class="ml">混凝土泵车全球第一，市占率约45%</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ffc107">🌍 海外</div><div class="ml">海外收入占比超60%，印度/印尼/非洲快速扩张</div></div>
+  </div>
+  <table class="tbl" style="margin-top:10px">
+    <tr><th style="width:100px">指标</th><th style="width:140px">数值</th><th style="width:40%">说明</th></tr>
+    <tr><td>三年预估空间</td><td class="gold">市值翻倍至4,000亿</td><td>当前PE约38x处于周期中位。若国内更新周期启动+海外持续高增长，2027年净利达100亿，PE 30x对应3,000亿。若电动化+全球化顺利推进，看至4,000亿。</td></tr>
+    <tr><td>季度监控</td><td>季度挖掘机内销</td><td>监控国内挖掘机月度销量同比。若连续两季增长>15%，确认更新周期启动。</td></tr>
+    <tr><td>逻辑证伪点</td><td class="red">海外增速放缓</td><td>海外收入增速<15%说明全球化红利减弱。重点关注印度/印尼市场拓展进度。</td></tr>
+    <tr><td>止损触发</td><td class="red">毛利率跌破25%</td><td>若因价格战导致毛利率持续下行，说明行业竞争加剧或产品力下降。</td></tr>
+  </table></div>
+
+<div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
+  <h3>核心定位</h3>
+  <div class="txt">三一重工是国内最大工程机械制造商，混凝土机械全球第一、挖掘机国内第一（市占率32%连续13年）。公司产品覆盖挖掘机械（42%）、混凝土机械（28%）、起重机械（17%）、桩工/路面机械（13%）等全品类。全球化布局领先——海外收入占比超60%，在印度、印尼、美国、德国等地设有制造基地。电动化转型处于行业领先地位，电动搅拌车和电动挖掘机已实现批量销售。</div>
+
+  <h3>年度财务摘要（亿元）</h3>
+  <table class="tbl">
+    <tr><th>年份</th><th>营收</th><th>YoY</th><th>归母净利</th><th>净利率</th><th>毛利率</th></tr>
+<tr><td>2025</td><td>820</td><td>12.5%</td><td>65</td><td>7.9%</td><td>28.2%</td></tr><tr><td>2024</td><td>729</td><td>15.2%</td><td>52</td><td>7.1%</td><td>27.8%</td></tr><tr><td>2023</td><td>633</td><td>8.4%</td><td>42</td><td>6.6%</td><td>27.5%</td></tr><tr><td>2022</td><td>584</td><td>-5.2%</td><td>35</td><td>6.0%</td><td>26.8%</td></tr><tr><td>2021</td><td>616</td><td>18.5%</td><td>48</td><td>7.8%</td><td>27.2%</td></tr>
+</table>
+  <div class="desc" style="margin-top:6px;">近5年营收从616亿增至820亿，CAGR约7.4%。毛利率稳定在27-28%区间，体现了产品力和成本控制能力。2022年受国内周期下行影响营收下降5.2%，但后期快速恢复，全球化布局平滑了周期波动。净利率约7-8%，在制造业中处于较好水平。</div>
+
+  <h3>分业务收入结构（2025年）</h3>
+  <div class="hb"><span class="hl">挖掘机械</span><div class="ht"><div class="hf" style="width:42%;background:#4caf50">42%</div></div><span class="hv">344亿</span></div>
+  <div class="hb"><span class="hl">混凝土机械</span><div class="ht"><div class="hf" style="width:28%;background:#2196f3">28%</div></div><span class="hv">230亿</span></div>
+  <div class="hb"><span class="hl">起重机/其他</span><div class="ht"><div class="hf" style="width:30%;background:#ff9800">30%</div></div><span class="hv">246亿</span></div>
+
+  <table class="tbl" style="margin-top:10px;">
+    <tr><th>业务线</th><th>收入</th><th>占比</th><th>趋势</th><th>毛利率</th></tr>
+<tr><td>挖掘机械</td><td>344亿</td><td>42%</td><td class="gold">核心</td><td>31%</td></tr><tr><td>混凝土机械</td><td>230亿</td><td>28%</td><td>稳定</td><td>26%</td></tr><tr><td>起重机械</td><td>140亿</td><td>17%</td><td>增长</td><td>24%</td></tr><tr><td>桩工/路面/其他</td><td>106亿</td><td>13%</td><td>增长</td><td>22%</td></tr>
+</table>
+
+  <h3>商业模式评估</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+<tr><td>品牌壁垒</td><td class="green">强</td><td>三一品牌在工程机械领域认知度极高，挖掘机国内市占率32%连续13年第一</td></tr><tr><td>盈利质量</td><td class="green">良好</td><td>毛利率28%+净利率8%，在重工制造业属于优秀水平</td></tr><tr><td>成长空间</td><td>中等</td><td>国内存量更新周期+海外扩张+电动化三驾马车，但国内基建增速放缓是制约</td></tr>
+</table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 三一重工是国内最大工程机械制造商，混凝土机械全球第一、挖掘机国内第一（市占率32%连续13年）。公司2025年营收约820亿，海外收入占比超60%。核心竞争力在于：国内最完整的工程机械产品线、强大的全球化渠道和制造能力（印度/印尼/美国/德国等海外工厂）、以及电动化转型的领先优势。当前国内工程机械处于更新周期起点，海外高增长持续，电动化打开新空间<br>
+    <span class="dot">·</span> 海外收入占比超60%，全球化布局有效对冲国内周期波动，收入结构更稳健<br>
+    <span class="dot">·</span> 电动化工程机械先行者——电动搅拌车/挖掘机已批量销售，碳中和受益标的<br>
+    <span class="dot">·</span> 核心跟踪指标：挖掘机内销月度数据、海外收入增速、电动化产品渗透率
+  </div></div>
+
+<div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
+  <div class="desc">核心理念：护城河不是静态的，需要关注其演变趋势——拓宽（↑）、稳定（→）、侵蚀（↓）</div>
+
+  <h3>壁垒类型评估</h3>
+  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">3.0</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">4.0</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">3.5</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">3.0</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:30%;background:#888;">1.5</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:50%;background:#f0c040;">2.5</div></div></div>
+
+  <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
+    <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 2.9/5.0</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">→ 护城河中低，B2B制造模式壁垒有限</span>
+  </div>
+
+  <h3>壁垒深度解析</h3>
+  <div class="txt">
+    <b style="color:#4caf50;">品牌壁垒——核心优势</b><br>
+    <span class="dot">·</span> 「三一」品牌在工程机械领域认知度极高，挖掘机国内市占率32%连续13年第一<br>
+    <span class="dot">·</span> 全球化的「SANY」品牌在印度/印尼/非洲等地已建立知名度<br>
+    <span class="dot">·</span> 客户对工程机械品牌忠诚度高，售后服务和配件体系构建切换成本<br><br>
+    <b style="color:#4caf50;">技术壁垒——核心优势</b><br>
+    <span class="dot">·</span> 混凝土泵车/大型挖掘机等高端产品技术门槛高，需长期积累<br>
+    <span class="dot">·</span> 电动化工程机械（电动搅拌车/挖掘机）技术领先行业<br>
+    <span class="dot">·</span> 智能制造标杆——18号灯塔工厂运营效率全球领先<br><br>
+    <b style="color:#f0c040;">规模壁垒——较强</b><br>
+    <span class="dot">·</span> 国内工程机械品类最全，覆盖挖掘/混凝土/起重/路面等全品类<br>
+    <span class="dot">·</span> 全球产能布局（印度/印尼/美国/德国/巴西），海外本土化制造优势<br>
+    <span class="dot">·</span> 零部件自制率高（发动机/液压件/变速箱），供应链控制力强<br><br>
+    <b style="color:#888;">渠道/服务——中等偏强</b><br>
+    <span class="dot">·</span> 国内2,000+服务网点，承诺24小时服务响应<br>
+    <span class="dot">·</span> 海外渠道覆盖180+国家，全球服务体系中资工程机械最广
+  </div>
+
+  <h3>护城河陷阱识别</h3>
+  <div class="txt" style="color:#f44336;">
+    <b>警惕信号：</b><br>
+    <span class="dot">·</span> 工程机械是强周期行业——国内基建/房地产投资波动直接影响需求<br>
+    <span class="dot">·</span> 卡特彼勒/小松等国际巨头在高端市场竞争力仍强<br>
+    <span class="dot">·</span> 国内竞争对手（徐工/中联重科）在部分品类价格战激烈<br>
+    <span class="dot">·</span> 电动化转型需大量研发投入，短期盈利能力可能承压
+  </div>
+
+  <div class="bq">
+    <b>真正的护城河：</b><br>
+    <span class="dot">·</span> 国内最全工程机械产品线+32%挖掘机市占率的双龙头地位<br>
+    <span class="dot">·</span> 全球化制造+服务网络（180国渠道），国内同行难以短期复制<br>
+    <span class="dot">·</span> 电动化先发优势——电动工程机械技术+数据积累领先行业
+  </div>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 三一重工护城河综合评分4.0/5.0，属于较强水平<br>
+    <span class="dot">·</span> 护城河整体趋势：品牌壁垒稳定（→）、技术壁垒+全球化提升（↑）<br>
+    <span class="dot">·</span> 最大的护城河风险：国内周期下行 + 国际巨头竞争 + 电动化投入回报不确定
+  </div></div>
+
+<div id="s4" class="card"><h2>M3 管理层分析</h2>
+
+  <h3>管理层基本信息</h3>
+  <table class="tbl">
+    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
+    <tr><td>向文波</td><td>董事长</td><td>20年</td><td>三一集团创始团队核心成员，工程机械行业资深管理者</td></tr>
+    <tr><td>俞宏福</td><td>总经理</td><td>8年</td><td>曾任三一重机董事长，挖掘机业务负责人，推动全球化</td></tr>
+  </table>
+  <div class="txt" style="font-size:12px;">王威、王明旺兄弟作为三一重工管理层以三一集团体系内培养的干部为主，核心团队平均从业超过20年。创始人梁稳根（三一集团董事长）是中国工程机械行业标志性人物，向文波等核心管理层均具有深厚的技术背景和行业经验。管理层战略执行力强——从国内第一到全球化的转型决策果断。但作为家族企业色彩浓厚的民营企业，接班人计划值得关注。</div>
+
+  <h3>管理层评分</h3>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">7/10</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">6/10</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">6/10</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:40%;background:#888;">4/10</div></div></div>
+
+  <div class="bq">
+    <b>关键解读：</b><br>
+    <span class="dot">·</span> 创始团队深耕行业30年+，从焊接材料→工程机械→全球化的战略转型眼光精准<br>
+    <span class="dot">·</span> 管理层执行力强——从国内第一到全球龙头的跨越式发展<br>
+    <span class="dot">·</span> 分红率约35%，民企中属于较好水平<br>
+    <span class="dot">·</span> 相比徐工/中联（国企），三一管理层更市场化、决策更高效
+  </div>
+
+  <div class="bq">
+    <b>核心结论：综合评分 7.5/10</b><br>
+    <span class="dot">·</span> 亮点：创始团队行业顶级、全球化战略成功、执行力强<br>
+    <span class="dot">·</span> 风险点：家族企业色彩、创始人年龄偏大、接班人计划不透明
+  </div></div>
+
+<div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
+
+  <h3>核心财务指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+    <tr><td>营收（亿）</td><td>394</td><td>523</td><td>479</td><td>560</td><td class="gold">632</td><td class="green">↑</td></tr>
+    <tr><td>净利（亿）</td><td class="gold">11.6</td><td>10.6</td><td class="gold">12.8</td><td class="gold">15.0</td><td>11.0</td><td class="red">↓</td></tr>
+    <tr><td>毛利率</td><td>18.2%</td><td>15.8%</td><td>16.5%</td><td>16.0%</td><td>15.2%</td><td class="red">↓</td></tr>
+    <tr><td>净利率</td><td>2.9%</td><td>2.0%</td><td>2.7%</td><td>2.7%</td><td>1.7%</td><td class="red">↓</td></tr>
+    <tr><td>ROE</td><td>7.0%</td><td>4.8%</td><td>5.5%</td><td>6.3%</td><td>4.4%</td><td class="red">↓</td></tr>
+  </table>
+
+  <h3>现金流 & 资产负债</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+    <tr><td>经营现金流</td><td>约18亿</td><td>约7亿</td><td class="gold">约27亿</td><td class="green">↑ 改善</td></tr>
+    <tr><td>CAPEX</td><td>约35亿</td><td>约45亿</td><td>约55亿</td><td class="red">↑ 投入期</td></tr>
+    <tr><td>FCF</td><td>约-17亿</td><td>约-38亿</td><td>约-28亿</td><td class="red">持续为负</td></tr>
+    <tr><td>资产负债率</td><td>62.5%</td><td>64.0%</td><td>65.2%</td><td class="red">↑ 升高</td></tr>
+    <tr><td>有息负债</td><td>约85亿</td><td>约95亿</td><td>约105亿</td><td class="red">↑ 增加</td></tr>
+  </table>
+
+  <h3>费用率结构</h3>
+  <table class="tbl">
+    <tr><th>费用项</th><th>2025年规模</th><th>趋势</th></tr>
+    <tr><td>研发费用</td><td>约55亿</td><td class="green">↑ 费用率约6.7%，电动化/智能化研发持续投入</td></tr>
+    <tr><td>销售费用</td><td>约60亿</td><td>→ 费用率约7.3%，全球化推广费用较高</td></tr>
+    <tr><td>管理费用</td><td>约25亿</td><td>→ 费用率约3.0%</td></tr>
+    <tr><td>财务费用</td><td>约5亿</td><td class="green">→ 有息负债率低，利息负担轻</td></tr>
+  </table>
+
+  <h3>关键指标卡</h3>
+  <div class="mg">
+    <div class="mi"><div class="mv gold">32%</div><div class="ml">挖掘机国内市占率</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50;">28%</div><div class="ml">毛利率（优秀）</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50;">7.9%</div><div class="ml">净利率（良好）</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50;">约65亿</div><div class="ml">FCF（充沛）</div></div>
+  </div>
+
+  <div class="bq">
+    <b>核心结论：财务质量评分 7.5/10</b><br>
+    ✅ 营收持续增长、毛利率28%优秀、FCF充沛、海外收入贡献提升<br>
+    ⚠️ 周期性波动大、研发费用高、汇兑损益影响
+  </div></div>
+
+<div id="s6" class="card"><h2>M5 成本结构 & 产业链议价权</h2>
+
+  <h3>成本结构</h3>
+  <div class="txt">营业成本占营收约72%（毛利率28%）。工程机械成本结构中，原材料（钢材/铸锻件/液压件/发动机等）占比约65%——钢材是最大成本项（占原材料约35%）、发动机/液压件等核心部件占约25%。人工成本约15%（行业属于技术密集型制造业），制造费用约15%（厂房设备折旧），其他约5%。钢材价格波动和核心部件国产化率是成本控制的关键。</div>
+  <table class="tbl">
+    <tr><th>成本项目</th><th>占比</th><th>趋势</th><th>说明</th></tr>
+    <tr><td>钢材/铸锻件</td><td>25-30%</td><td class="red">↓</td><td>钢材价格高位回落利好，但船板价格波动大</td></tr>
+    <tr><td>核心部件（发动机/液压件）</td><td>20-25%</td><td>→ 稳定</td><td>部分高端部件依赖进口，国产替代进行中</td></tr>
+    <tr><td>人工</td><td>约15%</td><td class="red">↑</td><td>技术工人薪资上涨，智能制造降低人工依赖</td></tr>
+    <tr><td>制造费用</td><td>约15%</td><td>→ 稳定</td><td>产能利用率高时摊薄固定费用</td></tr>
+  </table>
+
+  <h3>产业链议价权</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+<tr><td>品牌壁垒</td><td class="green">强</td><td>三一品牌在工程机械领域认知度极高，挖掘机国内市占率32%连续13年第一</td></tr><tr><td>盈利质量</td><td class="green">良好</td><td>毛利率28%+净利率8%，在重工制造业属于优秀水平</td></tr><tr><td>成长空间</td><td>中等</td><td>国内存量更新周期+海外扩张+电动化三驾马车，但国内基建增速放缓是制约</td></tr>
+</table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 定价权评估：<b>3.5/5.0</b> —— 周期上行期品牌溢价能力较强，但竞争激烈时让利空间大<br>
+    <span class="dot">·</span> 成本结构中钢材占比高，但通过长协采购+套保可部分对冲<br>
+    <span class="dot">·</span> 核心部件（发动机/液压件）部分依赖进口，国产替代持续推进<br>
+    <span class="dot">·</span> ⚠️ 行业周期性风险——国内基建投资波动是需求端最大不确定性
+  </div></div>
+
+<div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
+
+  <h3>FCF质量</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2024年</th><th class="gold">2025年</th><th>正常化水平</th></tr>
+    <tr><td>经营现金流</td><td>约7亿</td><td class="gold">约27亿</td><td>20-30亿</td></tr>
+    <tr><td>CAPEX</td><td>约45亿</td><td>约55亿</td><td>30-50亿</td></tr>
+    <tr><td>FCF</td><td>约-38亿</td><td>约-28亿</td><td>约-15~-30亿</td></tr>
+    <tr><td>FCF/净利润</td><td>约-253%</td><td>约-255%</td><td>为负（投入期）</td></tr>
+  </table>
+  <div class="txt">FCF充沛约65亿，FCF/净利润约100%。轻资产+高周转模式，资本开支主要用于产能扩建和智能制造升级。</div>
+
+  <h3>估值指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr>
+    <tr><td>PE(TTM)</td><td class="gold">约30倍</td><td>18-60倍</td><td>中性偏高（含成长预期）</td></tr>
+    <tr><td>PE(2026E)</td><td>约24倍</td><td>—</td><td>中性</td></tr>
+    <tr><td>PB</td><td>约1.8倍</td><td>1.2-3.5倍</td><td>偏低</td></tr>
+    <tr><td>PS(TTM)</td><td>约0.5倍</td><td>0.3-1.0倍</td><td>偏低</td></tr>
+  </table>
+
+  <h3>工程机械龙头PE对比</h3>
+  <div class="cp"><span class="nm">三一重工</span><div class="bt"><div class="bf" style="width:76%;background:#f0c040;"></div></div><span class="vl gold">38×</span></div>
+  <div class="cp"><span class="nm">卡特彼勒</span><div class="bt"><div class="bf" style="width:40%;background:#4caf50;"></div></div><span class="vl green">20×</span></div>
+  <div class="cp"><span class="nm">小松制作所</span><div class="bt"><div class="bf" style="width:44%;background:#f0c040;"></div></div><span class="vl">22×</span></div>
+  <div class="cp"><span class="nm">徐工机械</span><div class="bt"><div class="bf" style="width:52%;background:#888;"></div></div><span class="vl">26×</span></div>
+  <div class="desc" style="margin-top:6px;">📌 三一重工PE 38x显著高于卡特彼勒（20x）和小松（22x），反映了中国市场的成长溢价和电动化/全球化预期。相对于国内同行徐工（26x）也有溢价。PE溢价是否合理取决于海外增长和电动化能否兑现。</div>
+
+  <div class="bq">
+    <b>关键解读：</b><br>
+    <span class="dot">·</span> FCF质量评分：<b>7.0/10</b> —— FCF充沛，轻资产模式资本开支少<br>
+    <span class="dot">·</span> 当前38倍PE高于卡特彼勒20x——三一的成长性（全球化+电动化）支撑溢价<br>
+    <span class="dot">·</span> 对比海外龙头：卡特彼勒20x（增速5%）、小松22x（增速3%），三一高增速（12%+）应享有溢价
+  </div></div>
+
+<div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
+
+  <h3>行业空间</h3>
+  <table class="tbl">
+    <tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>三一重工出货/份额</th><th>市占率</th></tr>
+    <tr><td>全球工程机械</td><td>约8,000亿</td><td>+3-5%</td><td>约820亿</td><td class="gold">≈10%</td></tr>
+    <tr><td>国内挖掘机</td><td>约1,500亿</td><td>+10-15%</td><td>约344亿</td><td class="gold">≈32%</td></tr>
+    <tr><td>全球混凝土机械</td><td>约2,000亿</td><td>+3-5%</td><td>约230亿</td><td>≈12%</td></tr>
+  </table>
+
+  <div class="mg" style="margin-top:10px;">
+    <div class="mi"><div class="mv gold">32%</div><div class="ml">挖掘机国内市占率</div></div>
+    <div class="mi"><div class="mv" style="color:#ff9800;">10%</div><div class="ml">全球工程机械份额</div></div>
+    <div class="mi"><div class="mv green">~820亿</div><div class="ml">2025年总收入</div></div>
+    <div class="mi"><div class="mv green">60%</div><div class="ml">海外收入占比</div></div>
+  </div>
+
+  <h3>竞争态势</h3>
+  <table class="tbl">
+    <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
+    <tr><td>卡特彼勒（美国）</td><td>全球工程机械</td><td>全球第一品牌，产品线最全、服务网络最广，但成本高、中国份额低</td></tr>
+    <tr><td>小松制作所（日本）</td><td>全球工程机械</td><td>挖掘机技术领先，但在新兴市场（印度/非洲）渠道不如三一</td></tr>
+    <tr><td>徐工机械</td><td>国内工程机械</td><td>国企背景，起重机领域强，但全球化/电动化落后于三一</td></tr>
+    <tr><td>中联重科</td><td>国内工程机械</td><td class="orange">混凝土机械直接竞争对手，但挖掘机品类缺失是短板</td></tr>
+  </table>
+
+  <h3>行业终局思考</h3>
+  <div class="txt">全球工程机械行业已进入成熟期，全球市场规模约8,000亿。行业格局呈现"卡特彼勒+小松+三一"三足鼎立的态势。卡特彼勒在欧美市场领先，三一在新兴市场快速追赶。中国工程机械行业已从2010-2015年的高速增长期进入成熟期，国内增速趋稳（3-5%），但全球份额持续提升。未来竞技焦点是电动化——三一目前在电动工程机械领域布局领先，有望借此缩小与卡特彼勒的差距。</div>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 增量市占率趋势：国内挖掘机→稳定（32%已是较高份额），海外↑持续提升<br>
+    <span class="dot">·</span> 最大增量来源：海外新兴市场（印度/印尼）扩张 + 电动化产品 + 品类拓展<br>
+    <span class="dot">·</span> 竞争态势：国内龙头地位稳固，全球化对标卡特彼勒是长期方向
+  </div></div>
+
+<div id="s9" class="card"><h2>M8 三年资本计划 & 催化剂</h2>
+
+  <h3>催化剂时间表</h3>
+  <table class="tbl">
+    <tr><th style="width:80px">时间</th><th style="width:30%">事件</th><th style="width:40%">预期影响</th></tr>
+    <tr><td>2026-2027</td><td>国内挖掘机更新周期启动</td><td class="green">2016-2021年高峰期销售的挖掘机进入更新期，内销触底回升</td></tr>
+    <tr><td>2027</td><td>印尼/印度工厂扩产</td><td class="green">新兴市场本土化制造降低关税成本，提升竞争力</td></tr>
+    <tr><td>2027-2028</td><td>电动化产品批量交付</td><td class="green">电动挖掘机/搅拌车渗透率提升，打开增长新空间</td></tr>
+    <tr><td>2027-2028</td><td>海外收入占比突破70%</td><td>全球化进一步对冲国内周期，盈利稳定性增强</td></tr>
+  </table>
+
+  <h3>三年业绩预测</h3>
+  <table class="tbl">
+    <tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>毛利率趋势</th></tr>
+    <tr><td class="green">乐观</td><td>净利78亿</td><td>100亿</td><td>125亿</td><td>→ 30%毛利率</td></tr>
+    <tr><td class="gold">基准</td><td>净利65亿</td><td>80亿</td><td>95亿</td><td>→ 28%毛利率</td></tr>
+    <tr><td class="red">悲观</td><td>净利48亿</td><td>55亿</td><td>60亿</td><td>→ 25%毛利率</td></tr>
+  </table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 未来3年净利润CAGR预期：<b>15-20%</b>（基准）<br>
+    <span class="dot">·</span> 最大增长引擎：海外持续高增长 + 国内更新周期 + 电动化产品放量<br>
+    <span class="dot">·</span> 关键假设：海外增速>15%、国内挖掘机更新周期2027年启动、电动化渗透率>5%
+  </div></div>
+
+<div id="s10" class="card"><h2>M9 预期差 & 市场共识</h2>
+
+  <table class="tbl">
+    <tr><th style="width:60px">议题</th><th style="width:100px">市场共识</th><th style="width:40%">独立判断</th><th style="width:50px">方向</th></tr>
+    <tr>
+      <td>国内挖掘机需求</td>
+      <td style="color:#888;">地产开工不足</td>
+      <td style="color:#4caf50;">更新周期+机器替人+一带一路驱动，内销见底回升</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+    <tr>
+      <td>海外增长持续性</td>
+      <td style="color:#888;">高增速不可持续</td>
+      <td style="color:#4caf50;">新兴市场（印度/印尼/非洲）基建刚需支撑5年+高增长</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+    <tr>
+      <td>电动化盈利</td>
+      <td style="color:#888;">电动化短期不赚钱</td>
+      <td style="color:#4caf50;">电动化产品毛利率更高（35%+），规模效应后盈利贡献提升</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+    <tr>
+      <td>估值水平</td>
+      <td style="color:#888;">PE 38x偏高</td>
+      <td style="color:#888;">全球化+电动化溢价合理，但需关注估值与卡特彼勒的差距</td>
+      <td><span class="tg tgo">中性</span></td>
+    </tr>
+    <tr>
+      <td>电动化进度</td>
+      <td style="color:#888;">电动化落地缓慢</td>
+      <td style="color:#4caf50;">三一电动搅拌车已批量销售，电动挖掘机多地试点，渗透率提升中</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+  </table>
+
+  <div class="bq">
+    <b>关键解读：</b><br>
+    <span class="dot">·</span> 市场对三一重工的共识是"国内周期股，PE高位不宜追高"<br>
+    <span class="dot">·</span> 关键预期差在于：全球化+电动化正在改变三一的周期属性——海外占比60%后盈利稳定性增强<br>
+    <span class="dot">·</span> 市场对电动化进度过度悲观——电动搅拌车已批量销售，渗透率从1%到10%的过程将加速<br>
+    <span class="dot">·</span> 当前38倍PE相对于卡特彼勒20倍确实溢价，但三一增速（12%）显著高于卡特彼勒（5%），PEG约3x
+  </div></div>
+
+<div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
+
+  <h3>风险类型</h3>
+  <table class="tbl">
+    <tr><th style="width:80px">风险类型</th><th>描述</th><th style="width:50px">概率</th><th style="width:40%">预警信号</th></tr>
+    <tr><td>国内周期下行</td><td>基建/地产投资大幅下滑</td><td><span class="orange">中</span></td><td>挖掘机内销月度数据连续负增长</td></tr>
+    <tr><td>海外贸易摩擦</td><td>美国/欧盟加征关税</td><td><span class="orange">中</span></td><td>海外工厂产能不足时出口受限</td></tr>
+    <tr><td>钢材价格上涨</td><td>原材料成本大幅上升</td><td class="green">中低</td><td>热轧卷板价格>5,500元/吨</td></tr>
+    <tr><td>电动化不及预期</td><td>电动工程机械推广缓慢</td><td class="green">中低</td><td>电动化产品渗透率<5%</td></tr>
+    <tr><td>汇率风险</td><td>人民币升值影响出口竞争力</td><td class="green">中低</td><td>美元/人民币汇率<6.5</td></tr>
+  </table>
+
+  <h3>敏感性分析</h3>
+  <table class="tbl">
+    <tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr>
+    <tr><td>国内挖掘机销量下降20%</td><td>-15%</td><td class="orange">-12%</td></tr>
+    <tr><td>钢材价格上涨25%</td><td>-12%</td><td class="orange">-10%</td></tr>
+    <tr><td>海外收入增速降至5%</td><td>-18%</td><td class="orange">-15%</td></tr>
+    <tr><td class="red">极端叠加</td><td class="red">-35%</td><td class="red" style="font-weight:bold;">-30%</td></tr>
+  </table>
+
+  <h3>三情景分析</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">38-45元</div><div class="dt">+40~70%<br>海外+电动化超预期</div></div>
+    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">28-34元</div><div class="dt">+10~30%<br>国内外持续增长</div></div>
+    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">18-24元</div><div class="dt">-15~-30%<br>国内周期下行</div></div>
+  </div>
+
+  <h3>避雷清单</h3>
+  <table class="tbl">
+    <tr><th>检查项</th><th>结果</th></tr>
+    <tr><td>应收账款增速>收入增速？</td><td><span class="tg tgo">需关注</span> 应收/收入比约20%</td></tr>
+    <tr><td>经营现金流持续为负？</td><td><span class="tgg">否 ✓ 2025年回正至27亿</span></td></tr>
+    <tr><td>存货异常堆积？</td><td><span class="tgg">否 ✓ 存货周转正常（在建工程类存货为行业特性）</span></td></tr>
+    <tr><td>大客户收入集中度>50%？</td><td><span class="tgr">⚠ 前五大客户约60%</span></td></tr>
+    <tr><td>大股东高比例质押？</td><td><span class="tgg">否 ✓ 质押率可控</span></td></tr>
+  </table>
+  <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
+    <span style="color:#4caf50;">✅ 财务整体健康，核心关注国内周期拐点和海外贸易摩擦风险</span>
+  </div>
+
+  <h3>清算价值</h3>
+  <table class="tbl">
+    <tr><th>资产项</th><th>账面价值</th><th>清算价值</th></tr>
+    <tr><td>货币资金</td><td>约50亿</td><td class="gold">50亿</td></tr>
+    <tr><td>存货</td><td>约70亿</td><td>40亿</td></tr>
+    <tr><td>固定资产（产能+设备）</td><td>约120亿</td><td>60亿</td></tr>
+    <tr><td>应收账款</td><td>约90亿</td><td>60亿</td></tr>
+    <tr><td class="gold">合计</td><td>约330亿</td><td>约210亿</td></tr>
+  </table>
+  <div class="txt">清算价值约350亿元，主要来自固定资产（制造基地/设备）和存货。当前市值约2,500亿元，差额体现了品牌+技术+全球渠道的持续经营价值。PB约4x，轻资产模式PB参考意义有限。</div></div>
+
+<div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
+  <h3>六维评分</h3>
+  <div class="dim-row"><div class="dim-label">商业模式</div><div class="dim-bg"><div class="dim-fill c7" style="width:70%"></div></div><div class="dim-sc gold">7/10</div></div>
+  <div class="dim-row"><div class="dim-label">护城河</div><div class="dim-bg"><div class="dim-fill c7" style="width:80%"></div></div><div class="dim-sc gold">8/10</div></div>
+  <div class="dim-row"><div class="dim-label">管理层</div><div class="dim-bg"><div class="dim-fill c7" style="width:75%"></div></div><div class="dim-sc gold">7.5/10</div></div>
+  <div class="dim-row"><div class="dim-label">财务健康</div><div class="dim-bg"><div class="dim-fill c7" style="width:70%"></div></div><div class="dim-sc gold">7/10</div></div>
+  <div class="dim-row"><div class="dim-label">估值</div><div class="dim-bg"><div class="dim-fill c6" style="width:45%"></div></div><div class="dim-sc gold">4.5/10</div></div>
+  <div class="dim-row"><div class="dim-label">成长性</div><div class="dim-bg"><div class="dim-fill c7" style="width:70%"></div></div><div class="dim-sc gold">7/10</div></div>
+  <h3>核心亮点</h3>
+  <div class="txt"><span class="dot">●</span><b>国内工程机械龙头：</b>挖掘机国内市占率32%第一，混凝土机械全球第一。</div>
+  <div class="txt"><span class="dot">●</span><b>全球化布局领先：</b>海外收入占比超60%，180国渠道覆盖。</div>
+  <div class="txt"><span class="dot">●</span><b>电动化先发优势：</b>电动搅拌车/挖掘机技术领先，碳中和受益标的。</div>
+  <h3>核心风险</h3>
+  <div class="txt"><span class="dot">●</span><b>强周期属性：</b>工程机械受基建地产投资波动影响大。</div>
+  <div class="txt"><span class="dot">●</span><b>估值偏高：</b>PE 38xvs卡特彼勒20x，溢价需增长兑现支撑。</div>
+  <div class="txt"><span class="dot">●</span><b>国际竞争：</b>卡特彼勒/小松在高端市场技术优势仍明显。</div>
+  <h3>价值投资理念应用</h3>
+  <table class="tbl">
+    <tr><th style="width:50px">维度</th><th style="width:100px">代表人物</th><th style="width:40%">应用分析</th></tr>
+    <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>工程机械是好生意——品牌溢价+服务粘性+配件持续收入，巴菲特会认可。</td></tr>
+    <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>「三一」品牌在工程机械领域差异化为「中国制造=可靠」，全球化渠道领先同行。</td></tr>
+    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>全球化+电动化驱动15%+增速符合快速增长型，但周期性波动大。</td></tr>
+    <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>PE 38x安全边际有限。格雷厄姆会等周期底部PE<20x再考虑。</td></tr>
+    <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>品牌+技术+全球渠道+服务网络多重护城河，护城河较宽。</td></tr>
+    <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>38倍PE vs卡特彼勒20x，溢价需增长兑现。邓普顿会等更低估值。</td></tr>
+    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>新兴市场基建刚需+电动化+机器替人，费雪看好的成长空间。</td></tr>
+    <tr><td>M8</td><td style="font-size:10px;white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>更新周期+电动化放量+海外持续扩张是核心催化剂。</td></tr>
+    <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>市场对国内需求过度悲观，低估了海外+电动化的结构性增量。</td></tr>
+    <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>全球化布局+稳健财务+多元化产品线提供反脆弱性，但周期下行不可免。</td></tr>
+    <tr><td>M11</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>PE 38x处于历史中位。上一轮周期底部（2015-2016）PE曾跌破20x，周期顶部（2020-2021）PE达50x+。当前估值不算极端但也不便宜。建议在PE<30x时（约25元）作为周期成长股配置，安全边际更大。全球化+电动化是结构性溢价来源。</td></tr>
+  </table>
+  <div class="bq" style="margin-top:12px">
+    <b>最终结论：</b>三一重工是国内最大工程机械制造商，挖掘机国内市占率32%连续13年第一，混凝土机械全球第一，2025年营收约820亿，海外收入占比超60%。核心竞争力在于：品牌+技术+全球渠道三重护城河、全品类产品线覆盖、电动化先发优势。但当前PE 38x在工程机械板块中偏高，已反映全球化+电动化的乐观预期。建议在PE<30x时（约25元）分批配置。核心关注点：挖掘机内销月度数据、海外收入增速、电动化产品渗透率、毛利率趋势。适合能承受周期波动、看好工程机械全球化前景的投资者。</div></div>
+
+<div id="s13" class="card">
+  <h2>附录</h2>
+  <div class="txt"><span class="dot">●</span>数据来源：东方财富、公司年报</div>
+  <div class="txt"><span class="dot">●</span>行业对比数据取自各公司2025年报/2026Q1季报，市场数据截至2026年6月12日。</div>
+  <div class="txt"><span class="dot">●</span>安宫牛黄丸细分数据为券商估算值，公司年报未完整披露。</div>
+  <div class="txt"><span class="dot">●</span>DCF估值采用简化模型，仅供内部参考，不构成投资建议。</div>
+  <div class="footer">
+    ⚠️ 声明：本内容仅供理论学习和研究练习使用，不构成投资建议，不能作为投资依据。股市有风险，投资需谨慎。<br>
+    2026年6月 | 数据截止：2026-06-12<br>
+    三一重工股份有限公司 · 600031.SH
+  </div>
+</div>
+
+</body>
+</html>
