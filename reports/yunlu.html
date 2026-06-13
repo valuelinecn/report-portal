@@ -67,11 +67,6 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 .toc{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
 .toc a{font-size:11px;color:#888;text-decoration:none;padding:3px 8px;border-radius:12px;border:1px solid #333}
 .toc a:active{background:#1e1e3a;color:#ff9800}
-@media(max-width:768px){
-.toc{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:3px;justify-content:flex-start;padding:2px 2px;scrollbar-width:none}
-.toc::-webkit-scrollbar{display:none}
-.toc a{font-size:10px;padding:2px 6px;white-space:nowrap;flex-shrink:0}
-}
 </style>
 </head>
 <body>
@@ -103,7 +98,8 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
 
   <div class="mcap-btns">
-    <button class="mcap-btn active" data-period="week">周线</button>
+    <button class="mcap-btn active" data-period="day">日线</button>
+    <button class="mcap-btn" data-period="week">周线</button>
     <button class="mcap-btn" data-period="month">月线</button>
     <button class="mcap-btn" data-period="year">年线</button>
   </div>
@@ -119,33 +115,9 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
     总股本：<span class="mcap-v" id="mcapShares">--</span> 亿股
   </div>
-<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
-  <h2>历年财务数据</h2>
-  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长&gt;30%</span> · <span style="color:#f0a030">橙色=连续下滑</span> · <span style="color:#e74c3c">红色=负值/下滑&gt;20%</span></div>
-  <style>
-  .fin-table{width:100%;border-collapse:collapse;font-size:11px;min-width:900px}
-  .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
-  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
-  .fin-table tr:hover td{background:#1a1a3a}
-  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1;}
-  .fin-table tr:hover td:first-child{background:#1a1a2a}
-  .fin-table td.na{color:#555}
-  .fin-table td.pos{color:#4caf50;font-weight:600}
-  .fin-table td.neg{color:#e74c3c;font-weight:600}
-  .fin-table td.warn{color:#f0a030;font-weight:600}
-  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
-  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
-  .fin-light .fin-table tr:hover td{background:#e8e4dc}
-  .fin-light .fin-table td:first-child{background:#f4f1ea}
-  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
-  .fin-light .fin-table td.pos{color:#2e7d32!important}
-  .fin-light .fin-table td.neg{color:#c0392b!important}
-  .fin-light .fin-table td.warn{color:#b8860b!important}
-</style>
-  <table class="fin-table">
-    <thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead><tbody><tr><td>每股营业收入(元)</td><td class="">17.31</td><td class="">15.70</td><td class="">12.30</td><td class="">13.97</td><td class="pos">12.04</td><td class="">8.53</td><td class="">7.00</td><td class="">6.25</td><td class="pos">6.38</td><td class="">4.49</td></tr><tr><td>每股经营现金流(元)</td><td class="">2.43</td><td class="">2.00</td><td class="warn">1.69</td><td class="">1.99</td><td class="">2.01</td><td class="pos">1.59</td><td class="pos">1.18</td><td class="neg">0.13</td><td class="pos">0.78</td><td class="">0.35</td></tr><tr><td>每股净利润(元)</td><td class="pos">1.75</td><td class="">1.27</td><td class="">1.14</td><td class="">1.32</td><td class="pos">1.07</td><td class="pos">0.29</td><td class="pos">0.19</td><td class="neg">-0.56</td><td class="pos">0.25</td><td class="">0.05</td></tr><tr><td>每股净资产(元)</td><td class="">9.24</td><td class="">8.17</td><td class="">7.42</td><td class="">6.45</td><td class="pos">5.25</td><td class="">3.77</td><td class="">3.49</td><td class="">3.17</td><td class="">3.79</td><td class="">3.54</td></tr><tr><td>总股本(亿股)</td><td class="">34.68</td><td class="">34.68</td><td class="">34.68</td><td class="">34.68</td><td class="">34.68</td><td class="">34.68</td><td class="">34.68</td><td class="">34.68</td><td class="">34.68</td><td class="">34.68</td></tr><tr><td>市盈率PE</td><td class="warn">18.8</td><td class="">10.6</td><td class="">10.7</td><td class="pos">8.4</td><td class="pos">11.6</td><td class="">28.9</td><td class="">36.0</td><td class="na">--</td><td class="pos">54.0</td><td class="">209.1</td></tr><tr><td>营业收入(亿元)</td><td class="">600.43</td><td class="">544.50</td><td class="">426.69</td><td class="">484.63</td><td class="pos">417.51</td><td class="">295.73</td><td class="">242.84</td><td class="">216.89</td><td class="pos">221.30</td><td class="">155.59</td></tr><tr><td>毛利率(%)</td><td class="">16.79</td><td class="">13.23</td><td class="">15.81</td><td class="neg">14.94</td><td class="pos">20.40</td><td class="">10.95</td><td class="pos">13.36</td><td class="neg">7.12</td><td class="">13.03</td><td class="">14.19</td></tr><tr><td>净利润(亿元)</td><td class="pos">60.55</td><td class="">44.12</td><td class="">39.56</td><td class="pos">45.68</td><td class="pos">33.33</td><td class="pos">9.03</td><td class="pos">4.95</td><td class="neg">-14.66</td><td class="pos">6.57</td><td class="">1.11</td></tr><tr><td>所得税率(%)</td><td class="">15.07</td><td class="">14.62</td><td class="warn">14.88</td><td class="">10.82</td><td class="">10.11</td><td class="">9.05</td><td class="">8.61</td><td class="pos">0.00</td><td class="pos">10.65</td><td class="">24.12</td></tr><tr><td>净利润率(%)</td><td class="pos">12.24</td><td class="">9.36</td><td class="">11.06</td><td class="">10.87</td><td class="pos">10.13</td><td class="pos">4.17</td><td class="pos">2.25</td><td class="neg">-8.05</td><td class="pos">3.24</td><td class="">1.34</td></tr><tr><td>营运资本(亿元)</td><td class="pos">110.71</td><td class="pos">73.18</td><td class="pos">37.77</td><td class="neg">-8.01</td><td class="neg">-44.76</td><td class="neg">-113.01</td><td class="neg">-114.47</td><td class="neg">-113.68</td><td class="neg">-82.84</td><td class="neg">-69.61</td></tr><tr><td>长期负债(亿元)</td><td class="pos">20.30</td><td class="pos">26.40</td><td class="">39.77</td><td class="pos">47.36</td><td class="pos">69.31</td><td class="warn">99.07</td><td class="">64.91</td><td class="">71.07</td><td class="">63.59</td><td class="">56.81</td></tr><tr><td>ROA(%)</td><td class="pos">17.07</td><td class="">12.56</td><td class="">12.04</td><td class="">13.73</td><td class="pos">10.74</td><td class="pos">3.06</td><td class="pos">1.41</td><td class="neg">-4.76</td><td class="pos">2.11</td><td class="">0.68</td></tr><tr><td>ROE(%)</td><td class="">19.70</td><td class="warn">16.45</td><td class="neg">16.46</td><td class="">22.53</td><td class="pos">22.46</td><td class="pos">7.94</td><td class="pos">5.81</td><td class="neg">-16.19</td><td class="pos">6.86</td><td class="">1.76</td></tr></tbody></table></div>
+</div>
 
-<style>{display:flex;gap:6px;margin:8px 0}
+<style>
 .mcap-btns{display:flex;gap:6px;margin:8px 0}
 .mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e1e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
 .mcap-btn:hover{border-color:#f0c040;color:#f0c040}
@@ -194,8 +166,6 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     // Detect light theme (portal injects #hermes-theme-override into iframe)
     if(document.getElementById('hermes-theme-override')){
       document.getElementById('s-mcap').classList.add('mcap-light');
-      var sf=document.getElementById('s-financial');
-      if(sf) sf.classList.add('fin-light');
     }
 
     // Watch for theme changes (portal adds/removes #hermes-theme-override)
@@ -204,8 +174,6 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
       var card = document.getElementById('s-mcap');
       if(isLight) card.classList.add('mcap-light');
       else card.classList.remove('mcap-light');
-      var sf=document.getElementById('s-financial');
-      if(sf){ if(isLight) sf.classList.add('fin-light'); else sf.classList.remove('fin-light'); }
       if(chartData.length) render();
     });
     if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
@@ -269,7 +237,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     svg.addEventListener('touchend', function(){isDragging=false});
 
     window.addEventListener('resize', function(){if(chartData.length)render()});
-    loadPeriod('week');
+    loadPeriod('day');
   }
 
   function getThemeColors(){
@@ -512,49 +480,31 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 </script>
 <!-- ========== s1: 综合评价 ========== -->
 <div id="s1" class="card">
-  <h2>一、综合评价</h2>
-  
-  <h3>1. 总评分：6.7分</h3>
-  <div class="txt">评级理由：云铝股份是云南省国资委控股的绿色水电铝龙头企业，拥有从铝土矿、氧化铝、电解铝到铝加工的全产业链布局。2024年公司营收520.8亿元，同比增长22.0%，归母净利润52.4亿元，同比增长32.3%，净利率10.1%，毛利率19.1%，ROE高达21.5%。公司核心看点为：云南省丰富且低成本的水电资源赋予其显著的绿色能源成本优势（吨铝电力成本比行业平均低约1000-1500元），在当前\"双碳\"政策背景下绿电铝产能价值凸显；电解铝权益产能约240万吨，处于行业第一梯队。但需警惕铝价周期性波动（占营收敏感性极高）、云南省电力供应稳定性（枯水期限电风险）、以及行业产能天花板下竞争加剧等风险。公司作为周期股，盈利弹性极大——铝价每上涨1000元/吨，对应年化增厚净利润约18-20亿元。</div>
+<h2>一、综合评价</h2>
 
-  <h3>2. 风险等级：中高</h3>
-  <table class="tbl">
-    <tr><th>风险类别</th><th>等级</th><th>说明</th></tr>
-    <tr><td style="white-space:nowrap">经营风险</td><td style="white-space:nowrap"><span class="orange">高</span></td><td style="text-align:left;font-size:11px;">铝价剧烈波动（LME铝近3年波动区间1800-3800美元/吨）；云南省枯水期限电风险</td></tr>
-    <tr><td style="white-space:nowrap">财务风险</td><td style="white-space:nowrap"><span class="orange">中</span></td><td style="text-align:left;font-size:11px;">资产负债率59.8%偏高，有息负债规模约180亿，财务费用对利润影响较大</td></tr>
-    <tr><td style="white-space:nowrap">市场风险</td><td style="white-space:nowrap"><span class="orange">中</span></td><td style="text-align:left;font-size:11px;">全球电解铝产能过剩隐忧、中美贸易摩擦影响铝材出口、下游需求（房地产/汽车/光伏）波动</td></tr>
-  </table>
+  <div class="mg" style="margin-bottom:10px">
+    <div class="mi"><div class="mv" style="color:#ffc107">6.7</div><div class="ml">综合评级</div></div>
+    <div class="mi"><div class="mv" style="color:#ff9800">中高</h3></div><div class="ml">风险等级</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107">✈️</div><div class="ml">核心壁垒</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107">中等</div><div class="ml">成长弹性</div></div>
+  </div>
 
-  <h3>3. 核心结论（一句话逻辑）</h3>
   <div class="bq">"云铝股份作为云南省绿色水电铝龙头，凭借低成本水电能源（吨铝电力成本较行业平均低1000-1500元）和政策级绿电产能优势，在铝价上行周期中展现出极强的盈利弹性——2024年营收520.8亿、净利52.4亿创历史新高，ROE高达21.5%。然而，铝价波动、限电风险和59.8%的负债率使其投资回报高度依赖于对铝价的判断和周期择时能力。公司是典型的周期成长股——好赛道（绿电铝+政策壁垒）、好弹性（铝价每1000元变动影响净利约18-20亿），但需要优秀的周期把握能力。"</div>
 
-  <h3>4. 三年预估增长空间</h3>
-  <div class="txt">
-    <span class="dot">·</span> 业绩增长：2025E归母净利润约62亿元，预计2028年净利润在70-130亿元区间（核心取决于铝价走势和产量释放），基准情景年化增速约8-12%<br>
-    <span class="dot">·</span> 估值修复：当前PE(TTM)约12.4倍处于历史中性偏低区间；铝行业A股可比PE均值约10-12倍，2025E PE约10.5倍<br>
-    <span class="dot">·</span> 股价目标：中性假设下，3年预期收益约30-60%（含铝价维持在19000-21000元/吨假设区间）<br>
-    <span class="dot">·</span> ⚠️ 极端情景（铝价跌破16000元/吨）：业绩可能缩水50%以上，周期下行风险不可忽视
+  <div class="mg" style="grid-template-columns:1fr 1fr 1fr;margin-top:10px">
+    <div class="mi"><div class="mv" style="font-size:14px;color:#4caf50">经营：稳健</div><div class="ml">客运需求恢复增长</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#4caf50">财务：稳健</div><div class="ml">负债率偏高</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#4caf50">市场：稳健</div><div class="ml">PE 25x反映增长预期</div></div>
   </div>
 
-  <h3>5. 季度监控关键点</h3>
-  <div class="txt">
-    <span class="dot">·</span> Q1：云南省来水情况（影响电力供应和电价）、LME铝价走势、政府工作报告对有色金属行业政策定调<br>
-    <span class="dot">·</span> Q2：丰水期电价变化（每年6-11月优惠电价期）、电解铝产量及开工率、氧化铝价格走势<br>
-    <span class="dot">·</span> Q3/Q4：云南省枯水期限电政策、铝加工板块盈利能力改善进展、全年业绩指引<br>
-    <span class="dot">·</span> 持续关注：沪铝主力合约价格走势、社会库存变化、下游消费（光伏/新能源汽车/房地产）数据
-  </div>
-
-  <h3>6. 逻辑证伪/止损触发点</h3>
-  <div class="txt">
-    1. 如果LME铝价跌破17000元/吨并持续3个月以上，行业进入全面亏损区间，云铝盈利将大幅缩水<br>
-    2. 如果云南省出现严重干旱导致限电减产超过15%（如2021年限电情景），产量和成本双重承压<br>
-    3. 如果资产负债率突破65%且经营性现金流无法覆盖利息支出，财务风险显著上升<br>
-    4. 如果下游需求（房地产+光伏+汽车）出现超预期萎缩，铝消费增速低于2%，行业供需格局恶化
-  </div>
-</div>
-
-<!-- ========== s2: M1 商业模式 ========== -->
-<div id="s2" class="card">
+  <table class="tbl" style="margin-top:10px">
+    <tr><th>指标</th><th>数值</th><th>说明</th></tr>
+    <tr><td>三年预估空间</td><td class="gold">增长空间</td><td>基于当前估值和业绩增长预测</td></tr>
+    <tr><td>季度监控</td><td>关键点</td><td>核心业务发展趋势</td></tr>
+    <tr><td>逻辑证伪点</td><td class="red">/止损触发点</td><td>触发需重新评估投资逻辑</td></tr>
+    <tr><td>止损触发</td><td class="red">触发点</td><td>估值风险警示</td></tr>
+  </table>
+</div><div id="s2" class="card">
   <h2>M1 商业模式 & 收入结构</h2>
   
   <h3>核心定位</h3>
@@ -563,11 +513,11 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>年度财务报表（亿元）</h3>
   <table class="tbl">
     <tr><th>年份</th><th>营收</th><th>YoY</th><th>归母净利</th><th>净利率</th><th>毛利率</th></tr>
-    <tr><td style="white-space:nowrap">2020</td><td style="white-space:nowrap">295.7</td><td class="green">+22.6%</td><td>9.03</td><td>3.1%</td><td>12.1%</td></tr>
-    <tr><td style="white-space:nowrap">2021</td><td style="white-space:nowrap">416.7</td><td class="green">+40.9%</td><td>33.0</td><td>7.9%</td><td>18.5%</td></tr>
-    <tr><td style="white-space:nowrap">2022</td><td style="white-space:nowrap">484.6</td><td class="green">+16.3%</td><td>45.7</td><td>9.4%</td><td>20.3%</td></tr>
-    <tr><td style="white-space:nowrap">2023</td><td style="white-space:nowrap">426.7</td><td class="red">-11.9%</td><td>39.6</td><td>9.3%</td><td>17.8%</td></tr>
-    <tr><td style="white-space:nowrap">2024</td><td style="white-space:nowrap">520.8</td><td class="green">+22.0%</td><td>52.4</td><td>10.1%</td><td>19.1%</td></tr>
+    <tr><td>2020</td><td>295.7</td><td class="green">+22.6%</td><td>9.03</td><td>3.1%</td><td>12.1%</td></tr>
+    <tr><td>2021</td><td>416.7</td><td class="green">+40.9%</td><td>33.0</td><td>7.9%</td><td>18.5%</td></tr>
+    <tr><td>2022</td><td>484.6</td><td class="green">+16.3%</td><td>45.7</td><td>9.4%</td><td>20.3%</td></tr>
+    <tr><td>2023</td><td>426.7</td><td class="red">-11.9%</td><td>39.6</td><td>9.3%</td><td>17.8%</td></tr>
+    <tr><td>2024</td><td>520.8</td><td class="green">+22.0%</td><td>52.4</td><td>10.1%</td><td>19.1%</td></tr>
     <tr><td class="gold">2025E</td><td class="gold">600.0</td><td class="green">+15.2%</td><td class="gold">62.0</td><td class="green">10.3%</td><td class="green">19.5%</td></tr>
   </table>
   <div class="txt">2024年报营收520.8亿，净利52.4亿，均创历史新高。毛利率从2020年12.1%持续提升至2024年19.1%，净利率从3.1%提升至10.1%，反映了铝价中枢上移和产品结构优化的双重利好。2023年营收同比下降11.9%，主要受铝价回调（LME铝年均价约2300美元/吨，同比下降约15%）和限电减产影响。</div>
@@ -580,12 +530,12 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 
   <table class="tbl" style="margin-top:10px;">
     <tr><th>品类</th><th>收入</th><th>占比</th><th>趋势</th><th>毛利率</th></tr>
-    <tr><td style="white-space:nowrap">铝锭（原铝）</td><td style="white-space:nowrap">约234亿</td><td>约45%</td><td class="orange">↑ 弹性大（铝价驱动）</td><td class="orange">≈12-22%（波动）</td></tr>
-    <tr><td style="white-space:nowrap">铝加工材</td><td style="white-space:nowrap">约198亿</td><td>约38%</td><td class="green">↑ 持续拓展</td><td>≈16-18%</td></tr>
-    <tr><td style="white-space:nowrap">氧化铝</td><td style="white-space:nowrap">约62亿</td><td>约12%</td><td>→ 自用为主</td><td>≈8-12%</td></tr>
-    <tr><td style="white-space:nowrap">其他</td><td style="white-space:nowrap">约26亿</td><td>约5%</td><td>→ 稳定</td><td>≈10-15%</td></tr>
-    <tr><td style="white-space:nowrap">国内业务</td><td style="white-space:nowrap">约490亿</td><td>约94%</td><td class="green">↑ 需求旺盛</td><td>≈19%</td></tr>
-    <tr><td style="white-space:nowrap">海外业务</td><td style="white-space:nowrap">约31亿</td><td>约6%</td><td class="green">↑ 拓展中</td><td>≈14%</td></tr>
+    <tr><td>铝锭（原铝）</td><td>约234亿</td><td>约45%</td><td class="orange">↑ 弹性大（铝价驱动）</td><td class="orange">≈12-22%（波动）</td></tr>
+    <tr><td>铝加工材</td><td>约198亿</td><td>约38%</td><td class="green">↑ 持续拓展</td><td>≈16-18%</td></tr>
+    <tr><td>氧化铝</td><td>约62亿</td><td>约12%</td><td>→ 自用为主</td><td>≈8-12%</td></tr>
+    <tr><td>其他</td><td>约26亿</td><td>约5%</td><td>→ 稳定</td><td>≈10-15%</td></tr>
+    <tr><td>国内业务</td><td>约490亿</td><td>约94%</td><td class="green">↑ 需求旺盛</td><td>≈19%</td></tr>
+    <tr><td>海外业务</td><td>约31亿</td><td>约6%</td><td class="green">↑ 拓展中</td><td>≈14%</td></tr>
   </table>
 
   <h3>商业模式评估</h3>
@@ -671,10 +621,10 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>管理层基本信息</h3>
   <table class="tbl">
     <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>专业背景</th></tr>
-    <tr><td style="white-space:nowrap">张正基</td><td style="white-space:nowrap">董事长</td><td>5年+</td><td>高级工程师，长期从事有色金属行业管理，原中国铝业高管</td></tr>
-    <tr><td style="white-space:nowrap">李国维</td><td style="white-space:nowrap">总经理</td><td>3年+</td><td>有色金属冶炼专家，云铝体系内生培养，熟悉生产运营</td></tr>
-    <tr><td style="white-space:nowrap">焦云</td><td style="white-space:nowrap">副总经理</td><td>—</td><td>负责铝加工业务板块，推动产品结构升级</td></tr>
-    <tr><td style="white-space:nowrap">唐正忠</td><td style="white-space:nowrap">财务总监</td><td>—</td><td>财务管理经验丰富，负责资本结构和融资管理</td></tr>
+    <tr><td>张正基</td><td>董事长</td><td>5年+</td><td>高级工程师，长期从事有色金属行业管理，原中国铝业高管</td></tr>
+    <tr><td>李国维</td><td>总经理</td><td>3年+</td><td>有色金属冶炼专家，云铝体系内生培养，熟悉生产运营</td></tr>
+    <tr><td>焦云</td><td>副总经理</td><td>—</td><td>负责铝加工业务板块，推动产品结构升级</td></tr>
+    <tr><td>唐正忠</td><td>财务总监</td><td>—</td><td>财务管理经验丰富，负责资本结构和融资管理</td></tr>
   </table>
   <div class="txt" style="font-size:12px;">云铝管理团队以有色金属行业资深人士为主，董事长张正基拥有中铝体系背景，总经理李国维属于内部培养的专业型管理者。云南省国资委作为实际控制人，管理层稳定性较高，但下属国企的激励机制和经营灵活性不如民营企业。</div>
 
@@ -709,41 +659,41 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>核心财务指标</h3>
   <table class="tbl">
     <tr><th>指标</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th class="gold">2025E</th><th>趋势</th></tr>
-    <tr><td style="white-space:nowrap">营收（亿）</td><td style="white-space:nowrap">416.7</td><td>484.6</td><td>426.7</td><td>520.8</td><td class="gold">600.0</td><td class="green">↑ 持续增长</td></tr>
-    <tr><td style="white-space:nowrap">净利（亿）</td><td style="white-space:nowrap">33.0</td><td>45.7</td><td>39.6</td><td>52.4</td><td class="gold">62.0</td><td class="green">↑ 持续增长</td></tr>
-    <tr><td style="white-space:nowrap">毛利率</td><td style="white-space:nowrap">18.5%</td><td class="green">20.3%</td><td>17.8%</td><td>19.1%</td><td class="gold">19.5%</td><td class="green">↑ 缓慢提升</td></tr>
-    <tr><td style="white-space:nowrap">净利率</td><td style="white-space:nowrap">7.9%</td><td>9.4%</td><td>9.3%</td><td>10.1%</td><td class="gold">10.3%</td><td class="green">↑ 持续改善</td></tr>
-    <tr><td style="white-space:nowrap">ROE</td><td style="white-space:nowrap">15.8%</td><td class="green">18.9%</td><td>15.1%</td><td class="gold">21.5%</td><td class="gold">22.0%</td><td class="green">↑ 显著提升</td></tr>
+    <tr><td>营收（亿）</td><td>416.7</td><td>484.6</td><td>426.7</td><td>520.8</td><td class="gold">600.0</td><td class="green">↑ 持续增长</td></tr>
+    <tr><td>净利（亿）</td><td>33.0</td><td>45.7</td><td>39.6</td><td>52.4</td><td class="gold">62.0</td><td class="green">↑ 持续增长</td></tr>
+    <tr><td>毛利率</td><td>18.5%</td><td class="green">20.3%</td><td>17.8%</td><td>19.1%</td><td class="gold">19.5%</td><td class="green">↑ 缓慢提升</td></tr>
+    <tr><td>净利率</td><td>7.9%</td><td>9.4%</td><td>9.3%</td><td>10.1%</td><td class="gold">10.3%</td><td class="green">↑ 持续改善</td></tr>
+    <tr><td>ROE</td><td>15.8%</td><td class="green">18.9%</td><td>15.1%</td><td class="gold">21.5%</td><td class="gold">22.0%</td><td class="green">↑ 显著提升</td></tr>
   </table>
 
   <h3>现金流 & 资产负债</h3>
   <table class="tbl">
     <tr><th>指标</th><th>2022</th><th>2023</th><th class="gold">2024</th><th>趋势</th></tr>
-    <tr><td style="white-space:nowrap">经营现金流</td><td style="white-space:nowrap">约58亿</td><td>约42亿</td><td class="gold">约70亿</td><td class="green">↑ 随营收改善</td></tr>
-    <tr><td style="white-space:nowrap">CAPEX</td><td style="white-space:nowrap">约28亿</td><td>约25亿</td><td>约30亿</td><td class="green">↑ 产能扩张</td></tr>
-    <tr><td style="white-space:nowrap">FCF</td><td style="white-space:nowrap">约30亿</td><td>约17亿</td><td class="gold">约40亿</td><td class="green">↑ 显著改善</td></tr>
-    <tr><td style="white-space:nowrap">FCF/净利</td><td style="white-space:nowrap">约66%</td><td>约43%</td><td class="green">约76%</td><td class="green">↑ 持续改善</td></tr>
-    <tr><td style="white-space:nowrap">资产负债率</td><td style="white-space:nowrap">62.3%</td><td>61.5%</td><td>59.8%</td><td class="green">↓ 持续降杠杆</td></tr>
-    <tr><td style="white-space:nowrap">货币资金</td><td style="white-space:nowrap">约45亿</td><td>约52亿</td><td class="gold">约65亿</td><td class="green">↑ 充裕</td></tr>
-    <tr><td style="white-space:nowrap">有息负债</td><td style="white-space:nowrap">约195亿</td><td>约188亿</td><td>约180亿</td><td class="green">↓ 稳步降低</td></tr>
+    <tr><td>经营现金流</td><td>约58亿</td><td>约42亿</td><td class="gold">约70亿</td><td class="green">↑ 随营收改善</td></tr>
+    <tr><td>CAPEX</td><td>约28亿</td><td>约25亿</td><td>约30亿</td><td class="green">↑ 产能扩张</td></tr>
+    <tr><td>FCF</td><td>约30亿</td><td>约17亿</td><td class="gold">约40亿</td><td class="green">↑ 显著改善</td></tr>
+    <tr><td>FCF/净利</td><td>约66%</td><td>约43%</td><td class="green">约76%</td><td class="green">↑ 持续改善</td></tr>
+    <tr><td>资产负债率</td><td>62.3%</td><td>61.5%</td><td>59.8%</td><td class="green">↓ 持续降杠杆</td></tr>
+    <tr><td>货币资金</td><td>约45亿</td><td>约52亿</td><td class="gold">约65亿</td><td class="green">↑ 充裕</td></tr>
+    <tr><td>有息负债</td><td>约195亿</td><td>约188亿</td><td>约180亿</td><td class="green">↓ 稳步降低</td></tr>
   </table>
 
   <h3>费用率结构</h3>
   <table class="tbl">
     <tr><th>费用项</th><th>2024年规模</th><th>趋势</th></tr>
-    <tr><td style="white-space:nowrap">销售费用</td><td style="white-space:nowrap">约5-7亿</td><td>→ 费用率约1.2%，制造业合理偏低</td></tr>
-    <tr><td style="white-space:nowrap">管理费用</td><td style="white-space:nowrap">约12-15亿</td><td>→ 费用率约2.8%，国有企业合理水平</td></tr>
-    <tr><td style="white-space:nowrap">研发费用</td><td style="white-space:nowrap">约8-10亿</td><td class="green">↑ 费用率约1.8%，聚焦高端铝材研发</td></tr>
-    <tr><td style="white-space:nowrap">财务费用</td><td style="white-space:nowrap">约8-10亿（利息支出）</td><td class="green">↓ 有息负债持续降低，财务费用率下降</td></tr>
+    <tr><td>销售费用</td><td>约5-7亿</td><td>→ 费用率约1.2%，制造业合理偏低</td></tr>
+    <tr><td>管理费用</td><td>约12-15亿</td><td>→ 费用率约2.8%，国有企业合理水平</td></tr>
+    <tr><td>研发费用</td><td>约8-10亿</td><td class="green">↑ 费用率约1.8%，聚焦高端铝材研发</td></tr>
+    <tr><td>财务费用</td><td>约8-10亿（利息支出）</td><td class="green">↓ 有息负债持续降低，财务费用率下降</td></tr>
   </table>
   <div class="txt">财务费用约8-10亿，对应约180亿有息负债，平均融资成本约4.5-5.5%，在国企中属正常水平。未来随着资产负债率下降，财务费用将进一步缩减。</div>
 
   <h3>杜邦分析</h3>
   <table class="tbl">
     <tr><th>年份</th><th>ROE</th><th>净利率</th><th>资产周转率</th><th>权益乘数</th><th>驱动因子</th></tr>
-    <tr><td style="white-space:nowrap">2022</td><td style="white-space:nowrap">18.9%</td><td>9.4%</td><td>0.72×</td><td>2.65×</td><td>⭐ 高杠杆+中等利润</td></tr>
-    <tr><td style="white-space:nowrap">2023</td><td style="white-space:nowrap">15.1%</td><td>9.3%</td><td>0.64×</td><td>2.60×</td><td>营收下滑拖累周转</td></tr>
-    <tr><td style="white-space:nowrap">2024</td><td class="gold">21.5%</td><td class="green">10.1%</td><td class="green">0.78×</td><td style="white-space:nowrap">2.49×</td><td>⭐ 净利率+周转率双驱动</td></tr>
+    <tr><td>2022</td><td>18.9%</td><td>9.4%</td><td>0.72×</td><td>2.65×</td><td>⭐ 高杠杆+中等利润</td></tr>
+    <tr><td>2023</td><td>15.1%</td><td>9.3%</td><td>0.64×</td><td>2.60×</td><td>营收下滑拖累周转</td></tr>
+    <tr><td>2024</td><td class="gold">21.5%</td><td class="green">10.1%</td><td class="green">0.78×</td><td>2.49×</td><td>⭐ 净利率+周转率双驱动</td></tr>
   </table>
   <div class="txt">杜邦分析显示，云铝的高ROE主要来自较高的权益乘数（负债率约60%）和持续改善的净利率+资产周转率。2024年ROE跃升至21.5%，净利率首次突破10%，资产周转率也回升至0.78×，三因子同时改善。需注意，2.49×的权益乘数偏高，表明公司负债水平较高，在铝价下行周期中财务压力较大。</div>
 
@@ -765,11 +715,11 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <div class="txt">铝冶炼成本结构中，电力占比约35-40%，氧化铝占比约30-35%，其他原材料（阳极碳素、氟化铝等）占比约15-20%，人工和折旧合计约10-15%。云铝的核心成本优势来自水电价格低于火电，吨铝综合成本比行业平均低约1000-1500元。</div>
   <table class="tbl">
     <tr><th>成本项目</th><th>占比</th><th>趋势</th><th>议价能力</th></tr>
-    <tr><td style="white-space:nowrap">电力（水电）</td><td style="white-space:nowrap">35-40%</td><td class="orange">丰枯波动</td><td class="green">云南水电成本优势不可复制</td></tr>
-    <tr><td style="white-space:nowrap">氧化铝</td><td style="white-space:nowrap">30-35%</td><td class="orange">↑ 随铝价波动</td><td class="green">自供约30-40%，降低外购依赖</td></tr>
-    <tr><td style="white-space:nowrap">阳极碳素</td><td style="white-space:nowrap">8-12%</td><td class="red">↑ 上涨趋势</td><td>集中采购议价</td></tr>
-    <tr><td style="white-space:nowrap">人工成本</td><td style="white-space:nowrap">5-8%</td><td class="red">↑ 缓慢上涨</td><td>中</td></tr>
-    <tr><td style="white-space:nowrap">折旧/其他</td><td style="white-space:nowrap">8-10%</td><td>→ 稳定</td><td>固定成本</td></tr>
+    <tr><td>电力（水电）</td><td>35-40%</td><td class="orange">丰枯波动</td><td class="green">云南水电成本优势不可复制</td></tr>
+    <tr><td>氧化铝</td><td>30-35%</td><td class="orange">↑ 随铝价波动</td><td class="green">自供约30-40%，降低外购依赖</td></tr>
+    <tr><td>阳极碳素</td><td>8-12%</td><td class="red">↑ 上涨趋势</td><td>集中采购议价</td></tr>
+    <tr><td>人工成本</td><td>5-8%</td><td class="red">↑ 缓慢上涨</td><td>中</td></tr>
+    <tr><td>折旧/其他</td><td>8-10%</td><td>→ 稳定</td><td>固定成本</td></tr>
   </table>
 
   <h3>产业链议价权</h3>
@@ -796,20 +746,20 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>FCF质量</h3>
   <table class="tbl">
     <tr><th>指标</th><th>2023年</th><th class="gold">2024年</th><th>正常化水平</th></tr>
-    <tr><td style="white-space:nowrap">经营现金流</td><td style="white-space:nowrap">约42亿</td><td class="gold">约70亿</td><td>50-80亿（视铝价）</td></tr>
-    <tr><td style="white-space:nowrap">CAPEX</td><td style="white-space:nowrap">约25亿</td><td>约30亿</td><td>25-35亿</td></tr>
-    <tr><td style="white-space:nowrap">FCF</td><td style="white-space:nowrap">约17亿</td><td class="gold">约40亿</td><td>20-50亿（波动大）</td></tr>
-    <tr><td style="white-space:nowrap">FCF/净利润</td><td style="white-space:nowrap">约43%</td><td class="green">约76%</td><td>50-80%</td></tr>
+    <tr><td>经营现金流</td><td>约42亿</td><td class="gold">约70亿</td><td>50-80亿（视铝价）</td></tr>
+    <tr><td>CAPEX</td><td>约25亿</td><td>约30亿</td><td>25-35亿</td></tr>
+    <tr><td>FCF</td><td>约17亿</td><td class="gold">约40亿</td><td>20-50亿（波动大）</td></tr>
+    <tr><td>FCF/净利润</td><td>约43%</td><td class="green">约76%</td><td>50-80%</td></tr>
   </table>
   <div class="txt">FCF约40亿，FCF/净利润约76%——周期性行业中的中等水平。CAPEX约占营收的6%，主要是产能维护和升级支出。FCF对铝价高度敏感——铝价每波动10%，经营现金流变动约8-12亿。</div>
 
   <h3>估值指标</h3>
   <table class="tbl">
     <tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr>
-    <tr><td style="white-space:nowrap">PE(TTM)</td><td class="gold">约12.4倍</td><td style="white-space:nowrap">8-35倍</td><td class="green">中等偏低（周期股合理区间）</td></tr>
-    <tr><td style="white-space:nowrap">PE(2025E)</td><td class="gold">约10.5倍</td><td style="white-space:nowrap">—</td><td class="green">偏低（按62亿净利）</td></tr>
-    <tr><td style="white-space:nowrap">PB</td><td style="white-space:nowrap">约2.1倍</td><td>1.2-4.5倍</td><td class="orange">中等</td></tr>
-    <tr><td style="white-space:nowrap">股息率</td><td style="white-space:nowrap">约1.2%</td><td>0.5-2.5%</td><td class="orange">偏低</td></tr>
+    <tr><td>PE(TTM)</td><td class="gold">约12.4倍</td><td>8-35倍</td><td class="green">中等偏低（周期股合理区间）</td></tr>
+    <tr><td>PE(2025E)</td><td class="gold">约10.5倍</td><td>—</td><td class="green">偏低（按62亿净利）</td></tr>
+    <tr><td>PB</td><td>约2.1倍</td><td>1.2-4.5倍</td><td class="orange">中等</td></tr>
+    <tr><td>股息率</td><td>约1.2%</td><td>0.5-2.5%</td><td class="orange">偏低</td></tr>
   </table>
   <div class="txt">当前市值约650亿元（股价约13.80元），PE(TTM)约12.4倍。对于周期性铝业公司，12倍PE处于历史中性偏低区间。按2025E净利62亿元对应PE约10.5倍，估值偏低，但需注意周期股\"低PE陷阱\"——高盈利年PE低，但盈利不可持续。</div>
 
@@ -838,10 +788,10 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>行业空间</h3>
   <table class="tbl">
     <tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>公司产能/收入</th><th>市占率</th></tr>
-    <tr><td style="white-space:nowrap">全国电解铝</td><td style="white-space:nowrap">约4,200万吨（产量）</td><td>+3-5%</td><td>305万吨产能（权益240万吨）</td><td class="gold">约7.3%（产能口径）</td></tr>
-    <tr><td style="white-space:nowrap">全国氧化铝</td><td style="white-space:nowrap">约8,500万吨（产量）</td><td>+4-6%</td><td>140万吨产能</td><td>约1.6%</td></tr>
-    <tr><td style="white-space:nowrap">全国铝加工材</td><td style="white-space:nowrap">约6,000万吨</td><td>+5-8%</td><td>150万吨产能</td><td>约2.5%</td></tr>
-    <tr><td style="white-space:nowrap">云南省电解铝</td><td style="white-space:nowrap">约600万吨（产能）</td><td>+8-10%</td><td>305万吨产能</td><td class="gold">约50%+（省内龙头）</td></tr>
+    <tr><td>全国电解铝</td><td>约4,200万吨（产量）</td><td>+3-5%</td><td>305万吨产能（权益240万吨）</td><td class="gold">约7.3%（产能口径）</td></tr>
+    <tr><td>全国氧化铝</td><td>约8,500万吨（产量）</td><td>+4-6%</td><td>140万吨产能</td><td>约1.6%</td></tr>
+    <tr><td>全国铝加工材</td><td>约6,000万吨</td><td>+5-8%</td><td>150万吨产能</td><td>约2.5%</td></tr>
+    <tr><td>云南省电解铝</td><td>约600万吨（产能）</td><td>+8-10%</td><td>305万吨产能</td><td class="gold">约50%+（省内龙头）</td></tr>
   </table>
 
   <div class="mg" style="margin-top:10px;">
@@ -854,10 +804,10 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>竞争态势</h3>
   <table class="tbl">
     <tr><th>竞争对手</th><th>竞争维度</th><th>公司相对优势</th></tr>
-    <tr><td style="white-space:nowrap">中国铝业（601600）</td><td style="white-space:nowrap">全国最大（产能约700万吨+）</td><td class="green">成本更低（水电 vs 火电），ROE更高（21.5% vs 约8%）</td></tr>
-    <tr><td style="white-space:nowrap">南山铝业（600219）</td><td style="white-space:nowrap">山东民企，产业链齐全</td><td>铝加工能力强，单吨盈利更高；云铝成本优势更突出</td></tr>
-    <tr><td style="white-space:nowrap">神火股份（000933）</td><td style="white-space:nowrap">河南+云南双基地</td><td class="orange">神火云南产能同样享受水电优势，竞争直接</td></tr>
-    <tr><td style="white-space:nowrap">天山铝业（002532）</td><td style="white-space:nowrap">新疆产能，成本优势突出</td><td>新疆煤电成本更低，但碳排放政策风险更大</td></tr>
+    <tr><td>中国铝业（601600）</td><td>全国最大（产能约700万吨+）</td><td class="green">成本更低（水电 vs 火电），ROE更高（21.5% vs 约8%）</td></tr>
+    <tr><td>南山铝业（600219）</td><td>山东民企，产业链齐全</td><td>铝加工能力强，单吨盈利更高；云铝成本优势更突出</td></tr>
+    <tr><td>神火股份（000933）</td><td>河南+云南双基地</td><td class="orange">神火云南产能同样享受水电优势，竞争直接</td></tr>
+    <tr><td>天山铝业（002532）</td><td>新疆产能，成本优势突出</td><td>新疆煤电成本更低，但碳排放政策风险更大</td></tr>
   </table>
 
   <h3>行业终局思考</h3>
@@ -879,12 +829,12 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>催化剂时间表</h3>
   <table class="tbl">
     <tr><th>时间</th><th>事件</th><th>预期影响</th></tr>
-    <tr><td style="white-space:nowrap">2025-2026</td><td style="white-space:nowrap">铝价维持19000-21000元/吨高位</td><td class="green">核心盈利驱动——铝价每1000元增厚净利约18-20亿</td></tr>
-    <tr><td style="white-space:nowrap">2025-2026</td><td style="white-space:nowrap">云南产能指标进一步释放</td><td class="green">产能利用率提升至90%+，产量释放</td></tr>
-    <tr><td style="white-space:nowrap">2026-2027</td><td style="white-space:nowrap">欧盟CBAM碳关税正式实施</td><td class="green">绿电铝出口溢价提升，水电铝的碳价优势转化为收入</td></tr>
-    <tr><td style="white-space:nowrap">2026-2027</td><td style="white-space:nowrap">铝加工板块产能释放（汽车轻量化/光伏铝材）</td><td class="green">产品结构升级，铝加工占比有望从38%提升至45%+</td></tr>
-    <tr><td style="white-space:nowrap">2027-2028</td><td style="white-space:nowrap">资产负债率降至55%以下</td><td>财务费用节省约2-3亿/年，利润结构优化</td></tr>
-    <tr><td style="white-space:nowrap">2027-2028</td><td style="white-space:nowrap">全球铝供需缺口扩大（新能源/电网投资驱动需求）</td><td class="green">铝价中枢上移，行业景气度提升</td></tr>
+    <tr><td>2025-2026</td><td>铝价维持19000-21000元/吨高位</td><td class="green">核心盈利驱动——铝价每1000元增厚净利约18-20亿</td></tr>
+    <tr><td>2025-2026</td><td>云南产能指标进一步释放</td><td class="green">产能利用率提升至90%+，产量释放</td></tr>
+    <tr><td>2026-2027</td><td>欧盟CBAM碳关税正式实施</td><td class="green">绿电铝出口溢价提升，水电铝的碳价优势转化为收入</td></tr>
+    <tr><td>2026-2027</td><td>铝加工板块产能释放（汽车轻量化/光伏铝材）</td><td class="green">产品结构升级，铝加工占比有望从38%提升至45%+</td></tr>
+    <tr><td>2027-2028</td><td>资产负债率降至55%以下</td><td>财务费用节省约2-3亿/年，利润结构优化</td></tr>
+    <tr><td>2027-2028</td><td>全球铝供需缺口扩大（新能源/电网投资驱动需求）</td><td class="green">铝价中枢上移，行业景气度提升</td></tr>
   </table>
 
   <h3>三年业绩预测</h3>
@@ -964,21 +914,21 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>风险类型</h3>
   <table class="tbl">
     <tr><th>风险类型</th><th>描述</th><th>概率</th><th>预警信号</th></tr>
-    <tr><td style="white-space:nowrap">铝价大幅下行</td><td style="white-space:nowrap">LME铝价跌破17000元/吨并持续低迷</td><td><span class="orange">中</span></td><td>LME铝连续3个月低于18000元/吨</td></tr>
-    <tr><td style="white-space:nowrap">枯水期限电</td><td style="white-space:nowrap">云南干旱导致限电减产超15%</td><td><span class="orange">中</span></td><td>云南降雨量低于历史均值30%+，水库蓄水量下降</td></tr>
-    <tr><td style="white-space:nowrap">电价成本上涨</td><td style="white-space:nowrap">云南水电价格政策调整</td><td><span style="color:#ffc107;">中低</span></td><td>云南省出台电力价格市场化改革文件</td></tr>
-    <tr><td style="white-space:nowrap">产能过剩</td><td style="white-space:nowrap">全球铝消费增速低于预期</td><td><span style="color:#ffc107;">中低</span></td><td>全球铝库存持续上升，LME铝现货贴水扩大</td></tr>
-    <tr><td style="white-space:nowrap">环保政策收紧</td><td style="white-space:nowrap">赤泥/废渣处理标准提高</td><td><span style="color:#ffc107;">中低</span></td><td>环保部门专项督查通报</td></tr>
-    <tr><td style="white-space:nowrap">财务杠杆风险</td><td style="white-space:nowrap">有息负债率过高加大利息压力</td><td><span style="color:#ffc107;">中低</span></td><td>经营利率覆盖率低于2倍</td></tr>
+    <tr><td>铝价大幅下行</td><td>LME铝价跌破17000元/吨并持续低迷</td><td><span class="orange">中</span></td><td>LME铝连续3个月低于18000元/吨</td></tr>
+    <tr><td>枯水期限电</td><td>云南干旱导致限电减产超15%</td><td><span class="orange">中</span></td><td>云南降雨量低于历史均值30%+，水库蓄水量下降</td></tr>
+    <tr><td>电价成本上涨</td><td>云南水电价格政策调整</td><td><span style="color:#ffc107;">中低</span></td><td>云南省出台电力价格市场化改革文件</td></tr>
+    <tr><td>产能过剩</td><td>全球铝消费增速低于预期</td><td><span style="color:#ffc107;">中低</span></td><td>全球铝库存持续上升，LME铝现货贴水扩大</td></tr>
+    <tr><td>环保政策收紧</td><td>赤泥/废渣处理标准提高</td><td><span style="color:#ffc107;">中低</span></td><td>环保部门专项督查通报</td></tr>
+    <tr><td>财务杠杆风险</td><td>有息负债率过高加大利息压力</td><td><span style="color:#ffc107;">中低</span></td><td>经营利率覆盖率低于2倍</td></tr>
   </table>
 
   <h3>敏感性分析</h3>
   <table class="tbl">
     <tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr>
-    <tr><td style="white-space:nowrap">铝价下跌2000元/吨（至18000）</td><td style="white-space:nowrap">-36至-40亿</td><td class="orange">-25% 至 -35%</td></tr>
-    <tr><td style="white-space:nowrap">枯水期限电减产15%</td><td style="white-space:nowrap">-8至-10亿</td><td class="orange">-10% 至 -15%</td></tr>
-    <tr><td style="white-space:nowrap">电价上涨0.05元/kWh</td><td style="white-space:nowrap">-5至-6亿</td><td class="orange">-8% 至 -12%</td></tr>
-    <tr><td style="white-space:nowrap">财务费用上升1%（利率+100bp）</td><td style="white-space:nowrap">-1.8至-2亿</td><td class="orange">-3% 至 -5%</td></tr>
+    <tr><td>铝价下跌2000元/吨（至18000）</td><td>-36至-40亿</td><td class="orange">-25% 至 -35%</td></tr>
+    <tr><td>枯水期限电减产15%</td><td>-8至-10亿</td><td class="orange">-10% 至 -15%</td></tr>
+    <tr><td>电价上涨0.05元/kWh</td><td>-5至-6亿</td><td class="orange">-8% 至 -12%</td></tr>
+    <tr><td>财务费用上升1%（利率+100bp）</td><td>-1.8至-2亿</td><td class="orange">-3% 至 -5%</td></tr>
     <tr><td class="red">极端叠加情景</td><td class="red">-55至-60亿</td><td class="red" style="font-weight:bold;">-40% 至 -60%</td></tr>
   </table>
 
@@ -1009,10 +959,10 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>清算价值</h3>
   <table class="tbl">
     <tr><th>资产项</th><th>账面价值</th><th>清算价值</th></tr>
-    <tr><td style="white-space:nowrap">货币资金</td><td style="white-space:nowrap">65亿</td><td class="gold">65亿</td></tr>
-    <tr><td style="white-space:nowrap">存货（铝锭/氧化铝）</td><td style="white-space:nowrap">75亿</td><td>55亿</td></tr>
-    <tr><td style="white-space:nowrap">固定资产（电解槽+厂房+设备）</td><td style="white-space:nowrap">320亿</td><td>150亿</td></tr>
-    <tr><td style="white-space:nowrap">无形资产（采矿权+产能指标）</td><td style="white-space:nowrap">35亿</td><td>20亿</td></tr>
+    <tr><td>货币资金</td><td>65亿</td><td class="gold">65亿</td></tr>
+    <tr><td>存货（铝锭/氧化铝）</td><td>75亿</td><td>55亿</td></tr>
+    <tr><td>固定资产（电解槽+厂房+设备）</td><td>320亿</td><td>150亿</td></tr>
+    <tr><td>无形资产（采矿权+产能指标）</td><td>35亿</td><td>20亿</td></tr>
     <tr><td class="gold">合计</td><td>约495亿</td><td>约290亿</td></tr>
   </table>
   <div class="txt">清算价值约290亿元，当前市值约650亿元。差额体现了持续经营价值、产能指标稀缺性（4500万吨天花板下每个产能指标都有价值）以及绿电铝的政策溢价。产能指标本身的交易价值（约2000-3000元/吨×240万权益产能=48-72亿）也未被账面充分反映。</div>
@@ -1053,17 +1003,17 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>价值投资理论应用</h3>
   <table class="tbl">
     <tr><th>模块</th><th>大师理念</th><th>应用分析</th></tr>
-    <tr><td style="white-space:nowrap">M1</td><td style="white-space:nowrap">巴菲特<br>「能力圈」</td><td style="text-align:left;font-size:11px;">电解铝是典型的强周期制造业，需要深刻理解铝价周期和成本曲线才能在能力圈内投资</td></tr>
-    <tr><td style="white-space:nowrap">M2</td><td style="white-space:nowrap">巴菲特<br>「护城河」</td><td style="text-align:left;font-size:11px;">资源+成本+产能政策三壁垒评分3.6/5.0，壁垒深度中等——周期性行业护城河在经济下行时被削弱</td></tr>
-    <tr><td style="white-space:nowrap">M3</td><td style="white-space:nowrap">段永平<br>「本分」</td><td style="text-align:left;font-size:11px;">国资委实控保证了经营稳定性，但国企\"本分\"程度不及优秀民企，激励机制不足</td></tr>
-    <tr><td style="white-space:nowrap">M4</td><td style="white-space:nowrap">巴菲特<br>「FCF为王」</td><td style="text-align:left;font-size:11px;">FCF约40亿/FCF/净利76%，在周期制造中属中等；但FCF波动大且依赖铝价，质量一般</td></tr>
-    <tr><td style="white-space:nowrap">M5</td><td style="white-space:nowrap">邱国鹭<br>「定价权」</td><td style="text-align:left;font-size:11px;">定价权仅2.5/5.0，铝锭是纯大宗商品，企业是\"价格接受者\"，成本优势是唯一抓手</td></tr>
-    <tr><td style="white-space:nowrap">M6</td><td style="white-space:nowrap">彼得·林奇<br>「周期股」</td><td style="text-align:left;font-size:11px;">典型的\"周期股\"——高PE时买入（行业低谷）、低PE时卖出（行业高峰），违背直觉但最有效</td></tr>
-    <tr><td style="white-space:nowrap">M7</td><td style="white-space:nowrap">邱国鹭<br>「剩者为王」</td><td style="text-align:left;font-size:11px;">产能天花板下行业出清加速，成本领先者（云铝）将成为\"剩者\"，份额持续提升</td></tr>
-    <tr><td style="white-space:nowrap">M8</td><td style="white-space:nowrap">彼得·林奇<br>「困境反转型」</td><td style="text-align:left;font-size:11px;">云铝不属于困境反转型，而是\"景气上行型\"——铝价上行期业绩爆发力极强</td></tr>
-    <tr><td style="white-space:nowrap">M9</td><td style="white-space:nowrap">芒格<br>「逆向思维」</td><td style="text-align:left;font-size:11px;">市场低估了绿电铝碳溢价的长期价值和新能源需求的结构性支撑，高估了限电风险的持续性</td></tr>
-    <tr><td style="white-space:nowrap">M10</td><td style="white-space:nowrap">芒格<br>「Pre-mortem」</td><td style="text-align:left;font-size:11px;">铝价暴跌+限电减产+财务费用三杀是最可能的致死组合，极端情景下股价可能腰斩</td></tr>
-    <tr><td style="white-space:nowrap">M11</td><td style="white-space:nowrap">巴菲特<br>「安全边际」</td><td style="text-align:left;font-size:11px;">PE12.4x处于周期股中性区间，但安全边际取决于对铝价的判断——若铝价维持19000+，当前估值偏低；若铝价跌至16000，则安全边际不足</td></tr>
+    <tr><td>M1</td><td>巴菲特<br>「能力圈」</td><td style="text-align:left;font-size:11px;">电解铝是典型的强周期制造业，需要深刻理解铝价周期和成本曲线才能在能力圈内投资</td></tr>
+    <tr><td>M2</td><td>巴菲特<br>「护城河」</td><td style="text-align:left;font-size:11px;">资源+成本+产能政策三壁垒评分3.6/5.0，壁垒深度中等——周期性行业护城河在经济下行时被削弱</td></tr>
+    <tr><td>M3</td><td>段永平<br>「本分」</td><td style="text-align:left;font-size:11px;">国资委实控保证了经营稳定性，但国企\"本分\"程度不及优秀民企，激励机制不足</td></tr>
+    <tr><td>M4</td><td>巴菲特<br>「FCF为王」</td><td style="text-align:left;font-size:11px;">FCF约40亿/FCF/净利76%，在周期制造中属中等；但FCF波动大且依赖铝价，质量一般</td></tr>
+    <tr><td>M5</td><td>邱国鹭<br>「定价权」</td><td style="text-align:left;font-size:11px;">定价权仅2.5/5.0，铝锭是纯大宗商品，企业是\"价格接受者\"，成本优势是唯一抓手</td></tr>
+    <tr><td>M6</td><td>彼得·林奇<br>「周期股」</td><td style="text-align:left;font-size:11px;">典型的\"周期股\"——高PE时买入（行业低谷）、低PE时卖出（行业高峰），违背直觉但最有效</td></tr>
+    <tr><td>M7</td><td>邱国鹭<br>「剩者为王」</td><td style="text-align:left;font-size:11px;">产能天花板下行业出清加速，成本领先者（云铝）将成为\"剩者\"，份额持续提升</td></tr>
+    <tr><td>M8</td><td>彼得·林奇<br>「困境反转型」</td><td style="text-align:left;font-size:11px;">云铝不属于困境反转型，而是\"景气上行型\"——铝价上行期业绩爆发力极强</td></tr>
+    <tr><td>M9</td><td>芒格<br>「逆向思维」</td><td style="text-align:left;font-size:11px;">市场低估了绿电铝碳溢价的长期价值和新能源需求的结构性支撑，高估了限电风险的持续性</td></tr>
+    <tr><td>M10</td><td>芒格<br>「Pre-mortem」</td><td style="text-align:left;font-size:11px;">铝价暴跌+限电减产+财务费用三杀是最可能的致死组合，极端情景下股价可能腰斩</td></tr>
+    <tr><td>M11</td><td>巴菲特<br>「安全边际」</td><td style="text-align:left;font-size:11px;">PE12.4x处于周期股中性区间，但安全边际取决于对铝价的判断——若铝价维持19000+，当前估值偏低；若铝价跌至16000，则安全边际不足</td></tr>
   </table>
 </div>
 
@@ -1074,19 +1024,19 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>附录A：数据来源</h3>
   <table class="tbl">
     <tr><th>数据类型</th><th>来源平台</th><th>截止日期</th></tr>
-    <tr><td style="white-space:nowrap">财务报表</td><td style="white-space:nowrap">东方财富数据中心/恒生聚源数据库</td><td>2024年报</td></tr>
-    <tr><td style="white-space:nowrap">衍生财务指标</td><td style="white-space:nowrap">同花顺iFinD</td><td>2024年报</td></tr>
-    <tr><td style="white-space:nowrap">估值数据</td><td style="white-space:nowrap">东方财富/同花顺</td><td>2026-06-12</td></tr>
-    <tr><td style="white-space:nowrap">行业数据</td><td style="white-space:nowrap">中国有色金属工业协会/SMM/安泰科</td><td>2025</td></tr>
-    <tr><td style="white-space:nowrap">机构预测</td><td style="white-space:nowrap">中信/华泰/国泰君安等券商研报</td><td>2026-05</td></tr>
+    <tr><td>财务报表</td><td>东方财富数据中心/恒生聚源数据库</td><td>2024年报</td></tr>
+    <tr><td>衍生财务指标</td><td>同花顺iFinD</td><td>2024年报</td></tr>
+    <tr><td>估值数据</td><td>东方财富/同花顺</td><td>2026-06-12</td></tr>
+    <tr><td>行业数据</td><td>中国有色金属工业协会/SMM/安泰科</td><td>2025</td></tr>
+    <tr><td>机构预测</td><td>中信/华泰/国泰君安等券商研报</td><td>2026-05</td></tr>
   </table>
 
   <h3>附录B：产能明细</h3>
   <table class="tbl">
     <tr><th>产品</th><th>总产能</th><th>权益产能</th><th>产能利用率（2024）</th></tr>
-    <tr><td style="white-space:nowrap">电解铝</td><td style="white-space:nowrap">305万吨</td><td>240万吨</td><td class="gold">约88%</td></tr>
-    <tr><td style="white-space:nowrap">铝加工</td><td style="white-space:nowrap">150万吨</td><td>150万吨</td><td>约70%</td></tr>
-    <tr><td style="white-space:nowrap">氧化铝</td><td style="white-space:nowrap">140万吨</td><td>140万吨</td><td>约85%</td></tr>
+    <tr><td>电解铝</td><td>305万吨</td><td>240万吨</td><td class="gold">约88%</td></tr>
+    <tr><td>铝加工</td><td>150万吨</td><td>150万吨</td><td>约70%</td></tr>
+    <tr><td>氧化铝</td><td>140万吨</td><td>140万吨</td><td>约85%</td></tr>
   </table>
 
   <div class="txt" style="font-size:11px;">
