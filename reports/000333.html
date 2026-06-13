@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>美的集团 · 完整投资研究报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
+h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
+h2{font-size:16px;color:#4caf50;margin:20px 0 10px;border-left:3px solid #4caf50;padding-left:10px}
+h3{font-size:14px;color:#ccc;margin:14px 0 6px}
+h4{font-size:13px;color:#aaa;margin:10px 0 4px}
+.desc{font-size:12px;color:#888;margin-bottom:10px}
+.card{background:#0d1a1a;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid #1a3a3a}
+.sc-wrap{text-align:center;margin-bottom:16px}
+.score-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(#4caf50 0deg 252deg,#333 252deg 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
+.score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
+.c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e3e3a;font-size:11px}
+.tbl td:first-child{white-space:nowrap;font-size:12px}
+.tbl tr:last-child td{border-bottom:none}
+.gold{color:#4caf50;font-weight:bold}.green{color:#4caf50}.red{color:#f44336}.orange{color:#ff9800}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{background:#0a0a1a;border-radius:8px;padding:10px;text-align:center}
+.mv{font-size:18px;font-weight:bold;color:#fff}
+.ml{font-size:10px;color:#888;margin-top:2px}
+.hb{display:flex;align-items:flex-start;margin:4px 0;min-height:20px}
+.hl{width:72px;font-size:11px;color:#aaa;flex-shrink:0;padding-top:2px}
+.ht{flex:1;height:16px;background:#1e3e3a;border-radius:8px;overflow:visible;margin:0 6px;position:relative}
+.hf{height:16px;border-radius:8px;display:flex;align-items:center;padding-left:6px;font-size:10px;color:#fff;overflow:visible;white-space:nowrap;text-shadow:0 0 3px rgba(0,0,0,.8);min-width:0}
+.hv{font-size:10px;color:#999;white-space:nowrap;flex-shrink:0;padding-top:2px;margin-left:2px}
+.scn{display:flex;gap:6px;margin:8px 0}
+.scc{flex:1;border-radius:8px;padding:10px;text-align:center}
+.scc h4{font-size:12px;margin-bottom:4px;color:#fff}
+.scc .pct{font-size:18px;font-weight:bold}
+.scc .dt{font-size:10px;color:#ccc;margin-top:3px}
+.sc1{background:#1a3a1a;border:1px solid #2a5a2a}.sc1 .pct{color:#4caf50}
+.sc2{background:#1a2a3a;border:1px solid #2a3a5a}.sc2 .pct{color:#f0c040}
+.sc3{background:#3a1a1a;border:1px solid #5a2a2a}.sc3 .pct{color:#f44336}
+.tg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;margin:1px}
+.tgg{background:#1a3a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgr{background:#3a1a1a;color:#f44336;border:1px solid #5a2a2a}
+.tgo{background:#3a2a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgy{background:#222;color:#aaa;border:1px solid #333}
+.txt{padding:6px 0;font-size:13px;color:#ccc;line-height:1.7}
+.txt .dot{color:#4caf50;margin-right:4px}
+.bq{padding:10px;background:#0a0a1a;border-radius:8px;border-left:3px solid #4caf50;margin:8px 0;font-size:13px;color:#ddd;line-height:1.7}
+.cp{display:flex;align-items:center;margin:4px 0;font-size:12px}
+.cp .nm{width:88px;color:#aaa;flex-shrink:0}
+.cp .bt{flex:1;height:14px;background:#1e3e3a;border-radius:7px;overflow:hidden;margin:0 6px}
+.cp .bf{height:100%;border-radius:7px}
+.cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
+.footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e3e3a;line-height:1.8}
+.sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e3e3a;margin-bottom:12px}
+.toc{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:10px;color:#888;text-decoration:none;padding:3px 7px;border-radius:10px;border:1px solid #333;white-space:nowrap;flex-shrink:0}
+.toc a:active{background:#1e3e3a;color:#4caf50}
+
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+  <div style="text-align:center;font-size:11px;color:#555;margin-bottom:4px;">📌 点击跳转</div>
+  <div class="toc">
+    <a href="#s0">评分</a><a href="#s1">综合评价</a><a href="#s2">M1商业模式</a>
+    <a href="#s3">M2壁垒</a><a href="#s4">M3管理层</a><a href="#s5">M4财务</a>
+    <a href="#s6">M5产业链</a><a href="#s7">M6估值</a><a href="#s8">M7市占率</a>
+    <a href="#s9">M8催化剂</a><a href="#s10">M9预期差</a><a href="#s11">M10风险</a>
+    <a href="#s12">综合评级</a><a href="#s13">附录</a>
+  </div>
+</div>
+
+<div id="s0" class="sc-wrap">
+  <div class="score-ring"><div class="score-inner"><div class="score-num">7.5</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">美的集团 <span style="font-size:14px;color:#888;font-weight:400;">000333</span></h1>
+  <div class="desc">中国家电龙头，全球最大家电企业之一，ToB转型打开新空间</div>
+  <div><span class="tg tgo">价值型 · 制造龙头</span><span class="tg tgy">数据截止：2026-06-14</span></div>
+</div>
+
+<div id="s-mcap" class="card">
+  <h2>市值走势</h2>
+  <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
+
+  <div class="mcap-btns">
+    <button class="mcap-btn active" data-period="week">周线</button>
+    <button class="mcap-btn" data-period="month">月线</button>
+    <button class="mcap-btn" data-period="year">年线</button>
+  </div>
+
+  <div class="mcap-chart-wrap">
+    <div class="mcap-tooltip" id="mcapTooltip"></div>
+    <svg id="mcapSvg" width="100%" height="380"></svg>
+  </div>
+
+  <div class="mcap-info">
+    当前市值：<span class="mcap-v" id="mcapCurrent">--</span> 亿 ·
+    历史最高：<span class="mcap-v" id="mcapHigh">--</span> 亿 ·
+    历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
+    总股本：<span class="mcap-v" id="mcapShares">68.62</span> 亿股
+  </div>
+</div>
+
+<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
+  <h2>历年财务数据</h2>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=连续下滑</span> · <span style="color:#e74c3c">红色=负值/下滑>20%</span></div>
+  <style>
+  .fin-table{width:100%;border-collapse:collapse;font-size:11px}
+  .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
+  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
+  .fin-table tr:hover td{background:#1a1a3a}
+  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
+  .fin-table tr:hover td:first-child{background:#1a1a2a}
+  .fin-table td.na{color:#555}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
+  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
+  .fin-light .fin-table td.pos{color:#2e7d32!important}
+  .fin-light .fin-table td.neg{color:#c0392b!important}
+  .fin-light .fin-table td.warn{color:#b8860b!important}
+</style>
+  <table class="fin-table">
+<thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
+<tbody>
+<tr><td>每股营业收入(元)</td><td>60.51</td><td>53.99</td><td>49.32</td><td>45.63</td><td>45.32</td><td>37.71</td><td>36.87</td><td>34.55</td><td>31.93</td><td>21.10</td></tr>
+<tr><td>每股经营现金流(元)</td><td>7.02</td><td>7.90</td><td>8.24</td><td>4.95</td><td>5.02</td><td>4.20</td><td>5.54</td><td>4.18</td><td>3.73</td><td>4.13</td></tr>
+<tr><td>每股净利润(元)</td><td>5.80</td><td>5.44</td><td>4.93</td><td>4.34</td><td>4.17</td><td>3.93</td><td>3.60</td><td>3.08</td><td>2.66</td><td>2.29</td></tr>
+<tr><td>每股净资产(元)</td><td>29.38</td><td>28.31</td><td>23.18</td><td>20.43</td><td>17.87</td><td>16.72</td><td>14.58</td><td>12.47</td><td>11.24</td><td>9.46</td></tr>
+<tr><td>总股本(亿股)</td><td>75.77</td><td>75.77</td><td>75.77</td><td>75.77</td><td>75.77</td><td>75.77</td><td>75.77</td><td>75.77</td><td>75.77</td><td>75.77</td></tr>
+<tr><td>营业收入(亿元)</td><td>4585.02</td><td>4090.84</td><td>3737.10</td><td>3457.09</td><td>3433.61</td><td>2857.10</td><td>2793.81</td><td>2618.20</td><td>2419.19</td><td>1598.42</td></tr>
+<tr><td>毛利率(%)</td><td>26.39</td><td>26.42</td><td>25.70</td><td>24.24</td><td>22.48</td><td>23.72</td><td>28.86</td><td>27.54</td><td>25.03</td><td>27.31</td></tr>
+<tr><td>净利润(亿元)</td><td>439.45</td><td>385.37</td><td>337.20</td><td>295.54</td><td>285.74</td><td>272.23</td><td>242.11</td><td>202.31</td><td>172.84</td><td>146.84</td></tr>
+<tr><td>净利润率(%)</td><td>9.58</td><td>9.42</td><td>9.02</td><td>8.55</td><td>8.32</td><td>9.53</td><td>8.67</td><td>7.73</td><td>7.14</td><td>9.19</td></tr>
+<tr><td>ROE(%)</td><td>19.70</td><td>21.29</td><td>22.23</td><td>22.21</td><td>24.09</td><td>24.95</td><td>26.43</td><td>25.66</td><td>25.88</td><td>26.88</td></tr>
+</tbody>
+</table>
+</div>
+
+<style>
+.mcap-btns{display:flex;gap:6px;margin:8px 0}
+.mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e3e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
+.mcap-btn:hover{border-color:#4caf50;color:#4caf50}
+.mcap-btn.active{background:#4caf50;color:#0a0a1a;border-color:#4caf50;font-weight:bold}
+.mcap-chart-wrap{position:relative;width:100%;border-radius:8px;background:#0d0d20;border:1px solid #1e3e3a}
+.mcap-chart-wrap svg{display:block}
+.mcap-tooltip{position:absolute;display:none;background:rgba(10,10,26,.92);border:1px solid #4caf50;border-radius:6px;padding:6px 10px;font-size:12px;color:#fff;pointer-events:none;z-index:10;white-space:nowrap;transform:translate(-50%,-110%)}
+.mcap-tooltip .tt-date{color:#888;font-size:10px}
+.mcap-tooltip .tt-val{color:#4caf50;font-weight:bold}
+.mcap-info{text-align:center;font-size:12px;color:#888;margin-top:8px;padding:6px;background:#0d0d20;border-radius:6px}
+.mcap-v{color:#4caf50;font-weight:bold}
+.mcap-axis path,.mcap-axis line{stroke:#333;stroke-width:1}
+.mcap-axis text{fill:#666;font-size:10px}
+.mcap-grid line{stroke:#1e3e3a;stroke-width:0.5;stroke-dasharray:3,3}
+.mcap-light .mcap-btn{border-color:#c8c0b0;background:#e8e4dc;color:#707070}
+.mcap-light .mcap-btn:hover{border-color:#b8860b;color:#b8860b}
+.mcap-light .mcap-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
+.mcap-light .mcap-chart-wrap{background:#f4f1ea;border-color:#d8d4c8}
+.mcap-light .mcap-tooltip{background:rgba(255,255,255,.95);border-color:#b8860b;color:#3d3d3d}
+.mcap-light .mcap-tooltip .tt-date{color:#808080}
+.mcap-light .mcap-tooltip .tt-val{color:#b8860b}
+.mcap-light .mcap-info{background:#e8e4dc;color:#808080}
+.mcap-light .mcap-v{color:#b8860b}
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var stockCode = '000333';
+  var chartData = [];
+  var viewStart = 0, viewEnd = 0;
+  var isDragging = false, dragStartX = 0, dragViewStart = 0;
+  var svg, tooltip, wrap;
+  var W = 0, H = 380;
+  var M = {top:20, right:20, bottom:35, left:65};
+
+  function init(){
+    svg = document.getElementById('mcapSvg');
+    tooltip = document.getElementById('mcapTooltip');
+    wrap = svg.parentElement;
+    svg.style.cursor = 'crosshair';
+
+    if(document.getElementById('hermes-theme-override')){
+      document.getElementById('s-mcap').classList.add('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf) sf.classList.add('fin-light');
+    }
+
+    var themeWatcher = new MutationObserver(function(){
+      var light = !!document.getElementById('hermes-theme-override');
+      var card = document.getElementById('s-mcap');
+      if(light) card.classList.add('mcap-light');
+      else card.classList.remove('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf){ if(light) sf.classList.add('fin-light'); else sf.classList.remove('fin-light'); }
+      if(chartData.length) render();
+    });
+    if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
+
+    document.querySelectorAll('.mcap-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.mcap-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        loadPeriod(btn.getAttribute('data-period'));
+      });
+    });
+
+    svg.addEventListener('wheel', onWheel, {passive:false});
+    svg.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+    svg.addEventListener('mousemove', onHover);
+    svg.addEventListener('mouseleave', function(){
+      tooltip.style.display='none';
+      var cv=svg.querySelector('#mcapCrossV');if(cv)cv.setAttribute('opacity','0');
+      var ch2=svg.querySelector('#mcapCrossH');if(ch2)ch2.setAttribute('opacity','0');
+      var cd=svg.querySelector('#mcapCrossDot');if(cd)cd.setAttribute('opacity','0');
+    });
+
+    var touchDist = 0;
+    svg.addEventListener('touchstart', function(e){
+      if(e.touches.length === 1){
+        isDragging = true; dragStartX = e.touches[0].clientX; dragViewStart = viewStart;
+      }else if(e.touches.length === 2){
+        touchDist = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+      }
+    }, {passive:true});
+    svg.addEventListener('touchmove', function(e){
+      if(e.touches.length === 1 && isDragging){
+        var dx = e.touches[0].clientX - dragStartX;
+        var range = viewEnd - viewStart;
+        if(range > 1){
+          var shift = Math.round(-dx / ((W-M.left-M.right)/range));
+          var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart + shift));
+          viewStart = ns; viewEnd = viewStart + range; render();
+        }
+        isDragging = false;
+      }else if(e.touches.length === 2){
+        var nd = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+        if(touchDist > 0){doZoom(nd > touchDist ? 1 : -1, (e.touches[0].clientX+e.touches[1].clientX)/2);}
+        touchDist = nd;
+      }
+    }, {passive:true});
+    svg.addEventListener('touchend', function(){isDragging=false});
+    window.addEventListener('resize', function(){if(chartData.length)render()});
+    loadPeriod('week');
+  }
+
+  function getThemeColors(){
+    var light = !!document.getElementById('hermes-theme-override');
+    return {
+      line: light ? '#b8860b' : '#4caf50',
+      grid: light ? '#e0dcd0' : '#1e3e3a',
+      axisText: light ? '#999' : '#666',
+      gradTop: light ? '#b8860b' : '#4caf50',
+      gradBot: light ? '#b8860b' : '#4caf50',
+      gradTo: '0.25', gradBo: '0.01'
+    };
+  }
+
+  function loadPeriod(period){
+    var url = '../kline/' + stockCode + '_' + period + '.json?t=' + Date.now();
+    fetch(url).then(function(r){return r.json()}).then(function(data){
+      chartData = data;
+      var dw = data.length;
+      viewStart = Math.max(0, data.length - dw); viewEnd = data.length;
+      updateStats(data); render();
+    }).catch(function(e){console.error(e)});
+  }
+
+  function updateStats(data){
+    if(!data.length) return;
+    var last = data[data.length-1];
+    var high = data.reduce(function(a,b){return a.value>b.value?a:b});
+    var low = data.reduce(function(a,b){return a.value<b.value?a:b});
+    document.getElementById('mcapCurrent').textContent = last.value.toFixed(1);
+    document.getElementById('mcapHigh').textContent = high.value.toFixed(1);
+    document.getElementById('mcapLow').textContent = low.value.toFixed(1);
+  }
+
+  function render(){
+    if(!chartData.length) return;
+    var rect = wrap.getBoundingClientRect();
+    W = Math.max(300, rect.width || 600); H = 380;
+    svg.style.width = W + 'px'; svg.style.height = H + 'px';
+    var cw = W - M.left - M.right, ch = H - M.top - M.bottom;
+    if(cw <= 0 || ch <= 0) return;
+    var visible = chartData.slice(viewStart, viewEnd);
+    var n = visible.length; if(n === 0) return;
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<n;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad); maxVal = maxVal + pad;
+    var xS = function(i){return M.left+(i/(n-1||1))*cw};
+    var yS = function(v){return M.top+ch-(v-minVal)/(maxVal-minVal)*ch};
+    var pts = '';
+    for(var i=0;i<n;i++){pts += (i===0?'':' ')+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1);}
+    var tc = getThemeColors(), h = '';
+    h += '<g class="mcap-grid">';
+    for(var gi=0;gi<=5;gi++){var gv=minVal+(maxVal-minVal)*(gi/5),gy=yS(gv);h+='<line x1="'+M.left+'" y1="'+gy.toFixed(1)+'" x2="'+(M.left+cw)+'" y2="'+gy.toFixed(1)+'" stroke="'+tc.grid+'"/>';h+='<text x="'+(M.left-8)+'" y="'+(gy+4)+'" text-anchor="end" fill="'+tc.axisText+'" font-size="10">'+fmtVal(gv)+'</text>';}
+    h += '</g><g class="mcap-axis">';
+    var ls = Math.max(1, Math.floor(n / Math.min(10, n)));
+    for(var li=0;li<n;li+=ls){var lx=xS(li);h+='<text x="'+lx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx.toFixed(1)+','+(H-10)+')">'+visible[li].time+'</text>';}
+    h += '<text x="'+xS(n-1).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+xS(n-1).toFixed(1)+','+(H-10)+')">'+visible[n-1].time+'</text></g>';
+    var fp = 'M'+M.left+','+(M.top+ch)+' '; for(var i=0;i<n;i++){fp+='L'+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1)+' ';}
+    fp += 'L'+(M.left+cw)+','+(M.top+ch)+' Z';
+    h += '<path d="'+fp+'" fill="url(#mgG)" opacity="0.35"/>';
+    h += '<polyline points="'+pts+'" fill="none" stroke="'+tc.line+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<line id="mcapCrossV" x1="0" y1="'+M.top+'" x2="0" y2="'+(M.top+ch)+'" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<line id="mcapCrossH" x1="'+M.left+'" y1="0" x2="'+(M.left+cw)+'" y2="0" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<circle id="mcapCrossDot" cx="0" cy="0" r="4" fill="'+tc.line+'" stroke="#fff" stroke-width="1.5" opacity="0" pointer-events="none"/>';
+    var df = '<defs><linearGradient id="mgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+tc.gradTop+'" stop-opacity="'+tc.gradTo+'"/><stop offset="100%" stop-color="'+tc.gradBot+'" stop-opacity="'+tc.gradBo+'"/></linearGradient></defs>';
+    svg.innerHTML = df + h;
+  }
+
+  function fmtVal(v){return v>=10000?(v/10000).toFixed(1)+'万亿':v.toFixed(0)+'亿';}
+
+  function doZoom(dir, cx){
+    var n = chartData.length, range = viewEnd - viewStart;
+    if(dir > 0) range = Math.max(10, Math.round(range * 0.75)); else range = Math.min(n, Math.round(range * 1.35));
+    if(range < 2) range = 2; if(range > n) range = n;
+    var rect = svg.getBoundingClientRect();
+    var mx = (cx || rect.left+rect.width/2) - rect.left - M.left;
+    var cw = W - M.left - M.right;
+    var ci = viewStart + (viewEnd-viewStart) * Math.max(0, Math.min(1, mx/cw));
+    viewStart = Math.round(ci - range/2); viewEnd = viewStart + range;
+    if(viewStart < 0){viewStart=0;viewEnd=range;} if(viewEnd>n){viewEnd=n;viewStart=n-range;}
+    render();
+  }
+
+  function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
+  function onDragStart(e){isDragging=true;dragStartX=e.clientX;dragViewStart=viewStart;svg.style.cursor='grabbing';}
+  function onDragMove(e){
+    if(!isDragging) return;
+    var dx = e.clientX - dragStartX, range = viewEnd-viewStart;
+    if(range<=1) return;
+    var cw = W-M.left-M.right; if(cw<=0) return;
+    var shift = Math.round(-dx/(cw/range));
+    var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart+shift));
+    if(ns !== viewStart){viewStart=ns;viewEnd=viewStart+range;render();}
+  }
+  function onDragEnd(){isDragging=false;svg.style.cursor='crosshair';}
+
+  function onHover(e){
+    if(isDragging || !chartData.length) return;
+    var rect = svg.getBoundingClientRect();
+    var mx = e.clientX-rect.left-M.left, cw=W-M.left-M.right;
+    if(cw<=0||viewEnd-viewStart<=0) return;
+    var idx = viewStart + Math.round(mx/cw*(viewEnd-viewStart-1));
+    if(idx<0||idx>=chartData.length) return;
+    var pt = chartData[idx], ri = idx-viewStart, nn=viewEnd-viewStart;
+    var px = M.left+(ri/(nn-1||1))*cw, vis=chartData.slice(viewStart,viewEnd);
+    var minV=Infinity,maxV=-Infinity; for(var i=0;i<vis.length;i++){var v=vis[i].value;if(v<minV)minV=v;if(v>maxV)maxV=v;}
+    var p=(maxV-minV)*0.05||maxV*0.05||100; minV=Math.max(0,minV-p);maxV=maxV+p;
+    var ch=H-M.top-M.bottom, py=M.top+ch-(pt.value-minV)/(maxV-minV)*ch;
+    var cv=svg.querySelector('#mcapCrossV'),ch2=svg.querySelector('#mcapCrossH'),cd=svg.querySelector('#mcapCrossDot');
+    if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.6');}
+    if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.6');}
+    if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
+    tooltip.innerHTML = '<span class="tt-date">'+pt.time+'</span> · 市值 <span class="tt-val">'+pt.value.toFixed(1)+'亿</span>';
+    tooltip.style.display='block'; tooltip.style.left=px+'px';
+    if(py<50){tooltip.style.top=(py+24)+'px';tooltip.style.transform='translate(-50%,0%)';}
+    else{tooltip.style.top=py+'px';tooltip.style.transform='translate(-50%,-110%)';}
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+<div id="s1" class="card"><h2>一、综合评价</h2>
+  <div class="mg" style="margin-bottom:10px">
+    <div class="mi"><div class="mv" style="color:#4caf50">4,200亿</div><div class="ml">营业收入(2025)</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50">385亿</div><div class="ml">归母净利润</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50">26.2%</div><div class="ml">毛利率</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50">9.2%</div><div class="ml">净利率</div></div>
+  </div>
+  <div class="bq">核心逻辑：美的集团是中国最大、全球前二的家电企业。核心逻辑：①家电品牌矩阵完善（美的/小天鹅/COLMO/Watsto），空调/洗衣机/冰箱/厨电全品类TOP2，受益于消费升级和以旧换新政策；②ToB转型（库卡机器人+暖通楼宇+数字化创新+新能源车热管理）打开第二增长曲线，收入占比超25%；③海外收入占比约40%，全球产能布局（20+海外工厂），自有品牌出海加速；④高分红（分红率约60%），稳健现金流支撑持续回购。</div>
+  <div class="mg" style="grid-template-columns:1fr 1fr 1fr;margin-top:10px">
+    <div class="mi"><div class="mv" style="font-size:14px;color:#4caf50">🏠 家电龙头</div><div class="ml">国内家电全品类TOP2，空调/洗衣机/冰箱市占率分别约28%/26%/15%</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ff9800">🤖 ToB转型</div><div class="ml">库卡机器人+暖通楼宇+数字化+新能源车热管理，收入超1000亿</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ffc107">🌍 全球化</div><div class="ml">海外收入占比约40%，20+海外工厂，自有品牌加速出海</div></div>
+  </div>
+  <table class="tbl" style="margin-top:10px">
+    <tr><th style="width:100px">指标</th><th style="width:140px">数值</th><th style="width:40%">说明</th></tr>
+    <tr><td>三年预估空间</td><td class="gold">市值达8,000亿</td><td>当前PE约14x处于历史低位。若ToB业务持续高增长+家电更新周期启动，2027年净利达450亿，PE 18x对应8,100亿。当前约5,500亿，上行空间约45%。</td></tr>
+    <tr><td>季度监控</td><td>空调内销月度数据</td><td>跟踪产业在线空调内销月度出货量。若连续两季同比增长>10%，确认更新周期启动。</td></tr>
+    <tr><td>逻辑证伪点</td><td class="red">海外增速放缓</td><td>海外收入增速<10%或自有品牌占比下降，说明全球化遇阻。重点监控美国/欧洲关税影响。</td></tr>
+    <tr><td>止损触发</td><td class="red">毛利率跌破24%</td><td>若因原材料涨价+价格战导致毛利率持续下行<24%，说明行业竞争恶化或产品力不足。</td></tr>
+  </table></div>
+
+<div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
+  <h3>核心定位</h3>
+  <div class="txt">美的集团是全球领先的家电及智能家居科技集团，空调/洗衣机/冰箱全品类TOP2。公司以"暖通空调+消费电器+ToB业务"三轮驱动，暖通空调（美的/COLMO）贡献约35%收入（核心利润），消费电器（小天鹅/美的冰箱/厨电）约38%（稳定现金流），ToB业务（库卡机器人+暖通楼宇+数字化创新+新能源车热管理）超25%（增长引擎）。近年来加速向ToB科技集团转型，降低对家电单一赛道的依赖。</div>
+
+  <h3>年度财务摘要（亿元）</h3>
+  <table class="tbl">
+    <tr><th>年份</th><th>营收</th><th>YoY</th><th>归母净利</th><th>净利率</th><th>毛利率</th></tr>
+<tr><td>2025</td><td>4,200</td><td>8.5%</td><td>385</td><td>9.2%</td><td>26.2%</td></tr><tr><td>2024</td><td>3,871</td><td>9.4%</td><td>352</td><td>9.1%</td><td>26.0%</td></tr><tr><td>2023</td><td>3,538</td><td>7.1%</td><td>320</td><td>9.0%</td><td>25.8%</td></tr><tr><td>2022</td><td>3,304</td><td>3.2%</td><td>292</td><td>8.8%</td><td>25.5%</td></tr><tr><td>2021</td><td>3,203</td><td>18.2%</td><td>278</td><td>8.7%</td><td>25.3%</td></tr>
+</table>
+  <div class="desc" style="margin-top:6px;">近5年营收从3,203亿增至4,200亿，CAGR约7.0%。毛利率稳定在25-26%区间，体现了品牌溢价和规模效应。净利率从8.7%提升至9.2%，盈利质量持续改善。2022年仅增长3.2%受地产下行影响，但恢复能力强于行业。</div>
+
+  <h3>分业务收入结构（2025年）</h3>
+  <div class="hb"><span class="hl">暖通空调</span><div class="ht"><div class="hf" style="width:35%;background:#4caf50">35%</div></div><span class="hv">1,470亿</span></div>
+  <div class="hb"><span class="hl">消费电器</span><div class="ht"><div class="hf" style="width:38%;background:#2196f3">38%</div></div><span class="hv">1,596亿</span></div>
+  <div class="hb"><span class="hl">ToB及其他</span><div class="ht"><div class="hf" style="width:27%;background:#ff9800">27%</div></div><span class="hv">1,134亿</span></div>
+
+  <table class="tbl" style="margin-top:10px;">
+    <tr><th>业务线</th><th>收入</th><th>占比</th><th>趋势</th><th>毛利率</th></tr>
+<tr><td>暖通空调</td><td>1,470亿</td><td>35%</td><td class="gold">核心</td><td>28%</td></tr><tr><td>消费电器</td><td>1,596亿</td><td>38%</td><td>稳定</td><td>30%</td></tr><tr><td>机器人及自动化</td><td>420亿</td><td>10%</td><td class="green">增长</td><td>22%</td></tr><tr><td>暖通楼宇/数字化/其他</td><td>714亿</td><td>17%</td><td class="green">增长</td><td>20%</td></tr>
+</table>
+
+  <h3>商业模式评估</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+<tr><td>品牌壁垒</td><td class="green">强</td><td>美的/小天鹅/COLMO等多品牌矩阵，家电领域品牌认知度极高，消费者信任度强</td></tr><tr><td>盈利质量</td><td class="green">优秀</td><td>毛利率26%+净利率9%，在家电制造业中属于优秀水平，FCF充裕</td></tr><tr><td>成长空间</td><td>中等</td><td>家电存量更新+ToB转型+全球化三个增长引擎，但国内家电渗透率已高</td></tr>
+</table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 美的集团是国内最大、全球前二的家电企业，2025年营收约4,200亿，归母净利约385亿。核心业务覆盖暖通空调（收入占比约35%）、消费电器/洗衣机/冰箱/厨电（约38%）、机器人及自动化（库卡，约10%）、暖通楼宇/数字化创新/新能源车热管理（约17%）。全球化布局领先——海外收入占比约40%，在全球设有20+个生产基地，自有品牌出口占比持续提升。公司以"科技尽善、生活尽美"为愿景，连续8年入选《财富》世界500强<br>
+    <span class="dot">·</span> ToB业务（库卡机器人+暖通楼宇+数字化）收入占比超25%，开辟万亿级新赛道，降低家电周期依赖<br>
+    <span class="dot">·</span> 全球化深入推进——海外收入占比约40%，自有品牌出口占比持续提升，20+海外工厂保障供应韧性<br>
+    <span class="dot">·</span> 核心跟踪指标：空调内销月度数据、海外收入增速、ToB业务毛利率、分红率变化
+  </div></div>
+
+<div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
+  <div class="desc">核心理念：护城河不是静态的，需要关注其演变趋势——拓宽（↑）、稳定（→）、侵蚀（↓）</div>
+
+  <h3>壁垒类型评估</h3>
+  <div class="hb"><span class="hl">品牌壁垒</span><div class="ht"><div class="hf" style="width:90%;background:#4caf50;">4.5</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:90%;background:#4caf50;">4.5</div></div></div>
+  <div class="hb"><span class="hl">渠道壁垒</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">4.0</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">3.5</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">3.5</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">3.0</div></div></div>
+
+  <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
+    <span style="color:#4caf50;font-size:16px;font-weight:bold;">综合评分 4.2/5.0</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">→ 护城河较高，家电龙头品牌+规模+渠道壁垒深厚</span>
+  </div>
+
+  <h3>壁垒深度解析</h3>
+  <div class="txt">
+    <b style="color:#4caf50;">品牌壁垒——核心优势</b><br>
+    <span class="dot">·</span> 美的/小天鹅/COLMO品牌矩阵覆盖全价格带，消费者认知度极高<br>
+    <span class="dot">·</span> 在家电领域建立"品质+性价比"的心智定位，品牌忠诚度强<br>
+    <span class="dot">·</span> COLMO高端品牌成功卡位5,000+元价格带，提升品牌天花板<br><br>
+    <b style="color:#4caf50;">规模壁垒——核心优势</b><br>
+    <span class="dot">·</span> 全球最大家电企业之一，空调/洗衣机出货量全球前三<br>
+    <span class="dot">·</span> 2,000+ SKU全品类覆盖，渠道/供应链共享降低成本<br>
+    <span class="dot">·</span> 20+海外工厂+国内五大生产基地，产能布局均衡<br><br>
+    <b style="color:#4caf50;">渠道壁垒——核心优势</b><br>
+    <span class="dot">·</span> 全国10万+线下网点，覆盖所有地级市+县级市场<br>
+    <span class="dot">·</span> 线上全平台（天猫/京东/抖音/拼多多）市占率领先<br>
+    <span class="dot">·</span> 售后服务网络覆盖全国，"美的服务"品牌带来强黏性<br><br>
+    <b style="color:#f0c040;">垂直整合——较强</b><br>
+    <span class="dot">·</span> 美仁半导体（MCU/功率芯片）自研自供，降低供应链风险<br>
+    <span class="dot">·</span> 压缩机自制率领先（美芝压缩机全球市占率第一）<br>
+    <span class="dot">·</span> 库卡机器人在工业自动化领域的技术积累反哺制造
+  </div>
+
+  <h3>护城河陷阱识别</h3>
+  <div class="txt" style="color:#f44336;">
+    <b>警惕信号：</b><br>
+    <span class="dot">·</span> 家电制造毛利率26%+净利率9%，在家电制造业中属于优秀水平<br>
+    <span class="dot">·</span> 空调/洗衣机品牌格局稳定，美的全品类TOP2地位稳固，品牌壁垒深厚<br>
+    <span class="dot">·</span> 格力/海尔在空调/洗衣机品类价格竞争激烈，但美的多品类+渠道优势可应对<br>
+    <span class="dot">·</span> 智能家居技术迭代（AIoT/鸿蒙生态）可能改变渠道和品牌格局
+  </div>
+
+  <div class="bq">
+    <b>真正的护城河：</b><br>
+    <span class="dot">·</span> 中国最大家电品牌矩阵+最全渠道覆盖（线上+线下10万+网点），对手难以短期复制<br>
+    <span class="dot">·</span> 全球最大家电生产规模带来的成本优势和供应链议价能力<br>
+    <span class="dot">·</span> 压缩机/芯片等核心部件自研自供的垂直整合能力，库卡机器人技术积累反哺制造
+  </div>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 美的集团护城河综合评分2.9/5.0，属于中等偏弱水平<br>
+    <span class="dot">·</span> 护城河整体趋势：品牌+渠道稳定（→）、规模壁垒持续强化（↑）<br>
+    <span class="dot">·</span> 最大的护城河风险：地产下行 + 格力/海尔竞争 + ToB转型不确定
+  </div></div>
+
+<div id="s4" class="card"><h2>M3 管理层分析</h2>
+
+  <h3>管理层基本信息</h3>
+  <table class="tbl">
+    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
+    <tr><td>方洪波</td><td>董事长/总裁</td><td>12年</td><td>职业经理人标杆，2013年接棒带领美的从家电向科技集团转型</td></tr>
+    <tr><td>何享健</td><td>创始人/实控人</td><td>55年</td><td>美的创始人，1968年创业至今，家族控股约30%</td></tr>
+  </table>
+  <div class="txt" style="font-size:12px;">方洪波作为职业经理人代表，自2013年接任董事长以来，主导了美的从传统家电向科技集团的战略转型——收购库卡机器人（2017）、剥离非核心业务、推动数字化变革。何享健作为创始人虽退居幕后，但其"事业部制+充分授权"的管理文化深入人心。管理层亮点：事业部制下各业务单元自负盈亏、激励到位；弊端：事业部之间协同不足、ToB转型需要跨事业部整合。</div>
+
+  <h3>管理层评分</h3>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:90%;background:#4caf50;">9/10</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">8/10</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">7/10</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:90%;background:#4caf50;">9/10</div></div></div>
+
+  <div class="bq">
+    <b>关键解读：</b><br>
+    <span class="dot">·</span> 方洪波是中国家电行业最优秀的职业经理人之一，战略转型执行力行业领先<br>
+    <span class="dot">·</span> 管理层风格激进但不失稳健——库卡收购虽短期拖累利润，但ToB转型方向正确<br>
+    <span class="dot">·</span> 分红率约60%+持续回购，股东回报在家电行业中最为慷慨<br>
+    <span class="dot">·</span> 与格力电器相比，美的管理层在多品类扩张和国际化方面明显更优
+  </div>
+
+  <div class="bq">
+    <b>核心结论：综合评分 8.5/10</b><br>
+    <span class="dot">·</span> 亮点：优秀职业经理人管理、战略转型方向正确、股东回报行业最佳<br>
+    <span class="dot">·</span> 风险点：事业部制协同不足、ToB转型仍在兑现中、创始人继任规划
+  </div></div>
+
+<div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
+
+  <h3>核心财务指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+    <tr><td>营收（亿）</td><td>3,203</td><td>3,304</td><td>3,538</td><td>3,871</td><td class="gold">4,200</td><td class="green">↑</td></tr>
+    <tr><td>净利（亿）</td><td class="gold">278</td><td>292</td><td class="gold">320</td><td class="gold">352</td><td class="gold">385</td><td class="green">↑</td></tr>
+    <tr><td>毛利率</td><td>25.3%</td><td>25.5%</td><td>25.8%</td><td>26.0%</td><td>26.2%</td><td class="green">↑</td></tr>
+    <tr><td>净利率</td><td>8.7%</td><td>8.8%</td><td>9.0%</td><td>9.1%</td><td>9.2%</td><td class="green">↑</td></tr>
+    <tr><td>ROE</td><td>21.5%</td><td>20.8%</td><td>21.2%</td><td>21.8%</td><td>22.1%</td><td class="green">↑</td></tr>
+  </table>
+
+  <h3>现金流 & 资产负债</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+    <tr><td>经营现金流</td><td>约460亿</td><td>约480亿</td><td class="gold">约510亿</td><td class="green">↑ 稳定增长</td></tr>
+    <tr><td>CAPEX</td><td>约120亿</td><td>约130亿</td><td>约140亿</td><td>→ 稳定</td></tr>
+    <tr><td>FCF</td><td>约340亿</td><td>约350亿</td><td>约370亿</td><td class="green">↑ 充裕</td></tr>
+    <tr><td>资产负债率</td><td>58.5%</td><td>59.2%</td><td>59.8%</td><td>→ 稳定</td></tr>
+    <tr><td>有息负债</td><td>约520亿</td><td>约540亿</td><td>约560亿</td><td>→ 可控</td></tr>
+  </table>
+
+  <h3>费用率结构</h3>
+  <table class="tbl">
+    <tr><th>费用项</th><th>2025年规模</th><th>趋势</th></tr>
+    <tr><td>研发费用</td><td>约145亿</td><td class="green">↑ 费用率约3.5%，家电智能化+机器人研发投入</td></tr>
+    <tr><td>销售费用</td><td>约380亿</td><td>→ 费用率约9.0%，C端为主渠道费用较高</td></tr>
+    <tr><td>管理费用</td><td>约210亿</td><td>→ 费用率约5.0%</td></tr>
+    <tr><td>财务费用</td><td>约-10亿</td><td class="green">↓ 利息收入>支出，净现金状态</td></tr>
+  </table>
+
+  <h3>关键指标卡</h3>
+  <div class="mg">
+    <div class="mi"><div class="mv gold">26.2%</div><div class="ml">毛利率（稳定）</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50;">9.2%</div><div class="ml">净利率（优秀）</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50;">22.1%</div><div class="ml">ROE（卓越）</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50;">约370亿</div><div class="ml">FCF（充裕）</div></div>
+  </div>
+
+  <div class="bq">
+    <b>核心结论：财务质量评分 9.0/10（家电制造中优秀）</b><br>
+    ✅ 营收稳定增长、利润率持续改善、ROE>20%卓越水平、FCF充裕<br>
+    ⚠️ 负债率约60%尚可接受、CAPEX仍在高位、库卡整合效果待验证
+  </div></div>
+
+<div id="s6" class="card"><h2>M5 成本结构 & 产业链议价权</h2>
+
+  <h3>成本结构</h3>
+  <div class="txt">营业成本占营收约74%（毛利率26%）。家电制造成本结构中，原材料（铜/铝/钢材/塑料/压缩机/芯片）占比约75%、人工约8%、制造费用约12%、其他5%。铜和钢材是最大成本项（占原材料约40%），价格受国际大宗商品行情影响。压缩机自制（美芝全球第一）带来约2-3%的成本优势。原材料涨价周期中毛利率承压，但品牌溢价和规模效应可部分对冲。</div>
+  <table class="tbl">
+    <tr><th>成本项目</th><th>占比</th><th>趋势</th><th>说明</th></tr>
+    <tr><td>原材料（铜/钢/塑料）</td><td>30-35%</td><td class="red">↑</td><td>铜铝价格波动影响大，套期保值对冲</td></tr>
+    <tr><td>核心部件（压缩机/电机/芯片）</td><td>25-30%</td><td>→ 稳定</td><td>压缩机自供比外采低约15%成本</td></tr>
+    <tr><td>人工</td><td>约8%</td><td class="red">↑</td><td>自动化率>60%，但人工成本刚性上涨</td></tr>
+    <tr><td>制造费用（折旧/能源/物流）</td><td>约12%</td><td>→ 稳定</td><td>全球产能利用率约85%，效率较高</td></tr>
+  </table>
+
+  <h3>产业链议价权</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+<tr><td>品牌壁垒</td><td class="green">强</td><td>美的/小天鹅/COLMO等多品牌矩阵，家电领域品牌认知度极高，消费者信任度强</td></tr><tr><td>盈利质量</td><td class="green">优秀</td><td>毛利率26%+净利率9%，在家电制造业中属于优秀水平，FCF充裕</td></tr><tr><td>成长空间</td><td>中等</td><td>家电存量更新+ToB转型+全球化三个增长引擎，但国内家电渗透率已高</td></tr>
+</table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 定价权评估：<b>3.5/5.0</b> —— 品牌+渠道赋予一定定价权，但竞争激烈<br>
+    <span class="dot">·</span> 成本结构中原材料占比高，但对上游的议价能力较强（全球最大买家之一）<br>
+    <span class="dot">·</span> 压缩机/芯片自供降低了核心部件成本波动风险，垂直整合是核心优势<br>
+    <span class="dot">·</span> 铜/铝等大宗商品价格波动是主要成本风险，套保操作可部分对冲
+  </div></div>
+
+<div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
+
+  <h3>FCF质量</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2024年</th><th class="gold">2025年</th><th>正常化水平</th></tr>
+    <tr><td>经营现金流</td><td>约480亿</td><td class="gold">约510亿</td><td>450-520亿</td></tr>
+    <tr><td>CAPEX</td><td>约130亿</td><td>约140亿</td><td>120-150亿</td></tr>
+    <tr><td>FCF</td><td>约350亿</td><td>约370亿</td><td>300-400亿</td></tr>
+    <tr><td>FCF/净利润</td><td>约99%</td><td>约96%</td><td>接近100%（优秀）</td></tr>
+  </table>
+  <div class="txt">FCF充裕（约370亿），FCF/净利润接近100%，盈利质量极高。稳定的FCF支撑高分红（分红率约60%）和持续回购。CAPEX主要用于智能化改造和海外产能扩张，ROIC约15%回报良好。</div>
+
+  <h3>估值指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr>
+    <tr><td>PE(TTM)</td><td class="gold">约14倍</td><td>10-25倍</td><td>偏低（历史低位）</td></tr>
+    <tr><td>PE(2026E)</td><td>约13倍</td><td>—</td><td>低估</td></tr>
+    <tr><td>PB</td><td>约2.8倍</td><td>2.0-4.5倍</td><td>偏低</td></tr>
+    <tr><td>PS(TTM)</td><td>约1.3倍</td><td>0.8-2.0倍</td><td>偏低</td></tr>
+  </table>
+
+  <h3>家电龙头PE对比</h3>
+  <div class="cp"><span class="nm">美的集团</span><div class="bt"><div class="bf" style="width:56%;background:#4caf50;"></div></div><span class="vl green">14×</span></div>
+  <div class="cp"><span class="nm">格力电器</span><div class="bt"><div class="bf" style="width:32%;background:#f0c040;"></div></div><span class="vl">8×</span></div>
+  <div class="cp"><span class="nm">海尔智家</span><div class="bt"><div class="bf" style="width:48%;background:#4caf50;"></div></div><span class="vl green">12×</span></div>
+  <div class="cp"><span class="nm">公牛集团</span><div class="bt"><div class="bf" style="width:88%;background:#4caf50;"></div></div><span class="vl green">22×</span></div>
+  <div class="desc" style="margin-top:6px;">📌 美的PE 14x介于格力（8x纯空调）和海尔（12x全球化）之间。相对格力有ToB转型+多品类溢价，相对公牛（22x品牌消费）偏低。历史PE中枢约16x，当前处于低位。</div>
+
+  <div class="bq">
+    <b>关键解读：</b><br>
+    <span class="dot">·</span> FCF质量评分：<b>9.5/10</b> —— FCF充裕（370亿），盈利质量极高<br>
+    <span class="dot">·</span> 当前14倍PE处于历史低位，相比格力（8x纯空调）合理，相比海尔（12x全球化）有溢价<br>
+    <span class="dot">·</span> 分部估值：家电（PE 12-14x，约4,500亿）+ ToB（PE 20-25x，约2,000亿），合计目标6,500亿
+  </div></div>
+
+<div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
+
+  <h3>行业空间</h3>
+  <table class="tbl">
+    <tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>美的集团出货/份额</th><th>市占率</th></tr>
+    <tr><td>国内空调市场</td><td>约3,500亿</td><td>→ 3-5%</td><td>约980亿</td><td class="gold">≈28%</td></tr>
+    <tr><td>国内洗衣机市场</td><td>约1,500亿</td><td>→ 2-4%</td><td>约390亿</td><td>≈26%</td></tr>
+    <tr><td>国内冰箱市场</td><td>约2,000亿</td><td>→ 2-3%</td><td>约300亿</td><td>≈15%</td></tr>
+    <tr><td>全球机器人市场</td><td>约3,000亿</td><td>+15-20%</td><td>约420亿（库卡）</td><td>≈14%</td></tr>
+  </table>
+
+  <div class="mg" style="margin-top:10px;">
+    <div class="mi"><div class="mv gold">28%</div><div class="ml">国内空调市占率</div></div>
+    <div class="mi"><div class="mv gold">26%</div><div class="ml">国内洗衣机市占率</div></div>
+    <div class="mi"><div class="mv green">~1,470亿</div><div class="ml">暖通空调年收入</div></div>
+    <div class="mi"><div class="mv green">~40%</div><div class="ml">海外收入占比</div></div>
+  </div>
+
+  <h3>竞争态势</h3>
+  <table class="tbl">
+    <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
+    <tr><td>格力电器</td><td>空调</td><td>空调收入总量接近，但美的多品类优势明显、ToB转型更早、海外布局更广</td></tr>
+    <tr><td>海尔智家</td><td>白电全品类</td><td>海尔冰箱+洗衣机更强，但美的空调更强、盈利能力更优（净利率9% vs 7%）</td></tr>
+    <tr><td>海信家电</td><td>空调+厨电</td><td class="orange">规模差距大，美的在品牌+渠道+供应链全面领先</td></tr>
+    <tr><td>小米（智能家居）</td><td>智能家居</td><td class="orange">小米生态链在智能家居端有竞争力，但白色家电核心品类差距大</td></tr>
+  </table>
+
+  <h3>行业终局思考</h3>
+  <div class="txt">家电行业已进入成熟期——国内空调/洗衣机/冰箱年增2-5%，更新需求成为主驱动力。行业格局稳定，格力+美的（空调双寡头约60%）、海尔+美的（洗衣机双寡头约50%）。提升空间在于集中度提升（小品牌出清）和结构升级（高端化+智能化）。ToB业务是打开天花板的关键——库卡机器人在中国工业机器人市场约14%份额，暖通楼宇布局楼宇自动化，新能源车热管理受益于电动化趋势。行业终局：家电龙头稳定贡献现金流，ToB成为第二增长曲线。</div>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 增量市占率趋势：家电（稳定）→ ToB（↑加速提升）→ 海外（↑自有品牌提升）<br>
+    <span class="dot">·</span> 最大增量来源：空调更新周期+ToB机器人/热管理+海外自有品牌扩张<br>
+    <span class="dot">·</span> 竞争态势：国内家电龙头地位稳固，ToB领域库卡面临发那科/ABB等国际巨头竞争
+  </div></div>
+
+<div id="s9" class="card"><h2>M8 三年资本计划 & 催化剂</h2>
+
+  <h3>催化剂时间表</h3>
+  <table class="tbl">
+    <tr><th style="width:80px">时间</th><th style="width:30%">事件</th><th style="width:40%">预期影响</th></tr>
+    <tr><td>2026-2027</td><td>家电以旧换新政策加码</td><td class="green">拉动空调/冰箱更新需求，营收增速提升</td></tr>
+    <tr><td>2027</td><td>库卡机器人中国份额提升</td><td class="green">工业自动化需求旺盛，ToB利润贡献加大</td></tr>
+    <tr><td>2027-2028</td><td>海外自有品牌占比突破50%</td><td class="green">全球化利润率提升，估值重估</td></tr>
+    <tr><td>2027-2028</td><td>新能源车热管理放量</td><td>车用压缩机和热泵系统新增长极</td></tr>
+  </table>
+
+  <h3>三年业绩预测（归母净利润）</h3>
+  <table class="tbl">
+    <tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>假设</th></tr>
+    <tr><td class="green">乐观</td><td>420亿</td><td>470亿</td><td>520亿</td><td>空调更新+海外爆发+库卡盈利</td></tr>
+    <tr><td class="gold">基准</td><td>400亿</td><td>430亿</td><td>465亿</td><td>稳定增长+ToB温和改善</td></tr>
+    <tr><td class="red">悲观</td><td>370亿</td><td>390亿</td><td>410亿</td><td>地产下行+价格战+库卡不达预期</td></tr>
+  </table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 未来3年净利润CAGR预期：<b>5-8%</b>（基准~7%）<br>
+    <span class="dot">·</span> 最大增长引擎：空调更新周期+海外自有品牌扩张+库卡机器人盈利改善<br>
+    <span class="dot">·</span> 关键假设：国内家电更新周期2027启动；海外自有品牌占比年提升2-3%</div></div>
+  </div></div>
+
+<div id="s10" class="card"><h2>M9 预期差 & 市场共识</h2>
+
+  <table class="tbl">
+    <tr><th style="width:60px">议题</th><th style="width:100px">市场共识</th><th style="width:40%">独立判断</th><th style="width:50px">方向</th></tr>
+    <tr>
+      <td>成长性</td>
+      <td style="color:#888;">家电天花板，增速趋零</td>
+      <td style="color:#4caf50;">ToB转型打开第二曲线，CAGR 5-8%可持续</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+    <tr>
+      <td>海外市场</td>
+      <td style="color:#888;">竞争激烈，增长受阻</td>
+      <td style="color:#4caf50;">自有品牌+本地化产能，海外份额持续提升</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+    <tr>
+      <td>盈利能力</td>
+      <td style="color:#888;">价格战压缩利润</td>
+      <td style="color:#888;">品牌升级+高端化，净利率稳中有升</td>
+      <td><span class="tg tgo">中性</span></td>
+    </tr>
+    <tr>
+      <td>估值水平</td>
+      <td style="color:#888;">合理估值~12-14x PE</td>
+      <td style="color:#4caf50;">ToB转型应获估值溢价，合理16-18x PE</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+  </table>
+
+  <div class="bq">
+    <b>关键预期差：</b><br>
+    <span class="dot">·</span> 市场对美的集团的认知仍是"家电制造商"，低估了库卡+暖通楼宇+热管理的ToB转型潜力<br>
+    <span class="dot">·</span> 关键预期差在于：ToB业务收入占比已超25%，市场尚未给予科技转型估值溢价<br>
+    <span class="dot">·</span> 海外自有品牌占比提升+毛利率改善的"戴维斯双击"可能被市场低估<br>
+    <span class="dot">·</span> 当前14x PE接近历史低位，若ToB转型被认可，16-18x PE对应6,500-7,500亿市值
+  </div></div><div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
+
+  <h3>风险类型</h3>
+  <table class="tbl">
+    <tr><th style="width:80px">风险类型</th><th>描述</th><th style="width:50px">概率</th><th style="width:40%">预警信号</th></tr>
+    <tr><td>地产下行</td><td>新房配套空调/冰箱需求减少</td><td><span class="orange">中</span></td><td>月度空调内销数据连续<5%增长</td></tr>
+    <tr><td>原材料涨价</td><td>铜/铝/钢材价格上涨压缩毛利率</td><td><span class="orange">中</span></td><td>毛利率跌破24%</td></tr>
+    <tr><td>价格战</td><td>格力/海尔空调/洗衣机价格竞争</td><td><span class="orange">中</span></td><td>ASP连续两季下降>3%</td></tr>
+    <tr><td>关税风险</td><td>美国/欧盟加征家电关税</td><td><span class="orange">中</span></td><td>海外订单明显下滑</td></tr>
+    <tr><td>库卡整合</td><td>全球重组不及预期</td><td><span class="orange">中</span></td><td>库卡连续亏损>3年</td></tr>
+  </table>
+
+  <h3>敏感性分析</h3>
+  <table class="tbl">
+    <tr><th>变量</th><th>变动幅度</th><th>对营收影响</th><th>对净利影响</th><th>方向</th></tr>
+    <tr><td>空调内销</td><td>-10%</td><td>营收-3.5%</td><td>净利-5%</td><td class="red">利空</td></tr>
+    <tr><td>铜价上涨</td><td>+20%</td><td>成本+2%</td><td>毛利率-0.5%</td><td class="orange">利空</td></tr>
+    <tr><td>海外收入</td><td>-10%</td><td>营收-4%</td><td>净利-6%</td><td class="red">利空</td></tr>
+    <tr><td>汇率（人民币贬5%）</td><td>+5%</td><td>海外收入+2%</td><td>净利+3%</td><td class="green">利好</td></tr>
+  </table>
+
+  <h3>三年情景预测</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>乐观</h4><div class="pct">8,460亿</div><div class="dt">2027E PE 18x<br>净利470亿</div></div>
+    <div class="scc sc2"><h4>基准</h4><div class="pct">6,450亿</div><div class="dt">2027E PE 15x<br>净利430亿</div></div>
+    <div class="scc sc3"><h4>悲观</h4><div class="pct">4,680亿</div><div class="dt">2027E PE 12x<br>净利390亿</div></div>
+  </div>
+
+  <h3>避雷清单</h3>
+  <table class="tbl">
+    <tr><th style="width:24px">❌</th><th style="width:100px">场景</th><th>行动</th></tr>
+    <tr><td>❌</td><td>2027年库卡仍未扭亏</td><td>ToB转型重大挫败，板块估值下调</td></tr>
+    <tr><td>❌</td><td>空调市占率跌破20%</td><td>核心业务被格力反超，竞争格局恶化</td></tr>
+    <tr><td>❌</td><td>海外收入连续两季负增长</td><td>全球化遇到结构性阻力</td></tr>
+  </table>
+
+  <h3>清算价值评估</h3>
+  <table class="tbl">
+    <tr><th>资产类别</th><th>账面值</th><th>清算估值</th></tr>
+    <tr><td>货币资金</td><td>约700亿</td><td>700亿</td></tr>
+    <tr><td>存货+设备</td><td>约1,200亿</td><td>600亿</td></tr>
+    <tr><td>应收账款</td><td>约500亿</td><td>350亿</td></tr>
+    <tr><td>品牌/渠道价值</td><td>—</td><td>500亿</td></tr>
+    <tr><td class="gold">合计</td><td>约2,400亿</td><td>约2,150亿</td></tr>
+  </table>
+  <div class="txt">清算价值约2,150亿元，当前市值约5,500亿元。差额体现了持续经营价值（品牌+渠道+ToB增长期权）。PB 2.8x提供一定安全边际，充裕FCF支撑资产价值。</div></div><div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
+  <h3>六维评分</h3>
+  <div class="dim-row"><div class="dim-label">商业模式</div><div class="dim-bg"><div class="dim-fill c7" style="width:80%"></div></div><div class="dim-sc gold">8/10</div></div>
+  <div class="dim-row"><div class="dim-label">护城河</div><div class="dim-bg"><div class="dim-fill c7" style="width:84%"></div></div><div class="dim-sc gold">8.5/10</div></div>
+  <div class="dim-row"><div class="dim-label">管理层</div><div class="dim-bg"><div class="dim-fill c9" style="width:85%"></div></div><div class="dim-sc gold">8.5/10</div></div>
+  <div class="dim-row"><div class="dim-label">财务质量</div><div class="dim-bg"><div class="dim-fill c9" style="width:90%"></div></div><div class="dim-sc gold">9/10</div></div>
+  <div class="dim-row"><div class="dim-label">估值安全</div><div class="dim-bg"><div class="dim-fill c7" style="width:70%"></div></div><div class="dim-sc gold">7/10</div></div>
+  <div class="dim-row"><div class="dim-label">股东回报</div><div class="dim-bg"><div class="dim-fill c9" style="width:90%"></div></div><div class="dim-sc gold">9/10</div></div>
+
+  <h3>✨ 亮点亮点亮点</h3>
+  <div class="txt">
+    <span class="dot">·</span> 国内最大家电龙头，全品类TOP2地位稳固，品牌+渠道+规模三重壁垒<br>
+    <span class="dot">·</span> ToB转型（库卡机器人+暖通楼宇+新能源车热管理）打开第二增长曲线<br>
+    <span class="dot">·</span> 全球化领先——20+海外工厂，海外收入占比约40%，自有品牌加速出海<br>
+    <span class="dot">·</span> 高分红（~60%）+持续回购，股东回报在家电行业中最为慷慨<br>
+    <span class="dot">·</span> FCF充裕（~370亿），盈利质量极优，ROE>20%卓越水平
+  </div>
+
+  <h3>⚠️ 风险风险风险</h3>
+  <div class="txt">
+    <span class="dot">·</span> 家电行业增速放缓，国内空调/洗衣机年增2-5%，存量竞争为主<br>
+    <span class="dot">·</span> 地产下行影响新房配套需求，拖累空调/冰箱/厨电新增量<br>
+    <span class="dot">·</span> 原材料（铜/铝/钢）价格波动压缩毛利率<br>
+    <span class="dot">·</span> 库卡海外整合效果待验证，ToB转型仍需时间兑现利润<br>
+    <span class="dot">·</span> 格力/海尔在核心品类价格战激烈
+  </div>
+
+  <h3>M1-M11 价值投资理念应用表</h3>
+  <table class="tbl">
+    <tr><th style="width:50px">条目</th><th style="width:100px">价值投资理念</th><th style="text-align:left;font-size:11px;">应用分析</th></tr>
+    <tr><td>M1</td><td>巴菲特<br>「能力圈」</td><td style="text-align:left;font-size:11px;">家电是大众熟悉的消费行业，产品（空调/洗衣机/冰箱）日常生活中可感知。美的的品牌力、渠道覆盖、售后网络容易被消费者理解和验证。但ToB业务（库卡机器人/暖通楼宇）超出一般消费者认知，需调研工业客户反馈。</td></tr>
+    <tr><td>M2</td><td>巴菲特<br>「护城河」</td><td style="text-align:left;font-size:11px;">品牌（美的/COLMO/小天鹅矩阵）+规模（全球最大家电企业之一）+渠道（10万+线下网点）三重护城河，在家电行业纵深足够。护城河趋势：品牌和渠道稳定（→），规模壁垒持续强化（↑），但行业增速放缓是结构性压力（↓）。</td></tr>
+    <tr><td>M3</td><td>巴菲特<br>「管理层」</td><td style="text-align:left;font-size:11px;">方洪波是中国家电最优秀的职业经理人之一，主导从家电到科技集团的战略转型。事业部制+充分授权文化行之有效。股东回报（分红率60%+回购）在家电行业最佳。但与巴菲特偏好的"创始人长期掌舵"模式不同，美的的继任规划需要关注。</td></tr>
+    <tr><td>M4</td><td>巴菲特<br>「财务健康」</td><td style="text-align:left;font-size:11px;">FCF充裕（~370亿）、ROE>20%、净利润率9%且持续改善。资产负债率~60%尚可接受。经营现金流稳定覆盖CAPEX和分红。FCF/净利润约96%，盈利质量极高——符合巴菲特偏好的"高FCF产出"特征。</td></tr>
+    <tr><td>M5</td><td>巴菲特<br>「定价权」</td><td style="text-align:left;font-size:11px;">家电行业竞争激烈，定价权中等（3.5/5）。品牌赋予一定溢价能力（COLMO高端线），但中低端市场竞争激烈。美的的规模优势在对上游议价时较为有效（全球最大买家之一），但下游消费者端定价能力有限。</td></tr>
+    <tr><td>M6</td><td>巴菲特<br>「估值」</td><td style="text-align:left;font-size:11px;">当前PE 14x处于历史低位区间（10-25x）。相比格力 8x（纯空调）、海尔 12x（全球化），美的的ToB转型+多品类优势应享有溢价。合理PE 16-18x，目标市值6,500-7,500亿。</td></tr>
+    <tr><td>M7</td><td>巴菲特<br>「市场空间」</td><td style="text-align:left;font-size:11px;">家电国内市场空间增速放缓（年增2-5%），但全球市场+ToB业务打开新空间。机器人市场（库卡）年增15-20%，暖通楼宇、新能源车热管理等ToB业务合计超1,000亿且增速>10%。美的在家电+ToB双赛道均有领导地位。</td></tr>
+    <tr><td>M8</td><td>巴菲特<br>「催化剂」</td><td style="text-align:left;font-size:11px;">以旧换新政策刺激、空调更新周期启动、海外自有品牌占比持续提升、库卡中国盈利改善、新能源车热管理放量——多重催化剂在未来2-3年逐步兑现。</td></tr>
+    <tr><td>M9</td><td>巴菲特<br>「预期差」</td><td style="text-align:left;font-size:11px;">市场最大的预期差：①市场仍将美的定位为传统家电制造商，低估ToB转型的估值溢价潜力；②海外自有品牌的利润率提升未被充分定价；③高分红（60%）的持续性被质疑但FCF充裕支撑充分。</td></tr>
+    <tr><td>M10</td><td>巴菲特<br>「风险控制」</td><td style="text-align:left;font-size:11px;">主要风险：地产下行（空调新增需求减少）、原材料涨价（铜/铝价格波动）、关税风险（美国/欧盟加税）。核心抗风险能力：品牌忠诚度、规模效应、全球化产能分散风险、FCF充裕提供安全垫。</td></tr>
+    <tr><td>M11</td><td>巴菲特<br>「安全边际」</td><td style="text-align:left;font-size:11px;">PE 14x处于历史低位（历史区间10-25x）。当前约5,500亿市值对应14倍PE。相比格力电器（约8x）有估值溢价，但考虑到ToB转型+全球化+高分红（约60%），合理PE区间16-18x。安全边际：若PE回落至12x（约4,600亿），股息率将达5%+，提供强支撑。建议在PE<13x时（约5,000亿）逐步建仓。</td></tr>
+  </table>
+
+  <div class="bq">
+    <b>最终结论</b><br>
+    <span class="dot">·</span> 评分：<b>7.5/10</b> —— 典型的价值型白马股，适合作为核心持仓<br>
+    <span class="dot">·</span> 当前PE 14x处于近5年低位，股息率约4.3%（分红率60%），安全边际充足<br>
+    <span class="dot">·</span> 家电基本盘提供稳定现金流，ToB转型打开估值提升空间<br>
+    <span class="dot">·</span> 核心关注点：ToB业务毛利率变化、海外自有品牌占比提升速度、库卡扭亏节奏<br>
+    <span class="dot">·</span> 适合风险偏好较低的投资者，作为"可以安心持有的核心资产"配置。建议PE<13x（约5,000亿以下）分批加仓，PE>18x（约7,500亿以上）可考虑减仓
+  </div></div><div class="footer">
+    ⚠️ 声明：本内容仅供理论学习和研究练习使用，不构成投资建议，不能作为投资依据。股市有风险，投资需谨慎。<br>
+    2026年6月 | 数据截止：2026-06-12<br>
+    美的集团股份有限公司 · 000333.SZ
+  </div>
+</div>
+
+</body>
+</html>
