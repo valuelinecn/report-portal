@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>工商银行 · 完整投资研究报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
+h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
+h2{font-size:16px;color:#4caf50;margin:20px 0 10px;border-left:3px solid #4caf50;padding-left:10px}
+h3{font-size:14px;color:#ccc;margin:14px 0 6px}
+h4{font-size:13px;color:#aaa;margin:10px 0 4px}
+.desc{font-size:12px;color:#888;margin-bottom:10px}
+.card{background:#0d1a1a;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid #1a3a3a}
+.sc-wrap{text-align:center;margin-bottom:16px}
+.score-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(#4caf50 0deg 252deg,#333 252deg 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
+.score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
+.c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e3e3a;font-size:11px}
+.tbl td:first-child{white-space:nowrap;font-size:12px}
+.tbl tr:last-child td{border-bottom:none}
+.gold{color:#4caf50;font-weight:bold}.green{color:#4caf50}.red{color:#f44336}.orange{color:#ff9800}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{background:#0a0a1a;border-radius:8px;padding:10px;text-align:center}
+.mv{font-size:18px;font-weight:bold;color:#fff}
+.ml{font-size:10px;color:#888;margin-top:2px}
+.hb{display:flex;align-items:flex-start;margin:4px 0;min-height:20px}
+.hl{width:72px;font-size:11px;color:#aaa;flex-shrink:0;padding-top:2px}
+.ht{flex:1;height:16px;background:#1e3e3a;border-radius:8px;overflow:visible;margin:0 6px;position:relative}
+.hf{height:16px;border-radius:8px;display:flex;align-items:center;padding-left:6px;font-size:10px;color:#fff;overflow:visible;white-space:nowrap;text-shadow:0 0 3px rgba(0,0,0,.8);min-width:0}
+.hv{font-size:10px;color:#999;white-space:nowrap;flex-shrink:0;padding-top:2px;margin-left:2px}
+.scn{display:flex;gap:6px;margin:8px 0}
+.scc{flex:1;border-radius:8px;padding:10px;text-align:center}
+.scc h4{font-size:12px;margin-bottom:4px;color:#fff}
+.scc .pct{font-size:18px;font-weight:bold}
+.scc .dt{font-size:10px;color:#ccc;margin-top:3px}
+.sc1{background:#1a3a1a;border:1px solid #2a5a2a}.sc1 .pct{color:#4caf50}
+.sc2{background:#1a2a3a;border:1px solid #2a3a5a}.sc2 .pct{color:#f0c040}
+.sc3{background:#3a1a1a;border:1px solid #5a2a2a}.sc3 .pct{color:#f44336}
+.tg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;margin:1px}
+.tgg{background:#1a3a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgr{background:#3a1a1a;color:#f44336;border:1px solid #5a2a2a}
+.tgo{background:#3a2a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgy{background:#222;color:#aaa;border:1px solid #333}
+.txt{padding:6px 0;font-size:13px;color:#ccc;line-height:1.7}
+.txt .dot{color:#4caf50;margin-right:4px}
+.bq{padding:10px;background:#0a0a1a;border-radius:8px;border-left:3px solid #4caf50;margin:8px 0;font-size:13px;color:#ddd;line-height:1.7}
+.cp{display:flex;align-items:center;margin:4px 0;font-size:12px}
+.cp .nm{width:88px;color:#aaa;flex-shrink:0}
+.cp .bt{flex:1;height:14px;background:#1e3e3a;border-radius:7px;overflow:hidden;margin:0 6px}
+.cp .bf{height:100%;border-radius:7px}
+.cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
+.footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e3e3a;line-height:1.8}
+.sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e3e3a;margin-bottom:12px}
+.toc{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:10px;color:#888;text-decoration:none;padding:3px 7px;border-radius:10px;border:1px solid #333;white-space:nowrap;flex-shrink:0}
+.toc a:active{background:#1e3e3a;color:#4caf50}
+
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+  <div style="text-align:center;font-size:11px;color:#555;margin-bottom:4px;">📌 点击跳转</div>
+  <div class="toc">
+    <a href="#s0">评分</a><a href="#s1">综合评价</a><a href="#s2">M1商业模式</a>
+    <a href="#s3">M2壁垒</a><a href="#s4">M3管理层</a><a href="#s5">M4财务</a>
+    <a href="#s6">M5产业链</a><a href="#s7">M6估值</a><a href="#s8">M7市占率</a>
+    <a href="#s9">M8催化剂</a><a href="#s10">M9预期差</a><a href="#s11">M10风险</a>
+    <a href="#s12">综合评级</a><a href="#s13">附录</a>
+  </div>
+</div>
+
+<div id="s0" class="sc-wrap">
+  <div class="score-ring"><div class="score-inner"><div class="score-num">7.0</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">工商银行 <span style="font-size:14px;color:#888;font-weight:400;">601398</span></h1>
+  <div class="desc">全球最大银行，综合金融龙头，高股息核心资产</div>
+  <div><span class="tg tgo">价值型 · 银行龙头</span><span class="tg tgy">数据截止：2026-06-14</span></div>
+</div>
+
+<div id="s-mcap" class="card">
+  <h2>市值走势</h2>
+  <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
+
+  <div class="mcap-btns">
+    <button class="mcap-btn active" data-period="week">周线</button>
+    <button class="mcap-btn" data-period="month">月线</button>
+    <button class="mcap-btn" data-period="year">年线</button>
+  </div>
+
+  <div class="mcap-chart-wrap">
+    <div class="mcap-tooltip" id="mcapTooltip"></div>
+    <svg id="mcapSvg" width="100%" height="380"></svg>
+  </div>
+
+  <div class="mcap-info">
+    当前市值：<span class="mcap-v" id="mcapCurrent">--</span> 亿 ·
+    历史最高：<span class="mcap-v" id="mcapHigh">--</span> 亿 ·
+    历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
+    总股本：<span class="mcap-v" id="mcapShares">2,696.12</span> 亿股
+  </div>
+</div>
+
+<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
+  <h2>历年财务数据</h2>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=连续下滑</span> · <span style="color:#e74c3c">红色=负值/下滑>20%</span></div>
+  <style>
+  .fin-table{width:100%;border-collapse:collapse;font-size:11px}
+  .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
+  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
+  .fin-table tr:hover td{background:#1a1a3a}
+  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
+  .fin-table tr:hover td:first-child{background:#1a1a2a}
+  .fin-table td.na{color:#555}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
+  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
+  .fin-light .fin-table td.pos{color:#2e7d32!important}
+  .fin-light .fin-table td.neg{color:#c0392b!important}
+  .fin-light .fin-table td.warn{color:#b8860b!important}
+</style>
+  <table class="fin-table">
+<thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
+<tbody>
+<tr><td>每股营业收入(元)</td><td>2.27</td><td>2.23</td><td>2.29</td><td>2.38</td><td>2.56</td><td>2.39</td><td>2.32</td><td>2.10</td><td>1.97</td><td>1.83</td></tr>
+<tr><td>每股经营现金流(元)</td><td>5.30</td><td>1.63</td><td>3.98</td><td>3.94</td><td>1.01</td><td>4.37</td><td>1.35</td><td>2.03</td><td>2.16</td><td>0.67</td></tr>
+<tr><td>每股净利润(元)</td><td>1.00</td><td>0.98</td><td>0.98</td><td>0.97</td><td>0.95</td><td>0.86</td><td>0.86</td><td>0.82</td><td>0.79</td><td>0.77</td></tr>
+<tr><td>每股净资产(元)</td><td>10.83</td><td>10.23</td><td>9.55</td><td>8.82</td><td>8.15</td><td>7.48</td><td>6.93</td><td>6.30</td><td>5.73</td><td>5.29</td></tr>
+<tr><td>总股本(亿股)</td><td>3685.62</td><td>3685.62</td><td>3685.62</td><td>3685.62</td><td>3685.62</td><td>3685.62</td><td>3685.62</td><td>3685.62</td><td>3685.62</td><td>3685.62</td></tr>
+<tr><td>营业收入(亿元)</td><td>8382.70</td><td>8218.03</td><td>8430.70</td><td>8757.34</td><td>9427.62</td><td>8826.65</td><td>8554.28</td><td>7737.89</td><td>7265.02</td><td>6758.91</td></tr>
+<tr><td>毛利率(%)</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+<tr><td>净利润(亿元)</td><td>3685.62</td><td>3658.63</td><td>3639.93</td><td>3611.32</td><td>3483.38</td><td>3159.06</td><td>3122.24</td><td>2976.76</td><td>2860.49</td><td>2782.49</td></tr>
+<tr><td>净利润率(%)</td><td>43.97</td><td>44.52</td><td>43.17</td><td>41.24</td><td>36.95</td><td>35.79</td><td>36.50</td><td>38.47</td><td>39.37</td><td>41.17</td></tr>
+<tr><td>ROE(%)</td><td>9.45</td><td>9.88</td><td>10.66</td><td>11.45</td><td>12.15</td><td>11.95</td><td>13.05</td><td>13.79</td><td>14.35</td><td>15.24</td></tr>
+</tbody>
+</table>
+</div>
+
+<style>
+.mcap-btns{display:flex;gap:6px;margin:8px 0}
+.mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e3e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
+.mcap-btn:hover{border-color:#4caf50;color:#4caf50}
+.mcap-btn.active{background:#4caf50;color:#0a0a1a;border-color:#4caf50;font-weight:bold}
+.mcap-chart-wrap{position:relative;width:100%;border-radius:8px;background:#0d0d20;border:1px solid #1e3e3a}
+.mcap-chart-wrap svg{display:block}
+.mcap-tooltip{position:absolute;display:none;background:rgba(10,10,26,.92);border:1px solid #4caf50;border-radius:6px;padding:6px 10px;font-size:12px;color:#fff;pointer-events:none;z-index:10;white-space:nowrap;transform:translate(-50%,-110%)}
+.mcap-tooltip .tt-date{color:#888;font-size:10px}
+.mcap-tooltip .tt-val{color:#4caf50;font-weight:bold}
+.mcap-info{text-align:center;font-size:12px;color:#888;margin-top:8px;padding:6px;background:#0d0d20;border-radius:6px}
+.mcap-v{color:#4caf50;font-weight:bold}
+.mcap-axis path,.mcap-axis line{stroke:#333;stroke-width:1}
+.mcap-axis text{fill:#666;font-size:10px}
+.mcap-grid line{stroke:#1e3e3a;stroke-width:0.5;stroke-dasharray:3,3}
+.mcap-light .mcap-btn{border-color:#c8c0b0;background:#e8e4dc;color:#707070}
+.mcap-light .mcap-btn:hover{border-color:#b8860b;color:#b8860b}
+.mcap-light .mcap-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
+.mcap-light .mcap-chart-wrap{background:#f4f1ea;border-color:#d8d4c8}
+.mcap-light .mcap-tooltip{background:rgba(255,255,255,.95);border-color:#b8860b;color:#3d3d3d}
+.mcap-light .mcap-tooltip .tt-date{color:#808080}
+.mcap-light .mcap-tooltip .tt-val{color:#b8860b}
+.mcap-light .mcap-info{background:#e8e4dc;color:#808080}
+.mcap-light .mcap-v{color:#b8860b}
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var stockCode = '601398';
+  var chartData = [];
+  var viewStart = 0, viewEnd = 0;
+  var isDragging = false, dragStartX = 0, dragViewStart = 0;
+  var svg, tooltip, wrap;
+  var W = 0, H = 380;
+  var M = {top:20, right:20, bottom:35, left:65};
+
+  function init(){
+    svg = document.getElementById('mcapSvg');
+    tooltip = document.getElementById('mcapTooltip');
+    wrap = svg.parentElement;
+    svg.style.cursor = 'crosshair';
+
+    if(document.getElementById('hermes-theme-override')){
+      document.getElementById('s-mcap').classList.add('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf) sf.classList.add('fin-light');
+    }
+
+    var themeWatcher = new MutationObserver(function(){
+      var light = !!document.getElementById('hermes-theme-override');
+      var card = document.getElementById('s-mcap');
+      if(light) card.classList.add('mcap-light');
+      else card.classList.remove('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf){ if(light) sf.classList.add('fin-light'); else sf.classList.remove('fin-light'); }
+      if(chartData.length) render();
+    });
+    if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
+
+    document.querySelectorAll('.mcap-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.mcap-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        loadPeriod(btn.getAttribute('data-period'));
+      });
+    });
+
+    svg.addEventListener('wheel', onWheel, {passive:false});
+    svg.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+    svg.addEventListener('mousemove', onHover);
+    svg.addEventListener('mouseleave', function(){
+      tooltip.style.display='none';
+      var cv=svg.querySelector('#mcapCrossV');if(cv)cv.setAttribute('opacity','0');
+      var ch2=svg.querySelector('#mcapCrossH');if(ch2)ch2.setAttribute('opacity','0');
+      var cd=svg.querySelector('#mcapCrossDot');if(cd)cd.setAttribute('opacity','0');
+    });
+
+    var touchDist = 0;
+    svg.addEventListener('touchstart', function(e){
+      if(e.touches.length === 1){
+        isDragging = true; dragStartX = e.touches[0].clientX; dragViewStart = viewStart;
+      }else if(e.touches.length === 2){
+        touchDist = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+      }
+    }, {passive:true});
+    svg.addEventListener('touchmove', function(e){
+      if(e.touches.length === 1 && isDragging){
+        var dx = e.touches[0].clientX - dragStartX;
+        var range = viewEnd - viewStart;
+        if(range > 1){
+          var shift = Math.round(-dx / ((W-M.left-M.right)/range));
+          var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart + shift));
+          viewStart = ns; viewEnd = viewStart + range; render();
+        }
+        isDragging = false;
+      }else if(e.touches.length === 2){
+        var nd = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+        if(touchDist > 0){doZoom(nd > touchDist ? 1 : -1, (e.touches[0].clientX+e.touches[1].clientX)/2);}
+        touchDist = nd;
+      }
+    }, {passive:true});
+    svg.addEventListener('touchend', function(){isDragging=false});
+    window.addEventListener('resize', function(){if(chartData.length)render()});
+    loadPeriod('week');
+  }
+
+  function getThemeColors(){
+    var light = !!document.getElementById('hermes-theme-override');
+    return {
+      line: light ? '#b8860b' : '#4caf50',
+      grid: light ? '#e0dcd0' : '#1e3e3a',
+      axisText: light ? '#999' : '#666',
+      gradTop: light ? '#b8860b' : '#4caf50',
+      gradBot: light ? '#b8860b' : '#4caf50',
+      gradTo: '0.25', gradBo: '0.01'
+    };
+  }
+
+  function loadPeriod(period){
+    var url = '../kline/' + stockCode + '_' + period + '.json?t=' + Date.now();
+    fetch(url).then(function(r){return r.json()}).then(function(data){
+      chartData = data;
+      var dw = data.length;
+      viewStart = Math.max(0, data.length - dw); viewEnd = data.length;
+      updateStats(data); render();
+    }).catch(function(e){console.error(e)});
+  }
+
+  function updateStats(data){
+    if(!data.length) return;
+    var last = data[data.length-1];
+    var high = data.reduce(function(a,b){return a.value>b.value?a:b});
+    var low = data.reduce(function(a,b){return a.value<b.value?a:b});
+    document.getElementById('mcapCurrent').textContent = last.value.toFixed(1);
+    document.getElementById('mcapHigh').textContent = high.value.toFixed(1);
+    document.getElementById('mcapLow').textContent = low.value.toFixed(1);
+  }
+
+  function render(){
+    if(!chartData.length) return;
+    var rect = wrap.getBoundingClientRect();
+    W = Math.max(300, rect.width || 600); H = 380;
+    svg.style.width = W + 'px'; svg.style.height = H + 'px';
+    var cw = W - M.left - M.right, ch = H - M.top - M.bottom;
+    if(cw <= 0 || ch <= 0) return;
+    var visible = chartData.slice(viewStart, viewEnd);
+    var n = visible.length; if(n === 0) return;
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<n;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad); maxVal = maxVal + pad;
+    var xS = function(i){return M.left+(i/(n-1||1))*cw};
+    var yS = function(v){return M.top+ch-(v-minVal)/(maxVal-minVal)*ch};
+    var pts = '';
+    for(var i=0;i<n;i++){pts += (i===0?'':' ')+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1);}
+    var tc = getThemeColors(), h = '';
+    h += '<g class="mcap-grid">';
+    for(var gi=0;gi<=5;gi++){var gv=minVal+(maxVal-minVal)*(gi/5),gy=yS(gv);h+='<line x1="'+M.left+'" y1="'+gy.toFixed(1)+'" x2="'+(M.left+cw)+'" y2="'+gy.toFixed(1)+'" stroke="'+tc.grid+'"/>';h+='<text x="'+(M.left-8)+'" y="'+(gy+4)+'" text-anchor="end" fill="'+tc.axisText+'" font-size="10">'+fmtVal(gv)+'</text>';}
+    h += '</g><g class="mcap-axis">';
+    var ls = Math.max(1, Math.floor(n / Math.min(10, n)));
+    for(var li=0;li<n;li+=ls){var lx=xS(li);h+='<text x="'+lx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx.toFixed(1)+','+(H-10)+')">'+visible[li].time+'</text>';}
+    h += '<text x="'+xS(n-1).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+xS(n-1).toFixed(1)+','+(H-10)+')">'+visible[n-1].time+'</text></g>';
+    var fp = 'M'+M.left+','+(M.top+ch)+' '; for(var i=0;i<n;i++){fp+='L'+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1)+' ';}
+    fp += 'L'+(M.left+cw)+','+(M.top+ch)+' Z';
+    h += '<path d="'+fp+'" fill="url(#mgG)" opacity="0.35"/>';
+    h += '<polyline points="'+pts+'" fill="none" stroke="'+tc.line+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<line id="mcapCrossV" x1="0" y1="'+M.top+'" x2="0" y2="'+(M.top+ch)+'" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<line id="mcapCrossH" x1="'+M.left+'" y1="0" x2="'+(M.left+cw)+'" y2="0" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<circle id="mcapCrossDot" cx="0" cy="0" r="4" fill="'+tc.line+'" stroke="#fff" stroke-width="1.5" opacity="0" pointer-events="none"/>';
+    var df = '<defs><linearGradient id="mgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+tc.gradTop+'" stop-opacity="'+tc.gradTo+'"/><stop offset="100%" stop-color="'+tc.gradBot+'" stop-opacity="'+tc.gradBo+'"/></linearGradient></defs>';
+    svg.innerHTML = df + h;
+  }
+
+  function fmtVal(v){return v>=10000?(v/10000).toFixed(1)+'万亿':v.toFixed(0)+'亿';}
+
+  function doZoom(dir, cx){
+    var n = chartData.length, range = viewEnd - viewStart;
+    if(dir > 0) range = Math.max(10, Math.round(range * 0.75)); else range = Math.min(n, Math.round(range * 1.35));
+    if(range < 2) range = 2; if(range > n) range = n;
+    var rect = svg.getBoundingClientRect();
+    var mx = (cx || rect.left+rect.width/2) - rect.left - M.left;
+    var cw = W - M.left - M.right;
+    var ci = viewStart + (viewEnd-viewStart) * Math.max(0, Math.min(1, mx/cw));
+    viewStart = Math.round(ci - range/2); viewEnd = viewStart + range;
+    if(viewStart < 0){viewStart=0;viewEnd=range;} if(viewEnd>n){viewEnd=n;viewStart=n-range;}
+    render();
+  }
+
+  function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
+  function onDragStart(e){isDragging=true;dragStartX=e.clientX;dragViewStart=viewStart;svg.style.cursor='grabbing';}
+  function onDragMove(e){
+    if(!isDragging) return;
+    var dx = e.clientX - dragStartX, range = viewEnd-viewStart;
+    if(range<=1) return;
+    var cw = W-M.left-M.right; if(cw<=0) return;
+    var shift = Math.round(-dx/(cw/range));
+    var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart+shift));
+    if(ns !== viewStart){viewStart=ns;viewEnd=viewStart+range;render();}
+  }
+  function onDragEnd(){isDragging=false;svg.style.cursor='crosshair';}
+
+  function onHover(e){
+    if(isDragging || !chartData.length) return;
+    var rect = svg.getBoundingClientRect();
+    var mx = e.clientX-rect.left-M.left, cw=W-M.left-M.right;
+    if(cw<=0||viewEnd-viewStart<=0) return;
+    var idx = viewStart + Math.round(mx/cw*(viewEnd-viewStart-1));
+    if(idx<0||idx>=chartData.length) return;
+    var pt = chartData[idx], ri = idx-viewStart, nn=viewEnd-viewStart;
+    var px = M.left+(ri/(nn-1||1))*cw, vis=chartData.slice(viewStart,viewEnd);
+    var minV=Infinity,maxV=-Infinity; for(var i=0;i<vis.length;i++){var v=vis[i].value;if(v<minV)minV=v;if(v>maxV)maxV=v;}
+    var p=(maxV-minV)*0.05||maxV*0.05||100; minV=Math.max(0,minV-p);maxV=maxV+p;
+    var ch=H-M.top-M.bottom, py=M.top+ch-(pt.value-minV)/(maxV-minV)*ch;
+    var cv=svg.querySelector('#mcapCrossV'),ch2=svg.querySelector('#mcapCrossH'),cd=svg.querySelector('#mcapCrossDot');
+    if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.6');}
+    if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.6');}
+    if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
+    tooltip.innerHTML = '<span class="tt-date">'+pt.time+'</span> · 市值 <span class="tt-val">'+pt.value.toFixed(1)+'亿</span>';
+    tooltip.style.display='block'; tooltip.style.left=px+'px';
+    if(py<50){tooltip.style.top=(py+24)+'px';tooltip.style.transform='translate(-50%,0%)';}
+    else{tooltip.style.top=py+'px';tooltip.style.transform='translate(-50%,-110%)';}
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+<div id="s1" class="card"><h2>一、综合评价</h2>
+  <div class="mg" style="margin-bottom:10px">
+    <div class="mi"><div class="mv" style="color:#4caf50">8,600亿</div><div class="ml">营业收入(2025)</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50">3,650亿</div><div class="ml">归母净利润</div></div>
+    <div class="mi"><div class="mv" style="color:#ff9800">10.5%</div><div class="ml">ROE</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50">42.5%</div><div class="ml">净利率</div></div>
+  </div>
+  <div class="bq">核心逻辑：工商银行是全球资产规模最大的银行，中国银行业"宇宙行"。核心逻辑：①规模壁垒极致——总资产超50万亿，全球银行资产第一，客户基础覆盖全国所有企业；②低成本负债优势——存款总额超30万亿，活期存款占比超50%，付息率仅约1.6%；③资产质量稳健——不良率约1.35%，拨备覆盖率>200%，风险抵补能力强；④高股息（股息率约6%）——分红率约30%且利润稳定，是A股最大高股息标的之一。</div>
+  <div class="mg" style="grid-template-columns:1fr 1fr 1fr;margin-top:10px">
+    <div class="mi"><div class="mv" style="font-size:14px;color:#4caf50">宇宙行</div><div class="ml">总资产超50万亿，全球银行资产第一</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ff9800">高股息</div><div class="ml">股息率约6%，A股最大高股息标的</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ffc107">存款 优势</div><div class="ml">存款超30万亿，活期占比超50%，成本极低</div></div>
+  </div>
+  <table class="tbl" style="margin-top:10px">
+    <tr><th style="width:100px">指标</th><th style="width:140px">数值</th><th style="width:40%">说明</th></tr>
+    <tr><td>三年预估空间</td><td class="gold">市值达2.8万亿</td><td>当前PE约5.5x处于历史低位。PB 0.55x严重破净。若经济复苏+息差企稳+估值修复，PB修复至0.7x对应约2.8万亿（上行约25%）。</td></tr>
+    <tr><td>季度监控</td><td>净息差走势</td><td>跟踪季度净息差。工行负债成本优势大，息差降幅<大型银行均值。</td></tr>
+    <tr><td>逻辑证伪点</td><td class="red">不良贷款率</td><td>关注对公房地产贷款和城投平台风险暴露。不良率突破1.5%需警惕。</td></tr>
+    <tr><td>止损触发</td><td class="red">分红率下降</td><td>若资本充足率压力导致分红率降至25%以下，高股息逻辑被破坏。</td></tr>
+  </table></div>
+
+<div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
+  <h3>核心定位</h3>
+  <div class="txt">工商银行是全球资产规模最大的商业银行，中国银行业绝对龙头。公司以"公司金融+个人金融+资金业务"三轮驱动，公司金融（存贷/结算/投行）贡献约45%收入，个人金融（零售存贷/信用卡/理财）约40%，资金业务（债券/外汇/同业）约15%。近年来以"数字工行"战略推动数字化转型，同时保持高股息政策。</div>
+
+  <h3>年度财务摘要（亿元）</h3>
+  <table class="tbl">
+    <tr><th>年份</th><th>营收</th><th>YoY</th><th>归母净利</th><th>净利率</th><th>毛利率</th></tr>
+<tr><td>2025</td><td>8,600</td><td>1.8%</td><td>3,650</td><td>42.5%</td><td>10.5%</td></tr><tr><td>2024</td><td>8,448</td><td>1.2%</td><td>3,595</td><td>42.6%</td><td>10.3%</td></tr><tr><td>2023</td><td>8,348</td><td>-2.5%</td><td>3,520</td><td>42.2%</td><td>10.8%</td></tr><tr><td>2022</td><td>8,562</td><td>2.5%</td><td>3,480</td><td>40.6%</td><td>11.5%</td></tr><tr><td>2021</td><td>8,353</td><td>7.5%</td><td>3,450</td><td>41.3%</td><td>12.2%</td></tr>
+</table>
+  <div class="desc" style="margin-top:6px;">近5年营收在8,348-8,600亿区间微幅增长，CAGR约0.8%。净利率稳定在40-42.5%水平，ROE从12.2%降至10.5%反映净息差下行压力。工行作为全球最大银行，营收增速慢但盈利绝对规模巨大——年净利超3,600亿是A股盈利之王。</div>
+
+  <h3>分业务收入结构（2025年）</h3>
+  <div class="hb"><span class="hl">公司金融</span><div class="ht"><div class="hf" style="width:45%;background:#4caf50">45%</div></div><span class="hv">3,870亿</span></div>
+  <div class="hb"><span class="hl">个人金融</span><div class="ht"><div class="hf" style="width:40%;background:#2196f3">40%</div></div><span class="hv">3,440亿</span></div>
+  <div class="hb"><span class="hl">资金业务</span><div class="ht"><div class="hf" style="width:15%;background:#ff9800">15%</div></div><span class="hv">1,290亿</span></div>
+
+  <table class="tbl" style="margin-top:10px;">
+    <tr><th>业务线</th><th>收入</th><th>占比</th><th>趋势</th><th>毛利率</th></tr>
+<tr><td>公司金融</td><td>3,870亿</td><td>45%</td><td>稳定</td><td>35%</td></tr><tr><td>个人金融</td><td>3,440亿</td><td>40%</td><td>稳定</td><td>50%</td></tr><tr><td>资金业务</td><td>1,290亿</td><td>15%</td><td>周期</td><td>40%</td></tr>
+</table>
+
+  <h3>商业模式评估</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+<tr><td>规模壁垒</td><td class="green">极强</td><td>总资产超50万亿全球第一，7亿个人客户+1,000万企业客户，网点1.5万个</td></tr><tr><td>盈利质量</td><td class="green">优秀</td><td>净利率42.5%银行中较高，净利润3,650亿为A股盈利之王，FCF充裕</td></tr><tr><td>成长空间</td><td>较低</td><td>银行规模已近天花板，增长依靠利差企稳+中间业务+分红率提升</td></tr>
+</table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 工商银行是全球资产规模最大的商业银行（总资产超50万亿），被称为"宇宙行"。2025年营收约8,600亿，归母净利约3,650亿。核心业务包括公司金融（存贷/结算/投行，收入占比约45%）、个人金融（零售存贷/信用卡/理财，约40%）、资金业务（债券投资/同业/外汇，约15%）。个人客户数超7亿，企业客户超1,000万户，网点超1.5万个，是中国最大金融服务商<br>
+    <span class="dot">·</span> 存款端优势极致——存款超30万亿+活期占比>50%+付息率约1.6%，负债成本国有大行最低<br>
+    <span class="dot">·</span> 高股息核心资产——分红率约30%+股息率约6%，是机构资金和保险资金底仓配置标的<br>
+    <span class="dot">·</span> 核心跟踪指标：净息差、不良率、拨备覆盖率、分红率、资本充足率
+  </div></div>
+
+<div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
+  <div class="desc">核心理念：护城河不是静态的，需要关注其演变趋势——拓宽（↑）、稳定（→）、侵蚀（↓）</div>
+
+  <h3>壁垒类型评估</h3>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:100%;background:#4caf50;">5.0</div></div></div>
+  <div class="hb"><span class="hl">存款壁垒</span><div class="ht"><div class="hf" style="width:95%;background:#4caf50;">4.8</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:85%;background:#4caf50;">4.2</div></div></div>
+  <div class="hb"><span class="hl">政策壁垒</span><div class="ht"><div class="hf" style="width:85%;background:#4caf50;">4.2</div></div></div>
+  <div class="hb"><span class="hl">品牌壁垒</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">4.0</div></div></div>
+  <div class="hb"><span class="hl">科技实力</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">3.0</div></div></div>
+
+  <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
+    <span style="color:#4caf50;font-size:16px;font-weight:bold;">综合评分 4.5/5.0</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">→ 护城河极高，全球最大银行的规模+存款壁垒无可匹敌</span>
+  </div>
+
+  <h3>壁垒深度解析</h3>
+  <div class="txt">
+    <b style="color:#4caf50;">规模壁垒——绝对核心</b><br>
+    <span class="dot">·</span> 总资产超50万亿全球银行第一，是第二大行的1.5倍<br>
+    <span class="dot">·</span> 营业收入8,600亿+净利润3,650亿，A股盈利之王<br>
+    <span class="dot">·</span> 网点超1.5万个+员工超40万人，覆盖中国所有县级以上城市<br><br>
+    <b style="color:#4caf50;">存款壁垒——核心优势</b><br>
+    <span class="dot">·</span> 存款总额超30万亿，活期存款占比超50%，付息率约1.6%<br>
+    <span class="dot">·</span> 财政存款+大型央企/国企社保账户等超高粘性低成本存款<br>
+    <span class="dot">·</span> 存款优势是国有大行最深护城河，股份行/外资行无法复制<br><br>
+    <b style="color:#4caf50;">客户粘性——极强</b><br>
+    <span class="dot">·</span> 个人客户超7亿——几乎每个中国人都是工行客户<br>
+    <span class="dot">·</span> 企业客户超1,000万户——中国所有大型企业均在工行开户<br>
+    <span class="dot">·</span> 工资代发+社保+公积金等政务类存款粘性极高<br><br>
+    <b style="color:#4caf50;">政策壁垒——极强</b><br>
+    <span class="dot">·</span> 国有大行享受隐性国家信用背书，存款保险体系天然优势<br>
+    <span class="dot">·</span> 央行公开市场操作一级交易商，政策性业务（普惠/绿色）承担者
+  </div>
+
+  <h3>护城河陷阱识别</h3>
+  <div class="txt" style="color:#f44336;">
+    <b>警惕信号：</b><br>
+    <span class="dot">·</span> 利率长期下行侵蚀净息差，大银行同样承压<br>
+    <span class="dot">·</span> 对公房地产和城投平台贷款风险需持续关注<br>
+    <span class="dot">·</span> 规模大但效率低——ROE仅10.5%在银行中处于中下水平<br>
+    <span class="dot">·</span> 互联网金融（支付宝/微信支付）分流个人存款和支付份额
+  </div>
+
+  <div class="bq">
+    <b>真正的护城河：</b><br>
+    <span class="dot">·</span> 全球最大银行（资产50万亿+）+ 中国最大存款行（存款超30万亿）——不可复制的规模+存款双重壁垒<br>
+    <span class="dot">·</span> 7亿个人客户+1,000万企业客户+1.5万网点——中国最大金融服务网络<br>
+    <span class="dot">·</span> 全球系统性重要银行（G-SIB）+ 国家信用背书——政策护城河无可替代
+  </div>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 工商银行护城河综合评分4.5/5.0，属于极高水平<br>
+    <span class="dot">·</span> 护城河整体趋势：规模+存款壁垒稳定（→）、政策壁垒持续强化（↑）<br>
+    <span class="dot">·</span> 最大的护城河风险：净息差下行 + 房地产风险 + 互联网金融竞争
+  </div></div>
+
+<div id="s4" class="card"><h2>M3 管理层分析</h2>
+
+  <h3>管理层基本信息</h3>
+  <table class="tbl">
+    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
+    <tr><td>廖林</td><td>董事长</td><td>3年</td><td>国有大行系统培养，风险管理专家，曾任建行副行长</td></tr>
+    <tr><td>刘珺</td><td>行长</td><td>2年</td><td>曾任交通银行行长，国际化业务专家</td></tr>
+  </table>
+  <div class="txt" style="font-size:12px;">工商银行作为中央金融企业（汇金公司控股约35%），管理层为央企系统培养的职业银行家。董事长廖林和行长刘珺均在银行系统工作20+年。管理层以"稳健+风控"为核心风格——不追求激进增长、注重风险控制和资本充足。管理亮点：风控体系完善、资本管理优秀、分红稳定。管理弊端：体制僵化、创新动力不足、数字化转型落后于股份行。</div>
+
+  <h3>管理层评分</h3>
+  <div class="hb"><span class="hl">风控能力</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">8/10</div></div></div>
+  <div class="hb"><span class="hl">稳健经营</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">8/10</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">7/10</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:40%;background:#888;">4/10</div></div></div>
+
+  <div class="bq">
+    <b>关键解读：</b><br>
+    <span class="dot">·</span> 稳健经营是国有大行的核心DNA——不求最快但求最稳<br>
+    <span class="dot">·</span> 风控体系完善——不良率1.35%在国有大行中处于较好水平<br>
+    <span class="dot">·</span> 分红率约30%+股息率约6%，股东回报在银行中排名前列<br>
+    <span class="dot">·</span> 相比招行，工行在创新能力、零售转型速度方面有明显差距
+  </div>
+
+  <div class="bq">
+    <b>核心结论：综合评分 7.0/10</b><br>
+    <span class="dot">·</span> 亮点：全球第一的规模壁垒+国有大行政策优势+高股息稳定性<br>
+    <span class="dot">·</span> 风险点：体制僵化效率低、数字化转型慢、净息差下行压力大
+  </div></div>
+
+<div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
+
+  <h3>核心财务指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+    <tr><td>营收（亿）</td><td>8,353</td><td>8,562</td><td>8,348</td><td>8,448</td><td class="gold">8,600</td><td class="green">↑</td></tr>
+    <tr><td>净利（亿）</td><td class="gold">3,450</td><td class="gold">3,480</td><td class="gold">3,520</td><td class="gold">3,595</td><td class="gold">3,650</td><td class="green">↑</td></tr>
+    <tr><td>净息差(NIM)</td><td>1.95%</td><td>1.85%</td><td>1.72%</td><td>1.60%</td><td>1.52%</td><td class="red">↓</td></tr>
+    <tr><td>净利率</td><td>41.3%</td><td>40.6%</td><td>42.2%</td><td>42.6%</td><td>42.5%</td><td>→</td></tr>
+    <tr><td>ROE</td><td>12.2%</td><td>11.5%</td><td>10.8%</td><td>10.3%</td><td>10.5%</td><td class="red">↓</td></tr>
+  </table>
+
+  <h3>现金流 & 资产负债</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+    <tr><td>经营现金流</td><td>约1.2万亿</td><td>约1.1万亿</td><td class="gold">约1.3万亿</td><td class="green">↑ 充裕</td></tr>
+    <tr><td>CAPEX</td><td>约250亿</td><td>约260亿</td><td>约280亿</td><td>→ IT+网点升级</td></tr>
+    <tr><td>FCF</td><td>约1.15万亿</td><td>约1.07万亿</td><td>约1.27万亿</td><td class="green">↑ 充裕</td></tr>
+    <tr><td>资产负债率</td><td>91.5%</td><td>91.6%</td><td>91.5%</td><td>→ 银行高杠杆常态</td></tr>
+    <tr><td>不良贷款率</td><td>1.38%</td><td>1.36%</td><td class="gold">1.35%</td><td class="green">↓ 改善</td></tr>
+  </table>
+
+  <h3>费用率结构</h3>
+  <table class="tbl">
+    <tr><th>费用项</th><th>2025年规模</th><th>趋势</th></tr>
+    <tr><td>科技投入</td><td>约260亿</td><td class="green">↑ 营收占比约3%，数字工行建设</td></tr>
+    <tr><td>员工费用</td><td>约1,200亿</td><td>→ 人力成本占比约14%</td></tr>
+    <tr><td>管理费用</td><td>约800亿</td><td>→ 费用率约9.3%</td></tr>
+    <tr><td>信用减值损失</td><td>约1,600亿</td><td class="green">↓ 资产质量改善</td></tr>
+  </table>
+
+  <h3>关键指标卡</h3>
+  <div class="mg">
+    <div class="mi"><div class="mv gold">42.5%</div><div class="ml">净利率（优异）</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">1.35%</div><div class="ml">不良率（可控）</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50;">210%</div><div class="ml">拨备覆盖率</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50;">约6%</div><div class="ml">股息率（高）</div></div>
+  </div>
+
+  <div class="bq">
+    <b>核心结论：财务质量评分 8.0/10（国有大行中良好）</b><br>
+    ✅ 净利润3,650亿A股最高、股息率6%为大盘股最佳、拨备覆盖率>200%<br>
+    ⚠️ ROE持续下降至10.5%、净息差下行压力、规模大但效率低
+  </div></div>
+
+<div id="s6" class="card"><h2>M5 成本结构 & 产业链议价权</h2>
+
+  <h3>成本结构</h3>
+  <div class="txt">银行营业成本（业务及管理费+信用减值损失）占营收约57%。成本结构（不含减值损失）：员工费用占比约55%、IT科技投入约8%、网点/运营约20%、业务费用约12%、其他5%。工行员工约40万人，是中国员工最多的银行，人工成本刚性。信用减值损失（拨备）约1,600亿，占营收约18%。</div>
+  <table class="tbl">
+    <tr><th>成本项目</th><th>占比</th><th>趋势</th><th>说明</th></tr>
+    <tr><td>员工费用</td><td>约55%</td><td class="red">↑</td><td>40万员工薪酬刚性上涨</td></tr>
+    <tr><td>IT/科技投入</td><td>约8%</td><td class="red">↑</td><td>数字工行+AI投入持续增加</td></tr>
+    <tr><td>网点/运营费用</td><td>约20%</td><td>→ 稳定</td><td>1.5万网点固定成本</td></tr>
+    <tr><td>业务费用/营销</td><td>约12%</td><td>→ 稳定</td><td>客户维护+品牌推广</td></tr>
+  </table>
+
+  <h3>产业链议价权</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+<tr><td>规模壁垒</td><td class="green">极强</td><td>总资产超50万亿全球第一，7亿个人客户+1,000万企业客户，网点1.5万个</td></tr><tr><td>盈利质量</td><td class="green">优秀</td><td>净利率42.5%银行中较高，净利润3,650亿为A股盈利之王，FCF充裕</td></tr><tr><td>成长空间</td><td>较低</td><td>银行规模已近天花板，增长依靠利差企稳+中间业务+分红率提升</td></tr>
+</table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 定价权评估：<b>3.5/5.0</b> —— 国有大行在存款端定价权强，贷款端受LPR影响<br>
+    <span class="dot">·</span> 存款成本优势是核心竞争力——活期占比>50%+付息率约1.6%<br>
+    <span class="dot">·</span> 成本收入比约58%在国有大行中中规中矩，数字化转型有助于降本<br>
+    <span class="dot">·</span> 信用成本（拨备）逐年下降——不良率改善降低减值损失
+  </div></div>
+
+<div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
+
+  <h3>FCF质量</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2024年</th><th class="gold">2025年</th><th>正常化水平</th></tr>
+    <tr><td>经营现金流</td><td>约1.1万亿</td><td class="gold">约1.3万亿</td><td>1.0-1.3万亿</td></tr>
+    <tr><td>CAPEX</td><td>约260亿</td><td>约280亿</td><td>250-300亿</td></tr>
+    <tr><td>FCF</td><td>约1.07万亿</td><td>约1.27万亿</td><td>0.9-1.2万亿</td></tr>
+    <tr><td>FCF/净利润</td><td>约298%</td><td>约348%</td><td>>250%（极高）</td></tr>
+  </table>
+  <div class="txt">FCF极度充裕（>1万亿），FCF/净利润>300%，盈利质量极高。FCF主要用于分红（分红率约30%）、补充核心一级资本和债券投资。</div>
+
+  <h3>估值指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr>
+    <tr><td>PE(TTM)</td><td class="gold">约5.5倍</td><td>4-8倍</td><td>低位（合理偏低）</td></tr>
+    <tr><td>PB</td><td>约0.55倍</td><td>0.5-1.2倍</td><td>深度破净</td></tr>
+    <tr><td>股息率</td><td class="gold">约6.0%</td><td>4-7%</td><td>高位（安全垫）</td></tr>
+    <tr><td>不良率</td><td>1.35%</td><td>1.0-2.0%</td><td>国有大行中较好</td></tr>
+  </table>
+
+  <h3>国有大行PE对比</h3>
+  <div class="desc" style="margin-top:6px;">📌 工行PE 5.5x与四大行均值接近（5.3x）。四大行估值均处于历史极低水平（PB 0.5-0.6x），市场对银行息差下行和资产质量的担忧已充分反映在估值中。</div>
+
+  <div class="bq">
+    <b>关键解读：</b><br>
+    <span class="dot">·</span> FCF质量评分：<b>10/10</b> —— FCF>1万亿极度充裕，盈利质量极高<br>
+    <span class="dot">·</span> PE 5.5x+PB 0.55x严重低估，股息率6%提供强安全垫<br>
+    <span class="dot">·</span> PB 0.55x意味着市场对工行净资产定价低于账面价值45%，下行风险有限
+  </div></div>
+
+<div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
+
+  <h3>行业空间</h3>
+  <table class="tbl">
+    <tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>工商银行出货/份额</th><th>市占率</th></tr>
+    <tr><td>中国银行业总资产</td><td>约400万亿</td><td>→ 8-10%</td><td>总资产50万亿</td><td class="gold">≈12.5%</td></tr>
+    <tr><td>中国个人存款市场</td><td>约130万亿</td><td>→ 10-12%</td><td>个人存款约12万亿</td><td class="gold">≈9%</td></tr>
+    <tr><td>中国公司存款市场</td><td>约80万亿</td><td>→ 6-8%</td><td>公司存款约18万亿</td><td class="gold">≈22%</td></tr>
+    <tr><td>中国财富管理市场</td><td>约200万亿</td><td>+8-12%</td><td>个人理财约3万亿</td><td>≈1.5%</td></tr>
+  </table>
+
+  <div class="mg" style="margin-top:10px;">
+    <div class="mi"><div class="mv gold">50万亿+</div><div class="ml">总资产（全球第一）</div></div>
+    <div class="mi"><div class="mv gold">7亿+</div><div class="ml">个人客户数</div></div>
+    <div class="mi"><div class="mv green">3,650亿</div><div class="ml">净利润（A股最高）</div></div>
+    <div class="mi"><div class="mv green">约6%</div><div class="ml">股息率</div></div>
+  </div>
+
+  <h3>竞争态势</h3>
+  <table class="tbl">
+    <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
+    <tr><td>建设银行</td><td>综合银行</td><td>建行按揭贷款+基建领域更强，工行在公司存款+个人客户数领先</td></tr>
+    <tr><td>农业银行</td><td>综合银行</td><td>农行县域网点更广，但综合规模和效率不如工行</td></tr>
+    <tr><td>招商银行</td><td>零售银行</td><td class="orange">招行零售效率+ROE远高于工行，但规模差距大</td></tr>
+    <tr><td>中国银行</td><td>综合银行+国际化</td><td class="orange">中行国际化更强，工行在存款和国内覆盖全面领先</td></tr>
+  </table>
+
+  <h3>行业终局思考</h3>
+  <div class="txt">中国银行业已进入"存量竞争+低增长"阶段。四大行凭借国家信用背书和存款网络优势，在规模上仍是绝对主导。工行作为全球最大银行，规模壁垒是最大的护城河。行业终局：四大行凭借存款端和政策端优势保持规模领先，但ROE将持续承压。工行作为"宇宙行"，规模和存款优势使其在银行体系中地位不可撼动。</div>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 增量市占率趋势：存款份额稳定（9%），资产规模稳定（12.5%），中间业务↑提升<br>
+    <span class="dot">·</span> 最大增量来源：财富管理+数字金融+普惠金融+跨境金融<br>
+    <span class="dot">·</span> 竞争态势：规模优势无人能及，但效率和ROE低于股份行
+  </div></div>
+
+<div id="s9" class="card"><h2>M8 三年资本计划 & 催化剂</h2>
+
+  <h3>催化剂时间表</h3>
+  <table class="tbl">
+    <tr><th style="width:80px">时间</th><th style="width:30%">事件</th><th style="width:40%">预期影响</th></tr>
+    <tr><td>2026-2027</td><td>净息差降幅收窄</td><td class="green">利率环境改善，息差企稳</td></tr>
+    <tr><td>2027</td><td>分红率提升至35%</td><td class="green">股息率提升至7%，吸引长期资金</td></tr>
+    <tr><td>2027-2028</td><td>中收（财富管理）占比提升</td><td class="green">轻资本收入改善ROE</td></tr>
+    <tr><td>2027-2028</td><td>数字工行AI应用落地</td><td>降本增效，成本收入比改善</td></tr>
+  </table>
+
+  <h3>三年业绩预测</h3>
+  <table class="tbl">
+    <tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>毛利率趋势</th></tr>
+    <tr><td class="green">乐观</td><td>3,800亿</td><td>3,950亿</td><td>4,100亿</td><td>息差企稳+中收增长+信贷扩张</td></tr>
+    <tr><td class="gold">基准</td><td>3,700亿</td><td>3,750亿</td><td>3,800亿</td><td>息差微降+信贷量增+中收稳增</td></tr>
+    <tr><td class="red">悲观</td><td>3,400亿</td><td>3,200亿</td><td>3,000亿</td><td>息差大幅下行+不良率上升
+  </table>
+
+  <div class="bq">
+    <b>核心结论：</b><br>
+    <span class="dot">·</span> 未来3年净利润CAGR预期：<b>0-3%</b>（基准~1.5%）<br>
+    <span class="dot">·</span> 最大增长引擎：信贷温和扩张+中间业务增长+分红率提升<br>
+    <span class="dot">·</span> 关键假设：净息差降幅<10bp/年；不良率可控在1.4%以内
+  </div></div>
+
+<div id="s10" class="card"><h2>M9 预期差 & 市场共识</h2>
+  <table class="tbl">
+    <tr><th style="width:60px">议题</th><th style="width:100px">市场共识</th><th style="width:40%">独立判断</th><th style="width:50px">方向</th></tr>
+    <tr>
+      <td>银行前景</td>
+      <td style="color:#888;">利率下行+经济放缓，银行没未来</td>
+      <td style="color:#4caf50;">国有大行拥有国家信用背书和存贷利差保障，盈利稳定可持续</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+    <tr>
+      <td>不良风险</td>
+      <td style="color:#888;">房地产+城投风险巨大</td>
+      <td style="color:#888;">风险已逐步消化，拨备覆盖率>200%提供缓冲</td>
+      <td><span class="tg tgo">中性</span></td>
+    </tr>
+    <tr>
+      <td>高股息可持续性</td>
+      <td style="color:#888;">利润下行+资本压力，分红不可持续</td>
+      <td style="color:#4caf50;">资本充足率14%+充足，分红率30%有保障</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+    <tr>
+      <td>估值水平</td>
+      <td style="color:#888;">PB 0.55x合理反应风险</td>
+      <td style="color:#4caf50;">PB 0.55x严重低估，隐含不良率远超实际，修复空间大</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+  </table>
+  <div class="bq">
+    <b>关键预期差：</b><br>
+    <span class="dot">·</span> 市场最大的预期差：银行坏账风险被过度定价——PB 0.55x隐含不良率远超实际水平<br>
+    <span class="dot">·</span> 股息率6%的可持续性被低估——工行利润稳定+资本充足率充足+分红率有保障<br>
+    <span class="dot">·</span> PB 0.55x意味着市场对工行净资产定价低于账面45%，已反映最悲观情景<br>
+    <span class="dot">·</span> 工行作为全球系统重要性银行（G-SIB），具有国家隐性信用担保
+  </div></div><div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
+  <h3>风险类型</h3>
+  <table class="tbl">
+    <tr><th style="width:80px">风险类型</th><th>描述</th><th style="width:50px">概率</th><th style="width:40%">预警信号</th></tr>
+    <tr><td>净息差收缩</td><td>利率持续下行压缩利息收入</td><td><span class="orange">中</span></td><td>净息差跌破1.4%</td></tr>
+    <tr><td>房地产风险</td><td>开发贷/按揭违约增加</td><td><span class="orange">中</span></td><td>对公房地产不良率>5%</td></tr>
+    <tr><td>城投平台风险</td><td>地方政府债务问题蔓延到银行</td><td><span class="orange">中</span></td><td>城投不良率大幅上升</td></tr>
+    <tr><td>资本充足率压力</td><td>TLAC等监管要求提高</td><td class="green">低</td><td>核心一级资本充足率<13%</td></tr>
+  </table>
+  <h3>敏感性分析</h3>
+  <table class="tbl">
+    <tr><th>变量</th><th>变动幅度</th><th>对净利影响</th><th>方向</th></tr>
+    <tr><td>净息差</td><td>-15bp</td><td>净利-8%</td><td class="red">利空</td></tr>
+    <tr><td>不良率</td><td>+0.3%</td><td>净利-15%</td><td class="red">利空</td></tr>
+    <tr><td>信贷规模增长</td><td>+8%</td><td>净利+5%</td><td class="green">利好</td></tr>
+    <tr><td>分红率提升至35%</td><td>+5%</td><td>股息率+0.5%</td><td class="green">利好</td></tr>
+  </table>
+  <h3>三年情景预测</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>乐观</h4><div class="pct">3.5万亿</div><div class="dt">PB 0.8x<br>净资产4.4万亿</div></div>
+    <div class="scc sc2"><h4>基准</h4><div class="pct">2.5万亿</div><div class="dt">PB 0.6x<br>净资产4.2万亿</div></div>
+    <div class="scc sc3"><h4>悲观</h4><div class="pct">2.0万亿</div><div class="dt">PB 0.5x<br>净资产4.0万亿</div></div>
+  </div>
+  <h3>避雷清单</h3>
+  <table class="tbl">
+    <tr><th style="width:24px">-</th><th style="width:100px">场景</th><th>行动</th></tr>
+    <tr><td>-</td><td>净息差持续快速下行</td><td>减仓，等待利率环境改善</td></tr>
+    <tr><td>-</td><td>不良率连续上升</td><td>评估风险暴露规模</td></tr>
+    <tr><td>-</td><td>分红率降至25%以下</td><td>高股息逻辑弱化</td></tr>
+  </table>
+  <h3>清算价值评估</h3>
+  <table class="tbl">
+    <tr><th>资产类别</th><th>账面值</th><th>清算估值</th></tr>
+    <tr><td>贷款组合（净值）</td><td>约25万亿</td><td>22万亿</td></tr>
+    <tr><td>金融投资</td><td>约10万亿</td><td>9.5万亿</td></tr>
+    <tr><td>现金及存放央行</td><td>约10万亿</td><td>10万亿</td></tr>
+    <tr><td>品牌+客户网络</td><td>—</td><td>2,000亿</td></tr>
+    <tr><td class="gold">有效业务价值</td><td>—</td><td>约2万亿</td></tr>
+  </table>
+  <div class="txt">清算价值约43万亿+，当前市值约2.2万亿。PB 0.55x深度破净，市场对银行资产的定价已极度悲观。作为全球最大的银行，工行的清算价值远超市值，提供了极高安全边际。</div></div><div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
+  <h3>六维评分</h3>
+  <div class="dim-row"><div class="dim-label">商业模式</div><div class="dim-bg"><div class="dim-fill c9" style="width:90%"></div></div><div class="dim-sc gold">9/10</div></div>
+  <div class="dim-row"><div class="dim-label">护城河</div><div class="dim-bg"><div class="dim-fill c9" style="width:90%"></div></div><div class="dim-sc gold">9/10</div></div>
+  <div class="dim-row"><div class="dim-label">管理层</div><div class="dim-bg"><div class="dim-fill c7" style="width:70%"></div></div><div class="dim-sc gold">7/10</div></div>
+  <div class="dim-row"><div class="dim-label">财务质量</div><div class="dim-bg"><div class="dim-fill c7" style="width:80%"></div></div><div class="dim-sc gold">8/10</div></div>
+  <div class="dim-row"><div class="dim-label">估值安全</div><div class="dim-bg"><div class="dim-fill c9" style="width:90%"></div></div><div class="dim-sc gold">9/10</div></div>
+  <div class="dim-row"><div class="dim-label">股东回报</div><div class="dim-bg"><div class="dim-fill c7" style="width:70%"></div></div><div class="dim-sc gold">7/10</div></div>
+  <h3>亮点</h3>
+  <div class="txt">
+    <span class="dot">.</span> 全球最大银行——总资产50万亿+，净利润3,650亿A股第一<br>
+    <span class="dot">.</span> 存款端优势极致——存款30万亿+活期>50%，国有大行存款壁垒不可复制<br>
+    <span class="dot">.</span> 高股息核心资产——股息率约6%+分红率30%，是机构资金底仓配置<br>
+    <span class="dot">.</span> PB 0.55x深度破净，安全边际极高
+  </div>
+  <h3>风险</h3>
+  <div class="txt">
+    <span class="dot">.</span> 利率长期下行压缩净息差，ROE持续承压<br>
+    <span class="dot">.</span> 房地产+城投平台风险待消化<br>
+    <span class="dot">.</span> 规模大但效率低——ROE仅10.5%远低于股份行<br>
+    <span class="dot">.</span> 互联网金融分流支付和存款份额
+  </div>
+  <h3>M1-M11 价值投资理念应用表</h3>
+  <table class="tbl">
+    <tr><th style="width:50px">条目</th><th style="width:100px">价值投资理念</th><th style="text-align:left;font-size:11px;">应用分析</th></tr>
+    <tr><td>M1</td><td>巴菲特<br>「能力圈」</td><td style="text-align:left;font-size:11px;">银行的商业模式（存款-贷款-利差）是巴菲特的经典能力圈。工行的存款优势（30万亿+活期>50%）和规模壁垒（全球最大银行）容易理解。</td></tr>
+    <tr><td>M2</td><td>巴菲特<br>「护城河」</td><td style="text-align:left;font-size:11px;">全球银行规模第一+中国最大存款行+国家信用背书——三重复合护城河。存款壁垒是核心，其他银行无法复制。评分4.5/5.0。</td></tr>
+    <tr><td>M3</td><td>巴菲特<br>「管理层」</td><td style="text-align:left;font-size:11px;">央企银行家团队，以稳健风控著称。分红稳定+资本管理优秀。但体制僵化和创新不足是明显短板。</td></tr>
+    <tr><td>M4</td><td>巴菲特<br>「财务健康」</td><td style="text-align:left;font-size:11px;">FCF超1万亿极度充裕，净利率42.5%卓越。不良率1.35%可控，拨备>200%充足。财务健康度极高。</td></tr>
+    <tr><td>M5</td><td>巴菲特<br>「定价权」</td><td style="text-align:left;font-size:11px;">存款端有极强定价权（活期>50%优势），贷款端定价受LPR约束。综合定价权3.5/5.0。</td></tr>
+    <tr><td>M6</td><td>巴菲特<br>「估值」</td><td style="text-align:left;font-size:11px;">PE 5.5x+PB 0.55x处于历史极低。股息率6%提供充足安全垫。PB修复至0.7x即对应近2.8万亿。</td></tr>
+    <tr><td>M7</td><td>巴菲特<br>「市场空间」</td><td style="text-align:left;font-size:11px;">银行增长空间有限（中国银行业增速已趋缓），但工行的规模优势使其在存量竞争中持续受益。</td></tr>
+    <tr><td>M8</td><td>巴菲特<br>「催化剂」</td><td style="text-align:left;font-size:11px;">净息差企稳+分红率提升+数字金融见效+经济复苏。</td></tr>
+    <tr><td>M9</td><td>巴菲特<br>「预期差」</td><td style="text-align:left;font-size:11px;">市场对银行过度悲观——PB 0.55x已反映最坏情况，但工行资产质量实际可控，高股息可持续。</td></tr>
+    <tr><td>M10</td><td>巴菲特<br>「风险控制」</td><td style="text-align:left;font-size:11px;">主要风险：利率下行+地产风险+城投风险。核心抗风险能力：国家信用背书+充足拨备+极低成本负债。</td></tr>
+    <tr><td>M11</td><td>巴菲特<br>「安全边际」</td><td style="text-align:left;font-size:11px;">PE 5.5x历史低位，PB 0.55x深度破净，股息率6%。建议在PB<0.6x时作为高股息核心资产配置，股息率6%提供了极强安全边际。</td></tr>
+  </table>
+  <div class="bq">
+    <b>最终结论</b><br>
+    <span class="dot">.</span> 评分：<b>7.0/10</b> —— 高股息核心资产，全球最大银行的深度价值投资标的<br>
+    <span class="dot">.</span> PB 0.55x深度破净+PE 5.5x+股息率6%——三重安全垫，下行空间有限<br>
+    <span class="dot">.</span> 规模+存款+国家信用三位一体的护城河无人能及<br>
+    <span class="dot">.</span> 核心关注点：净息差走势、不良率、分红率、资本充足率<br>
+    <span class="dot">.</span> 适合风险偏好极低、追求稳定股息回报的价值投资者。建议PB<0.6x配置
+  </div></div><div class="footer">
+    ⚠️ 声明：本内容仅供理论学习和研究练习使用，不构成投资建议，不能作为投资依据。股市有风险，投资需谨慎。<br>
+    2026年6月 | 数据截止：2026-06-12<br>
+    工商银行股份有限公司 · 601398.SH
+  </div>
+</div>
+
+</body>
+</html>
