@@ -383,7 +383,7 @@ html{scroll-behavior:smooth}
     <div class="hero-icon">📊</div>
     <h1 onclick="goHome()" style="cursor:pointer">价值投资 <span>研究门户</span></h1>
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">🌙</button>
-    <button class="header-user guest" id="headerUserBtn" onclick="headerLogin()">登录 / 注册</button>
+    <button class="header-user guest" id="headerUserBtn">登录 / 注册</button>
   </div>
   <div class="subtitle">VALUE INVESTING RESEARCH PORTAL</div>
 </header>
@@ -1155,13 +1155,7 @@ function backToMatchLevels() {
   document.getElementById('matchResult').style.display='none'
   document.getElementById('matchLevels').style.display='block'
 }
-// ===== LOGIN GATE =====
 // ===== SUPABASE AUTH =====
-
-function getSupabase() {
-  window._supabase = window._supabase || supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-  return window._supabase
-}
 
 function getStoredUser() {
   try {
