@@ -1630,7 +1630,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 
-<button class="back-top" onclick="var rv=document.getElementById('reportView');if(rv&&rv.classList.contains('active')){var f=document.getElementById('reportFrame');if(f&&f.contentWindow)f.contentWindow.scrollTo({top:0,behavior:'smooth'})}else{window.scrollTo({top:0,behavior:'smooth'})}">↑</button>
+<button class="back-top" onclick="var rv=document.getElementById('reportView'),bv=document.getElementById('bookDetailView');if(rv&&rv.classList.contains('active')){var f=document.getElementById('reportFrame');if(f&&f.contentWindow)f.contentWindow.scrollTo({top:0,behavior:'smooth'})}else if(bv&&bv.classList.contains('active')){var s=document.querySelector('.detail-scroll');if(s)s.scrollTo({top:0,behavior:'smooth'})}else{window.scrollTo({top:0,behavior:'smooth'})}">↑</button>
 
 </body>
 </html>
