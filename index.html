@@ -114,8 +114,8 @@ html{scroll-behavior:smooth}
 .comment-toggle .arrow{font-size:10px;transition:transform .2s;margin-left:auto}
 .comment-toggle.open .arrow{transform:rotate(90deg)}
 .comment-toggle .count{margin-left:4px;color:var(--accent);font-weight:600}
-.comment-body{max-height:0;overflow:hidden;transition:max-height .3s ease;flex-shrink:0;background:var(--bg)}
-.comment-body.open{max-height:40vh;overflow-y:auto}
+.comment-body{max-height:0;overflow:hidden;transition:max-height .4s ease;flex-shrink:0;background:var(--bg)}
+.comment-body.open{max-height:50vh;overflow-y:auto}
 .comment-body .waline-wrap{padding:8px 16px 16px}
 .comment-section{font-size:13px}
 .comment-heading{font-size:15px;color:var(--t1);margin:16px 0 12px}
@@ -853,6 +853,23 @@ function onFrameLoaded() {
   document.getElementById('reportLoading').style.display='none'
   document.getElementById('reportFrame').style.display='block'
   applyThemeToReport()
+  // Auto-expand comments when iframe scrolled to bottom
+  try {
+    var iframeDoc = document.getElementById('reportFrame').contentDocument || document.getElementById('reportFrame').contentWindow.document;
+    var scrollTimer;
+    iframeDoc.addEventListener('scroll', function() {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function() {
+        var d = iframeDoc.documentElement;
+        if (d.scrollHeight - d.scrollTop - d.clientHeight < 60) {
+          var body = document.getElementById('commentBody-report');
+          if (body && !body.classList.contains('open')) {
+            toggleComments('report');
+          }
+        }
+      }, 150);
+    }, {passive: true});
+  } catch(e) {}
 }
 
 function applyThemeToReport() {
