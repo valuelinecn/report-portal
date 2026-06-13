@@ -67,9 +67,10 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 .cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
 .footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e1e3a;line-height:1.8}
 .sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e1e3a;margin-bottom:12px}
-.toc{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
-.toc a{font-size:11px;color:#888;text-decoration:none;padding:3px 8px;border-radius:12px;border:1px solid #333}
-.toc a:active{background:#1e1e3a;color:#f0c040}
+.toc{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:10px;color:#888;text-decoration:none;padding:3px 7px;border-radius:10px;border:1px solid #333;white-space:nowrap;flex-shrink:0}
+.toc a:active{background:#1e1e3a;color:#4caf50}
 </style>
 </head>
 <body>
@@ -98,7 +99,6 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
 
   <div class="mcap-btns">
-    <button class="mcap-btn active" data-period="day">日线</button>
     <button class="mcap-btn" data-period="week">周线</button>
     <button class="mcap-btn" data-period="month">月线</button>
     <button class="mcap-btn" data-period="year">年线</button>
@@ -219,7 +219,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     }, {passive:true});
     svg.addEventListener('touchend', function(){isDragging=false});
     window.addEventListener('resize', function(){if(chartData.length)render()});
-    loadPeriod('day');
+    loadPeriod('week');
   }
 
   function getThemeColors(){
@@ -344,15 +344,228 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 </script>
 
 
+
+<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
+  <h2>历年财务数据</h2>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长&gt;30%</span> · <span style="color:#f0a030">橙色=连续下滑</span> · <span style="color:#e74c3c">红色=负值/下滑&gt;20%</span></div>
+  <style>  .fin-table{width:100%;border-collapse:collapse;font-size:11px;min-width:900px}
+  .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
+  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
+  .fin-table tr:hover td{background:#1a1a3a}
+  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
+  .fin-table tr:hover td:first-child{background:#1a1a2a}
+  .fin-table td.na{color:#555}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
+  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
+  .fin-light .fin-table td.pos{color:#2e7d32!important}
+  .fin-light .fin-table td.neg{color:#c0392b!important}
+  .fin-light .fin-table td.warn{color:#b8860b!important}</style>
+  <table class="fin-table">
+    <thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
+    <tbody>
+    <tr><td>每股营业收入(元)</td>
+      <td class="">91.58</td>
+      <td class="">78.25</td>
+      <td class="">86.65</td>
+      <td class="pos">71.02</td>
+      <td class="pos">28.18</td>
+      <td class="">10.88</td>
+      <td class="pos">9.90</td>
+      <td class="pos">6.40</td>
+      <td class="pos">4.32</td>
+      <td class="">3.22</td>
+    </tr>
+    <tr><td>每股经营现金流(元)</td>
+      <td class="pos">29.19</td>
+      <td class="">22.03</td>
+      <td class="">21.10</td>
+      <td class="pos">25.06</td>
+      <td class="pos">18.41</td>
+      <td class="">7.91</td>
+      <td class="">6.10</td>
+      <td class="pos">5.16</td>
+      <td class="neg">1.25</td>
+      <td class="">3.44</td>
+    </tr>
+    <tr><td>每股净利润(元)</td>
+      <td class="pos">16.14</td>
+      <td class="">11.58</td>
+      <td class="pos">10.06</td>
+      <td class="">7.18</td>
+      <td class="pos">6.88</td>
+      <td class="">2.49</td>
+      <td class="">2.09</td>
+      <td class="">1.64</td>
+      <td class="">2.01</td>
+      <td class="">1.87</td>
+    </tr>
+    <tr><td>每股净资产(元)</td>
+      <td class="pos">73.87</td>
+      <td class="">56.08</td>
+      <td class="neg">44.94</td>
+      <td class="pos">67.34</td>
+      <td class="pos">36.26</td>
+      <td class="pos">27.56</td>
+      <td class="">17.27</td>
+      <td class="">15.01</td>
+      <td class="pos">12.63</td>
+      <td class="">8.42</td>
+    </tr>
+    <tr><td>总股本(亿股)</td>
+      <td class="">46.27</td>
+      <td class="">46.27</td>
+      <td class="">46.27</td>
+      <td class="">46.27</td>
+      <td class="">46.27</td>
+      <td class="">46.27</td>
+      <td class="">46.27</td>
+      <td class="">46.27</td>
+      <td class="">46.27</td>
+      <td class="">46.27</td>
+    </tr>
+    <tr><td>营业收入(亿元)</td>
+      <td class="">4237.02</td>
+      <td class="">3620.13</td>
+      <td class="">4009.17</td>
+      <td class="pos">3285.94</td>
+      <td class="pos">1303.56</td>
+      <td class="">503.19</td>
+      <td class="pos">457.88</td>
+      <td class="pos">296.11</td>
+      <td class="pos">199.97</td>
+      <td class="">148.79</td>
+    </tr>
+    <tr><td>毛利率(%)</td>
+      <td class="">26.27</td>
+      <td class="">24.44</td>
+      <td class="warn">19.19</td>
+      <td class="neg">20.25</td>
+      <td class="warn">26.28</td>
+      <td class="warn">27.76</td>
+      <td class="warn">29.06</td>
+      <td class="warn">32.79</td>
+      <td class="">36.29</td>
+      <td class="">43.70</td>
+    </tr>
+    <tr><td>净利润(亿元)</td>
+      <td class="pos">722.01</td>
+      <td class="">507.45</td>
+      <td class="pos">441.21</td>
+      <td class="pos">307.29</td>
+      <td class="pos">159.31</td>
+      <td class="">55.83</td>
+      <td class="pos">45.60</td>
+      <td class="">33.87</td>
+      <td class="pos">38.78</td>
+      <td class="">28.52</td>
+    </tr>
+    <tr><td>所得税率(%)</td>
+      <td class="">14.23</td>
+      <td class="">14.52</td>
+      <td class="warn">13.27</td>
+      <td class="">8.77</td>
+      <td class="">10.19</td>
+      <td class="">12.58</td>
+      <td class="">12.99</td>
+      <td class="">11.15</td>
+      <td class="">13.49</td>
+      <td class="">14.17</td>
+    </tr>
+    <tr><td>净利润率(%)</td>
+      <td class="">18.12</td>
+      <td class="">14.92</td>
+      <td class="">11.66</td>
+      <td class="neg">10.18</td>
+      <td class="">13.70</td>
+      <td class="">12.13</td>
+      <td class="warn">10.95</td>
+      <td class="neg">12.62</td>
+      <td class="">20.97</td>
+      <td class="">19.61</td>
+    </tr>
+    <tr><td>营运资本(亿元)</td>
+      <td class="">2388.56</td>
+      <td class="">1929.71</td>
+      <td class="pos">1627.87</td>
+      <td class="pos">919.73</td>
+      <td class="neg">283.90</td>
+      <td class="pos">578.88</td>
+      <td class="">260.88</td>
+      <td class="pos">228.26</td>
+      <td class="pos">151.43</td>
+      <td class="">115.79</td>
+    </tr>
+    <tr><td>长期负债(亿元)</td>
+      <td class="">2041.75</td>
+      <td class="">1960.30</td>
+      <td class="warn">2102.84</td>
+      <td class="warn">1282.82</td>
+      <td class="warn">657.00</td>
+      <td class="warn">324.47</td>
+      <td class="warn">135.57</td>
+      <td class="warn">75.99</td>
+      <td class="warn">53.02</td>
+      <td class="">26.14</td>
+    </tr>
+    <tr><td>ROA(%)</td>
+      <td class="">8.72</td>
+      <td class="">7.18</td>
+      <td class="warn">7.10</td>
+      <td class="">7.36</td>
+      <td class="pos">7.69</td>
+      <td class="warn">4.73</td>
+      <td class="warn">5.72</td>
+      <td class="neg">6.05</td>
+      <td class="neg">10.72</td>
+      <td class="">15.66</td>
+    </tr>
+    <tr><td>ROE(%)</td>
+      <td class="">24.91</td>
+      <td class="">24.13</td>
+      <td class="">24.04</td>
+      <td class="">24.67</td>
+      <td class="pos">21.52</td>
+      <td class="">11.27</td>
+      <td class="">12.78</td>
+      <td class="neg">11.75</td>
+      <td class="neg">18.99</td>
+      <td class="">69.55</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 <div id="s1" class="card">
-<h2>一、综合评价</h2>
+  <h2>一、综合评价</h2>
 
   <div class="mg" style="margin-bottom:10px">
     <div class="mi"><div class="mv" style="color:#4caf50">7.5</div><div class="ml">综合评级</div></div>
-    <div class="mi"><div class="mv" style="color:#4caf50">中</h3></div><div class="ml">风险等级</div></div>
+    <div class="mi"><div class="mv" style="color:#ff9800">中</div><div class="ml">风险等级</div></div>
     <div class="mi"><div class="mv" style="color:#4caf50">🔋</div><div class="ml">核心壁垒</div></div>
     <div class="mi"><div class="mv" style="color:#ffc107">较高</div><div class="ml">成长弹性</div></div>
   </div>
+
+  <div class="bq">核心逻辑：宁德时代是全球动力电池行业绝对龙头（全球市占率38%+），2025年营收约4,650亿元、净利约578亿元。公司拥有麒麟电池、神行电池等前沿技术矩阵，储能业务增速超50%成为第二增长曲线，海外工厂（匈牙利/德国）加速全球化布局。核心投资逻辑是"全球电动化龙头+储能爆发+技术领先"三重驱动。但行业产能过剩（利用率约40-50%）、碳酸锂价格大幅波动、固态电池技术变革的不确定性是主要风险。综合评级7.5分。</div>
+
+  <div class="mg" style="grid-template-columns:1fr 1fr 1fr;margin-top:10px">
+    <div class="mi"><div class="mv" style="font-size:14px;color:#4caf50">经营：稳健</div><div class="ml">全球动力电池龙一，市占率38%+</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ff9800">财务：承压</div><div class="ml">资本开支高，FCF待改善</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ffc107">市场：合理偏低</div><div class="ml">PE 22x处于历史低位</div></div>
+  </div>
+
+  <table class="tbl" style="margin-top:10px">
+    <tr><th>指标</th><th>数值</th><th>说明</th></tr>
+    <tr><td>三年预估空间</td><td class="gold">+55%~+135%</td><td>基于PE修复至25-30x+利润CAGR 13-24%</td></tr>
+    <tr><td>季度监控</td><td>出货量/储能增速/毛利率</td><td>毛利率是否企稳是关键信号</td></tr>
+    <tr><td>逻辑证伪点</td><td class="red">全球市占率跌破30%/毛利率&lt;22%</td><td>龙头地位松动或盈利能力恶化</td></tr>
+    <tr><td>止损触发</td><td class="red">PE&gt;30x</td><td>估值已充分反映成长预期</td></tr>
+  </table>
+</div>
 
   <div class="bq">"宁德时代作为全球动力电池行业绝对龙头，凭借38%+的全球市占率、麒麟电池/神行电池等领先技术矩阵、以及从电池制造向材料回收全产业链布局的生态优势，是全球电动化浪潮中确定性最高的核心标的。2025年营收4,650亿、净利578亿均创历史新高，储能业务增速超50%成为第二增长曲线。但行业产能过剩（利用率约40-50%）、碳酸锂价格大幅波动（从60万跌至8万）、以及固态电池技术变革的不确定性，意味着公司所处的行业竞争格局远不如白酒、银行等行业稳定。公司处于'高增长+高竞争+高估值'的成长股定位，需密切关注供需格局改善信号和技术路线变化。"</div>
 
@@ -806,18 +1019,58 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <tr><td class="gold">合计</td><td>约6,700亿</td><td>约4,700亿</td></tr>
   </table>
   <div class="txt">清算价值约4,700亿元，当前市值约1.36万亿元。差额约8,900亿体现了宁德的持续经营价值和技术溢价。</div>
+
+
+  <h3>三情景分析</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">500-600元</div><div class="dt">+55~85%<br>储能爆发+海外放量+毛利率回升</div></div>
+    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">350-420元</div><div class="dt">+10~30%<br>稳定增长，估值维持</div></div>
+    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">200-280元</div><div class="dt">-15~-40%<br>产能过剩加剧+技术路线变革</div></div>
+  </div>
+
+  <h3>避雷清单</h3>
+  <div class="bq" style="border-left-color:#f44336">
+    <div style="margin-bottom:4px"><span class="red">⚠️</span> <b>全球市占率跌破30%</b>：龙头地位松动</div>
+    <div style="margin-bottom:4px"><span class="red">⚠️</span> <b>毛利率跌破22%</b>：价格战失控</div>
+    <div style="margin-bottom:4px"><span class="red">⚠️</span> <b>海外收入增速连续两季为负</b>：全球化逻辑受阻</div>
+  </div></div>
+
+<div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
+
+  <h3>六维评分</h3>
+  <div class="dim-row"><div class="dim-label">商业模式</div><div class="dim-bg"><div class="dim-fill c9" style="width:80%"></div></div><div class="dim-sc gold">8/10</div></div>
+  <div class="dim-row"><div class="dim-label">护城河</div><div class="dim-bg"><div class="dim-fill c9" style="width:80%"></div></div><div class="dim-sc gold">8/10</div></div>
+  <div class="dim-row"><div class="dim-label">管理层</div><div class="dim-bg"><div class="dim-fill c9" style="width:75%"></div></div><div class="dim-sc gold">7.5/10</div></div>
+  <div class="dim-row"><div class="dim-label">财务健康</div><div class="dim-bg"><div class="dim-fill c7" style="width:60%"></div></div><div class="dim-sc gold">6/10</div></div>
+  <div class="dim-row"><div class="dim-label">估值</div><div class="dim-bg"><div class="dim-fill c7" style="width:55%"></div></div><div class="dim-sc gold">5.5/10</div></div>
+  <div class="dim-row"><div class="dim-label">成长性</div><div class="dim-bg"><div class="dim-fill c9" style="width:80%"></div></div><div class="dim-sc gold">8/10</div></div>
+
+  <h3 style="margin-top:12px">核心亮点</h3>
+  <div class="txt"><span class="dot">●</span><b>全球动力电池绝对龙头：</b>全球市占率38%+，技术+成本+规模三重领先。</div>
+  <div class="txt"><span class="dot">●</span><b>储能业务第二增长曲线：</b>增速50%+，打开新增长空间。</div>
+  <div class="txt"><span class="dot">●</span><b>全球化布局加速：</b>匈牙利/德国工厂投产，海外收入占比持续提升。</div>
+
+  <h3 style="margin-top:12px">核心风险</h3>
+  <div class="txt"><span class="dot">●</span><b>行业产能过剩：</b>全球产能利用率约40-50%，毛利率承压。</div>
+  <div class="txt"><span class="dot">●</span><b>技术路线变革：</b>固态电池可能颠覆现有液态锂电路线。</div>
+  <div class="txt"><span class="dot">●</span><b>地缘政治风险：</b>美国IRA法案、欧盟关税影响海外扩张。</div>
+
+  <h3 style="margin-top:12px">价值投资理念应用</h3>
+  <table class="tbl">
+    <tr><th style="width:50px">维度</th><th style="width:100px">代表人物</th><th>应用分析</th></tr>
+    <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>宁德时代是好生意——动力电池全球第一、技术领先、资本开支少？不，资本开支极大。好技术+好赛道，但不是巴菲特最爱的轻资产模式。</td></tr>
+    <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>麒麟电池/神行电池等持续领先的技术构成了差异化优势，但竞争对手（比亚迪刀片电池、LG等）正在追赶，差异化优势在缩小。</td></tr>
+    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>符合林奇"快速增长型"公司特征——营收增速12%+，但需关注增长能否持续。PEG约1.5倍，估值合理。</td></tr>
+    <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>财务安全边际一般——有息负债高、资本开支大、FCF不稳定。格雷厄姆可能会等待PE&lt;15x才考虑。</td></tr>
+    <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>规模优势+成本领先+技术迭代是芒格欣赏的护城河。但护城河需要持续投入维护，并非一劳永逸。</td></tr>
+    <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>PE 22x处于历史低位，市场对产能过剩的悲观已部分定价。邓普顿认为逆向布局好时机。</td></tr>
+    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>储能+海外+新技术，成长空间广阔。费雪会看好这个赛道和赛道龙头。</td></tr>
+    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>储能放量、海外投产、固态电池进展——催化剂清晰。需关注兑现节奏。</td></tr>
+    <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>市场对产能过剩过度悲观——行业出清后龙头受益的规律未被充分定价。卡拉曼会等待更低估值。</td></tr>
+    <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>反脆弱性中等——技术路线变革是最大黑天鹅，但公司在固态电池也有布局。高负债率是脆弱点。</td></tr>
+  </table>
+
 </div>
-
-<div id="s12" class="card">
-  <h2>六、综合评级 & 最终结论</h2>
-
-  <h3>综合评分</h3>
-  <div class="dim-row"><span class="dim-label">商业模式</span><div class="dim-bg"><div class="dim-fill c9" style="width:80%"></div></div><span class="dim-sc" style="color:#4caf50;">8.0</span><span style="font-size:10px;color:#888;margin-left:4px;">全球电池龙头</span></div>
-  <div class="dim-row"><span class="dim-label">壁垒强度</span><div class="dim-bg"><div class="dim-fill c9" style="width:88%"></div></div><span class="dim-sc" style="color:#4caf50;">8.8</span><span style="font-size:10px;color:#888;margin-left:4px;">规模+技术+垂直整合</span></div>
-  <div class="dim-row"><span class="dim-label">管理层</span><div class="dim-bg"><div class="dim-fill c9" style="width:90%"></div></div><span class="dim-sc" style="color:#4caf50;">9.0</span><span style="font-size:10px;color:#888;margin-left:4px;">曾毓群卓越领导</span></div>
-  <div class="dim-row"><span class="dim-label">财务质量</span><div class="dim-bg"><div class="dim-fill c7" style="width:75%"></div></div><span class="dim-sc" style="color:#8bc34a;">7.5</span><span style="font-size:10px;color:#888;margin-left:4px;">重资产模式</span></div>
-  <div class="dim-row"><span class="dim-label">成长性</span><div class="dim-bg"><div class="dim-fill c9" style="width:85%"></div></div><span class="dim-sc" style="color:#4caf50;">8.5</span><span style="font-size:10px;color:#888;margin-left:4px;">高增长</span></div>
-  <div class="dim-row"><span class="dim-label">安全边际</span><div class="dim-bg"><div class="dim-fill c7" style="width:65%"></div></div><span class="dim-sc" style="color:#8bc34a;">6.5</span><span style="font-size:10px;color:#888;margin-left:4px;">估值中等</span></div>
 
   <h3>核心亮点</h3>
   <div class="txt">
