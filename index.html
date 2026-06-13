@@ -141,6 +141,26 @@ h1 span{color:var(--accent)}
 .header-user.guest:active{opacity:.8}
 .header-user.logged-in{background:var(--bg5);color:var(--t2);border:1px solid var(--b2);display:flex;align-items:center;gap:4px}
 .header-user.logged-in:active{background:var(--bg3)}
+
+/* ===== LOGIN MODAL ===== */
+.login-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.6);justify-content:center;align-items:center}
+.login-overlay.active{display:flex}
+.login-modal{background:var(--bg3);border:1px solid var(--b2);border-radius:12px;padding:24px;width:320px;max-width:90vw}
+.login-modal h3{margin:0 0 16px;font-size:15px;color:var(--t1);text-align:center}
+.login-tabs{display:flex;gap:0;margin-bottom:16px;border-radius:8px;overflow:hidden;border:1px solid var(--b2)}
+.login-tab{flex:1;text-align:center;padding:7px 0;font-size:12px;cursor:pointer;background:var(--bg4);color:var(--m2);transition:all .2s}
+.login-tab.active{background:var(--accent);color:#1a1a1a;font-weight:600}
+.login-field{margin-bottom:12px}
+.login-field label{display:block;font-size:11px;color:var(--m2);margin-bottom:4px}
+.login-field input{width:100%;padding:8px 10px;border:1px solid var(--b2);border-radius:6px;background:var(--bg1);color:var(--t1);font-size:13px;font-family:inherit;box-sizing:border-box}
+.login-field input:focus{outline:none;border-color:var(--accent)}
+.login-btn{width:100%;padding:8px;border:none;border-radius:6px;background:var(--accent);color:#1a1a1a;font-size:13px;font-weight:600;cursor:pointer}
+.login-btn:disabled{opacity:.5;cursor:not-allowed}
+.login-msg{font-size:11px;color:var(--m3);text-align:center;margin-top:10px;min-height:16px}
+.login-msg.error{color:#e74c3c}
+.login-msg.success{color:#4caf50}
+.login-close{float:right;border:none;background:none;color:var(--m3);font-size:18px;cursor:pointer;padding:0;line-height:1}
+.setpwd-note{font-size:11px;color:var(--m3);margin-top:8px;text-align:center}
 .report-frame-wrap .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--m5);font-size:12px;flex-direction:column;gap:8px}
 
 /* ===== DETAIL VIEW (books) ===== */
@@ -1144,14 +1164,14 @@ function getStoredUser() {
   } catch(e) {}
   return null
 }
-
 function updateHeaderBtn() {
   var btn = document.getElementById('headerUserBtn')
   var user = getStoredUser()
   if (user && user.email) {
+    var name = user.user_metadata && user.user_metadata.name ? user.user_metadata.name : user.email.split('@')[0]
     btn.className = 'header-user logged-in'
-    btn.innerHTML = '👤 ' + (user.user_metadata && user.user_metadata.name ? user.user_metadata.name : user.email.split('@')[0])
-    btn.onclick = function() { logout() }
+    btn.innerHTML = '👤 ' + name
+    btn.onclick = function() { showUserMenu() }
   } else {
     btn.className = 'header-user guest'
     btn.textContent = '登录 / 注册'
@@ -1159,14 +1179,88 @@ function updateHeaderBtn() {
   }
 }
 
+// ===== LOGIN MODAL =====
 function openLogin() {
   var user = getStoredUser()
   if (user && user.email) return
-  var email = prompt('请输入邮箱，我们将发送登录链接：')
-  if (!email) return
-  var btn = document.getElementById('headerUserBtn')
-  btn.textContent = '发送中...'
-  btn.disabled = true
+  document.getElementById('loginOverlay').classList.add('active')
+  document.getElementById('loginMsg').textContent = ''
+  document.getElementById('loginOtpMsg').textContent = ''
+  document.getElementById('loginEmail').value = ''
+  document.getElementById('loginPassword').value = ''
+  document.getElementById('loginEmailOtp').value = ''
+  switchLoginTab('pwd')
+}
+
+function closeLoginModal() {
+  document.getElementById('loginOverlay').classList.remove('active')
+}
+
+function switchLoginTab(mode) {
+  document.getElementById('loginTabPwd').className = 'login-tab' + (mode === 'pwd' ? ' active' : '')
+  document.getElementById('loginTabOtp').className = 'login-tab' + (mode === 'otp' ? ' active' : '')
+  document.getElementById('loginFieldsPwd').style.display = mode === 'pwd' ? '' : 'none'
+  document.getElementById('loginFieldsOtp').style.display = mode === 'otp' ? '' : 'none'
+}
+
+function submitLogin() {
+  var email = document.getElementById('loginEmail').value.trim()
+  var password = document.getElementById('loginPassword').value
+  if (!email) { setLoginMsg('请输入邮箱', true); return }
+  if (!password) { setLoginMsg('请输入密码', true); return }
+  var btn = document.getElementById('loginSubmitBtn')
+  btn.disabled = true; btn.textContent = '登录中...'
+  setLoginMsg('')
+
+  // First try signInWithPassword
+  getSupabase().auth.signInWithPassword({ email: email, password: password })
+    .then(function(res) {
+      if (res.error) {
+        // Account doesn't exist or no password set → try signUp
+        if (res.error.message === 'Invalid login credentials') {
+          setLoginMsg('账号未注册，正在创建...', false)
+          return getSupabase().auth.signUp({
+            email: email,
+            password: password,
+            options: { emailRedirectTo: 'https://valuelinecn.github.io/report-portal' }
+          })
+        }
+        throw res.error
+      }
+      return res
+    })
+    .then(function(res) {
+      btn.disabled = false; btn.textContent = '登录'
+      if (res.error) {
+        setLoginMsg('注册失败: ' + res.error.message, true)
+      } else if (res.data && res.data.user && res.data.user.identities && res.data.user.identities.length === 0) {
+        // User already exists but was created via magic link (no password)
+        setLoginMsg('该账号已存在但未设密码，请使用"邮箱验证"登录后设置密码', true)
+      } else if (res.data && res.data.user) {
+        // signUp succeeded - user needs to verify email
+        closeLoginModal()
+        alert('注册成功！验证邮件已发送到 ' + email + '，请查看邮箱并点击验证链接，之后可用密码登录。')
+      }
+    })
+    .catch(function(err) {
+      btn.disabled = false; btn.textContent = '登录'
+      setLoginMsg('失败: ' + err.message, true)
+    })
+}
+
+function setLoginMsg(msg, isError) {
+  var el = document.getElementById('loginMsg')
+  el.textContent = msg
+  el.className = 'login-msg' + (isError ? ' error' : msg ? ' success' : '')
+}
+
+function submitOtp() {
+  var email = document.getElementById('loginEmailOtp').value.trim()
+  if (!email) { setOtpMsg('请输入邮箱', true); return }
+  var btn = document.getElementById('loginOtpBtn')
+  btn.disabled = true; btn.textContent = '发送中...'
+  setOtpMsg('')
+
   getSupabase().auth.signInWithOtp({
     email: email,
     options: {
@@ -1174,13 +1268,37 @@ function openLogin() {
       emailRedirectTo: 'https://valuelinecn.github.io/report-portal'
     }
   }).then(function(res) {
-    btn.textContent = '登录 / 注册'
-    btn.disabled = false
+    btn.disabled = false; btn.textContent = '发送验证链接'
     if (res.error) {
-      alert('发送失败: ' + res.error.message)
+      setOtpMsg('发送失败: ' + res.error.message, true)
     } else {
-      alert('登录链接已发送到 ' + email + '，请查看邮箱并点击链接登录')
+      setOtpMsg('链接已发送到 ' + email + '，请查看邮箱', false)
     }
+  })
+}
+
+function setOtpMsg(msg, isError) {
+  var el = document.getElementById('loginOtpMsg')
+  el.textContent = msg
+  el.className = 'login-msg' + (isError ? ' error' : msg ? ' success' : '')
+}
+
+function showUserMenu() {
+  var user = getStoredUser()
+  if (!user) return
+  var choice = prompt('已登录: ' + user.email + '\n\n1 - 设置密码（之后可用密码登录）\n2 - 退出登录\n\n输入数字：')
+  if (choice === '1') showSetPwd()
+  else if (choice === '2') logout()
+}
+
+function showSetPwd() {
+  var pwd = prompt('请输入新密码（至少6位）：')
+  if (!pwd || pwd.length < 6) { alert('密码至少6位'); return }
+  var confirm = prompt('请再次输入新密码：')
+  if (pwd !== confirm) { alert('两次密码不一致'); return }
+  getSupabase().auth.updateUser({ password: pwd }).then(function(res) {
+    if (res.error) alert('设置失败: ' + res.error.message)
+    else alert('密码设置成功！下次可直接用邮箱+密码登录。')
   })
 }
 
@@ -1352,5 +1470,37 @@ document.addEventListener('DOMContentLoaded', () => {
   renderBooks()
 })
 </script>
+<!-- ===== LOGIN MODAL ===== -->
+<div class="login-overlay" id="loginOverlay" onclick="if(event.target===this)closeLoginModal()">
+  <div class="login-modal">
+    <button class="login-close" onclick="closeLoginModal()">✕</button>
+    <h3>登录</h3>
+    <div class="login-tabs">
+      <div class="login-tab active" id="loginTabPwd" onclick="switchLoginTab('pwd')">密码登录</div>
+      <div class="login-tab" id="loginTabOtp" onclick="switchLoginTab('otp')">邮箱验证</div>
+    </div>
+    <div id="loginFieldsPwd">
+      <div class="login-field">
+        <label>邮箱</label>
+        <input type="email" id="loginEmail" placeholder="your@email.com" autocomplete="email">
+      </div>
+      <div class="login-field" id="pwdField">
+        <label>密码</label>
+        <input type="password" id="loginPassword" placeholder="输入密码" autocomplete="current-password">
+      </div>
+      <button class="login-btn" id="loginSubmitBtn" onclick="submitLogin()">登录</button>
+      <div class="login-msg" id="loginMsg"></div>
+    </div>
+    <div id="loginFieldsOtp" style="display:none">
+      <div class="login-field">
+        <label>邮箱</label>
+        <input type="email" id="loginEmailOtp" placeholder="your@email.com">
+      </div>
+      <button class="login-btn" id="loginOtpBtn" onclick="submitOtp()">发送验证链接</button>
+      <div class="login-msg" id="loginOtpMsg"></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
