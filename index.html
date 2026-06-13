@@ -1082,8 +1082,8 @@ function backToHub() {
   document.querySelectorAll('.game-container').forEach(el => { el.style.display='none'; el.classList.remove('active') })
   document.getElementById('gameHub').style.display='block'
 }
-function switchToQuiz() { document.getElementById('gameHub').style.display='none'; const c=document.getElementById('quizContainer'); c.style.display='block'; c.classList.add('active') }
-function switchToMatch() { document.getElementById('gameHub').style.display='none'; const c=document.getElementById('matchContainer'); c.style.display='block'; c.classList.add('active') }
+function switchToQuiz() { window._currentGid='quiz'; document.getElementById('gameHub').style.display='none'; const c=document.getElementById('quizContainer'); c.style.display='block'; c.classList.add('active') }
+function switchToMatch() { window._currentGid='match'; document.getElementById('gameHub').style.display='none'; const c=document.getElementById('matchContainer'); c.style.display='block'; c.classList.add('active') }
 function switchToPC() {
   document.getElementById('gameHub').style.display='none';
   const c=document.getElementById('pcContainer');
@@ -1522,7 +1522,11 @@ function loadCommentsIfNeeded(type) {
   if (!cid) return;
   var el = document.getElementById(cid);
   if (el && !el.querySelector('.comment-card, .comment-loading, .comment-error')) {
-    loadComments('/' + (type === 'report' ? (window._currentCid || '') : type), cid);
+    var path = '/';
+    if (type === 'report') path += window._currentCid || '';
+    else if (type === 'book') path += 'book/' + (window._currentBid || '');
+    else path += 'game/' + (type === 'game' ? (window._currentGid || '') : '');
+    loadComments(path, cid);
   }
 }
 
