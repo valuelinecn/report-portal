@@ -717,20 +717,7 @@ html{scroll-behavior:smooth}
       </div>
     </div>
   </div>
-  <!-- ===== COMMENTS SECTION (games) ===== -->
-  <div class="comment-toggle" id="commentToggle-game" onclick="toggleComments('game')">
-    💬 评论 <span class="count" id="commentCount-game">0</span>
-    <span class="arrow">▲</span>
-  </div>
-  <div class="comment-fullscreen" id="commentFs-game">
-    <div class="comment-fs-header" onclick="if(document.getElementById('commentFs-game').classList.contains('peek'))expandComments('game')">
-      💬 评论 <span class="count" id="commentFsCount-game">0</span>
-      <button class="comment-fs-close" onclick="event.stopPropagation();toggleComments('game')">▼ 收起</button>
-    </div>
-    <div class="comment-fs-body" id="commentFsBody-game">
-      <div class="waline-wrap"><div id="waline-game"></div></div>
-    </div>
-  </div>
+
 </div>
 
 <!-- ===== REPORT VIEW (fullscreen) ===== -->
@@ -1679,7 +1666,7 @@ function loadComments(path, containerId) {
     if (res.error) { el.innerHTML = '<div class="comment-error">加载失败</div>'; return; }
     renderComments(el, res.data || [], path);
     // Update comment count on toggle bar and fullscreen header
-    var prefix = containerId === 'comment-report' ? 'report' : containerId === 'comment-book' ? 'book' : containerId === 'waline-game' ? 'game' : '';
+    var prefix = containerId === 'comment-report' ? 'report' : containerId === 'comment-book' ? 'book' : '';
     if (prefix) {
       var n = (res.data || []).length;
       var cnt = document.getElementById('commentCount-' + prefix);
