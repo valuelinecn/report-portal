@@ -236,7 +236,18 @@ html{scroll-behavior:smooth}
 .summary-card p{font-size:12px;color:var(--t4);line-height:1.7}
 .summary-items{font-size:12px;color:var(--t4);line-height:1.7}
 .summary-item{padding:3px 0;padding-left:6px;border-left:2px solid var(--accent3);margin-bottom:4px}
-.summary-item:last-child{margin-bottom:0}
+.back-top{bottom:80px}
+
+/* ===== FOOTER ===== */
+.site-footer{margin-top:30px;padding:20px 16px 10px;border-top:1px solid var(--b2);font-size:12px;color:var(--t4)}
+.feedback-form{margin:8px 0 16px}
+.feedback-form textarea{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--b3);border-radius:6px;background:var(--bg3);color:var(--t1);font-size:12px;font-family:inherit;resize:none;height:48px}
+.feedback-form textarea:focus{outline:none;border-color:var(--accent)}
+.feedback-row{display:flex;gap:6px;margin-top:6px}
+.feedback-btn{flex-shrink:0;border:none;background:var(--accent);color:#fff;padding:6px 14px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;font-weight:600}
+.feedback-btn:disabled{opacity:.5;cursor:default}
+.feedback-msg{font-size:10px;margin-top:4px;color:var(--accent)}
+.footer-bottom{margin-top:12px;padding-top:10px;border-top:1px solid var(--b2);font-size:10px;color:var(--m5);line-height:1.7;text-align:center}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:599px){
@@ -244,6 +255,9 @@ html{scroll-behavior:smooth}
   .hero-icon{font-size:24px;margin-bottom:0}
   .theme-toggle{font-size:14px;padding:3px 6px}
   .header-user{font-size:10px;padding:2px 7px}
+  .site-footer{padding:14px 12px 8px}
+  .feedback-form textarea{height:40px;font-size:11px}
+  .feedback-btn{font-size:10px;padding:5px 10px}
 }
 @media(min-width:600px){
   header{padding:28px 24px 20px}
@@ -1601,6 +1615,23 @@ try {
   });
 } catch(e) {}
 
+// ===== FEEDBACK =====
+function submitFeedback() {
+  var input = document.getElementById('feedbackInput');
+  if (!input || !input.value.trim()) return;
+  var btn = document.getElementById('feedbackBtn');
+  var msg = document.getElementById('feedbackMsg');
+  btn.disabled = true;
+  btn.textContent = '提交中...';
+  getSupabase().from('feedback').insert({content: input.value.trim()}).then(function(res) {
+    btn.disabled = false;
+    btn.textContent = '提交';
+    if (res.error) { msg.textContent = '提交失败，请稍后重试'; return; }
+    input.value = '';
+    msg.textContent = '✅ 感谢你的反馈！';
+    setTimeout(function() { msg.textContent = ''; }, 3000);
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   updateHeaderBtn()
@@ -1639,6 +1670,23 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
 </div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <h3 style="font-size:13px;color:var(--t1);margin:0 0 6px">💬 用户反馈</h3>
+  <div class="feedback-form" id="feedbackForm">
+    <textarea id="feedbackInput" placeholder="告诉我们你的想法、建议或遇到的问题…（匿名提交）"></textarea>
+    <div class="feedback-row">
+      <button class="feedback-btn" id="feedbackBtn" onclick="submitFeedback()">提交</button>
+    </div>
+    <div class="feedback-msg" id="feedbackMsg"></div>
+  </div>
+  <div class="footer-bottom">
+    ⚠️ 声明：本网站内容仅供学习和研究使用，不构成投资建议。<br>
+    数据来源：各公司年报、东方财富、同花顺、Wind<br>
+    © 2026 价值投资研究门户
+  </div>
+</footer>
 
 <button class="back-top" onclick="var rv=document.getElementById('reportView'),bv=document.getElementById('bookDetailView');if(rv&&rv.classList.contains('active')){var f=document.getElementById('reportFrame');if(f&&f.contentWindow)f.contentWindow.scrollTo({top:0,behavior:'smooth'})}else if(bv&&bv.classList.contains('active')){var s=document.querySelector('.detail-scroll');if(s)s.scrollTo({top:0,behavior:'smooth'})}else{window.scrollTo({top:0,behavior:'smooth'})}">↑</button>
 
