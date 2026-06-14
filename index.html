@@ -1433,58 +1433,50 @@ function fillRandomNickname() {
   document.getElementById('nicknameInput').value = adj[Math.floor(Math.random()*adj.length)] + nouns[Math.floor(Math.random()*nouns.length)]
   document.getElementById('nicknameMsg').textContent = ''
 }
+function sfetch(path, opts) {
+  var url = SUPABASE_URL + '/rest/v1/' + path
+  var h = {'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Accept': 'application/json'}
+  if (opts && opts.headers) { var ks = Object.keys(opts.headers); for (var i=0;i<ks.length;i++) { h[ks[i]] = opts.headers[ks[i]] } }
+  return fetch(url, {method:(opts&&opts.method)||'GET', headers:h, body:(opts&&opts.body)||undefined}).then(function(r) {
+    return r.text().then(function(t) { var d = null; try { d = JSON.parse(t) } catch(e) {} return {ok:r.ok, status:r.status, data:d} })
+  })
+}
 function saveNickname() {
-  var input = document.getElementById('nicknameInput')
-  var msg = document.getElementById('nicknameMsg')
-  var nick = input.value.trim()
-  if (nick.length < 2 || nick.length > 12) { msg.textContent = '昵称需2-12个字符'; return }
-  var bad = ['admin','root','系统','管理','客服','fuck','shit','管理员','版主']
-  for (var i = 0; i < bad.length; i++) { if (nick.toLowerCase().indexOf(bad[i]) >= 0) { msg.textContent = '包含敏感词'; return } }
-  var user = window._nicknameUser
-  if (!user) return
-  // Check 7-day cooldown
-  var lastChange = localStorage.getItem('NICKNAME_CHANGED_AT')
-  if (lastChange) {
-    var daysPassed = (Date.now() - parseInt(lastChange)) / 86400000
-    if (daysPassed < 7 && localStorage.getItem('SUPABASE_NICKNAME')) {
-      var remaining = Math.ceil(7 - daysPassed)
-      msg.textContent = '每7天可修改一次，还需等待' + remaining + '天'
-      document.getElementById('nicknameConfirmBtn').disabled = false
-      document.getElementById('nicknameConfirmBtn').textContent = '确定'
-      return
-    }
-  }
-  var btn = document.getElementById('nicknameConfirmBtn')
-  btn.disabled = true; btn.textContent = '检查中...'
-  // Check uniqueness
-  getSupabase().from('profiles').select('id').eq('nickname', nick).maybeSingle().then(function(res) {
-    if (res.error) { msg.textContent = '检查失败'; btn.disabled = false; btn.textContent = '确定'; return }
-    if (res.data && res.data.id !== user.id) { msg.textContent = '该昵称已被使用'; btn.disabled = false; btn.textContent = '确定'; return }
-    btn.textContent = '保存中...'
-    // Save to profiles (upsert: insert if new, update if exists)
-    getSupabase().from('profiles').upsert({id: user.id, nickname: nick}, {onConflict: 'id'}).then(function(r) {
-      btn.disabled = false; btn.textContent = '确定'
-      if (r.error) { msg.textContent = '保存失败'; return }
-      localStorage.setItem('SUPABASE_NICKNAME', nick)
-      localStorage.setItem('NICKNAME_CHANGED_AT', String(Date.now()))
-      // Sync all historical comments
-      getSupabase().from('comments').update({author_name: nick}).eq('user_id', user.id).then(function(){})
-      closeNicknameDialog()
-      updateHeaderBtn()
-    })
+  var input=document.getElementById('nicknameInput'), msg=document.getElementById('nicknameMsg'), nick=input.value.trim()
+  if (nick.length<2||nick.length>12) { msg.textContent='昵称需2-12个字符'; return }
+  var bad=['admin','root','系统','管理','客服','fuck','shit','管理员','版主']
+  for (var i=0;i<bad.length;i++) { if (nick.toLowerCase().indexOf(bad[i])>=0) { msg.textContent='包含敏感词'; return } }
+  var user=window._nicknameUser
+  if (!user||!user.id) { msg.textContent='请重新登录'; return }
+  var lc=localStorage.getItem('NICKNAME_CHANGED_AT')
+  if (lc) { var dp=(Date.now()-parseInt(lc))/86400000; if (dp<7&&localStorage.getItem('SUPABASE_NICKNAME')) { msg.textContent='每7天可修改一次，还需等待'+Math.ceil(7-dp)+'天'; document.getElementById('nicknameConfirmBtn').disabled=false; document.getElementById('nicknameConfirmBtn').textContent='确定'; return } }
+  var btn=document.getElementById('nicknameConfirmBtn')
+  btn.disabled=true; btn.textContent='检查中...'
+  // Check uniqueness with SDK SELECT (same pattern as comments)
+  getSupabase().from('profiles').select('id').eq('nickname', nick).then(function(qr) {
+    if (qr.error) { msg.textContent='检查失败'; btn.disabled=false; btn.textContent='确定'; return }
+    var qrows=qr.data||[], match=qrows.length>0?qrows[0]:null
+    if (match&&match.id&&match.id!==user.id) { msg.textContent='该昵称已被使用'; btn.disabled=false; btn.textContent='确定'; return }
+    btn.textContent='保存中...'
+    // Save with direct REST API (SDK upsert may have issues)
+    fetch(SUPABASE_URL+'/rest/v1/profiles', {method:'POST', headers:{'apikey':SUPABASE_ANON_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'}, body:JSON.stringify({id:user.id,nickname:nick,updated_at:new Date().toISOString()})}).then(function(fr) {
+      btn.disabled=false; btn.textContent='确定'
+      if (!fr.ok) { msg.textContent='保存失败('+fr.status+')'; return }
+      localStorage.setItem('SUPABASE_NICKNAME',nick); localStorage.setItem('NICKNAME_CHANGED_AT',String(Date.now()))
+      getSupabase().from('comments').update({author_name:nick}).eq('user_id',user.id).then(function(){})
+      closeNicknameDialog(); updateHeaderBtn()
+    }).catch(function(){btn.disabled=false;btn.textContent='确定';msg.textContent='网络错误'})
   })
 }
 function checkNickname() {
-  var user = getStoredUser()
-  if (!user) return
+  var user=getStoredUser(); if (!user) return
   if (localStorage.getItem('SUPABASE_NICKNAME')) return
-  getSupabase().from('profiles').select('nickname').eq('id', user.id).maybeSingle().then(function(res) {
-    if (res.data && res.data.nickname) {
-      localStorage.setItem('SUPABASE_NICKNAME', res.data.nickname)
-      updateHeaderBtn()
-    } else {
-      showNicknameDialog(user)
-    }
+  // Use SDK SELECT without maybeSingle (same pattern as comments)
+  getSupabase().from('profiles').select('nickname').eq('id', user.id).then(function(res) {
+    if (res.error) return
+    var rows=res.data||[], row=rows.length>0?rows[0]:null
+    if (row&&row.nickname) { localStorage.setItem('SUPABASE_NICKNAME',row.nickname); updateHeaderBtn() }
+    else { showNicknameDialog(user) }
   })
 }
 
@@ -1605,12 +1597,14 @@ function showUserMenu() {
 function showSetPwd() {
   var pwd = prompt('请输入新密码（至少6位）：')
   if (!pwd || pwd.length < 6) { alert('密码至少6位'); return }
-  var confirm = prompt('请再次输入新密码：')
-  if (pwd !== confirm) { alert('两次密码不一致'); return }
-  getSupabase().auth.updateUser({ password: pwd }).then(function(res) {
-    if (res.error) alert('设置失败: ' + res.error.message)
-    else alert('密码设置成功！下次可直接用邮箱+密码登录。')
-  })
+  var c = prompt('请再次输入新密码：')
+  if (pwd !== c) { alert('两次密码不一致'); return }
+  var token = localStorage.getItem('SUPABASE_AUTH_TOKEN')
+  if (!token) { alert('请先重新登录'); return }
+  fetch(SUPABASE_URL+'/auth/v1/user', {method:'PUT', headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+token,'Content-Type':'application/json'}, body:JSON.stringify({password:pwd})}).then(function(r) {
+    if (r.ok) { alert('密码设置成功！下次可直接用邮箱+密码登录。') }
+    else { r.json().then(function(j) { alert('设置失败: '+(j.msg||j.message||j.error||JSON.stringify(j))) }).catch(function(){alert('设置失败('+r.status+')')}) }
+  }).catch(function(e) { alert('网络错误: '+e.message) })
 }
 
 function logout() {
@@ -1831,16 +1825,19 @@ try {
   getSupabase().auth.onAuthStateChange(function(event, session) {
     if (event === 'SIGNED_IN' && session) {
       localStorage.setItem('SUPABASE_USER', JSON.stringify(session.user));
+      localStorage.setItem('SUPABASE_AUTH_TOKEN', session.access_token);
       updateHeaderBtn();
       setTimeout(function() { checkNickname(); }, 500);
     } else if (event === 'SIGNED_OUT') {
       localStorage.removeItem('SUPABASE_USER');
+      localStorage.removeItem('SUPABASE_AUTH_TOKEN');
       updateHeaderBtn();
     }
   });
   getSupabase().auth.getSession().then(function(res) {
     if (res.data && res.data.session) {
       localStorage.setItem('SUPABASE_USER', JSON.stringify(res.data.session.user));
+      localStorage.setItem('SUPABASE_AUTH_TOKEN', res.data.session.access_token);
     }
     updateHeaderBtn();
     setTimeout(function() { checkNickname(); }, 600);
