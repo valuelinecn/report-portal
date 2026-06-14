@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>京东方 · 完整投资研究报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
+h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
+h2{font-size:16px;color:#4caf50;margin:20px 0 10px;border-left:3px solid #4caf50;padding-left:10px}
+h3{font-size:14px;color:#ccc;margin:14px 0 6px}
+h4{font-size:13px;color:#aaa;margin:10px 0 4px}
+.desc{font-size:12px;color:#888;margin-bottom:10px}
+.card{background:#0d1a1a;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid #1a3a3a}
+.sc-wrap{text-align:center;margin-bottom:16px}
+.score-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(#4caf50 0deg 252deg,#333 252deg 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
+.score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
+.c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e3e3a;font-size:11px}
+.tbl td:first-child{white-space:nowrap;font-size:12px}
+.tbl tr:last-child td{border-bottom:none}
+.gold{color:#4caf50;font-weight:bold}.green{color:#4caf50}.red{color:#f44336}.orange{color:#ff9800}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{background:#0a0a1a;border-radius:8px;padding:10px;text-align:center}
+.mv{font-size:18px;font-weight:bold;color:#fff}
+.ml{font-size:10px;color:#888;margin-top:2px}
+.hb{display:flex;align-items:flex-start;margin:4px 0;min-height:20px}
+.hl{width:72px;font-size:11px;color:#aaa;flex-shrink:0;padding-top:2px}
+.ht{flex:1;height:16px;background:#1e3e3a;border-radius:8px;overflow:visible;margin:0 6px;position:relative}
+.hf{height:16px;border-radius:8px;display:flex;align-items:center;padding-left:6px;font-size:10px;color:#fff;overflow:visible;white-space:nowrap;text-shadow:0 0 3px rgba(0,0,0,.8);min-width:0}
+.hv{font-size:10px;color:#999;white-space:nowrap;flex-shrink:0;padding-top:2px;margin-left:2px}
+.scn{display:flex;gap:6px;margin:8px 0}
+.scc{flex:1;border-radius:8px;padding:10px;text-align:center}
+.scc h4{font-size:12px;margin-bottom:4px;color:#fff}
+.scc .pct{font-size:18px;font-weight:bold}
+.scc .dt{font-size:10px;color:#ccc;margin-top:3px}
+.sc1{background:#1a3a1a;border:1px solid #2a5a2a}.sc1 .pct{color:#4caf50}
+.sc2{background:#1a2a3a;border:1px solid #2a3a5a}.sc2 .pct{color:#f0c040}
+.sc3{background:#3a1a1a;border:1px solid #5a2a2a}.sc3 .pct{color:#f44336}
+.tg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;margin:1px}
+.tgg{background:#1a3a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgr{background:#3a1a1a;color:#f44336;border:1px solid #5a2a2a}
+.tgo{background:#3a2a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgy{background:#222;color:#aaa;border:1px solid #333}
+.txt{padding:6px 0;font-size:13px;color:#ccc;line-height:1.7}
+.txt .dot{color:#4caf50;margin-right:4px}
+.bq{padding:10px;background:#0a0a1a;border-radius:8px;border-left:3px solid #4caf50;margin:8px 0;font-size:13px;color:#ddd;line-height:1.7}
+.cp{display:flex;align-items:center;margin:4px 0;font-size:12px}
+.cp .nm{width:88px;color:#aaa;flex-shrink:0}
+.cp .bt{flex:1;height:14px;background:#1e3e3a;border-radius:7px;overflow:hidden;margin:0 6px}
+.cp .bf{height:100%;border-radius:7px}
+.cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
+.footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e3e3a;line-height:1.8}
+.sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e3e3a;margin-bottom:12px}
+.toc{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:10px;color:#888;text-decoration:none;padding:3px 7px;border-radius:10px;border:1px solid #333;white-space:nowrap;flex-shrink:0}
+.toc a:active{background:#1e3e3a;color:#4caf50}
+
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+  <div style="text-align:center;font-size:11px;color:#555;margin-bottom:4px;">📌 点击跳转</div>
+  <div class="toc">
+    <a href="#s0">评分</a><a href="#s1">综合评价</a><a href="#s2">M1商业模式</a>
+    <a href="#s3">M2壁垒</a><a href="#s4">M3管理层</a><a href="#s5">M4财务</a>
+    <a href="#s6">M5产业链</a><a href="#s7">M6估值</a><a href="#s8">M7市占率</a>
+    <a href="#s9">M8催化剂</a><a href="#s10">M9预期差</a><a href="#s11">M10风险</a>
+    <a href="#s12">综合评级</a><a href="#s13">附录</a>
+  </div>
+</div>
+
+<div id="s0" class="sc-wrap">
+  <div class="score-ring"><div class="score-inner"><div class="score-num">6.5</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">京东方 <span style="font-size:14px;color:#888;font-weight:400;">000725</span></h1>
+  <div class="desc">全球面板龙头，LCD周期反转+OLED放量+折旧拐点+AI/车载新赛道共振</div>
+  <div><span class="tg tgo">周期反转 · 面板龙头 · OLED放量</span><span class="tg tgy">数据截止：2026-06-14</span></div>
+</div>
+
+<div id="s-mcap" class="card">
+  <h2>市值走势</h2>
+  <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
+
+  <div class="mcap-btns">
+    <button class="mcap-btn active" data-period="week">周线</button>
+    <button class="mcap-btn" data-period="month">月线</button>
+    <button class="mcap-btn" data-period="year">年线</button>
+  </div>
+
+  <div class="mcap-chart-wrap">
+    <div class="mcap-tooltip" id="mcapTooltip"></div>
+    <svg id="mcapSvg" width="100%" height="380"></svg>
+  </div>
+
+  <div class="mcap-info">
+    当前市值：<span class="mcap-v" id="mcapCurrent">--</span> 亿 ·
+    历史最高：<span class="mcap-v" id="mcapHigh">--</span> 亿 ·
+    历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
+    总股本：<span class="mcap-v" id="mcapShares">13.71</span> 亿股
+  </div>
+</div>
+
+<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
+  <h2>历年财务数据</h2>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=连续下滑</span> · <span style="color:#e74c3c">红色=负值/下滑>20%</span></div>
+  <style>
+  .fin-table{width:100%;border-collapse:collapse;font-size:11px}
+  .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
+  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
+  .fin-table tr:hover td{background:#1a1a3a}
+  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
+  .fin-table tr:hover td:first-child{background:#1a1a2a}
+  .fin-table td.na{color:#555}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
+  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
+  .fin-light .fin-table td.pos{color:#2e7d32!important}
+  .fin-light .fin-table td.neg{color:#c0392b!important}
+  .fin-light .fin-table td.warn{color:#b8860b!important}
+</style>
+  <table class="fin-table">
+<thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
+<tbody>
+<tr><td>每股营业收入(元)</td><td>5.59</td><td>5.42</td><td>4.77</td><td>4.87</td><td>6.04</td><td>3.70</td><td>3.17</td><td>2.65</td><td>2.56</td><td>1.88</td></tr>
+<tr><td>每股经营现金流(元)</td><td>1.30</td><td>1.27</td><td>1.02</td><td>1.13</td><td>1.63</td><td>1.13</td><td>0.75</td><td>0.74</td><td>0.77</td><td>0.29</td></tr>
+<tr><td>每股净利润(元)</td><td>0.16</td><td>0.14</td><td>0.06</td><td>0.19</td><td>0.71</td><td>0.13</td><td>0.05</td><td>0.10</td><td>0.22</td><td>0.05</td></tr>
+<tr><td>每股净资产(元)</td><td>3.59</td><td>3.48</td><td>3.38</td><td>3.35</td><td>3.36</td><td>2.56</td><td>2.50</td><td>2.47</td><td>2.44</td><td>2.24</td></tr>
+<tr><td>总股本(亿股)</td><td>366.06</td><td>366.06</td><td>366.06</td><td>366.06</td><td>366.06</td><td>366.06</td><td>366.06</td><td>366.06</td><td>366.06</td><td>366.06</td></tr>
+<tr><td>营业收入(亿元)</td><td>2045.90</td><td>1983.81</td><td>1745.43</td><td>1784.14</td><td>2210.36</td><td>1355.53</td><td>1160.60</td><td>971.09</td><td>938.00</td><td>688.96</td></tr>
+<tr><td>毛利率(%)</td><td>15.64</td><td>15.20</td><td>11.50</td><td>11.70</td><td>28.84</td><td>18.55</td><td>15.18</td><td>20.39</td><td>25.07</td><td>17.87</td></tr>
+<tr><td>净利润(亿元)</td><td>58.57</td><td>53.23</td><td>25.47</td><td>75.41</td><td>259.61</td><td>50.36</td><td>19.19</td><td>34.35</td><td>75.68</td><td>18.83</td></tr>
+<tr><td>净利润率(%)</td><td>2.86</td><td>2.68</td><td>1.46</td><td>4.23</td><td>11.75</td><td>3.71</td><td>1.65</td><td>3.54</td><td>8.07</td><td>2.73</td></tr>
+<tr><td>ROE(%)</td><td>4.39</td><td>4.05</td><td>1.89</td><td>5.45</td><td>23.93</td><td>5.15</td><td>2.16</td><td>4.00</td><td>9.25</td><td>2.40</td></tr>
+</tbody>
+</table>
+</div>
+
+<style>
+.mcap-btns{display:flex;gap:6px;margin:8px 0}
+.mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e3e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
+.mcap-btn:hover{border-color:#4caf50;color:#4caf50}
+.mcap-btn.active{background:#4caf50;color:#0a0a1a;border-color:#4caf50;font-weight:bold}
+.mcap-chart-wrap{position:relative;width:100%;border-radius:8px;background:#0d0d20;border:1px solid #1e3e3a}
+.mcap-chart-wrap svg{display:block}
+.mcap-tooltip{position:absolute;display:none;background:rgba(10,10,26,.92);border:1px solid #4caf50;border-radius:6px;padding:6px 10px;font-size:12px;color:#fff;pointer-events:none;z-index:10;white-space:nowrap;transform:translate(-50%,-110%)}
+.mcap-tooltip .tt-date{color:#888;font-size:10px}
+.mcap-tooltip .tt-val{color:#4caf50;font-weight:bold}
+.mcap-info{text-align:center;font-size:12px;color:#888;margin-top:8px;padding:6px;background:#0d0d20;border-radius:6px}
+.mcap-v{color:#4caf50;font-weight:bold}
+.mcap-axis path,.mcap-axis line{stroke:#333;stroke-width:1}
+.mcap-axis text{fill:#666;font-size:10px}
+.mcap-grid line{stroke:#1e3e3a;stroke-width:0.5;stroke-dasharray:3,3}
+.mcap-light .mcap-btn{border-color:#c8c0b0;background:#e8e4dc;color:#707070}
+.mcap-light .mcap-btn:hover{border-color:#b8860b;color:#b8860b}
+.mcap-light .mcap-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
+.mcap-light .mcap-chart-wrap{background:#f4f1ea;border-color:#d8d4c8}
+.mcap-light .mcap-tooltip{background:rgba(255,255,255,.95);border-color:#b8860b;color:#3d3d3d}
+.mcap-light .mcap-tooltip .tt-date{color:#808080}
+.mcap-light .mcap-tooltip .tt-val{color:#b8860b}
+.mcap-light .mcap-info{background:#e8e4dc;color:#808080}
+.mcap-light .mcap-v{color:#b8860b}
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var stockCode = '000725';
+  var chartData = [];
+  var viewStart = 0, viewEnd = 0;
+  var isDragging = false, dragStartX = 0, dragViewStart = 0;
+  var svg, tooltip, wrap;
+  var W = 0, H = 380;
+  var M = {top:20, right:20, bottom:35, left:65};
+
+  function init(){
+    svg = document.getElementById('mcapSvg');
+    tooltip = document.getElementById('mcapTooltip');
+    wrap = svg.parentElement;
+    svg.style.cursor = 'crosshair';
+
+    if(document.getElementById('hermes-theme-override')){
+      document.getElementById('s-mcap').classList.add('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf) sf.classList.add('fin-light');
+    }
+
+    var themeWatcher = new MutationObserver(function(){
+      var light = !!document.getElementById('hermes-theme-override');
+      var card = document.getElementById('s-mcap');
+      if(light) card.classList.add('mcap-light');
+      else card.classList.remove('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf){ if(light) sf.classList.add('fin-light'); else sf.classList.remove('fin-light'); }
+      if(chartData.length) render();
+    });
+    if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
+
+    document.querySelectorAll('.mcap-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.mcap-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        loadPeriod(btn.getAttribute('data-period'));
+      });
+    });
+
+    svg.addEventListener('wheel', onWheel, {passive:false});
+    svg.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+    svg.addEventListener('mousemove', onHover);
+    svg.addEventListener('mouseleave', function(){
+      tooltip.style.display='none';
+      var cv=svg.querySelector('#mcapCrossV');if(cv)cv.setAttribute('opacity','0');
+      var ch2=svg.querySelector('#mcapCrossH');if(ch2)ch2.setAttribute('opacity','0');
+      var cd=svg.querySelector('#mcapCrossDot');if(cd)cd.setAttribute('opacity','0');
+    });
+
+    var touchDist = 0;
+    svg.addEventListener('touchstart', function(e){
+      if(e.touches.length === 1){
+        isDragging = true; dragStartX = e.touches[0].clientX; dragViewStart = viewStart;
+      }else if(e.touches.length === 2){
+        touchDist = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+      }
+    }, {passive:true});
+    svg.addEventListener('touchmove', function(e){
+      if(e.touches.length === 1 && isDragging){
+        var dx = e.touches[0].clientX - dragStartX;
+        var range = viewEnd - viewStart;
+        if(range > 1){
+          var shift = Math.round(-dx / ((W-M.left-M.right)/range));
+          var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart + shift));
+          viewStart = ns; viewEnd = viewStart + range; render();
+        }
+        isDragging = false;
+      }else if(e.touches.length === 2){
+        var nd = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+        if(touchDist > 0){doZoom(nd > touchDist ? 1 : -1, (e.touches[0].clientX+e.touches[1].clientX)/2);}
+        touchDist = nd;
+      }
+    }, {passive:true});
+    svg.addEventListener('touchend', function(){isDragging=false});
+    window.addEventListener('resize', function(){if(chartData.length)render()});
+    loadPeriod('week');
+  }
+
+  function getThemeColors(){
+    var light = !!document.getElementById('hermes-theme-override');
+    return {
+      line: light ? '#b8860b' : '#4caf50',
+      grid: light ? '#e0dcd0' : '#1e3e3a',
+      axisText: light ? '#999' : '#666',
+      gradTop: light ? '#b8860b' : '#4caf50',
+      gradBot: light ? '#b8860b' : '#4caf50',
+      gradTo: '0.25', gradBo: '0.01'
+    };
+  }
+
+  function loadPeriod(period){
+    var url = '../kline/' + stockCode + '_' + period + '.json?t=' + Date.now();
+    fetch(url).then(function(r){return r.json()}).then(function(data){
+      chartData = data;
+      var dw = data.length;
+      viewStart = Math.max(0, data.length - dw); viewEnd = data.length;
+      updateStats(data); render();
+    }).catch(function(e){console.error(e)});
+  }
+
+  function updateStats(data){
+    if(!data.length) return;
+    var last = data[data.length-1];
+    var high = data.reduce(function(a,b){return a.value>b.value?a:b});
+    var low = data.reduce(function(a,b){return a.value<b.value?a:b});
+    document.getElementById('mcapCurrent').textContent = last.value.toFixed(1);
+    document.getElementById('mcapHigh').textContent = high.value.toFixed(1);
+    document.getElementById('mcapLow').textContent = low.value.toFixed(1);
+  }
+
+  function render(){
+    if(!chartData.length) return;
+    var rect = wrap.getBoundingClientRect();
+    W = Math.max(300, rect.width || 600); H = 380;
+    svg.style.width = W + 'px'; svg.style.height = H + 'px';
+    var cw = W - M.left - M.right, ch = H - M.top - M.bottom;
+    if(cw <= 0 || ch <= 0) return;
+    var visible = chartData.slice(viewStart, viewEnd);
+    var n = visible.length; if(n === 0) return;
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<n;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad); maxVal = maxVal + pad;
+    var xS = function(i){return M.left+(i/(n-1||1))*cw};
+    var yS = function(v){return M.top+ch-(v-minVal)/(maxVal-minVal)*ch};
+    var pts = '';
+    for(var i=0;i<n;i++){pts += (i===0?'':' ')+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1);}
+    var tc = getThemeColors(), h = '';
+    h += '<g class="mcap-grid">';
+    for(var gi=0;gi<=5;gi++){var gv=minVal+(maxVal-minVal)*(gi/5),gy=yS(gv);h+='<line x1="'+M.left+'" y1="'+gy.toFixed(1)+'" x2="'+(M.left+cw)+'" y2="'+gy.toFixed(1)+'" stroke="'+tc.grid+'"/>';h+='<text x="'+(M.left-8)+'" y="'+(gy+4)+'" text-anchor="end" fill="'+tc.axisText+'" font-size="10">'+fmtVal(gv)+'</text>';}
+    h += '</g><g class="mcap-axis">';
+    var ls = Math.max(1, Math.floor(n / Math.min(10, n)));
+    for(var li=0;li<n;li+=ls){var lx=xS(li);h+='<text x="'+lx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx.toFixed(1)+','+(H-10)+')">'+visible[li].time+'</text>';}
+    h += '<text x="'+xS(n-1).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+xS(n-1).toFixed(1)+','+(H-10)+')">'+visible[n-1].time+'</text></g>';
+    var fp = 'M'+M.left+','+(M.top+ch)+' '; for(var i=0;i<n;i++){fp+='L'+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1)+' ';}
+    fp += 'L'+(M.left+cw)+','+(M.top+ch)+' Z';
+    h += '<path d="'+fp+'" fill="url(#mgG)" opacity="0.35"/>';
+    h += '<polyline points="'+pts+'" fill="none" stroke="'+tc.line+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<line id="mcapCrossV" x1="0" y1="'+M.top+'" x2="0" y2="'+(M.top+ch)+'" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<line id="mcapCrossH" x1="'+M.left+'" y1="0" x2="'+(M.left+cw)+'" y2="0" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<circle id="mcapCrossDot" cx="0" cy="0" r="4" fill="'+tc.line+'" stroke="#fff" stroke-width="1.5" opacity="0" pointer-events="none"/>';
+    var df = '<defs><linearGradient id="mgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+tc.gradTop+'" stop-opacity="'+tc.gradTo+'"/><stop offset="100%" stop-color="'+tc.gradBot+'" stop-opacity="'+tc.gradBo+'"/></linearGradient></defs>';
+    svg.innerHTML = df + h;
+  }
+
+  function fmtVal(v){return v>=10000?(v/10000).toFixed(1)+'万亿':v.toFixed(0)+'亿';}
+
+  function doZoom(dir, cx){
+    var n = chartData.length, range = viewEnd - viewStart;
+    if(dir > 0) range = Math.max(10, Math.round(range * 0.75)); else range = Math.min(n, Math.round(range * 1.35));
+    if(range < 2) range = 2; if(range > n) range = n;
+    var rect = svg.getBoundingClientRect();
+    var mx = (cx || rect.left+rect.width/2) - rect.left - M.left;
+    var cw = W - M.left - M.right;
+    var ci = viewStart + (viewEnd-viewStart) * Math.max(0, Math.min(1, mx/cw));
+    viewStart = Math.round(ci - range/2); viewEnd = viewStart + range;
+    if(viewStart < 0){viewStart=0;viewEnd=range;} if(viewEnd>n){viewEnd=n;viewStart=n-range;}
+    render();
+  }
+
+  function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
+  function onDragStart(e){isDragging=true;dragStartX=e.clientX;dragViewStart=viewStart;svg.style.cursor='grabbing';}
+  function onDragMove(e){
+    if(!isDragging) return;
+    var dx = e.clientX - dragStartX, range = viewEnd-viewStart;
+    if(range<=1) return;
+    var cw = W-M.left-M.right; if(cw<=0) return;
+    var shift = Math.round(-dx/(cw/range));
+    var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart+shift));
+    if(ns !== viewStart){viewStart=ns;viewEnd=viewStart+range;render();}
+  }
+  function onDragEnd(){isDragging=false;svg.style.cursor='crosshair';}
+
+  function onHover(e){
+    if(isDragging || !chartData.length) return;
+    var rect = svg.getBoundingClientRect();
+    var mx = e.clientX-rect.left-M.left, cw=W-M.left-M.right;
+    if(cw<=0||viewEnd-viewStart<=0) return;
+    var idx = viewStart + Math.round(mx/cw*(viewEnd-viewStart-1));
+    if(idx<0||idx>=chartData.length) return;
+    var pt = chartData[idx], ri = idx-viewStart, nn=viewEnd-viewStart;
+    var px = M.left+(ri/(nn-1||1))*cw, vis=chartData.slice(viewStart,viewEnd);
+    var minV=Infinity,maxV=-Infinity; for(var i=0;i<vis.length;i++){var v=vis[i].value;if(v<minV)minV=v;if(v>maxV)maxV=v;}
+    var p=(maxV-minV)*0.05||maxV*0.05||100; minV=Math.max(0,minV-p);maxV=maxV+p;
+    var ch=H-M.top-M.bottom, py=M.top+ch-(pt.value-minV)/(maxV-minV)*ch;
+    var cv=svg.querySelector('#mcapCrossV'),ch2=svg.querySelector('#mcapCrossH'),cd=svg.querySelector('#mcapCrossDot');
+    if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.6');}
+    if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.6');}
+    if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
+    tooltip.innerHTML = '<span class="tt-date">'+pt.time+'</span> · 市值 <span class="tt-val">'+pt.value.toFixed(1)+'亿</span>';
+    tooltip.style.display='block'; tooltip.style.left=px+'px';
+    if(py<50){tooltip.style.top=(py+24)+'px';tooltip.style.transform='translate(-50%,0%)';}
+    else{tooltip.style.top=py+'px';tooltip.style.transform='translate(-50%,-110%)';}
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+<div id="s1" class="card"><h2>一、综合评价</h2>
+  <div class="mg" style="margin-bottom:10px">
+    <div class="mi"><div class="mv" style="color:#ffc107">6.5</div><div class="ml">综合评级</div></div>
+    <div class="mi"><div class="mv" style="color:#ff9800">中</div><div class="ml">风险等级</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50">高</div><div class="ml">成长弹性</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107">4.4%</div><div class="ml">ROE</div></div>
+  </div>
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ff9800">💡 OLED放量</div><div class="ml">成都8.6代OLED产线量产，切入苹果MacBook供应链，车载/IT高增</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ffc107">⚙️ 折旧拐点</div><div class="ml">折旧高峰已过，利润释放加速，叠加AI/车载新赛道共振</div>
+  </div>
+  <table class="tbl" style="margin-top:10px">
+    <tr><th style="width:100px">指标</th><th style="width:140px">数值</th><th style="width:40%">说明</th></tr>
+    <tr><td>三年预估空间</td><td class="gold">市值达2,800亿</td><td>若2028年净利达190亿（中性预期），给予PE 15x，对应市值约2,850亿（上行约+80%）。乐观情景可达4,200亿</td></tr>
+    <tr><td>季度监控</td><td>LCD面板价格</td><td>面板价格是京东方的核心业绩驱动，关注32/55/65寸TV面板价格走势。若持续上涨则业绩弹性大</td></tr>
+    <tr><td>逻辑证伪点</td><td class="red">成都OLED产线良率</td><td>成都8.6代OLED产线良率和客户导入进度决定2027年利润弹性。若良率>80%则利润大幅改善</td></tr>
+    <tr><td>止损触发</td><td class="red">折旧拐点延迟</td><td>若新产线投资超预期，折旧高峰后延，利润释放将不及预期</td></tr>
+  </table></div>
+
+<div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
+  <h3>核心定位</h3>
+  <div class="txt">全球显示面板市场约1,500亿美元，LCD产能向中国大陆集中，韩厂退出后国内龙头掌控定价权。OLED市场持续扩大，车载/AI/AR等新应用提供增量空间。</div>
+
+  <h3>年度财务摘要（亿元）</h3>
+  <table class="tbl">
+    <tr><th>年份</th><th>营收</th><th>YoY</th><th>归母净利</th><th>净利率</th><th>毛利率</th></tr>
+<tr><th>年份</th><th>营收</th><th>YoY</th><th>归母净利</th><th>净利率</th><th>毛利率</th></tr>
+    <tr><td>2025</td><td class="pos">2,046亿</td><td class="pos">+3.1%</td><td class="warn">58.6亿</td><td>2.9%</td><td class="warn">15.6%</td></tr>
+    <tr><td>2024</td><td class="pos">1,984亿</td><td class="pos">+13.7%</td><td class="warn">53.2亿</td><td>2.7%</td><td class="warn">15.2%</td></tr>
+    <tr><td>2023</td><td>1,745亿</td><td class="warn">-2.2%</td><td class="warn">25.5亿</td><td>1.5%</td><td>11.5%</td></tr>
+    <tr><td>2022</td><td>1,784亿</td><td class="warn">-19.3%</td><td class="warn">75.4亿</td><td>4.2%</td><td>11.7%</td></tr>
+    <tr><td>2021</td><td class="pos">2,210亿</td><td class="pos">+63.0%</td><td class="pos">259.6亿</td><td>11.8%</td><td class="pos">28.8%</td></tr>
+</table>
+  <div class="desc" style="margin-top:6px;">2021年是面板超级周期高点，营收2,210亿、净利260亿。此后面板价格回落，2023年降至低谷。2024-2025年面板价格企稳回升，LCD格局优化后龙头溢价开始显现。净利率仅2.9%是核心短板，但折旧拐点后利润释放空间大。</div>
+
+  <h3>分业务收入结构（2025年）</h3>
+  <div class="hb"><span class="hl">LCD面板</span><div class="ht"><div class="hf" style="width:75%;background:#4caf50">75%</div></div><span class="hv">~1,534亿</span></div>
+  <div class="hb"><span class="hl">OLED</span><div class="ht"><div class="hf" style="width:15%;background:#f0c040">15%</div></div><span class="hv">~307亿</span></div>
+  <div class="hb"><span class="hl">其他（车载/智慧等）</span><div class="ht"><div class="hf" style="width:10%;background:#888">10%</div></div><span class="hv">~205亿</span></div>
+
+  <table class="tbl" style="margin-top:10px;">
+    <tr><th>业务线</th><th>收入</th><th>占比</th><th>趋势</th><th>毛利率</th></tr>
+<tr><td>LCD面板</td><td>~1,534亿</td><td>~75%</td><td class="warn">→ 周期波动</td><td>~15%</td></tr>
+    <tr><td>OLED</td><td>~307亿</td><td>~15%</td><td class="pos">↑ 高增</td><td>~10%</td></tr>
+    <tr><td>车载/智慧/其他</td><td>~205亿</td><td>~10%</td><td class="pos">↑ 高增</td><td>~20%</td></tr>
+</table>
+
+  <h3>商业模式评估</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+<tr><td style="white-space:nowrap">客户粘性</td><td>高</td><td>品牌客户认证周期长（18-24月），切换成本高</td></tr>
+    <tr><td>供应商议价力</td><td>中</td><td>玻璃基板/驱动IC等上游议价力较强，但国产替代推进</td></tr>
+    <tr><td>竞争格局</td><td>优</td><td>韩厂退出后国内龙头控盘，行业集中度持续提升</td></tr>
+    <tr><td>潜在替代</td><td>中</td><td>MicroLED/QLED等技术路线可能颠覆，但短期不构成威胁</td></tr>
+    <tr><td>进入壁垒</td><td>高</td><td>重资产（单条产线300亿+）、技术壁垒、客户认证周期长</td></tr>
+</table>
+
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div></div>
+
+<div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
+  <div class="desc">核心理念：护城河不是静态的，需要关注其演变趋势——拓宽（↑）、稳定（→）、侵蚀（↓）</div>
+
+  <h3>壁垒类型评估</h3>
+  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">3.0</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">4.0</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">3.5</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">3.0</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:30%;background:#888;">1.5</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:50%;background:#f0c040;">2.5</div></div></div>
+
+  <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
+    <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 2.9/5.0</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">→ 护城河稳固，规模成本优势+客户认证壁垒</span>
+  </div>
+
+  <h3>壁垒深度解析</h3>
+  <div class="txt">
+    <b style="color:#4caf50;">客户粘性——全球龙头+客户认证壁垒</b><br>
+    <span class="dot">·</span> 苹果/三星等顶级品牌认证周期18-24月，进入壁垒高<br>
+    <span class="dot">·</span> 但下游品牌客户议价能力强，利润率受限<br>
+    <span class="dot">·</span> 前五大客户占收入约30%，客户结构相对分散<br><br>
+    <b style="color:#f0c040;">规模壁垒——中等优势</b><br>
+    <span class="dot">·</span> 全球LCD第一+规模成本优势，护城河稳固<br>
+    <span class="dot">·</span> 但面板行业重资产、强周期，价格波动对盈利影响大<br>
+    <span class="dot">·</span> 规模效应显著，单平米成本逐年下降<br><br>
+    <b style="color:#f0c040;">技术壁垒——中等偏弱</b><br>
+    <span class="dot">·</span> 显示面板专利数量全球前三，技术积累深厚<br>
+    <span class="dot">·</span> OLED良率（京东方80% vs 三星90%）仍有差距，但差距在缩小<br>
+    <span class="dot">·</span> 产业升级需要时间和持续投入<br><br>
+    <b style="color:#888;">垂直整合——薄弱</b><br>
+    <span class="dot">·</span> 上游材料国产替代推进<br>
+    <span class="dot">·</span> 面板制造核心环节in-house，外采部分为驱动IC/偏光片等
+  </div>
+
+  <h3>护城河陷阱识别</h3>
+  <div class="txt" style="color:#f44336;">
+    <b>警惕信号：</b><br>
+    <span class="dot">·</span> 面板行业净利率普遍偏低，但格局优化后利润逐步改善<br>
+    <span class="dot">·</span> 全球LCD第一+OLED第二的品牌认知，客户关系稳定<br>
+    <span class="dot">·</span> 韩厂退出后价格战风险降低，但面板周期波动仍是核心风险<br>
+    <span class="dot">·</span> MicroLED/QLED可能改变行业格局，但短期不构成威胁
+  </div>
+
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div>
+
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div></div>
+
+<div id="s4" class="card"><h2>M3 管理层分析</h2>
+
+  <h3>管理层基本信息</h3>
+  <table class="tbl">
+    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
+    <tr><td>陈炎顺</td><td>董事长</td><td>2019年至今</td><td>董事长、执行委员会主席，全面主持公司战略规划</td></tr>
+    <tr><td>冯强</td><td>副董事长/CEO</td><td>2023年至今</td><td>副董事长、CEO、执行委员会主席，负责日常运营</td></tr>
+  </table>
+  <div class="txt" style="font-size:12px;">管理层背景详见管理层信息表。管理层在面板行业平均工作20年+。管理层风格稳健，务实推进技术升级和产能扩张。国企治理规范，但决策效率有提升空间。</div>
+
+  <h3>管理层评分</h3>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">7/10</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">6/10</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">6/10</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:40%;background:#888;">4/10</div></div></div>
+
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div>
+
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div></div>
+
+<div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
+
+  <h3>核心财务指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+    <tr><td>营收（亿）</td><td>394</td><td>523</td><td>479</td><td>560</td><td class="gold">632</td><td class="green">↑</td></tr>
+    <tr><td>净利（亿）</td><td class="gold">11.6</td><td>10.6</td><td class="gold">12.8</td><td class="gold">15.0</td><td>11.0</td><td class="red">↓</td></tr>
+    <tr><td>毛利率</td><td>18.2%</td><td>15.8%</td><td>16.5%</td><td>16.0%</td><td>15.2%</td><td class="red">↓</td></tr>
+    <tr><td>净利率</td><td>2.9%</td><td>2.0%</td><td>2.7%</td><td>2.7%</td><td>1.7%</td><td class="red">↓</td></tr>
+    <tr><td>ROE</td><td>7.0%</td><td>4.8%</td><td>5.5%</td><td>6.3%</td><td>4.4%</td><td class="red">↓</td></tr>
+  </table>
+
+  <h3>现金流 & 资产负债</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+    <tr><td>经营现金流</td><td>约18亿</td><td>约7亿</td><td class="gold">约27亿</td><td class="green">↑ 改善</td></tr>
+    <tr><td>CAPEX</td><td>约35亿</td><td>约45亿</td><td>约55亿</td><td class="red">↑ 投入期</td></tr>
+    <tr><td>FCF</td><td>约-17亿</td><td>约-38亿</td><td>约-28亿</td><td class="red">持续为负</td></tr>
+    <tr><td>资产负债率</td><td>62.5%</td><td>64.0%</td><td>65.2%</td><td class="red">↑ 升高</td></tr>
+    <tr><td>有息负债</td><td>约85亿</td><td>约95亿</td><td>约105亿</td><td class="red">↑ 增加</td></tr>
+  </table>
+
+  <h3>费用率结构</h3>
+  <table class="tbl">
+    <tr><th>费用项</th><th>2025年规模</th><th>趋势</th></tr>
+    <tr><td>研发费用</td><td>约20亿</td><td class="green">↑ 研发投入持续</td></tr>
+    <tr><td>销售费用</td><td>约8亿</td><td>→ 稳定，B端为主</td></tr>
+    <tr><td>管理费用</td><td>约12亿</td><td>→ 稳定</td></tr>
+    <tr><td>财务费用</td><td>约5亿</td><td class="red">↑ 增加</td></tr>
+  </table>
+
+  <h3>关键指标卡</h3>
+  <div class="mg">
+    <div class="mi"><div class="mv gold">2.9%</div><div class="ml">净利率（偏低）</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">4.4%</div><div class="ml">ROE</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">2,046亿</div><div class="ml">年营收</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">转正中</div><div class="ml">FCF</div></div>
+  </div>
+
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div></div>
+
+<div id="s6" class="card"><h2>M5 成本结构 & 产业链议价权</h2>
+
+  <h3>成本结构</h3>
+  <div class="txt">全球显示面板市场约1,500亿美元，LCD产能向中国大陆集中，韩厂退出后国内龙头掌控定价权。OLED市场持续扩大，车载/AI/AR等新应用提供增量空间。</div>
+  <table class="tbl">
+    <tr><th>成本项目</th><th>占比</th><th>趋势</th><th>说明</th></tr>
+    <tr><td>原材料（玻璃基板+液晶+驱动IC）</td><td>25-30%</td><td class="red">→ 稳定</td><td>国产替代推进，采购成本稳步下降</td></tr>
+    <tr><td>玻璃基板/液晶/驱动IC</td><td>20-25%</td><td>→ 稳定</td><td>标准化工序，自动化程度高</td></tr>
+    <tr><td>人工</td><td>约10%</td><td class="red">↑</td><td>智能化产线提升运营效率</td></tr>
+    <tr><td>折旧</td><td>30-35%</td><td>↓ 下降</td><td>成都8.6代线投产后折旧达峰，此后逐年下降</td></tr>
+  </table>
+
+  <h3>产业链议价权</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+<tr><td style="white-space:nowrap">客户粘性</td><td>高</td><td>品牌客户认证周期长（18-24月），切换成本高</td></tr>
+    <tr><td>供应商议价力</td><td>中</td><td>玻璃基板/驱动IC等上游议价力较强，但国产替代推进</td></tr>
+    <tr><td>竞争格局</td><td>优</td><td>韩厂退出后国内龙头控盘，行业集中度持续提升</td></tr>
+    <tr><td>潜在替代</td><td>中</td><td>MicroLED/QLED等技术路线可能颠覆，但短期不构成威胁</td></tr>
+    <tr><td>进入壁垒</td><td>高</td><td>重资产（单条产线300亿+）、技术壁垒、客户认证周期长</td></tr>
+</table>
+
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div></div>
+
+<div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
+
+  <h3>FCF质量</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2024年</th><th class="gold">2025年</th><th>正常化水平</th></tr>
+    <tr><td>经营现金流</td><td>约7亿</td><td class="gold">约27亿</td><td>20-30亿</td></tr>
+    <tr><td>CAPEX</td><td>约45亿</td><td>约55亿</td><td>30-50亿</td></tr>
+    <tr><td>FCF</td><td>约-38亿</td><td>约-28亿</td><td>约-15~-30亿</td></tr>
+    <tr><td>FCF/净利润</td><td>约-253%</td><td>约-255%</td><td>为负（投入期）</td></tr>
+  </table>
+  <div class="txt">京东方FCF受CAPEX影响大，2021-2023年为建设高峰期，FCF持续为负。2025年CAPEX开始下降，FCF有望转正。折旧拐点后利润释放将带动FCF持续改善。</div>
+
+  <h3>估值指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr>
+    <tr><td>PE(TTM)</td><td class="gold">约30倍</td><td>18-60倍</td><td>中性偏高（含成长预期）</td></tr>
+    <tr><td>PE(2026E)</td><td>约24倍</td><td>—</td><td>中性</td></tr>
+    <tr><td>PB</td><td>约1.8倍</td><td>1.2-3.5倍</td><td>偏低</td></tr>
+    <tr><td>PS(TTM)</td><td>约0.5倍</td><td>0.3-1.0倍</td><td>偏低</td></tr>
+  </table>
+
+  <h3>面板企业PE对比</h3>
+  <div class="cp"><div class="cp"><span class="nm">京东方</span><div class="bt"><div class="bf" style="width:45%;background:#4caf50;"></div></div><span class="vl green">28x</span></div>
+  <div class="cp"><span class="nm">TCL科技</span><div class="bt"><div class="bf" style="width:40%;background:#f0c040;"></div></div><span class="vl green">22x</span></div>
+  <div class="cp"><span class="nm">三星显示</span><div class="bt"><div class="bf" style="width:50%;background:#4caf50;"></div></div><span class="vl green">30x</span></div>
+  <div class="cp"><span class="nm">LG Display</span><div class="bt"><div class="bf" style="width:35%;background:#ffc107;"></div></div><span class="vl">15x</span></div></div>
+  <div class="desc" style="margin-top:6px;">📌 京东方PE(28x)高于TCL科技但低于三星显示，反映了OLED放量和折旧拐点的成长预期。但是净利率仅2.86%，估值溢价需要业绩兑现支撑</div>
+
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div></div>
+
+<div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
+
+  <h3>行业空间</h3>
+  <table class="tbl">
+    <tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>京东方出货/份额</th><th>市占率</th></tr>
+    <tr><td>全球LCD面板</td><td>约800亿美元</td><td>0-3%</td><td>约200亿美元</td><td class="gold">≈25%</td></tr>
+    <tr><td>全球显示面板市场</td><td>约500亿美元</td><td>+10-15%</td><td>约80亿美元</td><td>≈15%</td></tr>
+    <tr><td>全球车载显示</td><td>约100亿美元</td><td>+8-12%</td><td>约15亿美元</td><td>≈1%</td></tr>
+  </table>
+
+  <div class="mg" style="margin-top:10px;">
+    <div class="mi"><div class="mv gold">26%</div><div class="ml">LCD全球市占率</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">2,046亿</div><div class="ml">年营收</div></div>
+    <div class="mi"><div class="mv green">~200亿</div><div class="ml">OLED第二</div></div>
+    <div class="mi"><div class="mv green">>50%</div><div class="ml">车载第一</div></div>
+  </div>
+
+  <h3>竞争态势</h3>
+  <table class="tbl">
+    <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
+    <tr><td>TCL科技（华星光电）</td><td>LCD面板</td><td>国内第二大面板厂，LTPS和印刷OLED有布局，规模约为京东方的60%</td></tr>
+    <tr><td>三星显示</td><td>OLED面板</td><td>中小尺寸OLED绝对龙头，技术领先但LCD已退出，京东方在IT OLED上追赶</td></tr>
+    <tr><td>LG Display</td><td>大尺寸OLED</td><td class="orange">大尺寸WOLED领先，但持续亏损，产能利用率低</td></tr>
+    <tr><td>TCL科技</td><td>面板业务</td><td class="orange">规模差距明显，京东方全尺寸覆盖</td></tr>
+  </table>
+
+  <h3>行业终局思考</h3>
+  <div class="txt">全球显示面板市场约1,500亿美元，LCD产能向中国大陆集中，韩厂退出后国内龙头掌控定价权。OLED市场持续扩大，车载/AI/AR等新应用提供增量空间。</div>
+
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div></div>
+
+<div id="s9" class="card"><h2>M8 三年资本计划 & 催化剂</h2>
+
+  <h3>催化剂时间表</h3>
+  <table class="tbl">
+    <tr><th style="width:80px">时间</th><th style="width:30%">事件</th><th style="width:40%">预期影响</th></tr>
+    <tr><td>2026-2027</td><td>面板业务产产能利用率提升</td><td class="green">面板业务减亏</td></tr>
+    <tr><td>2027</td><td>全尺寸覆盖电池苹果/特斯拉新客户量产</td><td class="green">韩厂退出后定价权提升，毛利率改善</td></tr>
+    <tr><td>2027-2028</td><td>车载显示高增</td><td class="green">获特斯拉等大额订单，河源基地投产</td></tr>
+    <tr><td>2027-2028</td><td>AI玻璃基载板</td><td>与康宁合作切入英伟达供应链</td></tr>
+  </table>
+
+  <h3>三年业绩预测</h3>
+  <table class="tbl">
+    <tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>毛利率趋势</th></tr>
+    <tr><td class="green">乐观</td><td>净利16亿</td><td>22亿</td><td>32亿</td><td>16→18%</td></tr>
+    <tr><td class="gold">基准</td><td>净利14亿</td><td>18亿</td><td>25亿</td><td>→ 15.5%</td></tr>
+    <tr><td class="red">悲观</td><td>净利10亿</td><td>12亿</td><td>14亿</td><td>14→13%</td></tr>
+  </table>
+
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div></div>
+
+<div id="s10" class="card"><h2>M9 预期差 & 市场共识</h2>
+
+  <table class="tbl">
+    <tr><th style="width:60px">议题</th><th style="width:100px">市场共识</th><th style="width:40%">独立判断</th><th style="width:50px">方向</th></tr>
+    <tr>
+      <td>面板周期波动</td>
+      <td style="color:#888;">面板行业竞争激烈，但格局已优化</td>
+      <td style="color:#4caf50;">韩厂退出后供给格局改善，价格底部抬升</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+    <tr>
+      <td>OLED良率风险</td>
+      <td style="color:#888;">LCD存量市场</td>
+      <td style="color:#888;">市场忽视了折旧拐点带来的利润倍增效应</td>
+      <td><span class="tg tgo">中性</span></td>
+    </tr>
+    <tr>
+      <td>盈利能力</td>
+      <td style="color:#888;">低利润率是面板行业的结构性问题</td>
+      <td style="color:#888;">大陆供应链能力提升，替代方案逐渐成熟</td>
+      <td><span class="tg tgo">中性</span></td>
+    </tr>
+    <tr>
+      <td>估值水平</td>
+      <td style="color:#888;">PE 28x偏高</td>
+      <td style="color:#4caf50;">PB 1.2x处于历史低位，有安全边际</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+    <tr>
+      <td>重资产折旧压力</td>
+      <td style="color:#888;">折旧高峰已过，利润释放确定性强</td>
+      <td style="color:#4caf50;">折旧逐年下降，利润释放趋势不变</td>
+      <td><span class="tg tgg">看多</span></td>
+    </tr>
+  </table>
+
+  <div class="bq">核心结论：LCD格局优化+折旧拐点+新赛道共振，利润正从底部回升。关注面板价格走势和OLED良率爬坡</div></div>
+
+<div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
+
+  <h3>风险类型</h3>
+  <table class="tbl">
+    <tr><th style="width:80px">风险类型</th><th>描述</th><th style="width:50px">概率</th><th style="width:40%">预警信号</th></tr>
+    <tr><td>面板周期波动</td><td>LCD价格回落，需求疲软拖累盈利</td><td><span class="orange">中</span></td><td>面板价格指数跌破成本线</td></tr>
+    <tr><td>OLED良率风险</td><td>良率低于三星，苹果高端导入不及预期</td><td><span class="orange">中</span></td><td>成都线良率低于70%</td></tr>
+    <tr><td>折旧压力</td><td>资本开支高，折旧侵蚀利润，FCF受限</td><td class="green">中低</td><td>FCF转正后再度转负</td></tr>
+    <tr><td>地缘政治风险</td><td>被美列入清单，海外业务受限</td><td class="green">低</td><td>出口管制/实体清单升级</td></tr>
+    <tr><td>流动性风险</td><td>重资产、高负债是行业特性，但京东方融资渠道畅通</td><td class="green">中低</td><td>负债率突破70%</td></tr>
+  </table>
+
+  <h3>敏感性分析</h3>
+  <table class="tbl">
+    <tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr>
+    <tr><td>LCD价格大幅下跌</td><td>-20%</td><td class="orange">-15%</td></tr>
+    <tr><td>成都OLED良率不及预期</td><td>-30%</td><td class="orange">-20%</td></tr>
+    <tr><td>美方出口管制升级</td><td>-40%</td><td class="orange">-25%</td></tr>
+    <tr><td class="red">极端叠加</td><td class="red">-60%</td><td class="red" style="font-weight:bold;">-50%</td></tr>
+  </table>
+
+  <h3>三情景分析</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">8-10元</div><div class="dt">+80~120%<br>面板涨价+新业务爆发</div></div>
+    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">5-7元</div><div class="dt">+30~60%<br>面板稳中有涨+OLED盈亏平衡</div></div>
+    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">3-4.5元</div><div class="dt">-10~+20%<br>面板低迷+OLED爬坡慢</div></div>
+  </div>
+
+  <h3>避雷清单</h3>
+  <table class="tbl">
+    <tr><th>检查项</th><th>结果</th></tr>
+    <tr><td>应收增速>收入增速？</td><td><span class="tg tgo">需关注</span> 应收/收入比约15%</td></tr>
+    <tr><td>经营现金流持续为负？</td><td><span class="tgg">近年持续为正</span></td></tr>
+    <tr><td>存货异常堆积？</td><td><span class="tg tgo">需关注</span> 面板跌价风险需关注</td></tr>
+    <tr><td>大客户收入集中度>50%？</td><td><span class="tgr">否 分散</span></td></tr>
+    <tr><td>大股东高比例质押？</td><td><span class="tgg">否 可控</span></td></tr>
+  </table>
+  <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
+    <span style="color:#4caf50;">✅ 财务整体可控面板价格走势和OLED良率爬坡</span>
+  </div>
+
+  <h3>清算价值</h3>
+  <table class="tbl">
+    <tr><th>资产项</th><th>账面价值</th><th>清算价值</th></tr>
+    <tr><td>货币资金</td><td>约600亿</td><td class="gold">600亿</td></tr>
+    <tr><td>存货</td><td>约250亿</td><td>150亿</td></tr>
+    <tr><td>固定资产（产线+设备）</td><td>约1,800亿</td><td>600亿</td></tr>
+    <tr><td>应收账款</td><td>约300亿</td><td>200亿</td></tr>
+    <tr><td class="gold">合计</td><td>约3,000亿</td><td>约1,550亿</td></tr>
+  </table>
+  <div class="txt">全球显示面板市场约1,500亿美元，LCD产能向中国大陆集中，韩厂退出后国内龙头掌控定价权。OLED市场持续扩大，车载/AI/AR等新应用提供增量空间。</div></div>
+
+<div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
+  <h3>六维评分</h3>
+  <div class="dim-row"><div class="dim-label">商业模式</div><div class="dim-bg"><div class="dim-fill c7" style="width:60%"></div></div><div class="dim-sc gold">6/10</div></div>
+  <div class="dim-row"><div class="dim-label">护城河</div><div class="dim-bg"><div class="dim-fill c7" style="width:60%"></div></div><div class="dim-sc gold">6/10</div></div>
+  <div class="dim-row"><div class="dim-label">管理层</div><div class="dim-bg"><div class="dim-fill c7" style="width:65%"></div></div><div class="dim-sc gold">6.5/10</div></div>
+  <div class="dim-row"><div class="dim-label">财务健康</div><div class="dim-bg"><div class="dim-fill c6" style="width:45%"></div></div><div class="dim-sc gold">4.5/10</div></div>
+  <div class="dim-row"><div class="dim-label">估值</div><div class="dim-bg"><div class="dim-fill c6" style="width:50%"></div></div><div class="dim-sc gold">5/10</div></div>
+  <div class="dim-row"><div class="dim-label">成长性</div><div class="dim-bg"><div class="dim-fill c7" style="width:60%"></div></div><div class="dim-sc gold">6/10</div></div>
+  <h3>核心亮点</h3>
+  <div class="txt"><span class="dot">●</span><b>全球面板龙头：</b>LCD全球第一（市占26%），OLED第二，车载第一；全尺寸覆盖+规模成本优势</div>
+  <div class="txt"><span class="dot">●</span><b>折旧拐点将至：</b>资本开支高峰已过，2025-2026年折旧见顶，利润释放加速</div>
+  <div class="txt"><span class="dot">●</span><b>新赛道共振：</b>AI玻璃基+车载显示高增+苹果供应链突破，打开第二增长曲线</div>
+  <h3>核心风险</h3>
+  <div class="txt"><span class="dot">●</span><b>低利润率困局：</b>净利率仅1.7%，盈利能力弱。</div>
+  <div class="txt"><span class="dot">●</span><b>面板周期波动：</b>LCD价格回落，需求疲软，盈利弹性大</div>
+  <div class="txt"><span class="dot">●</span><b>高负债率：</b>资产负债率约55%。</div>
+  <h3>价值投资理念应用</h3>
+  <table class="tbl">
+    <tr><th style="width:50px">维度</th><th style="width:100px">代表人物</th><th style="width:40%">应用分析</th></tr>
+    <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>面板龙头是好生意——格局优化后龙头溢价显现，但重资产+强周期是行业特性</td></tr>
+    <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>全球LCD第一+OLED第二的双赛道壁垒，规模成本优势+客户认证铸就护城河</td></tr>
+    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>OLED放量+车载高增符合快速增长型特征，但利润弹性受制于折旧</td></tr>
+    <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>PB 1.2x提供安全边际，但净利率低拖累资产回报</td></tr>
+    <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>规模成本优势+客户认证壁垒是护城河，但技术迭代风险大</td></tr>
+    <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>PE 28x偏高，但PS 0.5x提供不同视角。邓普顿会等更低的PE</td></tr>
+    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>LCD格局优化+OLED放量+车载/AI，三重成长空间</td></tr>
+    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>成都OLED量产+面板涨价是核心催化剂</td></tr>
+    <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>市场对面板周期过度悲观，低估了折旧拐点后的利润释放空间</td></tr>
+    <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>面板周期+重资产+地缘政治=主要风险。黑天鹅是技术路线颠覆</td></tr>
+    <tr><td>M11</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>京东方当前PE约28x（基于2025年净利58.6亿），在面板行业中偏高。但PS仅0.5x、PB 1.2x提供下方保护。安全边际来自：①折旧拐点后利润释放、②LCD格局优化提升定价权、③OLED/车载新赛道打开成长空间。综合安全边际评级：中等。</td></tr>
+  </table>
+  <div class="bq" style="margin-top:12px">
+    <b>最终结论：</b>京东方科技集团股份有限公司是全球显示面板行业龙头，2025年营收约2,046亿元。公司主营LCD/OLED显示面板，LCD出货量全球第一，OLED在智能手机/IT/车载领域加速渗透，正迎来折旧拐点和利润释放期。。京东方是全球面板龙头，LCD格局优化+OLED放量+折旧拐点三重共振。当前PE 28x、PS 0.5x、PB 1.2x。核心关注点：LCD面板价格走势、成都OLED良率爬坡、折旧见顶后利润释放。适合愿意承受面板周期风险、看好中国面板产业升级的投资者。
+  </div></div>
+
+<div id="s13" class="card">
+  <h2>附录</h2>
+  <div class="txt"><span class="dot">●</span>数据来源：东方财富、公司年报、腾讯行情</div>
+  <div class="txt"><span class="dot">●</span>行业对比数据取自各公司2025年报/2026Q1季报，市场数据截至2026年6月12日。</div>
+  <div class="txt"><span class="dot">●</span>部分业务拆分数据为估算值，以公司年报为准。</div>
+  <div class="txt"><span class="dot">●</span>DCF估值采用简化模型，仅供内部参考，不构成投资建议。</div>
+  <div class="footer">
+    ⚠️ 声明：本内容仅供理论学习和研究练习使用，不构成投资建议，不能作为投资依据。股市有风险，投资需谨慎。<br>
+    2026年6月 | 数据截止：2026-06-12<br>
+    京东方股份有限公司 · 000725.SZ
+  </div>
+</div>
+
+</body>
+</html>
