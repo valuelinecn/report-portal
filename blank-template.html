@@ -686,10 +686,10 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>风险类型</h3>
   <table class="tbl">
     <tr><th style="width:80px">风险类型</th><th>描述</th><th style="width:50px">概率</th><th style="width:40%">预警信号</th></tr>
-    <tr><td>大客户流失</td><td>苹果/华为等核心客户转单</td><td><span class="orange">中</span></td><td>客户收入集中度变化/订单下滑</td></tr>
-    <tr><td>新兴业务亏损</td><td>产能利用率低+价格战加剧</td><td><span class="orange">中</span></td><td>毛利率持续为负</td></tr>
-    <tr><td>原材料波动</td><td>锂/钴价格大幅上涨</td><td class="green">中低</td><td>碳酸锂价格>15万/吨</td></tr>
-    <tr><td>技术变革</td><td>颠覆性技术变革</td><td class="green">低</td><td>头部企业固态电池量产进度</td></tr>
+    <tr><td>{{RISK_TYPE_1}}</td><td>{{RISK_DESC_1}}</td><td><span class="orange">{{RISK_PROB_1}}</span></td><td>{{RISK_SIGNAL_1}}</td></tr>
+    <tr><td>{{RISK_TYPE_2}}</td><td>{{RISK_DESC_2}}</td><td><span class="orange">{{RISK_PROB_2}}</span></td><td>{{RISK_SIGNAL_2}}</td></tr>
+    <tr><td>{{RISK_TYPE_3}}</td><td>{{RISK_DESC_3}}</td><td class="green">{{RISK_PROB_3}}</td><td>{{RISK_SIGNAL_3}}</td></tr>
+    <tr><td>{{RISK_TYPE_4}}</td><td>{{RISK_DESC_4}}</td><td class="green">{{RISK_PROB_4}}</td><td>{{RISK_SIGNAL_4}}</td></tr>
     <tr><td>流动性风险</td><td>{{LIQUIDITY_RISK_DESC}}</td><td class="green">中低</td><td>负债率突破70%</td></tr>
   </table>
 
@@ -697,26 +697,26 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <table class="tbl">
     <tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr>
     <tr><td>{{STRESS_SCENARIO_1}}</td><td>-20%</td><td class="orange">-15%</td></tr>
-    <tr><td>新兴业务持续亏损</td><td>-35%</td><td class="orange">-25%</td></tr>
-    <tr><td>大客户（苹果）转单</td><td>-30%</td><td class="orange">-30%</td></tr>
+    <tr><td>{{STRESS_SCENARIO_2}}</td><td>{{STRESS_IMPACT_2}}</td><td class="orange">{{STRESS_PRICE_2}}</td></tr>
+    <tr><td>{{STRESS_SCENARIO_3}}</td><td>{{STRESS_IMPACT_3}}</td><td class="orange">{{STRESS_PRICE_3}}</td></tr>
     <tr><td class="red">极端叠加</td><td class="red">-60%</td><td class="red" style="font-weight:bold;">-50%</td></tr>
   </table>
 
   <h3>三情景分析</h3>
   <div class="scn">
-    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">28-35元</div><div class="dt">+50~80%<br>{{OPTIMISTIC_SCENARIO}}</div></div>
-    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">20-25元</div><div class="dt">+10~30%<br>消费稳定+动力减亏</div></div>
-    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">12-16元</div><div class="dt">-15~-35%<br>大客户流失+动力亏损</div></div>
+    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">{{OPTIMISTIC_PRICE}}</div><div class="dt">{{OPTIMISTIC_RETURN}}<br>{{OPTIMISTIC_SCENARIO}}</div></div>
+    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">{{BASE_PRICE}}</div><div class="dt">{{BASE_RETURN}}<br>{{BASE_SCENARIO}}</div></div>
+    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">{{PESS_PRICE}}</div><div class="dt">{{PESS_RETURN}}<br>{{PESS_SCENARIO}}</div></div>
   </div>
 
   <h3>避雷清单</h3>
   <table class="tbl">
     <tr><th>检查项</th><th>结果</th></tr>
-    <tr><td>应收账款增速>收入增速？</td><td><span class="tg tgo">需关注</span> 应收/收入比约20%</td></tr>
-    <tr><td>经营现金流持续为负？</td><td><span class="tgg">否 ✓ 2025年回正至27亿</span></td></tr>
+    <tr><td>{{CHECK_ITEM_1}}</td><td><span class="tg tgo">{{CHECK_STATUS_1}}</span> {{CHECK_NOTE_1}}</td></tr>
+    <tr><td>{{CHECK_ITEM_2}}</td><td><span class="tgg">{{CHECK_STATUS_2}}</span></td></tr>
     <tr><td>存货异常堆积？</td><td><span class="tg tgo">需关注</span> {{INVENTORY_RISK}}</td></tr>
-    <tr><td>大客户收入集中度>50%？</td><td><span class="tgr">⚠ 前五大客户约60%</span></td></tr>
-    <tr><td>大股东高比例质押？</td><td><span class="tgg">否 ✓ 质押率可控</span></td></tr>
+    <tr><td>{{CHECK_ITEM_4}}</td><td><span class="tgr">{{CHECK_STATUS_4}}</span></td></tr>
+    <tr><td>{{CHECK_ITEM_5}}</td><td><span class="tgg">{{CHECK_STATUS_5}}</span></td></tr>
   </table>
   <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
     <span style="color:#4caf50;">✅ 财务整体可控，核心关注{{CORE_RISK_FOCUS}}</span>
@@ -725,11 +725,11 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>清算价值</h3>
   <table class="tbl">
     <tr><th>资产项</th><th>账面价值</th><th>清算价值</th></tr>
-    <tr><td>货币资金</td><td>约50亿</td><td class="gold">50亿</td></tr>
-    <tr><td>存货</td><td>约70亿</td><td>40亿</td></tr>
-    <tr><td>固定资产（产能+设备）</td><td>约120亿</td><td>60亿</td></tr>
-    <tr><td>应收账款</td><td>约90亿</td><td>60亿</td></tr>
-    <tr><td class="gold">合计</td><td>约330亿</td><td>约210亿</td></tr>
+    <tr><td>{{LIQ_ASSET_1}}</td><td>{{LIQ_BOOK_1}}</td><td class="gold">{{LIQ_VAL_1}}</td></tr>
+    <tr><td>{{LIQ_ASSET_2}}</td><td>{{LIQ_BOOK_2}}</td><td>{{LIQ_VAL_2}}</td></tr>
+    <tr><td>{{LIQ_ASSET_3}}</td><td>{{LIQ_BOOK_3}}</td><td>{{LIQ_VAL_3}}</td></tr>
+    <tr><td>{{LIQ_ASSET_4}}</td><td>{{LIQ_BOOK_4}}</td><td>{{LIQ_VAL_4}}</td></tr>
+    <tr><td class="gold">合计</td><td>{{LIQ_TOTAL_BOOK}}</td><td>{{LIQ_TOTAL_VAL}}</td></tr>
   </table>
   <div class="txt">{{ANALYSIS_TEXT}}</div></div>
 
