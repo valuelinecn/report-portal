@@ -1413,6 +1413,7 @@ function submitLogin() {
         return
       }
       // Password login succeeded
+      closeLoginModal()
       btn.disabled = false; btn.textContent = '登录'
     })
     .catch(function(err) {
