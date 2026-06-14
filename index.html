@@ -1402,35 +1402,18 @@ function submitLogin() {
   getSupabase().auth.signInWithPassword({ email: email, password: password })
     .then(function(res) {
       if (res.error) {
+        btn.disabled = false; btn.textContent = '登录'
         if (res.error.message === 'Invalid login credentials') {
-          // Password wrong or account doesn't exist → try signUp
-          setLoginMsg('密码错误或账号不存在，正在尝试注册...', false)
-          return getSupabase().auth.signUp({
-            email: email,
-            password: password,
-            options: { emailRedirectTo: 'https://valuelinecn.github.io/report-portal' }
-          })
+          setLoginMsg('密码错误，请重试。如未设置密码，请使用"邮箱验证"标签页登录', true)
+        } else if (res.error.message && res.error.message.indexOf('Email not confirmed') >= 0) {
+          setLoginMsg('邮箱未验证，请检查邮箱中的验证邮件', true)
+        } else {
+          setLoginMsg('登录失败: ' + (res.error.message || '未知错误'), true)
         }
-        throw res.error
+        return
       }
       // Password login succeeded
-      return res
-    })
-    .then(function(res) {
       btn.disabled = false; btn.textContent = '登录'
-      if (res.error) {
-        setLoginMsg('注册失败: ' + res.error.message, true)
-      } else if (res.data && res.data.user && res.data.user.identities && res.data.user.identities.length === 0) {
-        // User already exists but was created via magic link (no password)
-        setLoginMsg('该账号已存在但未设密码，请在"邮箱验证"标签页登录后通过菜单→设置密码', true)
-      } else if (res.data && res.data.user && res.data.session) {
-        // signUp succeeded with session (auto-confirm enabled)
-        closeLoginModal()
-      } else if (res.data && res.data.user) {
-        // signUp succeeded but no session (email confirmation required)
-        closeLoginModal()
-        alert('注册成功！验证邮件已发送到 ' + email + '，请查看邮箱并点击验证链接后登录。')
-      }
     })
     .catch(function(err) {
       btn.disabled = false; btn.textContent = '登录'
