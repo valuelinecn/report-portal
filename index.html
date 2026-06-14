@@ -784,10 +784,6 @@ html{scroll-behavior:smooth}
 <script>
 const COMPANIES = [
   {id:'ningde',name:'宁德时代',nameEn:'CATL',score:7.5,scoreMax:10,color:'#4fc3f7',heat:9,industry:'新能源 · 动力电池',desc:'全球动力电池装机量第一，新能源产业链核心。',tags:['电池龙头','新能源','全球第一'],metrics:{营收:'4,650亿',净利:'578亿',毛利率:'24.5%',PE:'22.4x',ROE:'21%',全球市占率:'38%'},file:'ningde.html'},
-  {id:'hengrui',name:'恒瑞医药',nameEn:'Hengrui Medicine',score:6.5,scoreMax:10,color:'#9c27b0',heat:7,industry:'医药 · 创新药',desc:'中国创新药研发龙头，从仿制药到创新药转型领导者。',tags:['创新药','研发驱动','高研发投入'],metrics:{营收:'342亿',净利:'86亿',毛利率:'83.2%',PE:'38.4x',ROE:'16%',研发投入:'85亿'},file:'hengrui.html'},
-  {id:'byd',name:'比亚迪',nameEn:'BYD',score:7.0,scoreMax:10,color:'#4fc3f7',heat:8,industry:'汽车 · 新能源车',desc:'中国新能源汽车销量第一，垂直整合能力全球领先。',tags:['新能源车','垂直整合','出海'],metrics:{营收:'8,371亿',净利:'456亿',毛利率:'20.3%',PE:'29.7x',ROE:'14.5%',年销量:'500万辆'},file:'byd.html'},
-  {id:'zhaoshang',name:'招商银行',nameEn:'China Merchants Bank',score:7.0,scoreMax:10,color:'#e04040',heat:6,industry:'金融 · 银行',desc:'中国最大的股份制商业银行，零售银行王者。',tags:['零售银行','高ROE','财富管理'],metrics:{营收:'3,398亿',净利:'1,484亿',ROE:'15.8%',PE:'6.5x',不良率:'0.95%',股息率:'5.1%'},file:'zhaoshang.html'},
-  {id:'pingan',name:'中国平安',nameEn:'Ping An Insurance',score:6.5,scoreMax:10,color:'#e04040',heat:6,industry:'金融 · 综合金融',desc:'中国最大的综合金融集团，保险+银行+科技生态。',tags:['保险巨头','综合金融','科技赋能'],metrics:{营收:'10,203亿',净利:'1,276亿',PE:'7.2x',ROE:'14.2%',内含价值:'1.5万亿',股息率:'4.8%'},file:'pingan.html'},
   {id:'yunlu',name:'云铝股份',nameEn:'Yunnan Aluminium',score:6.7,scoreMax:10,color:'#ff9800',heat:2,industry:'有色金属 · 铝',desc:'云南省水电铝一体化龙头，绿色能源成本优势显著。',tags:['水电铝','绿色能源','周期股'],metrics:{营收:'521亿',净利:'52亿',毛利率:'19.1%',PE:'12.4x',ROE:'21.5%',股息率:'2.3%'},file:'yunlu.html'},
   {id:'mindray',name:'迈瑞医疗',nameEn:'Mindray Medical',score:7.5,scoreMax:10,color:'#9c27b0',heat:6,industry:'医药 · 医疗器械',desc:'中国最大医疗器械企业，全球医疗设备重要玩家。',tags:['医疗器械','全球扩张','刚需'],metrics:{营收:'438亿',净利:'138亿',毛利率:'64.5%',PE:'22.7x',ROE:'30%',净利率:'31.5%'},file:'mindray.html'},
   {id:'maotai',name:'贵州茅台',nameEn:'Kweichow Moutai',score:7.0,scoreMax:10,color:'#f0c040',heat:7,industry:'食品饮料 · 白酒',desc:'中国高端白酒行业绝对龙头，A股最具代表性的消费类核心资产。',tags:['核心资产','国酒','高毛利'],metrics:{营收:'1,709亿',净利:'862亿',毛利率:'91.9%',PE:'19.3x',ROE:'26%',股息率:'3.5%'},file:'maotai.html'},
@@ -821,8 +817,6 @@ const COMPANIES = [
   {id:'601088',name:'中国神华',nameEn:'China Shenhua',score:7.5,scoreMax:10,color:'#4caf50',heat:6,industry:'能源 · 煤炭',desc:'中国最大煤炭企业，煤电路港航一体化龙头，高股息核心资产。',tags:['煤炭龙头','高分红','央企重估'],metrics:{营收:'3,450亿',净利:'620亿',毛利率:'40.5%',PE:'13x',ROE:'14.5%',股息率:'5.5%'},file:'601088.html'},
   {id:'000063',name:'中兴通讯',nameEn:'ZTE Corporation',score:6.5,scoreMax:10,color:'#4fc3f7',heat:6,industry:'科技 · 通信设备',desc:'中国第二大通信设备商，5G+算力网络核心受益者。',tags:['5G设备','芯片自研','AI算力'],metrics:{营收:'1,320亿',净利:'95亿',毛利率:'38.5%',PE:'18x',ROE:'10.5%',研发费率:'15%'},file:'000063.html'},
   {id:'600030',name:'中信证券',nameEn:'CITIC Securities',score:7.0,scoreMax:10,color:'#e04040',heat:6,industry:'金融 · 券商',desc:'中国最大综合券商，投行+财富管理+资管全能型龙头。',tags:['券商龙头','综合金融','资本市场改革'],metrics:{营收:'630亿',净利:'212亿',净利率:'33.7%',PE:'18x',PB:'1.5x',ROE:'8.5%'},file:'600030.html'},
-  {id:'601318',name:'中国平安',nameEn:'Ping An Insurance',score:7.0,scoreMax:10,color:'#e04040',heat:6,industry:'金融 · 综合金融',desc:'中国最大综合金融集团，保险+银行+科技生态协同。',tags:['保险龙头','综合金融','低估值'],metrics:{营收:'1.02万亿',净利:'1,220亿',营运ROE:'30.5%',PE:'7x',PEV:'0.55x',股息率:'5.0%'},file:'601318.html'},
-  {id:'600036',name:'招商银行',nameEn:'China Merchants Bank',score:7.5,scoreMax:10,color:'#4caf50',heat:6,industry:'金融 · 银行',desc:'中国最佳零售银行，零售之王，财富管理龙头。',tags:['零售银行','财富管理','高ROE'],metrics:{营收:'3,500亿',净利:'1,480亿',ROE:'16.5%',PE:'5.5x',PB:'0.9x',不良率:'0.95%'},file:'600036.html'},
   {id:'601398',name:'工商银行',nameEn:'ICBC',score:7.0,scoreMax:10,color:'#e04040',heat:5,industry:'金融 · 银行',desc:'全球最大银行，综合金融龙头，高股息核心资产。',tags:['宇宙行','高股息','全球最大'],metrics:{营收:'8,600亿',净利:'3,650亿',ROE:'10.5%',PE:'5.5x',PB:'0.55x',股息率:'6%'},file:'601398.html'},
 ]
 
