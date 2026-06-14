@@ -436,7 +436,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <div class="bq">{{BQ_ANALYSIS}}</div></div>
 
 <div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
-  <div class="desc">核心理念：护城河不是静态的，需要关注其演变趋势——拓宽（↑）、稳定（→）、侵蚀（↓）</div>
+  <div class="desc">{{MOAT_PHILOSOPHY}}</div>
 
   <h3>壁垒类型评估</h3>
   <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">3.0</div></div></div>
@@ -448,15 +448,15 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 
   <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
     <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 2.9/5.0</span>
-    <span style="color:#888;font-size:12px;margin-left:6px;">→ 护城河中低，B2B制造模式壁垒有限</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">{{MOAT_LEVEL}}</span>
   </div>
 
   <h3>壁垒深度解析</h3>
   <div class="txt">
-    <b style="color:#4caf50;">客户粘性——核心优势</b><br>
-    <span class="dot">·</span> 与苹果/华为等顶级品牌认证周期2-3年，进入壁垒高、切换成本大<br>
-    <span class="dot">·</span> 但大客户议价能力极强，毛利率长期受压<br>
-    <span class="dot">·</span> 客户集中度高（前五大客户占收入约60%），单一客户流失风险较大<br><br>
+    <b style="color:#4caf50;">客户粘性——{{CORE_ADVANTAGE_LABEL}}</b><br>
+    <span class="dot">·</span> {{CERT_BARRIER}}<br>
+    <span class="dot">·</span> {{CUSTOMER_PRICING_POWER}}<br>
+    <span class="dot">·</span> {{CUSTOMER_CONCENTRATION_RISK}}<br><br>
     <b style="color:#f0c040;">规模壁垒——中等优势</b><br>
     <span class="dot">·</span> 具有显著的规模优势和客户壁垒，具体取决于行业<br>
     <span class="dot">·</span> {{MOAT_POINT_2}}<br>
@@ -475,7 +475,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <b>警惕信号：</b><br>
     <span class="dot">·</span> {{MARGIN_NOTE}}<br>
     <span class="dot">·</span> {{BRAND_BARRIER_NOTE}}<br>
-    <span class="dot">·</span> 行业价格战风险需关注<br>
+    <span class="dot">·</span> {{PRICE_WAR_RISK}}<br>
     <span class="dot">·</span> {{DISRUPTION_NOTE}}
   </div>
 
@@ -596,16 +596,16 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>行业空间</h3>
   <table class="tbl">
     <tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>{{COMPANY_NAME_CN}}出货/份额</th><th>市占率</th></tr>
-    <tr><td>全球手机电池pack</td><td>约800亿</td><td>→ 0-3%</td><td>约200亿</td><td class="gold">≈25%</td></tr>
+    <tr><td>{{MKT_ROW_1_NAME}}</td><td>{{MKT_ROW_1_SIZE}}</td><td>{{MKT_ROW_1_GROWTH}}</td><td>{{MKT_ROW_1_SHARE}}</td><td class="gold">≈25%</td></tr>
     <tr><td>全球新能源汽车市场</td><td>{{MKT_SIZE_1}}</td><td>{{MKT_GROWTH_1}}</td><td>{{CO_SHARE_1}}</td><td>≈{{CO_SHARE_PCT_1}}</td></tr>
-    <tr><td>全球储能电池</td><td>约400GWh</td><td>+40-50%</td><td>约5GWh</td><td>≈1%</td></tr>
+    <tr><td>{{MKT_ROW_3_NAME}}</td><td>{{MKT_ROW_3_SIZE}}</td><td>{{MKT_ROW_3_GROWTH}}</td><td>{{MKT_ROW_3_SHARE}}</td><td>≈1%</td></tr>
   </table>
 
   <div class="mg" style="margin-top:10px;">
-    <div class="mi"><div class="mv gold">25%</div><div class="ml">核心产品市占率</div></div>
-    <div class="mi"><div class="mv" style="color:#ffc107;">2%</div><div class="ml">新兴业务全球市占率</div></div>
-    <div class="mi"><div class="mv green">~200亿</div><div class="ml">核心业务年收入</div></div>
-    <div class="mi"><div class="mv green">>50%</div><div class="ml">新兴业务收入增速</div></div>
+    <div class="mi"><div class="mv gold">{{KPI_CARD_1_VAL}}</div><div class="ml">{{KPI_CARD_1_LABEL}}</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">{{KPI_CARD_2_VAL}}</div><div class="ml">{{KPI_CARD_2_LABEL}}</div></div>
+    <div class="mi"><div class="mv green">~200亿</div><div class="ml">{{KPI_CARD_3_LABEL}}</div></div>
+    <div class="mi"><div class="mv green">>50%</div><div class="ml">{{KPI_CARD_4_LABEL}}</div></div>
   </div>
 
   <h3>竞争态势</h3>
@@ -614,7 +614,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <tr><td>{{COMPETITOR_1}}</td><td>{{COMPETITOR_1_SEGMENT}}</td><td>{{COMPETITOR_1_ANALYSIS}}</td></tr>
     <tr><td>{{COMPETITOR_2}}</td><td>{{COMPETITOR_2_SEGMENT}}</td><td>{{COMPETITOR_2_ANALYSIS}}</td></tr>
     <tr><td>{{COMPETITOR_3}}</td><td>{{COMPETITOR_3_SEGMENT}}</td><td class="orange">{{COMPETITOR_3_ANALYSIS}}</td></tr>
-    <tr><td>比亚迪</td><td>{{CORE_BUSINESS}}</td><td class="orange">{{COMPETITOR_ADVANTAGE}}，{{COMPANY_NAME_CN}}{{DIFF_STRATEGY}}</td></tr>
+    <tr><td>{{COMPETITOR_4}}</td><td>{{CORE_BUSINESS}}</td><td class="orange">{{COMPETITOR_ADVANTAGE}}，{{COMPANY_NAME_CN}}{{DIFF_STRATEGY}}</td></tr>
   </table>
 
   <h3>行业终局思考</h3>
@@ -627,10 +627,10 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>催化剂时间表</h3>
   <table class="tbl">
     <tr><th style="width:80px">时间</th><th style="width:30%">事件</th><th style="width:40%">预期影响</th></tr>
-    <tr><td>2026-2027</td><td>{{CORE_BUSINESS}}产能利用率提升</td><td class="green">南京/南昌基地满产，{{CORE_BUSINESS}}减亏</td></tr>
-    <tr><td>2027</td><td>{{DIFF_STRATEGY}}电池新客户定点量产</td><td class="green">{{CORE_BUSINESS}}收入翻倍，毛利率改善</td></tr>
-    <tr><td>2027-2028</td><td>储能业务放量</td><td class="green">储能成为第三增长曲线</td></tr>
-    <tr><td>2027-2028</td><td>消费电子换机周期</td><td>AI PC/手机推动电池升级需求</td></tr>
+    <tr><td>2026-2027</td><td>{{CORE_BUSINESS}}产能利用率提升</td><td class="green">{{CORE_BUSINESS}}减亏</td></tr>
+    <tr><td>2027</td><td>{{DIFF_STRATEGY}}电池新客户定点量产</td><td class="green">{{CATALYST_IMPACT_2}}</td></tr>
+    <tr><td>2027-2028</td><td>{{CATALYST_EVENT_3}}</td><td class="green">{{CATALYST_IMPACT_3}}</td></tr>
+    <tr><td>2027-2028</td><td>{{CATALYST_EVENT_4}}</td><td>{{CATALYST_IMPACT_4}}</td></tr>
   </table>
 
   <h3>三年业绩预测</h3>
@@ -656,7 +656,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <tr>
       <td>{{RISK_ITEM_2}}</td>
       <td style="color:#888;">存量市场</td>
-      <td style="color:#888;">AI PC/手机换机潮带来结构性机会</td>
+      <td style="color:#888;">{{GAP_POINT_3_CONTENT}}</td>
       <td><span class="tg tgo">中性</span></td>
     </tr>
     <tr>
@@ -668,7 +668,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <tr>
       <td>估值水平</td>
       <td style="color:#888;">PE 30x偏高</td>
-      <td style="color:#4caf50;">分步估值：消费20x+动力PS=合理区间</td>
+      <td style="color:#4caf50;">{{VALUATION_NOTE}}</td>
       <td><span class="tg tgg">看多</span></td>
     </tr>
     <tr>
@@ -690,7 +690,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <tr><td>新兴业务亏损</td><td>产能利用率低+价格战加剧</td><td><span class="orange">中</span></td><td>毛利率持续为负</td></tr>
     <tr><td>原材料波动</td><td>锂/钴价格大幅上涨</td><td class="green">中低</td><td>碳酸锂价格>15万/吨</td></tr>
     <tr><td>技术变革</td><td>颠覆性技术变革</td><td class="green">低</td><td>头部企业固态电池量产进度</td></tr>
-    <tr><td>流动性风险</td><td>高负债+低利润→偿债能力</td><td class="green">中低</td><td>负债率突破70%</td></tr>
+    <tr><td>流动性风险</td><td>{{LIQUIDITY_RISK_DESC}}</td><td class="green">中低</td><td>负债率突破70%</td></tr>
   </table>
 
   <h3>敏感性分析</h3>
@@ -754,12 +754,12 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <tr><th style="width:50px">维度</th><th style="width:100px">代表人物</th><th style="width:40%">应用分析</th></tr>
     <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>{{M1_ANALYSIS}}</td></tr>
     <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>{{M2_ANALYSIS}}</td></tr>
-    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>{{CORE_BUSINESS}}增速>50%符合快速增长型特征，但净利率低是隐忧。</td></tr>
+    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>{{M3_ANALYSIS}}</td></tr>
     <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>{{M4_ANALYSIS}}</td></tr>
     <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>{{M5_ANALYSIS}}</td></tr>
     <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>{{M6_ANALYSIS}}</td></tr>
-    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>{{CORE_BUSINESS}}+储能+AI换机，三重成长空间。</td></tr>
-    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>{{OPTIMISTIC_SCENARIO}}是核心催化剂。</td></tr>
+    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>{{M7_ANALYSIS}}</td></tr>
+    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>{{M8_ANALYSIS}}</td></tr>
     <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>{{M9_ANALYSIS}}</td></tr>
     <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>{{M10_ANALYSIS}}</td></tr>
     <tr><td>M11</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>{{M11_SAFETY_MARGIN}}</td></tr>
