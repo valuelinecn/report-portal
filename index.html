@@ -1338,7 +1338,7 @@ function saveNickname() {
     if (match&&match.id&&match.id!==user.id) { msg.textContent='该昵称已被使用'; btn.disabled=false; btn.textContent='确定'; return }
     btn.textContent='保存中...'
     // Save with direct REST API (SDK upsert may have issues)
-    fetch(SUPABASE_URL+'/rest/v1/profiles', {method:'POST', headers:{'apikey':SUPABASE_ANON_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'}, body:JSON.stringify({id:user.id,nickname:nick,updated_at:new Date().toISOString()})}).then(function(fr) {
+    var _token=localStorage.getItem('SUPABASE_AUTH_TOKEN');fetch(SUPABASE_URL+'/rest/v1/profiles', {method:'POST', headers:{'apikey':SUPABASE_ANON_KEY,'Content-Type':'application/json','Authorization':'Bearer '+(_token||''),'Prefer':'resolution=merge-duplicates'}, body:JSON.stringify({id:user.id,nickname:nick,updated_at:new Date().toISOString()})}).then(function(fr) {
       btn.disabled=false; btn.textContent='确定'
       if (!fr.ok) { msg.textContent='保存失败('+fr.status+')'; return }
       localStorage.setItem('SUPABASE_NICKNAME',nick); localStorage.setItem('NICKNAME_CHANGED_AT',String(Date.now()))
@@ -1357,8 +1357,7 @@ function saveNickname() {
 }
 function checkNickname() {
   var user=getStoredUser(); if (!user) return
-  if (localStorage.getItem('SUPABASE_NICKNAME')) return
-  // Use SDK SELECT without maybeSingle (same pattern as comments)
+  // Always query DB first — localStorage cache is just a sync target, not a source of truth
   getSupabase().from('profiles').select('nickname').eq('id', user.id).then(function(res) {
     if (res.error) return
     var rows=res.data||[], row=rows.length>0?rows[0]:null
@@ -1748,10 +1747,8 @@ function submitFeedback() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  updateHeaderBtn()
   renderCatalog()
   renderBooks()
-  setTimeout(function() { checkNickname(); }, 500)
 })
 </script>
 <!-- ===== NICKNAME DIALOG ===== -->
