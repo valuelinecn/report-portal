@@ -1340,7 +1340,7 @@ function saveNickname() {
     // Save with direct REST API (SDK upsert may have issues)
     var _tok = localStorage.getItem('SUPABASE_AUTH_TOKEN');var _hdrs = {'apikey':SUPABASE_ANON_KEY,'Content-Type':'application/json'};if(_tok)_hdrs['Authorization']='Bearer '+_tok;
     fetch(SUPABASE_URL+'/rest/v1/profiles?id=eq.'+user.id, {method:'PATCH', headers:_hdrs, body:JSON.stringify({nickname:nick,updated_at:new Date().toISOString()})}).then(function(fr){
-      return fr.json().then(function(j){return{status:fr.status,body:j}})
+      return (fr.status===204)?{status:204,body:{}}:fr.json().then(function(j){return{status:fr.status,body:j}})
     }).then(function(r){
       btn.disabled=false; btn.textContent='确定'
       if (r.status>=400||(r.status<300&&(!r.body||r.body.length===0))) {
