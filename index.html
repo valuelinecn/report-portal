@@ -1357,8 +1357,7 @@ function saveNickname() {
 }
 function checkNickname() {
   var user=getStoredUser(); if (!user) return
-  if (localStorage.getItem('SUPABASE_NICKNAME')) return
-  // Use SDK SELECT without maybeSingle (same pattern as comments)
+  // Always query DB first — localStorage is just a sync target, not source of truth
   getSupabase().from('profiles').select('nickname').eq('id', user.id).then(function(res) {
     if (res.error) return
     var rows=res.data||[], row=rows.length>0?rows[0]:null
@@ -1748,10 +1747,8 @@ function submitFeedback() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  updateHeaderBtn()
   renderCatalog()
   renderBooks()
-  setTimeout(function() { checkNickname(); }, 500)
 })
 </script>
 <!-- ===== NICKNAME DIALOG ===== -->
