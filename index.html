@@ -1338,9 +1338,9 @@ function saveNickname() {
     if (match&&match.id&&match.id!==user.id) { msg.textContent='该昵称已被使用'; btn.disabled=false; btn.textContent='确定'; return }
     btn.textContent='保存中...'
     // Save with direct REST API (SDK upsert may have issues)
-    var _tok = localStorage.getItem('SUPABASE_AUTH_TOKEN');fetch(SUPABASE_URL+'/rest/v1/profiles', {method:'POST', headers:{'apikey':SUPABASE_ANON_KEY,'Content-Type':'application/json','Authorization':'Bearer '+(_tok||''),'Prefer':'resolution=merge-duplicates'}, body:JSON.stringify({id:user.id,nickname:nick,updated_at:new Date().toISOString()})}).then(function(fr) {
+    var _tok = localStorage.getItem('SUPABASE_AUTH_TOKEN');var _hdrs = {'apikey':SUPABASE_ANON_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'};if(_tok)_hdrs['Authorization']='Bearer '+_tok;fetch(SUPABASE_URL+'/rest/v1/profiles', {method:'POST', headers:_hdrs, body:JSON.stringify({id:user.id,nickname:nick,updated_at:new Date().toISOString()})}).then(function(fr) {
       btn.disabled=false; btn.textContent='确定'
-      if (!fr.ok) { fr.json().then(function(j){msg.textContent='保存失败('+fr.status+'): '+(j.message||JSON.stringify(j).slice(0,200))}).catch(function(){msg.textContent='保存失败('+fr.status+')'}); return }
+      if (!fr.ok) { msg.textContent='保存失败('+fr.status+'): token='+(_tok?'有':'空')+', '; fr.json().then(function(j){msg.textContent+=j.message||JSON.stringify(j).slice(0,200)}).catch(function(){msg.textContent+='无法解析响应'}) ; return }
       localStorage.setItem('SUPABASE_NICKNAME',nick); localStorage.setItem('NICKNAME_CHANGED_AT',String(Date.now()))
       getSupabase().from('comments').update({author_name:nick}).eq('user_id',user.id).then(function(){})
       // If password was entered, save it too
