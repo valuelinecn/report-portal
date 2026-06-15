@@ -1337,11 +1337,17 @@ function saveNickname() {
     var qrows=qr.data||[], match=qrows.length>0?qrows[0]:null
     if (match&&match.id&&match.id!==user.id) { msg.textContent='该昵称已被使用'; btn.disabled=false; btn.textContent='确定'; return }
     btn.textContent='保存中...'
-    getSupabase().from('profiles').upsert({id:user.id,nickname:nick,updated_at:new Date().toISOString()},{onConflict:'id',ignoreDuplicates:false}).then(function(res) {
-      btn.disabled=false; btn.textContent='确定'
-      if (res.error) { msg.textContent='保存失败: '+res.error.message; return }
-      localStorage.setItem('SUPABASE_NICKNAME',nick); localStorage.setItem('NICKNAME_CHANGED_AT',String(Date.now()))
-      getSupabase().from('comments').update({author_name:nick}).eq('user_id',user.id).then(function(){})
+    getSupabase().auth.getSession().then(function(ss) {
+      var token = ss.data&&ss.data.session ? ss.data.session.access_token : localStorage.getItem('SUPABASE_AUTH_TOKEN');
+      if (!token) { btn.disabled=false; btn.textContent='确定'; msg.textContent='未登录，请重新登录'; return }
+      var hdrs = {'apikey':SUPABASE_ANON_KEY,'Content-Type':'application/json','Authorization':'Bearer '+token,'Prefer':'resolution=merge-duplicates'};
+      return fetch(SUPABASE_URL+'/rest/v1/profiles',{method:'POST',headers:hdrs,body:JSON.stringify({id:user.id,nickname:nick,updated_at:new Date().toISOString()})}).then(function(fr){
+        return fr.json().then(function(j){return{status:fr.status,body:j}})
+      }).then(function(r){
+        btn.disabled=false; btn.textContent='确定'
+        if (r.status>=400) { msg.textContent='保存失败('+r.status+'): '+(r.body.message||JSON.stringify(r.body).slice(0,200)); return }
+        localStorage.setItem('SUPABASE_NICKNAME',nick); localStorage.setItem('NICKNAME_CHANGED_AT',String(Date.now()))
+        getSupabase().from('comments').update({author_name:nick}).eq('user_id',user.id).then(function(){})
       // If password was entered, save it too
       var pwd=document.getElementById('nicknamePwdInput').value.trim()
       if (pwd&&pwd.length>=6) {
