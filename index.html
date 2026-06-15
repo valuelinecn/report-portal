@@ -1338,10 +1338,13 @@ function saveNickname() {
     if (match&&match.id&&match.id!==user.id) { msg.textContent='该昵称已被使用'; btn.disabled=false; btn.textContent='确定'; return }
     btn.textContent='保存中...'
     // Save with SDK upsert — auto-auth, proper RLS enforcement
-    getSupabase().auth.getUser().then(function(ua) {
-      if (!ua.data||!ua.data.user) { msg.textContent='登录失效，请重新登录'; btn.disabled=false; btn.textContent='确定'; return }
-      var uid=ua.data.user.id
-      getSupabase().from('profiles').upsert({id:uid,nickname:nick,updated_at:new Date().toISOString()},{onConflict:'id'}).then(function(ur){
+    getSupabase().auth.getSession().then(function(sr){
+      if (!sr.data||!sr.data.session) { msg.textContent='登录已失效，请重新登录'; btn.disabled=false; btn.textContent='确定'; return }
+      getSupabase().auth.getUser().then(function(ua) {
+        if (!ua.data||!ua.data.user) { msg.textContent='登录失效，请重新登录'; btn.disabled=false; btn.textContent='确定'; return }
+        var uid=ua.data.user.id
+        dbg('[nickname] upsert payload id: ' + uid + ' type: ' + typeof uid)
+        getSupabase().from('profiles').upsert({id:uid,nickname:nick,updated_at:new Date().toISOString()},{onConflict:'id'}).then(function(ur){
         dbg('[nickname] upsert result: ' + JSON.stringify(ur))
         btn.disabled=false; btn.textContent='确定'
         if (ur.error) { msg.textContent='保存失败: '+(ur.error.message||JSON.stringify(ur.error).slice(0,200)); return }
@@ -1355,6 +1358,7 @@ function saveNickname() {
       })
     })
   })
+})
 }
 function checkNickname() {
   getSupabase().auth.getUser().then(function(ua) {
