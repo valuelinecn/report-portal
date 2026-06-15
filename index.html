@@ -1342,7 +1342,7 @@ function saveNickname() {
       if (!ua.data||!ua.data.user) { msg.textContent='登录失效，请重新登录'; btn.disabled=false; btn.textContent='确定'; return }
       var uid=ua.data.user.id
       getSupabase().from('profiles').upsert({id:uid,nickname:nick,updated_at:new Date().toISOString()},{onConflict:'id'}).then(function(ur){
-        console.log('[nickname] upsert result:', JSON.stringify(ur))
+        dbg('[nickname] upsert result: ' + JSON.stringify(ur))
         btn.disabled=false; btn.textContent='确定'
         if (ur.error) { msg.textContent='保存失败: '+(ur.error.message||JSON.stringify(ur.error).slice(0,200)); return }
         localStorage.setItem('SUPABASE_NICKNAME',nick); localStorage.setItem('NICKNAME_CHANGED_AT',String(Date.now()))
@@ -1358,16 +1358,16 @@ function saveNickname() {
 }
 function checkNickname() {
   getSupabase().auth.getUser().then(function(ua) {
-    if (!ua.data||!ua.data.user) { console.log('[nickname] getUser: no user'); return }
+    if (!ua.data||!ua.data.user) { dbg('[nickname] getUser: no user'); return }
     var user=ua.data.user
-    console.log('[nickname] getUser uid:', user.id)
+    dbg('[nickname] getUser uid: ' + user.id)
     localStorage.setItem('SUPABASE_USER', JSON.stringify(user))
     getSupabase().from('profiles').select('nickname').eq('id', user.id).then(function(res) {
-      console.log('[nickname] profiles query error:', res.error, 'data:', JSON.stringify(res.data))
+      dbg('[nickname] profiles query error: ' + JSON.stringify(res.error) + ' data: ' + JSON.stringify(res.data))
       if (res.error) return
       var rows=res.data||[], row=rows.length>0?rows[0]:null
-      if (row&&row.nickname) { console.log('[nickname] found:', row.nickname); localStorage.setItem('SUPABASE_NICKNAME',row.nickname); updateHeaderBtn() }
-      else { console.log('[nickname] NOT found, showing dialog'); showNicknameDialog(user) }
+      if (row&&row.nickname) { dbg('[nickname] found: ' + row.nickname); localStorage.setItem('SUPABASE_NICKNAME',row.nickname); updateHeaderBtn() }
+      else { dbg('[nickname] NOT found, showing dialog'); showNicknameDialog(user) }
     })
   })
 }
@@ -1500,6 +1500,9 @@ function logout() {
 // ===== SUPABASE COMMENTS =====
 var SUPABASE_URL = 'https://awhdlskpkmklmvyodbue.supabase.co';
 var SUPABASE_ANON_KEY = 'sb_publishable_imB63UIMl9JN050rK4oPCQ_hTJcYVj5';
+
+var _dbg=[];
+function dbg(m){_dbg.push(m);var el=document.getElementById('debugLog');if(el)el.textContent=_dbg.join('\n');console.log(m)}
 
 function getSupabase() {
   window._supabase = window._supabase || supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -1824,6 +1827,8 @@ document.addEventListener('DOMContentLoaded', () => {
 </footer>
 
 <button class="back-top" onclick="var rv=document.getElementById('reportView'),bv=document.getElementById('bookDetailView');if(rv&&rv.classList.contains('active')){var f=document.getElementById('reportFrame');if(f&&f.contentWindow)f.contentWindow.scrollTo({top:0,behavior:'smooth'})}else if(bv&&bv.classList.contains('active')){var s=document.querySelector('.detail-scroll');if(s)s.scrollTo({top:0,behavior:'smooth'})}else{window.scrollTo({top:0,behavior:'smooth'})}">↑</button>
+
+  <div id="debugLog" style="margin:16px;padding:12px;background:#111;color:#0f0;font:12px monospace;white-space:pre-wrap;border-radius:6px;max-height:300px;overflow:auto"></div>
 
 </body>
 </html>
