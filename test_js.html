@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<script src="books-data.js"></script>
+<script src="waline/supabase.js"></script>
+<script>
+try {
+  console.log('BOOKS length:', typeof BOOKS !== 'undefined' ? BOOKS.length : 'UNDEFINED');
+  console.log('supabase exists:', typeof supabase !== 'undefined');
+  console.log('COMPANIES would be:', typeof COMPANIES !== 'undefined' ? 'defined in next script' : 'needs inline');
+} catch(e) {
+  console.log('Error:', e.message);
+}
+document.write('<h1>Test OK - JS loaded</h1>');
+document.write('<p>BOOKS: ' + (typeof BOOKS !== 'undefined' ? BOOKS.length : 'NOT DEFINED') + '</p>');
+document.write('<p>supabase: ' + (typeof supabase !== 'undefined' ? 'YES' : 'NO') + '</p>');
+</script></head><body></body></html>
