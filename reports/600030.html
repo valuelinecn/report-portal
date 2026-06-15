@@ -644,14 +644,12 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <tr><td>H股定增</td><td style="color:#888;">160亿定增摊薄ROE</td><td style="color:#4caf50;">48个月锁定期影响有限，补充资本金利好</td><td><span class="tg tgo">中性</span></td></tr>
     <tr><td>政策红利</td><td style="color:#888;">改革落地不确定</td><td style="color:#4caf50;">行业集中度提升确定性强</td><td><span class="tg tgg">看多</span></td></tr>
   </table>
-    </tr>
-  </table>
 
-  <div class="bq">市场对券商周期属性过度担忧，低估自营转型和机构化成果。ROE领先+PB低位构成核心预期差。</div></div>
+  <div class="bq">全业务链龙头，资本+牌照+品牌三重壁垒。投行/资管/经纪均前三。科技投入弱于华泰。净利率40.18%券商中顶尖。</div></div>
 
 <div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
 
-    <table class="tbl">
+  <table class="tbl">
 <tr><th style="width:80px">风险类型</th><th>描述</th><th style="width:50px">概率</th><th style="width:40%">预警信号</th></tr>
     <tr><td>市场波动</td><td>自营收入受权益市场β影响显著，占比50%</td><td><span style="color:orange;">高</span></td><td>沪深300季度跌幅>10%</td></tr>
     <tr><td>政策不及预期</td><td>投行注册制改革进度放缓</td><td><span style="color:orange;">中</span></td><td>IPO审核节奏放缓</td></tr>
@@ -742,6 +740,25 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     中信证券股份有限公司 · 600030.SH
   </div>
 </div>
+
+
+
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var d = document.documentElement;
+    console.log('📐 scrollH=', d.scrollHeight, 'clientH=', d.clientHeight, 'scrollW=', d.scrollWidth, 'clientW=', d.clientWidth);
+    // Check if any overflow:hidden on parents
+    var el = document.body;
+    while(el) {
+      var cs = window.getComputedStyle(el);
+      if(cs.overflow === 'hidden' || cs.overflowY === 'hidden') {
+        console.log('⚠️ overflow:hidden on:', el.tagName, el.className);
+      }
+      el = el.parentElement;
+    }
+  }, 1000);
+});
+// Fix: if body has no scroll, force it
 
 </body>
 </html>
