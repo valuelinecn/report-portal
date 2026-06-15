@@ -1342,6 +1342,7 @@ function saveNickname() {
       if (!ua.data||!ua.data.user) { msg.textContent='登录失效，请重新登录'; btn.disabled=false; btn.textContent='确定'; return }
       var uid=ua.data.user.id
       getSupabase().from('profiles').upsert({id:uid,nickname:nick,updated_at:new Date().toISOString()},{onConflict:'id'}).then(function(ur){
+        console.log('[nickname] upsert result:', JSON.stringify(ur))
         btn.disabled=false; btn.textContent='确定'
         if (ur.error) { msg.textContent='保存失败: '+(ur.error.message||JSON.stringify(ur.error).slice(0,200)); return }
         localStorage.setItem('SUPABASE_NICKNAME',nick); localStorage.setItem('NICKNAME_CHANGED_AT',String(Date.now()))
@@ -1357,14 +1358,16 @@ function saveNickname() {
 }
 function checkNickname() {
   getSupabase().auth.getUser().then(function(ua) {
-    if (!ua.data||!ua.data.user) return
+    if (!ua.data||!ua.data.user) { console.log('[nickname] getUser: no user'); return }
     var user=ua.data.user
+    console.log('[nickname] getUser uid:', user.id)
     localStorage.setItem('SUPABASE_USER', JSON.stringify(user))
     getSupabase().from('profiles').select('nickname').eq('id', user.id).then(function(res) {
+      console.log('[nickname] profiles query error:', res.error, 'data:', JSON.stringify(res.data))
       if (res.error) return
       var rows=res.data||[], row=rows.length>0?rows[0]:null
-      if (row&&row.nickname) { localStorage.setItem('SUPABASE_NICKNAME',row.nickname); updateHeaderBtn() }
-      else { showNicknameDialog(user) }
+      if (row&&row.nickname) { console.log('[nickname] found:', row.nickname); localStorage.setItem('SUPABASE_NICKNAME',row.nickname); updateHeaderBtn() }
+      else { console.log('[nickname] NOT found, showing dialog'); showNicknameDialog(user) }
     })
   })
 }
