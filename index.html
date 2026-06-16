@@ -906,6 +906,8 @@ function onFrameLoaded() {
   document.getElementById('reportLoading').style.display='none'
   document.getElementById('reportFrame').style.display='block'
   applyThemeToReport()
+  // Reload comments for current report when switching reports
+  if (window._currentCid) loadComments('/' + window._currentCid, 'comment-report');
   // Auto-expand comments when iframe scrolled to bottom
   try {
     var iframeDoc = document.getElementById('reportFrame').contentDocument || document.getElementById('reportFrame').contentWindow.document;
