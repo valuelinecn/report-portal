@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>中国宝安 · 完整投资研究报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
+h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
+h2{font-size:16px;color:#4caf50;margin:20px 0 10px;border-left:3px solid #4caf50;padding-left:10px}
+h3{font-size:14px;color:#ccc;margin:14px 0 6px}
+h4{font-size:13px;color:#aaa;margin:10px 0 4px}
+.desc{font-size:12px;color:#888;margin-bottom:10px}
+.card{background:#0d1a1a;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid #1a3a3a}
+.sc-wrap{text-align:center;margin-bottom:16px}
+.score-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(#4caf50 0deg 252deg,#333 252deg 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
+.score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
+.c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e3e3a;font-size:11px}
+.tbl td:first-child{white-space:nowrap;font-size:12px}
+.tbl tr:last-child td{border-bottom:none}
+.gold{color:#4caf50;font-weight:bold}.green{color:#4caf50}.red{color:#f44336}.orange{color:#ff9800}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{background:#0a0a1a;border-radius:8px;padding:10px;text-align:center}
+.mv{font-size:18px;font-weight:bold;color:#fff}
+.ml{font-size:10px;color:#888;margin-top:2px}
+.hb{display:flex;align-items:flex-start;margin:4px 0;min-height:20px}
+.hl{width:72px;font-size:11px;color:#aaa;flex-shrink:0;padding-top:2px}
+.ht{flex:1;height:16px;background:#1e3e3a;border-radius:8px;overflow:visible;margin:0 6px;position:relative}
+.hf{height:16px;border-radius:8px;display:flex;align-items:center;padding-left:6px;font-size:10px;color:#fff;overflow:visible;white-space:nowrap;text-shadow:0 0 3px rgba(0,0,0,.8);min-width:0}
+.hv{font-size:10px;color:#999;white-space:nowrap;flex-shrink:0;padding-top:2px;margin-left:2px}
+.scn{display:flex;gap:6px;margin:8px 0}
+.scc{flex:1;border-radius:8px;padding:10px;text-align:center}
+.scc h4{font-size:12px;margin-bottom:4px;color:#fff}
+.scc .pct{font-size:18px;font-weight:bold}
+.scc .dt{font-size:10px;color:#ccc;margin-top:3px}
+.sc1{background:#1a3a1a;border:1px solid #2a5a2a}.sc1 .pct{color:#4caf50}
+.sc2{background:#1a2a3a;border:1px solid #2a3a5a}.sc2 .pct{color:#f0c040}
+.sc3{background:#3a1a1a;border:1px solid #5a2a2a}.sc3 .pct{color:#f44336}
+.tg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;margin:1px}
+.tgg{background:#1a3a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgr{background:#3a1a1a;color:#f44336;border:1px solid #5a2a2a}
+.tgo{background:#3a2a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgy{background:#222;color:#aaa;border:1px solid #333}
+.txt{padding:6px 0;font-size:13px;color:#ccc;line-height:1.7}
+.txt .dot{color:#4caf50;margin-right:4px}
+.bq{padding:10px;background:#0a0a1a;border-radius:8px;border-left:3px solid #4caf50;margin:8px 0;font-size:13px;color:#ddd;line-height:1.7}
+.cp{display:flex;align-items:center;margin:4px 0;font-size:12px}
+.cp .nm{width:88px;color:#aaa;flex-shrink:0}
+.cp .bt{flex:1;height:14px;background:#1e3e3a;border-radius:7px;overflow:hidden;margin:0 6px}
+.cp .bf{height:100%;border-radius:7px}
+.cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
+.footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e3e3a;line-height:1.8}
+.sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e3e3a;margin-bottom:12px}
+.toc{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:10px;color:#888;text-decoration:none;padding:3px 7px;border-radius:10px;border:1px solid #333;white-space:nowrap;flex-shrink:0}
+.toc a:active{background:#1e3e3a;color:#4caf50}
+
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+  <div style="text-align:center;font-size:11px;color:#555;margin-bottom:4px;">📌 点击跳转</div>
+  <div class="toc">
+    <a href="#s0">评分</a><a href="#s1">综合评价</a><a href="#s2">M1商业模式</a>
+    <a href="#s3">M2壁垒</a><a href="#s4">M3管理层</a><a href="#s5">M4财务</a>
+    <a href="#s6">M5产业链</a><a href="#s7">M6估值</a><a href="#s8">M7市占率</a>
+    <a href="#s9">M8催化剂</a><a href="#s10">M9预期差</a><a href="#s11">M10风险</a>
+    <a href="#s12">综合评级</a><a href="#s13">附录</a>
+  </div>
+</div>
+
+<div id="s0" class="sc-wrap">
+  <div class="score-ring"><div class="score-inner"><div class="score-num">5.5</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">中国宝安 <span style="font-size:14px;color:#888;font-weight:400;">000009</span></h1>
+  <div class="desc">综合产业控股集团，核心资产贝特瑞(负极材料龙头)和马应龙(中华老字号)价值突出，但扣非持续亏损、财务费用高企，集团折价显著</div>
+  <div><span class="tg tgo">估值合理偏低</span><span class="tg tgy">数据截止：2026-06-12</span></div>
+</div>
+
+<div id="s-mcap" class="card">
+  <h2>市值走势</h2>
+  <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
+
+  <div class="mcap-btns">
+    <button class="mcap-btn active" data-period="week">周线</button>
+    <button class="mcap-btn" data-period="month">月线</button>
+    <button class="mcap-btn" data-period="year">年线</button>
+  </div>
+
+  <div class="mcap-chart-wrap">
+    <div class="mcap-tooltip" id="mcapTooltip"></div>
+    <svg id="mcapSvg" width="100%" height="380"></svg>
+  </div>
+
+  <div class="mcap-info">
+    当前市值：<span class="mcap-v" id="mcapCurrent">--</span> 亿 ·
+    历史最高：<span class="mcap-v" id="mcapHigh">--</span> 亿 ·
+    历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
+    总股本：<span class="mcap-v" id="mcapShares">25.80</span> 亿股
+  </div>
+</div>
+
+<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
+  <h2>历年财务数据</h2>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=连续下滑</span> · <span style="color:#e74c3c">红色=负值/下滑>20%</span></div>
+  <style>
+  .fin-table{width:100%;border-collapse:collapse;font-size:11px}
+  .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
+  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
+  .fin-table tr:hover td{background:#1a1a3a}
+  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
+  .fin-table tr:hover td:first-child{background:#1a1a2a}
+  .fin-table td.na{color:#555}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
+  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
+  .fin-light .fin-table td.pos{color:#2e7d32!important}
+  .fin-light .fin-table td.neg{color:#c0392b!important}
+  .fin-light .fin-table td.warn{color:#b8860b!important}
+</style>
+  <table class="fin-table">
+<th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th>
+<tr><td>每股营业收入(元)</td><td>8.93</td><td class="warn">7.84</td><td class="pos">11.90</td><td>12.42</td><td class="neg">6.82</td><td class="neg">4.13</td><td>4.65</td><td class="warn">4.56</td><td class="neg">2.74</td><td class="warn">2.50</td></tr>
+<tr><td>每股经营现金流(元)</td><td>0.45</td><td class="pos">0.64</td><td class="pos">2.31</td><td class="neg">0.11</td><td class="neg">-0.11</td><td class="pos">0.25</td><td class="pos">0.52</td><td class="pos">1.27</td><td class="neg">0.18</td><td class="neg">-0.01</td></tr>
+<tr><td>每股净利润(元)</td><td>0.08</td><td class="warn">0.07</td><td class="pos">0.29</td><td class="pos">0.45</td><td class="warn">0.40</td><td class="neg">0.26</td><td class="neg">0.12</td><td class="warn">0.10</td><td class="neg">0.06</td><td class="pos">0.11</td></tr>
+<tr><td>每股净资产(元)</td><td>3.88</td><td class="warn">3.84</td><td>3.85</td><td class="warn">3.54</td><td class="warn">3.10</td><td class="warn">2.68</td><td class="warn">2.15</td><td>2.45</td><td class="warn">2.33</td><td class="warn">2.08</td></tr>
+<tr><td>总股本(亿股)</td><td>25.80</td><td>25.80</td><td>25.80</td><td>25.80</td><td>25.80</td><td>25.80</td><td>25.80</td><td>25.80</td><td>25.80</td><td>25.80</td></tr>
+<tr><td>营业收入(亿元)</td><td>230.36</td><td class="warn">202.30</td><td class="pos">307.06</td><td>320.33</td><td class="neg">176.06</td><td class="neg">106.64</td><td>120.04</td><td class="warn">117.68</td><td class="neg">70.71</td><td class="warn">64.50</td></tr>
+<tr><td>毛利率(%)</td><td>25.82</td><td>27.28</td><td class="neg">20.78</td><td class="warn">19.94</td><td class="pos">28.74</td><td>32.94</td><td>35.11</td><td>37.00</td><td class="warn">33.72</td><td class="warn">30.66</td></tr>
+<tr><td>净利润(亿元)</td><td>2.03</td><td class="warn">1.73</td><td class="pos">7.56</td><td class="pos">11.57</td><td class="warn">10.36</td><td class="neg">6.62</td><td class="neg">3.01</td><td class="neg">2.14</td><td class="neg">1.33</td><td class="pos">2.33</td></tr>
+<tr><td>净利润率(%)</td><td>0.88</td><td class="warn">0.85</td><td class="pos">2.46</td><td class="pos">3.61</td><td class="pos">5.88</td><td>6.21</td><td class="neg">2.51</td><td class="neg">1.82</td><td>1.88</td><td class="pos">3.62</td></tr>
+<tr><td>ROE(%)</td><td>2.04</td><td class="warn">1.73</td><td class="pos">7.91</td><td class="pos">13.50</td><td>13.91</td><td class="neg">10.71</td><td class="neg">5.54</td><td class="neg">4.18</td><td class="neg">2.88</td><td class="pos">5.20</td></tr>
+</table>
+</div>
+
+<style>
+.mcap-btns{display:flex;gap:6px;margin:8px 0}
+.mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e3e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
+.mcap-btn:hover{border-color:#4caf50;color:#4caf50}
+.mcap-btn.active{background:#4caf50;color:#0a0a1a;border-color:#4caf50;font-weight:bold}
+.mcap-chart-wrap{position:relative;width:100%;border-radius:8px;background:#0d0d20;border:1px solid #1e3e3a}
+.mcap-chart-wrap svg{display:block}
+.mcap-tooltip{position:absolute;display:none;background:rgba(10,10,26,.92);border:1px solid #4caf50;border-radius:6px;padding:6px 10px;font-size:12px;color:#fff;pointer-events:none;z-index:10;white-space:nowrap;transform:translate(-50%,-110%)}
+.mcap-tooltip .tt-date{color:#888;font-size:10px}
+.mcap-tooltip .tt-val{color:#4caf50;font-weight:bold}
+.mcap-info{text-align:center;font-size:12px;color:#888;margin-top:8px;padding:6px;background:#0d0d20;border-radius:6px}
+.mcap-v{color:#4caf50;font-weight:bold}
+.mcap-axis path,.mcap-axis line{stroke:#333;stroke-width:1}
+.mcap-axis text{fill:#666;font-size:10px}
+.mcap-grid line{stroke:#1e3e3a;stroke-width:0.5;stroke-dasharray:3,3}
+.mcap-light .mcap-btn{border-color:#c8c0b0;background:#e8e4dc;color:#707070}
+.mcap-light .mcap-btn:hover{border-color:#b8860b;color:#b8860b}
+.mcap-light .mcap-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
+.mcap-light .mcap-chart-wrap{background:#f4f1ea;border-color:#d8d4c8}
+.mcap-light .mcap-tooltip{background:rgba(255,255,255,.95);border-color:#b8860b;color:#3d3d3d}
+.mcap-light .mcap-tooltip .tt-date{color:#808080}
+.mcap-light .mcap-tooltip .tt-val{color:#b8860b}
+.mcap-light .mcap-info{background:#e8e4dc;color:#808080}
+.mcap-light .mcap-v{color:#b8860b}
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var stockCode = '000009';
+  var chartData = [];
+  var viewStart = 0, viewEnd = 0;
+  var isDragging = false, dragStartX = 0, dragViewStart = 0;
+  var svg, tooltip, wrap;
+  var W = 0, H = 380;
+  var M = {top:20, right:20, bottom:35, left:65};
+
+  function init(){
+    svg = document.getElementById('mcapSvg');
+    tooltip = document.getElementById('mcapTooltip');
+    wrap = svg.parentElement;
+    svg.style.cursor = 'crosshair';
+
+    if(document.getElementById('hermes-theme-override')){
+      document.getElementById('s-mcap').classList.add('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf) sf.classList.add('fin-light');
+    }
+
+    var themeWatcher = new MutationObserver(function(){
+      var light = !!document.getElementById('hermes-theme-override');
+      var card = document.getElementById('s-mcap');
+      if(light) card.classList.add('mcap-light');
+      else card.classList.remove('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf){ if(light) sf.classList.add('fin-light'); else sf.classList.remove('fin-light'); }
+      if(chartData.length) render();
+    });
+    if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
+
+    document.querySelectorAll('.mcap-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.mcap-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        loadPeriod(btn.getAttribute('data-period'));
+      });
+    });
+
+    svg.addEventListener('wheel', onWheel, {passive:false});
+    svg.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+    svg.addEventListener('mousemove', onHover);
+    svg.addEventListener('mouseleave', function(){
+      tooltip.style.display='none';
+      var cv=svg.querySelector('#mcapCrossV');if(cv)cv.setAttribute('opacity','0');
+      var ch2=svg.querySelector('#mcapCrossH');if(ch2)ch2.setAttribute('opacity','0');
+      var cd=svg.querySelector('#mcapCrossDot');if(cd)cd.setAttribute('opacity','0');
+    });
+
+    var touchDist = 0;
+    svg.addEventListener('touchstart', function(e){
+      if(e.touches.length === 1){
+        isDragging = true; dragStartX = e.touches[0].clientX; dragViewStart = viewStart;
+      }else if(e.touches.length === 2){
+        touchDist = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+      }
+    }, {passive:true});
+    svg.addEventListener('touchmove', function(e){
+      if(e.touches.length === 1 && isDragging){
+        var dx = e.touches[0].clientX - dragStartX;
+        var range = viewEnd - viewStart;
+        if(range > 1){
+          var shift = Math.round(-dx / ((W-M.left-M.right)/range));
+          var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart + shift));
+          viewStart = ns; viewEnd = viewStart + range; render();
+        }
+        isDragging = false;
+      }else if(e.touches.length === 2){
+        var nd = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+        if(touchDist > 0){doZoom(nd > touchDist ? 1 : -1, (e.touches[0].clientX+e.touches[1].clientX)/2);}
+        touchDist = nd;
+      }
+    }, {passive:true});
+    svg.addEventListener('touchend', function(){isDragging=false});
+    window.addEventListener('resize', function(){if(chartData.length)render()});
+    loadPeriod('week');
+  }
+
+  function getThemeColors(){
+    var light = !!document.getElementById('hermes-theme-override');
+    return {
+      line: light ? '#b8860b' : '#4caf50',
+      grid: light ? '#e0dcd0' : '#1e3e3a',
+      axisText: light ? '#999' : '#666',
+      gradTop: light ? '#b8860b' : '#4caf50',
+      gradBot: light ? '#b8860b' : '#4caf50',
+      gradTo: '0.25', gradBo: '0.01'
+    };
+  }
+
+  function loadPeriod(period){
+    var url = '../kline/' + stockCode + '_' + period + '.json?t=' + Date.now();
+    fetch(url).then(function(r){return r.json()}).then(function(data){
+      chartData = data;
+      var dw = data.length;
+      viewStart = Math.max(0, data.length - dw); viewEnd = data.length;
+      updateStats(data); render();
+    }).catch(function(e){console.error(e)});
+  }
+
+  function updateStats(data){
+    if(!data.length) return;
+    var last = data[data.length-1];
+    var high = data.reduce(function(a,b){return a.value>b.value?a:b});
+    var low = data.reduce(function(a,b){return a.value<b.value?a:b});
+    document.getElementById('mcapCurrent').textContent = last.value.toFixed(1);
+    document.getElementById('mcapHigh').textContent = high.value.toFixed(1);
+    document.getElementById('mcapLow').textContent = low.value.toFixed(1);
+  }
+
+  function render(){
+    if(!chartData.length) return;
+    var rect = wrap.getBoundingClientRect();
+    W = Math.max(300, rect.width || 600); H = 380;
+    svg.style.width = W + 'px'; svg.style.height = H + 'px';
+    var cw = W - M.left - M.right, ch = H - M.top - M.bottom;
+    if(cw <= 0 || ch <= 0) return;
+    var visible = chartData.slice(viewStart, viewEnd);
+    var n = visible.length; if(n === 0) return;
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<n;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad); maxVal = maxVal + pad;
+    var xS = function(i){return M.left+(i/(n-1||1))*cw};
+    var yS = function(v){return M.top+ch-(v-minVal)/(maxVal-minVal)*ch};
+    var pts = '';
+    for(var i=0;i<n;i++){pts += (i===0?'':' ')+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1);}
+    var tc = getThemeColors(), h = '';
+    h += '<g class="mcap-grid">';
+    for(var gi=0;gi<=5;gi++){var gv=minVal+(maxVal-minVal)*(gi/5),gy=yS(gv);h+='<line x1="'+M.left+'" y1="'+gy.toFixed(1)+'" x2="'+(M.left+cw)+'" y2="'+gy.toFixed(1)+'" stroke="'+tc.grid+'"/>';h+='<text x="'+(M.left-8)+'" y="'+(gy+4)+'" text-anchor="end" fill="'+tc.axisText+'" font-size="10">'+fmtVal(gv)+'</text>';}
+    h += '</g><g class="mcap-axis">';
+    var ls = Math.max(1, Math.floor(n / Math.min(10, n)));
+    for(var li=0;li<n;li+=ls){var lx=xS(li);h+='<text x="'+lx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx.toFixed(1)+','+(H-10)+')">'+visible[li].time+'</text>';}
+    h += '<text x="'+xS(n-1).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+xS(n-1).toFixed(1)+','+(H-10)+')">'+visible[n-1].time+'</text></g>';
+    var fp = 'M'+M.left+','+(M.top+ch)+' '; for(var i=0;i<n;i++){fp+='L'+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1)+' ';}
+    fp += 'L'+(M.left+cw)+','+(M.top+ch)+' Z';
+    h += '<path d="'+fp+'" fill="url(#mgG)" opacity="0.35"/>';
+    h += '<polyline points="'+pts+'" fill="none" stroke="'+tc.line+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<line id="mcapCrossV" x1="0" y1="'+M.top+'" x2="0" y2="'+(M.top+ch)+'" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<line id="mcapCrossH" x1="'+M.left+'" y1="0" x2="'+(M.left+cw)+'" y2="0" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<circle id="mcapCrossDot" cx="0" cy="0" r="4" fill="'+tc.line+'" stroke="#fff" stroke-width="1.5" opacity="0" pointer-events="none"/>';
+    var df = '<defs><linearGradient id="mgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+tc.gradTop+'" stop-opacity="'+tc.gradTo+'"/><stop offset="100%" stop-color="'+tc.gradBot+'" stop-opacity="'+tc.gradBo+'"/></linearGradient></defs>';
+    svg.innerHTML = df + h;
+  }
+
+  function fmtVal(v){return v>=10000?(v/10000).toFixed(1)+'万亿':v.toFixed(0)+'亿';}
+
+  function doZoom(dir, cx){
+    var n = chartData.length, range = viewEnd - viewStart;
+    if(dir > 0) range = Math.max(10, Math.round(range * 0.75)); else range = Math.min(n, Math.round(range * 1.35));
+    if(range < 2) range = 2; if(range > n) range = n;
+    var rect = svg.getBoundingClientRect();
+    var mx = (cx || rect.left+rect.width/2) - rect.left - M.left;
+    var cw = W - M.left - M.right;
+    var ci = viewStart + (viewEnd-viewStart) * Math.max(0, Math.min(1, mx/cw));
+    viewStart = Math.round(ci - range/2); viewEnd = viewStart + range;
+    if(viewStart < 0){viewStart=0;viewEnd=range;} if(viewEnd>n){viewEnd=n;viewStart=n-range;}
+    render();
+  }
+
+  function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
+  function onDragStart(e){isDragging=true;dragStartX=e.clientX;dragViewStart=viewStart;svg.style.cursor='grabbing';}
+  function onDragMove(e){
+    if(!isDragging) return;
+    var dx = e.clientX - dragStartX, range = viewEnd-viewStart;
+    if(range<=1) return;
+    var cw = W-M.left-M.right; if(cw<=0) return;
+    var shift = Math.round(-dx/(cw/range));
+    var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart+shift));
+    if(ns !== viewStart){viewStart=ns;viewEnd=viewStart+range;render();}
+  }
+  function onDragEnd(){isDragging=false;svg.style.cursor='crosshair';}
+
+  function onHover(e){
+    if(isDragging || !chartData.length) return;
+    var rect = svg.getBoundingClientRect();
+    var mx = e.clientX-rect.left-M.left, cw=W-M.left-M.right;
+    if(cw<=0||viewEnd-viewStart<=0) return;
+    var idx = viewStart + Math.round(mx/cw*(viewEnd-viewStart-1));
+    if(idx<0||idx>=chartData.length) return;
+    var pt = chartData[idx], ri = idx-viewStart, nn=viewEnd-viewStart;
+    var px = M.left+(ri/(nn-1||1))*cw, vis=chartData.slice(viewStart,viewEnd);
+    var minV=Infinity,maxV=-Infinity; for(var i=0;i<vis.length;i++){var v=vis[i].value;if(v<minV)minV=v;if(v>maxV)maxV=v;}
+    var p=(maxV-minV)*0.05||maxV*0.05||100; minV=Math.max(0,minV-p);maxV=maxV+p;
+    var ch=H-M.top-M.bottom, py=M.top+ch-(pt.value-minV)/(maxV-minV)*ch;
+    var cv=svg.querySelector('#mcapCrossV'),ch2=svg.querySelector('#mcapCrossH'),cd=svg.querySelector('#mcapCrossDot');
+    if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.6');}
+    if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.6');}
+    if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
+    tooltip.innerHTML = '<span class="tt-date">'+pt.time+'</span> · 市值 <span class="tt-val">'+pt.value.toFixed(1)+'亿</span>';
+    tooltip.style.display='block'; tooltip.style.left=px+'px';
+    if(py<50){tooltip.style.top=(py+24)+'px';tooltip.style.transform='translate(-50%,0%)';}
+    else{tooltip.style.top=py+'px';tooltip.style.transform='translate(-50%,-110%)';}
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+<div id="s1" class="card"><h2>一、综合评价</h2>
+  <div class="mg" style="margin-bottom:10px">
+    <div class="mi"><div class="mv" style="color:#4caf50">7.0</div><div class="ml">综合评级</div></div>
+    <div class="mi"><div class="mv" style="color:#f0a030">中</div><div class="ml">风险等级</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50">中高</div><div class="ml">成长弹性</div></div>
+    <div class="mi"><div class="mv" style="color:#e74c3c">2.0%</div><div class="ml">ROE</div></div>
+  </div>
+  <div class="bq">市场共识vs独立判断：市场普遍认为中国宝安是‘复杂的控股公司、折价不会消失’，但可能低估了贝特瑞在硅基负极的技术领先和储能市场的增量空间。最大的预期差在于：（1）贝特瑞毛利率能否触底回升；（2）集团折价率是否会在子公司价值提升过程中自然收窄。最需要警惕的预期差反向是——市场可能高估了管理层主动解决折价问题的意愿和能力（无实际控制人格局下，折价对管理层不构成直接压力）。</div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ff9800">集团折价显著</div><div class="ml">集团折价显著</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ffc107">扣非亏损隐忧</div><div class="ml">扣非亏损隐忧</div>
+  </div>
+  <table class="tbl" style="margin-top:10px">
+    <tr><th style="width:100px">指标</th><th style="width:140px">数值</th><th style="width:40%">说明</th></tr>
+    <tr><td>三年预估空间</td><td class="gold">40~120%（当前183亿→目标价9.8~15.6元）</td><td>负极材料行业景气回升+马应龙大健康拓展，贝特瑞估值修复带来集团资产重估</td></tr>
+    <tr><td>季度监控</td><td>季度营收增速</td><td>高新技术(贝特瑞)营收是否持续增长、马应龙医药收入趋势</td></tr>
+    <tr><td>逻辑证伪点</td><td class="red">扣非净利持续为负</td><td>若连续3个季度扣非亏损扩大，说明主业造血能力未改善</td></tr>
+    <tr><td>止损触发</td><td class="red">PB跌破0.8x</td><td>若PB<1.2x(当前1.83x)，说明市场对集团资产价值失去信心</td></tr>
+  </table></div>
+
+<div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
+  <h3>核心定位</h3>
+  <div class="txt">中国宝安集团（000009.SZ）成立于1983年，1991年在深交所上市，是一家以产业投资控股为核心的综合性集团。公司无实际控制人，第一大股东承兴投资持股19.14%，第二大股东高创企业持股18.00%。核心资产包括贝特瑞（负极材料全球龙头，持股约68%，835185.BJ）、马应龙（中华老字号肛肠品牌，持股约30%，600993.SH）、国际精密（汽车精密零部件，港股上市）、以及房地产业务。公司通过‘产业布局+资本运作’双轮驱动，形成高新技术（81%）、生物医药（17%）、房地产（0.6%）三大业务板块，本质是‘实业控股+投资平台’模式。</div>
+
+  <h3>年度财务摘要（亿元）</h3>
+  <table class="tbl">
+    <tr><th>年份</th><th>营收</th><th>YoY</th><th>归母净利</th><th>净利率</th><th>毛利率</th></tr>
+    <tr><td>2025</td><td class="gold">230.36</td><td class="green">+13.87%</td><td>2.03</td><td>0.88%</td><td>25.82%</td></tr>
+    <tr><td>2024</td><td>202.30</td><td class="red">-34.12%</td><td>1.73</td><td>0.85%</td><td>27.28%</td></tr>
+    <tr><td>2023</td><td>307.06</td><td class="red">-4.14%</td><td>7.56</td><td>2.46%</td><td>20.78%</td></tr>
+    <tr><td>2022</td><td>320.33</td><td class="green">+81.94%</td><td>11.57</td><td>3.61%</td><td>19.94%</td></tr>
+    <tr><td>2021</td><td>176.06</td><td class="green">+65.10%</td><td>10.36</td><td>5.88%</td><td>28.74%</td></tr>
+</table>
+  <div class="desc" style="margin-top:6px;">2022年营收暴增主要系贝特瑞并表（全年）效应；2024年营收下滑因贝特瑞负极材料价格大幅下降；2025年营收恢复增长但毛利率持续承压。2022年后净利率和ROE趋势性下滑，扣非净利2024年转负，主业盈利能力堪忧。</div>
+
+  <h3>分业务收入结构（2025年）</h3>
+  <div class="hb"><span class="hl">高新技术</span><div class="ht"><div class="hf" style="width:81%;background:#4caf50;">81.17%</div></div><span class="hv">186.98亿</span></div>
+  <div class="hb"><span class="hl">生物医药</span><div class="ht"><div class="hf" style="width:17%;background:#2196f3;">17.11%</div></div><span class="hv">39.41亿</span></div>
+  <div class="hb"><span class="hl">房地产</span><div class="ht"><div class="hf" style="width:1%;background:#ff9800;">0.59%</div></div><span class="hv">1.36亿</span></div>
+
+  <table class="tbl" style="margin-top:10px;">
+    <tr><th>业务线</th><th>收入</th><th>占比</th><th>趋势</th><th>毛利率</th></tr>
+    <tr><td>高新技术(贝特瑞+国际精密)</td><td>186.98亿</td><td>81.17%</td><td class="green">↑ 增长</td><td>21.44%</td></tr>
+    <tr><td>生物医药(马应龙)</td><td>39.41亿</td><td>17.11%</td><td class="green">↑ 稳健</td><td>48.38%</td></tr>
+    <tr><td>房地产</td><td>1.36亿</td><td>0.59%</td><td class="red">↓ 收缩</td><td>24.91%</td></tr>
+    <tr><td>其他行业</td><td>2.61亿</td><td>1.13%</td><td class="orange">→ 持平</td><td>-0.74%</td></tr>
+</table>
+
+  <h3>商业模式评估</h3>
+  <table class="tbl">
+        <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+    <tr><td>上游议价</td><td class="red">弱</td><td>针状焦、石墨化等原材料价格波动大，供应商集中度高，成本传导能力弱</td></tr>
+    <tr><td>下游议价</td><td class="orange">中</td><td>贝特瑞对宁德时代、比亚迪等大客户依赖度高，降价压力大；马应龙toC端有品牌议价权</td></tr>
+    <tr><td>横向竞争</td><td class="orange">激烈</td><td>负极材料行业产能过剩，杉杉、璞泰来等价格战；马应龙细分市场垄断地位</td></tr>
+
+  <div class="bq">主要的催化剂路径：（1）2026年下半年贝特瑞硅基负极量产，提升高附加值产品占比，毛利率拐点出现（最重要的催化剂）；（2）储能市场爆发拉动负极材料需求超预期，缓解产能过剩的竞争压力；（3）行业价格企稳，产能过剩出清利好龙头企业。马应龙大健康业务突破是额外看点但不构成主要催化剂。短期（6-12个月）缺乏强有力的股价驱动事件，更适合中长期持有等待盈利拐点。</div></div>
+
+<div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
+  <div class="desc">中国宝安作为控股集团，竞争优势来自其所持有的核心子公司竞争力。评估壁垒实质是评估贝特瑞和马应龙的护城河。</div>
+
+  <h3>壁垒类型评估</h3>
+  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">7/10</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">8/10</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">7/10</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">6/10</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:30%;background:#888;">3/10</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:50%;background:#f0c040;">5/10</div></div></div>
+
+  <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
+    <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 6.0</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">中等偏上 · 贝特瑞和马应龙各自有护城河，但集团层面优势分散</span>
+  </div>
+
+  <h3>壁垒深度解析</h3>
+  <div class="txt">
+    <b style="color:#4caf50;">客户粘性——马应龙品牌粘性+贝特瑞客户锁定</b><br>
+    <span class="dot">·</span> 马应龙拥有中华老字号品牌、国家中药保密品种（麝香痔疮膏/栓），消费端客户粘性极强，肛肠用药市占率长期超50%，具备定价权。<br>
+    <span class="dot">·</span> 贝特瑞作为全球负极材料龙头（全球市占率约25%），与宁德时代、比亚迪等头部客户深度绑定，但上游原材料价格波动和下游客户压价导致毛利率持续下滑。<br>
+    <span class="dot">·</span> 贝特瑞前五大客户集中度较高，存在客户依赖风险；马应龙toC端客户分散，无此问题。<br><br>
+    <b style="color:#f0c040;">规模壁垒——中等优势</b><br>
+    <span class="dot">·</span> 贝特瑞负极材料产能规模全球第一（2025年产能超50万吨），规模效应显著，但行业产能过剩导致竞争加剧，2025年行业平均产能利用率仅50-60%。<br>
+    <span class="dot">·</span> 贝特瑞连续多年全球负极材料出货量第一，积累了丰富的客户认证和供应链管理经验，新建产能的客户导入周期较短。<br>
+    <span class="dot">·</span> 贝特瑞在天然石墨和硅基负极领域有技术积累，但人造石墨领域竞争激烈，杉杉股份、璞泰来等对手在成本和产能上差距不大。<br><br>
+    <b style="color:#f0c040;">技术壁垒——中等偏弱</b><br>
+    <span class="dot">·</span> 贝特瑞在硅基负极（下一代技术）的专利布局领先，已批量供货给头部客户；马应龙拥有国家中药保护品种批文，仿制壁垒高。<br>
+    <span class="dot">·</span> 硅基负极技术代际差距约1-2年，杉杉股份、璞泰来等正在追赶；但量产能力和良率方面贝特瑞仍领先。<br>
+    <span class="dot">·</span> 整体技术壁垒中等：负极材料技术迭代快，钠电/固态电池等新路线可能颠覆现有技术格局。<br><br>
+    <b style="color:#888;">垂直整合——薄弱</b><br>
+    <span class="dot">·</span> 贝特瑞上游原材料（石墨化、针状焦）依赖外购，垂直整合度低，成本受上游价格波动影响大。<br>
+    <span class="dot">·</span> 近年来部分石墨化工序委外加工，外协占比约30-40%，质量控制难度增加，成本控制力偏弱。
+  </div>
+
+  <h3>护城河陷阱识别</h3>
+  <div class="txt" style="color:#f44336;">
+    <b>警惕信号：</b><br>
+    <span class="dot">·</span> 毛利率趋势性下滑：从2020年32.94%下降至2025年25.82%，说明竞争加剧导致定价权弱化，高价产品占比下降。<br>
+    <span class="dot">·</span> 马应龙品牌溢价受限于肛肠用药细分市场天花板低（约100亿规模），向大健康拓展的品牌延伸效果待验证。<br>
+    <span class="dot">·</span> 负极材料行业进入价格战阶段：2025年人造石墨价格同比下降20-30%，贝特瑞2025年毛利率21.44%较2024年的28.23%继续下滑。<br>
+    <span class="dot">·</span> 固态电池技术若产业化，可能大幅减少负极材料用量或改变技术路线，对贝特瑞构成结构性威胁。但预计5年内无大规模替代风险。
+  </div>
+
+  <div class="bq">市场空间：负极材料行业CAGR 15-20%，受新能源汽车和储能双轮驱动，中期确定性较强。贝特瑞全球市占率~25%，凭借先发优势和客户认证壁垒，有望保持龙头地位。马应龙在肛肠用药细分市场已形成事实垄断（市占率>50%），增长天花板在细分市场本身的扩容和向大健康领域的延伸。行业终局判断：负极材料走向寡头格局（前五大>80%），贝特瑞稳居其中；肛肠用药维持品牌垄断。</div>
+
+  <div class="bq">估值是这份报告最值得关注的部分。PE视角：90x+看似昂贵，但归母净利仅2亿、扣非亏损，PE完全失真。PB视角：1.83x处于10年低位（中位数~3.0x），反映了市场对集团折价的充分定价。PS视角：0.80x，控股集团折价明显。SOTP估值：贝特瑞（持股68%，市值约150亿→贡献~100亿）+马应龙（持股30%，市值~50亿→贡献~15亿）+其他资产（~30亿）-净负债（~70亿）=每股NAV~9-12元。三个估值口径暗示当前价格存在一定安全边际，但核心催化剂是扣非盈利转正。</div></div>
+
+<div id="s4" class="card"><h2>M3 管理层分析</h2>
+
+  <h3>管理层基本信息</h3>
+  <table class="tbl">
+    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
+    <tr><td>黄旭</td><td>董事局主席</td><td>约2年（2024起）</td><td>1976年生，鲲鹏股权投资党委委员、副总经理。2024年出任董事局主席，具有丰富的股权投资和国资管理经验。</td></tr>
+    <tr><td>曾广胜</td><td>董事局副主席</td><td>约5年（2021起）</td><td>1966年生，中国宝安科技董事长、国际精密集团主席。长期负责集团科技产业和国际业务运作。</td></tr>
+  </table>
+  <div class="txt" style="font-size:12px;">管理层背景详见管理层信息表。高管团队涵盖股权管理、科技产业运营、国际精密制造和财务管理等多个领域。管理风格偏向投控型——通过董事会管控各子公司，赋予经营层较大自主权，但集团层面主动经营管理能力偏弱。公司无实际控制人，两大股东（承兴投资19.14%、高创企业18.00%）持股接近，治理结构属于无控制权制衡格局，存在一定代理成本和决策效率问题。</div>
+
+  <h3>管理层评分</h3>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">6/10</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">5/10</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">5/10</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:40%;background:#888;">3/10</div></div></div>
+
+  <div class="bq">产业链议价权整体偏弱。贝特瑞作为负极材料龙头，对上游原材料（针状焦、石墨化）没有有效议价能力，对下游大客户（宁德时代、比亚迪）降价压力敏感，处于‘两头受挤’的尴尬位置。马应龙则相反，toC端品牌壁垒赋予其较强的定价权——马应龙痔疮膏/栓年复购率高、价格逐年提升。因此，中国宝安整体的产业链地位取决于两项业务的结构比例变化（高新技术占比81%，主导成本端）。</div>
+
+  <div class="bq">财务基本面堪忧：2025年归母净利2.03亿看似增长17%，但扣非净利-0.72亿已是连续第二年亏损。核心问题有三：（1）贝特瑞毛利率41%→21%（两年内腰斩）；（2）有息负债超100亿，财务费用~7.5亿/年吞噬大量利润；（3）资产负债率从58%升至62%，债务压力持续增加。好消息是经营现金流持续为正（11.61亿），覆盖利息支出1.5倍，短期违约风险可控。</div></div>
+
+<div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
+
+  <h3>核心财务指标</h3>
+  <table class="tbl">
+<tr><th>指标</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+<tr>
+<td>营收（亿）</td>
+<td>176.06</td>
+<td>320.33</td>
+<td>307.06</td>
+<td>202.30</td>
+<td class="gold">230.36</td>
+<td class="green">↑ 恢复</td>
+    </tr>
+<tr>
+<td>毛利率</td>
+<td>28.74%</td>
+<td>19.94%</td>
+<td>20.78%</td>
+<td>27.28%</td>
+<td>25.82%</td>
+<td class="red">↓ 承压</td>
+    </tr>
+<tr>
+<td>净利（亿）</td>
+<td class="gold">10.36</td>
+<td class="gold">11.57</td>
+<td class="gold">7.56</td>
+<td class="gold">1.73</td>
+<td>2.03</td>
+<td class="red">↓ 骤降</td>
+    </tr>
+<tr>
+<td>净利率</td>
+<td>5.88%</td>
+<td>3.61%</td>
+<td>2.46%</td>
+<td>0.85%</td>
+<td>0.88%</td>
+<td class="red">↓ 低迷</td>
+    </tr>
+<tr>
+<td>ROE</td>
+<td>13.91%</td>
+<td>13.50%</td>
+<td>7.91%</td>
+<td>1.73%</td>
+<td>2.04%</td>
+<td class="red">↓ 恶化</td>
+    </tr>
+
+  <h3>现金流 & 资产负债</h3>
+  <table class="tbl">
+<tr><th>指标</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr>
+<tr>
+<td>经营现金流</td>
+<td>59.60</td>
+<td>16.51</td>
+<td class="gold">11.61</td>
+<td class="red">↓ 减少</td>
+    </tr>
+<tr>
+<td>CAPEX</td>
+<td>~6.0亿</td>
+<td>~7.5亿</td>
+<td>~8.0亿</td>
+<td class="red">↑ 增加</td>
+    </tr>
+<tr>
+<td>FCF</td>
+<td>53.60</td>
+<td>9.01</td>
+<td>3.61</td>
+<td class="red">↓ 骤减</td>
+    </tr>
+<tr>
+<td>资产负债率</td>
+<td>58.27%</td>
+<td>59.83%</td>
+<td>62.11%</td>
+<td class="red">↑ 攀升</td>
+    </tr>
+<tr>
+<td>有息负债</td>
+<td>~95亿</td>
+<td>~102亿</td>
+<td>~108亿</td>
+<td class="red">↑ 增加</td>
+    </tr>
+
+  <h3>费用率结构</h3>
+  <table class="tbl">
+<tr><th>费用项</th><th>2025年规模</th><th>趋势</th></tr>
+<tr>
+<td>研发费用</td>
+<td>~8.5亿（估算）</td>
+<td class="green">↑ 增加</td>
+    </tr>
+<tr>
+<td>销售费用</td>
+<td>~12亿（估算）</td>
+<td class="orange">→ 稳定</td>
+    </tr>
+<tr>
+<td>管理费用</td>
+<td>~15亿（估算）</td>
+<td class="orange">→ 稳定</td>
+    </tr>
+<tr>
+<td>财务费用</td>
+<td>~7.5亿（估算）</td>
+<td class="red">↑ 增加</td>
+    </tr>
+
+  <h3>关键指标卡</h3>
+  <div class="mg">
+    <div class="mi"><div class="mv gold">230.36亿</div><div class="ml">营收（2025）</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">2.03亿</div><div class="ml">归母净利</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">-0.72亿</div><div class="ml">扣非净利</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">25.82%</div><div class="ml">毛利率</div></div>
+  </div>
+
+  <div class="bq">无实际控制人格局是管理层评估中的最大变量。两大股东（承兴投资19.14%、高创企业18.00%）持股接近，历史上曾出现争夺控制权和管理层不稳定的情况。当前市值仅183亿，对于资产规模超600亿的控股集团来说，代理成本问题不容忽视。管理层薪酬和股权激励透明度待提升。</div></div>
+
+<div id="s6" class="card"><h2>M5 成本结构 & 产业链议价权</h2>
+
+  <h3>成本结构</h3>
+  <div class="txt">中国宝安集团（000009.SZ）成立于1983年，1991年在深交所上市，是一家以产业投资控股为核心的综合性集团。公司无实际控制人，第一大股东承兴投资持股19.14%，第二大股东高创企业持股18.00%。核心资产包括贝特瑞（负极材料全球龙头，持股约68%，835185.BJ）、马应龙（中华老字号肛肠品牌，持股约30%，600993.SH）、国际精密（汽车精密零部件，港股上市）、以及房地产业务。公司通过‘产业布局+资本运作’双轮驱动，形成高新技术（81%）、生物医药（17%）、房地产（0.6%）三大业务板块，本质是‘实业控股+投资平台’模式。</div>
+  <table class="tbl">
+<tr><th>成本项目</th><th>占比</th><th>趋势</th><th>说明</th></tr>
+<tr>
+<td>原材料</td>
+<td>~60%</td>
+<td class="red">↑ 上涨</td>
+<td>针状焦、石墨化议价权弱，价格随行就市</td>
+    </tr>
+<tr>
+<td>人工+制造</td>
+<td>~25%</td>
+<td class="orange">→ 稳定</td>
+<td>规模效应部分对冲通胀</td>
+    </tr>
+<tr>
+<td>折旧摊销</td>
+<td>~10%</td>
+<td class="red">↑ 增加</td>
+<td>产能扩张带来折旧压力增大</td>
+    </tr>
+<tr>
+<td>其他</td>
+<td>~5%</td>
+<td class="orange">→ 稳定</td>
+<td>运输、环保等</td>
+    </tr>
+
+  <h3>产业链议价权</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+    <tr><td>业务可预测性</td><td class="orange">中低</td><td>贝特瑞受锂电行业周期和价格波动影响大，马应龙较稳定</td></tr>
+    <tr><td>收入质量</td><td class="orange">中等</td><td>高新技术毛利率仅21.44%，远低于生物医药48.38%，但占收入81%</td></tr>
+    <tr><td>客户集中度</td><td class="orange">中等</td><td>贝特瑞大客户集中(宁德时代、比亚迪等)，有一定客户依赖风险</td></tr>
+    <tr><td>管理层能力</td><td class="orange">中等</td><td>产业投控能力突出，但主业经营ROE持续下滑至2%</td></tr>
+    <tr><td>成长空间</td><td class="green">较好</td><td>负极材料受益新能源车+储能双轮驱动，马应龙大健康有拓展空间</td></tr>
+</table>
+
+  <div class="bq">管理层从2024年起经历较大调整，新任董事局主席黄旭来自第一大股东鲲鹏股权，标志着国资背景加强。核心团队以产业投资背景为主（股权投资+科技产业），而非专注某一产业的运营型团队。在控股集团模式下，资本配置能力和子公司管控水平比单一产业管理能力更重要，现有团队在这方面的过往记录中性。</div></div>
+
+<div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
+
+  <h3>FCF质量</h3>
+  <table class="tbl">
+<tr><th>指标</th><th>2024年</th><th class="gold">2025年</th><th>正常化水平</th></tr>
+<tr>
+<td>经营现金流</td>
+<td>16.51亿</td>
+<td class="gold">11.61亿</td>
+<td>~15亿（正常化）</td>
+    </tr>
+<tr>
+<td>CAPEX</td>
+<td>~7.5亿</td>
+<td>~8.0亿</td>
+<td>~8亿</td>
+    </tr>
+<tr>
+<td>FCF</td>
+<td>9.01亿</td>
+<td>3.61亿</td>
+<td>~7亿</td>
+    </tr>
+<tr>
+<td>FCF/净利润</td>
+<td>521%</td>
+<td>178%</td>
+<td>不适用（净利低）</td>
+    </tr>
+  <div class="txt">FCF质量尚可：经营现金流持续为正（利息保障倍数约1.5x），但2025年大幅下降至11.61亿，主因应收账款增加和存货积压。FCF对净利的覆盖倍数高（178%）是因为净利基数太低（2.03亿），并非FCF表现优秀。CAPEX持续高位（约8亿/年）用于贝特瑞产能扩张，压力较大。</div>
+
+  <h3>估值指标</h3>
+  <table class="tbl">
+<tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr>
+<tr>
+<td>PE(TTM)</td>
+<td class="gold">~90x</td>
+<td>20x~150x</td>
+<td class="orange">偏高（净利基数低失真）</td>
+    </tr>
+<tr>
+<td>PE(2026E)</td>
+<td>~70x（估算）</td>
+<td>—</td>
+<td class="orange">偏高（市场预期改善有限）</td>
+    </tr>
+<tr>
+<td>PB</td>
+<td>1.83x</td>
+<td>1.0x~4.5x</td>
+<td class="gold">合理偏低（含集团折价）</td>
+    </tr>
+<tr>
+<td>PS(TTM)</td>
+<td>0.80x</td>
+<td>0.5x~2.0x</td>
+<td class="gold">偏低（控股集团折价明显）</td>
+    </tr>
+
+  <h3>同行业PE对比（负极材料）</h3>
+  <div class="cp">
+<div class="cp"><span class="nm">璞泰来</span><div class="bt"><div class="bf" style="width:25%;background:#4caf50;"></div></div><span class="vl green">22.7x</span></div>
+<div class="cp"><span class="nm">杉杉股份</span><div class="bt"><div class="bf" style="width:27%;background:#4caf50;"></div></div><span class="vl green">24.0x</span></div>
+<div class="cp"><span class="nm">翔丰华</span><div class="bt"><div class="bf" style="width:50%;background:#f0c040;"></div></div><span class="vl green">45.2x</span></div>
+<div class="cp"><span class="nm">中科电气</span><div class="bt"><div class="bf" style="width:53%;background:#f0c040;"></div></div><span class="vl green">47.8x</span></div>
+<div class="cp"><span class="nm">中国宝安</span><div class="bt"><div class="bf" style="width:100%;background:#f44336;"></div></div><span class="vl red">~90x</span></div></div>
+  <div class="desc" style="margin-top:6px;">📌 中国宝安PE（TTM）远超负极材料同行，主要因为：（1）集团持有的大量子公司股权在合并层面按成本法计量，实际价值远高于账面；（2）归母净利被扣除非经常性损益后为负，PE失真。更应关注PB（1.83x）和SOTP分部估值。以贝特瑞（835185.BJ PE~20x）市值+马应龙（600993.SH PE~15x）市值×持股比例计算，集团NAV折价率约40-50%。</div>
+
+  <div class="bq">护城河陷阱值得警惕：马应龙品牌的天花板在肛肠细分市场（百亿规模），向大健康领域的品牌延伸尚未证明成功；贝特瑞面临毛利率从28%降至21%的连续下滑，若价格战持续，护城河将显著收窄。固态电池技术路线对负极材料的潜在颠覆是最不可忽视的结构性风险。</div></div>
+
+<div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
+
+  <h3>行业空间</h3>
+  <table class="tbl">
+<tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>中国宝安出货/份额</th><th>市占率</th></tr>
+<tr>
+<td>负极材料</td>
+<td>~800亿</td>
+<td>CAGR 15-20%</td>
+<td>贝特瑞出货~30万吨</td>
+<td class="gold">~25%</td>
+    </tr>
+<tr>
+<td>肛肠用药</td>
+<td>~100亿</td>
+<td>CAGR 5-8%</td>
+<td>马应龙营收~12亿</td>
+<td>~12%</td>
+    </tr>
+<tr>
+<td>精密零部件</td>
+<td>~400亿</td>
+<td>CAGR 3-5%</td>
+<td>国际精密~10亿</td>
+<td>~2.5%</td>
+    </tr>
+
+  <div class="mg" style="margin-top:10px;">
+    <div class="mi"><div class="mv gold">~25%</div><div class="ml">负极材料全球市占率</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">~50%</div><div class="ml">马应龙肛肠用药市占率</div></div>
+    <div class="mi"><div class="mv green">15-20%</div><div class="ml">负极材料行业增速</div></div>
+    <div class="mi"><div class="mv green">5-8%</div><div class="ml">肛肠用药行业增速</div></div>
+  </div>
+
+  <h3>竞争态势</h3>
+  <table class="tbl">
+    <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
+    <tr><td>杉杉股份</td><td>负极材料</td><td>贝特瑞出货量全球第一，但杉杉产能接近且成本控制更强</td></tr>
+    <tr><td>璞泰来</td><td>负极材料</td><td>璞泰来涂覆隔膜+负极一体化，产品结构更均衡</td></tr>
+    <tr><td>华润三九</td><td>中药OTC</td><td class="orange">马应龙品牌壁垒强，肛肠细分无实质竞品；华润三九规模更大品类更多</td></tr>
+    <tr><td>容百科技</td><td>正极材料</td><td class="orange">正极材料龙头，与贝特瑞竞争大客户，中国宝安作为控股集团平台可协调各子公司资源，提供融资渠道和战略协同</td></tr>
+  </table>
+
+  <h3>行业终局思考</h3>
+  <div class="txt">中国宝安集团（000009.SZ）成立于1983年，1991年在深交所上市，是一家以产业投资控股为核心的综合性集团。公司无实际控制人，第一大股东承兴投资持股19.14%，第二大股东高创企业持股18.00%。核心资产包括贝特瑞（负极材料全球龙头，持股约68%，835185.BJ）、马应龙（中华老字号肛肠品牌，持股约30%，600993.SH）、国际精密（汽车精密零部件，港股上市）、以及房地产业务。公司通过‘产业布局+资本运作’双轮驱动，形成高新技术（81%）、生物医药（17%）、房地产（0.6%）三大业务板块，本质是‘实业控股+投资平台’模式。</div>
+
+  <div class="bq">护城河存在于子公司层面而非集团层面。马应龙的品牌护城河（中华老字号+国家保密品种+50%+市占率）非常坚实，是典型的‘有定价权的好生意’。贝特瑞的规模和技术护城河中上（全球出货量第一、硅基负极领先），但行业价格战和技术迭代风险持续侵蚀优势。集团层面缺乏自身护城河，投资价值取决于子公司价值的正确体现。</div></div>
+
+<div id="s9" class="card"><h2>M8 三年资本计划 & 催化剂</h2>
+
+  <h3>催化剂时间表</h3>
+  <table class="tbl">
+<tr><th style="width:80px">时间</th><th style="width:30%">事件</th><th style="width:40%">预期影响</th></tr>
+<tr>
+<td>2026H2</td>
+<td>贝特瑞硅基负极新产能投产</td>
+<td class="green">提高高附加值产品占比，毛利率有望改善</td>
+    </tr>
+<tr>
+<td>2027</td>
+<td>储能市场爆发带动负极需求</td>
+<td class="green">储能电池增速>50%，贝特瑞储能负极出货量增长</td>
+    </tr>
+<tr>
+<td>2027-2028</td>
+<td>负极材料行业价格企稳</td>
+<td class="green">产能过剩出清后，行业毛利率有望触底回升</td>
+    </tr>
+<tr>
+<td>2027-2028</td>
+<td>马应龙大健康业务突破</td>
+<td>大健康品类拓展至肛肠护理、功能性护肤品，第二增长曲线</td>
+    </tr>
+
+  <h3>三年业绩预测</h3>
+  <table class="tbl">
+<tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>毛利率趋势</th></tr>
+<tr>
+<td class="green">乐观</td>
+<td>~4亿【估算】</td>
+<td>~6亿【估算】</td>
+<td>~8亿【估算】</td>
+<td class="green">↑ 回升至28%</td>
+    </tr>
+<tr>
+<td class="gold">基准</td>
+<td>~3亿【估算】</td>
+<td>~4.5亿【估算】</td>
+<td>~6亿【估算】</td>
+<td class="orange">→ 26%</td>
+    </tr>
+<tr>
+<td class="red">悲观</td>
+<td>~1.5亿【估算】</td>
+<td>~2亿【估算】</td>
+<td>~3亿【估算】</td>
+<td class="red">↓ 24%</td>
+    </tr>
+
+  <div class="bq">中国宝安的商业模式本质是‘产业控股+投资平台’，以高新技术（贝特瑞81%收入）为增长引擎，生物医药（马应龙17%）为稳定器。这种模式的优劣势都很突出：优势是多元化分散风险、可以跨产业配置资本；劣势是集团层面管理半径大、财务费用和管理费用侵蚀利润、ROE被拉低。与纯粹的投资控股公司相比，中国宝安对各子公司的运营参与度更高，但资产效率低于市场预期。</div></div>
+
+<div id="s10" class="card"><h2>M9 预期差 & 市场共识</h2>
+
+  <table class="tbl">
+<tr><th style="width:60px">议题</th><th style="width:100px">市场共识</th><th style="width:40%">独立判断</th><th style="width:50px">方向</th></tr>
+<tr>
+<td>负极材料前景</td>
+<td style="color:#888;">行业增速放缓，竞争加剧</td>
+<td style="color:#4caf50;">储能需求爆发将拉动负极材料增速超预期，贝特瑞龙头受益</td>
+<td>↑ 乐观</td>
+    </tr>
+<tr>
+<td>集团折价修复</td>
+<td style="color:#888;">控股结构复杂，折价难以消除</td>
+<td style="color:#888;">贝特瑞北交所估值提升+马应龙稳定分红，折价或缓慢收窄</td>
+<td>→ 中性</td>
+    </tr>
+<tr>
+<td>盈利能力</td>
+<td style="color:#888;">扣非亏损，主业承压</td>
+<td style="color:#888;">财务费用高企吞噬利润，需关注降负债进展</td>
+<td>→ 中性</td>
+    </tr>
+<tr>
+<td>估值水平</td>
+<td style="color:#4caf50;">PB 1.83x处历史低位</td>
+<td style="color:#4caf50;">PB偏低但扣非亏损下难吸引价值型资金，需等待盈利拐点</td>
+<td>→ 中性</td>
+    </tr>
+<tr>
+<td>催化剂</td>
+<td style="color:#888;">无明显短期催化剂</td>
+<td style="color:#4caf50;">贝特瑞硅基负极量产出货可能是关键催化剂</td>
+<td>↑ 乐观</td>
+    </tr>
+
+  <div class="bq">中国宝安集团是一个特殊的存在：核心资产贝特瑞（负极材料全球龙头）和马应龙（中华老字号）在各自领域具有竞争优势，但控股集团结构导致合并层面ROE仅2%、扣非亏损、财务费用高企。当前PB 1.83x处于历史低位，SOTP估值显示集团折价约40-50%。核心矛盾是——资产有价值，但集团治理和财务结构拖累整体回报。适合深度价值投资者小仓位布局，等待盈利拐点或折价修复催化剂。</div></div>
+
+<div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
+
+  <h3>风险类型</h3>
+  <table class="tbl">
+<tr><th style="width:80px">风险类型</th><th>描述</th><th style="width:50px">概率</th><th style="width:40%">预警信号</th></tr>
+<tr>
+<td>行业风险</td>
+<td>负极材料价格战持续，行业产能过剩导致毛利率进一步压缩</td>
+<td>高</td>
+<td>贝特瑞单季毛利率跌破18%</td>
+    </tr>
+<tr>
+<td>技术风险</td>
+<td>固态电池等新技术路线可能减少负极材料用量</td>
+<td>中</td>
+<td>头部电池厂固态电池装车量超预期</td>
+    </tr>
+<tr>
+<td>财务风险</td>
+<td>有息负债超100亿，财务费用约7.5亿/年，偿债压力大</td>
+<td class="green">中高</td>
+<td>利息保障倍数<1、信用评级下调</td>
+    </tr>
+<tr>
+<td>治理风险</td>
+<td>无实控人结构，两大股东持股接近，存在控制权博弈风险</td>
+<td class="green">中</td>
+<td>股东增持/减持公告、董事会变动</td>
+    </tr>
+<tr>
+<td>政策风险</td>
+<td>锂电行业补贴退坡、出口限制等政策变动</td>
+<td class="green">中</td>
+<td>新能源补贴政策变动、贸易壁垒升级</td>
+    </tr>
+
+  <h3>敏感性分析</h3>
+  <table class="tbl">
+<tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr>
+<tr>
+<td>贝特瑞毛利率下降5pct</td>
+<td>净利减少~9亿</td>
+<td class="orange">预计承压-15%</td>
+    </tr>
+<tr>
+<td>有息负债成本上升1pct</td>
+<td>净利减少~1亿</td>
+<td class="orange">影响有限</td>
+    </tr>
+<tr>
+<td>马应龙营收下滑10%</td>
+<td>净利减少~0.6亿</td>
+<td class="orange">小幅影响</td>
+    </tr>
+<tr>
+<td class="red">负极材料价格再降30%</td>
+<td class="red">净利或转负至-5亿</td>
+<td class="red" style="font-weight:bold;">股价或跌至5元以下</td>
+    </tr>
+
+  <h3>三情景分析</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">11.0~15.0元【估算】</div><div class="dt">+55%~+111%<br>扣非盈利恢复至3亿以上，PE修复至50x+集团折价收窄</div></div>
+    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">8.0~10.0元【估算】</div><div class="dt">+13%~+41%<br>扣非净利~2亿，PB维持1.8~2.2x，集团折价缓慢收窄</div></div>
+    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">4.0~6.0元【估算】</div><div class="dt">-44%~-15%<br>负极材料价格战恶化+扣非亏损扩大，PB跌破1.2x</div></div>
+  </div>
+
+  <h3>避雷清单</h3>
+  <table class="tbl">
+<tr><th>检查项</th><th>结果</th></tr>
+<tr>
+<td>扣非净利是否为正</td>
+<td class="red">❌ 2025年扣非-0.72亿，连续亏损</td>
+    </tr>
+<tr>
+<td>经营现金流是否覆盖利息</td>
+<td class="green">✅ 2025年OCF 11.61亿 > 财务费用~7.5亿</td>
+    </tr>
+<tr>
+<td>有息负债/EBITDA</td>
+<td class="orange">⚠ ~4.5x（偏高，接近警戒线）</td>
+    </tr>
+<tr>
+<td>大股东是否减持</td>
+<td class="green">✅ 近6个月无大股东减持公告</td>
+    </tr>
+<tr>
+<td>贝特瑞毛利率趋势</td>
+<td class="red">❌ 21.44%持续下滑（2024年28.23%）</td>
+    </tr>
+  <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
+    <span style="color:#4caf50;">✅ 资产质量尚可，经营现金流覆盖利息支出，但扣非亏损和100亿+有息负债是核心风险</span>
+  </div>
+
+  <h3>清算价值</h3>
+  <table class="tbl">
+    <tr><th>资产项</th><th>账面价值</th><th>清算价值</th></tr>
+    <tr><td>贝特瑞股权（68%）</td><td>~80亿</td><td class="gold">~120-150亿</td></tr>
+    <tr><td>马应龙股权（30%）</td><td>~8亿</td><td>~15-20亿</td></tr>
+    <tr><td>其他投资+房地产</td><td>~50亿</td><td>~30-40亿</td></tr>
+    <tr><td>净债务</td><td>~-70亿</td><td>~-70亿</td></tr>
+    <tr><td class="gold">合计</td><td>~68亿</td><td>~95-140亿</td></tr>
+  </table>
+  <div class="txt">中国宝安集团（000009.SZ）成立于1983年，1991年在深交所上市，是一家以产业投资控股为核心的综合性集团。公司无实际控制人，第一大股东承兴投资持股19.14%，第二大股东高创企业持股18.00%。核心资产包括贝特瑞（负极材料全球龙头，持股约68%，835185.BJ）、马应龙（中华老字号肛肠品牌，持股约30%，600993.SH）、国际精密（汽车精密零部件，港股上市）、以及房地产业务。公司通过‘产业布局+资本运作’双轮驱动，形成高新技术（81%）、生物医药（17%）、房地产（0.6%）三大业务板块，本质是‘实业控股+投资平台’模式。</div></div>
+
+<div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
+  <h3>六维评分</h3>
+  <div class="dim-row"><div class="dim-label">商业模式</div><div class="dim-bg"><div class="dim-fill c7" style="width:60%;"></div></div><div class="dim-sc gold">6</div></div>
+  <div class="dim-row"><div class="dim-label">护城河</div><div class="dim-bg"><div class="dim-fill c7" style="width:60%;"></div></div><div class="dim-sc gold">6</div></div>
+  <div class="dim-row"><div class="dim-label">管理层</div><div class="dim-bg"><div class="dim-fill c7" style="width:50%;"></div></div><div class="dim-sc gold">5</div></div>
+  <div class="dim-row"><div class="dim-label">财务健康</div><div class="dim-bg"><div class="dim-fill c6" style="width:40%;"></div></div><div class="dim-sc gold">4</div></div>
+  <div class="dim-row"><div class="dim-label">估值</div><div class="dim-bg"><div class="dim-fill c6" style="width:60%;"></div></div><div class="dim-sc gold">6</div></div>
+  <div class="dim-row"><div class="dim-label">成长性</div><div class="dim-bg"><div class="dim-fill c7" style="width:50%;"></div></div><div class="dim-sc gold">5</div></div>
+  <h3>核心亮点</h3>
+  <div class="txt"><span class="dot">●</span><b>贝特瑞负极材料全球龙头：</b>全球市占率约25%，硅基负极技术领先，受益新能源汽车和储能双轮驱动增长。</div>
+  <div class="txt"><span class="dot">●</span><b>马应龙品牌壁垒深厚：</b>中华老字号，肛肠用药市场份额超50%，品牌溢价稳固，大健康业务拓展空间大。</div>
+  <div class="txt"><span class="dot">●</span><b>集团资产折价显著：</b>PB仅1.83x处于历史低位，SOTP估值显示每股NAV折价40-50%，折价修复空间较大。</div>
+  <h3>核心风险</h3>
+  <div class="txt"><span class="dot">●</span><b>扣非亏损：</b>2024-2025年扣非净利持续为负，主因财务费用高企和贝特瑞毛利率下滑，主业造血能力有待改善。</div>
+  <div class="txt"><span class="dot">●</span><b>高负债风险：</b>有息负债超100亿，资产负债率升至62%，财务费用侵蚀净利润。</div>
+  <div class="txt"><span class="dot">●</span><b>治理结构：</b>无实际控制人格局，两大股东持股接近，存在控制权博弈和代理成本问题。</div>
+  <h3>价值投资理念应用</h3>
+  <table class="tbl">
+    <tr><th style="width:50px">维度</th><th style="width:100px">代表人物</th><th style="width:40%">应用分析</th></tr>
+    <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>中国宝安的商业模式并非典型的"好生意"——控股集团模式下，利润主要来自子公司贝特瑞和马应龙，但合并层面财务费用和管理费用侵蚀利润。不是巴菲特偏好的"简单易懂"的生意。</td></tr>
+    <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>差异化主要来自马应龙的品牌护城河和贝特瑞的规模技术优势，但集团层面缺乏独特差异化。段永平式的"敢为天下后"较难在控股集团层面实现。</td></tr>
+    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>集团属于典型的"资产重组型"企业（类似彼得林奇分类中难以归类的模式），核心资产有价值但管理层资本配置效率待观察。</td></tr>
+    <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>安全边际角度：当前PB 1.83x低于历史中位数，但扣非亏损和65亿+净有息负债意味着真正的安全边际有限。格雷厄姆式的"net-net"不适用。</td></tr>
+    <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>护城河在子公司层面存在（马应龙品牌、贝特瑞规模），但集团层面护城河薄弱。芒格推崇的"难以复制的竞争优势"在集团控股层面不易体现。</td></tr>
+    <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>逆向估值潜力：PB 1.83x处于历史低位，SOTP折价40-50%意味着市场对集团资产价值严重低估。邓普顿式的"极度悲观点买入"逻辑存在，但需盈利拐点信号。</td></tr>
+    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>成长空间：贝特瑞受益于新能源车和储能市场双轮驱动（行业CAGR 15-20%），马应龙大健康拓展打开第二曲线。费雪偏好的"成长空间"在贝特瑞层面存在。</td></tr>
+    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>催化剂驱动：主要催化剂为贝特瑞硅基负极量产、储能市场爆发、行业价格企稳。马应龙大健康业务突破是额外看点。林奇的"催化剂驱动"逻辑成立。</td></tr>
+    <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>预期差方面：市场对集团折价收窄和贝特瑞盈利改善过于悲观。卡拉曼强调的"关注下跌风险"在此适用——集团负债率高、扣非亏损，下行风险不可忽视。</td></tr>
+    <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>反脆弱角度：中国宝安对负极材料价格战和技术路线变化的脆弱性较高，缺乏塔勒布式的"反脆弱"特征。适合仓位控制，不适合重仓持有。</td></tr>
+    <tr><td>M11</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>当前市价7.10元，三情景中悲观情景4-6元、基准8-10元、乐观11-15元。基准情景预期回报率13-41%，但需等待盈利拐点确认。安全边际充分性取决于扣非盈利修复节奏。</td></tr>
+  </table>
+  <div class="bq" style="margin-top:12px">
+    <b>最终结论：</b>中国宝安集团股份有限公司成立于1983年，1991年在深交所上市（000009.SZ），是一家综合性产业投资控股集团。核心产业包括以贝特瑞为主体的高新技术产业（负极材料全球龙头）、以马应龙为核心的生物医药产业（中华老字号肛肠品牌），以及房地产业。公司无实际控制人，第一大股东为深圳市承兴投资有限公司（持股19.14%），第二大股东为韶关市高创企业管理有限公司（持股18.00%），形成无控股股东格局。。以贝特瑞为核心的高新技术产业受益于新能源汽车和储能市场的持续增长，全球负极材料龙头地位稳固；马应龙品牌壁垒深厚，大健康业务持续拓展。但公司扣非净利持续为负、财务费用高企，控股集团折价短期内难以消解。
+  </div></div>
+
+<div id="s13" class="card">
+  <h2>附录</h2>
+  <div class="txt"><span class="dot">●</span>数据来源：fin-table API(东方财富)、公司2025年报、2026Q1季报、东方财富行情API</div>
+  <div class="txt"><span class="dot">●</span>行业对比数据取自各公司2025年报/2026Q1季报，市场数据截至2026年6月12日。</div>
+  <div class="txt"><span class="dot">●</span>部分业务拆分数据为估算值，以公司年报为准。</div>
+  <div class="txt"><span class="dot">●</span>DCF估值采用简化模型，仅供内部参考，不构成投资建议。</div>
+  <div class="footer">
+    ⚠️ 声明：本内容仅供理论学习和研究练习使用，不构成投资建议，不能作为投资依据。股市有风险，投资需谨慎。<br>
+    报告生成：2026-06-16 | 数据截止：2026-06-12<br>
+    中国宝安股份有限公司 · 000009.SZ
+  </div>
+</div>
+
+</body>
+</html>
