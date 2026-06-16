@@ -152,7 +152,7 @@ def main():
         print(f'  ✅ fin-table已填充')
     
     # 1.3 colorize
-    color_script = os.path.join(os.path.dirname(SKILL_DIR), 'report-template-spec', 'scripts', 'colorize_financial_table.py')
+    color_script = os.path.expanduser('~/.hermes/skills/data-science/report-template-spec/scripts/colorize_financial_table.py')
     if os.path.exists(color_script):
         out, _ = run(f'cd {PORTAL_DIR} && python3 {color_script} reports/{code}.html', 60)
         print(f'  ✅ 财务着色完成')
