@@ -104,6 +104,15 @@ def parse_fin_data(fin_data):
                 if i < len(result[cn_key]) and result[cn_key][i] is not None:
                     by_year[eng_key][yr] = result[cn_key][i]
     
+    # 计算OCF(经营现金流) = CFPS × SHARES
+    if 'CFPS' in by_year and 'SHARES' in by_year:
+        by_year['OCF'] = {}
+        for yr in years:
+            cfps = by_year['CFPS'].get(yr)
+            sh = by_year['SHARES'].get(yr)
+            if cfps is not None and sh is not None:
+                by_year['OCF'][yr] = round(cfps * sh, 2)
+    
     return by_year
 
 
@@ -184,6 +193,9 @@ def main():
     roe_data = fin.get('ROE', {})
     eps_data = fin.get('EPS', {})
     bps_data = fin.get('BPS', {})
+    ocf_data = fin.get('OCF', {})
+    cfps_data = fin.get('CFPS', {})
+    revps_data = fin.get('REVPS', {})
     
     print(f'  总股本: {shares}亿')
     print(f'  营收2025: {rev.get(2025, "?")}亿')
@@ -283,7 +295,54 @@ def main():
         c = c[:idx] + m4_html + c[end:]
         print('  ✅ 核心财务指标表已替换')
     
-    # 6.2 其他整表替换表 — 填入{{TD}}为TODO
+    # 6.2 现金流&资产负债
+    ocf_25 = ocf_data.get(2025, '—')
+    ocf_24 = ocf_data.get(2024, '—')
+    ocf_23 = ocf_data.get(2023, '—')
+    if isinstance(ocf_25, float): ocf_25 = f'{ocf_25:.2f}'
+    if isinstance(ocf_24, float): ocf_24 = f'{ocf_24:.2f}'
+    if isinstance(ocf_23, float): ocf_23 = f'{ocf_23:.2f}'
+    cf_html = f'<h3>现金流 &amp; 资产负债</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>指标</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr><tr><td>经营现金流(亿)</td><td>{ocf_23}</td><td>{ocf_24}</td><td class="gold">{ocf_25}</td><td class="green">➡️</td></tr></table></div>'
+    idx_cf = c.find('<h3>现金流')
+    if idx_cf >= 0:
+        end_cf = c.find('<h3', idx_cf+10)
+        if end_cf < 0: end_cf = c.find('<h2', idx_cf+10)
+        c = c[:idx_cf] + cf_html + c[end_cf:]
+        print('  ✅ 现金流&资产负债已替换')
+    
+    # 6.3 估值指标
+    eps_ttm = eps_data.get(2025, None)
+    bps_v = bps_data.get(2025, None)
+    revps_v = revps_data.get(2025, None)
+    pe_str = f'{round(price/eps_ttm,1)}x' if price and eps_ttm and eps_ttm > 0 else '亏损'
+    pb_str = f'{round(price/bps_v,2)}x' if price and bps_v and bps_v > 0 else '—'
+    ps_str = f'{round(price/revps_v,2)}x' if price and revps_v and revps_v > 0 else '—'
+    val_html = f'<h3>估值指标</h3><table class="tbl"><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr><tr><td>PE(TTM)</td><td class="gold">{pe_str}</td><td>—</td><td>—</td></tr><tr><td>PB</td><td>{pb_str}</td><td>—</td><td>—</td></tr><tr><td>PS(TTM)</td><td>{ps_str}</td><td>—</td><td>—</td></tr></table>'
+    idx_val = c.find('<h3>估值指标</h3>')
+    if idx_val >= 0:
+        end_val = c.find('<h3', idx_val+10)
+        if end_val < 0: end_val = c.find('<h2', idx_val+10)
+        c = c[:idx_val] + val_html + c[end_val:]
+        print('  ✅ 估值指标表已替换')
+    
+    # 6.4 敏感性分析（固定5个标准情景）
+    sens_html = '<h3>敏感性分析</h3><table class="tbl"><tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr><tr><td>营收下降10%</td><td>—</td><td class="orange">—</td></tr><tr><td>毛利率下降3pct</td><td>—</td><td class="orange">—</td></tr><tr><td>费用率上升</td><td>—</td><td class="orange">—</td></tr><tr><td>行业下行周期</td><td>—</td><td class="red">—</td></tr><tr><td>竞争加剧</td><td>—</td><td class="orange">—</td></tr></table>'
+    idx_sens = c.find('<h3>敏感性分析</h3>')
+    if idx_sens >= 0:
+        end_sens = c.find('<h3', idx_sens+10)
+        if end_sens < 0: end_sens = c.find('<h2', idx_sens+10)
+        c = c[:idx_sens] + sens_html + c[end_sens:]
+        print('  ✅ 敏感性分析表已替换')
+    
+    # 6.5 避雷清单（固定检查项）
+    avoid_html = '<h3>避雷清单</h3><table class="tbl"><tr><th>检查项</th><th>结果</th></tr><tr><td>是否存在商誉减值风险</td><td>—</td></tr><tr><td>大股东是否持续减持</td><td>—</td></tr><tr><td>财务造假信号</td><td>—</td></tr><tr><td>现金流是否持续为负</td><td>—</td></tr><tr><td>是否有未决诉讼</td><td>—</td></tr></table>'
+    idx_avoid = c.find('<h3>避雷清单</h3>')
+    if idx_avoid >= 0:
+        end_avoid = c.find('</table>', idx_avoid) + 8
+        c = c[:idx_avoid] + avoid_html + c[end_avoid:]
+        print('  ✅ 避雷清单表已替换')
+    
+    # 6.6 其他整表替换表 — 填入{{TD}}为TODO
     # 简单处理：所有{{TD}}替换为__TODO__
     td_count_before = c.count('{{TD}}')
     c = c.replace('{{TD}}', '__TODO__')
