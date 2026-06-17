@@ -114,7 +114,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 
 <div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
   <h2>历年财务数据</h2>
-  <div class="desc">最近10年财务指标</div>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=同比下降</span> · <span style="color:#e74c3c">红色=负值/降幅>20%</span></div>
   <style>
   .fin-table{width:100%;border-collapse:collapse;font-size:11px}
   .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
@@ -123,29 +123,29 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
   .fin-table tr:hover td:first-child{background:#1a1a2a}
   .fin-table td.na{color:#555}
-  .fin-table td.pos,.fin-table td.neg,.fin-table td.warn{color:#e0e0e0;font-weight:400}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
   .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
   .fin-light .fin-table td{border-bottom-color:#d8d4c8}
-  .fin-light .fin-table td.pos,.fin-light .fin-table td.neg,.fin-light .fin-table td.warn{color:#333;font-weight:400}
-  .fin-light .fin-table tr:hover td{background:#e8e4dc}
-  .fin-light .fin-table td:first-child{background:#f4f1ea}
-  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
   .fin-light .fin-table td.pos{color:#2e7d32!important}
   .fin-light .fin-table td.neg{color:#c0392b!important}
   .fin-light .fin-table td.warn{color:#b8860b!important}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
 </style>
   <table class="fin-table">
-<th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th>
-<tr><td>每股营业收入(元)</td><td>13.84</td><td class="neg">11.06</td><td class="neg">8.66</td><td class="pos">12.23</td><td>12.80</td><td class="neg">6.76</td><td class="neg">4.82</td><td class="neg">3.38</td><td class="warn">3.05</td><td class="neg">2.24</td></tr>
-<tr><td>每股经营现金流(元)</td><td>3.19</td><td class="warn">3.06</td><td class="neg">1.78</td><td class="neg">1.42</td><td class="pos">3.39</td><td class="neg">2.25</td><td class="pos">3.01</td><td class="neg">2.18</td><td class="neg">0.98</td><td class="warn">0.84</td></tr>
-<tr><td>每股净利润(元)</td><td>2.48</td><td class="neg">1.66</td><td class="neg">0.24</td><td class="pos">3.10</td><td>3.54</td><td class="neg">1.36</td><td>1.44</td><td>1.44</td><td class="warn">1.42</td><td class="neg">1.06</td></tr>
-<tr><td>每股净资产(元)</td><td>28.46</td><td class="warn">24.84</td><td class="warn">22.79</td><td class="warn">22.77</td><td class="warn">20.20</td><td>22.68</td><td class="neg">16.27</td><td class="neg">6.67</td><td>8.67</td><td class="pos">12.79</td></tr>
+<tr><td>每股营业收入(元)</td><td>13.84</td><td>11.06</td><td class="neg">8.66</td><td class="warn">12.23</td><td class="pos">12.80</td><td class="pos">6.76</td><td class="pos">4.82</td><td>3.38</td><td class="pos">3.05</td><td>2.24</td></tr>
+<tr><td>每股经营现金流(元)</td><td>3.19</td><td class="pos">3.06</td><td>1.78</td><td class="neg">1.42</td><td class="pos">3.39</td><td class="neg">2.25</td><td class="pos">3.01</td><td class="pos">2.18</td><td>0.98</td><td>0.84</td></tr>
+<tr><td>每股净利润(元)</td><td class="pos">2.48</td><td class="pos">1.66</td><td class="neg">0.24</td><td class="warn">3.10</td><td class="pos">3.54</td><td class="warn">1.36</td><td>1.44</td><td>1.44</td><td class="pos">1.42</td><td>1.06</td></tr>
+<tr><td>每股净资产(元)</td><td>28.46</td><td>24.84</td><td>22.79</td><td>22.77</td><td class="warn">20.20</td><td class="pos">22.68</td><td class="pos">16.27</td><td class="neg">6.67</td><td class="neg">8.67</td><td>12.79</td></tr>
 <tr><td>总股本(亿股)</td><td>6.65</td><td>6.65</td><td>6.65</td><td>6.65</td><td>6.65</td><td>6.65</td><td>6.65</td><td>6.65</td><td>6.65</td><td>6.65</td></tr>
-<tr><td>营业收入(亿元)</td><td>92.03</td><td class="neg">73.56</td><td class="neg">57.61</td><td class="pos">81.30</td><td>85.10</td><td class="neg">44.97</td><td class="neg">32.03</td><td class="neg">22.46</td><td class="warn">20.30</td><td class="neg">14.89</td></tr>
-<tr><td>毛利率(%)</td><td>40.22</td><td class="warn">38.00</td><td class="warn">34.42</td><td class="pos">47.66</td><td class="warn">46.54</td><td class="neg">37.08</td><td>40.52</td><td class="warn">38.25</td><td>39.16</td><td class="neg">26.72</td></tr>
-<tr><td>净利润(亿元)</td><td>16.48</td><td class="neg">11.03</td><td class="neg">1.61</td><td class="pos">20.53</td><td>23.37</td><td class="neg">8.81</td><td class="neg">6.07</td><td class="neg">4.05</td><td class="warn">3.97</td><td class="neg">1.76</td></tr>
-<tr><td>净利润率(%)</td><td>17.91</td><td class="warn">14.99</td><td class="neg">2.80</td><td class="pos">25.25</td><td>27.46</td><td class="neg">19.58</td><td class="warn">18.95</td><td class="warn">18.03</td><td>19.58</td><td class="neg">11.85</td></tr>
-<tr><td>ROE(%)</td><td>9.30</td><td class="neg">6.94</td><td class="neg">1.06</td><td class="pos">14.38</td><td class="pos">19.44</td><td class="neg">10.64</td><td class="pos">16.96</td><td class="pos">22.25</td><td>26.27</td><td class="warn">21.18</td></tr>
+<tr><td>营业收入(亿元)</td><td>92.03</td><td>73.56</td><td class="neg">57.61</td><td class="warn">81.30</td><td class="pos">85.10</td><td class="pos">44.97</td><td class="pos">32.03</td><td>22.46</td><td class="pos">20.30</td><td>14.89</td></tr>
+<tr><td>毛利率(%)</td><td>40.22</td><td>38.00</td><td class="neg">34.42</td><td>47.66</td><td>46.54</td><td class="warn">37.08</td><td>40.52</td><td class="warn">38.25</td><td class="pos">39.16</td><td>26.72</td></tr>
+<tr><td>净利润(亿元)</td><td class="pos">16.48</td><td class="pos">11.03</td><td class="neg">1.61</td><td class="warn">20.53</td><td class="pos">23.37</td><td class="pos">8.81</td><td class="pos">6.07</td><td>4.05</td><td class="pos">3.97</td><td>1.76</td></tr>
+<tr><td>净利润率(%)</td><td>17.91</td><td class="pos">14.99</td><td class="neg">2.80</td><td class="warn">25.25</td><td class="pos">27.46</td><td>19.58</td><td>18.95</td><td class="warn">18.03</td><td class="pos">19.58</td><td>11.85</td></tr>
+<tr><td>ROE(%)</td><td class="pos">9.30</td><td class="pos">6.94</td><td class="neg">1.06</td><td class="neg">14.38</td><td class="pos">19.44</td><td class="neg">10.64</td><td class="neg">16.96</td><td class="warn">22.25</td><td>26.27</td><td>21.18</td></tr>
 </table>
 </div>
 
