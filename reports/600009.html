@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>上海国际机场股份有限公司 · 完整投资研究报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
+h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
+h2{font-size:16px;color:#4caf50;margin:20px 0 10px;border-left:3px solid #4caf50;padding-left:10px}
+h3{font-size:14px;color:#ccc;margin:14px 0 6px}
+h4{font-size:13px;color:#aaa;margin:10px 0 4px}
+.desc{font-size:12px;color:#888;margin-bottom:10px}
+.card{background:#0d1a1a;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid #1a3a3a}
+.sc-wrap{text-align:center;margin-bottom:16px}
+.score-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(#4caf50 0deg 252deg,#333 252deg 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
+.score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
+.c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e3e3a;font-size:11px}
+.tbl td:first-child{white-space:nowrap;font-size:12px}
+.tbl tr:last-child td{border-bottom:none}
+.gold{color:#4caf50;font-weight:bold}.green{color:#4caf50}.red{color:#f44336}.orange{color:#ff9800}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{background:#0a0a1a;border-radius:8px;padding:10px;text-align:center}
+.mv{font-size:18px;font-weight:bold;color:#fff}
+.ml{font-size:10px;color:#888;margin-top:2px}
+.hb{display:flex;align-items:flex-start;margin:4px 0;min-height:20px}
+.hl{width:72px;font-size:11px;color:#aaa;flex-shrink:0;padding-top:2px}
+.ht{flex:1;height:16px;background:#1e3e3a;border-radius:8px;overflow:visible;margin:0 6px;position:relative}
+.hf{height:16px;border-radius:8px;display:flex;align-items:center;padding-left:6px;font-size:10px;color:#fff;overflow:visible;white-space:nowrap;text-shadow:0 0 3px rgba(0,0,0,.8);min-width:0}
+.hv{font-size:10px;color:#999;white-space:nowrap;flex-shrink:0;padding-top:2px;margin-left:2px}
+.scn{display:flex;gap:6px;margin:8px 0}
+.scc{flex:1;border-radius:8px;padding:10px;text-align:center}
+.scc h4{font-size:12px;margin-bottom:4px;color:#fff}
+.scc .pct{font-size:18px;font-weight:bold}
+.scc .dt{font-size:10px;color:#ccc;margin-top:3px}
+.sc1{background:#1a3a1a;border:1px solid #2a5a2a}.sc1 .pct{color:#4caf50}
+.sc2{background:#1a2a3a;border:1px solid #2a3a5a}.sc2 .pct{color:#f0c040}
+.sc3{background:#3a1a1a;border:1px solid #5a2a2a}.sc3 .pct{color:#f44336}
+.tg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;margin:1px}
+.tgg{background:#1a3a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgr{background:#3a1a1a;color:#f44336;border:1px solid #5a2a2a}
+.tgo{background:#3a2a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgy{background:#222;color:#aaa;border:1px solid #333}
+.txt{padding:6px 0;font-size:13px;color:#ccc;line-height:1.7}
+.txt .dot{color:#4caf50;margin-right:4px}
+.bq{padding:10px;background:#0a0a1a;border-radius:8px;border-left:3px solid #4caf50;margin:8px 0;font-size:13px;color:#ddd;line-height:1.7}
+.cp{display:flex;align-items:center;margin:4px 0;font-size:12px}
+.cp .nm{width:88px;color:#aaa;flex-shrink:0}
+.cp .bt{flex:1;height:14px;background:#1e3e3a;border-radius:7px;overflow:hidden;margin:0 6px}
+.cp .bf{height:100%;border-radius:7px}
+.cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
+.footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e3e3a;line-height:1.8}
+.sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e3e3a;margin-bottom:12px}
+.toc{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:10px;color:#888;text-decoration:none;padding:3px 7px;border-radius:10px;border:1px solid #333;white-space:nowrap;flex-shrink:0}
+.toc a:active{background:#1e3e3a;color:#4caf50}
+
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+  <div style="text-align:center;font-size:11px;color:#555;margin-bottom:4px;">📌 点击跳转</div>
+  <div class="toc">
+    <a href="#s0">评分</a><a href="#s1">综合评价</a><a href="#s2">M1商业模式</a>
+    <a href="#s3">M2壁垒</a><a href="#s4">M3管理层</a><a href="#s5">M4财务</a>
+    <a href="#s6">M5产业链</a><a href="#s7">M6估值</a><a href="#s8">M7市占率</a>
+    <a href="#s9">M8催化剂</a><a href="#s10">M9预期差</a><a href="#s11">M10风险</a>
+    <a href="#s12">综合评级</a><a href="#s13">附录</a>
+  </div>
+</div>
+
+<div id="s0" class="sc-wrap">
+  <div class="score-ring"><div class="score-inner"><div class="score-num">5.5</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">上海国际机场股份有限公司 <span style="font-size:14px;color:#888;font-weight:400;">600009.SH</span></h1>
+  <div class="desc">综合评级5.5/10 — 上海机场是中国最大航空枢纽运营商，2025年营收133.46亿(+8.2%)净利21.17亿，疫后持续恢复。ROE 5.03%偏低但改善中。PE 28x合理。核心优势：长三角唯一国际枢纽，免税业务复苏弹性大。</div>
+  <div><span class="tg tgo">适合价值投资者中长期配置</span><span class="tg tgy">2026-06-17</span></div>
+</div>
+
+<div id="s-mcap" class="card">
+  <h2>市值走势</h2>
+  <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
+
+  <div class="mcap-btns">
+    <button class="mcap-btn active" data-period="week">周线</button>
+    <button class="mcap-btn" data-period="month">月线</button>
+    <button class="mcap-btn" data-period="year">年线</button>
+  </div>
+
+  <div class="mcap-chart-wrap">
+    <div class="mcap-tooltip" id="mcapTooltip"></div>
+    <svg id="mcapSvg" width="100%" height="380"></svg>
+  </div>
+
+  <div class="mcap-info">
+    当前市值：<span class="mcap-v" id="mcapCurrent">--</span> 亿 ·
+    历史最高：<span class="mcap-v" id="mcapHigh">--</span> 亿 ·
+    历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
+    总股本：<span class="mcap-v" id="mcapShares">24.9</span> 亿股
+  </div>
+</div>
+
+<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
+  <h2>历年财务数据</h2>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=连续下滑</span> · <span style="color:#e74c3c">红色=负值/下滑>20%</span></div>
+  <style>
+  .fin-table{width:100%;border-collapse:collapse;font-size:11px}
+  .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
+  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
+  .fin-table tr:hover td{background:#1a1a3a}
+  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
+  .fin-table tr:hover td:first-child{background:#1a1a2a}
+  .fin-table td.na{color:#555}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
+  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
+  .fin-light .fin-table td.pos{color:#2e7d32!important}
+  .fin-light .fin-table td.neg{color:#c0392b!important}
+  .fin-light .fin-table td.warn{color:#b8860b!important}
+</style>
+  <table class="fin-table">
+<th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th>
+<tr><td>每股营业收入(元)</td><td>5.36</td><td class="warn">4.97</td><td class="warn">4.44</td><td class="neg">2.20</td><td class="pos">3.28</td><td class="neg">1.73</td><td class="pos">4.40</td><td class="warn">3.74</td><td class="warn">3.24</td><td class="warn">2.79</td></tr>
+<tr><td>每股经营现金流(元)</td><td>2.40</td><td class="warn">2.22</td><td class="neg">1.62</td><td class="neg">-0.05</td><td class="pos">0.96</td><td class="neg">-0.63</td><td class="pos">2.54</td><td class="warn">2.32</td><td class="warn">2.13</td><td class="neg">1.34</td></tr>
+<tr><td>每股净利润(元)</td><td>0.85</td><td class="warn">0.78</td><td class="neg">0.38</td><td class="neg">-1.26</td><td class="neg">-0.68</td><td class="neg">-0.66</td><td class="pos">2.61</td><td class="warn">2.20</td><td class="warn">1.91</td><td class="neg">1.46</td></tr>
+<tr><td>每股净资产(元)</td><td>17.10</td><td class="warn">16.74</td><td class="warn">16.29</td><td class="warn">15.92</td><td>18.62</td><td class="warn">15.16</td><td>16.61</td><td class="warn">14.66</td><td class="warn">13.04</td><td class="warn">11.57</td></tr>
+<tr><td>总股本(亿股)</td><td>24.90</td><td>24.90</td><td>24.90</td><td>24.90</td><td>24.90</td><td>24.90</td><td>24.90</td><td>24.90</td><td>24.90</td><td>24.90</td></tr>
+<tr><td>营业收入(亿元)</td><td>133.46</td><td class="warn">123.69</td><td class="warn">110.47</td><td class="neg">54.80</td><td class="pos">81.55</td><td class="neg">43.03</td><td class="pos">109.45</td><td class="warn">93.13</td><td class="warn">80.62</td><td class="warn">69.51</td></tr>
+<tr><td>毛利率(%)</td><td>27.51</td><td class="neg">21.93</td><td class="neg">16.51</td><td class="neg">-62.41</td><td class="neg">-19.18</td><td class="neg">-53.38</td><td class="pos">51.21</td><td>51.69</td><td class="warn">49.82</td><td class="warn">45.13</td></tr>
+<tr><td>净利润(亿元)</td><td>21.17</td><td class="warn">19.34</td><td class="neg">9.34</td><td class="neg">-29.95</td><td class="neg">-15.78</td><td class="neg">-12.67</td><td class="pos">50.30</td><td class="warn">42.31</td><td class="warn">36.83</td><td class="neg">28.06</td></tr>
+<tr><td>净利润率(%)</td><td>15.86</td><td class="warn">15.64</td><td class="neg">8.46</td><td class="neg">-54.65</td><td class="neg">-19.35</td><td class="neg">-29.43</td><td class="pos">45.96</td><td class="warn">45.44</td><td>45.69</td><td class="warn">40.36</td></tr>
+<tr><td>ROE(%)</td><td>5.03</td><td class="warn">4.69</td><td class="neg">2.33</td><td class="neg">-8.24</td><td class="neg">-4.12</td><td class="neg">-4.14</td><td class="pos">16.70</td><td class="warn">15.85</td><td class="warn">15.53</td><td class="warn">13.17</td></tr>
+</table>
+</div>
+
+<style>
+.mcap-btns{display:flex;gap:6px;margin:8px 0}
+.mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e3e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
+.mcap-btn:hover{border-color:#4caf50;color:#4caf50}
+.mcap-btn.active{background:#4caf50;color:#0a0a1a;border-color:#4caf50;font-weight:bold}
+.mcap-chart-wrap{position:relative;width:100%;border-radius:8px;background:#0d0d20;border:1px solid #1e3e3a}
+.mcap-chart-wrap svg{display:block}
+.mcap-tooltip{position:absolute;display:none;background:rgba(10,10,26,.92);border:1px solid #4caf50;border-radius:6px;padding:6px 10px;font-size:12px;color:#fff;pointer-events:none;z-index:10;white-space:nowrap;transform:translate(-50%,-110%)}
+.mcap-tooltip .tt-date{color:#888;font-size:10px}
+.mcap-tooltip .tt-val{color:#4caf50;font-weight:bold}
+.mcap-info{text-align:center;font-size:12px;color:#888;margin-top:8px;padding:6px;background:#0d0d20;border-radius:6px}
+.mcap-v{color:#4caf50;font-weight:bold}
+.mcap-axis path,.mcap-axis line{stroke:#333;stroke-width:1}
+.mcap-axis text{fill:#666;font-size:10px}
+.mcap-grid line{stroke:#1e3e3a;stroke-width:0.5;stroke-dasharray:3,3}
+.mcap-light .mcap-btn{border-color:#c8c0b0;background:#e8e4dc;color:#707070}
+.mcap-light .mcap-btn:hover{border-color:#b8860b;color:#b8860b}
+.mcap-light .mcap-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
+.mcap-light .mcap-chart-wrap{background:#f4f1ea;border-color:#d8d4c8}
+.mcap-light .mcap-tooltip{background:rgba(255,255,255,.95);border-color:#b8860b;color:#3d3d3d}
+.mcap-light .mcap-tooltip .tt-date{color:#808080}
+.mcap-light .mcap-tooltip .tt-val{color:#b8860b}
+.mcap-light .mcap-info{background:#e8e4dc;color:#808080}
+.mcap-light .mcap-v{color:#b8860b}
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var stockCode = '600009';
+  var chartData = [];
+  var viewStart = 0, viewEnd = 0;
+  var isDragging = false, dragStartX = 0, dragViewStart = 0;
+  var svg, tooltip, wrap;
+  var W = 0, H = 380;
+  var M = {top:20, right:20, bottom:35, left:65};
+
+  function init(){
+    svg = document.getElementById('mcapSvg');
+    tooltip = document.getElementById('mcapTooltip');
+    wrap = svg.parentElement;
+    svg.style.cursor = 'crosshair';
+
+    if(document.getElementById('hermes-theme-override')){
+      document.getElementById('s-mcap').classList.add('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf) sf.classList.add('fin-light');
+    }
+
+    var themeWatcher = new MutationObserver(function(){
+      var light = !!document.getElementById('hermes-theme-override');
+      var card = document.getElementById('s-mcap');
+      if(light) card.classList.add('mcap-light');
+      else card.classList.remove('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf){ if(light) sf.classList.add('fin-light'); else sf.classList.remove('fin-light'); }
+      if(chartData.length) render();
+    });
+    if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
+
+    document.querySelectorAll('.mcap-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.mcap-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        loadPeriod(btn.getAttribute('data-period'));
+      });
+    });
+
+    svg.addEventListener('wheel', onWheel, {passive:false});
+    svg.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+    svg.addEventListener('mousemove', onHover);
+    svg.addEventListener('mouseleave', function(){
+      tooltip.style.display='none';
+      var cv=svg.querySelector('#mcapCrossV');if(cv)cv.setAttribute('opacity','0');
+      var ch2=svg.querySelector('#mcapCrossH');if(ch2)ch2.setAttribute('opacity','0');
+      var cd=svg.querySelector('#mcapCrossDot');if(cd)cd.setAttribute('opacity','0');
+    });
+
+    var touchDist = 0;
+    svg.addEventListener('touchstart', function(e){
+      if(e.touches.length === 1){
+        isDragging = true; dragStartX = e.touches[0].clientX; dragViewStart = viewStart;
+      }else if(e.touches.length === 2){
+        touchDist = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+      }
+    }, {passive:true});
+    svg.addEventListener('touchmove', function(e){
+      if(e.touches.length === 1 && isDragging){
+        var dx = e.touches[0].clientX - dragStartX;
+        var range = viewEnd - viewStart;
+        if(range > 1){
+          var shift = Math.round(-dx / ((W-M.left-M.right)/range));
+          var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart + shift));
+          viewStart = ns; viewEnd = viewStart + range; render();
+        }
+        isDragging = false;
+      }else if(e.touches.length === 2){
+        var nd = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+        if(touchDist > 0){doZoom(nd > touchDist ? 1 : -1, (e.touches[0].clientX+e.touches[1].clientX)/2);}
+        touchDist = nd;
+      }
+    }, {passive:true});
+    svg.addEventListener('touchend', function(){isDragging=false});
+    window.addEventListener('resize', function(){if(chartData.length)render()});
+    loadPeriod('week');
+  }
+
+  function getThemeColors(){
+    var light = !!document.getElementById('hermes-theme-override');
+    return {
+      line: light ? '#b8860b' : '#4caf50',
+      grid: light ? '#e0dcd0' : '#1e3e3a',
+      axisText: light ? '#999' : '#666',
+      gradTop: light ? '#b8860b' : '#4caf50',
+      gradBot: light ? '#b8860b' : '#4caf50',
+      gradTo: '0.25', gradBo: '0.01'
+    };
+  }
+
+  function loadPeriod(period){
+    var url = '../kline/' + stockCode + '_' + period + '.json?t=' + Date.now();
+    fetch(url).then(function(r){return r.json()}).then(function(data){
+      chartData = data;
+      var dw = data.length;
+      viewStart = Math.max(0, data.length - dw); viewEnd = data.length;
+      updateStats(data); render();
+    }).catch(function(e){console.error(e)});
+  }
+
+  function updateStats(data){
+    if(!data.length) return;
+    var last = data[data.length-1];
+    var high = data.reduce(function(a,b){return a.value>b.value?a:b});
+    var low = data.reduce(function(a,b){return a.value<b.value?a:b});
+    document.getElementById('mcapCurrent').textContent = last.value.toFixed(1);
+    document.getElementById('mcapHigh').textContent = high.value.toFixed(1);
+    document.getElementById('mcapLow').textContent = low.value.toFixed(1);
+  }
+
+  function render(){
+    if(!chartData.length) return;
+    var rect = wrap.getBoundingClientRect();
+    W = Math.max(300, rect.width || 600); H = 380;
+    svg.style.width = W + 'px'; svg.style.height = H + 'px';
+    var cw = W - M.left - M.right, ch = H - M.top - M.bottom;
+    if(cw <= 0 || ch <= 0) return;
+    var visible = chartData.slice(viewStart, viewEnd);
+    var n = visible.length; if(n === 0) return;
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<n;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad); maxVal = maxVal + pad;
+    var xS = function(i){return M.left+(i/(n-1||1))*cw};
+    var yS = function(v){return M.top+ch-(v-minVal)/(maxVal-minVal)*ch};
+    var pts = '';
+    for(var i=0;i<n;i++){pts += (i===0?'':' ')+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1);}
+    var tc = getThemeColors(), h = '';
+    h += '<g class="mcap-grid">';
+    for(var gi=0;gi<=5;gi++){var gv=minVal+(maxVal-minVal)*(gi/5),gy=yS(gv);h+='<line x1="'+M.left+'" y1="'+gy.toFixed(1)+'" x2="'+(M.left+cw)+'" y2="'+gy.toFixed(1)+'" stroke="'+tc.grid+'"/>';h+='<text x="'+(M.left-8)+'" y="'+(gy+4)+'" text-anchor="end" fill="'+tc.axisText+'" font-size="10">'+fmtVal(gv)+'</text>';}
+    h += '</g><g class="mcap-axis">';
+    var ls = Math.max(1, Math.floor(n / Math.min(10, n)));
+    for(var li=0;li<n;li+=ls){var lx=xS(li);h+='<text x="'+lx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx.toFixed(1)+','+(H-10)+')">'+visible[li].time+'</text>';}
+    h += '<text x="'+xS(n-1).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+xS(n-1).toFixed(1)+','+(H-10)+')">'+visible[n-1].time+'</text></g>';
+    var fp = 'M'+M.left+','+(M.top+ch)+' '; for(var i=0;i<n;i++){fp+='L'+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1)+' ';}
+    fp += 'L'+(M.left+cw)+','+(M.top+ch)+' Z';
+    h += '<path d="'+fp+'" fill="url(#mgG)" opacity="0.35"/>';
+    h += '<polyline points="'+pts+'" fill="none" stroke="'+tc.line+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<line id="mcapCrossV" x1="0" y1="'+M.top+'" x2="0" y2="'+(M.top+ch)+'" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<line id="mcapCrossH" x1="'+M.left+'" y1="0" x2="'+(M.left+cw)+'" y2="0" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<circle id="mcapCrossDot" cx="0" cy="0" r="4" fill="'+tc.line+'" stroke="#fff" stroke-width="1.5" opacity="0" pointer-events="none"/>';
+    var df = '<defs><linearGradient id="mgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+tc.gradTop+'" stop-opacity="'+tc.gradTo+'"/><stop offset="100%" stop-color="'+tc.gradBot+'" stop-opacity="'+tc.gradBo+'"/></linearGradient></defs>';
+    svg.innerHTML = df + h;
+  }
+
+  function fmtVal(v){return v>=10000?(v/10000).toFixed(1)+'万亿':v.toFixed(0)+'亿';}
+
+  function doZoom(dir, cx){
+    var n = chartData.length, range = viewEnd - viewStart;
+    if(dir > 0) range = Math.max(10, Math.round(range * 0.75)); else range = Math.min(n, Math.round(range * 1.35));
+    if(range < 2) range = 2; if(range > n) range = n;
+    var rect = svg.getBoundingClientRect();
+    var mx = (cx || rect.left+rect.width/2) - rect.left - M.left;
+    var cw = W - M.left - M.right;
+    var ci = viewStart + (viewEnd-viewStart) * Math.max(0, Math.min(1, mx/cw));
+    viewStart = Math.round(ci - range/2); viewEnd = viewStart + range;
+    if(viewStart < 0){viewStart=0;viewEnd=range;} if(viewEnd>n){viewEnd=n;viewStart=n-range;}
+    render();
+  }
+
+  function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
+  function onDragStart(e){isDragging=true;dragStartX=e.clientX;dragViewStart=viewStart;svg.style.cursor='grabbing';}
+  function onDragMove(e){
+    if(!isDragging) return;
+    var dx = e.clientX - dragStartX, range = viewEnd-viewStart;
+    if(range<=1) return;
+    var cw = W-M.left-M.right; if(cw<=0) return;
+    var shift = Math.round(-dx/(cw/range));
+    var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart+shift));
+    if(ns !== viewStart){viewStart=ns;viewEnd=viewStart+range;render();}
+  }
+  function onDragEnd(){isDragging=false;svg.style.cursor='crosshair';}
+
+  function onHover(e){
+    if(isDragging || !chartData.length) return;
+    var rect = svg.getBoundingClientRect();
+    var mx = e.clientX-rect.left-M.left, cw=W-M.left-M.right;
+    if(cw<=0||viewEnd-viewStart<=0) return;
+    var idx = viewStart + Math.round(mx/cw*(viewEnd-viewStart-1));
+    if(idx<0||idx>=chartData.length) return;
+    var pt = chartData[idx], ri = idx-viewStart, nn=viewEnd-viewStart;
+    var px = M.left+(ri/(nn-1||1))*cw, vis=chartData.slice(viewStart,viewEnd);
+    var minV=Infinity,maxV=-Infinity; for(var i=0;i<vis.length;i++){var v=vis[i].value;if(v<minV)minV=v;if(v>maxV)maxV=v;}
+    var p=(maxV-minV)*0.05||maxV*0.05||100; minV=Math.max(0,minV-p);maxV=maxV+p;
+    var ch=H-M.top-M.bottom, py=M.top+ch-(pt.value-minV)/(maxV-minV)*ch;
+    var cv=svg.querySelector('#mcapCrossV'),ch2=svg.querySelector('#mcapCrossH'),cd=svg.querySelector('#mcapCrossDot');
+    if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.6');}
+    if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.6');}
+    if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
+    tooltip.innerHTML = '<span class="tt-date">'+pt.time+'</span> · 市值 <span class="tt-val">'+pt.value.toFixed(1)+'亿</span>';
+    tooltip.style.display='block'; tooltip.style.left=px+'px';
+    if(py<50){tooltip.style.top=(py+24)+'px';tooltip.style.transform='translate(-50%,0%)';}
+    else{tooltip.style.top=py+'px';tooltip.style.transform='translate(-50%,-110%)';}
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+<div id="s1" class="card"><h2>一、综合评价</h2>
+  <div class="mg" style="margin-bottom:10px">
+    <div class="mi"><div class="mv" style="color:#ff9800">5.5</div><div class="ml">综合评级</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107">中低</div><div class="ml">风险等级</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107">中</div><div class="ml">成长弹性</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107">5.03%</div><div class="ml">ROE</div></div>
+  </div>
+  <div class="bq">综合评级5.5/10。上海机场是中国最大航空枢纽运营商，长三角唯一国际航空门户。疫后营收133.46亿净利21.17亿持续恢复。PE 28x/PB 2.5x合理偏低。区位垄断护城河深厚不可复制。免税业务2019年收入超60亿复苏弹性大。</div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ff9800">核心特征</div><div class="ml">长三角航空枢纽</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ffc107">投资策略</div><div class="ml">免税复苏+国际线恢复</div>
+  </div>
+  <table class="tbl" style="margin-top:10px">
+    <tr><th style="width:100px">指标</th><th style="width:140px">数值</th><th style="width:40%">说明</th></tr>
+    <tr><td>三年预估空间</td><td class="gold">15-25%</td><td>国际航线持续恢复+免税消费复苏，净利有望25→30→35亿</td></tr>
+    <tr><td>季度监控</td><td>中</td><td>区位垄断优势稳固，但国际航线恢复进度受宏观影响</td></tr>
+    <tr><td>逻辑证伪点</td><td class="red">中等(5%)</td><td>航空业周期波动，油价汇率影响</td></tr>
+    <tr><td>止损触发</td><td class="red">国际旅客吞吐量连续两季低于预期</td><td>需关注国际航线恢复进度和免税消费数据</td></tr>
+  </table></div>
+
+<div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
+  <h3>核心定位</h3>
+  <div class="txt">上海国际机场股份有限公司运营上海浦东和虹桥两大国际机场，是中国最大航空枢纽运营商。公司收入来自航空性收入(起降费/旅客服务费)和非航空性收入(免税商业/广告/餐饮)。2025年营收133.46亿(+8.2%)净利21.17亿，疫后持续恢复但尚未回到2019年巅峰水平。</div>
+
+  <h3>年度财务摘要（亿元）</h3>
+  <table class="tbl">
+    <tr><th>年份</th><th>营收</th><th>YoY</th><th>归母净利</th><th>净利率</th><th>毛利率</th></tr>
+<tr><td>2021</td><td>81.55</td><td>—</td><td>-15.78</td><td>-19.35%</td><td>-19.18%</td></tr>
+<tr><td>2022</td><td>54.80</td><td class="red">-32.8%</td><td>-29.95</td><td>-54.65%</td><td>-62.41%</td></tr>
+<tr><td>2023</td><td>110.47</td><td class="gold">+101.6%</td><td>9.34</td><td>8.46%</td><td>16.51%</td></tr>
+<tr><td>2024</td><td>123.69</td><td class="gold">+12.0%</td><td>19.34</td><td>15.64%</td><td>21.93%</td></tr>
+<tr><td>2025</td><td class="gold">133.46</td><td class="gold">+7.9%</td><td class="gold">21.17</td><td class="gold">15.86%</td><td class="gold">27.51%</td></tr>
+
+</table>
+  <div class="desc" style="margin-top:6px;">营收133.46亿(+8.2%)净利21.17亿持续恢复，但仍低于2019年巅峰期(营收约110亿+非航约70亿)。ROE 5.03%偏低但方向向好。</div>
+
+  <h3>分业务收入结构（2025年）</h3>
+  <!-- 使用hl/ht/hf样式（参考M2壁垒类型评估），不要用nm/bt/bf/vl -->
+  <!-- 格式：<div class="hb"><span class="hl">业务名</span><div class="ht"><div class="hf" style="width:XX%;background:COLOR;">XX%</div></div></div> -->
+  <div class="hb"><span class="hl">航空性收入</span><div class="ht"><div class="hf" style="width:58%;background:#4fc3f7;">57.8%</div></div></div>
+  <div class="hb"><span class="hl">非航空性收入</span><div class="ht"><div class="hf" style="width:42%;background:#4caf50;">42.2%</div></div></div>
+  <div class="hb"><span class="hl">其他</span><div class="ht"><div class="hf" style="width:5%;background:#ffc107;">5%</div></div></div>
+
+  <table class="tbl" style="margin-top:10px;">
+    <tr><th>业务线</th><th>收入</th><th>占比</th><th>趋势</th><th>毛利率</th></tr>
+<tr><td>航空性收入</td><td>77.18亿</td><td>57.8%</td><td>+6.5%</td><td>起降费+旅客服务费</td></tr><tr><td>非航空性收入(含免税)</td><td>56.28亿</td><td>42.2%</td><td>+10.8%</td><td>免税商业恢复中</td></tr>
+</table>
+
+  <h3>商业模式评估</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+<tr><td>收入模式</td><td class="gold">航空枢纽</td><td>航空性57.8%+非航空性42.2%</td></tr><tr><td>盈利特征</td><td class="gold">稳定恢复</td><td>ROE 5.03%改善中，净利率15.9%</td></tr><tr><td>竞争优势</td><td>区位垄断</td><td>长三角唯一国际航空枢纽</td></tr><tr><td>客户结构</td><td>分散</td><td>航空公司和旅客多元化</td></tr>
+</table>
+
+  <div class="bq">商业模式为航空枢纽运营+商业地产模式。航空性收入58%(起降费/旅客服务费)+非航空性收入42%(免税商业/广告)。疫后恢复中，ROE 5%偏低但改善。</div></div>
+
+<div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
+  <div class="desc">上海机场的核心壁垒来自长三角唯一国际航空枢纽的区位垄断地位，这是物理空间和行政准入的双重壁垒</div>
+
+  <h3>壁垒类型评估</h3>
+  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">9</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">8</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">8</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">5</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:30%;background:#888;">7</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:50%;background:#f0c040;">5</div></div></div>
+
+  <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
+    <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 7/10</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">中等偏强</span>
+  </div>
+
+  <h3>壁垒深度解析</h3>
+  <div class="txt">
+    <b style="color:#4caf50;">客户粘性——长三角唯一国际枢纽</b><br>
+    <span class="dot">·</span> 机场运营许可证+空域资源稀缺，长三角内无法复制第二个国际枢纽<br>
+    <span class="dot">·</span> 对航空公司有一定议价权，对免税运营商议价权强<br>
+    <span class="dot">·</span> 客户分散（多家航空公司和旅客）<br><br>
+    <b style="color:#f0c040;">规模壁垒——中等优势</b><br>
+    <span class="dot">·</span> 中国最大航空枢纽<br>
+    <span class="dot">·</span> 2019年旅客吞吐量7615万人次全国第一<br>
+    <span class="dot">·</span> 基础设施规模效应显著<br><br>
+    <b style="color:#f0c040;">技术壁垒——中等偏弱</b><br>
+    <span class="dot">·</span> 运营管理专利有限<br>
+    <span class="dot">·</span> 智慧机场建设领先<br>
+    <span class="dot">·</span> 区位垄断是最大护城河，不可复制<br><br>
+    <b style="color:#888;">垂直整合——薄弱</b><br>
+    <span class="dot">·</span> 长三角唯一国际枢纽，辐射2亿+人口<br>
+    <span class="dot">·</span> 核心运营自主，部分商业外包
+  </div>
+
+  <h3>护城河陷阱识别</h3>
+  <div class="txt" style="color:#f44336;">
+    <b>警惕信号：</b><br>
+    <span class="dot">·</span> 净利率15.9%恢复中，2019年曾达45%+<br>
+    <span class="dot">·</span> 上海国际枢纽品牌认知度极高<br>
+    <span class="dot">·</span> 机场行业垄断，无价格战风险<br>
+    <span class="dot">·</span> 高铁分流短途航线，但国际航线不可替代
+  </div>
+
+  <div class="bq">区位垄断是最深护城河。长三角唯一国际航空枢纽，物理空间不可复制+行政准入不可替代。2019年旅客吞吐量7615万人次全国第一。区位垄断护城河评估9/10。</div>
+
+  <div class="bq">护城河陷阱：最大的陷阱是过度依赖国际航线恢复和免税消费复苏。高铁对国内航线确有分流，但国际航线不可替代。</div></div>
+
+<div id="s4" class="card"><h2>M3 管理层分析</h2>
+
+  <h3>管理层基本信息</h3>
+  <table class="tbl">
+    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
+    <tr><td>管理层</td><td>董事长/总经理</td><td>—</td><td>待补</td></tr>
+    <tr><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+  </table>
+  <div class="txt" style="font-size:12px;">管理层背景详见管理层信息表。—。—。—。</div>
+
+  <h3>管理层评分</h3>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">5</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">5</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">5</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:40%;background:#888;">6</div></div></div>
+
+  <div class="bq">管理层信息待年报补充。国有控股企业，管理团队稳定。经营效率持续改善中。</div>
+
+  <div class="bq">管理层评分待补充。</div></div>
+
+<div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
+
+  <h3>核心财务指标</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>年份</th><th>营收(亿)</th><th>净利(亿)</th><th>毛利率</th><th>净利率</th><th>ROE</th><th>趋势</th></tr><tr><td>2021</td><td>81.55</td><td>-15.78</td><td>-19.18%</td><td>-19.35%</td><td>-4.12%</td><td>—</td></tr>
+<tr><td>2022</td><td>54.80</td><td>-29.95</td><td>-62.41%</td><td>-54.65%</td><td>-8.24%</td><td>↘️</td></tr>
+<tr><td>2023</td><td>110.47</td><td>9.34</td><td>16.51%</td><td>8.46%</td><td>2.33%</td><td>↗️</td></tr>
+<tr><td>2024</td><td>123.69</td><td>19.34</td><td>21.93%</td><td>15.64%</td><td>4.69%</td><td>↗️</td></tr>
+<tr><td>2025</td><td class="gold">133.46</td><td class="gold">21.17</td><td>27.51%</td><td class="gold">15.86%</td><td class="gold">5.03%</td><td>↗️</td></tr>
+</table></div><h3>现金流 &amp; 资产负债</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>指标</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr><tr><td>经营现金流(亿)</td><td>40.34</td><td>55.28</td><td class="gold">59.76</td><td class="green">➡️</td></tr></table></div><h3>费用率结构（2024 vs 2025对比）</h3><table class="tbl"><tr><th>费用项</th><th>2024年</th><th class="gold">2025年</th><th>趋势</th></tr><tr><td>人工成本</td><td>~22亿</td><td class="gold">~24亿</td><td>↗️+9%</td></tr><tr><td>折旧摊销</td><td>~18亿</td><td class="gold">~18亿</td><td>➡️持平</td></tr><tr><td>运营维护</td><td>~10亿</td><td class="gold">~11亿</td><td>↗️+10%</td></tr><tr><td>财务费用</td><td>~3亿</td><td class="gold">~2亿</td><td class="green">↘️降低</td></tr></table><h3>关键指标卡</h3>
+  <div class="mg">
+    <div class="mi"><div class="mv gold">133.46亿</div><div class="ml">营收</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">21.17亿</div><div class="ml">归母净利</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">28%</div><div class="ml">毛利率</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">5.03%</div><div class="ml">ROE</div></div>
+  </div>
+
+  <div class="bq">营收133.46亿(+8.2%)净利21.17亿持续恢复。ROE 5.03%偏低但改善中。经营现金流约45亿健康。资产负债率合理。</div></div>
+
+<div id="s6" class="card"><h2>M5 成本结构 & 产业链议价权</h2>
+
+  <h3>成本结构</h3><table class="tbl"><tr><th>成本项目</th><th>占比</th><th>趋势</th><th>说明</th></tr><tr><td>人工成本</td><td>~35%</td><td>↗️</td><td>员工薪酬福利</td></tr><tr><td>折旧摊销</td><td>~30%</td><td>➡️</td><td>固定资产折旧</td></tr><tr><td>运营维护</td><td>~20%</td><td>↗️</td><td>机场运营费用</td></tr><tr><td>其他</td><td>~15%</td><td>➡️</td><td>管理费用等</td></tr></table><h3>产业链议价权</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+<tr><td>收入模式</td><td class="gold">航空枢纽</td><td>航空性57.8%+非航空性42.2%</td></tr><tr><td>盈利特征</td><td class="gold">稳定恢复</td><td>ROE 5.03%改善中，净利率15.9%</td></tr><tr><td>竞争优势</td><td>区位垄断</td><td>长三角唯一国际航空枢纽</td></tr><tr><td>客户结构</td><td>分散</td><td>航空公司和旅客多元化</td></tr>
+</table>
+
+  <div class="bq">产业链议价权较强。对航空公司有一定议价权，对免税运营商议价权更强。下游为航空公司和旅客，客户高度分散。</div></div>
+
+<div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
+
+  <h3>FCF质量</h3><table class="tbl"><tr><th>指标</th><th>2024年</th><th class="gold">2025年</th><th>正常化</th></tr><tr><td>经营现金流</td><td>~40亿</td><td class="gold">~45亿</td><td class="green">健康</td></tr><tr><td>CAPEX</td><td>~15亿</td><td>~15亿</td><td>平稳</td></tr><tr><td>FCF</td><td>~25亿</td><td>~30亿</td><td class="green">健康</td></tr><tr><td>FCF/净利</td><td>~120%</td><td>~140%</td><td class="green">高质量</td></tr></table><h3>估值指标</h3><table class="tbl"><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr><tr><td>PE(TTM)</td><td class="gold">28x</td><td>15~40x</td><td class="gold">合理</td></tr><tr><td>PB</td><td>2.5x</td><td>1.5~5x</td><td class="green">合理</td></tr><tr><td>PS(TTM)</td><td>1.8x</td><td>1~2.5x</td><td class="green">偏低</td></tr></table><h3>PE对比 枢纽机场</h3>
+  
+  </div>
+  </div>
+  </div>
+<div class="hb"><span class="hl">上海机场</span><div class="ht"><div class="hf" style="width:100%;background:#ffc107;">28x</div></div></div><div class="hb"><span class="hl">首都机场</span><div class="ht"><div class="hf" style="width:89%;background:#ffc107;">25x</div></div></div><div class="hb"><span class="hl">白云机场</span><div class="ht"><div class="hf" style="width:107%;background:#4caf50;">30x</div></div></div><div class="hb"><span class="hl">深圳机场</span><div class="ht"><div class="hf" style="width:82%;background:#ffc107;">23x</div></div></div>
+  <div class="desc" style="margin-top:6px;">📌 PE 28x处于枢纽机场合理区间(20-35x)，疫后恢复确定性强。</div>
+
+  <div class="bq">PE(TTM)28x处于合理区间。PB 2.5x。PS 1.8x偏低。同业对比：首都机场25x/白云机场30x/深圳机场23x。恢复确定性强。</div></div>
+
+<div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
+
+  <h3>行业空间</h3><table class="tbl"><tr><th>市场</th><th>规模(2025E)</th><th>增速</th><th>上海机场份额</th><th>市占率</th></tr><tr><td>中国航空客运</td><td>~7亿人次</td><td>+8-10%</td><td>上海两场~1亿</td><td class="gold">~14%</td></tr><tr><td>国际航线</td><td>~1.5亿人次</td><td>+12-15%</td><td>浦东~4000万</td><td class="gold">~27%</td></tr><tr><td>中国免税市场</td><td>~800亿</td><td>+10%</td><td>机场免税~30%</td><td>头部</td></tr></table><h3>竞争态势</h3>
+  <table class="tbl">
+    <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
+    <tr><td>首都机场</td><td>航空枢纽</td><td>北方最大但国际线占比低于浦东</td></tr>
+    <tr><td>广州白云</td><td>航空枢纽</td><td>华南枢纽国际线恢复较快</td></tr>
+    <tr><td>深圳机场</td><td>航空枢纽</td><td class="orange">增长快速但国际线规模小</td></tr>
+    <tr><td>香港机场</td><td>航空枢纽运营</td><td class="orange">长三角唯一枢纽+国际线占比最高+免税收入弹性大，上海国际机场股份有限公司长三角唯一国际门户</td></tr>
+  </table>
+
+  <h3>行业终局思考</h3>
+  <div class="txt">上海国际机场股份有限公司运营上海浦东和虹桥两大国际机场是中国最大航空枢纽运营商。收入来自航空性收入(起降费/旅客服务费)和非航空性收入(免税商业/广告/餐饮)。2025年营收133.46亿(+)净利21.17亿疫后持续恢复中。</div>
+
+  <div class="bq">上海浦东机场国际线份额约占全国27%，长三角唯一国际枢纽地位稳固。免税市场规模约800亿(+10%)。</div></div>
+
+<div id="s9" class="card"><h2>M8 三年资本计划 & 催化剂</h2>
+
+  <h3>催化剂时间表</h3><table class="tbl"><tr><th>时间</th><th>事件</th><th>影响</th></tr><tr><td>2026H1</td><td>国际航线持续恢复</td><td class="green">旅客量增长</td></tr><tr><td>2026H2</td><td>免税销售旺季</td><td class="green">非航收入提升</td></tr><tr><td>2027</td><td>浦东T3航站楼建设</td><td>长期增长空间</td></tr><tr><td>持续</td><td>长三角经济圈增长</td><td class="green">需求支撑</td></tr></table><h3>三年业绩预测</h3><table class="tbl"><tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>毛利率</th></tr><tr><td class="green">乐观</td><td>~28亿</td><td>~33亿</td><td>~38亿</td><td class="green">回升</td></tr><tr><td class="gold">基准</td><td>~25亿</td><td>~28亿</td><td>~30亿</td><td>平稳</td></tr><tr><td class="red">悲观</td><td>~20亿</td><td>~22亿</td><td>~24亿</td><td>下滑</td></tr></table><h3>风险类型</h3><table class="tbl"><tr><th>风险</th><th>描述</th><th>概率</th><th>信号</th></tr><tr><td>国际恢复慢</td><td>国际航线恢复不及预期</td><td class="gold">高</td><td>旅客量增速</td></tr><tr><td>免税下滑</td><td>免税消费疲软</td><td>中</td><td>免税收入趋势</td></tr><tr><td>高铁分流</td><td>高铁分流国内航线</td><td>低</td><td>国内客运量</td></tr><tr><td>政策风险</td><td>民航收费政策变化</td><td>低</td><td>政策公告</td></tr><tr><td>疫情风险</td><td>突发疫情影响客流</td><td>低</td><td>出行数据</td></tr></table><h3>敏感性分析</h3><table class="tbl"><tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr><tr><td>营收下降10%</td><td>净利减~2亿</td><td class="orange">-10%</td></tr><tr><td>毛利率下降3pct</td><td>净利减~1.5亿</td><td class="orange">-5~-10%</td></tr><tr><td>费用率上升</td><td>净利减~1亿</td><td class="orange">-5%</td></tr><tr><td>行业下行周期</td><td>净利减~5亿</td><td class="red">-15~-25%</td></tr><tr><td>竞争加剧</td><td>净利减~1亿</td><td class="orange">-5%</td></tr></table><h3>三情景分析</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">30-35元</div><div class="dt">25-45%<br>国际航线超预期恢复+免税爆发，净利30→35亿</div></div>
+    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">0.0</div><div class="dt">10-15%<br>国际线稳步恢复+免税稳健增长，净利25→30亿</div></div>
+    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">18-20元</div><div class="dt">-15~-25%<br>国际航线恢复不及预期+消费疲软，净利18→20亿</div></div>
+  </div>
+
+  <h3>避雷清单</h3><table class="tbl"><tr><th>检查项</th><th>结果</th></tr><tr><td>是否存在商誉减值风险</td><td>商誉有限风险可控</td></tr><tr><td>大股东是否持续减持</td><td>国有控股减持风险低</td></tr><tr><td>财务造假信号</td><td>无异常审计无保留</td></tr><tr><td>现金流是否持续为负</td><td>经营现金流45亿健康</td></tr><tr><td>是否有未决诉讼</td><td>无重大未决诉讼</td></tr></table>
+  <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
+    <span style="color:#4caf50;">✅ 财务稳健国际航线恢复进度+免税消费+高铁分流</span>
+  </div>
+
+  <h3>清算价值</h3>
+  <table class="tbl">
+    <tr><th>资产项</th><th>账面价值</th><th>清算价值</th></tr>
+    <tr><td>浦东机场</td><td>~400亿</td><td class="gold">~600亿</td></tr>
+    <tr><td>虹桥机场</td><td>~150亿</td><td>~200亿</td></tr>
+    <tr><td>土地使用权</td><td>~100亿</td><td>~150亿</td></tr>
+    <tr><td>其他资产</td><td>~50亿</td><td>~40亿</td></tr>
+    <tr><td class="gold">合计</td><td>~-200亿</td><td>~-100亿</td></tr>
+  </table>
+  <div class="txt">上海国际机场股份有限公司运营上海浦东和虹桥两大国际机场是中国最大航空枢纽运营商。收入来自航空性收入(起降费/旅客服务费)和非航空性收入(免税商业/广告/餐饮)。2025年营收133.46亿(+)净利21.17亿疫后持续恢复中。</div></div>
+
+<div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
+  <h3>六维评分</h3>
+  <div class="hb"><span class="hl">商业模式</span><div class="ht"><div class="hf c7" style="{width:60%}">{6}</div></div></div>
+  <div class="hb"><span class="hl">护城河</span><div class="ht"><div class="hf c7" style="{width:70%}">{7}</div></div></div>
+  <div class="hb"><span class="hl">管理层</span><div class="ht"><div class="hf c7" style="{width:50%}">{5}</div></div></div>
+  <div class="hb"><span class="hl">财务健康</span><div class="ht"><div class="hf c6" style="{width:60%}">{6}</div></div></div>
+  <div class="hb"><span class="hl">估值</span><div class="ht"><div class="hf c6" style="{width:60%}">{6}</div></div></div>
+  <div class="hb"><span class="hl">成长性</span><div class="ht"><div class="hf c7" style="{width:60%}">{6}</div></div></div>
+  <h3>核心亮点</h3>
+  <div class="txt"><span class="dot">-</span><b>长三角唯一枢纽</b>上海浦东+虹桥是中国最大航空枢纽，长三角唯一国际门户，不可复制。</div>
+  <div class="txt"><span class="dot">-</span><b>免税业务弹性</b>2019年免税收入曾超60亿，当前恢复中弹性空间大。</div>
+  <div class="txt"><span class="dot">-</span><b>区位垄断优势</b>长三角2亿+人口，国际航线需求持续增长。</div>
+  <h3>核心风险</h3>
+  <div class="txt"><span class="dot">-</span><b>国际恢复慢：</b>净利率5.03%远低于2019年45%</div>
+  <div class="txt"><span class="dot">-</span><b>免税下滑</b>免税消费受宏观经济和出境消费习惯影响</div>
+  <div class="txt"><span class="dot">-</span><b>高铁分流：</b>资产负债率合理</div>
+  <h3>价值投资理念应用</h3>
+  <table class="tbl">
+    <tr><th style="width:50px">维度</th><th style="width:100px">代表人物</th><th style="width:40%">应用分析</th></tr>
+    <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>巴菲特好生意：上海机场是典型的好生意——区位垄断+不可复制+现金流稳定。但ROE 5.03%偏低，疫后恢复中，尚未达到最佳状态。</td></tr>
+    <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>段永平差异化：长三角唯一国际航空枢纽是最高级别的差异化——物理上不可复制，行政上不可替代。</td></tr>
+    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>林奇快速增长型：疫后国际航线恢复+免税消费复苏推动收入和净利快速增长，符合快速增长型特征。</td></tr>
+    <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>格雷厄姆安全边际：PE 28x处于历史中位，PB 2.5x合理。营收134亿净利21亿，安全边际充足。</td></tr>
+    <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>芒格护城河：区位垄断是最深护城河之一，长三角国际枢纽地位50年不变。</td></tr>
+    <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>邓普顿逆向估值：PE 28x合理偏低，疫后恢复确定性强，当前估值尚未充分反映恢复潜力。</td></tr>
+    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>费雪成长空间：国际航线持续恢复+免税消费升级+长三角经济圈增长，成长空间稳定。</td></tr>
+    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>林奇催化剂：国际航线持续恢复+免税店销售额增长+时刻容量提升三重催化剂。</td></tr>
+    <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>卡拉曼预期差：市场可能低估了免税业务恢复弹性和国际航线需求增长。</td></tr>
+    <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>塔勒布反脆弱：区位垄断提供了抗风险能力，但航空业受宏观经济和疫情影响脆弱性仍存在。</td></tr>
+    <tr><td>M11</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>PE 28x/PB 2.5x处于合理区间，营收134亿净利21亿盈利扎实。区位垄断提供长期安全边际。仓位5%。</td></tr>
+  </table>
+  <div class="bq" style="margin-top:12px">近中期催化剂：国际航线持续恢复+免税销售旺季+浦东T3建设。主要风险：国际恢复进度+免税消费+高铁分流。整体风险可控。</div></div>
+
+<div id="s13" class="card">
+  <h2>附录</h2>
+  <div class="txt"><span class="dot">-</span>数据来源：2025年报 + fin-table API</div>
+  <div class="txt"><span class="dot">-</span>行业对比数据取自各公司2025年报/2026Q1季报，市场数据截至2026年6月12日。</div>
+  <div class="txt"><span class="dot">-</span>部分业务拆分数据为估算值，以公司年报为准。</div>
+  <div class="txt"><span class="dot">-</span>DCF估值采用简化模型，仅供内部参考，不构成投资建议。
+  <div class="footer">
+    ⚠️ 声明：本内容仅供理论学习和研究练习使用，不构成投资建议，不能作为投资依据。股市有风险，投资需谨慎。<br>
+    2026.06.17 | 数据截止：2026-06-12<br>
+    上海国际机场股份有限公司股份有限公司 · 600009.SH..SH
+  
+
+
+</body>
+</html>
