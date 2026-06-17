@@ -126,6 +126,24 @@ def get_price(code):
         return None
 
 
+def trend_icon(yr, np_data, rev, years):
+    """根据净利和营收趋势判断图标"""
+    if yr == years[0]:
+        return '—'
+    prev_np = np_data.get(years[years.index(yr)-1], 0)
+    curr_np = np_data.get(yr, 0)
+    if curr_np and prev_np:
+        if curr_np > prev_np * 1.2:
+            return '↗️'
+        elif curr_np > prev_np:
+            return '↗️'
+        elif curr_np < prev_np * 0.8:
+            return '↘️'
+        elif curr_np < prev_np:
+            return '↘️'
+    return '➡️'
+
+
 def main():
     if len(sys.argv) < 2:
         print('用法: python3 fill_auto.py <股票代码>')
@@ -296,7 +314,7 @@ def main():
         if isinstance(gr, float): gr = f'{gr:.2f}'
         if isinstance(nr, float): nr = f'{nr:.2f}'
         if isinstance(roe_v, float): roe_v = f'{roe_v:.2f}'
-        m4_rows += f'<tr><td>{yr}</td><td{cls}>{rv}</td><td{cls}>{np_v}</td><td>{gr}%</td><td{cls}>{nr}%</td><td{cls}>{roe_v}%</td><td>↘️</td></tr>\n'
+        m4_rows += f'<tr><td>{yr}</td><td{cls}>{rv}</td><td{cls}>{np_v}</td><td>{gr}%</td><td{cls}>{nr}%</td><td{cls}>{roe_v}%</td><td>{trend_icon(yr, np_data, rev, years_order)}</td></tr>\n'
     
     m4_html = f'<h3>核心财务指标</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>年份</th><th>营收(亿)</th><th>净利(亿)</th><th>毛利率</th><th>净利率</th><th>ROE</th><th>趋势</th></tr>{m4_rows}</table></div>'
     
