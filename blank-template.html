@@ -1001,6 +1001,8 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 
 <div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
   <h3>六维评分</h3>
+  <!-- 替换{{DIM_BAR_X}}时禁止用f-string！Python f-string会把{{}}转义为{}，导致花括号残留。
+       正确写法：c.replace('{{DIM_BAR_' + str(i) + '}}', 'width:70%') -->
   <div class="hb"><span class="hl">商业模式</span><div class="ht"><div class="hf c7" style="{{DIM_BAR_1}}">{{DIM_SCORE_1}}</div></div></div>
   <div class="hb"><span class="hl">护城河</span><div class="ht"><div class="hf c7" style="{{DIM_BAR_2}}">{{DIM_SCORE_2}}</div></div></div>
   <div class="hb"><span class="hl">管理层</span><div class="ht"><div class="hf c7" style="{{DIM_BAR_3}}">{{DIM_SCORE_3}}</div></div></div>
