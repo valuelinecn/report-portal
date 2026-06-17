@@ -154,6 +154,18 @@ def main():
     shutil.copy2(BLANK_HTML, html_path)
     print('  ✅ 模板已复制')
     
+    # 清理模板示例行（PE对比条示例：目标公司/同行A/同行B）
+    with open(html_path, 'r', encoding='utf-8') as __f:
+        __c = __f.read()
+    for __pat in ['目标公司', '同行A', '同行B']:
+        __idx = __c.find(f'<div class="hb"><span class="hl">{__pat}</span>')
+        if __idx >= 0:
+            __end = __c.find('</div>', __c.find('</div></div>', __idx) + 6) + 6
+            __c = __c[:__idx] + __c[__end:]
+    with open(html_path, 'w', encoding='utf-8') as __f:
+        __f.write(__c)
+    print('  ✅ 模板示例行已清理（目标公司/同行A/同行B）')
+    
     # 1.2 fetch财务数据
     fetch_script = os.path.expanduser('~/.hermes/skills/data-science/report-template-spec/scripts/fetch_financial_data.py')
     if os.path.exists(fetch_script):
