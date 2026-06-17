@@ -332,7 +332,14 @@ def main():
     if isinstance(ocf_25, float): ocf_25 = f'{ocf_25:.2f}'
     if isinstance(ocf_24, float): ocf_24 = f'{ocf_24:.2f}'
     if isinstance(ocf_23, float): ocf_23 = f'{ocf_23:.2f}'
-    cf_html = f'<h3>现金流 &amp; 资产负债</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>指标</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr><tr><td>经营现金流(亿)</td><td>{ocf_23}</td><td>{ocf_24}</td><td class="gold">{ocf_25}</td><td class="green">➡️</td></tr></table></div>'
+    # OCF趋势判断
+    ocf_24v = ocf_data.get(2024,0); ocf_25v = ocf_data.get(2025,0)
+    if isinstance(ocf_24v,(int,float)) and isinstance(ocf_25v,(int,float)) and ocf_24v and ocf_25v:
+        if ocf_25v > ocf_24v * 1.2: ocf_trend = '↗️'
+        elif ocf_25v < ocf_24v * 0.8: ocf_trend = '↘️'
+        else: ocf_trend = '➡️'
+    else: ocf_trend = '➡️'
+    cf_html = f'<h3>现金流 &amp; 资产负债</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>指标</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr><tr><td>经营现金流(亿)</td><td>{ocf_23}</td><td>{ocf_24}</td><td class="gold">{ocf_25}</td><td class="green">{ocf_trend}</td></tr></table></div>'
     idx_cf = c.find('<h3>现金流')
     if idx_cf >= 0:
         end_cf = c.find('<h3', idx_cf+10)
