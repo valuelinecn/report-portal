@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>赛力斯 · 完整投资研究报告</title>
+<title>{{COMPANY_NAME_CN}} · 完整投资研究报告</title>
 <style>
-.tbl td:first-child{word-break:break-word;max-width:100px}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
 h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
@@ -69,7 +68,6 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 .toc a:active{background:#1e3e3a;color:#4caf50}
 
 </style>
-<small style="color:#555;display:block;margin-top:20px;padding:10px;border-top:1px solid #333;font-size:11px;">📋 数据来源：年报PDF(2025/2024) + 东方财富 + 中金公司研报(2026.03.31) + 国盛证券研报(2026.04.02) | 三情景为自行综合判断</small>
 </head>
 <body>
 
@@ -85,9 +83,9 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 </div>
 
 <div id="s0" class="sc-wrap">
-  <div class="score-ring"><div class="score-inner"><div class="score-num">7.0</div><div class="score-label">/10</div></div></div>
-  <h1 style="margin-top:4px;">赛力斯 <span style="font-size:14px;color:#888;font-weight:400;">601127.SH</span></h1>
-  <div class="desc">赛力斯是华为智选车核心伙伴，问界品牌持续放量。2025年营收1650.54亿(+13.7%)净利59.57亿(+58.3%)。PE 20x偏合理偏低。华为生态+自研增程技术双轮驱动。</div>
+  <div class="score-ring"><div class="score-inner"><div class="score-num">{{SCORE}}</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">{{COMPANY_NAME_CN}} <span style="font-size:14px;color:#888;font-weight:400;">601127.SH</span></h1>
+  <div class="desc">{{RATING_DESC}}</div>
 </div>
 
 <div id="s-mcap" class="card">
@@ -109,7 +107,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     当前市值：<span class="mcap-v" id="mcapCurrent">--</span> 亿 ·
     历史最高：<span class="mcap-v" id="mcapHigh">--</span> 亿 ·
     历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
-    总股本：<span class="mcap-v" id="mcapShares">16.19</span> 亿股
+    总股本：<span class="mcap-v" id="mcapShares">17.4199</span> 亿股
   </div>
 </div>
 
@@ -117,7 +115,6 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h2>历年财务数据</h2>
   <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=同比下降</span> · <span style="color:#e74c3c">红色=负值/降幅>20%</span></div>
   <style>
-.tbl td:first-child{word-break:break-word;max-width:100px}
   .fin-table{width:100%;border-collapse:collapse;font-size:11px}
   .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
   .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
@@ -141,11 +138,11 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
  </style>
   <table class="fin-table">
 <thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
-<tr><td>每股营业收入(元)</td><td class="slight">101.95</td><td class="pos">89.67</td><td class="slight">22.14</td><td class="pos">21.07</td><td class="slight">10.33</td><td class="neg">8.83</td><td class="warn">11.20</td><td class="warn">12.50</td><td class="pos">13.55</td><td>10.00</td></tr>
+<tr><td>每股营业收入(元)</td><td class="warn">94.75</td><td class="pos">96.16</td><td class="slight">23.78</td><td class="pos">22.78</td><td class="slight">12.29</td><td class="neg">11.19</td><td class="warn">19.29</td><td class="pos">21.54</td><td class="pos">13.55</td><td>10.00</td></tr>
 <tr><td>每股经营现金流(元)</td><td class="slight">16.60</td><td class="pos">14.91</td><td class="pos">4.24</td><td class="neg">-0.78</td><td class="neg">-0.73</td><td class="pos">0.85</td><td class="neg">0.35</td><td class="slight">1.18</td><td class="warn">1.10</td><td>1.28</td></tr>
 <tr><td>每股净利润(元)</td><td class="warn">3.68</td><td class="pos">3.94</td><td class="neg">-1.63</td><td class="neg">-2.68</td><td class="neg">-1.38</td><td class="neg">-1.49</td><td class="neg">0.07</td><td class="neg">0.10</td><td class="slight">0.81</td><td>0.63</td></tr>
 <tr><td>每股净资产(元)</td><td class="pos">23.49</td><td class="slight">8.12</td><td class="warn">7.55</td><td class="pos">7.59</td><td class="pos">5.81</td><td class="neg">3.91</td><td class="slight">5.64</td><td class="slight">5.33</td><td class="slight">4.74</td><td>4.31</td></tr>
-<tr><td>总股本(亿股)</td><td class="slight">16.19</td><td class="slight">16.19</td><td class="slight">16.19</td><td class="slight">16.19</td><td class="slight">16.19</td><td class="slight">16.19</td><td class="slight">16.19</td><td class="slight">16.19</td><td class="slight">16.19</td><td>16.19</td></tr>
+<tr><td>总股本(亿股)</td><td class="slight">17.4199</td><td class="slight">15.0978</td><td class="slight">15.0739</td><td class="slight">14.9728</td><td class="slight">13.5993</td><td class="pos">12.7844</td><td class="slight">9.3995</td><td class="neg">9.3985</td><td class="slight">16.1900</td><td>16.1900</td></tr>
 <tr><td>营业收入(亿元)</td><td class="slight">1650.54</td><td class="pos">1451.76</td><td class="slight">358.42</td><td class="pos">341.05</td><td class="slight">167.18</td><td class="neg">143.02</td><td class="warn">181.32</td><td class="warn">202.40</td><td class="pos">219.34</td><td>161.92</td></tr>
 <tr><td>毛利率(%)</td><td class="slight">29.14</td><td class="pos">26.15</td><td class="warn">9.86</td><td class="pos">11.32</td><td class="warn">3.77</td><td class="neg">4.56</td><td class="neg">17.30</td><td class="slight">23.86</td><td class="slight">22.18</td><td>19.34</td></tr>
 <tr><td>净利润(亿元)</td><td class="slight">59.57</td><td class="pos">59.46</td><td class="neg">-24.50</td><td class="neg">-38.32</td><td class="neg">-18.24</td><td class="neg">-17.29</td><td class="neg">0.67</td><td class="neg">0.95</td><td class="pos">7.25</td><td>5.14</td></tr>
@@ -155,7 +152,6 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 </div>
 
 <style>
-.tbl td:first-child{word-break:break-word;max-width:100px}
 .mcap-btns{display:flex;gap:6px;margin:8px 0}
 .mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e3e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
 .mcap-btn:hover{border-color:#4caf50;color:#4caf50}
@@ -387,93 +383,93 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 
 <div id="s1" class="card"><h2>一、综合评价</h2>
   <div class="mg" style="margin-bottom:10px">
-    <div class="mi"><div class="mv" style="color:#4caf50">7.0</div><div class="ml">综合评级</div></div>
-    <div class="mi"><div class="mv" style="color:#f0c040">中</div><div class="ml">风险等级</div></div>
-    <div class="mi"><div class="mv" style="color:#4caf50">高</div><div class="ml">成长弹性</div></div>
-    <div class="mi"><div class="mv" style="color:#4caf50">23.53%</div><div class="ml">ROE</div></div>
+    <div class="mi"><div class="mv" style="color:{{CARD1_COLOR}}">{{CARD1_VAL}}</div><div class="ml">{{CARD1_LABEL}}</div></div>
+    <div class="mi"><div class="mv" style="color:{{CARD2_COLOR}}">{{CARD2_VAL}}</div><div class="ml">{{CARD2_LABEL}}</div></div>
+    <div class="mi"><div class="mv" style="color:{{CARD3_COLOR}}">{{CARD3_VAL}}</div><div class="ml">{{CARD3_LABEL}}</div></div>
+    <div class="mi"><div class="mv" style="color:{{CARD4_COLOR}}">{{CARD4_VAL}}</div><div class="ml">{{CARD4_LABEL}}</div></div>
   </div>
-  <div class="bq">赛力斯整体评分7.0/10。核心价值在华为智选车独家合作模式。2025年营收1650亿(+13.7%)净利60亿(+58.3%)，ROE 23.53%优秀。PE 20x/PB 5.5x/PS 0.72x偏低。核心亮点：华为生态+增程技术领先，核心风险：销售费用率14.7%偏高、华为依赖度大。</div>
+  <div class="bq">{{BQ_ANALYSIS}}</div>
   <table class="tbl" style="margin-top:10px">
     <tr><th style="width:100px">指标</th><th style="width:140px">内容</th><th style="width:40%">说明</th></tr>
-    <tr><td>三年预估空间</td><td>华为智选车独家合作伙伴</td><td>华为研发+制造+品牌三重壁垒</td></tr>
-    <tr><td>核心竞争力</td><td>华为技术背书+增程技术+智驾领先(ADS 4.0)</td><td>华为智选模式仅此一家</td></tr>
-    <tr><td>季度监控</td><td>问界月销/毛利率/研发投入/市占率</td><td>关注M9/M8爬坡</td></tr>
-    <tr><td>止损触发</td><td>PE 20x, PS 0.72x, PB 5.5x</td><td>PE在新能源车企中偏低</td></tr>
+    <tr><td>三年预估空间</td><td>{{LOGIC_1_CONTENT}}</td><td>{{LOGIC_1_NOTE}}</td></tr>
+    <tr><td>核心竞争力</td><td>{{LOGIC_2_CONTENT}}</td><td>{{LOGIC_2_NOTE}}</td></tr>
+    <tr><td>季度监控</td><td>{{LOGIC_3_CONTENT}}</td><td>{{LOGIC_3_NOTE}}</td></tr>
+    <tr><td>止损触发</td><td>{{LOGIC_4_CONTENT}}</td><td>{{LOGIC_4_NOTE}}</td></tr>
   </table></div>
 
 <div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
   <h3>核心定位</h3>
-  <div class="txt">赛力斯是华为智选车模式核心合作伙伴，运营问界品牌。2025年新能源汽车销量47.23万辆(+10.6%)，营收1650.54亿(+13.69%)。华为全栈赋能，赛力斯负责制造+供应链。</div>
+  <div class="txt">{{ANALYSIS_TEXT}}</div>
 
   <h3>分业务收入结构（2024 vs 2025）</h3>
   <!-- 使用hl/ht/hf样式（参考M2壁垒类型评估），不要用nm/bt/bf/vl -->
   <!-- 格式：<div class="hb"><span class="hl">业务名</span><div class="ht"><div class="hf" style="width:XX%;background:COLOR;">XX%</div></div></div> -->
-  
-  
-  
+  {{M1_HB_BAR_1}}
+  {{M1_HB_BAR_2}}
+  {{M1_HB_BAR_3}}
 
   <table class="tbl" style="margin-top:10px;">
     <tr><th>业务线</th><th>2024年收入</th><th>2025年收入</th><th>趋势</th></tr>
-<tr><td>新能源汽车</td><td>135.49亿</td><td>1556.11亿</td><td>+14.9%</td></tr><tr><td>传统燃油车</td><td>34.46亿</td><td>19.03亿</td><td>-44.8%</td></tr><tr><td>其他</td><td>20.69亿</td><td>21.04亿</td><td>+1.6%</td></tr>
+{{M1_REVENUE_ROWS}}
 </table>
-  <div class="desc" style="margin-top:6px;">新能源汽车占比从80%提升至97%，燃油车加速出清。问界M9(46万起)贡献主要利润增量。</div>
+  <div class="desc" style="margin-top:6px;">{{M1_ANNUAL_REMARK}}</div>
 
   <h3>商业模式评估</h3>
   <table class="tbl">
     <tr><th>维度</th><th>评估</th><th>证据</th></tr>
-    <tr><td>收入模式</td><td>8/10</td><td>华为独家合作+品牌溢价</td></tr>
-    <tr><td>盈利特征</td><td>8/10</td><td>增程+纯电双技术路线</td></tr>
-    <tr><td>竞争优势</td><td>9/10</td><td>华为智选模式+500+门店</td></tr>
-    <tr><td>客户结构</td><td>7/10</td><td>C端客户为主，华为品牌带动转化</td></tr>
+    <tr><td>收入模式</td><td>{{BIZ_SCORE_1}}</td><td>{{BIZ_EVIDENCE_1}}</td></tr>
+    <tr><td>盈利特征</td><td>{{BIZ_SCORE_2}}</td><td>{{BIZ_EVIDENCE_2}}</td></tr>
+    <tr><td>竞争优势</td><td>{{BIZ_SCORE_3}}</td><td>{{BIZ_EVIDENCE_3}}</td></tr>
+    <tr><td>客户结构</td><td>{{BIZ_SCORE_4}}</td><td>{{BIZ_EVIDENCE_4}}</td></tr>
 </table>
 
-  <div class="bq">赛力斯主营问界品牌新能源汽车(97%营收)，华为研发+品牌+渠道全栈赋能。M9/M7/M5覆盖30-60万区间。增程技术效率41%+行业领先。高研发投入(80亿/年)。</div></div>
+  <div class="bq">{{BQ_ANALYSIS}}</div></div>
 
 <div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
-  <div class="desc">华为智选+增程技术+问界品牌三重壁垒</div>
+  <div class="desc">{{MOAT_PHILOSOPHY}}</div>
 
   <h3>壁垒类型评估</h3>
-  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8</div></div></div>
-  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:90%;background:#4caf50">9</div></div></div>
-  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8</div></div></div>
-  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040">7</div></div></div>
-  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040">7</div></div></div>
-  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040">6</div></div></div>
+  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="{{MOAT_BAR_1}}">{{MOAT_SCORE_1}}</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="{{MOAT_BAR_2}}">{{MOAT_SCORE_2}}</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="{{MOAT_BAR_3}}">{{MOAT_SCORE_3}}</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="{{MOAT_BAR_4}}">{{MOAT_SCORE_4}}</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="{{MOAT_BAR_5}}">{{MOAT_SCORE_5}}</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="{{MOAT_BAR_6}}">{{MOAT_SCORE_6}}</div></div></div>
 
   <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
-    <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 7.5</span>
-    <span style="color:#888;font-size:12px;margin-left:6px;">较深厚</span>
+    <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 {{MOAT_TOTAL_SCORE}}</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">{{MOAT_LEVEL}}</span>
   </div>
 
   <h3>壁垒深度解析</h3>
   <div class="txt">
-    <b style="color:#4caf50;">客户粘性——华为智选车独家合作伙伴</b><br>
-    <span class="dot">·</span> 新能源车生产资质+华为智选车准入门槛高<br>
-    <span class="dot">·</span> 华为渠道议价力强，问界品牌溢价能力强<br>
-    <span class="dot">·</span> 前5客户集中度11.89%，面向C端分散<br><br>
+    <b style="color:#4caf50;">客户粘性——{{CORE_ADVANTAGE_LABEL}}</b><br>
+    <span class="dot">·</span> {{CERT_BARRIER}}<br>
+    <span class="dot">·</span> {{CUSTOMER_PRICING_POWER}}<br>
+    <span class="dot">·</span> {{CUSTOMER_CONCENTRATION_RISK}}<br><br>
     <b style="color:#f0c040;">规模壁垒——中等优势</b><br>
-    <span class="dot">·</span> 2025年新能源车销47.2万辆，高端SUV市占率~12%<br>
-    <span class="dot">·</span> 增程技术效率41%+行业领先<br>
-    <span class="dot">·</span> 规模效应：毛利率28.76%(+2.55pct)<br><br>
+    <span class="dot">·</span> {{MOAT_SCALE_NOTE}}<br>
+    <span class="dot">·</span> {{MOAT_POINT_2}}<br>
+    <span class="dot">·</span> {{COST_EFFECT}}<br><br>
     <b style="color:#f0c040;">技术壁垒——中等偏弱</b><br>
-    <span class="dot">·</span> 增程技术+智驾专利超3000项<br>
-    <span class="dot">·</span> 增程技术与理想同期领先，ADS 4.0国内第一梯队<br>
-    <span class="dot">·</span> 核心壁垒在华为智选车独家合作+问界品牌高端认知<br><br>
+    <span class="dot">·</span> {{MOAT_PATENT_NOTE}}<br>
+    <span class="dot">·</span> {{TECH_GAP_ANALYSIS}}<br>
+    <span class="dot">·</span> {{BARRIER_NOTE}}<br><br>
     <b style="color:#888;">垂直整合——薄弱</b><br>
-    <span class="dot">·</span> 华为研发团队+赛力斯制造基地+鸿蒙座舱<br>
-    <span class="dot">·</span> 核心部件外采，整车自研自产
+    <span class="dot">·</span> {{RESOURCE_NOTE}}<br>
+    <span class="dot">·</span> {{COST_OUTSOURCE_NOTE}}
   </div>
 
   <h3>护城河陷阱识别</h3>
   <div class="txt" style="color:#f44336;">
     <b>警惕信号：</b><br>
-    <span class="dot">·</span> 毛利率28.21%(+2.52pct)持续提升<br>
-    <span class="dot">·</span> 问界已建立高端认知，华为品牌背书不可复制<br>
-    <span class="dot">·</span> 高端SUV竞争加剧但品牌认知已形成<br>
-    <span class="dot">·</span> 若华为转向其他车企合作则核心壁垒削弱
+    <span class="dot">·</span> {{MARGIN_NOTE}}<br>
+    <span class="dot">·</span> {{BRAND_BARRIER_NOTE}}<br>
+    <span class="dot">·</span> {{PRICE_WAR_RISK}}<br>
+    <span class="dot">·</span> {{DISRUPTION_NOTE}}
   </div>
 
-  <div class="bq">核心护城河在华为智选车独家合作+问界品牌高端认知+增程技术领先，三重壁垒。壁垒评分7.5/10。最深的壁垒是华为生态绑定。</div>
+  <div class="bq">{{BQ_ANALYSIS}}</div>
 </div>
 
 <div id="s4" class="card"><h2>M3 管理层分析</h2>
@@ -481,18 +477,18 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>管理层基本信息</h3>
   <table class="tbl">
     <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
-    <tr><td>张正萍</td><td>董事长/总裁</td><td>资深</td><td>创始人张兴海之子，主导华为合作</td></tr>
-    <tr><td>梁其军</td><td>财务负责人</td><td>资深</td><td>资深财务管理背景</td></tr>
+    <tr><td>{{MGMT_NAME_1}}</td><td>{{MGMT_TITLE_1}}</td><td>{{MGMT_TENURE_1}}</td><td>{{MGMT_DESC_1}}</td></tr>
+    <tr><td>{{MGMT_NAME_2}}</td><td>{{MGMT_TITLE_2}}</td><td>{{MGMT_TENURE_2}}</td><td>{{MGMT_DESC_2}}</td></tr>
   </table>
-  <div class="txt" style="font-size:12px;">管理层背景详见管理层信息表。成功转型新能源，与华为开创智选车模式。进取型，敢投入敢合作，执行力强。民企，张氏家族控股。H股上市后治理更透明。</div>
+  <div class="txt" style="font-size:12px;">管理层背景详见管理层信息表。{{MGMT_EXPERIENCE}}。{{MGMT_STYLE_ANALYSIS}}。{{MGMT_GOVERNANCE}}。</div>
 
   <h3>管理层评分</h3>
-  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8</div></div></div>
-  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8</div></div></div>
-  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040">6</div></div></div>
-  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040">7</div></div></div>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="{{MGMT_BAR_1}}">{{MGMT_SCORE_1}}</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="{{MGMT_BAR_2}}">{{MGMT_SCORE_2}}</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="{{MGMT_BAR_3}}">{{MGMT_SCORE_3}}</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="{{MGMT_BAR_4}}">{{MGMT_SCORE_4}}</div></div></div>
 
-  <div class="bq">张正萍带领团队成功转型，与华为合作开创智选车模式。评分：战略8/10，执行力8/10，股东回报6/10，资本配置7/10。</div>
+  <div class="bq">{{BQ_ANALYSIS}}</div>
 </div>
 
 <div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
@@ -507,93 +503,83 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 <tr><th>费用项</th><th>2024年</th><th>2025年</th><th>趋势</th></tr>
 <tr>
 <td>研发费用</td>
-<td>55.86亿</td>
-<td>79.54亿</td>
-<td>↗️+42.4%</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
 <td>销售费用</td>
-<td>191.84亿</td>
-<td>241.94亿</td>
-<td>↗️+26.1%</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
 <td>管理费用</td>
-<td>35.47亿</td>
-<td>47.87亿</td>
-<td>↗️+35.0%</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
 <td>财务费用</td>
-<td>-2.95亿</td>
-<td>-4.20亿</td>
-<td>↘️利息收入增</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
   </table>
 
-  <div class="bq">财务评分5/10。营收1650.54亿(+13.7%)净利59.57亿(+58.3%)。毛利率28.21%(+2.52pct)提升。ROE 23.53%优秀。经营现金流58.63亿。</div></div>
+  <div class="bq">{{BQ_ANALYSIS}}</div></div>
 
 <div id="s6" class="card"><h2>M5 成本结构</h2>
 
   <h3>成本结构</h3>
-  <div class="txt">营业成本1169.54亿(+9.09%)占比营收70.9%。核心成本项：BOM~55%、加工制造~15%、研发摊销~10%、销售渠道~15%。毛利率28.21%持续提升。</div>
+  <div class="txt">{{COST_STRUCTURE_NOTE}}</div>
   <table class="tbl">
 <tr><th>成本项目</th><th>2024年</th><th class="gold">2025年</th><th>占比</th><th>趋势</th><th>说明</th></tr>
 <tr>
-<td>BOM(电池/电驱)</td>
-<td>~600亿</td>
-<td class="gold">~643亿</td>
-<td>~55%</td>
-<td>↗️+7%</td>
-<td>电池成本下降但用量增</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td class="gold">__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
-<td>加工制造</td>
-<td>~161亿</td>
-<td class="gold">~175亿</td>
-<td>~15%</td>
-<td>↗️+9%</td>
-<td>规模效应降本</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td class="gold">__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
-<td>研发摊销</td>
-<td>~107亿</td>
-<td class="gold">~117亿</td>
-<td>~10%</td>
-<td>↗️+9%</td>
-<td>持续高研发投入</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td class="gold">__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
-<td>销售渠道</td>
-<td>~144亿</td>
-<td class="gold">~175亿</td>
-<td>~15%</td>
-<td>↗️+22%</td>
-<td>广宣+服务费增</td>
-    </tr>
-<tr>
-<td>其他成本</td>
-<td>~60亿</td>
-<td class="gold">~59亿</td>
-<td>~5%</td>
-<td>➡️持平</td>
-<td>管理/行政开支</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td class="gold">__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
   </table>
-
-  <h3>产业链议价权</h3>
 
   <h3>产业链议价权</h3>
   <table class="tbl">
     <tr><th>维度</th><th>评估</th><th>证据</th></tr>
-    <tr><td>客户粘性</td><td>9</td><td>华为深度绑定</td></tr>
-    <tr><td>供应商议价力</td><td>5</td><td>电池/芯片集中度高</td></tr>
-    <tr><td>竞争格局</td><td>7</td><td>品牌认知已形成</td></tr>
-    <tr><td>潜在替代</td><td>6</td><td>新势力追赶</td></tr>
-    <tr><td>进入壁垒</td><td>8</td><td>技术壁垒高</td></tr>
+    <tr><td>客户粘性</td><td>{{CHAIN_SCORE_1}}</td><td>{{CHAIN_EVIDENCE_1}}</td></tr>
+    <tr><td>供应商议价力</td><td>{{CHAIN_SCORE_2}}</td><td>{{CHAIN_EVIDENCE_2}}</td></tr>
+    <tr><td>竞争格局</td><td>{{CHAIN_SCORE_3}}</td><td>{{CHAIN_EVIDENCE_3}}</td></tr>
+    <tr><td>潜在替代</td><td>{{CHAIN_SCORE_4}}</td><td>{{CHAIN_EVIDENCE_4}}</td></tr>
+    <tr><td>进入壁垒</td><td>{{CHAIN_SCORE_5}}</td><td>{{CHAIN_EVIDENCE_5}}</td></tr>
   </table>
 
-  <div class="bq">成本结构：BOM~55%、加工制造~15%、研发摊销~10%、销售渠道~15%。毛利率28.21%持续提升，M9高毛利车型贡献大。</div></div>
+  <div class="bq">{{BQ_ANALYSIS}}</div></div>
 
 <div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
 
@@ -602,229 +588,285 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 <tr><th>指标</th><th>2024年</th><th class="gold">2025年</th><th>正常化水平</th></tr>
 <tr>
 <td>经营现金流</td>
-<td>241.39亿</td>
-<td class="gold">268.75亿</td>
+<td>225.11亿</td>
+<td class="gold">289.17亿</td>
 <td>15-20亿</td>
     </tr>
 <tr>
 <td>CAPEX</td>
-<td>~30亿</td>
-<td>~42亿</td>
-<td>~40亿(正常化)</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
 <td>FCF</td>
-<td>~17亿</td>
-<td>~17亿</td>
-<td>~15-20亿</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
 <td>FCF/净利润</td>
-<td>>100%</td>
-<td>~30%</td>
-<td>研发高投入压制</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
   </table>
-  <div class="txt">经营现金流58.63亿(2025)。CAPEX~42亿(产能扩建+研发)，FCF~17亿。FCF/净利润~30%，研发高投入压制现金流。</div>
+  <div class="txt">{{FCF_ANALYSIS}}</div>
 
-  <h3>估值指标</h3><table class="tbl"><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr><tr><td>PE(TTM)</td><td>17.6x</td><td>15-35x</td><td>偏低</td></tr><tr><td>PB</td><td>2.76x</td><td>3.5-8.0x</td><td>偏低</td></tr><tr><td>PS(TTM)</td><td>0.64x</td><td>0.5-2.0x</td><td>偏低</td></tr></table><h3>PE(TTM)对比 · 新能源车企</h3>
-  
+  <h3>估值指标</h3><table class="tbl"><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr><tr><td>PE(TTM)</td><td>17.6x</td><td>—</td><td>—</td></tr><tr><td>PB</td><td>2.76x</td><td>—</td><td>—</td></tr><tr><td>PS(TTM)</td><td>0.68x</td><td>—</td><td>—</td></tr></table><h3>{{PE_COMPARISON_TITLE}}</h3>
+  <!-- PE比较条使用hl/ht/hf样式（匹配M2壁垒），参考下方格式） -->
   </div>
   </div>
   </div>
-<div class="hb"><span class="hl">赛力斯</span><div class="ht"><div class="hf" style="width:22%;background:#4caf50;">PE 20x</div></div></div>
-<div class="hb"><span class="hl">比亚迪</span><div class="ht"><div class="hf" style="width:25%;background:#4caf50;">PE 22x</div></div></div>
-<div class="hb"><span class="hl">理想汽车</span><div class="ht"><div class="hf" style="width:40%;background:#f0c040;">PE 35x</div></div></div>
-<div class="hb"><span class="hl">小鹏汽车</span><div class="ht"><div class="hf" style="width:80%;background:#ff9800;">PE 70x(亏损)</div></div></div>
-  <div class="desc" style="margin-top:6px;">📌 PE 20x在新能源车企中偏低(行业30-50x)。PS 0.72x极低(行业1.5-3x)。PB 5.5x合理。【中金目标价≤120元，国盛买入评级】</div>
+{{PE_COMPARISON_BARS}}
+  <div class="desc" style="margin-top:6px;">📌 {{PE_ANALYSIS}}</div>
 
-  <div class="bq">PE 20x偏低(行业30-50x)。归母PE 20x/扣非PE 20x，PB 5.5x合理(3.5-8.0x)，PS 0.72x偏低(0.5-2.0x)。三个口径指向估值偏低。</div></div>
+  <div class="bq">{{BQ_ANALYSIS}}</div></div>
 
 <div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
 
   <h3>行业空间</h3>
   <table class="tbl">
-<tr><th>市场</th><th>规模</th><th>增速</th><th>赛力斯出货/份额</th><th>市占率</th></tr>
-<tr><td>中国新能源车</td><td>1650万辆</td><td>+15%</td><td>赛力斯47.2万辆</td><td>~2.9%</td></tr>
-<tr><td>高端SUV(30万+)</td><td>~120万辆</td><td>+20%</td><td>问界~30万辆</td><td>~25%</td></tr>
-<tr><td>增程车市场</td><td>~80万辆</td><td>+30%</td><td>赛力斯~35万辆</td><td>~44%</td></tr>
+<tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>{{COMPANY_NAME_CN}}出货/份额</th><th>市占率</th></tr>
+<tr>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+    </tr>
+<tr>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+    </tr>
+<tr>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+    </tr>
   </table>
 
   <h3>竞争态势</h3>
   <table class="tbl">
     <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
-    <tr><td>理想汽车</td><td>增程SUV</td><td>增程赛道直接竞品，L系列月销4万+</td></tr>
-    <tr><td>比亚迪</td><td>新能源全品类</td><td>规模最大但高端品牌认知不如问界</td></tr>
-    <tr><td>鸿蒙智行</td><td>华为生态内</td><td>问界是华为深度最深的产品</td></tr>
-    <tr><td>赛力斯核心优势：</td><td>问界品牌新能源汽车为核心(97%营收)，M9为利润主力</td><td>华为深度绑定+问界品牌+增程技术领先，赛力斯华为全栈赋能+增程效率领先+高端定位(均价40万+)</td></tr>
+    <tr><td>{{COMPETITOR_1}}</td><td>{{COMPETITOR_1_SEGMENT}}</td><td>{{COMPETITOR_1_ANALYSIS}}</td></tr>
+    <tr><td>{{COMPETITOR_2}}</td><td>{{COMPETITOR_2_SEGMENT}}</td><td>{{COMPETITOR_2_ANALYSIS}}</td></tr>
+    <tr><td>{{COMPETITOR_3}}</td><td>{{COMPETITOR_3_SEGMENT}}</td><td>{{COMPETITOR_3_ANALYSIS}}</td></tr>
+    <tr><td>{{COMPETITOR_4}}</td><td>{{CORE_BUSINESS}}</td><td>{{COMPETITOR_ADVANTAGE}}，{{COMPANY_NAME_CN}}{{DIFF_STRATEGY}}</td></tr>
   </table>
 
   <h3>行业终局思考</h3>
-  <div class="txt">中国新能源车渗透率~55%继续提升，高端SUV市场100万辆+持续扩容。问界M9在50万+细分市场已确立领先地位。行业终局向头部集中。</div>
+  <div class="txt">{{ENDGAME_THINKING}}</div>
 
-  <div class="bq">新能源渗透率~55%持续提升，高端SUV市场100万辆+。问界M9在50万+市场领先。行业终局向头部集中。</div></div>
+  <div class="bq">{{BQ_ANALYSIS}}</div></div>
 
 <div id="s9" class="card"><h2>M8 三年资本计划 & 催化剂</h2>
 
   <h3>催化剂时间表</h3>
   <table class="tbl">
-<tr><th>时间</th><th>事件</th><th>预期影响</th></tr>
-<tr><td>2026Q4</td><td>问界M8上市爬坡</td><td class="green">30-40万市场扩容</td></tr>
-<tr><td>2027H1</td><td>ADS 5.0发布</td><td class="green">保持智驾领先</td></tr>
-<tr><td>2027</td><td>海外市场拓展</td><td class="green">增程技术出海</td></tr>
-<tr><td>2028</td><td>固态电池量产</td><td>技术迭代提升产品力</td></tr>
+<tr><th style="width:80px">时间</th><th style="width:30%">事件</th><th style="width:40%">预期影响</th></tr>
+<tr>
+<td>2026-2027</td>
+<td>__TODO__</td>
+<td class="green">__TODO__</td>
+    </tr>
+<tr>
+<td>2027</td>
+<td>__TODO__</td>
+<td class="green">__TODO__</td>
+    </tr>
+<tr>
+<td>2027-2028</td>
+<td>__TODO__</td>
+<td class="green">__TODO__</td>
+    </tr>
+<tr>
+<td>2027-2028</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+    </tr>
   </table>
 
   <h3>三年业绩预测</h3>
   <table class="tbl">
-<tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>假设</th></tr>
+<tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>毛利率趋势</th></tr>
 <tr>
 <td class="green">乐观</td>
-<td>净利80亿</td>
-<td>净利110亿</td>
-<td>净利150亿</td>
-<td>毛利率回升至32%+</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
 <td class="gold">基准</td>
-<td>净利65亿</td>
-<td>净利85亿</td>
-<td>净利100亿</td>
-<td>毛利率维持28-29%</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
 <td class="red">悲观</td>
-<td>净利45亿</td>
-<td>净利55亿</td>
-<td>净利65亿</td>
-<td>毛利率降至25%</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
     </tr>
   </table>
 
-  <div class="bq">三大催化剂：问界M8爬坡+ADS 5.0+海外拓展。三情景：45-120元，基准72元。</div></div>
+  <div class="bq">{{BQ_ANALYSIS}}</div></div>
 
 <div id="s10" class="card"><h2>M9 预期差 & 市场共识</h2>
 
   <table class="tbl">
 <tr><th style="width:60px">议题</th><th style="width:100px">市场共识</th><th style="width:40%">独立判断</th><th style="width:50px">方向</th></tr>
 <tr>
-<td>华为合作</td>
-<td style="color:#888;">合作不可持续</td>
-<td style="color:#4caf50;">已形成深度绑定</td>
-<td>看好</td>
+<td>{{RISK_ITEM_1}}</td>
+<td style="color:#888;">__TODO__</td>
+<td style="color:#4caf50;">__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
-<td>销售费用率</td>
-<td style="color:#888;">14.7%过高</td>
-<td style="color:#888;">规模效应将下降</td>
-<td>中性</td>
+<td>{{RISK_ITEM_2}}</td>
+<td style="color:#888;">__TODO__</td>
+<td style="color:#888;">__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
-<td>行业竞争</td>
-<td style="color:#888;">竞争加剧</td>
-<td style="color:#888;">先发优势明显</td>
-<td>中性</td>
+<td>{{RISK_ITEM_3}}</td>
+<td style="color:#888;">__TODO__</td>
+<td style="color:#888;">__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
-<td>估值偏低</td>
-<td style="color:#888;">PE 20x合理</td>
-<td style="color:#4caf50;">PS 0.72x过低</td>
-<td>看好</td>
+<td>{{RISK_ITEM_2}}</td>
+<td style="color:#888;">__TODO__</td>
+<td style="color:#4caf50;">__TODO__</td>
+<td>__TODO__</td>
     </tr>
 <tr>
-<td>海外市场</td>
-<td style="color:#888;">出海前景不明</td>
-<td style="color:#4caf50;">增程技术有潜力</td>
-<td>看好</td>
+<td>{{RISK_ITEM_3}}</td>
+<td style="color:#888;">__TODO__</td>
+<td style="color:#4caf50;">__TODO__</td>
+<td>__TODO__</td>
     </tr>
   </table>
 
-  <div class="bq">市场可能低估：华为合作已深度绑定；PS 0.72x反映过度悲观；问界品牌价值被低估。</div></div>
+  <div class="bq">{{BQ_ANALYSIS}}</div></div>
 
 <div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
 
   <h3>风险类型</h3>
   <table class="tbl">
-<tr><th>风险项</th><th>描述</th><th>影响</th><th>预警信号</th></tr>
-<tr><td>华为依赖</td><td>核心技术和品牌依赖华为</td><td>高</td><td>华为合作动态</td></tr>
-<tr><td>费用率过高</td><td>销售费用率14.7%偏高</td><td>中</td><td>季度费用率趋势</td></tr>
-<tr><td>竞争加剧</td><td>高端SUV竞品增多</td><td>中</td><td>竞品月销变化</td></tr>
-<tr><td>研发回报</td><td>研发80亿/年回报周期长</td><td>中</td><td>新车型上市节奏</td></tr>
-<tr><td>宏观经济</td><td>消费降级影响高端需求</td><td>低</td><td>月交付量趋势</td></tr>
+<tr><th style="width:80px">风险类型</th><th>描述</th><th style="width:50px">概率</th><th style="width:40%">预警信号</th></tr>
+<tr>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+    </tr>
+<tr>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+    </tr>
+<tr>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+    </tr>
+<tr>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+    </tr>
+<tr>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+<td>__TODO__</td>
+    </tr>
   </table>
 
-  <h3>敏感性分析</h3><table class="tbl"><tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr><tr><td>营收下降10%</td><td>-165亿</td><td>-15%</td></tr><tr><td>毛利率下降3pct</td><td>-49.5亿</td><td>-12%</td></tr><tr><td>费用率上升</td><td>-20亿</td><td>-8%</td></tr><tr><td>行业下行周期</td><td>-60亿</td><td>-25%</td></tr><tr><td>竞争加剧</td><td>-30亿</td><td>-15%</td></tr></table><h3>三情景分析</h3>
+  <h3>敏感性分析</h3><table class="tbl"><tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr><tr><td>营收下降10%</td><td>—</td><td>—</td></tr><tr><td>毛利率下降3pct</td><td>—</td><td>—</td></tr><tr><td>费用率上升</td><td>—</td><td>—</td></tr><tr><td>行业下行周期</td><td>—</td><td>—</td></tr><tr><td>竞争加剧</td><td>—</td><td>—</td></tr></table><h3>三情景分析</h3>
   <div class="scn">
-    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">~120元</div><div class="dt">+85%<br>M8+M9持续放量+海外突破</div></div>
-    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">72元</div><div class="dt">~+11%<br>问界稳健增长+毛利率维持28%+</div></div>
-    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">~45元</div><div class="dt">-31%<br>华为合作生变+价格战加剧</div></div>
+    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">{{OPTIMISTIC_PRICE}}</div><div class="dt">{{OPTIMISTIC_RETURN}}<br>{{OPTIMISTIC_SCENARIO}}</div></div>
+    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">{{NEUTRAL_PRICE}}</div><div class="dt">{{NEUTRAL_RETURN}}<br>{{NEUTRAL_SCENARIO}}</div></div>
+    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">{{PESS_PRICE}}</div><div class="dt">{{PESS_RETURN}}<br>{{PESS_SCENARIO}}</div></div>
   </div>
 
-  <h3>避雷清单</h3><table class="tbl"><tr><th>检查项</th><th>结果</th></tr><tr><td>是否存在商誉减值风险</td><td>商誉~8亿(占总资产~1%)风险可控</td></tr><tr><td>大股东是否持续减持</td><td>张氏家族控股，管理层持股稳定</td></tr><tr><td>财务造假信号</td><td>经营现金流58.63亿为正，审计标准无保留</td></tr><tr><td>现金流是否持续为负</td><td>经营现金流58.63亿(2025)持续为正</td></tr><tr><td>是否有未决诉讼</td><td>年报未披露重大未决诉讼</td></tr></table>
+  <h3>避雷清单</h3><table class="tbl"><tr><th>检查项</th><th>结果</th></tr><tr><td>是否存在商誉减值风险</td><td>—</td></tr><tr><td>大股东是否持续减持</td><td>—</td></tr><tr><td>财务造假信号</td><td>—</td></tr><tr><td>现金流是否持续为负</td><td>—</td></tr><tr><td>是否有未决诉讼</td><td>—</td></tr></table>
   <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
-    <span style="color:#4caf50;">✅ 财务风险可控。货币资金280亿充裕，有息负债率~25%。销售费用率14.7%过高、华为合作依赖度、高端竞争加剧</span>
+    <span style="color:#4caf50;">✅ {{FINANCIAL_CONTROLLABLE}}{{CORE_RISK_FOCUS}}</span>
   </div>
 
   <h3>清算价值</h3>
   <table class="tbl">
     <tr><th>资产项</th><th>账面价值</th><th>清算价值</th></tr>
-    <tr><td>货币资金</td><td>280亿</td><td class="gold">~280亿</td></tr>
-    <tr><td>应收账款</td><td>120亿</td><td>~96亿</td></tr>
-    <tr><td>存货</td><td>150亿</td><td>~105亿</td></tr>
-    <tr><td>固定资产</td><td>180亿</td><td>~126亿</td></tr>
-    <tr><td class="gold">合计</td><td>730亿</td><td>~607亿</td></tr>
+    <tr><td>{{LIQ_ASSET_1}}</td><td>{{LIQ_BOOK_1}}</td><td class="gold">{{LIQ_VAL_1}}</td></tr>
+    <tr><td>{{LIQ_ASSET_2}}</td><td>{{LIQ_BOOK_2}}</td><td>{{LIQ_VAL_2}}</td></tr>
+    <tr><td>{{LIQ_ASSET_3}}</td><td>{{LIQ_BOOK_3}}</td><td>{{LIQ_VAL_3}}</td></tr>
+    <tr><td>{{LIQ_ASSET_4}}</td><td>{{LIQ_BOOK_4}}</td><td>{{LIQ_VAL_4}}</td></tr>
+    <tr><td class="gold">合计</td><td>{{LIQ_TOTAL_BOOK}}</td><td>{{LIQ_TOTAL_VAL}}</td></tr>
   </table>
-  <div class="txt">清算价值约607亿(账面730亿)，折合每股约37.5元(总股本16.19亿)。</div>
+  <div class="txt">{{LIQUIDATION_NOTE}}</div>
 
-  <div class="bq">核心风险：华为依赖度高、销售费用率14.7%过高、高端竞争加剧、研发80亿/年回报周期长。避雷全部通过。</div></div>
+  <div class="bq">{{BQ_ANALYSIS}}</div></div>
 
 <div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
   <h3>六维评分</h3>
-  <!-- 替换width:80%时禁止用f-string！Python f-string会把{{}}转义为{}，导致花括号残留。
+  <!-- 替换{{DIM_BAR_X}}时禁止用f-string！Python f-string会把{{}}转义为{}，导致花括号残留。
        正确写法：c.replace('{{DIM_BAR_' + str(i) + '}}', 'width:70%') -->
-  <div class="hb"><span class="hl">商业模式</span><div class="ht"><div class="hf c7" style="width:80%">8</div></div></div>
-  <div class="hb"><span class="hl">护城河</span><div class="ht"><div class="hf c7" style="width:70%">7</div></div></div>
-  <div class="hb"><span class="hl">管理层</span><div class="ht"><div class="hf c7" style="width:70%">7</div></div></div>
-  <div class="hb"><span class="hl">财务健康</span><div class="ht"><div class="hf c6" style="width:50%">5</div></div></div>
-  <div class="hb"><span class="hl">估值</span><div class="ht"><div class="hf c6" style="width:70%">7</div></div></div>
-  <div class="hb"><span class="hl">成长性</span><div class="ht"><div class="hf c7" style="width:80%">8</div></div></div>
+  <div class="hb"><span class="hl">商业模式</span><div class="ht"><div class="hf c7" style="{{DIM_BAR_1}}">{{DIM_SCORE_1}}</div></div></div>
+  <div class="hb"><span class="hl">护城河</span><div class="ht"><div class="hf c7" style="{{DIM_BAR_2}}">{{DIM_SCORE_2}}</div></div></div>
+  <div class="hb"><span class="hl">管理层</span><div class="ht"><div class="hf c7" style="{{DIM_BAR_3}}">{{DIM_SCORE_3}}</div></div></div>
+  <div class="hb"><span class="hl">财务健康</span><div class="ht"><div class="hf c6" style="{{DIM_BAR_4}}">{{DIM_SCORE_4}}</div></div></div>
+  <div class="hb"><span class="hl">估值</span><div class="ht"><div class="hf c6" style="{{DIM_BAR_5}}">{{DIM_SCORE_5}}</div></div></div>
+  <div class="hb"><span class="hl">成长性</span><div class="ht"><div class="hf c7" style="{{DIM_BAR_6}}">{{DIM_SCORE_6}}</div></div></div>
   <h3>核心亮点</h3>
-  <div class="txt"><span class="dot">●</span><b>华为生态深度绑定</b>华为智选车独家合作伙伴，智驾/座舱/品牌全栈赋能</div>
-  <div class="txt"><span class="dot">●</span><b>业绩高速增长</b>营收1650亿(+13.7%)净利60亿(+58.3%)</div>
-  <div class="txt"><span class="dot">●</span><b>估值安全边际</b>PE 20x/PS 0.72x在新能源车企中偏低</div>
+  <div class="txt"><span class="dot">●</span><b>{{HIGHLIGHT_1_TITLE}}</b>{{HIGHLIGHT_1_DESC}}</div>
+  <div class="txt"><span class="dot">●</span><b>{{HIGHLIGHT_2_TITLE}}</b>{{HIGHLIGHT_2_DESC}}</div>
+  <div class="txt"><span class="dot">●</span><b>{{HIGHLIGHT_3_TITLE}}</b>{{HIGHLIGHT_3_DESC}}</div>
   <h3>核心风险</h3>
-  <div class="txt"><span class="dot">●</span><b>华为依赖：</b>净利率3.61%偏低，ROE 23.53%优秀</div>
-  <div class="txt"><span class="dot">●</span><b>费用率过高</b>销售费用率14.7%在行业中偏高</div>
-  <div class="txt"><span class="dot">●</span><b>竞争加剧：</b>负债率~55%合理，H股上市后财务更健康</div>
+  <div class="txt"><span class="dot">●</span><b>{{RISK_TITLE_1}}：</b>{{NET_MARGIN_WEAK}}</div>
+  <div class="txt"><span class="dot">●</span><b>{{RISK_2_TITLE}}</b>{{RISK_2_DESC}}</div>
+  <div class="txt"><span class="dot">●</span><b>{{RISK_TITLE_3}}：</b>{{DEBT_RATIO_NOTE}}</div>
   <h3>价值投资理念应用</h3>
   <table class="tbl">
     <tr><th style="width:50px">维度</th><th style="width:100px">代表人物</th><th style="width:40%">应用分析</th></tr>
-    <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>{赛力斯是"好生意"——华为品牌+问界高端定位+增程技术，ROE 23.53%优秀。}</td></tr>
-    <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>{华为智选车模式差异化极强，问界已建立高端品牌认知。}</td></tr>
-    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>{管理层进取型，成功从燃油车转型新能源，执行力强。}</td></tr>
-    <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>{PE 20x/PB 5.5x/PS 0.72x偏低，安全边际充足。}</td></tr>
-    <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>{成本管控有改善空间(毛利率+2.52pct)，规模效应将显现。}</td></tr>
-    <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>{逆向估值：市场过度关注华为依赖风险，低估先发优势。}</td></tr>
-    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>{成长空间：新能源渗透率55%→80%，海外市场增程技术出海。}</td></tr>
-    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>{催化剂：问界M8爬坡+ADS 5.0+海外拓展。}</td></tr>
-    <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>{预期差：市场认为华为合作不可持续，实际深度绑定。}</td></tr>
-    <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>{反脆弱性一般：过度依赖华为是最大风险。}</td></tr>
-    <tr><td>M11</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>PB 5.5x合理，PS 0.72x历史低位，下行空间有限。</td></tr>
+    <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>{{M1_ANALYSIS}}</td></tr>
+    <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>{{M2_ANALYSIS}}</td></tr>
+    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>{{M3_ANALYSIS}}</td></tr>
+    <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>{{M4_ANALYSIS}}</td></tr>
+    <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>{{M5_ANALYSIS}}</td></tr>
+    <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>{{M6_ANALYSIS}}</td></tr>
+    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>{{M7_ANALYSIS}}</td></tr>
+    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>{{M8_ANALYSIS}}</td></tr>
+    <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>{{M9_ANALYSIS}}</td></tr>
+    <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>{{M10_ANALYSIS}}</td></tr>
+    <tr><td>M11</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>{{M11_SAFETY_MARGIN}}</td></tr>
   </table>
   <div class="bq" style="margin-top:12px">
-    <b>最终结论：</b>赛力斯是华为智选车核心合作伙伴，运营问界品牌(AITO)。2025年新能源汽车销量47.23万辆(+10.6%)，营收1650.54亿(+13.69%)，净利59.57亿(+58.3%)。华为在研发/品牌/渠道全栈赋能。。赛力斯核心价值在于华为智选车独家合作模式。2025年营收1650亿净利60亿，ROE 23.53%优秀。PE 20x偏低。
+    <b>最终结论：</b>{{COMPANY_DESC_LONG}}。{{INVESTMENT_THESIS}}
   </div></div>
 
 <div id="s13" class="card">
   <h2>附录</h2>
-  <div class="txt"><span class="dot">●</span>数据来源：2025年报 + fin-table API</div>
+  <div class="txt"><span class="dot">●</span>数据来源：{{DATA_SOURCE}}</div>
   <div class="txt"><span class="dot">●</span>行业对比数据取自各公司2025年报/2026Q1季报，市场数据截至2026年6月12日。</div>
   <div class="txt"><span class="dot">●</span>部分业务拆分数据为估算值，以公司年报为准。</div>
   <div class="txt"><span class="dot">●</span>DCF估值采用简化模型，仅供内部参考，不构成投资建议。</div>
   <div class="footer">
     ⚠️ 声明：本内容仅供理论学习和研究练习使用，不构成投资建议，不能作为投资依据。股市有风险，投资需谨慎。<br>
-    2026.06.17 | 数据截止：2026-06-12<br>
-    赛力斯股份有限公司 · 601127.SH..SH
+    {{REPORT_DATE}} | 数据截止：2026-06-12<br>
+    {{COMPANY_NAME_CN}}股份有限公司 · 601127.SH..SH
   </div>
 </div>
 
