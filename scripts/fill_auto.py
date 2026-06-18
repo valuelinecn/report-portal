@@ -204,12 +204,6 @@ def main():
         price = 0.0
         print(f'  ⚠️ 股价获取失败，设为0')
     
-    # 1.5 K线
-    gen_kline = os.path.join(PORTAL_DIR, 'scripts', 'gen_kline.py')
-    if os.path.exists(gen_kline):
-        out, _ = run(f'cd {PORTAL_DIR} && python3 {gen_kline} {full_code}', 120)
-        print(f'  ✅ K线已生成')
-    
     # ===== Step 2: 读取财务数据 =====
     print('\n--- Step 2: 读取fin-table数据 ---')
     fin_raw = extract_fin_table(html_path)
@@ -231,6 +225,29 @@ def main():
     print(f'  营收2025: {rev.get(2025, "?")}亿')
     print(f'  净利2025: {np_data.get(2025, "?")}亿')
     print(f'  ROE 2025: {roe_data.get(2025, "?")}%')
+    
+    # ===== Step 2.5: K线（需用shares值做输入） =====
+    gen_kline = os.path.join(PORTAL_DIR, 'scripts', 'gen_kline.py')
+    if os.path.exists(gen_kline):
+        shares_input = f'{shares:.2f}' if shares else ''
+        if shares_input:
+            out, err = run(f'cd {PORTAL_DIR} && echo "{shares_input}" | python3 {gen_kline} {full_code}', 120)
+        else:
+            out, err = run(f'cd {PORTAL_DIR} && python3 {gen_kline} {full_code}', 120)
+        kline_files = [f'{code}_{p}.json' for p in ['day','week','month','year']]
+        missing = [f for f in kline_files if not os.path.exists(os.path.join(PORTAL_DIR, 'kline', f))]
+        if missing:
+            print(f'  ❌ K线文件缺失: {missing}')
+            print(f'  尝试用已知总股本重试...')
+            if shares_input:
+                out2, err2 = run(f'cd {PORTAL_DIR} && echo "{shares_input}" | python3 {gen_kline} {full_code}', 120)
+            else:
+                out2, err2 = run(f'cd {PORTAL_DIR} && python3 {gen_kline} {full_code}', 120)
+            missing2 = [f for f in kline_files if not os.path.exists(os.path.join(PORTAL_DIR, 'kline', f))]
+            if missing2:
+                print(f'  ❌ K线重试仍失败: {missing2}，请检查 gen_kline.py')
+                sys.exit(1)
+        print(f'  ✅ K线已生成')
     
     # ===== Step 3: 读报告HTML =====
     with open(html_path, 'r', encoding='utf-8') as f:
@@ -263,37 +280,9 @@ def main():
     # ===== Step 5: 构造 construct 类内容 =====
     print('\n--- Step 4: 构造construct内容 ---')
     
-    # 5.1 M1年度财务摘要行（含YoY自动计算）
+    # 5.1 M1年度财务摘要行 — 已从模板删除（2026-06-18），保留数据用于其他计算
     years_order = [2021, 2022, 2023, 2024, 2025]
-    annual_rows = ''
-    for i, yr in enumerate(years_order):
-        cls = ' class="gold"' if yr == 2025 else ''
-        rv = rev.get(yr, '—')
-        np_v = np_data.get(yr, '—')
-        gr = gross_data.get(yr, '—')
-        nr = npr_data.get(yr, '—')
-        if isinstance(rv, float): rv = f'{rv:.2f}'
-        if isinstance(np_v, float): np_v = f'{np_v:.2f}'
-        if isinstance(gr, float): gr = f'{gr:.2f}'
-        if isinstance(nr, float): nr = f'{nr:.2f}'
-        # YoY计算
-        if i == 0:
-            yoy = '—'
-            yoy_cls = ''
-        else:
-            prev_rev = rev.get(years_order[i-1], None)
-            curr_rev = rev.get(yr, None)
-            if prev_rev and curr_rev and isinstance(prev_rev, (int,float)) and isinstance(curr_rev, (int,float)):
-                yoy_val = (curr_rev - prev_rev) / prev_rev * 100
-                yoy = f'{yoy_val:+.1f}%'
-                yoy_cls = ' class="gold"' if yoy_val > 0 else ' class="red"'
-            else:
-                yoy = '—'
-                yoy_cls = ''
-        annual_rows += f'<tr><td>{yr}</td><td{cls}>{rv}</td><td{yoy_cls}>{yoy}</td><td{cls}>{np_v}</td><td{cls}>{nr}%</td><td{cls}>{gr}%</td></tr>\n'
-    
-    c = c.replace('{{M1_ANNUAL_ROWS}}', annual_rows)
-    print('  ✅ M1年度摘要行已构造')
+    print(f'  ✅ M1年度数据保留（模板不再使用年度财务摘要表）')
     
     # 5.2 M1分业务水平条（保留{{}}供手动填写）
     # 这些保持原样，fill_manual.py会识别
@@ -305,7 +294,6 @@ def main():
     # 6.1 核心财务指标
     m4_rows = ''
     for yr in years_order:
-        cls = ' class="gold"' if yr == 2025 else ''
         rv = rev.get(yr, '—'); np_v = np_data.get(yr, '—')
         gr = gross_data.get(yr, '—'); nr = npr_data.get(yr, '—')
         roe_v = roe_data.get(yr, '—')
@@ -314,7 +302,7 @@ def main():
         if isinstance(gr, float): gr = f'{gr:.2f}'
         if isinstance(nr, float): nr = f'{nr:.2f}'
         if isinstance(roe_v, float): roe_v = f'{roe_v:.2f}'
-        m4_rows += f'<tr><td>{yr}</td><td{cls}>{rv}</td><td{cls}>{np_v}</td><td>{gr}%</td><td{cls}>{nr}%</td><td{cls}>{roe_v}%</td><td>{trend_icon(yr, np_data, rev, years_order)}</td></tr>\n'
+        m4_rows += f'<tr><td>{yr}</td><td>{rv}</td><td>{np_v}</td><td>{gr}%</td><td>{nr}%</td><td>{roe_v}%</td><td>{trend_icon(yr, np_data, rev, years_order)}</td></tr>\n'
     
     m4_html = f'<h3>核心财务指标</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>年份</th><th>营收(亿)</th><th>净利(亿)</th><th>毛利率</th><th>净利率</th><th>ROE</th><th>趋势</th></tr>{m4_rows}</table></div>'
     
@@ -335,11 +323,11 @@ def main():
     # OCF趋势判断
     ocf_24v = ocf_data.get(2024,0); ocf_25v = ocf_data.get(2025,0)
     if isinstance(ocf_24v,(int,float)) and isinstance(ocf_25v,(int,float)) and ocf_24v and ocf_25v:
-        if ocf_25v > ocf_24v * 1.2: ocf_trend = '↗️'
-        elif ocf_25v < ocf_24v * 0.8: ocf_trend = '↘️'
+        if ocf_25v > ocf_24v: ocf_trend = '↗️'
+        elif ocf_25v < ocf_24v: ocf_trend = '↘️'
         else: ocf_trend = '➡️'
     else: ocf_trend = '➡️'
-    cf_html = f'<h3>现金流 &amp; 资产负债</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>指标</th><th>2023</th><th>2024</th><th class="gold">2025</th><th>趋势</th></tr><tr><td>经营现金流(亿)</td><td>{ocf_23}</td><td>{ocf_24}</td><td class="gold">{ocf_25}</td><td class="green">{ocf_trend}</td></tr></table></div>'
+    cf_html = f'<h3>现金流 &amp; 资产负债</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>指标</th><th>2023</th><th>2024</th><th>2025</th><th>趋势</th></tr><tr><td>经营现金流(亿)</td><td>{ocf_23}</td><td>{ocf_24}</td><td>{ocf_25}</td><td class="green">{ocf_trend}</td></tr></table></div>'
     idx_cf = c.find('<h3>现金流')
     if idx_cf >= 0:
         end_cf = c.find('<h3', idx_cf+10)
@@ -354,7 +342,7 @@ def main():
     pe_str = f'{round(price/eps_ttm,1)}x' if price and eps_ttm and eps_ttm > 0 else '亏损'
     pb_str = f'{round(price/bps_v,2)}x' if price and bps_v and bps_v > 0 else '—'
     ps_str = f'{round(price/revps_v,2)}x' if price and revps_v and revps_v > 0 else '—'
-    val_html = f'<h3>估值指标</h3><table class="tbl"><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr><tr><td>PE(TTM)</td><td class="gold">{pe_str}</td><td>—</td><td>—</td></tr><tr><td>PB</td><td>{pb_str}</td><td>—</td><td>—</td></tr><tr><td>PS(TTM)</td><td>{ps_str}</td><td>—</td><td>—</td></tr></table>'
+    val_html = f'<h3>估值指标</h3><table class="tbl"><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr><tr><td>PE(TTM)</td><td>{pe_str}</td><td>—</td><td>—</td></tr><tr><td>PB</td><td>{pb_str}</td><td>—</td><td>—</td></tr><tr><td>PS(TTM)</td><td>{ps_str}</td><td>—</td><td>—</td></tr></table>'
     idx_val = c.find('<h3>估值指标</h3>')
     if idx_val >= 0:
         end_val = c.find('<h3', idx_val+10)
@@ -363,7 +351,7 @@ def main():
         print('  ✅ 估值指标表已替换')
     
     # 6.4 敏感性分析（固定5个标准情景）
-    sens_html = '<h3>敏感性分析</h3><table class="tbl"><tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr><tr><td>营收下降10%</td><td>—</td><td class="orange">—</td></tr><tr><td>毛利率下降3pct</td><td>—</td><td class="orange">—</td></tr><tr><td>费用率上升</td><td>—</td><td class="orange">—</td></tr><tr><td>行业下行周期</td><td>—</td><td class="red">—</td></tr><tr><td>竞争加剧</td><td>—</td><td class="orange">—</td></tr></table>'
+    sens_html = '<h3>敏感性分析</h3><table class="tbl"><tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr><tr><td>营收下降10%</td><td>—</td><td>—</td></tr><tr><td>毛利率下降3pct</td><td>—</td><td>—</td></tr><tr><td>费用率上升</td><td>—</td><td>—</td></tr><tr><td>行业下行周期</td><td>—</td><td>—</td></tr><tr><td>竞争加剧</td><td>—</td><td>—</td></tr></table>'
     idx_sens = c.find('<h3>敏感性分析</h3>')
     if idx_sens >= 0:
         end_sens = c.find('<h3', idx_sens+10)
@@ -379,6 +367,33 @@ def main():
         c = c[:idx_avoid] + avoid_html + c[end_avoid:]
         print('  ✅ 避雷清单表已替换')
     
+    # 6.6.5 颜色清理：模板残留的违规颜色
+    # 只处理引擎生成的且已知不应有颜色的表
+    # （现金流表的趋势列class="green"是合法的，不清理）
+    for __tbl_marker in ['<h3>估值指标</h3>', '<h3>敏感性分析</h3>', '<h3>避雷清单</h3>']:
+        __tbl_idx = c.find(__tbl_marker)
+        if __tbl_idx >= 0:
+            __tbl_end = c.find('</table>', __tbl_idx) + 8
+            __tbl_html = c[__tbl_idx:__tbl_end]
+            __cleaned = re.sub(r'\sclass="(?:gold|red|orange|green|pos|warn|tgo)"', '', __tbl_html)
+            if __cleaned != __tbl_html:
+                c = c[:__tbl_idx] + __cleaned + c[__tbl_end:]
+                __name = __tbl_marker.replace('<h3>', '').replace('</h3>', '')
+                print(f'  ✅ 颜色清理: {__name}')
+    # 清理模板原始带颜色的{{TD}}表（行业空间/风险类型/费用率结构）
+    for __tbl_marker in ['行业空间', '风险类型', '费用率结构']:
+        __tbl_idx = c.find(__tbl_marker)
+        if __tbl_idx >= 0:
+            __tbl_end = c.find('</table>', __tbl_idx) + 8
+            if __tbl_end <= 8:
+                continue
+            __tbl_html = c[__tbl_idx:__tbl_end]
+            __cleaned = re.sub(r'\sclass="(?:gold|red|orange|green|pos|warn|tgo)"', '', __tbl_html)
+            if __cleaned != __tbl_html:
+                c = c[:__tbl_idx] + __cleaned + c[__tbl_end:]
+                print(f'  ✅ 模板颜色清理: {__tbl_marker}')
+    print('  ✅ 颜色清理完成（非趋势表去掉了gold/red/orange等）')
+
     # 6.6 其他整表替换表 — 填入{{TD}}为TODO
     # 简单处理：所有{{TD}}替换为__TODO__
     td_count_before = c.count('{{TD}}')

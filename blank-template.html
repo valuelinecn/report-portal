@@ -114,7 +114,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 
 <div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
   <h2>历年财务数据</h2>
-  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=连续下滑</span> · <span style="color:#e74c3c">红色=负值/下滑>20%</span></div>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=同比下降</span> · <span style="color:#e74c3c">红色=负值/降幅>20%</span></div>
   <style>
   .fin-table{width:100%;border-collapse:collapse;font-size:11px}
   .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
@@ -126,6 +126,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   .fin-table td.pos{color:#4caf50;font-weight:600}
   .fin-table td.neg{color:#e74c3c;font-weight:600}
   .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-table td.slight{color:#8bc34a;font-weight:600}
   .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
   .fin-light .fin-table td{border-bottom-color:#d8d4c8}
   .fin-light .fin-table tr:hover td{background:#e8e4dc}
@@ -134,7 +135,8 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   .fin-light .fin-table td.pos{color:#2e7d32!important}
   .fin-light .fin-table td.neg{color:#c0392b!important}
   .fin-light .fin-table td.warn{color:#b8860b!important}
-</style>
+  .fin-light .fin-table td.slight{color:#6d8b2b!important}
+ </style>
   <table class="fin-table">
     <thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
     <tbody>
@@ -399,25 +401,18 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <div class="mi"><div class="mv" style="font-size:14px;color:#ffc107">{{LABEL_3_TITLE}}</div><div class="ml">{{LABEL_3}}</div>
   </div>
   <table class="tbl" style="margin-top:10px">
-    <tr><th style="width:100px">指标</th><th style="width:140px">数值</th><th style="width:40%">说明</th></tr>
-    <tr><td>三年预估空间</td><td class="gold">{{LOGIC_1_VAL}}</td><td>{{LOGIC_1}}</td></tr>
+    <tr><th style="width:100px">指标</th><th style="width:140px">内容</th><th style="width:40%">说明</th></tr>
+    <tr><td>三年预估空间</td><td>{{LOGIC_1_VAL}}</td><td>{{LOGIC_1}}</td></tr>
     <tr><td>季度监控</td><td>{{LOGIC_2}}</td><td>{{LOGIC_2_DETAIL}}</td></tr>
-    <tr><td>逻辑证伪点</td><td class="red">{{LOGIC_3}}</td><td>{{LOGIC_3_DETAIL}}</td></tr>
-    <tr><td>止损触发</td><td class="red">{{LOGIC_4}}</td><td>{{LOGIC_4_DETAIL}}</td></tr>
+    <tr><td>逻辑证伪点</td><td>{{LOGIC_3}}</td><td>{{LOGIC_3_DETAIL}}</td></tr>
+    <tr><td>止损触发</td><td>{{LOGIC_4}}</td><td>{{LOGIC_4_DETAIL}}</td></tr>
   </table></div>
 
 <div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
   <h3>核心定位</h3>
   <div class="txt">{{ANALYSIS_TEXT}}</div>
 
-  <h3>年度财务摘要（亿元）</h3>
-  <table class="tbl">
-    <tr><th>年份</th><th>营收</th><th>YoY</th><th>归母净利</th><th>净利率</th><th>毛利率</th></tr>
-{{M1_ANNUAL_ROWS}}
-</table>
-  <div class="desc" style="margin-top:6px;">{{M1_ANNUAL_REMARK}}</div>
-
-  <h3>分业务收入结构（2025年）</h3>
+  <h3>分业务收入结构（2024 vs 2025）</h3>
   <!-- 使用hl/ht/hf样式（参考M2壁垒类型评估），不要用nm/bt/bf/vl -->
   <!-- 格式：<div class="hb"><span class="hl">业务名</span><div class="ht"><div class="hf" style="width:XX%;background:COLOR;">XX%</div></div></div> -->
   {{M1_HB_BAR_1}}
@@ -425,14 +420,18 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   {{M1_HB_BAR_3}}
 
   <table class="tbl" style="margin-top:10px;">
-    <tr><th>业务线</th><th>收入</th><th>占比</th><th>趋势</th><th>毛利率</th></tr>
+    <tr><th>业务线</th><th>2024年收入</th><th>2025年收入</th><th>趋势</th></tr>
 {{M1_REVENUE_ROWS}}
 </table>
+  <div class="desc" style="margin-top:6px;">{{M1_ANNUAL_REMARK}}</div>
 
   <h3>商业模式评估</h3>
   <table class="tbl">
     <tr><th>维度</th><th>评估</th><th>证据</th></tr>
-{{M1_BIZ_MODEL_ROWS}}
+    <tr><td>收入模式</td><td>{{BIZ_SCORE_1}}</td><td>{{BIZ_EVIDENCE_1}}</td></tr>
+    <tr><td>盈利特征</td><td>{{BIZ_SCORE_2}}</td><td>{{BIZ_EVIDENCE_2}}</td></tr>
+    <tr><td>竞争优势</td><td>{{BIZ_SCORE_3}}</td><td>{{BIZ_EVIDENCE_3}}</td></tr>
+    <tr><td>客户结构</td><td>{{BIZ_SCORE_4}}</td><td>{{BIZ_EVIDENCE_4}}</td></tr>
 </table>
 
   <div class="bq">{{BQ_ANALYSIS}}</div></div>
@@ -441,12 +440,12 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <div class="desc">{{MOAT_PHILOSOPHY}}</div>
 
   <h3>壁垒类型评估</h3>
-  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">{{MOAT_SCORE_1}}</div></div></div>
-  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">{{MOAT_SCORE_2}}</div></div></div>
-  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">{{MOAT_SCORE_3}}</div></div></div>
-  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">{{MOAT_SCORE_4}}</div></div></div>
-  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:30%;background:#888;">{{MOAT_SCORE_5}}</div></div></div>
-  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:50%;background:#f0c040;">{{MOAT_SCORE_6}}</div></div></div>
+  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040;">{{MOAT_SCORE_1}}</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040;">{{MOAT_SCORE_2}}</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040;">{{MOAT_SCORE_3}}</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040;">{{MOAT_SCORE_4}}</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040;">{{MOAT_SCORE_5}}</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040;">{{MOAT_SCORE_6}}</div></div></div>
 
   <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
     <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 {{MOAT_TOTAL_SCORE}}</span>
@@ -496,10 +495,10 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <div class="txt" style="font-size:12px;">管理层背景详见管理层信息表。{{MGMT_EXPERIENCE}}。{{MGMT_STYLE_ANALYSIS}}。{{MGMT_GOVERNANCE}}。</div>
 
   <h3>管理层评分</h3>
-  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">{{MGMT_SCORE_1}}</div></div></div>
-  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">{{MGMT_SCORE_2}}</div></div></div>
-  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040;">{{MGMT_SCORE_3}}</div></div></div>
-  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:40%;background:#888;">{{MGMT_SCORE_4}}</div></div></div>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040;">{{MGMT_SCORE_1}}</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040;">{{MGMT_SCORE_2}}</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040;">{{MGMT_SCORE_3}}</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040;">{{MGMT_SCORE_4}}</div></div></div>
 
   <div class="bq">{{BQ_ANALYSIS}}</div>
 
@@ -628,17 +627,9 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     </tr>
   </table>
 
-  <h3>关键指标卡</h3>
-  <div class="mg">
-    <div class="mi"><div class="mv gold">{{M4_KPI_1_VAL}}</div><div class="ml">{{M4_KPI_1_LABEL}}</div></div>
-    <div class="mi"><div class="mv" style="color:#ffc107;">{{M4_KPI_2_VAL}}</div><div class="ml">{{M4_KPI_2_LABEL}}</div></div>
-    <div class="mi"><div class="mv" style="color:#ffc107;">{{M4_KPI_3_VAL}}</div><div class="ml">{{M4_KPI_3_LABEL}}</div></div>
-    <div class="mi"><div class="mv" style="color:#ffc107;">{{M4_KPI_4_VAL}}</div><div class="ml">{{M4_KPI_4_LABEL}}</div></div>
-  </div>
-
   <div class="bq">{{BQ_ANALYSIS}}</div></div>
 
-<div id="s6" class="card"><h2>M5 成本结构 & 产业链议价权</h2>
+<div id="s6" class="card"><h2>M5 成本结构</h2>
 
   <h3>成本结构</h3>
   <div class="txt">{{ANALYSIS_TEXT}}</div>
@@ -681,8 +672,12 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>产业链议价权</h3>
   <table class="tbl">
     <tr><th>维度</th><th>评估</th><th>证据</th></tr>
-{{M1_BIZ_MODEL_ROWS}}
-</table>
+    <tr><td>客户粘性</td><td>{{CHAIN_SCORE_1}}</td><td>{{CHAIN_EVIDENCE_1}}</td></tr>
+    <tr><td>供应商议价力</td><td>{{CHAIN_SCORE_2}}</td><td>{{CHAIN_EVIDENCE_2}}</td></tr>
+    <tr><td>竞争格局</td><td>{{CHAIN_SCORE_3}}</td><td>{{CHAIN_EVIDENCE_3}}</td></tr>
+    <tr><td>潜在替代</td><td>{{CHAIN_SCORE_4}}</td><td>{{CHAIN_EVIDENCE_4}}</td></tr>
+    <tr><td>进入壁垒</td><td>{{CHAIN_SCORE_5}}</td><td>{{CHAIN_EVIDENCE_5}}</td></tr>
+  </table>
 
   <div class="bq">{{BQ_ANALYSIS}}</div></div>
 
@@ -797,8 +792,8 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
     <tr><td>{{COMPETITOR_1}}</td><td>{{COMPETITOR_1_SEGMENT}}</td><td>{{COMPETITOR_1_ANALYSIS}}</td></tr>
     <tr><td>{{COMPETITOR_2}}</td><td>{{COMPETITOR_2_SEGMENT}}</td><td>{{COMPETITOR_2_ANALYSIS}}</td></tr>
-    <tr><td>{{COMPETITOR_3}}</td><td>{{COMPETITOR_3_SEGMENT}}</td><td class="orange">{{COMPETITOR_3_ANALYSIS}}</td></tr>
-    <tr><td>{{COMPETITOR_4}}</td><td>{{CORE_BUSINESS}}</td><td class="orange">{{COMPETITOR_ADVANTAGE}}，{{COMPANY_NAME_CN}}{{DIFF_STRATEGY}}</td></tr>
+    <tr><td>{{COMPETITOR_3}}</td><td>{{COMPETITOR_3_SEGMENT}}</td><td>{{COMPETITOR_3_ANALYSIS}}</td></tr>
+    <tr><td>{{COMPETITOR_4}}</td><td>{{CORE_BUSINESS}}</td><td>{{COMPETITOR_ADVANTAGE}}，{{COMPANY_NAME_CN}}{{DIFF_STRATEGY}}</td></tr>
   </table>
 
   <h3>行业终局思考</h3>
