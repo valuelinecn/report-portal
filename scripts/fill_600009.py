@@ -193,9 +193,10 @@ replace_all('{{PE_COMPARISON_BARS}}',
     'PE对比')
 replace_all('{{PE_ANALYSIS}}', 'PE 28x在机场板块中处于合理水平。PB 2.5x处于历史中低位(历史1.5-4.0x)。PS(TTM) 5.16x。估值核心支撑在区位垄断+免税复苏弹性。', 'PE分析')
 
-# 估值指标历史区间+评估
-old_val = '<td>28.1x</td>\n<td>—</td>\n<td>—</td>\n</tr>\n<tr>\n<td>PB</td>\n<td>2.5x</td>\n<td>—</td>\n<td>—</td>\n</tr>\n<tr>\n<td>PS(TTM)</td>\n<td>5.16x</td>\n<td>—</td>\n<td>—</td>\n</tr>'
-new_val = '<td>28.1x</td>\n<td>15-60x(疫后波动大)</td>\n<td>合理</td>\n    </tr>\n<tr>\n<td>PB</td>\n<td>2.5x</td>\n<td>1.5-4.0x</td>\n<td>偏低</td>\n    </tr>\n<tr>\n<td>PS(TTM)</td>\n<td>5.16x</td>\n<td>3-10x</td>\n<td>偏低</td>\n    </tr>'
+# 估值指标历史区间+评估 -- 注意实际PE/PB/PS值可能因fill_auto而异，需确认
+# 当前值：27.2x, 1.35x, 4.31x
+old_val = '<td>27.2x</td><td>—</td><td>—</td></tr>\n<tr>\n<td>PB</td>\n<td>1.35x</td>\n<td>—</td>\n<td>—</td>\n</tr>\n<tr>\n<td>PS(TTM)</td>\n<td>4.31x</td>\n<td>—</td>\n<td>—</td>\n</tr>'
+new_val = '<td>27.2x</td>\n<td>15-60x(疫后)</td>\n<td>合理</td>\n    </tr>\n<tr>\n<td>PB</td>\n<td>1.35x</td>\n<td>1.5-4.0x</td>\n<td>偏低</td>\n    </tr>\n<tr>\n<td>PS(TTM)</td>\n<td>4.31x</td>\n<td>3-10x</td>\n<td>偏低</td>\n    </tr>'
 if old_val in html:
     html = html.replace(old_val, new_val)
     changes += 1
