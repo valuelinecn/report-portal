@@ -816,13 +816,13 @@ function openReport(id) {
   const c = COMPANIES.find(x=>x.id===id); if(!c) return
   window._currentCid = id
   document.getElementById('reportTitle').innerHTML = `<span>${c.name}</span> · ${c.industry}`
-  document.getElementById('reportView').classList.add('active')
+  var rv = document.getElementById('reportView'); rv.style.display='flex'; rv.classList.add('active')
   document.getElementById('reportLoading').style.display='flex'
   document.getElementById('reportFrame').style.display='none'
   document.getElementById('reportFrame').src='reports/'+c.file+'?t='+Date.now()
 }
 function closeReport() {
-  document.getElementById('reportView').classList.remove('active')
+  document.getElementById('reportView').classList.remove('active'); document.getElementById('reportView').style.display='none'
   document.getElementById('reportFrame').src=''
   document.getElementById('reportFrame').style.display='none'
   document.getElementById('reportLoading').style.display='flex'
