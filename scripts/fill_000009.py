@@ -75,14 +75,14 @@ replace_all('{{LABEL_3}}', '-0.72亿', '标签3值')
 # =============================================
 # LOGIC 卡
 # =============================================
-replace_all('{{LOGIC_1}}', '三年预估空间', 'LOGIC1 标题')
-replace_all('{{LOGIC_1_VAL}}', '动力电池需求CAGR~25%，储能需求CAGR~50%，负极材料行业空间翻倍', 'LOGIC1 内容')
-replace_all('{{LOGIC_2}}', '核心竞争力', 'LOGIC2 标题')
-replace_all('{{LOGIC_2_DETAIL}}', '贝特瑞全球负极龙头(市占率~22%)+马应龙400年老字号+五地六家公众公司资本平台', 'LOGIC2 内容')
-replace_all('{{LOGIC_3}}', '季度监控', 'LOGIC3 标题')
-replace_all('{{LOGIC_3_DETAIL}}', '毛利率趋势/贝特瑞季度出货量/经营现金流/负债率变化', 'LOGIC3 内容')
-replace_all('{{LOGIC_4}}', '安全边际', 'LOGIC4 标题')
-replace_all('{{LOGIC_4_DETAIL}}', 'PB 1.76x处于历史低位，PS(TTM) 0.77x估值偏低。扣非亏损PE不适用，需等待毛利率企稳', 'LOGIC4 内容')
+html = replace_all('{{LOGIC_1_CONTENT}}', '动力电池需求CAGR~25%，储能需求CAGR~50%，负极材料行业空间翻倍', 'LOGIC1 内容')
+html = replace_all('{{LOGIC_1_NOTE}}', '新能源车+储能双轮驱动，贝特瑞全球份额领先', 'LOGIC1 说明')
+html = replace_all('{{LOGIC_2_CONTENT}}', '贝特瑞全球负极龙头(市占率~22%)+马应龙400年老字号+五地六家公众公司资本平台', 'LOGIC2 内容')
+html = replace_all('{{LOGIC_2_NOTE}}', '产业投控型集团，核心子公司各具壁垒', 'LOGIC2 说明')
+html = replace_all('{{LOGIC_3_CONTENT}}', '毛利率趋势/贝特瑞季度出货量/经营现金流/负债率变化', 'LOGIC3 内容')
+html = replace_all('{{LOGIC_3_NOTE}}', '重点跟踪毛利率和财务费用两个关键指标', 'LOGIC3 说明')
+html = replace_all('{{LOGIC_4_CONTENT}}', 'PB跌破1.5x或毛利率跌破23%', 'LOGIC4 内容')
+html = replace_all('{{LOGIC_4_NOTE}}', '当前PB 1.76x，有约15%下行空间', 'LOGIC4 说明')
 
 # =============================================
 # 综合评价 BQ
