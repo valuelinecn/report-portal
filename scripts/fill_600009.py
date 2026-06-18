@@ -55,8 +55,8 @@ replace_all('{{INVESTMENT_THESIS}}', '上海机场核心价值在于长三角唯
 # ===== M1 =====
 replace_all('{{ANALYSIS_TEXT}}', '上海机场运营浦东和虹桥两场，是中国最大的航空枢纽运营商。2025年浦东机场旅客8499万(+10.7%)、虹桥5015万(+4.6%)。收入结构：航空性收入(起降/旅客服务费)+非航收入(免税商业/广告/物流)。区位优势不可复制：长三角唯一国际航空门户。', 'M1分析')
 replace_all('{{M1_REVENUE_ROWS}}',
-    '<tr><td>航空性收入</td><td>68.14亿</td><td>73.45亿</td><td>+7.8%</td><td>—</td><td>—</td><td>—</td></tr>'
-    '<tr><td>非航收入</td><td>55.55亿</td><td>60.01亿</td><td>+8.0%</td><td>—</td><td>—</td><td>—</td></tr>',
+    '<tr><td>航空性收入</td><td>68.14亿</td><td>73.45亿</td><td>+7.8%</td></tr>'
+    '<tr><td>非航收入</td><td>55.55亿</td><td>60.01亿</td><td>+8.0%</td></tr>',
     'M1收入行')
 replace_all('{{M1_HB_BAR_1}}', '<div class="hb"><span class="hl">航空性收入</span><div class="ht"><div class="hf" style="width:55%;background:#4caf50;">73.45亿 · 55%</div></div></div>', 'M1水平条1')
 replace_all('{{M1_HB_BAR_2}}', '<div class="hb"><span class="hl">非航收入(免税/商业)</span><div class="ht"><div class="hf" style="width:45%;background:#4caf50;">60.01亿 · 45%</div></div></div>', 'M1水平条2')
