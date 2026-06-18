@@ -784,49 +784,23 @@ html{scroll-behavior:smooth}
 <script src="waline/waline.js"></script>
 <script>
 const COMPANIES = [
-  {id:'ningde',name:'宁德时代',nameEn:'CATL',score:7.5,scoreMax:10,color:'#4fc3f7',heat:9,industry:'新能源 · 动力电池',desc:'全球动力电池装机量第一，新能源产业链核心。',tags:['电池龙头','新能源','全球第一'],metrics:{营收:'4,650亿',净利:'578亿',毛利率:'24.5%',PE:'22.4x',ROE:'21%',全球市占率:'38%'},file:'ningde.html'},
-  {id:'hengrui',name:'恒瑞医药',nameEn:'Hengrui Medicine',score:6.5,scoreMax:10,color:'#9c27b0',heat:7,industry:'医药 · 创新药',desc:'中国创新药研发龙头，从仿制药到创新药转型领导者。',tags:['创新药','研发驱动','高研发投入'],metrics:{营收:'342亿',净利:'86亿',毛利率:'83.2%',PE:'38.4x',ROE:'16%',研发投入:'85亿'},file:'hengrui.html'},
-  {id:'byd',name:'比亚迪',nameEn:'BYD',score:7.0,scoreMax:10,color:'#4fc3f7',heat:8,industry:'汽车 · 新能源车',desc:'中国新能源汽车销量第一，垂直整合能力全球领先。',tags:['新能源车','垂直整合','出海'],metrics:{营收:'8,371亿',净利:'456亿',毛利率:'20.3%',PE:'29.7x',ROE:'14.5%',年销量:'500万辆'},file:'byd.html'},
-  {id:'zhaoshang',name:'招商银行',nameEn:'China Merchants Bank',score:7.0,scoreMax:10,color:'#e04040',heat:6,industry:'金融 · 银行',desc:'中国最大的股份制商业银行，零售银行王者。',tags:['零售银行','高ROE','财富管理'],metrics:{营收:'3,398亿',净利:'1,484亿',ROE:'15.8%',PE:'6.5x',不良率:'0.95%',股息率:'5.1%'},file:'zhaoshang.html'},
-  {id:'pingan',name:'中国平安',nameEn:'Ping An Insurance',score:6.5,scoreMax:10,color:'#e04040',heat:6,industry:'金融 · 综合金融',desc:'中国最大的综合金融集团，保险+银行+科技生态。',tags:['保险巨头','综合金融','科技赋能'],metrics:{营收:'10,203亿',净利:'1,276亿',PE:'7.2x',ROE:'14.2%',内含价值:'1.5万亿',股息率:'4.8%'},file:'pingan.html'},
-  {id:'yunlu',name:'云铝股份',nameEn:'Yunnan Aluminium',score:6.7,scoreMax:10,color:'#ff9800',heat:2,industry:'有色金属 · 铝',desc:'云南省水电铝一体化龙头，绿色能源成本优势显著。',tags:['水电铝','绿色能源','周期股'],metrics:{营收:'521亿',净利:'52亿',毛利率:'19.1%',PE:'12.4x',ROE:'21.5%',股息率:'2.3%'},file:'yunlu.html'},
-  {id:'mindray',name:'迈瑞医疗',nameEn:'Mindray Medical',score:7.5,scoreMax:10,color:'#9c27b0',heat:6,industry:'医药 · 医疗器械',desc:'中国最大医疗器械企业，全球医疗设备重要玩家。',tags:['医疗器械','全球扩张','刚需'],metrics:{营收:'438亿',净利:'138亿',毛利率:'64.5%',PE:'22.7x',ROE:'30%',净利率:'31.5%'},file:'mindray.html'},
-  {id:'maotai',name:'贵州茅台',nameEn:'Kweichow Moutai',score:7.0,scoreMax:10,color:'#f0c040',heat:7,industry:'食品饮料 · 白酒',desc:'中国高端白酒行业绝对龙头，A股最具代表性的消费类核心资产。',tags:['核心资产','国酒','高毛利'],metrics:{营收:'1,709亿',净利:'862亿',毛利率:'91.9%',PE:'19.3x',ROE:'26%',股息率:'3.5%'},file:'maotai.html'},
-  {id:'haikang',name:'海康威视',nameEn:'Hikvision',score:7.0,scoreMax:10,color:'#4fc3f7',heat:5,industry:'科技 · 安防AI',desc:'全球视频监控设备龙头，AIoT智能物联新引擎。',tags:['安防龙头','AIoT','全球第一'],metrics:{营收:'1,089亿',净利:'136亿',毛利率:'46.3%',PE:'18.4x',ROE:'18%',全球市占率:'30%+'},file:'haikang.html'},
-  {id:'lixun',name:'立讯精密',nameEn:'Luxshare Precision',score:6.5,scoreMax:10,color:'#4fc3f7',heat:5,industry:'科技 · 消费电子',desc:'Apple供应链核心企业，连接器与模组制造龙头。',tags:['苹果链','精密制造','汽车电子'],metrics:{营收:'3,216亿',净利:'143亿',毛利率:'12.1%',PE:'27.4x',ROE:'19%',净利率:'4.4%'},file:'lixun.html'},
-  {id:'fuyao',name:'福耀玻璃',nameEn:'Fuyao Glass',score:7.0,scoreMax:10,color:'#4fc3f7',heat:4,industry:'汽车 · 汽车玻璃',desc:'全球汽车玻璃行业龙头，曹德旺打造的制造业标杆。',tags:['全球龙头','制造业','高市占率'],metrics:{营收:'393亿',净利:'78亿',毛利率:'42.5%',PE:'15.2x',ROE:'19%',全球市占率:'34%'},file:'fuyao.html'},
-  {id:'haitian',name:'海天味业',nameEn:'Haitian Flavouring',score:7.0,scoreMax:10,color:'#4caf50',heat:4,industry:'食品饮料 · 调味品',desc:'中国调味品行业绝对龙头，酱油市场份额第一。',tags:['调味品龙头','高毛利','刚需消费'],metrics:{营收:'269亿',净利:'63亿',毛利率:'36.8%',PE:'28.3x',ROE:'20%',净利率:'23.5%'},file:'haitian.html'},
-  {id:'tongrentang',name:'北京同仁堂',nameEn:'Beijing Tongrentang',score:7.0,scoreMax:10,color:'#4caf50',heat:3,industry:'医药 · 中成药',desc:'中华老字号中药龙头企业，357年品牌积淀，安宫牛黄丸核心单品。',tags:['老字号','中药龙头','品牌护城河'],metrics:{营收:'195.5亿',净利:'19.6亿',毛利率:'48.5%',PE:'29x',ROE:'14.2%',股息率:'1.8%'},file:'tongrentang.html'},
-  {id:'seres',name:'赛力斯',nameEn:'Seres Group',score:7.0,scoreMax:10,color:'#ff9800',heat:9,industry:'汽车 · 新能源车',desc:'华为智选车模式核心伙伴，AITO问界高端智能电动汽车新势力。',tags:['华为合作','高端SUV','扭亏为盈'],metrics:{营收:'1,768亿',净利:'85亿',毛利率:'18.6%',PE:'19.8x',ROE:'18%',净利率:'4.8%'},file:'seres.html'},
-  {id:'lixiang',name:'理想汽车',nameEn:'Li Auto',score:6.0,scoreMax:10,color:'#ff9800',heat:6,industry:'汽车 · 新能源车',desc:'中国增程式新能源车企龙头，家庭SUV赛道开创者，2025年盈利大幅恶化。',tags:['增程式','家庭SUV','困境反转型'],metrics:{营收:'1,162亿',净利:'11.6亿',毛利率:'~19%',PE:'~94x',ROE:'~1.8%',净利率:'~1.0%'},file:'lixiang.html'},
-  {id:'yili',name:'伊利股份',nameEn:'Yili Group',score:6.5,scoreMax:10,color:'#4caf50',heat:4,industry:'食品饮料 · 乳制品',desc:'中国最大的乳制品企业，全球乳业五强。',tags:['消费龙头','乳业','稳定增长'],metrics:{营收:'1,265亿',净利:'104亿',毛利率:'35.1%',PE:'13.4x',ROE:'18.5%',股息率:'3.8%'},file:'yili.html'},
-  {id:'wuliangye',name:'五粮液',nameEn:'Wuliangye',score:7.5,scoreMax:10,color:'#f0c040',heat:5,industry:'食品饮料 · 白酒',desc:'中国浓香型白酒第一品牌，高端白酒双雄之一。',tags:['高端白酒','浓香龙头','高毛利'],metrics:{营收:'833亿',净利:'315亿',毛利率:'75.9%',PE:'24.6x',股息率:'3.6%',净利率:'37.8%'},file:'wuliangye.html'},
-  {id:'zhongjixuchuang',name:'中际旭创',nameEn:'Zhongji Innolight',score:7.5,scoreMax:10,color:'#4fc3f7',heat:8,industry:'通信 · 光模块',desc:'全球光模块行业龙头，AI算力基础设施核心受益者。',tags:['AI算力','光模块','出海'],metrics:{营收:'328亿',净利:'53亿',毛利率:'38.7%',PE:'83.9x',ROE:'18%',净利率:'16.2%'},file:'zhongjixuchuang.html'},
-  {id:'jingdongfang',name:'京东方A',nameEn:'BOE Technology',score:6.5,scoreMax:10,color:'#2196f3',heat:7,industry:'电子 · 半导体显示',desc:'全球半导体显示龙头，LCD出货量全球第一，OLED加速布局。',tags:['显示面板','LCD龙头','OLED布局','周期股'],metrics:{营收:'2,046亿',净利:'59亿',毛利率:'16.2%',PE:'35x',ROE:'3.9%',全球市占率:'28%'},file:'000725.html'},
-  {id:'pianzaihuang',name:'片仔癀',nameEn:'Pien Tze Huang',score:5.9,scoreMax:10,color:'#4caf50',heat:4,industry:'医药 · 中药',desc:'国家绝密级中药龙头，2025年业绩承压，毛利率下滑至41%，等待拐点。',tags:['国家绝密','中药龙头','业绩承压'],metrics:{营收:'90.0亿',净利:'21.6亿',毛利率:'41.2%',PE:'33x',ROE:'14.5%',净利率:'24.0%'},file:'pianzaihuang.html'},
-  {id:'600329',name:'达仁堂',nameEn:'Darentang',score:6.5,scoreMax:10,color:'#4caf50',heat:3,industry:'医药 · 中成药',desc:'中华老字号中药企业，速效救心丸核心品种，高分红稳健标的。',tags:['老字号','中药','速效救心丸','高分红'],metrics:{营收:'49亿',净利:'21亿',毛利率:'~55%',PE:'~22x',ROE:'~15%',股息率:'~4%'},file:'600329.html'},
-  {id:'songcheng',name:'宋城演艺',nameEn:'Songcheng Performance',score:6.2,scoreMax:10,color:'#f0c040',heat:3,industry:'文化传媒 · 旅游演艺',desc:'中国旅游演艺龙头，千古情品牌+轻资产扩张模式，高分红率80%。',tags:['旅游演艺','千古情','高分红'],metrics:{营收:'22.6亿',净利:'8.2亿',毛利率:'64.1%',PE:'20x',ROE:'9.5%',净利率:'36.2%'},file:'songcheng.html'},
-  {id:'shangqi',name:'上汽集团',nameEn:'SAIC Motor',score:6.0,scoreMax:10,color:'#ff9800',heat:5,industry:'汽车 · 传统车企',desc:'中国最大汽车集团，PB 0.55x破净，合资触底+自主转型关键期。',tags:['汽车龙头','破净','转型'],metrics:{营收:'6,562亿',净利:'101亿',毛利率:'10.6%',PE:'10.4x',ROE:'4.8%',PB:'0.55x'},file:'shangqi.html'},
-  {id:'zijin',name:'紫金矿业',nameEn:'Zijin Mining',score:7.5,scoreMax:10,color:'#ff9800',heat:7,industry:'有色金属 · 矿业',desc:'全球综合性矿业龙头（铜#3金#5），PE 9.6x业绩爆发式增长。',tags:['矿业龙头','资源股','高增长'],metrics:{营收:'3,491亿',净利:'518亿',毛利率:'21.2%',PE:'9.6x',ROE:'28.5%',净利率:'14.8%'},file:'zijin.html'},
+    {id:'ningde',name:'宁德时代',nameEn:'CATL',score:7.5,scoreMax:10,color:'#4fc3f7',heat:9,industry:'新能源 · 动力电池',desc:'全球动力电池装机量第一，新能源产业链核心。',tags:['电池龙头','新能源','全球第一'],metrics:{营收:'4,650亿',净利:'578亿',毛利率:'24.5%',PE:'22.4x',ROE:'21%',全球市占率:'38%'},file:'ningde.html'},
+  {id:'300144',name:'宋城演艺',nameEn:'Songcheng',score:7.5,scoreMax:10,color:'#ff9800',heat:8,industry:'文旅 · 演艺',desc:'文旅演艺绝对龙头，千古情IP壁垒+轻资产扩张+AI赋能。',tags:['文旅龙头','千古情','轻资产','高股息'],metrics:{营收:'22.6亿',净利:'8.2亿',毛利率:'64.8%',PE:'28x',ROE:'9.9%',市占率:'60%+'},file:'300144.html'},
+  {id:'600085',name:'同仁堂',nameEn:'Tongrentang',score:7.0,scoreMax:10,color:'#ff9800',heat:7,industry:'医药 · 中药 · 老字号',desc:'三百余年品牌壁垒，安宫牛黄丸双天然高端市场绝对主导，老龄化+中药政策红利长期受益。',tags:['老字号','安宫龙头','心脑血管','高分红','国企'],metrics:{营收:'172.6亿',净利:'11.9亿',毛利率:'42.87%',PE:'35x',ROE:'8.9%',市占率:'15%'},file:'600085.html'},
+  {id:'600030',name:'中信证券',nameEn:'CITIC Securities',score:7.5,scoreMax:10,color:'#ffc107',heat:9,industry:'金融 · 券商 · 龙头',desc:'全业务链龙头，投行/财富管理双龙头，ROE 10.59%领先。周期属性显著，估值低位。',tags:['全业务链','龙头券商','跨境投行','周期属性'],metrics:{营收:'748.5亿',净利:'300.8亿',净利率:'40.2%',PE:'15x',ROE:'10.6%',总资产:'2万亿+'},file:'600030.html'},
+  {id:'600329',name:'达仁堂',nameEn:'Da Ren Tang',score:6.5,scoreMax:10,color:'#ff9800',heat:6,industry:'医药 · 中药 · 老字号',desc:'中华老字号中药龙头，拥有速效救心丸国家秘密品种。2024年剥离商业聚焦精品中药，毛利率跃升至74%。但扣非PE 55x偏高，安全边际不足。',tags:['老字号','中药龙头','国家秘密','高分红','国企'],metrics:{营收:'49.17亿',净利:'21.31亿',毛利率:'74.02%',扣非PE:'55x',扣非ROE:'9.54%',总市值:'416亿'},file:'600329.html'},
+  {id:'605305',name:'中际联合',nameEn:'Zhongji Innolight',score:7.5,scoreMax:10,color:'#ffc107',heat:8,industry:'高端制造 · 风电设备 · 隐形冠军',desc:'风电高空安全设备隐形冠军，国内市占率>70%，出海加速+新产品线驱动第二增长曲线。',tags:['隐形冠军','风电设备','出海','高ROE','低负债'],metrics:{营收:'18.78亿',净利:'5.30亿',毛利率:'47.27%',PE:'15x',ROE:'19.1%',市占率:'75%'},file:'605305.html'},
+  {id:'000807',name:'云铝股份',nameEn:'Yunnan Aluminium',score:7.5,scoreMax:10,color:'#ffc107',heat:8,industry:'有色金属 · 电解铝 · 绿色铝',desc:'绿色铝一体化龙头，水电铝成本优势构筑护城河，受益铝价中枢上移和供给侧改革。',tags:['绿色铝','央企龙头','水电铝','高ROE','低负债'],metrics:{营收:'600.4亿',净利:'60.6亿',毛利率:'16.79%',PE:'14x',ROE:'19.7%',市占率:'7.5%'},file:'000807.html'},
+  {id:'601628',name:'中国人寿',nameEn:'China Life',score:7.5,scoreMax:10,color:'#4caf50',heat:7,industry:'金融 · 寿险 · 龙头',desc:'国内最大寿险公司，PEV 0.65x处近十年低位。NBV连续三年两位数增长，分红险转型成效显著。',tags:['寿险龙头','财政部控股','NBV增长','低估值','高分红'],metrics:{营收:'6,157亿',净利:'1,541亿',ROE:'27.8%',PEV:'0.65x',NBV:'457.5亿',总市值:'10,273亿'},file:'601628.html'},
 
-  {id:'300207',name:'欣旺达',nameEn:'Sunwoda Electronic',score:6.0,scoreMax:10,color:'#ffc107',heat:6,industry:'电子 · 消费电池',desc:'全球消费电子电池龙头，动力电池新锐，净利率低但成长确定。',tags:['消费电池','动力电池','苹果链','储能'],metrics:{营收:'632亿',净利:'11亿',毛利率:'15.2%',PE:'30x',ROE:'4.4%',净利率:'1.7%'},file:'300207.html'},
+  {id:'600183',name:'生益科技',nameEn:'Sytech',score:7.5,scoreMax:10,color:'#4caf50',heat:7,industry:'电子 · 覆铜板(CCL)',desc:'全球刚性覆铜板第二(13.7%市占率)，ROE 21.25%净利33.34亿(+92%)高增长。PE 17x/PB 3.6x合理偏低。大比例分红每10股派8元。',tags:['覆铜板','AI算力','全球第二','高ROE','高分红'],metrics:{营收:'284.31亿',净利:'33.34亿',毛利率:'~30%',PE:'~17x',ROE:'21.25%',市占率:'~14%'},file:'600183.html'},
 
-  {id:'beiqilangu',name:'北汽蓝谷',nameEn:'BAIC BluePark',score:4.5,scoreMax:10,color:'#4fc3f7',heat:5,industry:'汽车 · 新能源车',desc:'华为智选享界S9+极狐双品牌，营收高增长但持续巨亏，高风险投机标的。',tags:['华为合作','新能源车','持续亏损'],metrics:{营收:'279.4亿',净利:'-45.6亿',毛利率:'8.5%',PS:'1.2x',亏损:'连续6年'},file:'beiqilangu.html'},
-
-  {id:'laite',name:'莱特光电',nameEn:'Laite Optoelectronics',score:6.5,scoreMax:10,color:'#4fc3f7',heat:2,industry:'电子 · OLED材料',desc:'国产OLED有机材料龙头，67%高毛利率+零负债，深度受益国产替代。',tags:['OLED材料','国产替代','高毛利'],metrics:{营收:'5.52亿',净利:'2.19亿',毛利率:'67.5%',PE:'85x',ROE:'16.8%',净利率:'39.7%'},file:'laite.html'},
-
-  {id:'600150',name:'中国船舶',nameEn:'CSSC',score:6.5,scoreMax:10,color:'#2196f3',heat:6,industry:'制造 · 船舶制造',desc:'中国最大造船企业，全球造船订单量前三，军民船一体化龙头。',tags:['造船龙头','央企','军工'],metrics:{营收:'780亿',净利:'58亿',毛利率:'18.2%',PE:'42x',ROE:'10%',手持订单:'2,000亿'},file:'600150.html'},
-
-  {id:'600031',name:'三一重工',nameEn:'SANY Heavy',score:6.5,scoreMax:10,color:'#f0c040',heat:7,industry:'制造 · 工程机械',desc:'中国最大工程机械制造商，混凝土机械全球第一，挖掘机国内第一。',tags:['工程机械','全球化','电动化'],metrics:{营收:'820亿',净利:'65亿',毛利率:'28.2%',PE:'38x',ROE:'15%',海外占比:'60%'},file:'600031.html'},
-  {id:'000333',name:'美的集团',nameEn:'Midea',score:7.5,scoreMax:10,color:'#2196f3',heat:7,industry:'消费 · 白色家电',desc:'中国家电龙头，全球最大家电企业之一，ToB转型打开新空间。',tags:['家电龙头','全球化','高分红'],metrics:{营收:'4,200亿',净利:'385亿',毛利率:'26.2%',PE:'14x',ROE:'22%',股息率:'4.3%'},file:'000333.html'},
-  {id:'601088',name:'中国神华',nameEn:'China Shenhua',score:7.5,scoreMax:10,color:'#4caf50',heat:6,industry:'能源 · 煤炭',desc:'中国最大煤炭企业，煤电路港航一体化龙头，高股息核心资产。',tags:['煤炭龙头','高分红','央企重估'],metrics:{营收:'3,450亿',净利:'620亿',毛利率:'40.5%',PE:'13x',ROE:'14.5%',股息率:'5.5%'},file:'601088.html'},
-  {id:'000063',name:'中兴通讯',nameEn:'ZTE Corporation',score:6.5,scoreMax:10,color:'#4fc3f7',heat:6,industry:'科技 · 通信设备',desc:'中国第二大通信设备商，5G+算力网络核心受益者。',tags:['5G设备','芯片自研','AI算力'],metrics:{营收:'1,320亿',净利:'95亿',毛利率:'38.5%',PE:'18x',ROE:'10.5%',研发费率:'15%'},file:'000063.html'},
-  {id:'600030',name:'中信证券',nameEn:'CITIC Securities',score:7.0,scoreMax:10,color:'#e04040',heat:6,industry:'金融 · 券商',desc:'中国最大综合券商，投行+财富管理+资管全能型龙头。',tags:['券商龙头','综合金融','资本市场改革'],metrics:{营收:'630亿',净利:'212亿',净利率:'33.7%',PE:'18x',PB:'1.5x',ROE:'8.5%'},file:'600030.html'},
-  {id:'601318',name:'中国平安',nameEn:'Ping An Insurance',score:7.0,scoreMax:10,color:'#e04040',heat:6,industry:'金融 · 综合金融',desc:'中国最大综合金融集团，保险+银行+科技生态协同。',tags:['保险龙头','综合金融','低估值'],metrics:{营收:'1.02万亿',净利:'1,220亿',营运ROE:'30.5%',PE:'7x',PEV:'0.55x',股息率:'5.0%'},file:'601318.html'},
-  {id:'600036',name:'招商银行',nameEn:'China Merchants Bank',score:7.5,scoreMax:10,color:'#4caf50',heat:6,industry:'金融 · 银行',desc:'中国最佳零售银行，零售之王，财富管理龙头。',tags:['零售银行','财富管理','高ROE'],metrics:{营收:'3,500亿',净利:'1,480亿',ROE:'16.5%',PE:'5.5x',PB:'0.9x',不良率:'0.95%'},file:'600036.html'},
-  {id:'601398',name:'工商银行',nameEn:'ICBC',score:7.0,scoreMax:10,color:'#e04040',heat:5,industry:'金融 · 银行',desc:'全球最大银行，综合金融龙头，高股息核心资产。',tags:['宇宙行','高股息','全球最大'],metrics:{营收:'8,600亿',净利:'3,650亿',ROE:'10.5%',PE:'5.5x',PB:'0.55x',股息率:'6%'},file:'601398.html'},
-]
-
+    {id:'603986',name:'兆易创新',nameEn:'GigaDevice',score:6.5,scoreMax:10,color:'#ffc107',heat:7,industry:'半导体 · NOR Flash · MCU',desc:'NOR Flash全球第三、MCU国内领先，存储与MCU双轮驱动。2025年营收92亿(+25%)净利16.5亿(+49%)。PE 236x偏高。',tags:['半导体','NOR Flash','MCU'],metrics:{营收:'92.03亿',净利:'16.48亿',毛利率:'~38%',PE:'236x',PB:'20.6x',市占率:'~18%'},file:'603986.html'},
+  {id:'600706',name:'曲江文旅',nameEn:'Qujiang Cultural Tourism',score:3.0,scoreMax:10,color:'#ff9800',heat:3,industry:'文旅 · 景区运营',desc:'西安国有文旅平台，运营大唐芙蓉园/大雁塔，毛利率7.64%持续亏损。PB 0.9x破净。',tags:['文旅','国企','景区运营','低毛利率'],metrics:{营收:'9.67亿',净利:'-1.96亿',ROE:'-34.96%',PB:'0.9x',毛利率:'7.64%'},file:'600706.html'},
+  {id:'000009',name:'中国宝安',nameEn:'China Baoan Group',score:5.5,scoreMax:10,color:'#f0c040',heat:5,industry:'综合 · 控股集团',desc:'横跨高新技术(贝特瑞负极龙头)+生物医药(马应龙)的综合控股集团。营收230亿净利2亿。',tags:['负极龙头','马应龙','综合控股'],metrics:{营收:'230亿',净利:'2.03亿',毛利率:'25.8%',PE:'85.5x',ROE:'2.04%',市占率:'负极~22%'},file:'000009.html'},
+  {id:'600009',name:'上海机场',nameEn:'Shanghai Airport',score:6.0,scoreMax:10,color:'#f0c040',heat:6,industry:'交通运输 · 航空枢纽',desc:'中国最大航空枢纽运营商，长三角唯一国际门户。2025年营收133亿净利21亿持续恢复。PE 28x/PB 2.5x合理偏低。区位垄断护城河深厚。',tags:['航空枢纽','区位垄断','免税弹性','疫后恢复'],metrics:{营收:'133.46亿',净利:'21.17亿',毛利率:'27.5%',PE:'28x',ROE:'5.03%',市占率:'~19%'},file:'600009.html'},
+  {id:'601127',name:'赛力斯',nameEn:'Seres',score:7.0,scoreMax:10,color:'#ff9800',heat:7,industry:'新能源车 · 高端SUV · 华为生态',desc:'华为智选车核心伙伴，问界品牌持续放量，2025年营收1650亿(+13.7%)净利60亿(+58.3%)。PE 20x/PS 0.72x偏低。',tags:['华为生态','问界品牌','高端SUV','低估值'],metrics:{营收:'1,650.5亿',净利:'59.6亿',毛利率:'28.21%',PE:'20x',ROE:'23.53%',市占率:'~2.9%'},file:'601127.html'},
+  {id:'002230',name:'科大讯飞',nameEn:'iFlytek',score:6.5,scoreMax:10,color:'#f0c040',heat:7,industry:'AI · 大模型 · 智慧教育',desc:'中国AI龙头，讯飞星火大模型中标金额23亿行业第一。营收271亿(+16.1%)净利8.4亿(+27.8%)。PE 118x偏高但PS 3.6x合理。',tags:['AI国家队','星火大模型','智慧教育','开发者生态'],metrics:{营收:'271亿',净利:'8.39亿',毛利率:'~57%',PE:'118x',PS:'3.6x',市占率:'中标~2.3%'},file:'002230.html'}];
 // ===== THEME =====
 function toggleTheme() {
   const isLight = document.documentElement.getAttribute('data-theme') === 'light'
@@ -925,7 +899,7 @@ function openReport(id) {
   const c = COMPANIES.find(x=>x.id===id); if(!c) return
   window._currentCid = id
   document.getElementById('reportTitle').innerHTML = `<span>${c.name}</span> · ${c.industry}`
-  var rv = document.getElementById('reportView'); rv.style.display='flex'; rv.classList.add('active')
+  document.getElementById('reportView').classList.add('active')
   document.getElementById('reportLoading').style.display='flex'
   document.getElementById('reportFrame').style.display='none'
   document.getElementById('reportFrame').src='reports/'+c.file+'?t='+Date.now()
@@ -940,6 +914,8 @@ function onFrameLoaded() {
   document.getElementById('reportLoading').style.display='none'
   document.getElementById('reportFrame').style.display='block'
   applyThemeToReport()
+  // Reload comments for current report when switching reports
+  if (window._currentCid) loadComments('/' + window._currentCid, 'comment-report');
   // Auto-expand comments when iframe scrolled to bottom
   try {
     var iframeDoc = document.getElementById('reportFrame').contentDocument || document.getElementById('reportFrame').contentWindow.document;
@@ -1063,6 +1039,7 @@ a{color:#b8860b!important}\
       
 
 ];
+
       fixes.forEach(([sel, replace]) => {
         idoc.querySelectorAll(sel).forEach(el => {
           const s = el.getAttribute('style');
