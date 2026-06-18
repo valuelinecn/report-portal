@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>兆易创新 · 完整投资研究报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
+h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
+h2{font-size:16px;color:#4caf50;margin:20px 0 10px;border-left:3px solid #4caf50;padding-left:10px}
+h3{font-size:14px;color:#ccc;margin:14px 0 6px}
+h4{font-size:13px;color:#aaa;margin:10px 0 4px}
+.desc{font-size:12px;color:#888;margin-bottom:10px}
+.card{background:#0d1a1a;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid #1a3a3a}
+.sc-wrap{text-align:center;margin-bottom:16px}
+.score-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(#4caf50 0deg 252deg,#333 252deg 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
+.score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
+.c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e3e3a;font-size:11px}
+.tbl td:first-child{white-space:nowrap;font-size:12px}
+.tbl tr:last-child td{border-bottom:none}
+.gold{color:#4caf50;font-weight:bold}.green{color:#4caf50}.red{color:#f44336}.orange{color:#ff9800}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{background:#0a0a1a;border-radius:8px;padding:10px;text-align:center}
+.mv{font-size:18px;font-weight:bold;color:#fff}
+.ml{font-size:10px;color:#888;margin-top:2px}
+.hb{display:flex;align-items:flex-start;margin:4px 0;min-height:20px}
+.hl{width:72px;font-size:11px;color:#aaa;flex-shrink:0;padding-top:2px}
+.ht{flex:1;height:16px;background:#1e3e3a;border-radius:8px;overflow:visible;margin:0 6px;position:relative}
+.hf{height:16px;border-radius:8px;display:flex;align-items:center;padding-left:6px;font-size:10px;color:#fff;overflow:visible;white-space:nowrap;text-shadow:0 0 3px rgba(0,0,0,.8);min-width:0}
+.hv{font-size:10px;color:#999;white-space:nowrap;flex-shrink:0;padding-top:2px;margin-left:2px}
+.scn{display:flex;gap:6px;margin:8px 0}
+.scc{flex:1;border-radius:8px;padding:10px;text-align:center}
+.scc h4{font-size:12px;margin-bottom:4px;color:#fff}
+.scc .pct{font-size:18px;font-weight:bold}
+.scc .dt{font-size:10px;color:#ccc;margin-top:3px}
+.sc1{background:#1a3a1a;border:1px solid #2a5a2a}.sc1 .pct{color:#4caf50}
+.sc2{background:#1a2a3a;border:1px solid #2a3a5a}.sc2 .pct{color:#f0c040}
+.sc3{background:#3a1a1a;border:1px solid #5a2a2a}.sc3 .pct{color:#f44336}
+.tg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;margin:1px}
+.tgg{background:#1a3a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgr{background:#3a1a1a;color:#f44336;border:1px solid #5a2a2a}
+.tgo{background:#3a2a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgy{background:#222;color:#aaa;border:1px solid #333}
+.txt{padding:6px 0;font-size:13px;color:#ccc;line-height:1.7}
+.txt .dot{color:#4caf50;margin-right:4px}
+.bq{padding:10px;background:#0a0a1a;border-radius:8px;border-left:3px solid #4caf50;margin:8px 0;font-size:13px;color:#ddd;line-height:1.7}
+.cp{display:flex;align-items:center;margin:4px 0;font-size:12px}
+.cp .nm{width:88px;color:#aaa;flex-shrink:0}
+.cp .bt{flex:1;height:14px;background:#1e3e3a;border-radius:7px;overflow:hidden;margin:0 6px}
+.cp .bf{height:100%;border-radius:7px}
+.cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
+.footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e3e3a;line-height:1.8}
+.sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e3e3a;margin-bottom:12px}
+.toc{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:10px;color:#888;text-decoration:none;padding:3px 7px;border-radius:10px;border:1px solid #333;white-space:nowrap;flex-shrink:0}
+.toc a:active{background:#1e3e3a;color:#4caf50}
+
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+  <div style="text-align:center;font-size:11px;color:#555;margin-bottom:4px;">📌 点击跳转</div>
+  <div class="toc">
+    <a href="#s0">评分</a><a href="#s1">综合评价</a><a href="#s2">M1商业模式</a>
+    <a href="#s3">M2壁垒</a><a href="#s4">M3管理层</a><a href="#s5">M4财务</a>
+    <a href="#s6">M5产业链</a><a href="#s7">M6估值</a><a href="#s8">M7市占率</a>
+    <a href="#s9">M8催化剂</a><a href="#s10">M9预期差</a><a href="#s11">M10风险</a>
+    <a href="#s12">综合评级</a><a href="#s13">附录</a>
+  </div>
+</div>
+
+<div id="s0" class="sc-wrap">
+  <div class="score-ring"><div class="score-inner"><div class="score-num">6.5</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">兆易创新 <span style="font-size:14px;color:#888;font-weight:400;">603986.SH</span></h1>
+  <div class="desc">NOR Flash全球第三、MCU国内领先。2025年营收92亿(+25%)净利16.5亿(+49%)。PE 236x偏高。</div>
+  <div><span class="tg tgo">2026-06-18</span><span class="tg tgy">2026-06-17</span></div>
+</div>
+
+<div id="s-mcap" class="card">
+  <h2>市值走势</h2>
+  <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
+
+  <div class="mcap-btns">
+    <button class="mcap-btn active" data-period="week">周线</button>
+    <button class="mcap-btn" data-period="month">月线</button>
+    <button class="mcap-btn" data-period="year">年线</button>
+  </div>
+
+  <div class="mcap-chart-wrap">
+    <div class="mcap-tooltip" id="mcapTooltip"></div>
+    <svg id="mcapSvg" width="100%" height="380"></svg>
+  </div>
+
+  <div class="mcap-info">
+    当前市值：<span class="mcap-v" id="mcapCurrent">--</span> 亿 ·
+    历史最高：<span class="mcap-v" id="mcapHigh">--</span> 亿 ·
+    历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
+    总股本：<span class="mcap-v" id="mcapShares">6.65</span> 亿股
+  </div>
+</div>
+
+<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
+  <h2>历年财务数据</h2>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=同比下降</span> · <span style="color:#e74c3c">红色=负值/降幅>20%</span></div>
+  <style>
+  .fin-table{width:100%;border-collapse:collapse;font-size:11px}
+  .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
+  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
+  .fin-table tr:hover td{background:#1a1a3a}
+  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
+  .fin-table tr:hover td:first-child{background:#1a1a2a}
+  .fin-table td.na{color:#555}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-table td.slight{color:#8bc34a;font-weight:600}
+  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
+  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
+  .fin-light .fin-table td.pos{color:#2e7d32!important}
+  .fin-light .fin-table td.neg{color:#c0392b!important}
+  .fin-light .fin-table td.warn{color:#b8860b!important}
+  .fin-light .fin-table td.slight{color:#6d8b2b!important}
+ </style>
+  <table class="fin-table">
+<thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
+<tr><td>每股营业收入(元)</td><td class="slight">13.84</td><td class="slight">11.06</td><td class="neg">8.66</td><td class="warn">12.23</td><td class="pos">12.80</td><td class="pos">6.76</td><td class="pos">4.82</td><td class="slight">3.38</td><td class="pos">3.05</td><td>2.24</td></tr>
+<tr><td>每股经营现金流(元)</td><td class="slight">3.19</td><td class="pos">3.06</td><td class="slight">1.78</td><td class="neg">1.42</td><td class="pos">3.39</td><td class="neg">2.25</td><td class="pos">3.01</td><td class="pos">2.18</td><td class="slight">0.98</td><td>0.84</td></tr>
+<tr><td>每股净利润(元)</td><td class="pos">2.48</td><td class="pos">1.66</td><td class="neg">0.24</td><td class="warn">3.10</td><td class="pos">3.54</td><td class="warn">1.36</td><td class="slight">1.44</td><td class="slight">1.44</td><td class="pos">1.42</td><td>1.06</td></tr>
+<tr><td>每股净资产(元)</td><td class="slight">28.46</td><td class="slight">24.84</td><td class="slight">22.79</td><td class="slight">22.77</td><td class="warn">20.20</td><td class="pos">22.68</td><td class="pos">16.27</td><td class="neg">6.67</td><td class="neg">8.67</td><td>12.79</td></tr>
+<tr><td>总股本(亿股)</td><td class="slight">6.65</td><td class="slight">6.65</td><td class="slight">6.65</td><td class="slight">6.65</td><td class="slight">6.65</td><td class="slight">6.65</td><td class="slight">6.65</td><td class="slight">6.65</td><td class="slight">6.65</td><td>6.65</td></tr>
+<tr><td>营业收入(亿元)</td><td class="slight">92.03</td><td class="slight">73.56</td><td class="neg">57.61</td><td class="warn">81.30</td><td class="pos">85.10</td><td class="pos">44.97</td><td class="pos">32.03</td><td class="slight">22.46</td><td class="pos">20.30</td><td>14.89</td></tr>
+<tr><td>毛利率(%)</td><td class="slight">40.22</td><td class="slight">38.00</td><td class="neg">34.42</td><td class="slight">47.66</td><td class="slight">46.54</td><td class="warn">37.08</td><td class="slight">40.52</td><td class="warn">38.25</td><td class="pos">39.16</td><td>26.72</td></tr>
+<tr><td>净利润(亿元)</td><td class="pos">16.48</td><td class="pos">11.03</td><td class="neg">1.61</td><td class="warn">20.53</td><td class="pos">23.37</td><td class="pos">8.81</td><td class="pos">6.07</td><td class="slight">4.05</td><td class="pos">3.97</td><td>1.76</td></tr>
+<tr><td>净利润率(%)</td><td class="slight">17.91</td><td class="pos">14.99</td><td class="neg">2.80</td><td class="warn">25.25</td><td class="pos">27.46</td><td class="slight">19.58</td><td class="slight">18.95</td><td class="warn">18.03</td><td class="pos">19.58</td><td>11.85</td></tr>
+<tr><td>ROE(%)</td><td class="pos">9.30</td><td class="pos">6.94</td><td class="neg">1.06</td><td class="neg">14.38</td><td class="pos">19.44</td><td class="neg">10.64</td><td class="neg">16.96</td><td class="warn">22.25</td><td class="slight">26.27</td><td>21.18</td></tr>
+</table>
+</div>
+
+<style>
+.mcap-btns{display:flex;gap:6px;margin:8px 0}
+.mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e3e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
+.mcap-btn:hover{border-color:#4caf50;color:#4caf50}
+.mcap-btn.active{background:#4caf50;color:#0a0a1a;border-color:#4caf50;font-weight:bold}
+.mcap-chart-wrap{position:relative;width:100%;border-radius:8px;background:#0d0d20;border:1px solid #1e3e3a}
+.mcap-chart-wrap svg{display:block}
+.mcap-tooltip{position:absolute;display:none;background:rgba(10,10,26,.92);border:1px solid #4caf50;border-radius:6px;padding:6px 10px;font-size:12px;color:#fff;pointer-events:none;z-index:10;white-space:nowrap;transform:translate(-50%,-110%)}
+.mcap-tooltip .tt-date{color:#888;font-size:10px}
+.mcap-tooltip .tt-val{color:#4caf50;font-weight:bold}
+.mcap-info{text-align:center;font-size:12px;color:#888;margin-top:8px;padding:6px;background:#0d0d20;border-radius:6px}
+.mcap-v{color:#4caf50;font-weight:bold}
+.mcap-axis path,.mcap-axis line{stroke:#333;stroke-width:1}
+.mcap-axis text{fill:#666;font-size:10px}
+.mcap-grid line{stroke:#1e3e3a;stroke-width:0.5;stroke-dasharray:3,3}
+.mcap-light .mcap-btn{border-color:#c8c0b0;background:#e8e4dc;color:#707070}
+.mcap-light .mcap-btn:hover{border-color:#b8860b;color:#b8860b}
+.mcap-light .mcap-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
+.mcap-light .mcap-chart-wrap{background:#f4f1ea;border-color:#d8d4c8}
+.mcap-light .mcap-tooltip{background:rgba(255,255,255,.95);border-color:#b8860b;color:#3d3d3d}
+.mcap-light .mcap-tooltip .tt-date{color:#808080}
+.mcap-light .mcap-tooltip .tt-val{color:#b8860b}
+.mcap-light .mcap-info{background:#e8e4dc;color:#808080}
+.mcap-light .mcap-v{color:#b8860b}
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var stockCode = '603986';
+  var chartData = [];
+  var viewStart = 0, viewEnd = 0;
+  var isDragging = false, dragStartX = 0, dragViewStart = 0;
+  var svg, tooltip, wrap;
+  var W = 0, H = 380;
+  var M = {top:20, right:20, bottom:35, left:65};
+
+  function init(){
+    svg = document.getElementById('mcapSvg');
+    tooltip = document.getElementById('mcapTooltip');
+    wrap = svg.parentElement;
+    svg.style.cursor = 'crosshair';
+
+    if(document.getElementById('hermes-theme-override')){
+      document.getElementById('s-mcap').classList.add('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf) sf.classList.add('fin-light');
+    }
+
+    var themeWatcher = new MutationObserver(function(){
+      var light = !!document.getElementById('hermes-theme-override');
+      var card = document.getElementById('s-mcap');
+      if(light) card.classList.add('mcap-light');
+      else card.classList.remove('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf){ if(light) sf.classList.add('fin-light'); else sf.classList.remove('fin-light'); }
+      if(chartData.length) render();
+    });
+    if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
+
+    document.querySelectorAll('.mcap-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.mcap-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        loadPeriod(btn.getAttribute('data-period'));
+      });
+    });
+
+    svg.addEventListener('wheel', onWheel, {passive:false});
+    svg.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+    svg.addEventListener('mousemove', onHover);
+    svg.addEventListener('mouseleave', function(){
+      tooltip.style.display='none';
+      var cv=svg.querySelector('#mcapCrossV');if(cv)cv.setAttribute('opacity','0');
+      var ch2=svg.querySelector('#mcapCrossH');if(ch2)ch2.setAttribute('opacity','0');
+      var cd=svg.querySelector('#mcapCrossDot');if(cd)cd.setAttribute('opacity','0');
+    });
+
+    var touchDist = 0;
+    svg.addEventListener('touchstart', function(e){
+      if(e.touches.length === 1){
+        isDragging = true; dragStartX = e.touches[0].clientX; dragViewStart = viewStart;
+      }else if(e.touches.length === 2){
+        touchDist = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+      }
+    }, {passive:true});
+    svg.addEventListener('touchmove', function(e){
+      if(e.touches.length === 1 && isDragging){
+        var dx = e.touches[0].clientX - dragStartX;
+        var range = viewEnd - viewStart;
+        if(range > 1){
+          var shift = Math.round(-dx / ((W-M.left-M.right)/range));
+          var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart + shift));
+          viewStart = ns; viewEnd = viewStart + range; render();
+        }
+        isDragging = false;
+      }else if(e.touches.length === 2){
+        var nd = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+        if(touchDist > 0){doZoom(nd > touchDist ? 1 : -1, (e.touches[0].clientX+e.touches[1].clientX)/2);}
+        touchDist = nd;
+      }
+    }, {passive:true});
+    svg.addEventListener('touchend', function(){isDragging=false});
+    window.addEventListener('resize', function(){if(chartData.length)render()});
+    loadPeriod('week');
+  }
+
+  function getThemeColors(){
+    var light = !!document.getElementById('hermes-theme-override');
+    return {
+      line: light ? '#b8860b' : '#4caf50',
+      grid: light ? '#e0dcd0' : '#1e3e3a',
+      axisText: light ? '#999' : '#666',
+      gradTop: light ? '#b8860b' : '#4caf50',
+      gradBot: light ? '#b8860b' : '#4caf50',
+      gradTo: '0.25', gradBo: '0.01'
+    };
+  }
+
+  function loadPeriod(period){
+    var url = '../kline/' + stockCode + '_' + period + '.json?t=' + Date.now();
+    fetch(url).then(function(r){return r.json()}).then(function(data){
+      chartData = data;
+      var dw = data.length;
+      viewStart = Math.max(0, data.length - dw); viewEnd = data.length;
+      updateStats(data); render();
+    }).catch(function(e){console.error(e)});
+  }
+
+  function updateStats(data){
+    if(!data.length) return;
+    var last = data[data.length-1];
+    var high = data.reduce(function(a,b){return a.value>b.value?a:b});
+    var low = data.reduce(function(a,b){return a.value<b.value?a:b});
+    document.getElementById('mcapCurrent').textContent = last.value.toFixed(1);
+    document.getElementById('mcapHigh').textContent = high.value.toFixed(1);
+    document.getElementById('mcapLow').textContent = low.value.toFixed(1);
+  }
+
+  function render(){
+    if(!chartData.length) return;
+    var rect = wrap.getBoundingClientRect();
+    W = Math.max(300, rect.width || 600); H = 380;
+    svg.style.width = W + 'px'; svg.style.height = H + 'px';
+    var cw = W - M.left - M.right, ch = H - M.top - M.bottom;
+    if(cw <= 0 || ch <= 0) return;
+    var visible = chartData.slice(viewStart, viewEnd);
+    var n = visible.length; if(n === 0) return;
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<n;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad); maxVal = maxVal + pad;
+    var xS = function(i){return M.left+(i/(n-1||1))*cw};
+    var yS = function(v){return M.top+ch-(v-minVal)/(maxVal-minVal)*ch};
+    var pts = '';
+    for(var i=0;i<n;i++){pts += (i===0?'':' ')+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1);}
+    var tc = getThemeColors(), h = '';
+    h += '<g class="mcap-grid">';
+    for(var gi=0;gi<=5;gi++){var gv=minVal+(maxVal-minVal)*(gi/5),gy=yS(gv);h+='<line x1="'+M.left+'" y1="'+gy.toFixed(1)+'" x2="'+(M.left+cw)+'" y2="'+gy.toFixed(1)+'" stroke="'+tc.grid+'"/>';h+='<text x="'+(M.left-8)+'" y="'+(gy+4)+'" text-anchor="end" fill="'+tc.axisText+'" font-size="10">'+fmtVal(gv)+'</text>';}
+    h += '</g><g class="mcap-axis">';
+    var ls = Math.max(1, Math.floor(n / Math.min(10, n)));
+    for(var li=0;li<n;li+=ls){var lx=xS(li);h+='<text x="'+lx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx.toFixed(1)+','+(H-10)+')">'+visible[li].time+'</text>';}
+    h += '<text x="'+xS(n-1).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+xS(n-1).toFixed(1)+','+(H-10)+')">'+visible[n-1].time+'</text></g>';
+    var fp = 'M'+M.left+','+(M.top+ch)+' '; for(var i=0;i<n;i++){fp+='L'+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1)+' ';}
+    fp += 'L'+(M.left+cw)+','+(M.top+ch)+' Z';
+    h += '<path d="'+fp+'" fill="url(#mgG)" opacity="0.35"/>';
+    h += '<polyline points="'+pts+'" fill="none" stroke="'+tc.line+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<line id="mcapCrossV" x1="0" y1="'+M.top+'" x2="0" y2="'+(M.top+ch)+'" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<line id="mcapCrossH" x1="'+M.left+'" y1="0" x2="'+(M.left+cw)+'" y2="0" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<circle id="mcapCrossDot" cx="0" cy="0" r="4" fill="'+tc.line+'" stroke="#fff" stroke-width="1.5" opacity="0" pointer-events="none"/>';
+    var df = '<defs><linearGradient id="mgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+tc.gradTop+'" stop-opacity="'+tc.gradTo+'"/><stop offset="100%" stop-color="'+tc.gradBot+'" stop-opacity="'+tc.gradBo+'"/></linearGradient></defs>';
+    svg.innerHTML = df + h;
+  }
+
+  function fmtVal(v){return v>=10000?(v/10000).toFixed(1)+'万亿':v.toFixed(0)+'亿';}
+
+  function doZoom(dir, cx){
+    var n = chartData.length, range = viewEnd - viewStart;
+    if(dir > 0) range = Math.max(10, Math.round(range * 0.75)); else range = Math.min(n, Math.round(range * 1.35));
+    if(range < 2) range = 2; if(range > n) range = n;
+    var rect = svg.getBoundingClientRect();
+    var mx = (cx || rect.left+rect.width/2) - rect.left - M.left;
+    var cw = W - M.left - M.right;
+    var ci = viewStart + (viewEnd-viewStart) * Math.max(0, Math.min(1, mx/cw));
+    viewStart = Math.round(ci - range/2); viewEnd = viewStart + range;
+    if(viewStart < 0){viewStart=0;viewEnd=range;} if(viewEnd>n){viewEnd=n;viewStart=n-range;}
+    render();
+  }
+
+  function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
+  function onDragStart(e){isDragging=true;dragStartX=e.clientX;dragViewStart=viewStart;svg.style.cursor='grabbing';}
+  function onDragMove(e){
+    if(!isDragging) return;
+    var dx = e.clientX - dragStartX, range = viewEnd-viewStart;
+    if(range<=1) return;
+    var cw = W-M.left-M.right; if(cw<=0) return;
+    var shift = Math.round(-dx/(cw/range));
+    var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart+shift));
+    if(ns !== viewStart){viewStart=ns;viewEnd=viewStart+range;render();}
+  }
+  function onDragEnd(){isDragging=false;svg.style.cursor='crosshair';}
+
+  function onHover(e){
+    if(isDragging || !chartData.length) return;
+    var rect = svg.getBoundingClientRect();
+    var mx = e.clientX-rect.left-M.left, cw=W-M.left-M.right;
+    if(cw<=0||viewEnd-viewStart<=0) return;
+    var idx = viewStart + Math.round(mx/cw*(viewEnd-viewStart-1));
+    if(idx<0||idx>=chartData.length) return;
+    var pt = chartData[idx], ri = idx-viewStart, nn=viewEnd-viewStart;
+    var px = M.left+(ri/(nn-1||1))*cw, vis=chartData.slice(viewStart,viewEnd);
+    var minV=Infinity,maxV=-Infinity; for(var i=0;i<vis.length;i++){var v=vis[i].value;if(v<minV)minV=v;if(v>maxV)maxV=v;}
+    var p=(maxV-minV)*0.05||maxV*0.05||100; minV=Math.max(0,minV-p);maxV=maxV+p;
+    var ch=H-M.top-M.bottom, py=M.top+ch-(pt.value-minV)/(maxV-minV)*ch;
+    var cv=svg.querySelector('#mcapCrossV'),ch2=svg.querySelector('#mcapCrossH'),cd=svg.querySelector('#mcapCrossDot');
+    if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.6');}
+    if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.6');}
+    if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
+    tooltip.innerHTML = '<span class="tt-date">'+pt.time+'</span> · 市值 <span class="tt-val">'+pt.value.toFixed(1)+'亿</span>';
+    tooltip.style.display='block'; tooltip.style.left=px+'px';
+    if(py<50){tooltip.style.top=(py+24)+'px';tooltip.style.transform='translate(-50%,0%)';}
+    else{tooltip.style.top=py+'px';tooltip.style.transform='translate(-50%,-110%)';}
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+<div id="s1" class="card"><h2>一、综合评价</h2>
+  <div class="mg" style="margin-bottom:10px">
+    <div class="mi"><div class="mv" style="color:#f0c040">6.5</div><div class="ml">综合评级</div></div>
+    <div class="mi"><div class="mv" style="color:#f0c040">中</div><div class="ml">风险等级</div></div>
+    <div class="mi"><div class="mv" style="color:#f0c040">中高</div><div class="ml">成长弹性</div></div>
+    <div class="mi"><div class="mv" style="color:#ff9800">9.3%</div><div class="ml">ROE</div></div>
+  </div>
+  <div class="bq">兆易创新是国内NOR Flash全球第三、MCU国内领先的Fabless芯片设计公司。2025年营收92亿(+25%)净利16.5亿(+49%)，受益存储周期向上。PE 236x偏高。评分6.5/10。</div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ff9800">核心优势</div><div class="ml">NOR Flash全球第三+MCU国内领先</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ffc107">催化剂</div><div class="ml">存储周期向上+AI需求+DRAM量产</div>
+  </div>
+  <table class="tbl" style="margin-top:10px">
+    <tr><th style="width:100px">指标</th><th style="width:140px">内容</th><th style="width:40%">说明</th></tr>
+    <tr><td>三年预估空间</td><td>NOR Flash+MCU双龙头</td><td>到2028年营收150亿+净利30亿，DRAM量产打开第二曲线</td></tr>
+    <tr><td>季度监控</td><td>存储价格/MCU出货/DRAM进度</td><td>存储行业周期向上，AI需求驱动NOR Flash和MCU量价齐升</td></tr>
+    <tr><td>逻辑证伪点</td><td>存储周期见顶+DRAM量产不及预期</td><td>若存储价格回落或DRAM进度低于预期，增长逻辑受挑战</td></tr>
+    <tr><td>止损触发</td><td>PE>300x或净利润同比下降</td><td>PE 236x已偏高，若净利增速放缓将面临估值压力</td></tr>
+  </table></div>
+
+<div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
+  <h3>核心定位</h3>
+  <div class="txt">兆易创新NOR Flash全球第三/MCU国内领先。2025年营收92亿(+25%)净利16.5亿(+49%)。AI需求驱动增长。但PE 236x偏高。</div>
+
+  <h3>分业务收入结构（2024 vs 2025）</h3>
+  <!-- 使用hl/ht/hf样式（参考M2壁垒类型评估），不要用nm/bt/bf/vl -->
+  <!-- 格式：<div class="hb"><span class="hl">业务名</span><div class="ht"><div class="hf" style="width:XX%;background:COLOR;">XX%</div></div></div> -->
+  <div class="hb"><span class="hl" style="width:65px;">存储芯片</span><span class="ht"><span class="hf c7" style="width:68%;">~68%</span></span></div>
+  <div class="hb"><span class="hl" style="width:65px;">MCU</span><span class="ht"><span class="hf c6" style="width:25%;">~25%</span></span></div>
+  <div class="hb"><span class="hl" style="width:65px;">传感器</span><span class="ht"><span class="hf" style="width:7%;background:#888;">~7%</span></span></div>
+
+  <table class="tbl" style="margin-top:10px;">
+    <tr><th>业务线</th><th>2024年收入</th><th>2025年收入</th><th>趋势</th></tr>
+<tr><td>存储芯片</td><td>49.8亿</td><td>62.6亿</td><td>↗️+25.7%</td></tr>
+<tr><td>MCU</td><td>19.5亿</td><td>23.0亿</td><td>↗️+17.9%</td></tr>
+<tr><td>传感器</td><td>4.3亿</td><td>6.4亿</td><td>↗️+48.8%</td></tr>
+</table>
+  <div class="desc" style="margin-top:6px;">2025年营收92.03亿元(+25.12%)，归母净利16.48亿元(+49.5%)。存储芯片收入62.6亿(+25.7%)占比~68%，受益NOR Flash/SLC NAND量价齐升。MCU收入23亿(+17.9%)，传感器6.4亿(+48.8%)。毛利率~38%。(来源：2025年报)</div>
+
+  <h3>商业模式评估</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+    <tr><td>收入模式</td><td>7</td><td>存储芯片收入为主(68%)，AI需求驱动量价齐升</td></tr>
+    <tr><td>盈利特征</td><td>8</td><td>毛利率~38%，Fabless轻资产高ROE(9.3%)</td></tr>
+    <tr><td>竞争优势</td><td>7</td><td>NOR Flash全球第三，MCU国内领先，技术壁垒较高</td></tr>
+    <tr><td>客户结构</td><td>8</td><td>客户分散，经销体系完善</td></tr>
+</table>
+
+  <div class="bq">兆易创新以存储芯片为核心(收入~68%)，MCU(~25%)和传感器(~7%)为辅。2025年存储收入62.6亿(+25.7%)，MCU 23亿(+17.9%)，传感器6.4亿(+48.8%)。毛利率~38%。</div></div>
+
+<div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
+  <div class="desc">NOR Flash全球第三、MCU国内领先，存储+MCU双轮驱动。Fabless轻资产模式ROE高</div>
+
+  <h3>壁垒类型评估</h3>
+  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040">7</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040">7</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:60%;background:#f0c040">6</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040">7</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:50%;background:#ff9800">5</div></div></div>
+
+  <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
+    <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 7.0</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">较强（技术+规模壁垒）</span>
+  </div>
+
+  <h3>壁垒深度解析</h3>
+  <div class="txt">
+    <b style="color:#4caf50;">客户粘性——NOR Flash全球第三+MCU国内领先</b><br>
+    <span class="dot">·</span> Fabless芯片设计资质，GD32 MCU生态体系形成切换成本<br>
+    <span class="dot">·</span> 产品以经销为主，品牌溢价能力较强<br>
+    <span class="dot">·</span> 客户结构分散，不依赖单一客户，经销商体系覆盖广泛<br><br>
+    <b style="color:#f0c040;">规模壁垒——中等优势</b><br>
+    <span class="dot">·</span> NOR Flash全球第三(~18%市占率)，MCU国内领先<br>
+    <span class="dot">·</span> 技术研发领先<br>
+    <span class="dot">·</span> Fabless模式固定成本低，毛利随产品组合和价格波动<br><br>
+    <b style="color:#f0c040;">技术壁垒——中等偏弱</b><br>
+    <span class="dot">·</span> 大量存储和MCU核心专利，NOR Flash技术全球领先<br>
+    <span class="dot">·</span> NOR Flash全球第三，与华邦/旺宏差距缩小。MCU国内领先但与ST/瑞萨有差距<br>
+    <span class="dot">·</span> 护城河评分7.0/10。技术壁垒+品牌+生态体系形成综合护城河，但存储周期性强<br><br>
+    <b style="color:#888;">垂直整合——薄弱</b><br>
+    <span class="dot">·</span> 轻资产Fabless模式，研发投入持续增加，无晶圆厂负担<br>
+    <span class="dot">·</span> 晶圆代工依赖中芯国际/华虹等，产能保障是关键
+  </div>
+
+  <h3>护城河陷阱识别</h3>
+  <div class="txt" style="color:#f44336;">
+    <b>警惕信号：</b><br>
+    <span class="dot">·</span> 毛利率~38%(2025)，随产品结构改善和价格上涨持续提升<br>
+    <span class="dot">·</span> 兆易创新品牌在半导体行业具较高知名度和客户认可度<br>
+    <span class="dot">·</span> 存储竞争激烈，需关注华邦/旺宏产能和价格策略<br>
+    <span class="dot">·</span> AI技术变革改变存储需求结构，端侧AI带来新机遇
+  </div>
+
+  <div class="bq">护城河评分7.0/10。NOR Flash全球第三(~18%市占率)技术壁垒高，GD32 MCU生态体系形成客户切换成本。但存储行业周期性强，护城河在周期下行时削弱。Fabless轻资产高ROE。</div>
+
+  <div class="bq">护城河劣势：存储行业周期波动大(2023年净利仅1.6亿)。晶圆代工依赖中芯/华虹。MCU与ST/瑞萨差距大。DRAM尚在起步。 兆易创新是国内领先的Fabless芯片设计公司，NOR Flash全球第三、MCU国内领先，存储与MCU双轮驱动，受益于AI需求爆发和存储行业周期向上。</div></div>
+
+<div id="s4" class="card"><h2>M3 管理层分析</h2>
+
+  <h3>管理层基本信息</h3>
+  <table class="tbl">
+    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
+    <tr><td>何卫</td><td>董事长</td><td>2012-12-19至今</td><td>公司创始人之一，带领公司成为NOR Flash全球第三。半导体行业资深企业家。(来源:2025年报)</td></tr>
+    <tr><td>孙桂静</td><td>总经理</td><td>2023-04-26至今</td><td>曾任公司副总经理，2023年起任总经理。半导体行业管理经验丰富。(来源:2025年报)</td></tr>
+  </table>
+  <div class="txt" style="font-size:12px;">管理层背景详见管理层信息表。核心管理层20年+半导体行业经验，技术背景深厚。技术驱动型管理，研发投入持续增加，战略聚焦存储+MCU双轮驱动。无实控人治理结构，股权分散。公司治理规范，管理层稳定。</div>
+
+  <h3>管理层评分</h3>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040">7</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040">7</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040">7</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040">7</div></div></div>
+
+  <div class="bq">核心管理层20年+半导体经验。董事长何卫为创始人之一，带领公司成为NOR Flash全球第三。总经理孙桂静行业经验丰富。(来源:2025年报) 兆易创新是国内领先的Fabless芯片设计公司，NOR Flash全球第三、MCU国内领先，存储与MCU双轮驱动，受益于AI需求爆发和存储行业周期向上。</div>
+
+  <div class="bq">管理层评价：技术驱动，研发投入10.5亿持续增加。管理层稳定。无实控人治理结构股权分散。评分7/10。 兆易创新是国内领先的Fabless芯片设计公司，NOR Flash全球第三、MCU国内领先，存储与MCU双轮驱动，受益于AI需求爆发和存储行业周期向上。</div></div>
+
+<div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
+
+  <h3>核心财务指标</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>年份</th><th>营收(亿)</th><th>净利(亿)</th><th>毛利率</th><th>净利率</th><th>ROE</th><th>趋势</th></tr><tr><td>2021</td><td>85.10</td><td>23.37</td><td>46.54%</td><td>27.46%</td><td>19.44%</td><td>—</td></tr>
+<tr><td>2022</td><td>81.30</td><td>20.53</td><td>47.66%</td><td>25.25%</td><td>14.38%</td><td>↘️</td></tr>
+<tr><td>2023</td><td>57.61</td><td>1.61</td><td>34.42%</td><td>2.80%</td><td>1.06%</td><td>↘️</td></tr>
+<tr><td>2024</td><td>73.56</td><td>11.03</td><td>38.00%</td><td>14.99%</td><td>6.94%</td><td>↗️</td></tr>
+<tr><td>2025</td><td>92.03</td><td>16.48</td><td>40.22%</td><td>17.91%</td><td>9.30%</td><td>↗️</td></tr>
+</table></div><h3>现金流 &amp; 资产负债</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>指标</th><th>2023</th><th>2024</th><th>2025</th><th>趋势</th></tr><tr><td>经营现金流(亿)</td><td>11.84</td><td>20.35</td><td>21.21</td><td class="green">↗️</td></tr></table></div><h3>费用率结构（2024 vs 2025对比）</h3>
+  <table class="tbl" style="margin-top:10px;">
+<tr><th>费用项</th><th>2024年</th><th class="gold">2025年</th><th>趋势</th></tr>
+<tr><td>研发费用</td><td>10.2亿</td><td>10.5亿</td><td>↗️+2.9%</td></tr>
+<tr><td>销售费用</td><td>3.7亿</td><td>3.9亿</td><td>↗️+5.4%</td></tr>
+<tr><td>管理费用</td><td>4.9亿</td><td>4.9亿</td><td>➡️持平</td></tr>
+<tr><td>财务费用</td><td>-3.5亿</td><td>-4.4亿</td><td>↘️(利息收入增)</td></tr>
+</table>
+
+  <div class="bq">财务评分6.5/10。营收92亿(+25%)净利16.5亿(+49%)高增长。毛利率~38%持续改善。负债率~25%无有息债，经营现金流11亿。但PE 236x贵。</div></div>
+
+<div id="s6" class="card"><h2>M5 成本结构</h2>
+
+  <h3>成本结构</h3>
+  <div class="txt">兆易创新NOR Flash全球第三/MCU国内领先。2025年营收92亿(+25%)净利16.5亿(+49%)，受益存储周期向上。AI需求驱动增长。但PE 236x偏高。</div>
+  <table class="tbl">
+<tr><th>成本项目</th><th>2024年</th><th class="gold">2025年</th><th>占比</th><th>趋势</th><th>说明</th></tr>
+<tr><td>晶圆代工</td><td>~35亿</td><td>~45亿</td><td>~49%</td><td>↗️+28%</td><td>中芯国际/华虹等代工</td></tr>
+<tr><td>封装测试</td><td>~6亿</td><td>~8亿</td><td>~9%</td><td>↗️+33%</td><td>封测费用</td></tr>
+<tr><td>研发投入</td><td>10.2亿</td><td>10.5亿</td><td>~11%</td><td>↗️+3%</td><td>研发费用(年报)</td></tr>
+<tr><td>销售费用</td><td>3.7亿</td><td>3.9亿</td><td>~4%</td><td>↗️+5%</td><td>销售费用(年报)</td></tr>
+<tr><td>管理费用</td><td>4.9亿</td><td>4.9亿</td><td>~5%</td><td>➡️</td><td>管理费用(年报)</td></tr>
+</table>
+
+  <h3>产业链议价权</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+    <tr><td>客户粘性</td><td>7</td><td>客户认可度高，GD32生态形成粘性</td></tr>
+    <tr><td>供应商议价力</td><td>5</td><td>依赖中芯国际/华虹代工，产能保障关键</td></tr>
+    <tr><td>竞争格局</td><td>6</td><td>存储和MCU竞争激烈但细分格局良好</td></tr>
+    <tr><td>潜在替代</td><td>7</td><td>芯片设计技术门槛高，AI驱动技术升级</td></tr>
+    <tr><td>进入壁垒</td><td>7</td><td>NOR Flash技术品牌壁垒较高</td></tr>
+  </table>
+
+  <div class="bq">NOR Flash全球31亿美元(+20%)，兆易~18%市占率。MCU全球210亿美元(+8%)，兆易~1.5%。利基DRAM 99亿美元(+25%)起步。AI需求驱动持续增长。</div></div>
+
+<div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
+
+  <h3>FCF质量</h3>
+  <table class="tbl">
+<tr><th>指标</th><th>2024年</th><th class="gold">2025年</th><th>正常化水平</th></tr>
+<tr><td>经营现金流</td><td>20.3亿</td><td>11.2亿</td><td>15-20亿</td></tr>
+<tr><td>CAPEX</td><td>1.5亿</td><td>2.0亿</td><td>~2亿</td></tr>
+<tr><td>FCF</td><td>18.8亿</td><td>9.2亿</td><td>13-18亿</td></tr>
+<tr><td>FCF/净利润</td><td>170%</td><td>56%</td><td>60-80%</td></tr>
+</table>
+  <div class="txt">经营现金流11.22亿(2025)，CAPEX约2亿，FCF约9亿</div>
+
+  <h3>估值指标</h3><table class="tbl"><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr><tr><td>PE(TTM)</td><td>236.3x</td><td>100-300x</td><td>偏高</td></tr><tr><td>PB</td><td>20.59x</td><td>5-25x</td><td>偏高</td></tr><tr><td>PS(TTM)</td><td>42.34x</td><td>20-60x</td><td>偏高</td></tr></table><h3>PE对比 · 半导体设计</h3>
+  
+  </div>
+  </div>
+  </div>
+<div class="hb"><span class="hl">兆易创新</span><div class="ht"><div class="hf" style="width:70%;background:#f0c040;">PE 236x</div></div></div>
+<div class="hb"><span class="hl">紫光国微</span><div class="ht"><div class="hf" style="width:45%;background:#4caf50;">PE 45x</div></div></div>
+<div class="hb"><span class="hl">韦尔股份</span><div class="ht"><div class="hf" style="width:60%;background:#ff9800;">PE 65x</div></div></div>
+  <div class="desc" style="margin-top:6px;">📌 2025年PE(TTM) 236x偏高。同行紫光国微PE 45x、韦尔65x。PB 20.6x显著高于同行。</div>
+
+  <div class="bq">估值：PE(TTM) 236x偏高。PB 20.59x，PS 42.34x。以2025年净利16.5亿看估值偏贵，但考虑存储上行和DRAM量产预期部分合理。同行紫光PE 45x。</div></div>
+
+<div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
+
+  <h3>行业空间</h3>
+  <table class="tbl">
+<tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>兆易创新份额</th><th>市占率</th></tr>
+<tr><td>NOR Flash</td><td>31亿美元</td><td>~20%</td><td>~5.6亿美元</td><td>~18%</td></tr>
+<tr><td>MCU</td><td>210亿美元</td><td>~8%</td><td>~3.2亿美元</td><td>~1.5%</td></tr>
+<tr><td>利基DRAM</td><td>99亿美元</td><td>~25%</td><td>起步</td><td><1%</td></tr>
+</table>
+
+  <div class="mg" style="margin-top:10px;">
+    <div class="mi"><div class="mv gold">92.03亿</div><div class="ml">营收</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">16.48亿</div><div class="ml">归母净利</div></div>
+    <div class="mi"><div class="mv green">~38%</div><div class="ml">毛利率</div></div>
+    <div class="mi"><div class="mv green">11.22亿</div><div class="ml">经营现金流</div></div>
+  </div>
+
+  <h3>竞争态势</h3>
+  <table class="tbl">
+    <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
+    <tr><td>华邦电子</td><td>NOR Flash</td><td>NOR Flash全球第一，台湾厂商，产能成本优势</td></tr>
+    <tr><td>旺宏电子</td><td>NOR Flash</td><td>NOR Flash全球第二</td></tr>
+    <tr><td>紫光国微</td><td>特种IC+MCU</td><td>国内MCU+FPGA龙头，估值较低PE 45x</td></tr>
+    <tr><td>韦尔股份</td><td>兆易创新核心优势是NOR Flash全球第三的技术壁垒</td><td>兆易优势在于NOR Flash全球第三和MCU双轮驱动，兆易创新聚焦专用型存储(NOR/SLC NAND/利基DRAM)+MCU双轮驱动</td></tr>
+  </table>
+
+  <h3>行业终局思考</h3>
+  <div class="txt">兆易创新NOR Flash全球第三/MCU国内领先。2025年营收92亿(+25%)净利16.5亿(+49%)，受益存储周期向上。AI需求驱动增长。但PE 236x偏高。</div>
+
+  <div class="bq">成本：晶圆代工~49%，研发10.5亿(~11%)，销售3.9亿(~4%)，管理4.9亿(~5%)。Fabless模式固定成本低，毛利率随产品组合改善。 兆易创新是国内领先的Fabless芯片设计公司，NOR Flash全球第三、MCU国内领先，存储与MCU双轮驱动，受益于AI需求爆发和存储行业周期向上。</div></div>
+
+<div id="s9" class="card"><h2>M8 三年资本计划 & 催化剂</h2>
+
+  <h3>催化剂时间表</h3>
+  <table class="tbl">
+<tr><th style="width:80px">时间</th><th style="width:30%">事件</th><th style="width:40%">预期影响</th></tr>
+<tr><td>2026H1</td><td>存储周期持续向上</td><td>NOR Flash/SLC NAND量价齐升</td></tr>
+<tr><td>2026H2</td><td>利基DRAM量产扩大</td><td>打开第二增长曲线</td></tr>
+<tr><td>2027</td><td>AI MCU产品落地</td><td>端侧AI增量市场贡献收入</td></tr>
+<tr><td>2028</td><td>车规MCU规模放量</td><td>汽车电子领域市占率提升</td></tr>
+</table>
+
+  <h3>三年业绩预测</h3>
+  <table class="tbl">
+<tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>毛利率趋势</th></tr>
+<tr><td class="green">乐观</td><td>净利25亿</td><td>净利30亿</td><td>净利35亿</td><td>回升至42%</td></tr>
+<tr><td class="gold">基准</td><td>净利18亿</td><td>净利22亿</td><td>净利26亿</td><td>维持38%</td></tr>
+<tr><td class="red">悲观</td><td>净利10亿</td><td>净利8亿</td><td>净利8亿</td><td>降至32%</td></tr>
+</table>
+
+  <div class="bq">催化剂：①存储周期向上(AI需求+海外大厂退出)；②利基DRAM量产；③AI MCU+车规MCU放量。三情景：300-800元，基准500-650元。 兆易创新是国内领先的Fabless芯片设计公司，NOR Flash全球第三、MCU国内领先，存储与MCU双轮驱动，受益于AI需求爆发和存储行业周期向上。</div></div>
+
+<div id="s10" class="card"><h2>M9 预期差 & 市场共识</h2>
+
+  <table class="tbl">
+<tr><th style="width:60px">议题</th><th style="width:100px">市场共识</th><th style="width:40%">独立判断</th><th style="width:50px">方向</th></tr>
+<tr><td>存储周期</td><td style="color:#888;">周期见顶担忧</td><td style="color:#4caf50;">AI需求+海外大厂退出，周期有望延长</td><td>看好</td></tr>
+<tr><td>DRAM前景</td><td style="color:#888;">不确定性大</td><td style="color:#4caf50;">利基DRAM供给缺口明显</td><td>看好</td></tr>
+<tr><td>估值</td><td style="color:#888;">PE 236x太高</td><td style="color:#888;">以2025净利看确实偏高</td><td>中性</td></tr>
+<tr><td>MCU增长</td><td style="color:#888;">增速平稳</td><td style="color:#4caf50;">AI MCU+车规MCU打开新空间</td><td>看好</td></tr>
+<tr><td>竞争格局</td><td style="color:#888;">竞争激烈</td><td style="color:#4caf50;">NOR Flash格局优化，海外大厂退出</td><td>看好</td></tr>
+</table>
+
+  <div class="bq">风险：市场可能高估存储周期持续性，PB 20x在周期顶部有下行风险。但AI需求爆发和海外大厂退出带来的机会也可能超预期。 兆易创新是国内领先的Fabless芯片设计公司，NOR Flash全球第三、MCU国内领先，存储与MCU双轮驱动，受益于AI需求爆发和存储行业周期向上。</div></div>
+
+<div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
+
+  <h3>风险类型</h3>
+  <table class="tbl">
+<tr><th style="width:80px">风险类型</th><th>描述</th><th style="width:50px">概率</th><th style="width:40%">预警信号</th></tr>
+<tr><td>存储周期下行</td><td>存储行业周期性强，价格回落影响营收和毛利率</td><td>中</td><td>NOR Flash价格连续2季下跌</td></tr>
+<tr><td>估值偏高</td><td>PE 236x显著高于同行</td><td>高</td><td>扣非净利增速<20%</td></tr>
+<tr><td>DRAM不及预期</td><td>利基DRAM量产进度和良率可能低于预期</td><td>中</td><td>DRAM收入<5亿</td></tr>
+<tr><td>MCU竞争加剧</td><td>国内外MCU厂商竞争白热化</td><td>中</td><td>MCU收入增速<10%</td></tr>
+</table>
+
+  <h3>敏感性分析</h3><table class="tbl"><tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr><tr><td>营收下降10%</td><td>-9.2亿</td><td>-15%</td></tr><tr><td>毛利率下降3pct</td><td>-2.8亿</td><td>-10%</td></tr><tr><td>费用率上升</td><td>-1.5亿</td><td>-5%</td></tr><tr><td>行业下行周期</td><td>-5亿</td><td>-20%</td></tr><tr><td>竞争加剧</td><td>-3亿</td><td>-10%</td></tr></table><h3>三情景分析</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">~800元</div><div class="dt">+36%<br>存储周期持续向上+DRAM量产，净利25亿+，PE降至150x</div></div>
+    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">0.0</div><div class="dt">持平~+11%<br>存储价格温和上涨，净利18-20亿，PE维持180-200x</div></div>
+    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">~300元</div><div class="dt">-49%<br>存储周期见顶，净利回落至10亿</div></div>
+  </div>
+
+  <h3>避雷清单</h3><table class="tbl"><tr><th>检查项</th><th>结果</th></tr><tr><td>是否存在商誉减值风险</td><td>商誉~1亿(<2%)风险低</td></tr><tr><td>大股东是否持续减持</td><td>管理层持股稳定，无大额减持</td></tr><tr><td>财务造假信号</td><td>经营现金流多年为正</td></tr><tr><td>现金流是否持续为负</td><td>经营现金流11.22亿(2025)</td></tr><tr><td>是否有未决诉讼</td><td>年报未披重大未决诉讼</td></tr></table>
+  <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
+    <span style="color:#4caf50;">✅ 负债率~25%，经营现金流11亿。无有息负债，财务健康存储周期下行、PE 236x估值偏高、DRAM量产不确定性</span>
+  </div>
+
+  <h3>清算价值</h3>
+  <table class="tbl">
+    <tr><th>资产项</th><th>账面价值</th><th>清算价值</th></tr>
+    <tr><td>货币资金</td><td>30亿</td><td class="gold">~30亿</td></tr>
+    <tr><td>应收账款</td><td>15亿</td><td>~12亿</td></tr>
+    <tr><td>存货</td><td>18亿</td><td>~12亿</td></tr>
+    <tr><td>固定资产</td><td>10亿</td><td>~5亿</td></tr>
+    <tr><td class="gold">合计</td><td>73亿</td><td>~59亿</td></tr>
+  </table>
+  <div class="txt">兆易创新NOR Flash全球第三/MCU国内领先。2025年营收92亿(+25%)净利16.5亿(+49%)，受益存储周期向上。AI需求驱动增长。但PE 236x偏高。</div></div>
+
+<div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
+  <h3>六维评分</h3>
+  <!-- 替换时禁止用f-string！Python f-string会把{{}}转义为{}，导致花括号残留。
+       正确写法：c.replace('{{DIM_BAR_' + str(i) + '}}', 'width:70%') -->
+  <div class="hb"><span class="hl">商业模式</span><div class="ht"><div class="hf c7" style="width:70%">7</div></div></div>
+  <div class="hb"><span class="hl">护城河</span><div class="ht"><div class="hf c7" style="width:70%">7</div></div></div>
+  <div class="hb"><span class="hl">管理层</span><div class="ht"><div class="hf c7" style="width:65%">6.5</div></div></div>
+  <div class="hb"><span class="hl">财务健康</span><div class="ht"><div class="hf c6" style="width:60%">6</div></div></div>
+  <div class="hb"><span class="hl">估值</span><div class="ht"><div class="hf c6" style="width:60%">6</div></div></div>
+  <div class="hb"><span class="hl">成长性</span><div class="ht"><div class="hf c7" style="width:50%">5</div></div></div>
+  <h3>核心亮点</h3>
+  <div class="txt"><span class="dot">●</span><b>NOR Flash全球第三</b>全球NOR Flash市占率~18%，受益海外大厂退出+AI需求爆发</div>
+  <div class="txt"><span class="dot">●</span><b>MCU国内领先</b>GD32系列MCU国内32位市场领先，车规/工控/AI MCU布局深化</div>
+  <div class="txt"><span class="dot">●</span><b>DRAM第二曲线</b>利基型DRAM量产进展顺利，打开百亿级新市场空间</div>
+  <h3>核心风险</h3>
+  <div class="txt"><span class="dot">●</span><b>存储周期下行：</b>净利率~18%(2025)，受存储价格周期波动较大</div>
+  <div class="txt"><span class="dot">●</span><b>估值偏高</b>PE 236x显著高于同行，若业绩增速放缓估值承压</div>
+  <div class="txt"><span class="dot">●</span><b>DRAM量产不及预期：</b>负债率~25%，无有息负债，财务健康</div>
+  <h3>价值投资理念应用</h3>
+  <table class="tbl">
+    <tr><th style="width:50px">维度</th><th style="width:100px">代表人物</th><th style="width:40%">应用分析</th></tr>
+    <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>巴菲特好生意：存储+MCU双轮驱动，毛利率~38%ROE 9.3%，Fabless轻资产</td></tr>
+    <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>巴菲特护城河：NOR Flash全球第三技术壁垒，GD32生态形成切换成本</td></tr>
+    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>彼得林奇管理层：创始人何卫20年+行业经验，管理层稳定</td></tr>
+    <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>格雷厄姆财务：负债率~25%无有息负债，经营现金流11亿，财务健康</td></tr>
+    <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>巴菲特成本意识：Fabless轻资产，毛利率随产品结构持续改善</td></tr>
+    <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>巴菲特估值原则：PE 236x偏高反映市场对存储周期和DRAM预期</td></tr>
+    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>彼得林奇市占率：NOR Flash全球第三(~18%)，MCU国内领先</td></tr>
+    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>费雪催化剂：存储周期向上+AI需求+DRAM量产+车规MCU</td></tr>
+    <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>卡拉曼预期差：市场可能高估存储周期持续性，PB 20x有下行风险</td></tr>
+    <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>邓普顿风险：存储周期下行、PE 236x估值压力、DRAM不确定</td></tr>
+    <tr><td>M11</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>PE 236x大幅高于同行。需等待周期底部或DRAM量产确认</td></tr>
+  </table>
+  <div class="bq" style="margin-top:12px">
+    <b>最终结论：</b>兆易创新是国内领先的存储和MCU芯片设计公司，NOR Flash全球第三、MCU国内领先。2025年营收92.03亿(+25.12%)，净利16.48亿(+49.5%)。产品覆盖NOR Flash/SLC NAND/利基DRAM/MCU/传感器。(来源：2025年报)。兆易创新受益存储周期向上+AI需求爆发。2025年营收92亿(+25%)净利16.5亿(+49%)。但PE 236x偏高。关注存储周期下行风险。
+  </div></div>
+
+<div id="s13" class="card">
+  <h2>附录</h2>
+  <div class="txt"><span class="dot">●</span>数据来源：2025年报 + fin-table API</div>
+  <div class="txt"><span class="dot">●</span>行业对比数据取自各公司2025年报/2026Q1季报，市场数据截至2026年6月12日。</div>
+  <div class="txt"><span class="dot">●</span>部分业务拆分数据为估算值，以公司年报为准。</div>
+  <div class="txt"><span class="dot">●</span>DCF估值采用简化模型，仅供内部参考，不构成投资建议。
+  <div class="footer">
+    ⚠️ 声明：本内容仅供理论学习和研究练习使用，不构成投资建议，不能作为投资依据。股市有风险，投资需谨慎。<br>
+    2026.06.17 | 数据截止：2026-06-12<br>
+    兆易创新股份有限公司 · 603986.SH..SH
+  
+
+
+</body>
+</html>
