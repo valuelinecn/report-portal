@@ -670,27 +670,27 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 <tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr>
 <tr>
 <td>PE(TTM)</td>
-<td class="gold">{{TD}}</td>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
+<td class="gold">{{PE_TTM_VAL}}</td>
+<td>{{PE_TTM_RANGE}}</td>
+<td>{{PE_TTM_EVAL}}</td>
     </tr>
 <tr>
 <td>PE(2026E)</td>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
+<td>{{PE_26E_VAL}}</td>
+<td>{{PE_26E_RANGE}}</td>
+<td>{{PE_26E_EVAL}}</td>
     </tr>
 <tr>
 <td>PB</td>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
+<td>{{PB_VAL}}</td>
+<td>{{PB_RANGE}}</td>
+<td>{{PB_EVAL}}</td>
     </tr>
 <tr>
 <td>PS(TTM)</td>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
+<td>{{PS_TTM_VAL}}</td>
+<td>{{PS_TTM_RANGE}}</td>
+<td>{{PS_TTM_EVAL}}</td>
     </tr>
   </table>
 
@@ -880,24 +880,29 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <table class="tbl">
 <tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr>
 <tr>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
-<td class="orange">{{TD}}</td>
+<td>营收下降10%</td>
+<td>{{SENS_REV_IMPACT}}</td>
+<td class="orange">{{SENS_REV_PRICE}}</td>
     </tr>
 <tr>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
-<td class="orange">{{TD}}</td>
+<td>毛利率下降3pct</td>
+<td>{{SENS_MARGIN_IMPACT}}</td>
+<td class="orange">{{SENS_MARGIN_PRICE}}</td>
     </tr>
 <tr>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
-<td class="orange">{{TD}}</td>
+<td>费用率上升</td>
+<td>{{SENS_COST_IMPACT}}</td>
+<td class="orange">{{SENS_COST_PRICE}}</td>
     </tr>
 <tr>
-<td class="red">{{TD}}</td>
-<td class="red">{{TD}}</td>
-<td class="red" style="font-weight:bold;">{{TD}}</td>
+<td>行业下行周期</td>
+<td>{{SENS_CYCLE_IMPACT}}</td>
+<td class="orange">{{SENS_CYCLE_PRICE}}</td>
+    </tr>
+<tr>
+<td>竞争加剧</td>
+<td>{{SENS_COMPETE_IMPACT}}</td>
+<td class="orange">{{SENS_COMPETE_PRICE}}</td>
     </tr>
   </table>
 
@@ -912,24 +917,24 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <table class="tbl">
 <tr><th>检查项</th><th>结果</th></tr>
 <tr>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
+<td>是否存在商誉减值风险</td>
+<td>{{CHECK_1_RESULT}}</td>
     </tr>
 <tr>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
+<td>大股东是否持续减持</td>
+<td>{{CHECK_2_RESULT}}</td>
     </tr>
 <tr>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
+<td>财务造假信号</td>
+<td>{{CHECK_3_RESULT}}</td>
     </tr>
 <tr>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
+<td>现金流是否持续为负</td>
+<td>{{CHECK_4_RESULT}}</td>
     </tr>
 <tr>
-<td>{{TD}}</td>
-<td>{{TD}}</td>
+<td>是否有未决诉讼</td>
+<td>{{CHECK_5_RESULT}}</td>
     </tr>
   </table>
   <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
