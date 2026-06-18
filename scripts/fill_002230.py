@@ -43,7 +43,7 @@ ok("LOGIC+理念")
 
 # ===== M1 =====
 html = html.replace('{{ANALYSIS_TEXT}}', '科大讯飞是中国人工智能龙头企业，主营智能语音+AI大模型。2025年营收271.05亿(+16.12%)，星火大模型中标金额23.16亿(行业第一)。核心业务：智慧教育(33%)+开放平台(22%)+智慧城市(~25%)+智能硬件(8%)+智慧医疗(3%)。')
-html = html.replace('{{M1_REVENUE_ROWS}}','')
+html = html.replace('{{M1_REVENUE_ROWS}}','<tr><td>智慧教育</td><td>72.29亿</td><td>89.67亿</td><td>↗️+24.0%</td></tr><tr><td>智慧医疗</td><td>6.92亿</td><td>8.58亿</td><td>↗️+24.1%</td></tr><tr><td>开放平台</td><td>51.72亿</td><td>60.88亿</td><td>↗️+17.7%</td></tr><tr><td>智能硬件</td><td>20.23亿</td><td>21.83亿</td><td>↗️+7.9%</td></tr><tr><td>移动互联网产品</td><td>6.91亿</td><td>9.78亿</td><td>↗️+41.5%</td></tr>')
 for i in range(1,4):
     html = html.replace(f'{{{{M1_HB_BAR_{i}}}}}', '')
 html = html.replace('{{M1_ANNUAL_REMARK}}', '智慧教育(+24%)和开放平台(+17.7%)是增长主力。AI大模型商业化加速，大模型中标金额23亿行业第一。研发费用44.39亿(+14.07%)持续高投入。')
