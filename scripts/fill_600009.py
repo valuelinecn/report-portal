@@ -413,3 +413,58 @@ with open(REPORT, 'w', encoding='utf-8') as f:
 print(f"\n{'='*50}")
 print(f"  填充完成！共修改 {changes} 处")
 print(f"{'='*50}")
+
+# ===== 自检 =====
+print("\n📋 自检结果:")
+errors = []
+import re
+
+with open(REPORT, 'r', encoding='utf-8') as f:
+    c = f.read()
+
+# 1. TODO残留
+t = c.count('__TODO__')
+if t: errors.append(f"❌ TODO残留: {t}个")
+
+# 2. {{}}占位符残留
+ph = len(re.findall(r'\{\{[^}]+\}', c))
+if ph: errors.append(f"❌ 占位符残留: {ph}个")
+
+# 3. div平衡
+op = c.count('<div') 
+cl = c.count('</div>')
+if op != cl: errors.append(f"❌ div不平衡: {op}开/{cl}闭")
+
+# 4. 估值表—残留
+val = re.findall(r'<td>PE\(TTM\)</td>.*?</tr>', c, re.DOTALL)
+for v in val:
+    if '—' in v and 'PE_TTM' not in v:
+        errors.append("❌ 估值表PE行有—残留")
+        break
+
+val2 = re.findall(r'<td>PB</td>.*?</tr>', c, re.DOTALL)
+for v in val2:
+    if '—' in v and 'PB_VAL' not in v:
+        errors.append("❌ 估值表PB行有—残留")
+        break
+
+# 5. 敏感表—残留
+for s in ['营收下降', '毛利率下降', '费用率上升', '行业下行', '竞争加剧']:
+    if s in c:
+        idx = c.find(s)
+        snippet = c[idx:idx+150]
+        if '>—<' in snippet:
+            errors.append(f"❌ 敏感表「{s}」有—残留")
+            break
+
+# 6. 条形花括号残留
+if re.search(r'style="\{', c):
+    errors.append("❌ 条形花括号残留")
+
+if errors:
+    print("\n".join(errors))
+    print("⚠️ 修复后再交付！")
+else:
+    print("✅ TODO: 0 | {{}}: 0 | div平衡 | 估值OK | 敏感OK | 条形OK")
+    print(f"  文件大小: {len(c)} 字节")
+print(f"{'='*50}")
