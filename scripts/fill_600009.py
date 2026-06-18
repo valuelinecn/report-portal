@@ -79,8 +79,8 @@ moat_scores = [9, 9, 7, 6, 9, 8]
 moat_colors = ['#4caf50', '#4caf50', '#f0c040', '#f0c040', '#4caf50', '#4caf50']
 for i in range(1, 7):
     w = moat_scores[i-1] * 10
-    replace_all(f'{{MOAT_BAR_{i}}}', f'width:{w}%;background:{moat_colors[i-1]}', f'M2条{i}')
-    replace_all(f'{{MOAT_SCORE_{i}}}', str(moat_scores[i-1]), f'M2分{i}')
+    replace_all(f'{{{{MOAT_BAR_{i}}}}}', f'width:{w}%;background:{moat_colors[i-1]}', f'M2条{i}')
+    replace_all(f'{{{{MOAT_SCORE_{i}}}}}', str(moat_scores[i-1]), f'M2分{i}')
 replace_all('{{MOAT_TOTAL_SCORE}}', '8.0', '壁垒总分')
 replace_all('{{MOAT_LEVEL}}', '深厚', '壁垒等级')
 replace_all('{{MOAT_PHILOSOPHY}}', '核心护城河是长三角唯一国际航空枢纽的区位垄断地位，这是物理空间和行政准入的双重壁垒，不可复制', '护城河理念')
@@ -122,7 +122,7 @@ mgmt_scores = [7, 7, 6, 6]
 mgmt_colors = ['#4caf50', '#4caf50', '#f0c040', '#f0c040']
 for i in range(1, 5):
     w = mgmt_scores[i-1] * 10
-    replace_all(f'{{MGMT_BAR_{i}}}', f'width:{w}%;background:{mgmt_colors[i-1]}', f'M3条{i}')
+    replace_all(f'{{{{MGMT_BAR_{i}}}}}', f'width:{w}%;background:{mgmt_colors[i-1]}', f'M3条{i}')
 
 # ===== M4 费用率 =====
 fee_data = {
@@ -358,8 +358,8 @@ colors_dims = ['#4caf50', '#4caf50', '#f0c040', '#ff9800', '#4caf50', '#f0c040']
 labels_dims = ['商业模式', '护城河', '管理层', '财务健康', '估值', '成长性']
 for i in range(1, 7):
     w = scores_dims[i-1] * 10
-    replace_all(f'{{DIM_BAR_{i}}}', f'width:{w}%', f'维{i}宽度')
-    replace_all(f'{{DIM_SCORE_{i}}}', str(scores_dims[i-1]), f'维{i}分')
+    replace_all(f'{{{{DIM_BAR_{i}}}}}', f'width:{w}%', f'维{i}宽度')
+    replace_all(f'{{{{DIM_SCORE_{i}}}}}', str(scores_dims[i-1]), f'维{i}分')
 replace_all('{{DIM_BAR_X}}', 'width:70%', '维X')
 
 # 价值理念

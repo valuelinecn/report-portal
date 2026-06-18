@@ -135,8 +135,8 @@ moat_scores = [8, 9, 7, 6, 5, 7]
 moat_colors = ['#4caf50', '#4caf50', '#f0c040', '#f0c040', '#ff9800', '#f0c040']
 for i in range(1, 7):
     w = moat_scores[i-1] * 10
-    replace_all(f'{{MOAT_BAR_{i}}}', f'width:{w}%;background:{moat_colors[i-1]}', f'M2条{i} {moat_scores[i-1]}分')
-    replace_all(f'{{MOAT_SCORE_{i}}}', str(moat_scores[i-1]), f'M2分{i}')
+    replace_all(f'{{{{MOAT_BAR_{i}}}}}', f'width:{w}%;background:{moat_colors[i-1]}', f'M2条{i} {moat_scores[i-1]}分')
+    replace_all(f'{{{{MOAT_SCORE_{i}}}}}', str(moat_scores[i-1]), f'M2分{i}')
 replace_all('{{MOAT_TOTAL_SCORE}}', '7.0', '壁垒总分')
 
 replace_all('{{MOAT_LEVEL}}', '深厚', '壁垒等级')
@@ -181,7 +181,7 @@ mgmt_scores_m3 = [6, 7, 5, 6]
 mgmt_colors_m3 = ['#f0c040', '#f0c040', '#ff9800', '#f0c040']
 for i_m3 in range(1, 5):
     w_m3 = mgmt_scores_m3[i_m3-1] * 10
-    replace_all(f'{{MGMT_BAR_{i_m3}}}', f'width:{w_m3}%;background:{mgmt_colors_m3[i_m3-1]}', f'M3条{i_m3} {mgmt_scores_m3[i_m3-1]}分')
+    replace_all(f'{{{{MGMT_BAR_{i_m3}}}}}', f'width:{w_m3}%;background:{mgmt_colors_m3[i_m3-1]}', f'M3条{i_m3} {mgmt_scores_m3[i_m3-1]}分')
 replace_all('{{MGMT_SCORE_2}}', '7', '管理层评分-执行力')
 replace_all('{{MGMT_SCORE_3}}', '5', '管理层评分-股东回报')
 replace_all('{{MGMT_SCORE_4}}', '6', '管理层评分-资本配置')
