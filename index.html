@@ -364,26 +364,6 @@ html{scroll-behavior:smooth}
 .game-topbar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--b2);background:var(--bg4)}
 .game-top-title{font-size:13px;color:var(--t3)}
 
-/* ===== MATCH GAME ===== */
-.match-levels{padding:20px 16px;max-width:500px;margin:0 auto}
-.match-level-card{background:var(--card);border-radius:12px;padding:16px;border:1px solid var(--b1);margin-bottom:10px;cursor:pointer;transition:all .25s}
-.match-level-card:active{transform:scale(.98)}
-.ml-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;border:1px solid;margin-bottom:6px}
-.ml-title{font-size:15px;color:var(--t1);font-weight:600;margin-bottom:2px}
-.ml-desc{font-size:11px;color:var(--m4)}
-.match-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--b2)}
-.match-board{display:flex;gap:10px;padding:12px 10px;max-width:600px;margin:0 auto}
-.match-col{flex:1;display:flex;flex-direction:column;gap:8px}
-.match-cell{background:var(--card);border:1px solid var(--b1);border-radius:10px;padding:12px 10px;font-size:12px;color:var(--t3);text-align:center;cursor:pointer;transition:all .2s;line-height:1.5;min-height:60px;display:flex;align-items:center;justify-content:center}
-.match-cell small{font-size:10px;color:var(--m5);display:block;margin-top:2px}
-.match-cell .mhint{font-size:9px;color:var(--m5);display:block;margin-top:4px;font-style:italic}
-.match-cell:active{transform:scale(.96)}
-.match-cell.selected{border-color:var(--accent);background:var(--accent3)}
-.match-cell.matched{border-color:#4caf50!important;background:#4caf5015!important;pointer-events:none}
-.match-cell.matched .mhint{color:var(--m3)}
-.match-cell.wrong{border-color:#f44336!important;background:#f4433615!important}
-.match-result{padding:30px 16px;text-align:center;max-width:500px;margin:0 auto}
-
 /* ===== PURCHASE CHECK GAME ===== */
 .pc-page{padding:20px 16px;max-width:600px;margin:0 auto}
 .pc-into{text-align:center;padding:20px 10px}
@@ -516,16 +496,6 @@ html{scroll-behavior:smooth}
           <span class="tag" style="background:#4caf5020;color:#4caf50;border-color:#4caf5030">实操工具</span>
           <span class="tag" style="background:#f0c04020;color:#f0c040;border-color:#f0c04030">价值投资</span>
           <span class="tag" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f730">20题</span>
-        </div>
-      </div>
-      <div class="hub-card" onclick="switchToMatch()">
-        <div class="hub-card-icon">📊</div>
-        <div class="hub-card-title">财报指标连连看</div>
-        <div class="hub-card-desc">三关挑战 · 掌握ROE、PE、毛利率等核心财务指标</div>
-        <div class="hub-card-tags">
-          <span class="tag" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f730">初级</span>
-          <span class="tag" style="background:#f0c04020;color:#f0c040;border-color:#f0c04030">中级</span>
-          <span class="tag" style="background:#f4433620;color:#f44336;border-color:#f4433630">高级</span>
         </div>
       </div>
     </div>
@@ -669,59 +639,7 @@ html{scroll-behavior:smooth}
 </div>
 
   <!-- === Match Game Container === -->
-  <div class="game-container" id="matchContainer" style="display:none">
-    <div class="game-topbar"><button class="back-btn" onclick="backToHub()">← 游戏厅</button><span class="game-top-title">📊 财报指标连连看</span></div>
-    <!-- Level select -->
-    <div class="match-levels" id="matchLevels">
-      <div class="match-level-card" onclick="startMatch('初级')">
-        <div class="ml-badge" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f7">初级</div>
-        <div class="ml-title">基础指标</div>
-        <div class="ml-desc">每局随机抽4对 · 10个指标池</div>
-      </div>
-      <div class="match-level-card" onclick="startMatch('中级')">
-        <div class="ml-badge" style="background:#f0c04020;color:#f0c040;border-color:#f0c040">中级</div>
-        <div class="ml-title">估值 & 效率</div>
-        <div class="ml-desc">每局随机抽4对 · 10个指标池</div>
-      </div>
-      <div class="match-level-card" onclick="startMatch('高级')">
-        <div class="ml-badge" style="background:#f4433620;color:#f44336;border-color:#f44336">高级</div>
-        <div class="ml-title">进阶拆解</div>
-        <div class="ml-desc">每局随机抽4对 · 12个指标池</div>
-      </div>
-    </div>
-    <!-- Match game screen -->
-    <div class="match-screen" id="matchScreen" style="display:none">
-      <div class="match-hdr">
-        <div style="display:flex;align-items:center;gap:10px">
-          <span class="ml-badge" id="matchLevelBadge" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f7">初级</span>
-          <span style="font-size:12px;color:var(--m5)" id="matchCounter">0/4</span>
-        </div>
-        <span style="font-size:11px;color:var(--m5)" id="matchTimer">⏱ 0s</span>
-      </div>
-      <div class="match-board" id="matchBoard">
-        <div class="match-col" id="matchLeftCol"></div>
-        <div class="match-col" id="matchRightCol"></div>
-      </div>
-    </div>
-    <!-- Match result screen -->
-    <div class="match-result" id="matchResult" style="display:none">
-      <div style="font-size:48px;margin-bottom:8px" id="matchResultIcon">🏆</div>
-      <div class="result-rank" style="font-size:22px" id="matchResultTitle">通关成功！</div>
-      <div style="font-size:12px;color:var(--m4);margin:4px 0 12px" id="matchResultSub">初级 · 基础指标</div>
-      <div class="result-bar-wrap"><div class="result-stat-bar"><div class="result-stat-fill" id="matchResultBar" style="width:100%"></div></div></div>
-      <div style="font-size:12px;color:var(--t5);margin:8px 0 4px" id="matchResultTime">用时 32秒</div>
-      <div style="font-size:11px;color:var(--m5);margin-bottom:16px;line-height:1.6" id="matchResultMsg">全部正确！你对基础财务指标掌握得很好。</div>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-        <button class="quiz-start-btn" onclick="retryMatch()" style="flex:1;max-width:180px">重来 🔄</button>
-        <button class="quiz-start-btn" onclick="backToMatchLevels()" style="flex:1;max-width:180px;background:var(--bg5);color:var(--t3)">选关 🎯</button>
-        <button class="quiz-start-btn" onclick="backToHub()" style="flex:1;max-width:180px;background:var(--bg5);color:var(--t3)">← 游戏厅</button>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ===== REPORT VIEW (fullscreen) ===== -->
+  <!-- ===== REPORT VIEW (fullscreen) ===== -->
 <div class="report-view" id="reportView">
   <div class="detail-toolbar">
     <button class="back-btn" onclick="closeReport()">← 返回目录</button>
@@ -1134,7 +1052,7 @@ function backToHub() {
   showFeedback()
 }
 function switchToQuiz() { window._currentGid='quiz'; document.getElementById('gameHub').style.display='none'; const c=document.getElementById('quizContainer'); c.style.display='block'; c.classList.add('active'); hideFeedback() }
-function switchToMatch() { window._currentGid='match'; document.getElementById('gameHub').style.display='none'; const c=document.getElementById('matchContainer'); c.style.display='block'; c.classList.add('active'); hideFeedback() }
+
 function switchToPC() {
   document.getElementById('gameHub').style.display='none';
   const c=document.getElementById('pcContainer');
@@ -1163,43 +1081,7 @@ function goHome() {
 let matchData = [], matchSelected = null, matchPairs = 0, matchDone = 0, matchTimer = null, matchSec = 0, matchLevel = ''
 const matchColors = {初级:'#4fc3f7',中级:'#f0c040',高级:'#f44336'}
 
-function startMatch(level) {
-  matchLevel = level
-  // Randomly pick 4 pairs from the pool
-  const pool = MATCH_POOL[level].pairs
-  const shuffled = [...pool]
-  for(let i=shuffled.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]]}
-  const pairs = shuffled.slice(0, 4)
 
-  matchPairs = pairs.length; matchDone = 0; matchSec = 0; matchSelected = null
-
-  // Shuffle term order and def order independently
-  const terms = pairs.map((p,i) => ({id:i, html:p.term, side:'left'}))
-  const defs = pairs.map((p,i) => ({id:i, html:p.def, side:'right'}))
-  const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a }
-  matchData = shuffle(terms).concat(shuffle(defs))
-
-  document.getElementById('matchLevels').style.display='none'
-  document.getElementById('matchScreen').style.display='block'
-  document.getElementById('matchResult').style.display='none'
-  document.getElementById('matchLevelBadge').textContent = level
-  document.getElementById('matchLevelBadge').style.cssText = `background:${matchColors[level]}20;color:${matchColors[level]};border-color:${matchColors[level]}`
-  document.getElementById('matchCounter').textContent = '0/'+matchPairs
-
-  const leftIds = matchData.filter(d => d.side==='left').map(d => d.id)
-  const rightIds = matchData.filter(d => d.side==='right').map(d => d.id)
-
-  document.getElementById('matchLeftCol').innerHTML = matchData.filter(d => d.side==='left').map(d =>
-    `<div class="match-cell" data-id="${d.id}" data-side="left" onclick="clickMatch(${d.id},'left')">${d.html}</div>`
-  ).join('')
-  document.getElementById('matchRightCol').innerHTML = matchData.filter(d => d.side==='right').map(d =>
-    `<div class="match-cell" data-id="${d.id}" data-side="right" onclick="clickMatch(${d.id},'right')">${d.html}</div>`
-  ).join('')
-
-  // Timer
-  clearInterval(matchTimer)
-  matchTimer = setInterval(() => { matchSec++; document.getElementById('matchTimer').textContent = '⏱ '+matchSec+'s' }, 1000)
-}
 
 function clickMatch(id, side) {
   if (matchDone >= matchPairs) return
@@ -1267,7 +1149,6 @@ function showMatchResult() {
   }
 }
 
-function retryMatch() { startMatch(matchLevel) }
 function backToMatchLevels() {
   clearInterval(matchTimer)
   document.getElementById('matchScreen').style.display='none'
