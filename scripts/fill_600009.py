@@ -193,14 +193,17 @@ replace_all('{{PE_COMPARISON_BARS}}',
     'PE对比')
 replace_all('{{PE_ANALYSIS}}', 'PE 28x在机场板块中处于合理水平。PB 2.5x处于历史中低位(历史1.5-4.0x)。PS(TTM) 5.16x。估值核心支撑在区位垄断+免税复苏弹性。', 'PE分析')
 
-# 估值指标历史区间+评估 -- 注意实际PE/PB/PS值可能因fill_auto而异，需确认
-# 当前值：27.2x, 1.35x, 4.31x
-old_val = '<td>27.2x</td><td>—</td><td>—</td></tr>\n<tr>\n<td>PB</td>\n<td>1.35x</td>\n<td>—</td>\n<td>—</td>\n</tr>\n<tr>\n<td>PS(TTM)</td>\n<td>4.31x</td>\n<td>—</td>\n<td>—</td>\n</tr>'
-new_val = '<td>27.2x</td>\n<td>15-60x(疫后)</td>\n<td>合理</td>\n    </tr>\n<tr>\n<td>PB</td>\n<td>1.35x</td>\n<td>1.5-4.0x</td>\n<td>偏低</td>\n    </tr>\n<tr>\n<td>PS(TTM)</td>\n<td>4.31x</td>\n<td>3-10x</td>\n<td>偏低</td>\n    </tr>'
-if old_val in html:
-    html = html.replace(old_val, new_val)
-    changes += 1
-    print(f"  ✅ 估值指标填充")
+# 估值指标 — 命名占位符（不再依赖HTML格式匹配）
+# fill_auto引擎已填PE_TTM_VAL等当前值，fill脚本只填历史区间和评估
+replace_all('{{PE_TTM_RANGE}}', '15-60x(疫后)', 'PE历史区间')
+replace_all('{{PE_TTM_EVAL}}', '合理', 'PE评估')
+replace_all('{{PE_26E_VAL}}', '', 'PE(26E)')
+replace_all('{{PE_26E_RANGE}}', '', 'PE26E区间')
+replace_all('{{PE_26E_EVAL}}', '', 'PE26E评估')
+replace_all('{{PB_RANGE}}', '1.5-4.0x', 'PB历史区间')
+replace_all('{{PB_EVAL}}', '偏低', 'PB评估')
+replace_all('{{PS_TTM_RANGE}}', '3-10x', 'PS历史区间')
+replace_all('{{PS_TTM_EVAL}}', '偏低', 'PS评估')
 
 # ===== M7 =====
 # 行业空间表
@@ -286,22 +289,24 @@ replace_all('{{PESS_PRICE}}', '~18元', '悲观价')
 replace_all('{{PESS_RETURN}}', '-22%', '悲观回报')
 replace_all('{{PESS_SCENARIO}}', '经济下行+免税政策不利，净利18亿，ROE<5%', '悲观情景')
 
-# 避雷清单
-for old, new in [
-    ('<td>是否存在商誉减值风险</td>\n<td>—</td>', '<td>是否存在商誉减值风险</td>\n<td>商誉~3亿(占总资产<1%)风险极低</td>'),
-    ('<td>大股东是否持续减持</td>\n<td>—</td>', '<td>大股东是否持续减持</td>\n<td>上海机场集团(实控人),无减持</td>'),
-    ('<td>财务造假信号</td>\n<td>—</td>', '<td>财务造假信号</td>\n<td>经营现金流59.76亿为正,审计标准无保留</td>'),
-    ('<td>现金流是否持续为负</td>\n<td>—</td>', '<td>现金流是否持续为负</td>\n<td>经营现金流59.76亿(2025)持续为正</td>'),
-    ('<td>是否有未决诉讼</td>\n<td>—</td>', '<td>是否有未决诉讼</td>\n<td>年报未披露重大未决诉讼</td>'),
-]:
-    html = html.replace(old, new)
-    changes += 1
-print(f"  ✅ 避雷清单")
+# 避雷清单 — 命名占位符
+replace_all('{{CHECK_1_RESULT}}', '商誉~3亿(占总资产<1%)风险极低', '避雷1')
+replace_all('{{CHECK_2_RESULT}}', '上海机场集团(实控人),无减持', '避雷2')
+replace_all('{{CHECK_3_RESULT}}', '经营现金流59.76亿为正,审计标准无保留', '避雷3')
+replace_all('{{CHECK_4_RESULT}}', '经营现金流59.76亿(2025)持续为正', '避雷4')
+replace_all('{{CHECK_5_RESULT}}', '年报未披露重大未决诉讼', '避雷5')
 
-# 敏感性分析
-html = html.replace(
-    '<tr><td>营收下降10%</td><td>—</td><td>—</td>',
-    '<tr><td>营收下降10%</td><td>-13.3亿</td><td>-15%</td>')
+# 敏感性分析 — 命名占位符
+replace_all('{{SENS_REV_IMPACT}}', '-13.3亿', '敏感-营收')
+replace_all('{{SENS_REV_PRICE}}', '-15%', '敏感-股价')
+replace_all('{{SENS_MARGIN_IMPACT}}', '-4.0亿', '敏感-毛利率')
+replace_all('{{SENS_MARGIN_PRICE}}', '-10%', '敏感-毛利率价')
+replace_all('{{SENS_COST_IMPACT}}', '-1.5亿', '敏感-费用')
+replace_all('{{SENS_COST_PRICE}}', '-5%', '敏感-费用价')
+replace_all('{{SENS_CYCLE_IMPACT}}', '-8亿', '敏感-周期')
+replace_all('{{SENS_CYCLE_PRICE}}', '-18%', '敏感-周期价')
+replace_all('{{SENS_COMPETE_IMPACT}}', '-3亿', '敏感-竞争')
+replace_all('{{SENS_COMPETE_PRICE}}', '-8%', '敏感-竞争价')
 html = html.replace(
     '<tr><td>毛利率下降3pct</td><td>—</td><td>—</td>',
     '<tr><td>毛利率下降3pct</td><td>-4.0亿</td><td>-10%</td>')
