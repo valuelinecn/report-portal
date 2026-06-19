@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>生益科技 · 完整投资研究报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
+h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
+h2{font-size:16px;color:#4caf50;margin:20px 0 10px;border-left:3px solid #4caf50;padding-left:10px}
+h3{font-size:14px;color:#ccc;margin:14px 0 6px}
+h4{font-size:13px;color:#aaa;margin:10px 0 4px}
+.desc{font-size:12px;color:#888;margin-bottom:10px}
+.card{background:#0d1a1a;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid #1a3a3a}
+.sc-wrap{text-align:center;margin-bottom:16px}
+.score-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(#4caf50 0deg 252deg,#333 252deg 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
+.score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
+.c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e3e3a;font-size:11px}
+.tbl td:first-child{white-space:nowrap;font-size:12px}
+.tbl tr:last-child td{border-bottom:none}
+.gold{color:#4caf50;font-weight:bold}.green{color:#4caf50}.red{color:#f44336}.orange{color:#ff9800}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{background:#0a0a1a;border-radius:8px;padding:10px;text-align:center}
+.mv{font-size:18px;font-weight:bold;color:#fff}
+.ml{font-size:10px;color:#888;margin-top:2px}
+.hb{display:flex;align-items:flex-start;margin:4px 0;min-height:20px}
+.hl{width:72px;font-size:11px;color:#aaa;flex-shrink:0;padding-top:2px}
+.ht{flex:1;height:16px;background:#1e3e3a;border-radius:8px;overflow:visible;margin:0 6px;position:relative}
+.hf{height:16px;border-radius:8px;display:flex;align-items:center;padding-left:6px;font-size:10px;color:#fff;overflow:visible;white-space:nowrap;text-shadow:0 0 3px rgba(0,0,0,.8);min-width:0}
+.hv{font-size:10px;color:#999;white-space:nowrap;flex-shrink:0;padding-top:2px;margin-left:2px}
+.scn{display:flex;gap:6px;margin:8px 0}
+.scc{flex:1;border-radius:8px;padding:10px;text-align:center}
+.scc h4{font-size:12px;margin-bottom:4px;color:#fff}
+.scc .pct{font-size:18px;font-weight:bold}
+.scc .dt{font-size:10px;color:#ccc;margin-top:3px}
+.sc1{background:#1a3a1a;border:1px solid #2a5a2a}.sc1 .pct{color:#4caf50}
+.sc2{background:#1a2a3a;border:1px solid #2a3a5a}.sc2 .pct{color:#f0c040}
+.sc3{background:#3a1a1a;border:1px solid #5a2a2a}.sc3 .pct{color:#f44336}
+.tg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;margin:1px}
+.tgg{background:#1a3a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgr{background:#3a1a1a;color:#f44336;border:1px solid #5a2a2a}
+.tgo{background:#3a2a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgy{background:#222;color:#aaa;border:1px solid #333}
+.txt{padding:6px 0;font-size:13px;color:#ccc;line-height:1.7}
+.txt .dot{color:#4caf50;margin-right:4px}
+.bq{padding:10px;background:#0a0a1a;border-radius:8px;border-left:3px solid #4caf50;margin:8px 0;font-size:13px;color:#ddd;line-height:1.7}
+.cp{display:flex;align-items:center;margin:4px 0;font-size:12px}
+.cp .nm{width:88px;color:#aaa;flex-shrink:0}
+.cp .bt{flex:1;height:14px;background:#1e3e3a;border-radius:7px;overflow:hidden;margin:0 6px}
+.cp .bf{height:100%;border-radius:7px}
+.cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
+.footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e3e3a;line-height:1.8}
+.sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e3e3a;margin-bottom:12px}
+.toc{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:10px;color:#888;text-decoration:none;padding:3px 7px;border-radius:10px;border:1px solid #333;white-space:nowrap;flex-shrink:0}
+.toc a:active{background:#1e3e3a;color:#4caf50}
+
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+  <div style="text-align:center;font-size:11px;color:#555;margin-bottom:4px;">📌 点击跳转</div>
+  <div class="toc">
+    <a href="#s0">评分</a><a href="#s1">综合评价</a><a href="#s2">M1商业模式</a>
+    <a href="#s3">M2壁垒</a><a href="#s4">M3管理层</a><a href="#s5">M4财务</a>
+    <a href="#s6">M5成本结构</a><a href="#s7">M6估值</a><a href="#s8">M7市占率</a>
+    <a href="#s9">M8催化剂</a><a href="#s10">M9预期差</a><a href="#s11">M10风险</a>
+    <a href="#s12">综合评级</a><a href="#s13">附录</a>
+  </div>
+</div>
+
+<div id="s0" class="sc-wrap">
+  <div class="score-ring"><div class="score-inner"><div class="score-num">7.5</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">生益科技 <span style="font-size:14px;color:#888;font-weight:400;">600183.SH</span></h1>
+  <div class="desc">全球覆铜板第二(13.7%市占率),2025年营收284亿(+39%)净利33亿(+92%),ROE 21.25%创五年新高。AI算力驱动量价齐升,PCB翻倍增长。PE 17x/PB 3.6x合理,分红每10股派8元。</div>
+</div>
+
+<div id="s-mcap" class="card">
+  <h2>市值走势</h2>
+  <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
+
+  <div class="mcap-btns">
+    <button class="mcap-btn active" data-period="week">周线</button>
+    <button class="mcap-btn" data-period="month">月线</button>
+    <button class="mcap-btn" data-period="year">年线</button>
+  </div>
+
+  <div class="mcap-chart-wrap">
+    <div class="mcap-tooltip" id="mcapTooltip"></div>
+    <svg id="mcapSvg" width="100%" height="380"></svg>
+  </div>
+
+  <div class="mcap-info">
+    当前市值：<span class="mcap-v" id="mcapCurrent">--</span> 亿 ·
+    历史最高：<span class="mcap-v" id="mcapHigh">--</span> 亿 ·
+    历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
+    总股本：<span class="mcap-v" id="mcapShares">24.2912</span> 亿股
+  </div>
+</div>
+
+<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
+  <h2>历年财务数据</h2>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=同比下降</span> · <span style="color:#e74c3c">红色=负值/降幅>20%</span></div>
+  <style>
+  .fin-table{width:100%;border-collapse:collapse;font-size:11px}
+  .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
+  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
+  .fin-table tr:hover td{background:#1a1a3a}
+  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
+  .fin-table tr:hover td:first-child{background:#1a1a2a}
+  .fin-table td.na{color:#555}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-table td.slight{color:#8bc34a;font-weight:600}
+  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
+  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
+  .fin-light .fin-table td.pos{color:#2e7d32!important}
+  .fin-light .fin-table td.neg{color:#c0392b!important}
+  .fin-light .fin-table td.warn{color:#b8860b!important}
+  .fin-light .fin-table td.slight{color:#6d8b2b!important}
+ </style>
+  <table class="fin-table">
+<thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
+<tr><td>每股营业收入(元)</td><td class="pos">11.70</td><td class="slight">8.39</td><td class="warn">7.05</td><td class="warn">7.74</td><td class="pos">8.77</td><td class="slight">6.41</td><td class="slight">5.82</td><td class="slight">5.66</td><td class="slight">4.48</td><td>3.56</td></tr>
+<tr><td>每股经营现金流(元)</td><td class="pos">2.17</td><td class="neg">0.60</td><td class="warn">1.16</td><td class="pos">1.21</td><td class="slight">0.77</td><td class="slight">0.77</td><td class="slight">0.74</td><td class="pos">0.63</td><td class="neg">0.41</td><td>0.81</td></tr>
+<tr><td>每股净利润(元)</td><td class="pos">1.39</td><td class="pos">0.74</td><td class="neg">0.50</td><td class="neg">0.66</td><td class="pos">1.23</td><td class="slight">0.74</td><td class="pos">0.66</td><td class="warn">0.47</td><td class="warn">0.51</td><td>0.52</td></tr>
+<tr><td>每股净资产(元)</td><td class="slight">6.88</td><td class="slight">6.14</td><td class="slight">5.94</td><td class="slight">5.80</td><td class="pos">5.67</td><td class="slight">4.32</td><td class="pos">3.88</td><td class="neg">2.88</td><td class="slight">3.93</td><td>3.50</td></tr>
+<tr><td>总股本(亿股)</td><td class="warn">24.2912</td><td class="slight">24.2940</td><td class="slight">23.5167</td><td class="slight">23.2655</td><td class="slight">23.1160</td><td class="slight">22.9082</td><td class="slight">22.7619</td><td class="warn">21.1749</td><td class="slight">23.9900</td><td>23.9900</td></tr>
+<tr><td>营业收入(亿元)</td><td class="pos">284.31</td><td class="slight">203.88</td><td class="warn">165.86</td><td class="warn">180.14</td><td class="pos">202.74</td><td class="slight">146.87</td><td class="slight">132.41</td><td class="slight">119.81</td><td class="slight">107.50</td><td>85.38</td></tr>
+<tr><td>毛利率(%)</td><td class="slight">26.47</td><td class="slight">22.04</td><td class="warn">19.19</td><td class="warn">22.03</td><td class="slight">26.82</td><td class="slight">26.78</td><td class="slight">26.65</td><td class="slight">22.18</td><td class="slight">21.46</td><td>20.54</td></tr>
+<tr><td>净利润(亿元)</td><td class="pos">33.34</td><td class="pos">17.39</td><td class="neg">11.64</td><td class="neg">15.31</td><td class="pos">28.30</td><td class="slight">16.81</td><td class="pos">14.49</td><td class="warn">10.00</td><td class="pos">10.75</td><td>7.48</td></tr>
+<tr><td>净利润率(%)</td><td class="pos">11.73</td><td class="slight">8.53</td><td class="warn">7.02</td><td class="neg">8.50</td><td class="slight">13.96</td><td class="slight">11.44</td><td class="pos">10.94</td><td class="warn">8.35</td><td class="slight">10.00</td><td>8.76</td></tr>
+<tr><td>ROE(%)</td><td class="pos">21.25</td><td class="pos">12.17</td><td class="neg">8.57</td><td class="neg">11.71</td><td class="pos">24.34</td><td class="warn">18.28</td><td class="slight">19.67</td><td class="warn">16.39</td><td class="slight">20.12</td><td>15.65</td></tr>
+</table>
+</div>
+
+<style>
+.mcap-btns{display:flex;gap:6px;margin:8px 0}
+.mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e3e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
+.mcap-btn:hover{border-color:#4caf50;color:#4caf50}
+.mcap-btn.active{background:#4caf50;color:#0a0a1a;border-color:#4caf50;font-weight:bold}
+.mcap-chart-wrap{position:relative;width:100%;border-radius:8px;background:#0d0d20;border:1px solid #1e3e3a}
+.mcap-chart-wrap svg{display:block}
+.mcap-tooltip{position:absolute;display:none;background:rgba(10,10,26,.92);border:1px solid #4caf50;border-radius:6px;padding:6px 10px;font-size:12px;color:#fff;pointer-events:none;z-index:10;white-space:nowrap;transform:translate(-50%,-110%)}
+.mcap-tooltip .tt-date{color:#888;font-size:10px}
+.mcap-tooltip .tt-val{color:#4caf50;font-weight:bold}
+.mcap-info{text-align:center;font-size:12px;color:#888;margin-top:8px;padding:6px;background:#0d0d20;border-radius:6px}
+.mcap-v{color:#4caf50;font-weight:bold}
+.mcap-axis path,.mcap-axis line{stroke:#333;stroke-width:1}
+.mcap-axis text{fill:#666;font-size:10px}
+.mcap-grid line{stroke:#1e3e3a;stroke-width:0.5;stroke-dasharray:3,3}
+.mcap-light .mcap-btn{border-color:#c8c0b0;background:#e8e4dc;color:#707070}
+.mcap-light .mcap-btn:hover{border-color:#b8860b;color:#b8860b}
+.mcap-light .mcap-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
+.mcap-light .mcap-chart-wrap{background:#f4f1ea;border-color:#d8d4c8}
+.mcap-light .mcap-tooltip{background:rgba(255,255,255,.95);border-color:#b8860b;color:#3d3d3d}
+.mcap-light .mcap-tooltip .tt-date{color:#808080}
+.mcap-light .mcap-tooltip .tt-val{color:#b8860b}
+.mcap-light .mcap-info{background:#e8e4dc;color:#808080}
+.mcap-light .mcap-v{color:#b8860b}
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var stockCode = '600183';
+  var chartData = [];
+  var viewStart = 0, viewEnd = 0;
+  var isDragging = false, dragStartX = 0, dragViewStart = 0;
+  var svg, tooltip, wrap;
+  var W = 0, H = 380;
+  var M = {top:20, right:20, bottom:35, left:65};
+
+  function init(){
+    svg = document.getElementById('mcapSvg');
+    tooltip = document.getElementById('mcapTooltip');
+    wrap = svg.parentElement;
+    svg.style.cursor = 'crosshair';
+
+    if(document.getElementById('hermes-theme-override')){
+      document.getElementById('s-mcap').classList.add('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf) sf.classList.add('fin-light');
+    }
+
+    var themeWatcher = new MutationObserver(function(){
+      var light = !!document.getElementById('hermes-theme-override');
+      var card = document.getElementById('s-mcap');
+      if(light) card.classList.add('mcap-light');
+      else card.classList.remove('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf){ if(light) sf.classList.add('fin-light'); else sf.classList.remove('fin-light'); }
+      if(chartData.length) render();
+    });
+    if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
+
+    document.querySelectorAll('.mcap-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.mcap-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        loadPeriod(btn.getAttribute('data-period'));
+      });
+    });
+
+    svg.addEventListener('wheel', onWheel, {passive:false});
+    svg.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+    svg.addEventListener('mousemove', onHover);
+    svg.addEventListener('mouseleave', function(){
+      tooltip.style.display='none';
+      var cv=svg.querySelector('#mcapCrossV');if(cv)cv.setAttribute('opacity','0');
+      var ch2=svg.querySelector('#mcapCrossH');if(ch2)ch2.setAttribute('opacity','0');
+      var cd=svg.querySelector('#mcapCrossDot');if(cd)cd.setAttribute('opacity','0');
+    });
+
+    var touchDist = 0;
+    svg.addEventListener('touchstart', function(e){
+      if(e.touches.length === 1){
+        isDragging = true; dragStartX = e.touches[0].clientX; dragViewStart = viewStart;
+      }else if(e.touches.length === 2){
+        touchDist = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+      }
+    }, {passive:true});
+    svg.addEventListener('touchmove', function(e){
+      if(e.touches.length === 1 && isDragging){
+        var dx = e.touches[0].clientX - dragStartX;
+        var range = viewEnd - viewStart;
+        if(range > 1){
+          var shift = Math.round(-dx / ((W-M.left-M.right)/range));
+          var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart + shift));
+          viewStart = ns; viewEnd = viewStart + range; render();
+        }
+        isDragging = false;
+      }else if(e.touches.length === 2){
+        var nd = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+        if(touchDist > 0){doZoom(nd > touchDist ? 1 : -1, (e.touches[0].clientX+e.touches[1].clientX)/2);}
+        touchDist = nd;
+      }
+    }, {passive:true});
+    svg.addEventListener('touchend', function(){isDragging=false});
+    window.addEventListener('resize', function(){if(chartData.length)render()});
+    loadPeriod('week');
+  }
+
+  function getThemeColors(){
+    var light = !!document.getElementById('hermes-theme-override');
+    return {
+      line: light ? '#b8860b' : '#4caf50',
+      grid: light ? '#e0dcd0' : '#1e3e3a',
+      axisText: light ? '#999' : '#666',
+      gradTop: light ? '#b8860b' : '#4caf50',
+      gradBot: light ? '#b8860b' : '#4caf50',
+      gradTo: '0.25', gradBo: '0.01'
+    };
+  }
+
+  function loadPeriod(period){
+    var url = '../kline/' + stockCode + '_' + period + '.json?t=' + Date.now();
+    fetch(url).then(function(r){return r.json()}).then(function(data){
+      chartData = data;
+      var dw = data.length;
+      viewStart = Math.max(0, data.length - dw); viewEnd = data.length;
+      updateStats(data); render();
+    }).catch(function(e){console.error(e)});
+  }
+
+  function updateStats(data){
+    if(!data.length) return;
+    var last = data[data.length-1];
+    var high = data.reduce(function(a,b){return a.value>b.value?a:b});
+    var low = data.reduce(function(a,b){return a.value<b.value?a:b});
+    document.getElementById('mcapCurrent').textContent = last.value.toFixed(1);
+    document.getElementById('mcapHigh').textContent = high.value.toFixed(1);
+    document.getElementById('mcapLow').textContent = low.value.toFixed(1);
+  }
+
+  function render(){
+    if(!chartData.length) return;
+    var rect = wrap.getBoundingClientRect();
+    W = Math.max(300, rect.width || 600); H = 380;
+    svg.style.width = W + 'px'; svg.style.height = H + 'px';
+    var cw = W - M.left - M.right, ch = H - M.top - M.bottom;
+    if(cw <= 0 || ch <= 0) return;
+    var visible = chartData.slice(viewStart, viewEnd);
+    var n = visible.length; if(n === 0) return;
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<n;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad); maxVal = maxVal + pad;
+    var xS = function(i){return M.left+(i/(n-1||1))*cw};
+    var yS = function(v){return M.top+ch-(v-minVal)/(maxVal-minVal)*ch};
+    var pts = '';
+    for(var i=0;i<n;i++){pts += (i===0?'':' ')+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1);}
+    var tc = getThemeColors(), h = '';
+    h += '<g class="mcap-grid">';
+    for(var gi=0;gi<=5;gi++){var gv=minVal+(maxVal-minVal)*(gi/5),gy=yS(gv);h+='<line x1="'+M.left+'" y1="'+gy.toFixed(1)+'" x2="'+(M.left+cw)+'" y2="'+gy.toFixed(1)+'" stroke="'+tc.grid+'"/>';h+='<text x="'+(M.left-8)+'" y="'+(gy+4)+'" text-anchor="end" fill="'+tc.axisText+'" font-size="10">'+fmtVal(gv)+'</text>';}
+    h += '</g><g class="mcap-axis">';
+    var ls = Math.max(1, Math.floor(n / Math.min(10, n)));
+    for(var li=0;li<n;li+=ls){var lx=xS(li);h+='<text x="'+lx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx.toFixed(1)+','+(H-10)+')">'+visible[li].time+'</text>';}
+    h += '<text x="'+xS(n-1).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+xS(n-1).toFixed(1)+','+(H-10)+')">'+visible[n-1].time+'</text></g>';
+    var fp = 'M'+M.left+','+(M.top+ch)+' '; for(var i=0;i<n;i++){fp+='L'+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1)+' ';}
+    fp += 'L'+(M.left+cw)+','+(M.top+ch)+' Z';
+    h += '<path d="'+fp+'" fill="url(#mgG)" opacity="0.35"/>';
+    h += '<polyline points="'+pts+'" fill="none" stroke="'+tc.line+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<line id="mcapCrossV" x1="0" y1="'+M.top+'" x2="0" y2="'+(M.top+ch)+'" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<line id="mcapCrossH" x1="'+M.left+'" y1="0" x2="'+(M.left+cw)+'" y2="0" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<circle id="mcapCrossDot" cx="0" cy="0" r="4" fill="'+tc.line+'" stroke="#fff" stroke-width="1.5" opacity="0" pointer-events="none"/>';
+    var df = '<defs><linearGradient id="mgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+tc.gradTop+'" stop-opacity="'+tc.gradTo+'"/><stop offset="100%" stop-color="'+tc.gradBot+'" stop-opacity="'+tc.gradBo+'"/></linearGradient></defs>';
+    svg.innerHTML = df + h;
+  }
+
+  function fmtVal(v){return v>=10000?(v/10000).toFixed(1)+'万亿':v.toFixed(0)+'亿';}
+
+  function doZoom(dir, cx){
+    var n = chartData.length, range = viewEnd - viewStart;
+    if(dir > 0) range = Math.max(10, Math.round(range * 0.75)); else range = Math.min(n, Math.round(range * 1.35));
+    if(range < 2) range = 2; if(range > n) range = n;
+    var rect = svg.getBoundingClientRect();
+    var mx = (cx || rect.left+rect.width/2) - rect.left - M.left;
+    var cw = W - M.left - M.right;
+    var ci = viewStart + (viewEnd-viewStart) * Math.max(0, Math.min(1, mx/cw));
+    viewStart = Math.round(ci - range/2); viewEnd = viewStart + range;
+    if(viewStart < 0){viewStart=0;viewEnd=range;} if(viewEnd>n){viewEnd=n;viewStart=n-range;}
+    render();
+  }
+
+  function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
+  function onDragStart(e){isDragging=true;dragStartX=e.clientX;dragViewStart=viewStart;svg.style.cursor='grabbing';}
+  function onDragMove(e){
+    if(!isDragging) return;
+    var dx = e.clientX - dragStartX, range = viewEnd-viewStart;
+    if(range<=1) return;
+    var cw = W-M.left-M.right; if(cw<=0) return;
+    var shift = Math.round(-dx/(cw/range));
+    var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart+shift));
+    if(ns !== viewStart){viewStart=ns;viewEnd=viewStart+range;render();}
+  }
+  function onDragEnd(){isDragging=false;svg.style.cursor='crosshair';}
+
+  function onHover(e){
+    if(isDragging || !chartData.length) return;
+    var rect = svg.getBoundingClientRect();
+    var mx = e.clientX-rect.left-M.left, cw=W-M.left-M.right;
+    if(cw<=0||viewEnd-viewStart<=0) return;
+    var idx = viewStart + Math.round(mx/cw*(viewEnd-viewStart-1));
+    if(idx<0||idx>=chartData.length) return;
+    var pt = chartData[idx], ri = idx-viewStart, nn=viewEnd-viewStart;
+    var px = M.left+(ri/(nn-1||1))*cw, vis=chartData.slice(viewStart,viewEnd);
+    var minV=Infinity,maxV=-Infinity; for(var i=0;i<vis.length;i++){var v=vis[i].value;if(v<minV)minV=v;if(v>maxV)maxV=v;}
+    var p=(maxV-minV)*0.05||maxV*0.05||100; minV=Math.max(0,minV-p);maxV=maxV+p;
+    var ch=H-M.top-M.bottom, py=M.top+ch-(pt.value-minV)/(maxV-minV)*ch;
+    var cv=svg.querySelector('#mcapCrossV'),ch2=svg.querySelector('#mcapCrossH'),cd=svg.querySelector('#mcapCrossDot');
+    if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.6');}
+    if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.6');}
+    if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
+    tooltip.innerHTML = '<span class="tt-date">'+pt.time+'</span> · 市值 <span class="tt-val">'+pt.value.toFixed(1)+'亿</span>';
+    tooltip.style.display='block'; tooltip.style.left=px+'px';
+    if(py<50){tooltip.style.top=(py+24)+'px';tooltip.style.transform='translate(-50%,0%)';}
+    else{tooltip.style.top=py+'px';tooltip.style.transform='translate(-50%,-110%)';}
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+<div id="s1" class="card"><h2>一、综合评价</h2>
+  <div class="mg" style="margin-bottom:10px">
+    <div class="mi"><div class="mv" style="color:color:#4caf50">7.5/10</div><div class="ml">综合评级</div></div>
+    <div class="mi"><div class="mv" style="color:color:#4caf50">中低</div><div class="ml">风险等级</div></div>
+    <div class="mi"><div class="mv" style="color:color:#f0c040">高</div><div class="ml">成长弹性</div></div>
+    <div class="mi"><div class="mv" style="color:color:#4caf50">21.25%</div><div class="ml">ROE</div></div>
+  </div>
+  <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div>
+  <table class="tbl" style="margin-top:10px">
+    <tr><th style="width:100px">指标</th><th style="width:140px">内容</th><th style="width:40%">说明</th></tr>
+    <tr><td>三年预估空间</td><td>双轮驱动</td><td>CCL(177.74亿)+PCB(91.44亿)双轮驱动,PCB翻倍增长成为第二增长极</td></tr>
+    <tr><td>核心竞争力</td><td>AI算力红利</td><td>AI服务器/交换机升级驱动高频高速CCL需求高速增长,生益为国内主力供应商</td></tr>
+    <tr><td>季度监控</td><td>产能扩张</td><td>江西二期(1800万平CCL)+泰国工厂+生益电子东城五厂(智能算力)</td></tr>
+    <tr><td>止损触发</td><td>估值合理</td><td>PE 17x处历史中位,ROE 21.25%提供价值支撑,每股分红0.8元股息率1.7%</td></tr>
+  </table></div>
+
+<div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
+  <h3>核心定位</h3>
+  <div class="txt">生益科技是全球刚性覆铜板龙头(13.7%市占率全球第二),通过生益电子布局PCB。覆铜板为PCB核心基材,下游覆盖AI服务器/汽车电子/通信基站。近40年技术积累,产品覆盖FR-4到高频高速全系列。2025年CCL营收177.74亿(+20%),PCB营收91.44亿(+104%)。</div>
+
+  <h3>分业务收入结构（2024 vs 2025）</h3>
+  <!-- 使用hl/ht/hf样式（参考M2壁垒类型评估），不要用nm/bt/bf/vl -->
+  <!-- 格式：<div class="hb"><span class="hl">业务名</span><div class="ht"><div class="hf" style="width:XX%;background:COLOR;">XX%</div></div></div> -->
+  width:80%;background:#4caf50
+  width:15%;background:#8bc34a
+  width:5%;background:#ffc107
+
+  <table class="tbl" style="margin-top:10px;">
+    <tr><th>业务线</th><th>2024年收入</th><th>2025年收入</th><th>趋势</th></tr>
+<div class="hb"><span class="hl">覆铜板&粘结片</span><div class="ht"><div class="hf c7" style="width:64%;">177.74亿</div></div><span class="hv">+20.2% · 毛利率23.91%</span></div>
+<div class="hb"><span class="hl">印制线路板</span><div class="ht"><div class="hf c9" style="width:33%;">91.44亿</div></div><span class="hv">+103.9% · 毛利率28.61%</span></div>
+<div class="hb"><span class="hl">废弃资源利用</span><div class="ht"><div class="hf c6" style="width:3%;">8.55亿</div></div><span class="hv">+20.5%</span></div>
+</table>
+  <div class="desc" style="margin-top:6px;">2025年CCL均价同比上涨约15%,PCB翻倍增长成为第二增长极。AI服务器/交换机用高频高速CCL占比提升至~15%,产品结构明显优化。</div>
+
+  <h3>商业模式评估</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+    <tr><td>收入模式</td><td>8</td><td>覆铜板行业全球前三份额41%,前10占77%,集中度高</td></tr>
+    <tr><td>盈利特征</td><td>7</td><td>前5大客户占比29.71%,无单一客户依赖</td></tr>
+    <tr><td>竞争优势</td><td>6</td><td>前5大供应商占比27.45%,铜箔/玻纤布/树脂供应多元</td></tr>
+    <tr><td>客户结构</td><td>7</td><td>与供应商双赢战略合作,协助供应商技术改进</td></tr>
+</table>
+
+  <h3>产业链议价权</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+    <tr><td>对下游议价力</td><td>8</td><td>对下游PCB客户议价能力较强(CCL占PCB成本30%,品质优先)</td></tr>
+    <tr><td>对上游议价力</td><td>5</td><td>对上游原材料议价能力一般(铜箔/玻纤布由大宗商品决定)</td></tr>
+    <tr><td>竞争格局</td><td>7</td><td>可通过产品结构升级(高频高速CCL)转移成本压力</td></tr>
+    <tr><td>潜在替代</td><td>8</td><td>2025年成功推动多轮涨价,毛利率提升4.52pct</td></tr>
+    <tr><td>进入壁垒</td><td>7</td><td>海外收入占比24.4%,外销毛利率28.67%高于内销23.95%</td></tr>
+  </table>
+
+  <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div></div>
+
+<div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
+  <div class="desc">规模壁垒+技术壁垒双轮驱动:全球第二大CCL产能(16,063万平/年),种类最齐全,AI用高频高速CCL技术国内领先</div>
+
+  <h3>壁垒类型评估</h3>
+  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:90%">9</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:80%">8</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:85%">8</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:75%">7</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:60%">6</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:70%">7</div></div></div>
+
+  <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
+    <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 7.5/10</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">宽(宽护城河)</span>
+  </div>
+
+  <h3>壁垒深度解析</h3>
+  <div class="txt">
+    <b style="color:#4caf50;">客户粘性——双轮驱动+规模壁垒</b><br>
+    <span class="dot">·</span> UL/BSI/VDE/JET/CQC全系列安全认证,IATF16949汽车质量认证<br>
+    <span class="dot">·</span> 较强:CCL品质直接影响PCB性能,客户切换供应商成本高,2025年成功涨价<br>
+    <span class="dot">·</span> 前5大客户29.71%,风险可控<br><br>
+    <b style="color:#f0c040;">规模壁垒——中等优势</b><br>
+    <span class="dot">·</span> 全球第二大CCL产能,覆盖FR-4到高频高速全系列,一站式采购降低客户切换成本<br>
+    <span class="dot">·</span> 技术壁垒:435件授权有效专利,主导5项IEC国际标准制定,高频高速CCL突破国外封锁<br>
+    <span class="dot">·</span> 铜箔/玻纤布/树脂为主要原材料,价格由大宗商品决定。公司推动材料国产化和多源供应<br><br>
+    <b style="color:#f0c040;">技术壁垒——中等偏弱</b><br>
+    <span class="dot">·</span> 累计435件授权有效专利,主导5项IEC/8项国家标准<br>
+    <span class="dot">·</span> 高频高速CCL技术已达国际先进水平,封装用CCL突破FC-CSP/FC-BGA级别<br>
+    <span class="dot">·</span> 护城河宽:全球第二大CCL产能+全品类覆盖,客户切换成本高;435件专利+IEC标准制定者构筑技术壁垒。<br><br>
+    <b style="color:#888;">垂直整合——薄弱</b><br>
+    <span class="dot">·</span> 原材料铜箔/玻纤布受大宗商品价格波动影响<br>
+    <span class="dot">·</span> CCL生产以自产为主,不涉足上游原材料生产
+  </div>
+
+  <h3>护城河陷阱识别</h3>
+  <div class="txt" style="color:#f44336;">
+    <b>警惕信号：</b><br>
+    <span class="dot">·</span> 毛利率25.10%处于行业中等偏上水平,可通过产品结构升级持续改善<br>
+    <span class="dot">·</span> 全球PCB行业广泛客户关系,IEC/TC91/WG10召集人地位,品牌认可度高<br>
+    <span class="dot">·</span> 竞争主要来自建滔集团(全球第一)/台光电等。生益以全品类+品质定位差异化竞争<br>
+    <span class="dot">·</span> 中长期存在陶瓷基/玻璃基取代有机树脂体系的技术颠覆风险
+  </div>
+
+  <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div>
+</div>
+
+<div id="s4" class="card"><h2>M3 管理层分析</h2>
+
+  <h3>管理层基本信息</h3>
+  <table class="tbl">
+    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
+    <tr><td>陈仁喜</td><td>董事长/法定代表人</td><td>2014年至今</td><td>深耕覆铜板行业30余年,带领生益科技实现全球第二</td></tr>
+    <tr><td>曾红慧</td><td>总经理/营销总监</td><td>1991年加入公司</td><td>从一线销售成长起来的职业经理人,深度理解客户需求</td></tr>
+  </table>
+  <div class="txt" style="font-size:12px;">管理层背景详见管理层信息表。核心管理层平均行业经验超20年,长期稳定/内部培养为主。务实稳健的管理风格,重视研发投入和质量管控。2025年主动拥抱AI/RPA等新技术。。基于股东充分信任和充分授权的职业经理人治理模式,五共享机制激励。</div>
+
+  <h3>管理层评分</h3>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:85%">8</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:80%">8</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:75%">7</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:80%">8</div></div></div>
+
+  <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div>
+</div>
+
+<div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
+
+  <h3>核心财务指标</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>年份</th><th>营收(亿)</th><th>净利(亿)</th><th>毛利率</th><th>净利率</th><th>ROE</th><th>趋势</th></tr><tr><td>2021</td><td>202.74</td><td>28.30</td><td>26.82%</td><td>13.96%</td><td>24.34%</td><td>—</td></tr>
+<tr><td>2022</td><td>180.14</td><td>15.31</td><td>22.03%</td><td>8.50%</td><td>11.71%</td><td>↘️</td></tr>
+<tr><td>2023</td><td>165.86</td><td>11.64</td><td>19.19%</td><td>7.02%</td><td>8.57%</td><td>↘️</td></tr>
+<tr><td>2024</td><td>203.88</td><td>17.39</td><td>22.04%</td><td>8.53%</td><td>12.17%</td><td>↗️</td></tr>
+<tr><td>2025</td><td>284.31</td><td>33.34</td><td>26.47%</td><td>11.73%</td><td>21.25%</td><td>↗️</td></tr>
+</table></div><h3>费用率结构（2024 vs 2025对比）</h3>
+  <table class="tbl">
+<tr><th>费用项</th><th>2024年</th><th>2025年</th><th>趋势</th></tr>
+<tr>
+<td>研发费用</td>
+<td>11.57亿</td>
+<td>14.50亿</td>
+<td>↗️ +25.4%</td>
+    </tr>
+<tr>
+<td>销售费用</td>
+<td>3.73亿</td>
+<td>5.37亿</td>
+<td>↗️ +44.0%</td>
+    </tr>
+<tr>
+<td>管理费用</td>
+<td>8.43亿</td>
+<td>10.88亿</td>
+<td>↗️ +29.2%</td>
+    </tr>
+<tr>
+<td>财务费用</td>
+<td>0.70亿</td>
+<td>0.97亿</td>
+<td>↗️ +38.2%</td>
+    </tr>
+  </table>
+
+  <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div></div>
+
+<div id="s6" class="card"><h2>M5 成本结构</h2>
+
+  <h3>成本结构</h3>
+  <div class="txt">2025年主营业务成本208.72亿(+31.5%),直接材料占比79.6%为最大成本项。铜箔/玻纤布/树脂为三大核心原材料,价格受大宗商品波动影响。公司推动材料国产化以降低成本波动。</div>
+  <table class="tbl">
+<tr><th>成本项目</th><th>2024年</th><th class="gold">2025年</th><th>占比</th><th>趋势</th><th>说明</th></tr>
+<tr>
+<td>直接材料</td>
+<td>119.77亿</td>
+<td class="gold">166.18亿</td>
+<td>79.6%</td>
+<td>↗️ +38.7%</td>
+<td>铜箔/玻纤布/树脂涨价+产量增长</td>
+    </tr>
+<tr>
+<td>直接人工</td>
+<td>8.97亿</td>
+<td class="gold">11.70亿</td>
+<td>5.6%</td>
+<td>↗️ +30.4%</td>
+<td>扩产增员+股权激励薪酬增加</td>
+    </tr>
+<tr>
+<td>制造费用</td>
+<td>19.02亿</td>
+<td class="gold">22.64亿</td>
+<td>10.9%</td>
+<td>↗️ +19.0%</td>
+<td>折旧增加(江西二期/泰国厂在建)</td>
+    </tr>
+<tr>
+<td>其他</td>
+<td>0.92亿</td>
+<td class="gold">0.92亿</td>
+<td>0.4%</td>
+<td>→ 持平</td>
+<td>房地产开发成本</td>
+    </tr>
+  </table>
+
+  <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div></div>
+
+<div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
+
+  <h3>FCF质量</h3>
+  <table class="tbl">
+<tr><th>指标</th><th>2024年</th><th class="gold">2025年</th><th>正常化水平</th></tr>
+<tr>
+<td>经营现金流</td>
+<td>14.58亿</td>
+<td class="gold">52.71亿</td>
+<td>15-20亿</td>
+    </tr>
+<tr>
+<td>CAPEX</td>
+<td>9.26亿</td>
+<td class="gold">23.76亿</td>
+<td>8-10亿</td>
+</tr>
+<tr>
+<td>FCF</td>
+<td>5.30亿</td>
+<td class="gold">28.98亿</td>
+<td>5-10亿</td>
+</tr>
+<tr>
+<td>FCF/净利润</td>
+<td>30%</td>
+<td class="gold">87%</td>
+<td>40-60%</td>
+    </tr>
+  </table>
+  <div class="txt">2025年经营现金流52.74亿(+262%),远超净利润33.34亿。CAPEX 23.76亿(建设高峰期),FCF 28.98亿创历史新高。FCF/净利润87%,盈利质量极佳。</div>
+
+  <h3>估值指标</h3><table class="tbl"><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr><tr><td>PE(TTM)</td><td>132.3x</td><td>—</td><td>—</td></tr><tr><td>PB</td><td>26.73x</td><td>—</td><td>—</td></tr><tr><td>PS(TTM)</td><td>15.72x</td><td>—</td><td>—</td></tr></table><h3>PE对比(2025年报,倍)</h3>
+  
+  </div>
+  </div>
+  </div>
+<div class="cp"><span class="nm">生益科技</span><div class="bt"><div class="bf" style="width:34%;background:#4caf50"></div></div><span class="vl" style="color:#4caf50">17x</span></div>
+<div class="cp"><span class="nm">建滔集团(148.HK)</span><div class="bt"><div class="bf" style="width:24%;background:#888"></div></div><span class="vl">12x</span></div>
+<div class="cp"><span class="nm">金安国纪</span><div class="bt"><div class="bf" style="width:100%;background:#888"></div></div><span class="vl">50x</span></div>
+<div class="cp"><span class="nm">华正新材</span><div class="bt"><div class="bf" style="width:60%;background:#888"></div></div><span class="vl">30x</span></div>
+<div class="cp"><span class="nm">深南电路</span><div class="bt"><div class="bf" style="width:54%;background:#888"></div></div><span class="vl">27x</span></div>
+  <div class="desc" style="margin-top:6px;">📌 PE 17x处于历史中位偏低。近5年PE波动区间10-40x。当前估值隐含市场对周期性的担忧,但AI需求结构性增长+PCB爆发可能打破周期天花板。PB 3.6x。</div>
+
+  <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div></div>
+
+<div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
+
+  <h3>行业空间</h3>
+  <table class="tbl">
+<tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>生益科技出货/份额</th><th>市占率</th></tr>
+<tr>
+<td>全球刚性覆铜板</td>
+<td>~200亿美元</td>
+<td>~8%</td>
+<td>营收177.74亿(≈24亿美元)</td>
+<td>13.7%(全球第二)</td>
+    </tr>
+<tr>
+<td>全球PCB</td>
+<td>~800亿美元</td>
+<td>~10%</td>
+<td>营收91.44亿(≈13亿美元)</td>
+<td>~1.6%(生益电子)</td>
+    </tr>
+<tr>
+<td>高频高速覆铜板</td>
+<td>~35亿美元</td>
+<td>~25%</td>
+<td>AI服务器/封装用CCL批量供货</td>
+<td>国产替代领先</td>
+    </tr>
+  </table>
+
+  <h3>竞争态势</h3>
+  <table class="tbl">
+    <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
+    <tr><td>建滔集团</td><td>覆铜板</td><td>全球第一,产能更大,但产品以中低端为主,高端布局不如生益</td></tr>
+    <tr><td>台光电</td><td>高频高速CCL</td><td>台系高频高速CCL领先者,但在大陆客户覆盖不如生益</td></tr>
+    <tr><td>深南电路</td><td>PCB</td><td>国内PCB龙头,与生益电子直接竞争。但生益有CCL产业链协同优势</td></tr>
+    <tr><td>华正新材</td><td>全品类CCL</td><td>公司以全品类覆盖+品质差异化定位，生益科技构建一站式采购+FAE技术支持的综合服务壁垒</td></tr>
+  </table>
+
+  <h3>行业终局思考</h3>
+  <div class="txt">CCL行业全球前十占77%份额,格局稳定。AI算力驱动高频高速CCL占比提升,龙头优势强化。中期看江西二期+泰国产能释放,远期看封装用CCL国产替代。</div>
+
+  <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div></div>
+
+<div id="s9" class="card"><h2>M8 三年资本计划 & 催化剂</h2>
+
+  <h3>催化剂时间表</h3>
+  <table class="tbl">
+<tr><th style="width:80px">时间</th><th style="width:30%">事件</th><th style="width:40%">预期影响</th></tr>
+<tr>
+<td>2026-2027</td>
+<td>江西生益二期1800万平CCL产能释放</td>
+<td class="green">新增产能贡献营收~30亿,缓解产能瓶颈</td>
+    </tr>
+<tr>
+<td>2027</td>
+<td>泰国工厂一期投产(覆铜板+粘结片)</td>
+<td class="green">海外产能落地,规避关税风险,拓展海外客户</td>
+    </tr>
+<tr>
+<td>2027-2028</td>
+<td>AI服务器/交换机升级驱动高频高速CCL需求</td>
+<td class="green">产品结构升级提升综合毛利率2-3pct</td>
+    </tr>
+<tr>
+<td>2027-2028</td>
+<td>生益电子东城五厂智能算力项目投产</td>
+<td>PCB高端产能翻倍,提升PCB板块盈利贡献</td>
+    </tr>
+  </table>
+
+  <h3>三年业绩预测</h3>
+  <table class="tbl">
+<tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>毛利率趋势</th></tr>
+<tr>
+<td class="green">乐观</td>
+<td>360-400亿</td>
+<td>420-460亿</td>
+<td>480-520亿</td>
+<td>毛利率稳定在26-28%</td>
+    </tr>
+<tr>
+<td class="gold">基准</td>
+<td>310-340亿</td>
+<td>350-390亿</td>
+<td>390-430亿</td>
+<td>毛利率~25%</td>
+    </tr>
+<tr>
+<td class="red">悲观</td>
+<td>250-280亿</td>
+<td>280-310亿</td>
+<td>300-340亿</td>
+<td>毛利率~22%</td>
+    </tr>
+  </table>
+
+  <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div></div>
+
+<div id="s10" class="card"><h2>M9 预期差 & 市场共识</h2>
+
+  <table class="tbl">
+<tr><th style="width:60px">议题</th><th style="width:100px">市场共识</th><th style="width:40%">独立判断</th><th style="width:50px">方向</th></tr>
+<tr>
+<td>行业周期属性</td>
+<td style="color:#888;">CCL是强周期行业,需求跟随经济波动</td>
+<td style="color:#4caf50;">AI算力需求结构性增长,可能弱化周期性</td>
+<td>偏乐观</td>
+    </tr>
+<tr>
+<td>PCB业务持续性</td>
+<td style="color:#888;">PCB高增长不可持续,基数效应会放缓</td>
+<td style="color:#888;">生益电子产能扩张+高端化,可维持较高增速</td>
+<td>偏乐观</td>
+    </tr>
+<tr>
+<td>毛利率天花板</td>
+<td style="color:#888;">25%毛利率已是近年高点,上升空间有限</td>
+<td style="color:#888;">产品结构持续升级(高频高速/封装),毛利率可提升至28-30%</td>
+<td>偏乐观</td>
+    </tr>
+<tr>
+<td>海外产能价值</td>
+<td style="color:#888;">泰国工厂仅规避关税,实际贡献有限</td>
+<td style="color:#4caf50;">海外产能可打开新客户群,拓展海外市场</td>
+<td>偏乐观</td>
+    </tr>
+<tr>
+<td>(续)海外产能价值</td>
+<td style="color:#888;">地缘风险可能影响海外运营</td>
+<td style="color:#4caf50;">生益的海外布局是跟随客户需求,风险可控</td>
+<td>偏乐观</td>
+  </table>
+
+  <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div></div>
+
+<div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
+
+  <h3>风险类型</h3>
+  <table class="tbl">
+<tr><th style="width:80px">风险类型</th><th>描述</th><th style="width:50px">概率</th><th style="width:40%">预警信号</th></tr>
+<tr>
+<td>市场风险</td>
+<td>美西方推动产业链脱钩断链;海外运营经验不足</td>
+<td>中</td>
+<td>出口订单下滑/海外客户转移</td>
+    </tr>
+<tr>
+<td>技术风险</td>
+<td>有机树脂体系可能被陶瓷基/玻璃基颠覆;高端材料研发不达预期</td>
+<td>中低</td>
+<td>新型封装材料专利涌现/大客户转向新供应商</td>
+    </tr>
+<tr>
+<td>运营风险</td>
+<td>供应链管理压力(铜箔/玻纤布紧缺);治理环境变化</td>
+<td>中</td>
+<td>原材料价格持续上涨,产能利用率下降</td>
+    </tr>
+<tr>
+<td>人力资源风险</td>
+<td>海外用工风险;技术创新人才和高级管理人才缺乏</td>
+<td>中低</td>
+<td>关键岗位流失率上升/海外招聘困难</td>
+    </tr>
+<tr>
+<td>AI/信息化风险</td>
+<td>AI投入不足或应用落后可能导致经营效率落后</td>
+<td>低</td>
+<td>竞争对手AI应用加速/生产效率差距扩大</td>
+    </tr>
+  </table>
+
+  <h3>敏感性分析</h3><table class="tbl"><tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr><tr><td>营收下降10%</td><td>—</td><td>—</td></tr><tr><td>毛利率下降3pct</td><td>—</td><td>—</td></tr><tr><td>费用率上升</td><td>—</td><td>—</td></tr><tr><td>行业下行周期</td><td>—</td><td>—</td></tr><tr><td>竞争加剧</td><td>—</td><td>—</td></tr></table><h3>三情景分析</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">28-32元</div><div class="dt">+30%~+50%<br>AI需求超预期+PCB持续高增,2026净利40亿</div></div>
+    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">22-25元</div><div class="dt">0%~+15%<br>CCL平稳增长+PCB正常放量,2026净利35亿</div></div>
+    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">14-16元</div><div class="dt">-30%~-20%<br>原材料涨价+需求回落+产能消化不及预期</div></div>
+  </div>
+
+  <h3>避雷清单</h3><table class="tbl"><tr><th>检查项</th><th>结果</th></tr><tr><td>是否存在商誉减值风险</td><td>无商誉(子公司生益电子正常经营)</td></tr><tr><td>大股东是否持续减持</td><td>广新控股22.56%未减持,国弘投资稳定</td></tr><tr><td>财务造假信号</td><td>无异常。审计标准无保留意见</td></tr><tr><td>现金流是否持续为负</td><td>2025年经营现金流52.74亿,覆盖净利润1.58倍</td></tr><tr><td>是否有未决诉讼</td><td>诉讼案件已结案核销预计负债,无重大未决</td></tr></table>
+  <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
+    <span style="color:#4caf50;">✅ 财务状况健康,风险可控。</span>
+  </div>
+
+  <h3>清算价值</h3>
+  <table class="tbl">
+    <tr><th>资产项</th><th>账面价值</th><th>清算价值</th></tr>
+    <tr><td>货币资金</td><td>52.79亿</td><td class="gold">52.79亿</td></tr>
+    <tr><td>应收账款</td><td>95.26亿</td><td>66.68亿(折价30%)</td></tr>
+    <tr><td>存货</td><td>49.75亿</td><td>34.83亿(折价30%)</td></tr>
+    <tr><td>固定资产+在建</td><td>98.21亿</td><td>49.11亿(折价50%)</td></tr>
+    <tr><td class="gold">合计</td><td>296.01亿</td><td>203.41亿(每股8.4元)</td></tr>
+  </table>
+  <div class="txt">清算价值约203亿(每股8.4元),远低于当前市值447亿。持续经营价值主要来自盈利能力,而非资产清算。</div>
+
+  <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div></div>
+
+<div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
+  <h3>六维评分</h3>
+  <!-- 替换width:75%时禁止用f-string！Python f-string会把{{}}转义为{}，导致花括号残留。
+       正确写法：c.replace('{{DIM_BAR_' + str(i) + '}}', 'width:70%') -->
+  <div class="hb"><span class="hl">商业模式</span><div class="ht"><div class="hf c7" style="width:80%">8.0</div></div></div>
+  <div class="hb"><span class="hl">护城河</span><div class="ht"><div class="hf c7" style="width:75%">7.5</div></div></div>
+  <div class="hb"><span class="hl">管理层</span><div class="ht"><div class="hf c7" style="width:75%">7.5</div></div></div>
+  <div class="hb"><span class="hl">财务健康</span><div class="ht"><div class="hf c6" style="width:70%">7.0</div></div></div>
+  <div class="hb"><span class="hl">估值</span><div class="ht"><div class="hf c6" style="width:70%">7.0</div></div></div>
+  <div class="hb"><span class="hl">成长性</span><div class="ht"><div class="hf c7" style="width:80%">8.0</div></div></div>
+  <h3>核心亮点</h3>
+  <div class="txt"><span class="dot">●</span><b>双轮驱动,第二曲线爆发</b>PCB业务营收91.44亿(+104%),成为第二大增长引擎。AI算力驱动覆铜板量价齐升。</div>
+  <div class="txt"><span class="dot">●</span><b>净利翻倍,ROE重回20%+</b>归母净利润33.34亿(+92%),ROE 21.25%创五年新高。经营现金流52.74亿。</div>
+  <div class="txt"><span class="dot">●</span><b>护城河深厚,全球第二稳固</b>全球刚性覆铜板13.7%市占率,435件专利+IEC标准。江西二期+泰国产能打开成长空间。</div>
+  <h3>核心风险</h3>
+  <div class="txt"><span class="dot">●</span><b>净利率改善的脆弱性：</b>净利率11.73%(2025年),较前两年显著改善,但毛利率25.10%仍有提升空间</div>
+  <div class="txt"><span class="dot">●</span><b>技术路径迭代</b>:陶瓷基/玻璃基封装基板技术进步可能颠覆有机树脂CCL长期需求,但5-10年内影响有限</div>
+  <div class="txt"><span class="dot">●</span><b>产能扩张节奏风险：</b>2025年资本开支23.76亿大幅增加,资产负债率48.96%,扩张期财务杠杆上升需关注</div>
+  <h3>价值投资理念应用</h3>
+  <table class="tbl">
+    <tr><th style="width:50px">维度</th><th style="width:100px">代表人物</th><th style="width:40%">应用分析</th></tr>
+    <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>CCL行业前三份额41%,生益全球第二。CCL占PCB成本30%,客户品质优先/价格敏感度低,属于好生意。</td></tr>
+    <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>全球第二大CCL产能+全品类覆盖=规模壁垒;435件专利+5项IEC标准=技术壁垒。客户切换成本高,差异化明显。</td></tr>
+    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>年均营收增速20%+,净利润增长92%,属快速增长型。PCB业务翻倍增长提供第二增长曲线。</td></tr>
+    <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>PE 17x处历史中位偏低,PB 3.6x。ROE 21.25%支撑合理估值。现金流充沛。</td></tr>
+    <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>全球第二大产能构筑规模优势,直接材料占比79.6%为最大成本项。推动材料国产化+产品结构升级。</td></tr>
+    <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>PE 17x低于行业均值,FCF 29亿创新高。市场可能低估PCB爆发和AI驱动产品结构升级的盈利持续性。</td></tr>
+    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>全球CCL市场200亿美元,高频高速35亿美元(增速25%)。生益在AI用CCL突破,国产替代空间大。</td></tr>
+    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>2026-2028年催化剂密集:江西二期投产/泰国工厂投产/AI算力需求持续/PCB高端产能落地。</td></tr>
+    <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>市场可能低估:(1)PCB业务持续爆发潜力(2)AI用高频高速CCL定价权(3)海外产能投产后盈利贡献</td></tr>
+    <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>主要风险:技术颠覆(陶瓷基/玻璃基取代有机树脂)/原材料价格波动/全球产能扩张后的供需失衡。</td></tr>
+    <tr><td>M11</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>清算价值约203亿(每股8.4元),远低于当前市值447亿。安全边际主要来自盈利能力和成长性。</td></tr>
+  </table>
+  <div class="bq" style="margin-top:12px">
+    <b>最终结论：</b>全球刚性覆铜板龙头(13.7%市占率全球第二),同时通过生益电子布局PCB。。全球覆铜板龙头(13.7%全球第二)受益AI算力需求爆发,营收284亿(+39%)净利33亿(+92%)。PCB业务翻倍增长,江西二期+泰国产能打开成长空间。PE 17x/PB 3.6x合理偏低,分红每10股派8元。
+  </div></div>
+
+<div id="s13" class="card">
+  <h2>附录</h2>
+  <div class="txt"><span class="dot">●</span>数据来源：2025年报 + fin-table API</div>
+  <div class="txt"><span class="dot">●</span>行业对比数据取自各公司2025年报/2026Q1季报，市场数据截至2026年6月12日。</div>
+  <div class="txt"><span class="dot">●</span>部分业务拆分数据为估算值，以公司年报为准。</div>
+  <div class="txt"><span class="dot">●</span>DCF估值采用简化模型，仅供内部参考，不构成投资建议。</div>
+  <div class="footer">
+    ⚠️ 声明：本内容仅供理论学习和研究练习使用，不构成投资建议，不能作为投资依据。股市有风险，投资需谨慎。<br>
+    2026.06.17 | 数据截止：2026-06-12<br>
+    生益科技股份有限公司 · 600183.SH..SH
+  </div>
+</div>
+
+</body>
+</html>
