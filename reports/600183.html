@@ -18,11 +18,6 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 .score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
 .score-label{font-size:10px;color:#888}
-.dim-row{display:flex;align-items:center;margin:6px 0}
-.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
-.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
-.dim-fill{height:100%;border-radius:5px}
-.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
 .c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
 .tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
 .tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
@@ -403,11 +398,6 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 
   <h3>分业务收入结构（2024 vs 2025）</h3>
   <!-- 使用hl/ht/hf样式（参考M2壁垒类型评估），不要用nm/bt/bf/vl -->
-  <!-- 格式：<div class="hb"><span class="hl">业务名</span><div class="ht"><div class="hf" style="width:XX%;background:COLOR;">XX%</div></div></div> -->
-  width:80%;background:#4caf50
-  width:15%;background:#8bc34a
-  width:5%;background:#ffc107
-
   <table class="tbl" style="margin-top:10px;">
     <tr><th>业务线</th><th>2024年收入</th><th>2025年收入</th><th>趋势</th></tr>
 <div class="hb"><span class="hl">覆铜板&粘结片</span><div class="ht"><div class="hf c7" style="width:64%;">177.74亿</div></div><span class="hv">+20.2% · 毛利率23.91%</span></div>
@@ -441,12 +431,12 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <div class="desc">规模壁垒+技术壁垒双轮驱动:全球第二大CCL产能(16,063万平/年),种类最齐全,AI用高频高速CCL技术国内领先</div>
 
   <h3>壁垒类型评估</h3>
-  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:90%">9</div></div></div>
-  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:80%">8</div></div></div>
-  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:85%">8</div></div></div>
-  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:75%">7</div></div></div>
-  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:60%">6</div></div></div>
-  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:70%">7</div></div></div>
+  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:90%;background:#4caf50">9</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:70%;background:#8bc34a">7</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:60%;background:#ffc107">6</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:70%;background:#8bc34a">7</div></div></div>
 
   <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
     <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 7.5/10</span>
@@ -495,10 +485,10 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <div class="txt" style="font-size:12px;">管理层背景详见管理层信息表。核心管理层平均行业经验超20年,长期稳定/内部培养为主。务实稳健的管理风格,重视研发投入和质量管控。2025年主动拥抱AI/RPA等新技术。。基于股东充分信任和充分授权的职业经理人治理模式,五共享机制激励。</div>
 
   <h3>管理层评分</h3>
-  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:85%">8</div></div></div>
-  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:80%">8</div></div></div>
-  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:75%">7</div></div></div>
-  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:80%">8</div></div></div>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:70%;background:#8bc34a">7</div></div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8</div></div></div>
 
   <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div>
 </div>
@@ -620,11 +610,11 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   </div>
   </div>
   </div>
-<div class="cp"><span class="nm">生益科技</span><div class="bt"><div class="bf" style="width:34%;background:#4caf50"></div></div><span class="vl" style="color:#4caf50">17x</span></div>
-<div class="cp"><span class="nm">建滔集团(148.HK)</span><div class="bt"><div class="bf" style="width:24%;background:#888"></div></div><span class="vl">12x</span></div>
-<div class="cp"><span class="nm">金安国纪</span><div class="bt"><div class="bf" style="width:100%;background:#888"></div></div><span class="vl">50x</span></div>
-<div class="cp"><span class="nm">华正新材</span><div class="bt"><div class="bf" style="width:60%;background:#888"></div></div><span class="vl">30x</span></div>
-<div class="cp"><span class="nm">深南电路</span><div class="bt"><div class="bf" style="width:54%;background:#888"></div></div><span class="vl">27x</span></div>
+<div class="hb"><span class="hl">生益科技</span><div class="ht"><div class="hf" style="width:34%;background:#4caf50">17x</div></div></div>
+<div class="hb"><span class="hl">建滔集团(148.HK)</span><div class="ht"><div class="hf" style="width:24%;background:#888">12x</div></div></div>
+<div class="hb"><span class="hl">金安国纪</span><div class="ht"><div class="hf" style="width:100%;background:#888">50x</div></div></div>
+<div class="hb"><span class="hl">华正新材</span><div class="ht"><div class="hf" style="width:60%;background:#888">30x</div></div></div>
+<div class="hb"><span class="hl">深南电路</span><div class="ht"><div class="hf" style="width:54%;background:#888">27x</div></div></div>
   <div class="desc" style="margin-top:6px;">📌 PE 17x处于历史中位偏低。近5年PE波动区间10-40x。当前估值隐含市场对周期性的担忧,但AI需求结构性增长+PCB爆发可能打破周期天花板。PB 3.6x。</div>
 
   <div class="bq">生益科技作为全球覆铜板龙头(13.7%全球第二),2025年营收284亿(+39%)净利33亿(+92%),双轮驱动(CCL+PCB)格局形成。PE 17x处于历史中位偏低,ROE 21.25%提供价值支撑。核心看点:AI算力驱动量价齐升/PCB翻倍增长/江西二期+泰国产能扩张。</div></div>
@@ -829,12 +819,12 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>六维评分</h3>
   <!-- 替换width:75%时禁止用f-string！Python f-string会把{{}}转义为{}，导致花括号残留。
        正确写法：c.replace('{{DIM_BAR_' + str(i) + '}}', 'width:70%') -->
-  <div class="hb"><span class="hl">商业模式</span><div class="ht"><div class="hf c7" style="width:80%">8.0</div></div></div>
-  <div class="hb"><span class="hl">护城河</span><div class="ht"><div class="hf c7" style="width:75%">7.5</div></div></div>
-  <div class="hb"><span class="hl">管理层</span><div class="ht"><div class="hf c7" style="width:75%">7.5</div></div></div>
-  <div class="hb"><span class="hl">财务健康</span><div class="ht"><div class="hf c6" style="width:70%">7.0</div></div></div>
-  <div class="hb"><span class="hl">估值</span><div class="ht"><div class="hf c6" style="width:70%">7.0</div></div></div>
-  <div class="hb"><span class="hl">成长性</span><div class="ht"><div class="hf c7" style="width:80%">8.0</div></div></div>
+  <div class="hb"><span class="hl">商业模式</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8.0</div></div></div>
+  <div class="hb"><span class="hl">护城河</span><div class="ht"><div class="hf" style="width:75%;background:#8bc34a">7.5</div></div></div>
+  <div class="hb"><span class="hl">管理层</span><div class="ht"><div class="hf" style="width:75%;background:#8bc34a">7.5</div></div></div>
+  <div class="hb"><span class="hl">财务健康</span><div class="ht"><div class="hf" style="width:70%;background:#8bc34a">7.0</div></div></div>
+  <div class="hb"><span class="hl">估值</span><div class="ht"><div class="hf" style="width:70%;background:#8bc34a">7.0</div></div></div>
+  <div class="hb"><span class="hl">成长性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8.0</div></div></div>
   <h3>核心亮点</h3>
   <div class="txt"><span class="dot">●</span><b>双轮驱动,第二曲线爆发</b>PCB业务营收91.44亿(+104%),成为第二大增长引擎。AI算力驱动覆铜板量价齐升。</div>
   <div class="txt"><span class="dot">●</span><b>净利翻倍,ROE重回20%+</b>归母净利润33.34亿(+92%),ROE 21.25%创五年新高。经营现金流52.74亿。</div>
