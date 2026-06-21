@@ -18,6 +18,11 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 .score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
 .score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
 .c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
 .tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
 .tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
@@ -133,6 +138,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
  </style>
   <table class="fin-table">
 <thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
+<tbody>
 <tr><td>每股营业收入(元)</td><td class="pos">11.70</td><td class="slight">8.39</td><td class="warn">7.05</td><td class="warn">7.74</td><td class="pos">8.77</td><td class="slight">6.41</td><td class="slight">5.82</td><td class="slight">5.66</td><td class="slight">4.48</td><td>3.56</td></tr>
 <tr><td>每股经营现金流(元)</td><td class="pos">2.17</td><td class="neg">0.60</td><td class="warn">1.16</td><td class="pos">1.21</td><td class="slight">0.77</td><td class="slight">0.77</td><td class="slight">0.74</td><td class="pos">0.63</td><td class="neg">0.41</td><td>0.81</td></tr>
 <tr><td>每股净利润(元)</td><td class="pos">1.39</td><td class="pos">0.74</td><td class="neg">0.50</td><td class="neg">0.66</td><td class="pos">1.23</td><td class="slight">0.74</td><td class="pos">0.66</td><td class="warn">0.47</td><td class="warn">0.51</td><td>0.52</td></tr>
@@ -143,6 +149,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 <tr><td>净利润(亿元)</td><td class="pos">33.34</td><td class="pos">17.39</td><td class="neg">11.64</td><td class="neg">15.31</td><td class="pos">28.30</td><td class="slight">16.81</td><td class="pos">14.49</td><td class="warn">10.00</td><td class="pos">10.75</td><td>7.48</td></tr>
 <tr><td>净利润率(%)</td><td class="pos">11.73</td><td class="slight">8.53</td><td class="warn">7.02</td><td class="neg">8.50</td><td class="slight">13.96</td><td class="slight">11.44</td><td class="pos">10.94</td><td class="warn">8.35</td><td class="slight">10.00</td><td>8.76</td></tr>
 <tr><td>ROE(%)</td><td class="pos">21.25</td><td class="pos">12.17</td><td class="neg">8.57</td><td class="neg">11.71</td><td class="pos">24.34</td><td class="warn">18.28</td><td class="slight">19.67</td><td class="warn">16.39</td><td class="slight">20.12</td><td>15.65</td></tr>
+</tbody>
 </table>
 </div>
 
@@ -398,12 +405,17 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 
   <h3>分业务收入结构（2024 vs 2025）</h3>
   <!-- 使用hl/ht/hf样式（参考M2壁垒类型评估），不要用nm/bt/bf/vl -->
+  <!-- 格式：<div class="hb"><span class="hl">业务名</span><div class="ht"><div class="hf" style="width:XX%;background:COLOR;">XX%</div></div></div> -->
+  <div class="hb"><span class="hl">覆铜板&粘结片</span><div class="ht"><div class="hf c7" style="width:64%;">177.74亿</div></div></div>
+  <div class="hb"><span class="hl">印制线路板</span><div class="ht"><div class="hf c9" style="width:33%;">91.44亿</div></div></div>
+  <div class="hb"><span class="hl">废弃资源利用</span><div class="ht"><div class="hf c6" style="width:3%;">8.55亿</div></div></div>
+
   <table class="tbl" style="margin-top:10px;">
     <tr><th>业务线</th><th>2024年收入</th><th>2025年收入</th><th>趋势</th></tr>
-<div class="hb"><span class="hl">覆铜板&粘结片</span><div class="ht"><div class="hf c7" style="width:64%;">177.74亿</div></div><span class="hv">+20.2% · 毛利率23.91%</span></div>
-<div class="hb"><span class="hl">印制线路板</span><div class="ht"><div class="hf c9" style="width:33%;">91.44亿</div></div><span class="hv">+103.9% · 毛利率28.61%</span></div>
-<div class="hb"><span class="hl">废弃资源利用</span><div class="ht"><div class="hf c6" style="width:3%;">8.55亿</div></div><span class="hv">+20.5%</span></div>
-</table>
+    <tr><td>覆铜板&粘结片</td><td>147.87亿</td><td>177.74亿</td><td class="green">+20.2%</td></tr>
+    <tr><td>印制线路板</td><td>44.87亿</td><td>91.44亿</td><td class="green">+103.9%</td></tr>
+    <tr><td>废弃资源利用</td><td>7.10亿</td><td>8.55亿</td><td class="green">+20.5%</td></tr>
+  </table>
   <div class="desc" style="margin-top:6px;">2025年营收284.31亿(+39.45%)，归母净利33.34亿(+91.75%)。PCB业务爆发式增长(+104%)成为第二增长极，CCL量价齐升。</div>
 
   <h3>商业模式评估</h3>
@@ -425,7 +437,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <tr><td>进入壁垒</td><td>7</td><td>前五名客户占比29.71%,前五名供应商占比27.45%,分散度高无单方依赖</td></tr>
   </table>
 
-  <div class="bq">生益科技拥有宽阔护城河:全球第二的规模壁垒(CCL产能1.2亿㎡,13.7%市占率)、近40年客户认证壁垒(全球前十大PCB厂商均为长期客户)、435件授权有效专利+主导18项IEC标准的技术壁垒。五共享机制保障管理团队稳定。M8/M9材料突破打开高端天花板。</div></div>
+  <div class="bq">生益科技以覆铜板(CCL)为核心(64%)+PCB(33%)双轮驱动,2025年营收284.31亿(+39%)。对下游PCB客户议价能力强(CCL占PCB成本30%+认证周期2-3年),对上游材料议价力一般。全球CCL市占率13.7%稳居第二,CR3约41%格局良好,可通过产品结构升级转移成本压力。</div></div>
 
 <div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
   <div class="desc">五共享机制(客户/员工/股东/社会/供应商)是公司近40年发展的基石,职业经理人治理稳定</div>
@@ -471,14 +483,13 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     <span class="dot">·</span> 陶瓷基/玻璃基等新材料可能在中长期对有机树脂体系形成替代风险,公司已布局PTFE和封装基材
   </div>
 
-  <div class="bq">管理层评分7.75/10。陈仁喜董事长深耕行业近40年,战略精准。曾红慧总经理2025年带领公司实现营收+39%/净利+92%历史最佳。五共享机制核心团队稳定,弹性收入制使员工与公司利益绑定。2025年取消监事会优化治理结构。</div>
-</div>
+  <div class="bq">生益科技拥有宽阔护城河:全球第二的规模壁垒(CCL产能1.2亿㎡,13.7%市占率)、近40年客户认证壁垒(全球前十大PCB厂商均为长期客户)、435件授权有效专利+主导18项IEC标准的技术壁垒。五共享机制保障管理团队稳定。M8/M9材料突破打开高端天花板。</div></div>
 
 <div id="s4" class="card"><h2>M3 管理层分析</h2>
+  <div class="desc">五共享机制+职业经理人治理,近40年深耕行业经验</div>
 
   <h3>管理层基本信息</h3>
   <table class="tbl">
-    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
     <tr><td>陈仁喜</td><td>董事长</td><td>董事任职2024.06起,公司近40年核心管理者</td><td>59岁,自参加工作即在公司,直接参与公司各个时期的建设和发展。薪酬1,573万元。</td></tr>
     <tr><td>曾红慧</td><td>总经理</td><td>总经理任职2024.06起,长期负责公司经营</td><td>56岁,拥有丰富的覆铜板行业管理经验。薪酬1,643万元,直接持有230.8万股。</td></tr>
   </table>
@@ -490,7 +501,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:70%;background:#8bc34a">7</div></div></div>
   <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50">8</div></div></div>
 
-  <div class="bq">2025年经营现金流52.74亿(+262%)远超净利33.34亿,FCF质量极高。资本开支29.33亿(东城五厂/泰国工厂/江西二期),自由现金流23.41亿。资产负债率42.29%,有息负债率仅9.82%,账面资金17.44亿,财务非常稳健。每10股派8元,股东回报持续。</div>
+  <div class="bq">管理层评分7.75/10。陈仁喜董事长深耕行业近40年,战略精准。曾红慧总经理2025年带领公司实现营收+39%/净利+92%历史最佳。五共享机制核心团队稳定,弹性收入制使员工与公司利益绑定。2025年取消监事会优化治理结构。</div>
 </div>
 
 <div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
@@ -502,7 +513,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 <tr><td>2025</td><td>284.31</td><td>33.34</td><td>26.47%</td><td>11.73%</td><td>21.25%</td><td>↗️</td></tr>
 </table></div><h3>费用率结构（2024 vs 2025对比）</h3>
   <table class="tbl">
-<tr><th>费用项</th><th>2024年</th><th>2025年</th><th>趋势</th></tr>
+<tr><th>费用项</th><th>2024年</th><th class="gold">2025年</th><th>趋势</th></tr>
 <tr>
 <td>研发费用</td>
 <td>11.56亿(5.67%)</td>
@@ -529,7 +540,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     </tr>
   </table>
 
-  <div class="bq">CCL成本中直接材料占87.46%(铜箔42%/玻纤布19%/树脂26%),原材料占极高比重。2025年成功推动多轮涨价转移成本压力,毛利率提升4.52pct至26.47%。不涉足上游材料生产,供应链管理是关键能力。LME铜价波动为核心风险。</div></div>
+  <div class="bq">2025年经营现金流52.74亿(+262%)远超净利33.34亿,FCF质量极高。资本开支29.33亿(东城五厂/泰国工厂/江西二期),自由现金流23.41亿。资产负债率42.29%,有息负债率仅9.82%,账面资金17.44亿,财务非常稳健。每10股派8元,股东回报持续。</div></div>
 
 <div id="s6" class="card"><h2>M5 成本结构</h2>
 
@@ -571,7 +582,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     </tr>
   </table>
 
-  <div class="bq">PE 17x处于近5年历史中位偏低,ROE 21.25%支撑当前估值。西南证券给予2026年45倍PE目标价103.50元(+26%)。PB 3.6x相对ROE 21.25%偏低。EV/EBITDA 33x处于较高水平。当前市值隐含了对周期性担忧的折价,未充分反映AI成长性。</div></div>
+  <div class="bq">CCL成本中直接材料占87.46%(铜箔42%/玻纤布19%/树脂26%),原材料占极高比重。2025年成功推动多轮涨价转移成本压力,毛利率提升4.52pct至26.47%。不涉足上游材料生产,供应链管理是关键能力。LME铜价波动为核心风险。</div></div>
 
 <div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
 
@@ -605,7 +616,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   </table>
   <div class="txt">2025年经营现金流52.74亿(+262%),远超净利33.34亿,FCF质量极高。资本开支29.33亿(主要用于东城五厂智能算力项目/泰国工厂/江西二期),自由现金流23.41亿。账面货币资金17.44亿,有息负债32.08亿,净负债14.64亿。大比例分红每10股派8元(股息率约1.7%),股东回报持续。</div>
 
-  <h3>估值指标</h3><table class="tbl"><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr><tr><td>PE(TTM)</td><td>132.3x</td><td>—</td><td>—</td></tr><tr><td>PB</td><td>26.73x</td><td>—</td><td>—</td></tr><tr><td>PS(TTM)</td><td>15.72x</td><td>—</td><td>—</td></tr></table><h3>PE同行对比</h3>
+  <h3>估值指标</h3><table class="tbl"><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr><tr><td>PE(TTM)</td><td>17x</td><td>10x-45x</td><td class="green">偏低(中枢28x)</td></tr><tr><td>PB</td><td>3.6x</td><td>1.5x-5x</td><td class="green">偏低(ROE 21.25%支撑)</td></tr><tr><td>PS(TTM)</td><td>2.0x</td><td>1x-4x</td><td class="green">偏低</td></tr></table><h3>PE同行对比</h3>
   <!-- PE比较条使用hl/ht/hf样式（匹配M2壁垒），参考下方格式） -->
 <div class="hb"><span class="hl">生益科技</span><div class="ht"><div class="hf" style="width:34%;background:#4caf50">17x</div></div></div>
 <div class="hb"><span class="hl">建滔集团(148.HK)</span><div class="ht"><div class="hf" style="width:24%;background:#888">12x</div></div></div>
@@ -614,7 +625,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
 <div class="hb"><span class="hl">深南电路</span><div class="ht"><div class="hf" style="width:54%;background:#888">27x</div></div></div>
   <div class="desc" style="margin-top:6px;">📌 PE 17x处于近5年历史中位偏低(波动区间10-40x)。可比公司:建滔集团(148.HK)12x/金安国纪50x/华正新材30x/深南电路27x。考虑到AI驱动的高成长性(净利+92%),当前PE相对合理偏低。PB 3.6x,ROE 21.25%支撑估值。EV/EBITDA 33x。</div>
 
-  <div class="bq">全球CCL行业CR3约41%(建滔14.3%/生益13.7%/台光13.3%),前十占77%。生益科技自2013年保持全球第二。高端特殊基覆铜板领域,内资仅生益科技进入全球TOP13(4.6%),替代空间广阔。CCL毛利率23.9%远高于A股同行(南亚7%/华正9%/金安12%)。</div></div>
+  <div class="bq">PE 17x处于近5年历史中位偏低,ROE 21.25%支撑当前估值。西南证券给予2026年45倍PE目标价103.50元(+26%)。PB 3.6x相对ROE 21.25%偏低。EV/EBITDA 33x处于较高水平。当前市值隐含了对周期性担忧的折价,未充分反映AI成长性。</div></div>
 
 <div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
 
@@ -656,7 +667,7 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   <h3>行业终局思考</h3>
   <div class="txt">生益科技最理想的终局是成为全球CCL绝对龙头+高端PCB核心供应商,覆盖AI服务器/汽车电子/封装基材全系列。核心关注:能否在M9及以上材料领域形成技术领先(类似台光在高速领域的地位),以及海外产能(泰国)能否成功复制国内经验。如果成功,营收有望突破千亿,市值看3000亿+。</div>
 
-  <div class="bq">催化剂:①松山湖第二工厂(52亿)开工,CCL产能翻倍;②M9材料批量供货北美大客户,进入800G交换机供应链;③泰国工厂2026年底投产,海外收入占比提升;④江西二期全面达产(1800万㎡CCL);⑤生益电子持续突破AI大客户。</div></div>
+  <div class="bq">全球CCL行业CR3约41%(建滔14.3%/生益13.7%/台光13.3%),前十占77%。生益科技自2013年保持全球第二。高端特殊基覆铜板领域,内资仅生益科技进入全球TOP13(4.6%),替代空间广阔。CCL毛利率23.9%远高于A股同行(南亚7%/华正9%/金安12%)。</div></div>
 
 <div id="s9" class="card"><h2>M8 三年资本计划 & 催化剂</h2>
 
@@ -711,45 +722,21 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     </tr>
   </table>
 
-  <div class="bq">市场将生益科技仍视为周期性覆铜板厂商,忽略了:1)PCB业务已成为引擎(占比32%,毛利率28.6%高于CCL);2)高端CCL占比快速提升,M8/M9材料突破重构估值;3)海外产能打开全球增量。当前PE仅17x,未充分反映AI结构性成长。</div></div>
+  <div class="bq">催化剂:①松山湖第二工厂(52亿)开工,CCL产能翻倍;②M9材料批量供货北美大客户,进入800G交换机供应链;③泰国工厂2026年底投产,海外收入占比提升;④江西二期全面达产(1800万㎡CCL);⑤生益电子持续突破AI大客户。</div></div>
 
 <div id="s10" class="card"><h2>M9 预期差 & 市场共识</h2>
 
-  <table class="tbl">
-<tr><th style="width:60px">议题</th><th style="width:100px">市场共识</th><th style="width:40%">独立判断</th><th style="width:50px">方向</th></tr>
-<tr>
-<td>铜箔/玻纤布/树脂占成本87%,LME铜价已升至9000-10000美元/吨。若原材料持续涨价而公司无法完全向下游传导,毛利率将承压。2025年虽成功推动多轮涨价,但成本传导存在1-2个季度滞后。</td>
-<td style="color:#888;">高</td>
-<td style="color:#4caf50;">↗加剧</td>
-<td>LME铜价>10000美元</td>
-    </tr>
-<tr>
-<td>地缘政治与关税风险:公司海外工厂(泰国)尚未量产,美国关税政策频繁变化增加出口不确定性。海外运营经验不足和市场政策变化频繁可能导致市场拓展受阻。</td>
-<td style="color:#888;">中</td>
-<td style="color:#888;">→持平</td>
-<td>美国关税政策变化</td>
-    </tr>
-<tr>
-<td>陶瓷基/玻璃基等新型封装基材可能在5-10年内对有机树脂体系形成颠覆。虽然公司已布局PTFE和封装基材,但技术路线切换的风险不可忽视。</td>
-<td style="color:#888;">中</td>
-<td style="color:#888;">→持平</td>
-<td>陶瓷基封装进展</td>
-    </tr>
-<tr>
-<td>治理与运营风险:过去基于股东信任的治理环境存在变化风险,五共享机制或职业经理人治理模式改变可能导致管理文化变化。新产品研发不达预期也可能导致市场机会错失。</td>
-<td style="color:#888;">低</td>
-<td style="color:#4caf50;">↘改善</td>
-<td>管理层变动信号</td>
-    </tr>
-<tr>
-<td>陶瓷基/玻璃基等新型封装基材可能在5-10年内对有机树脂体系形成颠覆。虽然公司已布局PTFE和封装基材,但技术路线切换的风险不可忽视。</td>
-<td style="color:#888;">中</td>
-<td style="color:#4caf50;">↗改善</td>
-<td>新材料认证进展</td>
-    </tr>
-  </table>
+  <table class="tbl" style="table-layout:fixed;width:100%;">
+<colgroup><col style="width:80px"><col style="width:auto"><col style="width:auto"><col style="width:50px"></colgroup>
+<tr><th style="width:80px">议题</th><th>市场共识</th><th>独立判断</th><th style="width:50px">方向</th></tr>
+<tr><td style="word-break:break-word;white-space:normal;">原材料成本</td><td style="color:#888;">铜价上涨将显著压缩毛利率</td><td style="color:#4caf50;">已成功推动多轮涨价,传导能力强于市场预期</td><td class="green">超预期</td></tr>
+<tr><td style="word-break:break-word;white-space:normal;">关税与海外扩张</td><td style="color:#888;">海外工厂未量产,关税风险加大</td><td style="color:#4caf50;">泰国工厂进展顺利,长期有利打开增量市场</td><td>关注</td></tr>
+<tr><td style="word-break:break-word;white-space:normal;">技术路线迭代</td><td style="color:#888;">陶瓷基/玻璃基可能颠覆有机树脂</td><td style="color:#888;">已布局PTFE和封装基材,中长期影响有限</td><td>中性</td></tr>
+<tr><td style="word-break:break-word;white-space:normal;">治理与运营</td><td style="color:#888;">股权分散,治理风险较大</td><td style="color:#4caf50;">五共享机制保障团队稳定,取消监事会优化治理</td><td class="green">改善</td></tr>
+<tr><td style="word-break:break-word;white-space:normal;">公司定位</td><td style="color:#888;">仍是周期性覆铜板厂商</td><td style="color:#4caf50;">PCB已成第二引擎(32%),高端CCL重构估值体系</td><td class="green">超预期</td></tr>
+</table>
 
-  <div class="bq">核心风险:①原材料占成本87%,LME铜价波动直接影响利润;②AI需求不及预期(资本开支放缓则高端CCL承压);③技术迭代(陶瓷基/玻璃基新材料可能颠覆);④关税政策风险(海外工厂未量产);⑤房地产拖累(生益地产亏损0.78亿)。</div></div>
+  <div class="bq">市场将生益科技仍视为周期性覆铜板厂商,忽略了:1)PCB业务已成为引擎(占比32%,毛利率28.6%高于CCL);2)高端CCL占比快速提升,M8/M9材料突破重构估值;3)海外产能打开全球增量。当前PE仅17x,未充分反映AI结构性成长。</div></div>
 
 <div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
 
@@ -788,14 +775,14 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
     </tr>
   </table>
 
-  <h3>敏感性分析</h3><table class="tbl"><tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr><tr><td>营收下降10%</td><td>—</td><td>—</td></tr><tr><td>毛利率下降3pct</td><td>—</td><td>—</td></tr><tr><td>费用率上升</td><td>—</td><td>—</td></tr><tr><td>行业下行周期</td><td>—</td><td>—</td></tr><tr><td>竞争加剧</td><td>—</td><td>—</td></tr></table><h3>三情景分析</h3>
+  <h3>敏感性分析</h3><table class="tbl"><tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr><tr><td>营收下降10%</td><td class="red">-30%~-35%</td><td class="red">-35%~-40%</td></tr><tr><td>毛利率下降3pct</td><td class="red">-25%~-28%</td><td class="red">-25%~-30%</td></tr><tr><td>费用率上升2pct</td><td class="red">-15%~-18%</td><td class="red">-15%~-20%</td></tr><tr><td>行业下行周期</td><td class="red">-50%~-60%</td><td class="red">-40%~-50%</td></tr><tr><td>竞争加剧(毛利率-4pct)</td><td class="red">-32%~-36%</td><td class="red">-30%~-35%</td></tr></table><h3>三情景分析</h3>
   <div class="scn">
     <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">103-120</div><div class="dt">+25%~+46%<br>AI算力持续超预期,北美云厂商资本开支延续高增,800G交换机放量带动M8/M9材料出货。CCL均价涨幅超20%,PCB AI相关收入占比突破50%。</div></div>
     <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">82-92</div><div class="dt">0%~+12%<br>AI需求温和增长,CCL量价稳步提升,PCB维持30%+增速。产品结构持续优化,毛利率27-29%。</div></div>
     <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">50-65</div><div class="dt">-39%~-21%<br>AI资本开支放缓,CCL价格承压,PCB增速回落至15-20%。原材料价格高涨压缩毛利率至22-24%。</div></div>
   </div>
 
-  <h3>避雷清单</h3><table class="tbl"><tr><th>检查项</th><th>结果</th></tr><tr><td>是否存在商誉减值风险</td><td>—</td></tr><tr><td>大股东是否持续减持</td><td>—</td></tr><tr><td>财务造假信号</td><td>—</td></tr><tr><td>现金流是否持续为负</td><td>—</td></tr><tr><td>是否有未决诉讼</td><td>—</td></tr></table>
+  <h3>避雷清单</h3><table class="tbl"><tr><th>检查项</th><th>结果</th></tr><tr><td>是否存在商誉减值风险</td><td class="green">✅ 商誉规模小，无重大减值风险</td></tr><tr><td>大股东是否持续减持</td><td class="green">✅ 广新控股持股稳定，无持续减持</td></tr><tr><td>财务造假信号</td><td class="green">✅ OCF 52.74亿远超净利，FCF质量极高</td></tr><tr><td>现金流是否持续为负</td><td class="green">✅ OCF正增长262%，FCF 23.41亿健康</td></tr><tr><td>是否有未决诉讼</td><td class="green">✅ 年报无重大未决诉讼披露</td></tr></table>
   <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
     <span style="color:#4caf50;">✅ 资产负债率42.29%,有息负债率仅9.82%,账面资金17.44亿,财务风险可控原材料波动/技术迭代/关税政策</span>
   </div>
@@ -811,12 +798,12 @@ h4{font-size:13px;color:#aaa;margin:10px 0 4px}
   </table>
   <div class="txt">清算价值估算基于2025年报数据,假设快速变现折扣50-70%。</div>
 
-  <div class="bq">生益科技综合评分7.5/10。核心逻辑:AI算力"卖铲人"中的稀缺标的——同时覆盖CCL(上游基材)和PCB(中游制造)。PCB业务爆发(+104%)打开第二曲线,CCL高端化重构估值。全球第二规模壁垒+近40年客户认证构建宽阔护城河。PE 17x+ROE 21.25%提供安全边际。</div></div>
+  <div class="bq">核心风险:①原材料占成本87%,LME铜价波动直接影响利润;②AI需求不及预期(资本开支放缓则高端CCL承压);③技术迭代(陶瓷基/玻璃基新材料可能颠覆);④关税政策风险(海外工厂未量产);⑤房地产拖累(生益地产亏损0.78亿)。</div></div>
 
 <div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
   <h3>六维评分</h3>
-  <!-- 替换时禁止用f-string！Python f-string会把转义为{}，导致花括号残留。
-       正确写法：c.replace('' + str(i) + '', 'width:70%') -->
+  <!-- 替换{{DIM_BAR_X}}时禁止用f-string！Python f-string会把{{}}转义为{}，导致花括号残留。
+       正确写法：c.replace('{{DIM_BAR_' + str(i) + '}}', 'width:70%') -->
   <div class="hb"><span class="hl">商业模式</span><div class="ht"><div class="hf c7" style="width:80%;background:#4caf50">8.0</div></div></div>
   <div class="hb"><span class="hl">护城河</span><div class="ht"><div class="hf c7" style="width:75%;background:#8bc34a">7.5</div></div></div>
   <div class="hb"><span class="hl">管理层</span><div class="ht"><div class="hf c7" style="width:75%;background:#8bc34a">7.5</div></div></div>
