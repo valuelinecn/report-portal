@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>价值投资研究报告 · 企业门户</title>
+
+<style>
+/* ===== THEME VARIABLES ===== */
+:root{
+  /* Dark (default) */
+  --bg:#080816;--bg2:#0e0e22;--bg3:#12122a;--bg4:#0a0a1a;--bg5:#1a1a3a;
+  --hdr:#0a0a2e;--hdr2:#12122a;
+  --t1:#fff;--t2:#e0e0e0;--t3:#ddd;--t4:#ccc;--t5:#bbb;
+  --m1:#999;--m2:#888;--m3:#777;--m4:#666;--m5:#555;--m6:#444;
+  --b1:#1e1e3a;--b2:#1a1a3a;--b3:#333;
+  --accent:#f0c040;--accent2:#f0c04055;--accent3:#f0c04015;--accent4:#f0c04040;
+  --card:linear-gradient(135deg,#12122a 0%,#0e0e22 100%);
+  --glow:radial-gradient(ellipse at 30% 50%,rgba(240,192,64,0.06) 0%,transparent 70%);
+  --tag-bg:rgba(255,255,255,0.06);--tag-bd:rgba(255,255,255,0.06);
+  --kb-bg:#1a1a3a;
+}
+[data-theme="light"]{
+  --bg:#f4f1ea;--bg2:#ffffff;--bg3:#fcfcfa;--bg4:#fafaf7;--bg5:#e8e5dc;
+  --hdr:#ffffff;--hdr2:#f4f1ea;
+  --t1:#1a1a1a;--t2:#2d2d2d;--t3:#3d3d3d;--t4:#505050;--t5:#606060;
+  --m1:#707070;--m2:#808080;--m3:#8a8a8a;--m4:#909090;--m5:#a0a0a0;--m6:#b8b8b8;
+  --b1:#d8d4c8;--b2:#ccc8bc;--b3:#b8b4a8;
+  --accent:#b8860b;--accent2:#b8860b55;--accent3:#b8860b14;--accent4:#b8860b33;
+  --card:linear-gradient(135deg,#ffffff 0%,#f8f7f2 100%);
+  --glow:none;
+  --tag-bg:rgba(0,0,0,0.04);--tag-bd:rgba(0,0,0,0.08);
+  --kb-bg:#e0ddd4;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue','Noto Sans SC',sans-serif;background:var(--bg);color:var(--t2);min-height:100vh;transition:background .3s,color .3s}
+
+/* ===== HEADER ===== */
+header{background:linear-gradient(135deg,var(--hdr) 0%,var(--hdr2) 50%,var(--bg) 100%);padding:20px 16px 16px;text-align:center;border-bottom:1px solid var(--b2);position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-40%;left:-20%;width:140%;height:140%;background:var(--glow);pointer-events:none}
+.hdr-row{display:flex;align-items:center;justify-content:center;gap:12px}
+.hero-icon{font-size:30px;margin-bottom:4px}
+h1{font-size:20px;color:var(--t1);font-weight:700;letter-spacing:1px}
+h1 span{color:var(--accent)}
+.subtitle{font-size:11px;color:var(--m5);margin-top:2px;letter-spacing:2px}
+.theme-toggle{background:none;border:1px solid var(--b3);color:var(--m2);font-size:16px;cursor:pointer;padding:4px 8px;border-radius:8px;transition:all .2s;line-height:1}
+.theme-toggle:active{background:var(--bg5);transform:scale(.95)}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ===== NAV TABS ===== */
+.tab-bar{display:flex;background:var(--bg4);border-bottom:1px solid var(--b2);position:sticky;top:0;z-index:50;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-btn{flex:1;min-width:0;padding:12px 6px;text-align:center;font-size:12px;color:var(--m5);background:none;border:none;cursor:pointer;transition:all .2s;border-bottom:2px solid transparent;white-space:nowrap;font-weight:500;font-family:inherit}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-btn:active{background:var(--accent3)}
+
+/* ===== TAB CONTENT ===== */
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* ===== STATS BAR ===== */
+.stats-bar{display:flex;justify-content:center;gap:20px;margin-top:10px;font-size:10px;color:var(--m5)}
+.stats-bar span{color:var(--m2)}
+
+/* ===== SEARCH BAR ===== */
+.search-wrap{padding:12px 16px 0;max-width:720px;margin:0 auto}
+.search-box{display:flex;align-items:center;background:var(--bg2);border:1px solid var(--b1);border-radius:10px;padding:3px 12px;transition:all .25s ease}
+.search-box:focus-within{border-color:var(--accent2);box-shadow:0 0 0 3px var(--accent3)}
+.search-box svg{flex-shrink:0;width:16px;height:16px;fill:none;stroke:var(--m5);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.search-input{flex:1;background:none;border:none;outline:none;color:var(--t3);font-size:13px;padding:8px 8px;font-family:inherit}
+.search-input::placeholder{color:var(--m6)}
+.search-clear{background:none;border:none;color:var(--m5);font-size:16px;cursor:pointer;padding:3px 5px;display:none;line-height:1}
+.search-clear.visible{display:block}
+.search-clear:active{color:var(--m2)}
+.search-hint{font-size:10px;color:var(--m6);margin-top:4px;padding:0 4px}
+.search-hint kbd{background:var(--kb-bg);color:var(--m5);padding:1px 5px;border-radius:3px;font-size:9px;font-family:inherit}
+
+/* ===== CATALOG ===== */
+.catalog{padding:12px 16px;max-width:720px;margin:0 auto}
+.catalog h2{font-size:13px;color:var(--m3);margin:6px 0 12px 4px;font-weight:400;letter-spacing:1px}
+.card-grid{display:flex;flex-direction:column;gap:12px}
+.card{background:var(--card);border-radius:12px;padding:16px;border:1px solid var(--b1);cursor:pointer;transition:all .25s ease;position:relative;overflow:hidden}
+.card:active{transform:scale(.98);border-color:var(--accent2)}
+.card::after{content:'';position:absolute;top:0;right:0;width:70px;height:70px;border-radius:50%;opacity:.04;pointer-events:none}
+.card-row{display:flex;align-items:flex-start;gap:12px}
+.card-score{flex-shrink:0;width:50px;height:50px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+.card-score-ring{position:absolute;inset:0;border-radius:50%}
+.card-score-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--bg2)}
+.card-score-num{font-size:16px;font-weight:bold;line-height:1}
+.card-score-label{font-size:7px;opacity:.6;line-height:1.2}
+.card-info{flex:1;min-width:0}
+.card-name{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:1px}
+.card-name-en{font-size:9px;color:var(--m6);margin-bottom:3px}
+.card-desc{font-size:10px;color:var(--m4);margin-bottom:5px;line-height:1.4}
+.card-tags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:5px}
+.tag{font-size:8px;padding:2px 6px;border-radius:3px;background:var(--tag-bg);color:var(--m3);border:1px solid var(--tag-bd)}
+.card-metrics{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:9px;color:var(--m5)}
+.card-metrics span{color:var(--m2)}
+.card-author{font-size:10px;color:var(--m2);margin-bottom:3px}
+
+/* ===== REPORT VIEW (fullscreen iframe) ===== */
+html{scroll-behavior:smooth}
+[id^="s"]{scroll-margin-top:70px}
+.report-view{display:none;position:fixed;inset:0;z-index:100;background:var(--bg);flex-direction:column}
+.report-view.active{display:flex}
+.report-frame-wrap{flex:1;position:relative;overflow:hidden}
+.report-frame{width:100%;height:100%;border:none;display:none}
+
+/* ===== COMMENTS ===== */
+.waline-wrap{max-width:720px;margin:0 auto;padding:12px 16px}
+.comment-toggle{display:flex;align-items:center;gap:6px;padding:10px 16px;cursor:pointer;border-top:1px solid var(--b2);background:var(--bg4);flex-shrink:0;user-select:none;font-size:13px;color:var(--t2)}
+.comment-toggle:hover{background:var(--bg5)}
+.comment-toggle .arrow{font-size:11px;margin-left:auto}
+.comment-toggle .count{margin-left:4px;color:var(--accent);font-weight:600}
+.comment-fullscreen{display:none;position:fixed;z-index:999;background:var(--bg);flex-direction:column}
+.comment-fullscreen.peek{display:flex;bottom:0;left:0;right:0;height:40vh;border-top-left-radius:12px;border-top-right-radius:12px;box-shadow:0 -4px 20px rgba(0,0,0,.4);overflow:hidden;transition:height .3s ease}
+.comment-fullscreen.active{display:flex;inset:0;height:100%;border-radius:0;box-shadow:none}
+.comment-fs-header{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--b2);flex-shrink:0;font-size:14px;color:var(--t1);font-weight:600}
+.comment-fs-close{margin-left:auto;border:none;background:var(--bg5);color:var(--t2);font-size:12px;padding:5px 12px;border-radius:6px;cursor:pointer;font-family:inherit}
+.comment-fs-close:active{opacity:.7}
+.comment-fs-body{flex:1;overflow-y:auto;padding:8px 0}
+.comment-fs-body .waline-wrap{padding:8px 16px}
+.comment-section{font-size:13px}
+.comment-heading{font-size:15px;color:var(--t1);margin:16px 0 12px}
+.comment-form{margin:12px 0;padding:12px;background:var(--bg3);border-radius:8px;border:1px solid var(--b2)}
+.comment-input{width:100%;padding:8px 10px;border:1px solid var(--b2);border-radius:6px;background:var(--bg1);color:var(--t1);font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box}
+.comment-input:focus{outline:none;border-color:var(--accent)}
+.comment-form-actions{display:flex;align-items:center;gap:8px;margin-top:8px}
+.comment-user-label{font-size:12px;color:var(--t2)}
+.comment-submit{padding:5px 14px;border:none;border-radius:6px;background:var(--accent);color:#fff;font-size:12px;cursor:pointer}
+.comment-submit:disabled{opacity:.5;cursor:not-allowed}
+.comment-logout-btn{padding:5px 10px;border:1px solid var(--b2);border-radius:6px;background:transparent;color:var(--t2);font-size:11px;cursor:pointer}
+.comment-login-hint{text-align:center;padding:20px;color:var(--t2);font-size:13px}
+.comment-login-hint a{color:var(--accent)}
+.comment-empty{text-align:center;padding:20px;color:var(--t2);font-size:13px}
+.comment-loading,.comment-error{text-align:center;padding:12px;color:var(--t2)}
+.comment-list{margin-top:8px}
+.comment-card{padding:12px;border-bottom:1px solid var(--b2)}
+.comment-card:last-child{border-bottom:none}
+.comment-meta{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.comment-author{font-weight:600;font-size:13px;color:var(--t1)}
+.comment-time{font-size:11px;color:var(--t3)}
+.comment-body{font-size:13px;line-height:1.5;color:var(--t1);margin:4px 0}
+.comment-actions{margin-top:4px}
+.comment-reply-btn{font-size:11px;color:var(--accent);text-decoration:none}
+.comment-reply-form{margin:8px 0 8px 24px;padding:8px;background:var(--bg3);border-radius:6px}
+.comment-replies{margin:8px 0 0 24px;border-left:2px solid var(--b2);padding-left:12px}
+.reply-card{padding:8px 0;border-bottom:1px solid var(--b2)}
+.reply-card:last-child{border-bottom:none}
+
+/* ===== HEADER USER BUTTON ===== */
+.header-user{font-size:11px;padding:3px 10px;border-radius:8px;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:inherit}
+.header-user.guest{background:var(--accent);color:#1a1a1a;border:none;font-weight:600}
+.header-user.guest:active{opacity:.8}
+.header-user.logged-in{background:var(--bg5);color:var(--t2);border:1px solid var(--b2);display:flex;align-items:center;gap:4px}
+.header-user.logged-in:active{background:var(--bg3)}
+
+/* ===== LOGIN MODAL ===== */
+.login-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.6);justify-content:center;align-items:center}
+.login-overlay.active{display:flex}
+.login-modal{background:var(--bg3);border:1px solid var(--b2);border-radius:12px;padding:24px;width:320px;max-width:90vw}
+.login-modal h3{margin:0 0 16px;font-size:15px;color:var(--t1);text-align:center}
+.login-tabs{display:flex;gap:0;margin-bottom:16px;border-radius:8px;overflow:hidden;border:1px solid var(--b2)}
+.login-tab{flex:1;text-align:center;padding:7px 0;font-size:12px;cursor:pointer;background:var(--bg4);color:var(--m2);transition:all .2s}
+.login-tab.active{background:var(--accent);color:#1a1a1a;font-weight:600}
+.login-field{margin-bottom:12px}
+.login-field label{display:block;font-size:11px;color:var(--m2);margin-bottom:4px}
+.login-field input{width:100%;padding:8px 10px;border:1px solid var(--b2);border-radius:6px;background:var(--bg1);color:var(--t1);font-size:13px;font-family:inherit;box-sizing:border-box}
+.login-field input:focus{outline:none;border-color:var(--accent)}
+.login-btn{width:100%;padding:8px;border:none;border-radius:6px;background:var(--accent);color:#1a1a1a;font-size:13px;font-weight:600;cursor:pointer}
+.login-btn:disabled{opacity:.5;cursor:not-allowed}
+.login-msg{font-size:11px;color:var(--m3);text-align:center;margin-top:10px;min-height:16px}
+.login-msg.error{color:#e74c3c}
+.login-msg.success{color:#4caf50}
+.login-close{float:right;border:none;background:none;color:var(--m3);font-size:18px;cursor:pointer;padding:0;line-height:1}
+.setpwd-note{font-size:11px;color:var(--m3);margin-top:8px;text-align:center}
+
+/* ===== NICKNAME ===== */
+.nickname-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.6);align-items:center;justify-content:center}
+.nickname-overlay.active{display:flex}
+.nickname-card{background:var(--bg3);border:1px solid var(--b2);border-radius:12px;padding:24px;width:320px;max-width:90vw}
+.nickname-card h3{font-size:15px;color:var(--t1);margin:0 0 4px;text-align:center}
+.nickname-card p.sub{font-size:12px;color:var(--m5);margin:0 0 14px;text-align:center}
+.nickname-row{display:flex;gap:6px;margin-bottom:6px}
+.nickname-row input{flex:1;padding:8px 10px;border:1px solid var(--b3);border-radius:6px;background:var(--bg4);color:var(--t1);font-size:13px;font-family:inherit;box-sizing:border-box}
+.nickname-row input:focus{outline:none;border-color:var(--accent)}
+.nickname-random-btn{flex-shrink:0;width:36px;border:1px solid var(--b3);border-radius:6px;background:var(--bg4);color:var(--t2);font-size:16px;cursor:pointer;font-family:inherit}
+.nickname-msg{font-size:11px;color:#e74c3c;margin-bottom:6px;min-height:16px}
+.nickname-msg.ok{color:#4caf50}
+.nickname-confirm-btn{width:100%;padding:8px;border:none;border-radius:6px;background:var(--accent);color:#1a1a1a;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.nickname-confirm-btn:disabled{opacity:.5;cursor:default}
+.nickname-pwd-hint{font-size:10px;color:var(--m5);margin:-2px 0 8px;text-align:center}
+
+/* ===== BACK TO TOP ===== */
+.back-top{position:fixed;right:16px;bottom:16px;width:40px;height:40px;border-radius:50%;background:var(--accent);color:#1a1a1a;border:none;font-size:18px;cursor:pointer;opacity:.7;transition:.3s;z-index:101;line-height:40px;text-align:center;padding:0}
+.back-top:hover{opacity:1}
+.report-frame-wrap .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--m5);font-size:12px;flex-direction:column;gap:8px}
+
+/* ===== DETAIL VIEW (books) ===== */
+.detail-view{display:none;position:fixed;inset:0;z-index:100;background:var(--bg);flex-direction:column}
+.detail-view.active{display:flex}
+.detail-toolbar{display:flex;align-items:center;padding:10px 16px;background:var(--bg4);border-bottom:1px solid var(--b2);gap:10px;flex-shrink:0}
+.back-btn{background:none;border:1px solid var(--b3);color:var(--t4);padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;white-space:nowrap;font-family:inherit}
+.back-btn:active{background:var(--bg5)}
+.detail-title-bar{font-size:12px;color:var(--m3);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.detail-title-bar span{color:var(--t1)}
+.detail-scroll{flex:1;overflow-y:auto;padding:16px;max-width:720px;margin:0 auto;width:100%}
+
+/* ===== DETAIL SECTIONS ===== */
+.detail-section{background:var(--card);border-radius:12px;padding:16px;border:1px solid var(--b1);margin-bottom:14px}
+.detail-section h3{font-size:14px;color:var(--accent);margin-bottom:10px;font-weight:600}
+.detail-section p{font-size:12px;color:var(--t5);line-height:1.7}
+.detail-hero{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.detail-emoji{font-size:40px}
+.detail-meta{font-size:11px;color:var(--m4);margin-top:4px}
+.detail-meta span{color:var(--m1)}
+
+/* Architecture items */
+.arch-item{border:1px solid var(--b1);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.arch-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;cursor:pointer;background:rgba(255,255,255,.02);transition:background .2s}
+.arch-header:active{background:rgba(255,255,255,.04)}
+.arch-title{font-size:12px;color:var(--t3);font-weight:500}
+.arch-toggle{font-size:10px;color:var(--m5);transition:transform .2s;flex-shrink:0;margin-left:10px}
+.arch-toggle.open{transform:rotate(180deg)}
+.arch-body{display:none;padding:0 14px 14px}
+.arch-body.open{display:block}
+.arch-summary{font-size:11px;color:var(--t5);line-height:1.6;margin-top:6px;padding:10px;background:var(--bg5);border-radius:6px}
+
+/* Chapter items (expandable) */
+.chapter-item{border:1px solid var(--b2);border-radius:6px;margin-bottom:6px}
+.chapter-header{display:flex;align-items:center;gap:8px;padding:8px 10px;cursor:pointer;transition:background .2s}
+.chapter-header:active{background:var(--accent3)}
+.chapter-title{font-size:11px;color:var(--m2);flex:1}
+.chapter-toggle{font-size:8px;color:var(--m6);flex-shrink:0;transition:transform .2s}
+.chapter-toggle.open{transform:rotate(90deg)}
+.chapter-body{display:none;padding:0 10px 10px 18px;font-size:11px;color:var(--t5);line-height:1.7;border-top:1px solid var(--b2)}
+.chapter-body.open{display:block}
+.chapter-body p{margin-bottom:6px}
+
+/* Quotes */
+.quote-grid{display:flex;flex-direction:column;gap:8px}
+.quote-item{background:var(--accent3);border-left:2px solid var(--accent4);padding:10px 12px;border-radius:0 6px 6px 0}
+.quote-text{font-size:12px;color:var(--t3);line-height:1.6;font-style:italic}
+.quote-text::before{content:'"';color:var(--accent4)}
+.quote-text::after{content:'"';color:var(--accent4)}
+.quote-context{font-size:10px;color:var(--m5);margin-top:4px}
+
+/* Summary */
+.summary-card{background:linear-gradient(135deg,var(--accent4),var(--bg2) 80%);border:1px solid var(--accent2);border-radius:12px;padding:16px}
+.summary-card h3{color:var(--accent);font-size:14px;margin-bottom:8px}
+.summary-card p{font-size:12px;color:var(--t4);line-height:1.7}
+.summary-items{font-size:12px;color:var(--t4);line-height:1.7}
+.summary-item{padding:3px 0;padding-left:6px;border-left:2px solid var(--accent3);margin-bottom:4px}
+.back-top{bottom:80px}
+
+/* ===== FOOTER ===== */
+.site-footer{margin-top:30px;padding:20px 16px 10px;border-top:1px solid var(--b2);font-size:12px;color:var(--t4)}
+.feedback-form{margin:8px 0 16px}
+.feedback-form textarea{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--b3);border-radius:6px;background:var(--bg3);color:var(--t1);font-size:12px;font-family:inherit;resize:none;height:48px}
+.feedback-form textarea:focus{outline:none;border-color:var(--accent)}
+.feedback-row{display:flex;gap:6px;margin-top:6px}
+.feedback-btn{flex-shrink:0;border:none;background:var(--accent);color:#fff;padding:6px 14px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;font-weight:600}
+.feedback-btn:disabled{opacity:.5;cursor:default}
+.feedback-msg{font-size:10px;margin-top:4px;color:var(--accent)}
+.footer-bottom{margin-top:12px;padding-top:10px;border-top:1px solid var(--b2);font-size:10px;color:var(--m5);line-height:1.7;text-align:center}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:599px){
+  .hdr-row h1{font-size:16px;letter-spacing:0;white-space:nowrap}
+  .hero-icon{font-size:24px;margin-bottom:0}
+  .theme-toggle{font-size:14px;padding:3px 6px}
+  .header-user{font-size:10px;padding:2px 7px}
+  .site-footer{padding:14px 12px 8px}
+  .feedback-form textarea{height:40px;font-size:11px}
+  .feedback-btn{font-size:10px;padding:5px 10px}
+}
+@media(min-width:600px){
+  header{padding:28px 24px 20px}
+  h1{font-size:26px}
+  .card-grid{gap:14px}
+  .card{padding:20px}
+  .card-name{font-size:17px}
+  .tab-btn{font-size:14px;padding:14px 16px}
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--b1);border-radius:2px}
+
+/* ===== LOADING ===== */
+.loading{display:flex;align-items:center;justify-content:center;height:100%;color:var(--m5);font-size:12px;flex-direction:column;gap:8px}
+.spinner{width:24px;height:24px;border:2px solid var(--b1);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Games placeholder */
+.games-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center}
+.games-placeholder .icon{font-size:60px;margin-bottom:16px}
+.games-placeholder h2{font-size:18px;color:var(--t1);margin-bottom:8px}
+.games-placeholder p{font-size:12px;color:var(--m5);max-width:300px;line-height:1.6}
+
+/* ===== QUIZ ===== */
+.quiz-page{padding:20px 16px;max-width:600px;margin:0 auto}
+.quiz-intro{text-align:center;padding:30px 10px}
+.quiz-icon{font-size:56px;margin-bottom:12px}
+.quiz-title{font-size:22px;color:var(--t1);margin-bottom:4px;font-weight:700}
+.quiz-subtitle{font-size:12px;color:var(--m4);margin-bottom:20px}
+.quiz-rules{display:flex;flex-direction:column;gap:8px;max-width:280px;margin:0 auto 24px}
+.quiz-rule{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t4);padding:8px 14px;background:var(--bg3);border-radius:8px;border:1px solid var(--b1)}
+.quiz-rule span{font-size:16px}
+.quiz-start-btn{background:linear-gradient(135deg,var(--accent),#d4a017);color:#1a1a1a;border:none;padding:12px 32px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .2s;font-family:inherit}
+.quiz-start-btn:active{opacity:.8}
+.quiz-progress{height:4px;background:var(--b1);border-radius:2px;margin-bottom:6px;overflow:hidden}
+.quiz-progress-bar{height:100%;background:var(--accent);border-radius:2px;width:0%;transition:width .4s}
+.quiz-progress-text{font-size:11px;color:var(--m5);margin-bottom:12px;text-align:right}
+.quiz-card{background:var(--card);border-radius:14px;padding:20px;border:1px solid var(--b1);margin-bottom:12px}
+.quiz-q{font-size:15px;color:var(--t2);line-height:1.7;margin-bottom:16px;font-weight:500}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{display:block;padding:12px 14px;border-radius:10px;border:1px solid var(--b1);background:var(--bg2);font-size:13px;color:var(--t3);cursor:pointer;transition:all .2s;text-align:left;font-family:inherit;line-height:1.5}
+.quiz-opt:active{transform:scale(.98)}
+.quiz-opt:hover{border-color:var(--accent2)}
+.quiz-opt.selected{background:var(--accent3);border-color:var(--accent)}
+.quiz-opt.correct{background:#4caf5020!important;border-color:#4caf50!important;color:#4caf50!important}
+.quiz-opt.wrong{background:#f4433620!important;border-color:#f44336!important;color:#f44336!important}
+.quiz-opt.disabled{pointer-events:none;opacity:.7}
+.quiz-explain{background:var(--card);border-radius:12px;padding:14px 16px;border:1px solid var(--b1)}
+.quiz-explain-icon{font-size:24px;text-align:center;margin-bottom:4px}
+.quiz-explain-msg{font-size:12px;color:var(--t5);line-height:1.7;margin-bottom:12px}
+.quiz-next-btn{background:var(--accent);color:#1a1a1a;border:none;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;width:100%;font-family:inherit}
+.quiz-next-btn:active{opacity:.8}
+.quiz-result{text-align:center;padding:20px 10px}
+.result-icon{font-size:60px;margin-bottom:8px}
+.result-title{font-size:13px;color:var(--m4);margin-bottom:4px}
+.result-rank{font-size:26px;color:var(--accent);font-weight:700;margin-bottom:8px}
+.result-score{font-size:14px;color:var(--t4);margin-bottom:12px}
+.result-score span{color:var(--accent);font-size:22px;font-weight:700}
+.result-bar{height:6px;background:var(--b1);border-radius:3px;max-width:280px;margin:0 auto 12px;overflow:hidden}
+.result-fill{height:100%;background:linear-gradient(90deg,var(--accent),#d4a017);border-radius:3px;transition:width 1s}
+.result-desc{font-size:12px;color:var(--t5);line-height:1.6;margin-bottom:16px;max-width:360px;margin-left:auto;margin-right:auto}
+.result-detail{margin-bottom:20px}
+.result-detail-item{display:flex;align-items:flex-start;gap:6px;padding:4px 0;font-size:11px;color:var(--m5);text-align:left;max-width:400px;margin:0 auto}
+.result-detail-item .rdi{flex-shrink:0;font-size:12px}
+.result-section{margin-bottom:4px}
+.result-bar-wrap{max-width:280px;margin-left:auto;margin-right:auto}
+.result-stat-bar{height:6px;background:var(--b1);border-radius:3px;overflow:hidden}
+.result-stat-fill{height:100%;border-radius:3px;transition:width 1s;background:linear-gradient(90deg,var(--accent),#d4a017)}
+
+/* ===== GAME HUB ===== */
+.game-hub{padding:30px 16px;max-width:600px;margin:0 auto}
+.hub-intro{text-align:center;margin-bottom:20px}
+.hub-icon{font-size:50px;margin-bottom:8px}
+.hub-title{font-size:24px;color:var(--t1);font-weight:700}
+.hub-subtitle{font-size:12px;color:var(--m4);margin-top:4px}
+.hub-cards{display:flex;flex-direction:column;gap:14px}
+.hub-card{background:var(--card);border-radius:14px;padding:20px;border:1px solid var(--b1);cursor:pointer;transition:all .25s}
+.hub-card:active{transform:scale(.98);border-color:var(--accent2)}
+.hub-card-icon{font-size:36px;margin-bottom:6px}
+.hub-card-title{font-size:16px;color:var(--t1);font-weight:600;margin-bottom:4px}
+.hub-card-desc{font-size:12px;color:var(--t5);line-height:1.5;margin-bottom:10px}
+.hub-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.game-container{display:none}
+.game-container.active{display:block}
+.game-topbar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--b2);background:var(--bg4)}
+.game-top-title{font-size:13px;color:var(--t3)}
+
+/* ===== MATCH GAME ===== */
+.match-levels{padding:20px 16px;max-width:500px;margin:0 auto}
+.match-level-card{background:var(--card);border-radius:12px;padding:16px;border:1px solid var(--b1);margin-bottom:10px;cursor:pointer;transition:all .25s}
+.match-level-card:active{transform:scale(.98)}
+.ml-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;border:1px solid;margin-bottom:6px}
+.ml-title{font-size:15px;color:var(--t1);font-weight:600;margin-bottom:2px}
+.ml-desc{font-size:11px;color:var(--m4)}
+.match-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--b2)}
+.match-board{display:flex;gap:10px;padding:12px 10px;max-width:600px;margin:0 auto}
+.match-col{flex:1;display:flex;flex-direction:column;gap:8px}
+.match-cell{background:var(--card);border:1px solid var(--b1);border-radius:10px;padding:12px 10px;font-size:12px;color:var(--t3);text-align:center;cursor:pointer;transition:all .2s;line-height:1.5;min-height:60px;display:flex;align-items:center;justify-content:center}
+.match-cell small{font-size:10px;color:var(--m5);display:block;margin-top:2px}
+.match-cell .mhint{font-size:9px;color:var(--m5);display:block;margin-top:4px;font-style:italic}
+.match-cell:active{transform:scale(.96)}
+.match-cell.selected{border-color:var(--accent);background:var(--accent3)}
+.match-cell.matched{border-color:#4caf50!important;background:#4caf5015!important;pointer-events:none}
+.match-cell.matched .mhint{color:var(--m3)}
+.match-cell.wrong{border-color:#f44336!important;background:#f4433615!important}
+.match-result{padding:30px 16px;text-align:center;max-width:500px;margin:0 auto}
+
+/* ===== PURCHASE CHECK GAME ===== */
+.pc-page{padding:20px 16px;max-width:600px;margin:0 auto}
+.pc-into{text-align:center;padding:20px 10px}
+.pc-into-icon{font-size:52px;margin-bottom:10px}
+.pc-into-title{font-size:20px;color:var(--t1);font-weight:700;margin-bottom:4px}
+.pc-into-sub{font-size:12px;color:var(--m4);margin-bottom:16px}
+.pc-into-modules{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:18px}
+.pc-into-mod-tag{font-size:11px;padding:4px 10px;border-radius:6px;font-weight:500}
+.pc-into-rule{font-size:12px;color:var(--m5);line-height:1.6;margin-bottom:16px}
+.pc-yesno{display:flex;gap:12px;margin-top:14px}
+.pc-btn{flex:1;padding:14px;border-radius:10px;border:2px solid var(--b1);background:var(--bg2);font-size:15px;color:var(--t3);cursor:pointer;transition:all .2s;font-family:inherit;font-weight:600;text-align:center}
+.pc-btn:active{transform:scale(.97)}
+.pc-btn:hover{border-color:var(--accent2)}
+.pc-btn:disabled{opacity:.5;pointer-events:none}
+.pc-btn.selected-yes{border-color:#4caf50!important;background:#4caf5020!important;color:#4caf50!important}
+.pc-btn.selected-no{border-color:#f44336!important;background:#f4433620!important;color:#f44336!important}
+.pc-hint{font-size:11px;color:var(--m5);margin-top:10px;padding:10px 12px;background:var(--accent3);border-radius:8px;line-height:1.5;border:1px solid var(--accent4)}
+.pc-result{text-align:center;padding:10px}
+.pc-score-wrap{display:flex;flex-direction:column;align-items:center;margin:14px 0}
+.pc-score-ring{width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative}
+.pc-score-ring-inner{width:74px;height:74px;border-radius:50%;background:var(--bg2);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1}
+.pc-score-num{font-size:28px;font-weight:800;line-height:1;color:var(--t1)}
+.pc-score-max{font-size:11px;color:var(--m5)}
+.pc-tier{font-size:16px;font-weight:700;margin:6px 0}
+.pc-action{display:inline-block;font-size:12px;padding:4px 14px;border-radius:20px;border:1px solid;font-weight:600}
+.pc-tier-desc{font-size:12px;color:var(--m5);max-width:340px;margin:10px auto 0;line-height:1.6}
+.pc-mod-breakdown{text-align:left;max-width:400px;margin:16px auto}
+.pc-mod-row{margin-bottom:10px}
+.pc-mod-hdr{display:flex;justify-content:space-between;font-size:11px;color:var(--t4);margin-bottom:4px}
+.pc-mod-hdr span:first-child{font-weight:500}
+.pc-mod-barw{height:6px;background:var(--b1);border-radius:3px;overflow:hidden}
+.pc-mod-bar{height:100%;border-radius:3px;transition:width .6s}
+.pc-miss-title{font-size:12px;color:var(--m4);margin-bottom:10px;text-align:left;font-weight:500}
+.pc-miss-item{background:var(--card);border:1px solid var(--b1);border-radius:10px;padding:12px 14px;margin-bottom:8px;text-align:left}
+.pc-miss-mod-tag{display:inline-block;font-size:9px;padding:2px 8px;border-radius:4px;border:1px solid;margin-bottom:5px}
+.pc-miss-q{font-size:13px;color:var(--t3);line-height:1.5;margin-bottom:5px}
+.pc-miss-hint{font-size:11px;color:var(--m5);line-height:1.5;padding:6px 8px;background:var(--bg3);border-radius:6px}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="hdr-row">
+    <div class="hero-icon">📊</div>
+    <h1 onclick="goHome()" style="cursor:pointer">价值投资 <span>研究门户</span></h1>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">🌙</button>
+    <button class="header-user guest" id="headerUserBtn">登录 / 注册</button>
+  </div>
+  <div class="subtitle">VALUE INVESTING RESEARCH PORTAL</div>
+</header>
+
+<!-- ===== NAV TABS ===== -->
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" data-tab="reports" onclick="switchTab('reports')">📊 研究报告</button>
+  <button class="tab-btn" data-tab="books" onclick="switchTab('books')">📚 价值投资书籍</button>
+  <button class="tab-btn" data-tab="games" onclick="switchTab('games')">🎮 投资游戏</button>
+  <button class="tab-btn" data-tab="robot" onclick="switchTab('robot')">🤖 机器人百科</button>
+</div>
+
+<!-- ===== TAB: REPORTS ===== -->
+<div class="tab-content active" id="tab-reports">
+  <div class="stats-bar">报告 · <span id="totalReports">0</span> 篇 &nbsp;|&nbsp; 按全网热度排序 🔥 &nbsp;|&nbsp; 数据 · 恒生聚源数据库</div>
+  <div class="search-wrap">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="searchInput" type="text" placeholder="搜索企业名称、行业、标签、指标…" oninput="onSearch(this.value)" autocomplete="off">
+      <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+    </div>
+    <div class="search-hint"><kbd>Ctrl+K</kbd> 快速搜索</div>
+  </div>
+  <div class="catalog" id="catalog">
+    <div id="catalogHeader"><h2>📂 企业投资研究报告</h2></div>
+    <div class="card-grid" id="cardGrid"></div>
+    <div id="noResults" style="display:none;text-align:center;padding:40px 16px">
+      <div style="font-size:36px;margin-bottom:10px">🔍</div>
+      <div style="color:var(--m5);font-size:13px">没有找到匹配的报告</div>
+      <div style="color:var(--m6);font-size:11px;margin-top:4px">试试其他关键词？</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB: BOOKS ===== -->
+<div class="tab-content" id="tab-books">
+  <div class="stats-bar">书籍 · <span id="totalBooks">0</span> 本 &nbsp;|&nbsp; 价值投资经典</div>
+  <div class="search-wrap">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="bookSearch" type="text" placeholder="搜索书名、作者、金句…" oninput="onBookSearch(this.value)" autocomplete="off">
+      <button class="search-clear" id="bookSearchClear" onclick="clearBookSearch()">✕</button>
+    </div>
+    <div class="search-hint">搜索书名、作者名或关键词</div>
+  </div>
+  <div class="catalog">
+    <h2>📚 价值投资经典书库</h2>
+    <div class="books-subtitle" id="booksSubtitle"></div>
+    <div class="card-grid" id="bookGrid"></div>
+    <div id="bookNoResults" style="display:none;text-align:center;padding:40px 16px">
+      <div style="font-size:36px;margin-bottom:10px">📚</div>
+      <div style="color:var(--m5);font-size:13px">没有找到匹配的书籍</div>
+      <div style="color:var(--m6);font-size:11px;margin-top:4px">试试其他关键词？</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB: GAMES ===== -->
+<div class="tab-content" id="tab-games">
+  <!-- === Game Hub === -->
+  <div class="game-hub" id="gameHub">
+    <div class="hub-intro">
+      <div class="hub-icon">🎮</div>
+      <h2 class="hub-title">投资游戏厅</h2>
+      <div class="hub-subtitle">边玩边学，巩固价值投资知识</div>
+    </div>
+    <div class="hub-cards">
+      <div class="hub-card" onclick="switchToQuiz()">
+        <div class="hub-card-icon">🧬</div>
+        <div class="hub-card-title">二级市场交易人格测试</div>
+        <div class="hub-card-desc">24道纯人格题 · 4维度分析 · 16种交易人格，测出你的交易风格画像</div>
+        <div class="hub-card-tags">
+          <span class="tag" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f730">心理画像</span>
+          <span class="tag" style="background:#f0c04020;color:#f0c040;border-color:#f0c04030">交易风格</span>
+          <span class="tag" style="background:#8bc34a20;color:#8bc34a;border-color:#8bc34a30">24题</span>
+        </div>
+      </div>
+      <div class="hub-card" onclick="switchToPC()">
+        <div class="hub-card-icon">🧭</div>
+        <div class="hub-card-title">买入前置自检</div>
+        <div class="hub-card-desc">每笔买入前必答 · 20题检验基本面 · 5大模块评分，判断投资把握度</div>
+        <div class="hub-card-tags">
+          <span class="tag" style="background:#4caf5020;color:#4caf50;border-color:#4caf5030">实操工具</span>
+          <span class="tag" style="background:#f0c04020;color:#f0c040;border-color:#f0c04030">价值投资</span>
+          <span class="tag" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f730">20题</span>
+        </div>
+      </div>
+      <div class="hub-card" onclick="switchToMatch()">
+        <div class="hub-card-icon">📊</div>
+        <div class="hub-card-title">财报指标连连看</div>
+        <div class="hub-card-desc">三关挑战 · 掌握ROE、PE、毛利率等核心财务指标</div>
+        <div class="hub-card-tags">
+          <span class="tag" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f730">初级</span>
+          <span class="tag" style="background:#f0c04020;color:#f0c040;border-color:#f0c04030">中级</span>
+          <span class="tag" style="background:#f4433620;color:#f44336;border-color:#f4433630">高级</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- === Purchase Check Game Container === -->
+  <div class="game-container" id="pcContainer" style="display:none">
+    <div class="game-topbar"><button class="back-btn" onclick="backToHub()">← 游戏厅</button><span class="game-top-title">🧭 买入前置自检</span></div>
+    <div class="pc-page">
+      <!-- Intro -->
+      <div class="pc-into" id="pcIntro">
+        <div class="pc-into-icon">🧭</div>
+        <div class="pc-into-title">买入前置自检</div>
+        <div class="pc-into-sub">每笔买入前必答 · 20题检验你的投资逻辑</div>
+        <div class="pc-into-modules" id="pcIntroModules"></div>
+        <div class="pc-into-rule">每题选「是」+1分，选「否」不扣分。<br>总分20分，看看你对这只股票有多大的把握。</div>
+        <button class="quiz-start-btn" onclick="startPC()">开始自检 →</button>
+      </div>
+      <!-- Question screen -->
+      <div class="quiz-screen" id="pcScreen" style="display:none">
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="pcProgressBar"></div></div>
+        <div class="quiz-progress-text" style="display:flex;justify-content:space-between;align-items:center">
+          <span id="pcModuleBadge"></span>
+          <span style="color:var(--m5)">第 <span id="pcNum">1</span>/<span id="pcTotal">20</span> 题</span>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-q" id="pcQText" style="min-height:60px;display:flex;align-items:center">题目</div>
+          <div class="pc-yesno">
+            <button class="pc-btn" id="pcYesBtn" onclick="selectPC(1)">✅ 是</button>
+            <button class="pc-btn" id="pcNoBtn" onclick="selectPC(0)">❌ 否</button>
+          </div>
+          <div class="pc-hint" id="pcHint" style="display:none"></div>
+        </div>
+      </div>
+      <!-- Result screen -->
+      <div class="pc-result" id="pcResult" style="display:none">
+        <div class="pc-score-wrap">
+          <div class="pc-score-ring" id="pcScoreRing">
+            <div class="pc-score-ring-inner">
+              <div class="pc-score-num" id="pcScoreNum">0</div>
+              <div class="pc-score-max" id="pcScoreMax">/20</div>
+            </div>
+          </div>
+        </div>
+        <div class="pc-tier"><span id="pcTierIcon"></span> <span id="pcTierLabel"></span></div>
+        <div><span class="pc-action" id="pcActionBadge"></span></div>
+        <div class="pc-tier-desc" id="pcTierDesc"></div>
+
+        <div style="height:1px;background:var(--b2);margin:16px 0"></div>
+        <div class="pc-mod-breakdown" id="pcModules"></div>
+
+        <div style="height:1px;background:var(--b2);margin:16px 0"></div>
+        <div id="pcMissed" style="max-width:420px;margin:0 auto"></div>
+
+        <div style="display:flex;gap:10px;margin-top:22px;justify-content:center">
+          <button class="quiz-start-btn" onclick="resetPC()" style="flex:1;max-width:200px">重新自检 🔄</button>
+          <button class="quiz-start-btn" onclick="backToHub()" style="flex:1;max-width:200px;background:var(--bg5);color:var(--t3)">← 游戏厅</button>
+        </div>
+      </div>
+    </div>
+
+  <!-- ===== COMMENTS (game: pc) ===== -->
+  <div class="comment-toggle" id="commentToggle-pc" onclick="toggleComments('pc')">
+    💬 留言 <span class="count" id="commentCount-pc">0</span>
+    <span class="arrow">▲</span>
+  </div>
+  <div class="comment-fullscreen" id="commentFs-pc">
+    <div class="comment-fs-header" onclick="if(document.getElementById('commentFs-pc').classList.contains('peek'))expandComments('pc')">
+      💬 留言 <span class="count" id="commentFsCount-pc">0</span>
+      <button class="comment-fs-close" onclick="event.stopPropagation();toggleComments('pc')">▼ 收起</button>
+    </div>
+    <div class="comment-fs-body"><div class="waline-wrap"><div id="comment-pc"></div></div></div>
+  </div>
+</div>
+
+  <!-- === Quiz Game Container === -->
+  <div class="game-container" id="quizContainer" style="display:none">
+    <div class="game-topbar"><button class="back-btn" onclick="backToHub()">← 游戏厅</button><span class="game-top-title">🎭 投资人格测试</span></div>
+    <div class="quiz-page" id="quizPage">
+      <div class="quiz-intro" id="quizIntro">
+        <div class="quiz-icon">🎮</div>
+        <h2 class="quiz-title">投资人格解密</h2>
+        <div class="quiz-subtitle">24 道题 · 测出你的二级市场投资基因</div>
+        <div class="quiz-rules">
+          <div class="quiz-rule"><span>🧬</span> 四维度解析你的投资行为模式</div>
+          <div class="quiz-rule"><span>🎯</span> 16种交易人格 × 专属解读</div>
+          <div class="quiz-rule"><span>💡</span> 获得定制建议 + 同道中人</div>
+        </div>
+        <button class="quiz-start-btn" onclick="startQuiz()">开始解密 →</button>
+      </div>
+      <div class="quiz-screen" id="quizScreen" style="display:none">
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+        <div class="quiz-progress-text">第 <span id="quizNum">1</span> / <span id="quizTotal">15</span> 题</div>
+        <div class="quiz-card" id="quizCard">
+          <div class="quiz-q" id="quizQ">题目</div>
+          <div class="quiz-opts" id="quizOpts"></div>
+        </div>
+        <div class="quiz-explain" id="quizExplain" style="display:none">
+          <div class="quiz-explain-icon" id="quizExplainIcon"></div>
+          <div class="quiz-explain-msg" id="quizExplainMsg"></div>
+          <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuestion()">下一题 →</button>
+        </div>
+      </div>
+      <div class="quiz-result" id="quizResult" style="display:none">
+        <div class="result-section">
+          <div style="font-size:40px;margin-bottom:4px" id="resultTypeIcon">🧬</div>
+          <div class="result-title">你的投资人格</div>
+          <div class="result-rank" id="resultTypeName">类型</div>
+          <div style="font-size:12px;color:var(--m4);margin-bottom:8px" id="resultTypeSub">16种交易人格 · 专属解读</div>
+          <div style="font-size:11px;color:var(--accent);font-style:italic;margin-bottom:14px" id="resultMotto"></div>
+          <div class="result-desc" id="resultTypeDesc"></div>
+        </div>
+        <div style="height:2px;background:var(--b2);margin:16px 0"></div>
+        <div class="result-section">
+          <div style="font-size:11px;color:var(--m4);margin-bottom:6px">📊 四维度解析</div>
+          <div id="resultDims"></div>
+        </div>
+        <div style="height:2px;background:var(--b2);margin:16px 0"></div>
+        <div class="result-section"><div style="font-size:12px;color:var(--m4);margin-bottom:6px">💡 给你的建议</div><div style="font-size:12px;color:var(--t5);line-height:1.7" id="resultAdvice"></div></div>
+        <div style="height:2px;background:var(--b2);margin:16px 0"></div>
+        <div class="result-section"><div style="font-size:12px;color:var(--m4);margin-bottom:6px">👤 你的同道中人</div><div style="font-size:13px;color:var(--t3)" id="resultWho"></div></div>
+        <div style="display:flex;gap:10px;margin-top:22px;justify-content:center">
+          <button class="quiz-start-btn" onclick="resetQuiz()" style="flex:1;max-width:200px">再来一次 🔄</button>
+          <button class="quiz-start-btn" onclick="backToHub()" style="flex:1;max-width:200px;background:var(--bg5);color:var(--t3)">← 游戏厅</button>
+        </div>
+      </div>
+    </div>
+
+  <!-- ===== COMMENTS (game: quiz) ===== -->
+  <div class="comment-toggle" id="commentToggle-quiz" onclick="toggleComments('quiz')">
+    💬 留言 <span class="count" id="commentCount-quiz">0</span>
+    <span class="arrow">▲</span>
+  </div>
+  <div class="comment-fullscreen" id="commentFs-quiz">
+    <div class="comment-fs-header" onclick="if(document.getElementById('commentFs-quiz').classList.contains('peek'))expandComments('quiz')">
+      💬 留言 <span class="count" id="commentFsCount-quiz">0</span>
+      <button class="comment-fs-close" onclick="event.stopPropagation();toggleComments('quiz')">▼ 收起</button>
+    </div>
+    <div class="comment-fs-body"><div class="waline-wrap"><div id="comment-quiz"></div></div></div>
+  </div>
+</div>
+
+  <!-- === Match Game Container === -->
+  <div class="game-container" id="matchContainer" style="display:none">
+    <div class="game-topbar"><button class="back-btn" onclick="backToHub()">← 游戏厅</button><span class="game-top-title">📊 财报指标连连看</span></div>
+    <!-- Level select -->
+    <div class="match-levels" id="matchLevels">
+      <div class="match-level-card" onclick="startMatch('初级')">
+        <div class="ml-badge" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f7">初级</div>
+        <div class="ml-title">基础指标</div>
+        <div class="ml-desc">每局随机抽4对 · 10个指标池</div>
+      </div>
+      <div class="match-level-card" onclick="startMatch('中级')">
+        <div class="ml-badge" style="background:#f0c04020;color:#f0c040;border-color:#f0c040">中级</div>
+        <div class="ml-title">估值 & 效率</div>
+        <div class="ml-desc">每局随机抽4对 · 10个指标池</div>
+      </div>
+      <div class="match-level-card" onclick="startMatch('高级')">
+        <div class="ml-badge" style="background:#f4433620;color:#f44336;border-color:#f44336">高级</div>
+        <div class="ml-title">进阶拆解</div>
+        <div class="ml-desc">每局随机抽4对 · 12个指标池</div>
+      </div>
+    </div>
+    <!-- Match game screen -->
+    <div class="match-screen" id="matchScreen" style="display:none">
+      <div class="match-hdr">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="ml-badge" id="matchLevelBadge" style="background:#4fc3f720;color:#4fc3f7;border-color:#4fc3f7">初级</span>
+          <span style="font-size:12px;color:var(--m5)" id="matchCounter">0/4</span>
+        </div>
+        <span style="font-size:11px;color:var(--m5)" id="matchTimer">⏱ 0s</span>
+      </div>
+      <div class="match-board" id="matchBoard">
+        <div class="match-col" id="matchLeftCol"></div>
+        <div class="match-col" id="matchRightCol"></div>
+      </div>
+    </div>
+    <!-- Match result screen -->
+    <div class="match-result" id="matchResult" style="display:none">
+      <div style="font-size:48px;margin-bottom:8px" id="matchResultIcon">🏆</div>
+      <div class="result-rank" style="font-size:22px" id="matchResultTitle">通关成功！</div>
+      <div style="font-size:12px;color:var(--m4);margin:4px 0 12px" id="matchResultSub">初级 · 基础指标</div>
+      <div class="result-bar-wrap"><div class="result-stat-bar"><div class="result-stat-fill" id="matchResultBar" style="width:100%"></div></div></div>
+      <div style="font-size:12px;color:var(--t5);margin:8px 0 4px" id="matchResultTime">用时 32秒</div>
+      <div style="font-size:11px;color:var(--m5);margin-bottom:16px;line-height:1.6" id="matchResultMsg">全部正确！你对基础财务指标掌握得很好。</div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="quiz-start-btn" onclick="retryMatch()" style="flex:1;max-width:180px">重来 🔄</button>
+        <button class="quiz-start-btn" onclick="backToMatchLevels()" style="flex:1;max-width:180px;background:var(--bg5);color:var(--t3)">选关 🎯</button>
+        <button class="quiz-start-btn" onclick="backToHub()" style="flex:1;max-width:180px;background:var(--bg5);color:var(--t3)">← 游戏厅</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== REPORT VIEW (fullscreen) ===== -->
+<div class="report-view" id="reportView">
+  <div class="detail-toolbar">
+    <button class="back-btn" onclick="closeReport()">← 返回目录</button>
+    <div class="detail-title-bar"><span id="reportTitle">报告</span></div>
+  </div>
+  <div class="report-frame-wrap" id="reportFrameWrap">
+    <div class="loading" id="reportLoading">
+      <div class="spinner"></div>
+      <span>加载报告中…</span>
+    </div>
+    <iframe class="report-frame" id="reportFrame" onload="onFrameLoaded()"></iframe>
+  </div>
+  <!-- ===== COMMENTS SECTION (report) ===== -->
+  <div class="comment-toggle" id="commentToggle-report" onclick="toggleComments('report')">
+    💬 评论 <span class="count" id="commentCount-report">0</span>
+    <span class="arrow">▲</span>
+  </div>
+  <div class="comment-fullscreen" id="commentFs-report">
+    <div class="comment-fs-header" onclick="if(document.getElementById('commentFs-report').classList.contains('peek'))expandComments('report')">
+      💬 评论 <span class="count" id="commentFsCount-report">0</span>
+      <button class="comment-fs-close" onclick="event.stopPropagation();toggleComments('report')">▼ 收起</button>
+    </div>
+    <div class="comment-fs-body" id="commentFsBody-report">
+      <div class="waline-wrap"><div id="comment-report"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BOOK DETAIL VIEW (fullscreen) ===== -->
+<div class="detail-view" id="bookDetailView">
+  <div class="detail-toolbar">
+    <button class="back-btn" onclick="closeBookDetail()">← 返回书库</button>
+    <div class="detail-title-bar"><span id="bookDetailTitle">书籍详情</span></div>
+  </div>
+  <div class="detail-scroll" id="bookDetailContent">
+    <div class="loading"><div class="spinner"></div><span>加载中…</span></div>
+  </div>
+  <!-- ===== COMMENTS SECTION (book) ===== -->
+  <div class="comment-toggle" id="commentToggle-book" onclick="toggleComments('book')">
+    💬 评论 <span class="count" id="commentCount-book">0</span>
+    <span class="arrow">▲</span>
+  </div>
+  <div class="comment-fullscreen" id="commentFs-book">
+    <div class="comment-fs-header" onclick="if(document.getElementById('commentFs-book').classList.contains('peek'))expandComments('book')">
+      💬 评论 <span class="count" id="commentFsCount-book">0</span>
+      <button class="comment-fs-close" onclick="event.stopPropagation();toggleComments('book')">▼ 收起</button>
+    </div>
+    <div class="comment-fs-body" id="commentFsBody-book">
+      <div class="waline-wrap"><div id="comment-book"></div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== TAB: ROBOT ENCYCLOPEDIA ===== -->
+<div class="tab-content" id="tab-robot" style="height:calc(100vh - 100px);padding:0">
+  <iframe src="robot-encyclopedia.html" style="width:100%;height:100%;border:none;background:#0a0f1e"></iframe>
+</div>
+
+<script src="books-data.js"></script>
+<script src="games/quiz-v2.js"></script>
+<script src="games/financial-match.js"></script>
+<script src="games/purchase-check.js"></script>
+<script src="waline/supabase.js"></script>
+<script src="waline/waline.js"></script>
+<script>
+const COMPANIES = [
+    {id:'ningde',name:'宁德时代',nameEn:'CATL',score:7.5,scoreMax:10,color:'#4fc3f7',heat:9,industry:'新能源 · 动力电池',desc:'全球动力电池装机量第一，新能源产业链核心。',tags:['电池龙头','新能源','全球第一'],metrics:{营收:'4,650亿',净利:'578亿',毛利率:'24.5%',PE:'22.4x',ROE:'21%',全球市占率:'38%'},file:'ningde.html'},
+  {id:'300144',name:'宋城演艺',nameEn:'Songcheng',score:7.5,scoreMax:10,color:'#ff9800',heat:8,industry:'文旅 · 演艺',desc:'文旅演艺绝对龙头，千古情IP壁垒+轻资产扩张+AI赋能。',tags:['文旅龙头','千古情','轻资产','高股息'],metrics:{营收:'22.6亿',净利:'8.2亿',毛利率:'64.8%',PE:'28x',ROE:'9.9%',市占率:'60%+'},file:'300144.html'},
+  {id:'600085',name:'同仁堂',nameEn:'Tongrentang',score:7.0,scoreMax:10,color:'#ff9800',heat:7,industry:'医药 · 中药 · 老字号',desc:'三百余年品牌壁垒，安宫牛黄丸双天然高端市场绝对主导，老龄化+中药政策红利长期受益。',tags:['老字号','安宫龙头','心脑血管','高分红','国企'],metrics:{营收:'172.6亿',净利:'11.9亿',毛利率:'42.87%',PE:'35x',ROE:'8.9%',市占率:'15%'},file:'600085.html'},
+  {id:'600030',name:'中信证券',nameEn:'CITIC Securities',score:7.5,scoreMax:10,color:'#ffc107',heat:9,industry:'金融 · 券商 · 龙头',desc:'全业务链龙头，投行/财富管理双龙头，ROE 10.59%领先。周期属性显著，估值低位。',tags:['全业务链','龙头券商','跨境投行','周期属性'],metrics:{营收:'748.5亿',净利:'300.8亿',净利率:'40.2%',PE:'15x',ROE:'10.6%',总资产:'2万亿+'},file:'600030.html'},
+  {id:'600329',name:'达仁堂',nameEn:'Da Ren Tang',score:6.5,scoreMax:10,color:'#ff9800',heat:6,industry:'医药 · 中药 · 老字号',desc:'中华老字号中药龙头，拥有速效救心丸国家秘密品种。2024年剥离商业聚焦精品中药，毛利率跃升至74%。但扣非PE 55x偏高，安全边际不足。',tags:['老字号','中药龙头','国家秘密','高分红','国企'],metrics:{营收:'49.17亿',净利:'21.31亿',毛利率:'74.02%',扣非PE:'55x',扣非ROE:'9.54%',总市值:'416亿'},file:'600329.html'},
+  {id:'605305',name:'中际联合',nameEn:'Zhongji Innolight',score:7.5,scoreMax:10,color:'#ffc107',heat:8,industry:'高端制造 · 风电设备 · 隐形冠军',desc:'风电高空安全设备隐形冠军，国内市占率>70%，出海加速+新产品线驱动第二增长曲线。',tags:['隐形冠军','风电设备','出海','高ROE','低负债'],metrics:{营收:'18.78亿',净利:'5.30亿',毛利率:'47.27%',PE:'15x',ROE:'19.1%',市占率:'75%'},file:'605305.html'},
+  {id:'000807',name:'云铝股份',nameEn:'Yunnan Aluminium',score:7.5,scoreMax:10,color:'#ffc107',heat:8,industry:'有色金属 · 电解铝 · 绿色铝',desc:'绿色铝一体化龙头，水电铝成本优势构筑护城河，受益铝价中枢上移和供给侧改革。',tags:['绿色铝','央企龙头','水电铝','高ROE','低负债'],metrics:{营收:'600.4亿',净利:'60.6亿',毛利率:'16.79%',PE:'14x',ROE:'19.7%',市占率:'7.5%'},file:'000807.html'},
+  {id:'600183',name:'生益科技',nameEn:'Sytech',score:7.5,scoreMax:10,color:'#4caf50',heat:7,industry:'电子 · 覆铜板(CCL)',desc:'全球刚性覆铜板第二(13.7%市占率)，ROE 21.25%净利33.34亿(+92%)高增长。PE 17x/PB 3.6x合理偏低。大比例分红每10股派8元。',tags:['覆铜板','AI算力','全球第二','高ROE','高分红'],metrics:{营收:'284.31亿',净利:'33.34亿',毛利率:'~25%',PE:'~17x',ROE:'21.25%',市占率:'~14%'},file:'600183.html'},
+
+    {id:'603986',name:'兆易创新',nameEn:'GigaDevice',score:6.5,scoreMax:10,color:'#ffc107',heat:7,industry:'半导体 · NOR Flash · MCU',desc:'NOR Flash全球第三、MCU国内领先，存储与MCU双轮驱动。2025年营收92亿(+25%)净利16.5亿(+49%)。PE 236x偏高。',tags:['半导体','NOR Flash','MCU'],metrics:{营收:'92.03亿',净利:'16.48亿',毛利率:'~38%',PE:'236x',PB:'20.6x',市占率:'~18%'},file:'603986.html'},
+  {id:'600706',name:'曲江文旅',nameEn:'Qujiang Cultural Tourism',score:3.0,scoreMax:10,color:'#ff9800',heat:3,industry:'文旅 · 景区运营',desc:'西安国有文旅平台，运营大唐芙蓉园/大雁塔，毛利率7.64%持续亏损。PB 0.9x破净。',tags:['文旅','国企','景区运营','低毛利率'],metrics:{营收:'9.67亿',净利:'-1.96亿',ROE:'-34.96%',PB:'0.9x',毛利率:'7.64%'},file:'600706.html'},
+  {id:'000009',name:'中国宝安',nameEn:'China Baoan Group',score:5.5,scoreMax:10,color:'#f0c040',heat:5,industry:'综合 · 控股集团',desc:'横跨高新技术(贝特瑞负极龙头)+生物医药(马应龙)的综合控股集团。营收230亿净利2亿。',tags:['负极龙头','马应龙','综合控股'],metrics:{营收:'230亿',净利:'2.03亿',毛利率:'25.8%',PE:'85.5x',ROE:'2.04%',市占率:'负极~22%'},file:'000009.html'},
+  {id:'600009',name:'上海机场',nameEn:'Shanghai Airport',score:6.0,scoreMax:10,color:'#f0c040',heat:6,industry:'交通运输 · 航空枢纽',desc:'中国最大航空枢纽运营商，长三角唯一国际门户。2025年营收133亿净利21亿持续恢复。PE 28x/PB 2.5x合理偏低。区位垄断护城河深厚。',tags:['航空枢纽','区位垄断','免税弹性','疫后恢复'],metrics:{营收:'133.46亿',净利:'21.17亿',毛利率:'27.5%',PE:'28x',ROE:'5.03%',市占率:'~19%'},file:'600009.html'},
+  {id:'601127',name:'赛力斯',nameEn:'Seres',score:7.0,scoreMax:10,color:'#ff9800',heat:7,industry:'新能源车 · 高端SUV · 华为生态',desc:'华为智选车核心伙伴，问界品牌持续放量，2025年营收1650亿(+13.7%)净利60亿(+58.3%)。PE 20x/PS 0.72x偏低。',tags:['华为生态','问界品牌','高端SUV','低估值'],metrics:{营收:'1,650.5亿',净利:'59.6亿',毛利率:'28.21%',PE:'20x',ROE:'23.53%',市占率:'~2.9%'},file:'601127.html'},
+  {id:'002230',name:'科大讯飞',nameEn:'iFlytek',score:6.5,scoreMax:10,color:'#f0c040',heat:7,industry:'AI · 大模型 · 智慧教育',desc:'中国AI龙头，讯飞星火大模型中标金额23亿行业第一。营收271亿(+16.1%)净利8.4亿(+27.8%)。PE 118x偏高但PS 3.6x合理。',tags:['AI国家队','星火大模型','智慧教育','开发者生态'],metrics:{营收:'271亿',净利:'8.39亿',毛利率:'~57%',PE:'118x',PS:'3.6x',市占率:'中标~2.3%'},file:'002230.html'},
+  {id:'600993',name:'马应龙',nameEn:'Mayinglong',score:7.5,scoreMax:10,color:'#f0c040',heat:8,industry:'中药 · OTC · 消费品医疗',desc:'四百年中华老字号，肛肠治痔龙头市占率超50%。营收38.67亿(+3.7%)净利5.81亿(+10.1%)，PE 17x合理。高分红(股息率~3%)零负债。',tags:['中华老字号','肛肠龙头','高分红','消费医疗'],metrics:{营收:'38.67亿',净利:'5.81亿',毛利率:'49.19%',PE:'17.1x',ROE:'13.77%',市占率:'治痔~50%+'},file:'600993.html'},
+  {id:'000705',name:'浙江震元',score:4.8,desc:'绍兴区域医药龙头，百年震元堂品牌底蕴深厚。盈利处于底部（扣非为负），合成生物提供期权弹性。PB 1.03x提供下行保护。',tags:['医药流通','老字号','困境反转型','合成生物'],metrics:{营收:'22.76亿',净利:'0.23亿',毛利率:'24.94%',PE:'86.9x',ROE:'1.16%',市占率:'区域零售~22%'},file:'000705.html'}];
+// ===== THEME =====
+function toggleTheme() {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light'
+  if (isLight) {
+    document.documentElement.removeAttribute('data-theme')
+    localStorage.setItem('portal_theme', 'dark')
+    document.getElementById('themeToggle').textContent = '🌙'
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light')
+    localStorage.setItem('portal_theme', 'light')
+    document.getElementById('themeToggle').textContent = '☀️'
+  }
+  // Reload report iframe theme if a report is open
+  if (document.getElementById('reportView').classList.contains('active')) {
+    applyThemeToReport()
+  }
+}
+
+// Restore saved theme
+if (localStorage.getItem('portal_theme') === 'light') {
+  document.documentElement.setAttribute('data-theme', 'light')
+  document.getElementById('themeToggle').textContent = '☀️'
+}
+
+// ===== TAB SWITCHING =====
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'))
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'))
+  document.getElementById('tab-'+name).classList.add('active')
+  document.querySelector(`.tab-btn[data-tab="${name}"]`).classList.add('active')
+  // Init Waline for games tab on first visit
+  if (name === 'games' && !window._gamesWalineLoaded) {
+    window._gamesWalineLoaded = true
+    setTimeout(() => {
+      destroyWaline(_walineGame)
+      _walineGame = new Waline({
+        el: '#waline-game',
+        serverURL: WALINE_SRV,
+        path: '/games',
+        lang: 'zh-CN',
+        dark: 'html[data-theme="dark"]',
+        login: 'force',
+      })
+    }, 200)
+  }
+}
+
+// ===== SEARCH & CATALOG =====
+let searchQuery = ''
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (document.getElementById('reportView').classList.contains('active')) closeReport()
+    else if (document.getElementById('bookDetailView').classList.contains('active')) closeBookDetail()
+    else if (searchQuery) clearSearch()
+  }
+  if ((e.ctrlKey||e.metaKey) && e.key === 'k') { e.preventDefault(); document.getElementById('searchInput').focus() }
+})
+
+function renderCatalog(query) {
+  query = (query||'').toLowerCase().trim()
+  const grid = document.getElementById('cardGrid')
+  const noRes = document.getElementById('noResults')
+  const hdr = document.getElementById('catalogHeader')
+  const filtered = query ? COMPANIES.filter(c => [c.name,c.nameEn,c.industry,c.desc,...c.tags,...Object.entries(c.metrics).map(([k,v])=>k+' '+v)].join(' ').toLowerCase().includes(query)) : COMPANIES
+  document.getElementById('totalReports').textContent = COMPANIES.length
+  grid.innerHTML = filtered.map(c => {
+    const deg = ((c.score/c.scoreMax*100)/100*360).toFixed(0)
+    const metHTML = Object.keys(c.metrics).map(k => `<span>${k}: ${c.metrics[k]}</span>`).join('')
+    const tagsHTML = c.tags.map(t => `<span class="tag" style="background:${c.color}15;color:${c.color};border-color:${c.color}20">${t}</span>`).join('')
+    return `<div class="card" onclick="openReport('${c.id}')"><div class="card-row"><div class="card-score"><svg class="card-score-ring" viewBox="0 0 36 36"><path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--b1)" stroke-width="3"/><path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="${c.color}" stroke-width="3" stroke-dasharray="${deg}, 360" stroke-linecap="round"/></svg><div class="card-score-inner"><div class="card-score-num" style="color:${c.color}">${c.score}</div><div class="card-score-label">/${c.scoreMax}</div></div></div><div class="card-info"><div class="card-name">${c.name}</div><div class="card-name-en">${c.nameEn}</div><div class="card-desc">${c.industry}</div><div class="card-tags">${tagsHTML}</div><div class="card-metrics">${metHTML}</div></div></div></div>`
+  }).join('')
+  noRes.style.display = filtered.length===0?'block':'none'
+  hdr.innerHTML = query ? `<h2>📂 搜索结果 · 共 <span style="color:var(--accent)">${filtered.length}</span> 篇匹配</h2>` : `<h2>📂 企业投资研究报告 · 共 <span style="color:var(--m2)">${COMPANIES.length}</span> 篇</h2>`
+}
+
+function onSearch(val) { searchQuery=val; document.getElementById('searchClear').classList.toggle('visible',val.length>0); renderCatalog(val) }
+function clearSearch() { document.getElementById('searchInput').value=''; document.getElementById('searchClear').classList.remove('visible'); onSearch('') }
+
+function destroyWaline(inst) {
+  if (inst) try { inst.destroy() } catch(e) {}
+}
+
+function initWaline(el, path) {
+  destroyWaline(window._walineReport)
+  return new Waline({
+    el: el,
+    serverURL: WALINE_SRV,
+    path: path,
+    lang: 'zh-CN',
+    dark: 'html[data-theme="dark"]',
+    login: 'force',
+  })
+}
+
+function openReport(id) {
+  const c = COMPANIES.find(x=>x.id===id); if(!c) return
+  window._currentCid = id
+  document.getElementById('reportTitle').innerHTML = `<span>${c.name}</span> · ${c.industry}`
+  document.getElementById('reportView').classList.add('active')
+  document.getElementById('reportLoading').style.display='flex'
+  document.getElementById('reportFrame').style.display='none'
+  document.getElementById('reportFrame').src='reports/'+c.file+'?t='+Date.now()
+}
+function closeReport() {
+  document.getElementById('reportView').classList.remove('active')
+  document.getElementById('reportFrame').src=''
+  document.getElementById('reportFrame').style.display='none'
+  document.getElementById('reportLoading').style.display='flex'
+}
+function onFrameLoaded() {
+  document.getElementById('reportLoading').style.display='none'
+  document.getElementById('reportFrame').style.display='block'
+  applyThemeToReport()
+  // Reload comments for current report when switching reports
+  if (window._currentCid) loadComments('/' + window._currentCid, 'comment-report');
+  // Auto-expand comments when iframe scrolled to bottom
+  try {
+    var iframeDoc = document.getElementById('reportFrame').contentDocument || document.getElementById('reportFrame').contentWindow.document;
+    var scrollTimer;
+    iframeDoc.addEventListener('scroll', function() {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function() {
+        var d = iframeDoc.documentElement;
+        if (d.scrollHeight - d.scrollTop - d.clientHeight < 60) {
+          peekComments('report');
+        }
+      }, 150);
+    }, {passive: true});
+  } catch(e) {}
+}
+
+function applyThemeToReport() {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  try {
+    const iframe = document.getElementById('reportFrame');
+    const idoc = iframe.contentDocument || iframe.contentWindow.document;
+    const old = idoc.getElementById('hermes-theme-override');
+    if (old) old.remove();
+    if (isLight) {
+      const style = idoc.createElement('style');
+      style.id = 'hermes-theme-override';
+      style.textContent = '\
+body{background:#f4f1ea!important;color:#2d2d2d!important}\
+h1{color:#1a1a1a!important}\
+h2{color:#b8860b!important;border-left-color:#b8860b!important}\
+h3{color:#3d3d3d!important}\
+h4{color:#505050!important}\
+.desc{color:#808080!important}\
+.card{background:#ffffff!important;border-color:#d8d4c8!important}\
+.sc-inner,.score-inner{background:#ffffff!important}\
+.sc-label,.score-label{color:#a0a0a0!important}\
+.stats span,.stat-label{color:#707070!important}\
+.dim-label,.dim-label span{color:#606060!important}\
+.dim-bg{background:#e8e5dc!important}\
+.dim-sc{color:#b8860b!important}\
+.tag{background:rgba(0,0,0,0.04)!important;color:#707070!important;border-color:rgba(0,0,0,0.08)!important}\
+table{background:#ffffff!important}\
+td,th{border-color:#d8d4c8!important;color:#3d3d3d!important}\
+th{background:#f4f1ea!important}\
+.tbl td{border-bottom-color:#d8d4c8!important}\
+.tbl th{background:#f0ede6!important;color:#b8860b!important}\
+.data-table td{color:#505050!important}\
+.fin-table td:first-child{background:#f4f1ea!important}\
+.fin-table tr:hover td:first-child{background:#e8e4dc!important}\
+.fin-table th{background:#d8d4c8!important;color:#8b6914!important}\
+.fin-table td{border-bottom-color:#d8d4c8!important}\
+.fin-table tr:hover td{background:#e8e4dc!important}\
+.bq{background:#f0ede6!important;border-left-color:#b8860b!important;color:#3d3d3d!important}\
+.tg{color:#707070!important;border-color:#d0ccc4!important}\
+.tgg{background:#e8f5e8!important;color:#2e7d32!important;border-color:#a5d6a7!important}\
+.tgr{background:#fde8e8!important;color:#c62828!important;border-color:#ef9a9a!important}\
+.tgo{background:#fff3e0!important;color:#b8860b!important;border-color:#ffcc80!important}\
+.scn{color:#606060!important}\
+.scc{color:#505050!important}\
+.orange{color:#b8860b!important}\
+.red{color:#c62828!important}\
+.gold{color:#b8860b!important}\
+.dt{color:#808080!important}\
+.metric-value,.value{color:#1a1a1a!important}\
+.metric-label,.metric-label span{color:#808080!important}\
+hr{border-color:#e0ddd4!important}\
+.quote,.quote-text{color:#505050!important;border-left-color:#b8860b33!important}\
+.footer,.footer-text{color:#a0a0a0!important}\
+.section,.section-title{color:#3d3d3d!important}\
+.sub-section,.sub-section-title{color:#505050!important}\
+.risk-item,.risk-item div{color:#606060!important}\
+.market-data,.data-row{color:#505050!important}\
+.data-label{color:#808080!important}\
+.data-value{color:#1a1a1a!important}\
+a{color:#b8860b!important}\
+.glow,.glow-text{color:#b8860b!important}\
+.txt{color:#505050!important}\
+.txt .dot{color:#b8860b!important}\
+.bq{background:#fcfcfa!important;color:#3d3d3d!important;border-left-color:#b8860b!important}\
+.mi{background:#fcfcfa!important}\
+.ml{color:#909090!important}\
+.hl{color:#606060!important}\
+.ht{background:#e8e5dc!important}\
+.hf{color:#333!important;text-shadow:none!important}\
+.hv{color:#707070!important}\
+.cp .nm{color:#606060!important}\
+.cp .bt{background:#e8e5dc!important}\
+.toc a{color:#808080!important;border-color:#d8d4c8!important}\
+.toc a:active{background:#f0ede6!important;color:#b8860b!important}\
+.scn .scc{background:#fcfcfa!important}\
+.scc.sc1{background:#e8f5e9!important;border-color:#a5d6a7!important}\
+.scc.sc1 h4{color:#2e7d32!important}\
+.scc.sc1 .pct{color:#2e7d32!important}\
+.scc.sc1 .dt{color:#66bb6a!important}\
+.scc.sc2{background:#e3f2fd!important;border-color:#90caf9!important}\
+.scc.sc2 h4{color:#1565c0!important}\
+.scc.sc2 .pct{color:#1565c0!important}\
+.scc.sc2 .dt{color:#42a5f5!important}\
+.scc.sc3{background:#fce4ec!important;border-color:#ef9a9a!important}\
+.scc.sc3 h4{color:#c62828!important}\
+.scc.sc3 .pct{color:#c62828!important}\
+.scc.sc3 .dt{color:#ef5350!important}\
+.sticky-top{background:#f4f1ea!important}\
+.gold{color:#b8860b!important}\
+.green{color:#2e7d32!important}\
+.red{color:#c62828!important}\
+.orange{color:#e65100!important}\
+.mv.gold{color:#b8860b!important}\
+.mv.green{color:#2e7d32!important}\
+.vl.gold{color:#b8860b!important}\
+.vl.green{color:#2e7d32!important}\
+.vl.orange{color:#e65100!important}';
+      idoc.head.appendChild(style);
+      // Fix inline-style elements that CSS can't override
+      const fixes = [
+        ['[style*="background:#0d0d20"]', 'background:#fcfcfa'],
+        ['[style*="background:#1a1a2a"]', 'background:#fcfcfa;border-color:#d8d4c8'],
+        ['[style*="background:#1a3a1a"]', 'background:#e8f5e9;border-color:#a5d6a7'],
+        ['[style*="color:#888"]', 'color:#808080'],
+        ['[style*="color:#555"]', 'color:#a0a0a0'],
+      
+
+];
+
+      fixes.forEach(([sel, replace]) => {
+        idoc.querySelectorAll(sel).forEach(el => {
+          const s = el.getAttribute('style');
+          if (s) el.setAttribute('style', s.replace(/background:#[0-9a-f]+/g, match => replace.split(':')[1])
+            .replace(/color:#888/g, 'color:#808080')
+            .replace(/color:#555/g, 'color:#a0a0a0'));
+        });
+      });
+    }
+  } catch(e) {}
+}
+
+// ===== BOOKS =====
+let bookSearchQuery = ''
+function renderBooks(query) {
+  query = (query||'').toLowerCase().trim()
+  const grid = document.getElementById('bookGrid'); const noRes = document.getElementById('bookNoResults'); const sub = document.getElementById('booksSubtitle')
+  const filtered = query ? BOOKS.filter(b => [b.title,b.titleEn,b.author,b.authorEn,...b.tags,...b.quotes.map(q=>q.text)].join(' ').toLowerCase().includes(query)) : BOOKS
+  document.getElementById('totalBooks').textContent = BOOKS.length
+  grid.innerHTML = filtered.map(b => {
+    const stars = '★'.repeat(b.rating)+'☆'.repeat(5-b.rating)
+    const tagsHTML = b.tags.map(t => `<span class="tag" style="background:${b.color}15;color:${b.color};border-color:${b.color}20">${t}</span>`).join('')
+    return `<div class="card" onclick="openBook('${b.id}')"><div class="card-row"><div style="font-size:36px;flex-shrink:0;width:48px;text-align:center">${b.coverEmoji}</div><div class="card-info"><div class="card-name">${b.title}</div><div class="card-name-en">${b.titleEn}</div><div class="card-author" style="color:${b.color}">${b.author} · ${b.year}</div><div style="font-size:10px;color:${b.color};letter-spacing:1px;margin-bottom:4px">${stars}</div><div class="card-tags">${tagsHTML}</div><div class="card-desc">${b.intro.slice(0,80)}…</div></div></div></div>`
+  }).join('')
+  noRes.style.display = filtered.length===0?'block':'none'
+  sub.textContent = query ? `搜索 · ${filtered.length} 本匹配` : `${BOOKS.length} 本经典 · 从基础到进阶`
+}
+function onBookSearch(val) { bookSearchQuery=val; document.getElementById('bookSearchClear').classList.toggle('visible',val.length>0); renderBooks(val) }
+function clearBookSearch() { document.getElementById('bookSearch').value=''; document.getElementById('bookSearchClear').classList.remove('visible'); onBookSearch('') }
+
+function openBook(id) {
+  const b = BOOKS.find(x=>x.id===id); if(!b) return
+  window._currentBid = id
+  document.getElementById('bookDetailTitle').innerHTML = `<span>${b.title}</span> · ${b.author}`
+  document.getElementById('bookDetailView').classList.add('active')
+  // Init Waline for book
+  setTimeout(() => {
+    destroyWaline(_walineBook)
+    _walineBook = new Waline({
+      el: '#waline-book',
+      serverURL: WALINE_SRV,
+      path: '/book/' + id,
+      lang: 'zh-CN',
+      dark: 'html[data-theme="dark"]',
+      login: 'force',
+    })
+  }, 200)
+  const stars = '★'.repeat(b.rating)+'☆'.repeat(5-b.rating)
+  const tagsHTML = b.tags.map(t => `<span class="tag" style="background:${b.color}15;color:${b.color};border-color:${b.color}20">${t}</span>`).join('')
+  const archHTML = b.architecture.map((a,i) => `
+    <div class="arch-item">
+      <div class="arch-header" onclick="toggleArch(${i})">
+        <span class="arch-title">${a.title}</span>
+        <span class="arch-toggle" id="archToggle${i}">▼</span>
+      </div>
+      <div class="arch-body" id="archBody${i}">
+        ${a.chapters.map((ch,ci) => `
+          <div class="chapter-item">
+            <div class="chapter-header" onclick="event.stopPropagation();toggleChapter('${b.id}',${i},${ci})">
+              <span class="chapter-toggle" id="chT_${b.id}_${i}_${ci}">▶</span>
+              <span class="chapter-title">${ch.title}</span>
+            </div>
+            <div class="chapter-body" id="chB_${b.id}_${i}_${ci}">${ch.content.replace(/\n/g,'<br>')}</div>
+          </div>
+        `).join('')}
+        <div class="arch-summary" style="margin-top:12px">${a.summary}</div>
+      </div>
+    </div>`).join('')
+  const quotesHTML = b.quotes.map(q => `<div class="quote-item"><div class="quote-text">${q.text}</div><div class="quote-context">— ${q.context}</div></div>`).join('')
+  document.getElementById('bookDetailContent').innerHTML = `
+    <div class="detail-section"><div class="detail-hero"><div class="detail-emoji">${b.coverEmoji}</div><div><h3 style="font-size:18px;margin-bottom:2px">${b.title}</h3><div style="font-size:12px;color:var(--m3);margin-bottom:2px">${b.titleEn}</div><div style="font-size:12px;color:${b.color}">${b.author} · ${b.year}</div><div style="font-size:11px;color:${b.color};letter-spacing:1px;margin:4px 0">${stars}</div><div class="card-tags">${tagsHTML}</div></div></div></div>
+    <div class="detail-section"><h3>📖 书籍简介</h3><p>${b.intro}</p></div>
+    <div class="detail-section"><h3>🏗️ 全书架构</h3>${archHTML}</div>
+    <div class="detail-section"><h3>💬 经典金句 · ${b.quotes.length} 条</h3><div class="quote-grid">${quotesHTML}</div></div>
+    <div class="summary-card"><h3>📝 全书总结</h3><div class="summary-items">${formatSummary(b.summary)}</div></div><div style="height:20px"></div>`
+}
+
+function formatSummary(text) {
+  const items = text.split(/(?=[①-⑳])/).filter(s => s.trim())
+  if (items.length <= 1) return '<p>'+text+'</p>'
+  // Keep intro text (before first ①) with first item
+  if (!items[0].match(/^[①-⑳]/)) {
+    return '<div class="summary-item">'+items[0]+'</div>' + items.slice(1).map(item => '<div class="summary-item" style="margin-top:6px">'+item+'</div>').join('')
+  }
+  return items.map(item => '<div class="summary-item">'+item+'</div>').join('')
+}
+
+function closeBookDetail() { document.getElementById('bookDetailView').classList.remove('active'); document.getElementById('bookDetailContent').innerHTML = '<div class="loading"><div class="spinner"></div><span>加载中…</span></div>' }
+function toggleArch(i) { document.getElementById('archBody'+i).classList.toggle('open'); document.getElementById('archToggle'+i).classList.toggle('open') }
+function toggleChapter(bookId,archIdx,chIdx) { document.getElementById('chB_'+bookId+'_'+archIdx+'_'+chIdx).classList.toggle('open'); document.getElementById('chT_'+bookId+'_'+archIdx+'_'+chIdx).classList.toggle('open') }
+
+// ===== GAME HUB =====
+function backToHub() {
+  document.querySelectorAll('.game-container').forEach(el => { el.style.display='none'; el.classList.remove('active') })
+  document.getElementById('gameHub').style.display='block'
+  showFeedback()
+}
+function switchToQuiz() { window._currentGid='quiz'; document.getElementById('gameHub').style.display='none'; const c=document.getElementById('quizContainer'); c.style.display='block'; c.classList.add('active'); hideFeedback() }
+function switchToMatch() { window._currentGid='match'; document.getElementById('gameHub').style.display='none'; const c=document.getElementById('matchContainer'); c.style.display='block'; c.classList.add('active'); hideFeedback() }
+function switchToPC() {
+  document.getElementById('gameHub').style.display='none';
+  const c=document.getElementById('pcContainer');
+  c.style.display='block';
+  c.classList.add('active');
+  // Init module badges on intro
+  var html = '';
+  var mods = PC_MODULES;
+  for (var i = 0; i < mods.length; i++) {
+    html += '<span class="pc-into-mod-tag" style="background:'+mods[i].color+'20;color:'+mods[i].color+';border:1px solid '+mods[i].color+'30">'+mods[i].icon+' '+mods[i].name+'</span>';
+  }
+  document.getElementById('pcIntroModules').innerHTML = html;
+  hideFeedback()
+}
+function goHome() {
+  // Close all overlays and return to reports tab
+  closeReport()
+  closeBookDetail()
+  document.querySelectorAll('.game-container').forEach(el => { el.style.display='none'; el.classList.remove('active') })
+  document.getElementById('gameHub').style.display='none'
+  switchTab('reports')
+  window.scrollTo({top:0,behavior:'smooth'})
+}
+
+// ===== MATCH GAME =====
+let matchData = [], matchSelected = null, matchPairs = 0, matchDone = 0, matchTimer = null, matchSec = 0, matchLevel = ''
+const matchColors = {初级:'#4fc3f7',中级:'#f0c040',高级:'#f44336'}
+
+function startMatch(level) {
+  matchLevel = level
+  // Randomly pick 4 pairs from the pool
+  const pool = MATCH_POOL[level].pairs
+  const shuffled = [...pool]
+  for(let i=shuffled.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]]}
+  const pairs = shuffled.slice(0, 4)
+
+  matchPairs = pairs.length; matchDone = 0; matchSec = 0; matchSelected = null
+
+  // Shuffle term order and def order independently
+  const terms = pairs.map((p,i) => ({id:i, html:p.term, side:'left'}))
+  const defs = pairs.map((p,i) => ({id:i, html:p.def, side:'right'}))
+  const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a }
+  matchData = shuffle(terms).concat(shuffle(defs))
+
+  document.getElementById('matchLevels').style.display='none'
+  document.getElementById('matchScreen').style.display='block'
+  document.getElementById('matchResult').style.display='none'
+  document.getElementById('matchLevelBadge').textContent = level
+  document.getElementById('matchLevelBadge').style.cssText = `background:${matchColors[level]}20;color:${matchColors[level]};border-color:${matchColors[level]}`
+  document.getElementById('matchCounter').textContent = '0/'+matchPairs
+
+  const leftIds = matchData.filter(d => d.side==='left').map(d => d.id)
+  const rightIds = matchData.filter(d => d.side==='right').map(d => d.id)
+
+  document.getElementById('matchLeftCol').innerHTML = matchData.filter(d => d.side==='left').map(d =>
+    `<div class="match-cell" data-id="${d.id}" data-side="left" onclick="clickMatch(${d.id},'left')">${d.html}</div>`
+  ).join('')
+  document.getElementById('matchRightCol').innerHTML = matchData.filter(d => d.side==='right').map(d =>
+    `<div class="match-cell" data-id="${d.id}" data-side="right" onclick="clickMatch(${d.id},'right')">${d.html}</div>`
+  ).join('')
+
+  // Timer
+  clearInterval(matchTimer)
+  matchTimer = setInterval(() => { matchSec++; document.getElementById('matchTimer').textContent = '⏱ '+matchSec+'s' }, 1000)
+}
+
+function clickMatch(id, side) {
+  if (matchDone >= matchPairs) return
+  const el = document.querySelector(`.match-cell[data-id="${id}"][data-side="${side}"]`)
+  if (el.classList.contains('matched') || el.classList.contains('wrong')) return
+
+  if (!matchSelected) {
+    // First selection
+    if (matchSelected && matchSelected.side === side) return // same side
+    matchSelected = {id, side, el}
+    el.classList.add('selected')
+  } else {
+    // Second selection - check same side
+    if (matchSelected.side === side) {
+      // Same side - reselect
+      matchSelected.el.classList.remove('selected')
+      matchSelected = {id, side, el}
+      el.classList.add('selected')
+      return
+    }
+    // Different sides - check match
+    el.classList.add('selected')
+    const first = matchSelected
+    matchSelected = null
+
+    if (first.id === id) {
+      // Match!
+      setTimeout(() => {
+        document.querySelectorAll(`.match-cell[data-id="${id}"]`).forEach(e => {
+          e.classList.remove('selected'); e.classList.add('matched')
+        })
+        matchDone++
+        document.getElementById('matchCounter').textContent = matchDone+'/'+matchPairs
+        if (matchDone >= matchPairs) {
+          clearInterval(matchTimer)
+          setTimeout(showMatchResult, 400)
+        }
+      }, 200)
+    } else {
+      // Wrong
+      [first.el, el].forEach(e => { e.classList.remove('selected'); e.classList.add('wrong') })
+      setTimeout(() => {
+        document.querySelectorAll('.match-cell.wrong').forEach(e => e.classList.remove('wrong'))
+      }, 500)
+    }
+  }
+}
+
+function showMatchResult() {
+  document.getElementById('matchScreen').style.display='none'
+  document.getElementById('matchResult').style.display='block'
+  const levelDesc = {初级:'基础财务指标',中级:'估值与效率指标',高级:'进阶拆解指标'}
+  document.getElementById('matchResultIcon').textContent = '🏆'
+  document.getElementById('matchResultTitle').textContent = '全部配对成功！'
+  document.getElementById('matchResultSub').textContent = matchLevel + ' · ' + levelDesc[matchLevel]
+  document.getElementById('matchResultTime').textContent = '用时 ' + matchSec + ' 秒'
+  document.getElementById('matchResultMsg').textContent = MATCH_POOL[matchLevel].desc
+
+  // Save best time to localStorage
+  const key = 'match_best_' + matchLevel
+  const prev = localStorage.getItem(key)
+  if (!prev || matchSec < parseInt(prev)) {
+    localStorage.setItem(key, matchSec)
+    document.getElementById('matchResultMsg').textContent += ' 🎉 刷新了最快记录！'
+  }
+}
+
+function retryMatch() { startMatch(matchLevel) }
+function backToMatchLevels() {
+  clearInterval(matchTimer)
+  document.getElementById('matchScreen').style.display='none'
+  document.getElementById('matchResult').style.display='none'
+  document.getElementById('matchLevels').style.display='block'
+}
+// ===== SUPABASE AUTH =====
+
+function getStoredUser() {
+  try {
+    var d = localStorage.getItem('SUPABASE_USER')
+    if (d && d !== 'null') return JSON.parse(d)
+  } catch(e) {}
+  return null
+}
+function updateHeaderBtn() {
+  var btn = document.getElementById('headerUserBtn')
+  var user = getStoredUser()
+  if (user && user.email) {
+    var nick = localStorage.getItem('SUPABASE_NICKNAME') || (user.user_metadata && user.user_metadata.name ? user.user_metadata.name : user.email.split('@')[0])
+    btn.className = 'header-user logged-in'
+    btn.innerHTML = '👤 ' + nick.slice(0,8)
+    btn.onclick = function() { showUserMenu() }
+  } else {
+    btn.className = 'header-user guest'
+    btn.textContent = '登录 / 注册'
+    btn.onclick = function() { openLogin() }
+  }
+}
+function showFeedback() { var fb = document.querySelector('.site-footer'); if(fb) fb.style.display = ''; }
+function hideFeedback() { var fb = document.querySelector('.site-footer'); if(fb) fb.style.display = 'none'; }
+
+// ===== NICKNAME =====
+function showNicknameDialog(user) {
+  window._nicknameUser = user
+  document.getElementById('nicknameOverlay').style.display = 'flex'
+  var prefix = user.email ? user.email.split('@')[0] : '用户'
+  var existing = localStorage.getItem('SUPABASE_NICKNAME')
+  document.getElementById('nicknameInput').value = existing || prefix
+  document.getElementById('nicknameMsg').textContent = ''
+  document.getElementById('nicknameMsg').className = 'nickname-msg'
+  document.getElementById('nicknameConfirmBtn').disabled = false
+  document.getElementById('nicknameConfirmBtn').textContent = '确定'
+}
+function closeNicknameDialog() {
+  document.getElementById('nicknameOverlay').style.display = 'none'
+}
+function fillRandomNickname() {
+  var adj = ['聪明的','理性的','耐心的','冷静的','睿智的','稳健的','专注的','远见的','坚定的','细致的']
+  var nouns = ['投资者','分析家','价值派','现金流','复利者','长期派','雪球家','研究员']
+  document.getElementById('nicknameInput').value = adj[Math.floor(Math.random()*adj.length)] + nouns[Math.floor(Math.random()*nouns.length)]
+  document.getElementById('nicknameMsg').textContent = ''
+}
+function sfetch(path, opts) {
+  var url = SUPABASE_URL + '/rest/v1/' + path
+  var h = {'apikey': SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Accept': 'application/json'}
+  if (opts && opts.headers) { var ks = Object.keys(opts.headers); for (var i=0;i<ks.length;i++) { h[ks[i]] = opts.headers[ks[i]] } }
+  return fetch(url, {method:(opts&&opts.method)||'GET', headers:h, body:(opts&&opts.body)||undefined}).then(function(r) {
+    return r.text().then(function(t) { var d = null; try { d = JSON.parse(t) } catch(e) {} return {ok:r.ok, status:r.status, data:d} })
+  })
+}
+function saveNickname() {
+  var input=document.getElementById('nicknameInput'), msg=document.getElementById('nicknameMsg'), nick=input.value.trim()
+  if (nick.length<2||nick.length>12) { msg.textContent='昵称需2-12个字符'; return }
+  var bad=['admin','root','系统','管理','客服','fuck','shit','管理员','版主']
+  for (var i=0;i<bad.length;i++) { if (nick.toLowerCase().indexOf(bad[i])>=0) { msg.textContent='包含敏感词'; return } }
+  var user=window._nicknameUser
+  if (!user||!user.id) { msg.textContent='请重新登录'; return }
+  var lc=localStorage.getItem('NICKNAME_CHANGED_AT')
+  if (lc) { var dp=(Date.now()-parseInt(lc))/86400000; if (dp<7&&localStorage.getItem('SUPABASE_NICKNAME')) { msg.textContent='每7天可修改一次，还需等待'+Math.ceil(7-dp)+'天'; document.getElementById('nicknameConfirmBtn').disabled=false; document.getElementById('nicknameConfirmBtn').textContent='确定'; return } }
+  var btn=document.getElementById('nicknameConfirmBtn')
+  btn.disabled=true; btn.textContent='检查中...'
+  // Check uniqueness with SDK SELECT (same pattern as comments)
+  getSupabase().from('profiles').select('id').eq('nickname', nick).then(function(qr) {
+    if (qr.error) { msg.textContent='检查失败'; btn.disabled=false; btn.textContent='确定'; return }
+    var qrows=qr.data||[], match=qrows.length>0?qrows[0]:null
+    if (match&&match.id&&match.id!==user.id) { msg.textContent='该昵称已被使用'; btn.disabled=false; btn.textContent='确定'; return }
+    btn.textContent='保存中...'
+    // Save with direct REST API (SDK upsert may have issues)
+    fetch(SUPABASE_URL+'/rest/v1/profiles', {method:'POST', headers:{'apikey':SUPABASE_ANON_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'}, body:JSON.stringify({id:user.id,nickname:nick,updated_at:new Date().toISOString()})}).then(function(fr) {
+      btn.disabled=false; btn.textContent='确定'
+      if (!fr.ok) { msg.textContent='保存失败('+fr.status+')'; return }
+      localStorage.setItem('SUPABASE_NICKNAME',nick); localStorage.setItem('NICKNAME_CHANGED_AT',String(Date.now()))
+      getSupabase().from('comments').update({author_name:nick}).eq('user_id',user.id).then(function(){})
+      // If password was entered, save it too
+      var pwd=document.getElementById('nicknamePwdInput').value.trim()
+      if (pwd&&pwd.length>=6) {
+        var token=localStorage.getItem('SUPABASE_AUTH_TOKEN')
+        if (token) {
+          fetch(SUPABASE_URL+'/auth/v1/user', {method:'PUT', headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+token,'Content-Type':'application/json'}, body:JSON.stringify({password:pwd})})
+        }
+      }
+      closeNicknameDialog(); updateHeaderBtn()
+    }).catch(function(){btn.disabled=false;btn.textContent='确定';msg.textContent='网络错误'})
+  })
+}
+function checkNickname() {
+  var user=getStoredUser(); if (!user) return
+  if (localStorage.getItem('SUPABASE_NICKNAME')) return
+  // Use SDK SELECT without maybeSingle (same pattern as comments)
+  getSupabase().from('profiles').select('nickname').eq('id', user.id).then(function(res) {
+    if (res.error) return
+    var rows=res.data||[], row=rows.length>0?rows[0]:null
+    if (row&&row.nickname) { localStorage.setItem('SUPABASE_NICKNAME',row.nickname); updateHeaderBtn() }
+    else { showNicknameDialog(user) }
+  })
+}
+
+// ===== LOGIN MODAL =====
+function openLogin() {
+  var user = getStoredUser()
+  if (user && user.email) return
+  document.getElementById('loginOverlay').classList.add('active')
+  document.getElementById('loginMsg').textContent = ''
+  document.getElementById('loginOtpMsg').textContent = ''
+  document.getElementById('loginEmail').value = ''
+  document.getElementById('loginPassword').value = ''
+  document.getElementById('loginEmailOtp').value = ''
+  switchLoginTab('pwd')
+}
+
+function closeLoginModal() {
+  document.getElementById('loginOverlay').classList.remove('active')
+}
+
+function switchLoginTab(mode) {
+  document.getElementById('loginTabPwd').className = 'login-tab' + (mode === 'pwd' ? ' active' : '')
+  document.getElementById('loginTabOtp').className = 'login-tab' + (mode === 'otp' ? ' active' : '')
+  document.getElementById('loginFieldsPwd').style.display = mode === 'pwd' ? '' : 'none'
+  document.getElementById('loginFieldsOtp').style.display = mode === 'otp' ? '' : 'none'
+}
+
+function submitLogin() {
+  var email = document.getElementById('loginEmail').value.trim()
+  var password = document.getElementById('loginPassword').value
+  if (!email) { setLoginMsg('请输入邮箱', true); return }
+  if (!password) { setLoginMsg('请输入密码', true); return }
+  var btn = document.getElementById('loginSubmitBtn')
+  btn.disabled = true; btn.textContent = '登录中...'
+  setLoginMsg('')
+
+  // First try signInWithPassword
+  getSupabase().auth.signInWithPassword({ email: email, password: password })
+    .then(function(res) {
+      if (res.error) {
+        if (res.error.message === 'Invalid login credentials') {
+          // Password wrong or account doesn't exist → try signUp
+          setLoginMsg('密码错误或账号不存在，正在尝试注册...', false)
+          return getSupabase().auth.signUp({
+            email: email,
+            password: password,
+            options: { emailRedirectTo: 'https://valuelinecn.github.io/report-portal' }
+          })
+        }
+        throw res.error
+      }
+      // Password login succeeded
+      return res
+    })
+    .then(function(res) {
+      btn.disabled = false; btn.textContent = '登录'
+      if (res.error) {
+        setLoginMsg('注册失败: ' + res.error.message, true)
+      } else if (res.data && res.data.user && res.data.user.identities && res.data.user.identities.length === 0) {
+        // User already exists but was created via magic link (no password)
+        setLoginMsg('该账号已存在但未设密码，请在"邮箱验证"标签页登录后通过菜单→设置密码', true)
+      } else if (res.data && res.data.user && res.data.session) {
+        // signUp succeeded with session (auto-confirm enabled)
+        closeLoginModal()
+      } else if (res.data && res.data.user) {
+        // signUp succeeded but no session (email confirmation required)
+        closeLoginModal()
+        alert('注册成功！验证邮件已发送到 ' + email + '，请查看邮箱并点击验证链接后登录。')
+      }
+    })
+    .catch(function(err) {
+      btn.disabled = false; btn.textContent = '登录'
+      setLoginMsg('登录失败: ' + err.message, true)
+    })
+}
+
+function setLoginMsg(msg, isError) {
+  var el = document.getElementById('loginMsg')
+  el.textContent = msg
+  el.className = 'login-msg' + (isError ? ' error' : msg ? ' success' : '')
+}
+
+function submitOtp() {
+  var email = document.getElementById('loginEmailOtp').value.trim()
+  if (!email) { setOtpMsg('请输入邮箱', true); return }
+  var btn = document.getElementById('loginOtpBtn')
+  btn.disabled = true; btn.textContent = '发送中...'
+  setOtpMsg('')
+
+  getSupabase().auth.signInWithOtp({
+    email: email,
+    options: {
+      shouldCreateUser: true,
+      emailRedirectTo: 'https://valuelinecn.github.io/report-portal'
+    }
+  }).then(function(res) {
+    btn.disabled = false; btn.textContent = '发送验证链接'
+    if (res.error) {
+      setOtpMsg('发送失败: ' + res.error.message, true)
+    } else {
+      setOtpMsg('链接已发送到 ' + email + '，请查看邮箱', false)
+    }
+  })
+}
+
+function setOtpMsg(msg, isError) {
+  var el = document.getElementById('loginOtpMsg')
+  el.textContent = msg
+  el.className = 'login-msg' + (isError ? ' error' : msg ? ' success' : '')
+}
+
+function showUserMenu() {
+  var user = getStoredUser()
+  if (!user) return
+  var nick = localStorage.getItem('SUPABASE_NICKNAME') || user.email.split('@')[0]
+  var choice = prompt('已登录: ' + user.email + '\n昵称: ' + nick + '\n\n1 - 修改昵称\n2 - 设置密码\n3 - 退出登录\n\n输入数字：')
+  if (choice === '1') showNicknameDialog(user)
+  else if (choice === '2') showSetPwd()
+  else if (choice === '3') logout()
+}
+
+function showSetPwd() {
+  var pwd = prompt('请输入新密码（至少6位）：')
+  if (!pwd || pwd.length < 6) { alert('密码至少6位'); return }
+  var c = prompt('请再次输入新密码：')
+  if (pwd !== c) { alert('两次密码不一致'); return }
+  var token = localStorage.getItem('SUPABASE_AUTH_TOKEN')
+  if (!token) { alert('请先重新登录'); return }
+  fetch(SUPABASE_URL+'/auth/v1/user', {method:'PUT', headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+token,'Content-Type':'application/json'}, body:JSON.stringify({password:pwd})}).then(function(r) {
+    if (r.ok) { alert('密码设置成功！下次可直接用邮箱+密码登录。') }
+    else { r.json().then(function(j) { alert('设置失败: '+(j.msg||j.message||j.error||JSON.stringify(j))) }).catch(function(){alert('设置失败('+r.status+')')}) }
+  }).catch(function(e) { alert('网络错误: '+e.message) })
+}
+
+function logout() {
+  getSupabase().auth.signOut().then(function() {
+    localStorage.removeItem('SUPABASE_USER')
+    localStorage.removeItem('SUPABASE_AUTH_TOKEN')
+    updateHeaderBtn()
+  })
+}
+
+
+
+// Init on load
+
+// ===== SUPABASE COMMENTS =====
+var SUPABASE_URL = 'https://awhdlskpkmklmvyodbue.supabase.co';
+var SUPABASE_ANON_KEY = 'sb_publishable_imB63UIMl9JN050rK4oPCQ_hTJcYVj5';
+var WALINE_SRV = SUPABASE_URL + '/function/v1/waline';
+
+function getSupabase() {
+  window._supabase = window._supabase || supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  return window._supabase;
+}
+
+function escHtml(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function renderComments(el, data, path) {
+  var user = getStoredUser();
+  var topLevel = data.filter(function(c) { return !c.parent_id; });
+  var html = '<div class="comment-section">';
+  html += '<h3 class="comment-heading">💬 评论 (' + topLevel.length + ')</h3>';
+
+  if (user && user.email) {
+    var safePath = path.replace(/[^a-zA-Z0-9]/g, '');
+    html += '<div class="comment-form">';
+    html += '<textarea class="comment-input" id="ci-' + safePath + '" placeholder="写下你的评论..." rows="3"></textarea>';
+    html += '<div class="comment-form-actions">';
+    html += '<span class="comment-user-label">' + (user.user_metadata && user.user_metadata.name ? user.user_metadata.name : user.email.split('@')[0]) + '</span>';
+    html += '<button class="comment-submit" onclick="window.submitComment(\'' + path + '\')">发表评论</button>';
+    html += '<button class="comment-logout-btn" onclick="window.logout()">退出</button>';
+    html += '</div></div>';
+  } else {
+    html += '<div class="comment-login-hint">请先<a href="#" onclick="window.openLogin();return false">登录</a>后发表评论</div>';
+  }
+
+  if (topLevel.length === 0) {
+    html += '<div class="comment-empty">暂无评论</div>';
+  } else {
+    html += '<div class="comment-list">';
+    for (var i = 0; i < topLevel.length; i++) {
+      var c = topLevel[i];
+      var replies = data.filter(function(r) { return r.parent_id === c.id; });
+      var date = new Date(c.created_at).toLocaleDateString('zh-CN');
+      html += '<div class="comment-card">';
+      html += '<div class="comment-meta"><span class="comment-author">' + escHtml(c.author_name) + '</span><span class="comment-time">' + date + '</span></div>';
+      html += '<div class="comment-body">' + escHtml(c.content).replace(/\n/g, '<br>') + '</div>';
+      if (user && user.email) {
+        html += '<div class="comment-actions"><a href="#" class="comment-reply-btn" onclick="window.showReplyForm(\'' + c.id + '\',\'' + path + '\');return false">回复</a></div>';
+        html += '<div class="comment-reply-form" id="rf-' + c.id + '" style="display:none">';
+        html += '<textarea class="comment-input" id="ri-' + c.id + '" placeholder="回复 ' + escHtml(c.author_name) + '..." rows="2"></textarea>';
+        html += '<button class="comment-submit" onclick="window.submitReply(\'' + c.id + '\',\'' + path + '\')">回复</button>';
+        html += '</div>';
+      }
+      if (replies.length > 0) {
+        html += '<div class="comment-replies">';
+        for (var j = 0; j < replies.length; j++) {
+          var r = replies[j];
+          var rd = new Date(r.created_at).toLocaleDateString('zh-CN');
+          html += '<div class="reply-card"><span class="comment-author">' + escHtml(r.author_name) + '</span> <span class="comment-time">' + rd + '</span><div class="comment-body">' + escHtml(r.content).replace(/\n/g, '<br>') + '</div></div>';
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+function loadComments(path, containerId) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '<div class="comment-loading">加载评论...</div>';
+  getSupabase().from('comments').select('*').eq('path', path).order('created_at', { ascending: false }).then(function(res) {
+    if (res.error) { el.innerHTML = '<div class="comment-error">加载失败</div>'; return; }
+    renderComments(el, res.data || [], path);
+    // Update comment count on toggle bar and fullscreen header
+    var prefix = containerId === 'comment-report' ? 'report' : containerId === 'comment-book' ? 'book' : '';
+    if (prefix) {
+      var n = (res.data || []).length;
+      var cnt = document.getElementById('commentCount-' + prefix);
+      if (cnt) cnt.textContent = n;
+      var fcnt = document.getElementById('commentFsCount-' + prefix);
+      if (fcnt) fcnt.textContent = n;
+    }
+  });
+}
+
+function toggleComments(type) {
+  var fs = document.getElementById('commentFs-' + type);
+  var toggle = document.getElementById('commentToggle-' + type);
+  if (!fs || !toggle) return;
+  // Close if open
+  if (fs.classList.contains('active') || fs.classList.contains('peek')) {
+    fs.classList.remove('active', 'peek');
+    return;
+  }
+  // Open peek (40%) first
+  fs.classList.add('peek');
+  loadCommentsIfNeeded(type);
+  attachPeekScroll(type);
+}
+
+function peekComments(type) {
+  var fs = document.getElementById('commentFs-' + type);
+  if (!fs || fs.classList.contains('active') || fs.classList.contains('peek')) return;
+  fs.classList.add('peek');
+  loadCommentsIfNeeded(type);
+  attachPeekScroll(type);
+}
+
+function expandComments(type) {
+  var fs = document.getElementById('commentFs-' + type);
+  if (!fs) return;
+  fs.classList.remove('peek');
+  fs.classList.add('active');
+}
+
+function attachPeekScroll(type) {
+  var body = document.getElementById('commentFsBody-' + type);
+  if (!body || body._peekScrollAttached) return;
+  body._peekScrollAttached = true;
+  var timer;
+  body.addEventListener('scroll', function() {
+    clearTimeout(timer);
+    timer = setTimeout(function() {
+      // If scrolled near bottom of peek area, expand to full
+      if (body.scrollHeight - body.scrollTop - body.clientHeight < 80) {
+        expandComments(type);
+      }
+    }, 100);
+  }, {passive: true});
+}
+
+function loadCommentsIfNeeded(type) {
+  var containerMap = {report:'comment-report', book:'comment-book', game:'waline-game'};
+  var cid = containerMap[type];
+  if (!cid) return;
+  var el = document.getElementById(cid);
+  if (el && !el.querySelector('.comment-card, .comment-loading, .comment-error')) {
+    var path = '/';
+    if (type === 'report') path += window._currentCid || '';
+    else if (type === 'book') path += 'book/' + (window._currentBid || '');
+    else path += 'game/' + (type === 'game' ? (window._currentGid || '') : '');
+    loadComments(path, cid);
+  }
+}
+
+function submitComment(path) {
+  var safePath = path.replace(/[^a-zA-Z0-9]/g, '');
+  var input = document.getElementById('ci-' + safePath);
+  if (!input || !input.value.trim()) return;
+  var user = getStoredUser();
+  if (!user || !user.email) { alert('请先登录'); return; }
+  var btn = input.parentElement.querySelector('.comment-submit');
+  var nick = localStorage.getItem('SUPABASE_NICKNAME') || (user.user_metadata && user.user_metadata.name ? user.user_metadata.name : user.email.split('@')[0]);
+  btn.textContent = '发表中...';
+  btn.disabled = true;
+  getSupabase().from('comments').insert({
+    user_id: user.id,
+    author_name: nick,
+    content: input.value.trim(),
+    path: path
+  }).then(function(res) {
+    btn.textContent = '发表评论';
+    btn.disabled = false;
+    if (res.error) { alert('发表失败: ' + res.error.message); return; }
+    input.value = '';
+    loadComments(path, 'comment-report');
+  });
+}
+
+function showReplyForm(commentId, path) {
+  var form = document.getElementById('rf-' + commentId);
+  if (form) form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+function submitReply(parentId, path) {
+  var input = document.getElementById('ri-' + parentId);
+  if (!input || !input.value.trim()) return;
+  var user = getStoredUser();
+  if (!user || !user.email) { alert('请先登录'); return; }
+  var btn = input.parentElement.querySelector('.comment-submit');
+  var nick = localStorage.getItem('SUPABASE_NICKNAME') || (user.user_metadata && user.user_metadata.name ? user.user_metadata.name : user.email.split('@')[0]);
+  btn.textContent = '回复中...';
+  btn.disabled = true;
+  getSupabase().from('comments').insert({
+    user_id: user.id,
+    author_name: nick,
+    content: input.value.trim(),
+    path: path,
+    parent_id: parentId
+  }).then(function(res) {
+    btn.textContent = '回复';
+    btn.disabled = false;
+    if (res.error) { alert('回复失败: ' + res.error.message); return; }
+    input.value = '';
+    document.getElementById('rf-' + parentId).style.display = 'none';
+    if (window._currentCid) loadComments('/' + window._currentCid, 'comment-report');
+  });
+}
+
+// Init supabase auth
+try {
+  getSupabase().auth.onAuthStateChange(function(event, session) {
+    if (event === 'SIGNED_IN' && session) {
+      localStorage.setItem('SUPABASE_USER', JSON.stringify(session.user));
+      localStorage.setItem('SUPABASE_AUTH_TOKEN', session.access_token);
+      updateHeaderBtn();
+      setTimeout(function() { checkNickname(); }, 500);
+    } else if (event === 'SIGNED_OUT') {
+      localStorage.removeItem('SUPABASE_USER');
+      localStorage.removeItem('SUPABASE_AUTH_TOKEN');
+      updateHeaderBtn();
+    }
+  });
+  getSupabase().auth.getSession().then(function(res) {
+    if (res.data && res.data.session) {
+      localStorage.setItem('SUPABASE_USER', JSON.stringify(res.data.session.user));
+      localStorage.setItem('SUPABASE_AUTH_TOKEN', res.data.session.access_token);
+    }
+    updateHeaderBtn();
+    setTimeout(function() { checkNickname(); }, 600);
+  });
+} catch(e) {}
+
+// ===== FEEDBACK =====
+function submitFeedback() {
+  var input = document.getElementById('feedbackInput');
+  if (!input || !input.value.trim()) return;
+  var btn = document.getElementById('feedbackBtn');
+  var msg = document.getElementById('feedbackMsg');
+  btn.disabled = true;
+  btn.textContent = '提交中...';
+  var body = {content: input.value.trim()};
+  var user = getStoredUser();
+  var nick = user && localStorage.getItem('SUPABASE_NICKNAME');
+  if (nick) body.nickname = nick;
+  fetch(SUPABASE_URL + '/rest/v1/feedback', {
+    method: 'POST',
+    headers: {'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY, 'Content-Type': 'application/json'},
+    body: JSON.stringify(body)
+  }).then(function(r) {
+    if (!r.ok) throw new Error();
+    input.value = '';
+    msg.textContent = '✅ 感谢你的反馈！';
+    setTimeout(function() { msg.textContent = ''; }, 3000);
+  }).catch(function() {
+    msg.textContent = '提交失败，请稍后重试';
+  }).then(function() {
+    btn.disabled = false;
+    btn.textContent = '提交';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateHeaderBtn()
+  renderCatalog()
+  renderBooks()
+  setTimeout(function() { checkNickname(); }, 500)
+})
+</script>
+<!-- ===== NICKNAME DIALOG ===== -->
+<div class="nickname-overlay" id="nicknameOverlay" onclick="if(event.target===this)closeNicknameDialog()">
+  <div class="nickname-card">
+    <h3>🎭 设置昵称</h3>
+    <p class="sub">设置后将在评论中显示此昵称，可随时修改</p>
+    <div class="nickname-row">
+      <input type="text" id="nicknameInput" maxlength="12" placeholder="2-12个字符" autocomplete="off">
+      <button class="nickname-random-btn" onclick="fillRandomNickname()" title="随机生成">🎲</button>
+    </div>
+    <div class="nickname-row">
+      <input type="password" id="nicknamePwdInput" placeholder="设置密码（可选，留空不设）" autocomplete="new-password">
+    </div>
+    <div class="nickname-pwd-hint">设置密码后可直接用邮箱+密码登录，无需每次收验证邮件</div>
+    <div class="nickname-msg" id="nicknameMsg"></div>
+    <button class="nickname-confirm-btn" id="nicknameConfirmBtn" onclick="saveNickname()">确定</button>
+  </div>
+</div>
+<!-- ===== LOGIN MODAL ===== -->
+<div class="login-overlay" id="loginOverlay" onclick="if(event.target===this)closeLoginModal()">
+  <div class="login-modal">
+    <button class="login-close" onclick="closeLoginModal()">✕</button>
+    <h3>登录</h3>
+    <div class="login-tabs">
+      <div class="login-tab active" id="loginTabPwd" onclick="switchLoginTab('pwd')">密码登录</div>
+      <div class="login-tab" id="loginTabOtp" onclick="switchLoginTab('otp')">邮箱验证</div>
+    </div>
+    <div id="loginFieldsPwd">
+      <div class="login-field">
+        <label>邮箱</label>
+        <input type="email" id="loginEmail" placeholder="your@email.com" autocomplete="email">
+      </div>
+      <div class="login-field" id="pwdField">
+        <label>密码</label>
+        <input type="password" id="loginPassword" placeholder="输入密码" autocomplete="current-password">
+      </div>
+      <button class="login-btn" id="loginSubmitBtn" onclick="submitLogin()">登录</button>
+      <div class="login-msg" id="loginMsg"></div>
+    </div>
+    <div id="loginFieldsOtp" style="display:none">
+      <div class="login-field">
+        <label>邮箱</label>
+        <input type="email" id="loginEmailOtp" placeholder="your@email.com">
+      </div>
+      <button class="login-btn" id="loginOtpBtn" onclick="submitOtp()">发送验证链接</button>
+      <div class="login-msg" id="loginOtpMsg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <h3 style="font-size:13px;color:var(--t1);margin:0 0 6px">💬 用户反馈</h3>
+  <div class="feedback-form" id="feedbackForm">
+    <textarea id="feedbackInput" placeholder="告诉我们你的想法、建议或遇到的问题…（匿名提交）"></textarea>
+    <div class="feedback-row">
+      <button class="feedback-btn" id="feedbackBtn" onclick="submitFeedback()">提交</button>
+    </div>
+    <div class="feedback-msg" id="feedbackMsg"></div>
+  </div>
+  <div class="footer-bottom">
+    ⚠️ 声明：本网站内容仅供学习和研究使用，不构成投资建议。<br>
+    数据来源：各公司年报、东方财富、同花顺、Wind<br>
+    © 2026 价值投资研究门户
+  </div>
+</footer>
+
+<button class="back-top" onclick="var rv=document.getElementById('reportView'),bv=document.getElementById('bookDetailView');if(rv&&rv.classList.contains('active')){var f=document.getElementById('reportFrame');if(f&&f.contentWindow)f.contentWindow.scrollTo({top:0,behavior:'smooth'})}else if(bv&&bv.classList.contains('active')){var s=document.querySelector('.detail-scroll');if(s)s.scrollTo({top:0,behavior:'smooth'})}else{window.scrollTo({top:0,behavior:'smooth'})}">↑</button>
+
+</body>
+</html>
