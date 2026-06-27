@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>赛力斯 · 完整投资研究报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
+h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
+h2{font-size:16px;color:#4caf50;margin:20px 0 10px;border-left:3px solid #4caf50;padding-left:10px}
+h3{font-size:14px;color:#ccc;margin:14px 0 6px}
+h4{font-size:13px;color:#aaa;margin:10px 0 4px}
+.desc{font-size:12px;color:#888;margin-bottom:10px}
+.card{background:#0d1a1a;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid #1a3a3a}
+.sc-wrap{text-align:center;margin-bottom:16px}
+.score-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(#4caf50 0deg 252deg,#333 252deg 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
+.score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
+.c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e3e3a;font-size:11px}
+.tbl td:first-child{white-space:nowrap;font-size:12px}
+.tbl tr:last-child td{border-bottom:none}
+.gold{color:#4caf50;font-weight:bold}.green{color:#4caf50}.red{color:#f44336}.orange{color:#ff9800}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{background:#0a0a1a;border-radius:8px;padding:10px;text-align:center}
+.mv{font-size:18px;font-weight:bold;color:#fff}
+.ml{font-size:10px;color:#888;margin-top:2px}
+.hb{display:flex;align-items:flex-start;margin:4px 0;min-height:20px}
+.hl{width:72px;font-size:11px;color:#aaa;flex-shrink:0;padding-top:2px}
+.ht{flex:1;height:16px;background:#1e3e3a;border-radius:8px;overflow:visible;margin:0 6px;position:relative}
+.hf{height:16px;border-radius:8px;display:flex;align-items:center;padding-left:6px;font-size:10px;color:#fff;overflow:visible;white-space:nowrap;text-shadow:0 0 3px rgba(0,0,0,.8);min-width:0}
+.hv{font-size:10px;color:#999;white-space:nowrap;flex-shrink:0;padding-top:2px;margin-left:2px}
+.scn{display:flex;gap:6px;margin:8px 0}
+.scc{flex:1;border-radius:8px;padding:10px;text-align:center}
+.scc h4{font-size:12px;margin-bottom:4px;color:#fff}
+.scc .pct{font-size:18px;font-weight:bold}
+.scc .dt{font-size:10px;color:#ccc;margin-top:3px}
+.sc1{background:#1a3a1a;border:1px solid #2a5a2a}.sc1 .pct{color:#4caf50}
+.sc2{background:#1a2a3a;border:1px solid #2a3a5a}.sc2 .pct{color:#f0c040}
+.sc3{background:#3a1a1a;border:1px solid #5a2a2a}.sc3 .pct{color:#f44336}
+.tg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;margin:1px}
+.tgg{background:#1a3a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgr{background:#3a1a1a;color:#f44336;border:1px solid #5a2a2a}
+.tgo{background:#3a2a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgy{background:#222;color:#aaa;border:1px solid #333}
+.txt{padding:6px 0;font-size:13px;color:#ccc;line-height:1.7}
+.txt .dot{color:#4caf50;margin-right:4px}
+.bq{padding:10px;background:#0a0a1a;border-radius:8px;border-left:3px solid #4caf50;margin:8px 0;font-size:13px;color:#ddd;line-height:1.7}
+.cp{display:flex;align-items:center;margin:4px 0;font-size:12px}
+.cp .nm{width:88px;color:#aaa;flex-shrink:0}
+.cp .bt{flex:1;height:14px;background:#1e3e3a;border-radius:7px;overflow:hidden;margin:0 6px}
+.cp .bf{height:100%;border-radius:7px}
+.cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
+.footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e3e3a;line-height:1.8}
+.sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e3e3a;margin-bottom:12px}
+.toc{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:10px;color:#888;text-decoration:none;padding:3px 7px;border-radius:10px;border:1px solid #333;white-space:nowrap;flex-shrink:0}
+.toc a:active{background:#1e3e3a;color:#4caf50}
+
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+  <div style="text-align:center;font-size:11px;color:#555;margin-bottom:4px;">📌 点击跳转</div>
+  <div class="toc">
+    <a href="#s0">评分</a><a href="#s1">综合评价</a><a href="#s2">M1商业模式</a>
+    <a href="#s3">M2壁垒</a><a href="#s4">M3管理层</a><a href="#s5">M4财务</a>
+    <a href="#s6">M5产业链</a><a href="#s7">M6估值</a><a href="#s8">M7市占率</a>
+    <a href="#s9">M8催化剂</a><a href="#s10">M9预期差</a><a href="#s11">M10风险</a>
+    <a href="#s12">综合评级</a><a href="#s13">附录</a>
+  </div>
+</div>
+
+<div id="s0" class="sc-wrap">
+  <div class="score-ring"><div class="score-inner"><div class="score-num">7.0</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">赛力斯 <span style="font-size:14px;color:#888;font-weight:400;">601127</span></h1>
+  <div class="desc">赛力斯凭借华为深度赋能+问界品牌高端SUV爆款矩阵，已完成从亏损到连续两年盈利的跨越。当前PE 20x处行业中低水平，需关注竞争加剧对盈利的侵蚀和华为合作关系变化风险。</div>
+  <div><span class="tg tgo">买入（逢低关注）</span><span class="tg tgy">2026-06-16</span></div>
+</div>
+
+<div id="s-mcap" class="card">
+  <h2>市值走势</h2>
+  <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
+
+  <div class="mcap-btns">
+    <button class="mcap-btn active" data-period="week">周线</button>
+    <button class="mcap-btn" data-period="month">月线</button>
+    <button class="mcap-btn" data-period="year">年线</button>
+  </div>
+
+  <div class="mcap-chart-wrap">
+    <div class="mcap-tooltip" id="mcapTooltip"></div>
+    <svg id="mcapSvg" width="100%" height="380"></svg>
+  </div>
+
+  <div class="mcap-info">
+    当前市值：<span class="mcap-v" id="mcapCurrent">--</span> 亿 ·
+    历史最高：<span class="mcap-v" id="mcapHigh">--</span> 亿 ·
+    历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
+    总股本：<span class="mcap-v" id="mcapShares">17.42</span> 亿股
+  </div>
+</div>
+
+<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
+  <h2>历年财务数据</h2>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=连续下滑</span> · <span style="color:#e74c3c">红色=负值/下滑>20%</span></div>
+  <style>
+  .fin-table{width:100%;border-collapse:collapse;font-size:11px}
+  .fin-table th{background:#1e1e3a;color:#f0c040;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
+  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
+  .fin-table tr:hover td{background:#1a1a3a}
+  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
+  .fin-table tr:hover td:first-child{background:#1a1a2a}
+  .fin-table td.na{color:#555}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
+  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
+  .fin-light .fin-table td.pos{color:#2e7d32!important}
+  .fin-light .fin-table td.neg{color:#c0392b!important}
+  .fin-light .fin-table td.warn{color:#b8860b!important}
+</style>
+  <table class="fin-table">
+<thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
+<tbody>
+<tr><td>每股营业收入(元)</td><td>94.75</td><td>96.16</td><td>23.78</td><td>22.78</td><td>12.29</td><td>11.19</td><td>19.29</td><td>21.54</td><td>13.55</td><td>10.00</td></tr>
+<tr><td>每股经营现金流(元)</td><td>16.60</td><td>14.91</td><td>4.24</td><td>-0.78</td><td>-0.73</td><td>0.85</td><td>0.35</td><td>1.18</td><td>1.10</td><td>1.28</td></tr>
+<tr><td>每股净利润(元)</td><td>3.68</td><td>3.94</td><td>-1.63</td><td>-2.68</td><td>-1.38</td><td>-1.49</td><td>0.07</td><td>0.10</td><td>0.81</td><td>0.63</td></tr>
+<tr><td>每股净资产(元)</td><td>23.49</td><td>8.12</td><td>7.55</td><td>7.59</td><td>5.81</td><td>3.91</td><td>5.64</td><td>5.33</td><td>4.74</td><td>4.31</td></tr>
+<tr><td>总股本(亿股)</td><td>17.4199</td><td>15.0978</td><td>15.0739</td><td>14.9728</td><td>13.5993</td><td>12.7844</td><td>9.3995</td><td>9.3985</td><td>16.1900</td><td>16.1900</td></tr>
+<tr><td>营业收入(亿元)</td><td>1650.54</td><td>1451.76</td><td>358.42</td><td>341.05</td><td>167.18</td><td>143.02</td><td>181.32</td><td>202.40</td><td>219.34</td><td>161.92</td></tr>
+<tr><td>毛利率(%)</td><td>29.14</td><td>26.15</td><td>9.86</td><td>11.32</td><td>3.77</td><td>4.56</td><td>17.30</td><td>23.86</td><td>22.18</td><td>19.34</td></tr>
+<tr><td>净利润(亿元)</td><td>59.57</td><td>59.46</td><td>-24.50</td><td>-38.32</td><td>-18.24</td><td>-17.29</td><td>0.67</td><td>0.95</td><td>7.25</td><td>5.14</td></tr>
+<tr><td>净利润率(%)</td><td>3.61</td><td>4.10</td><td>-6.83</td><td>-11.24</td><td>-10.91</td><td>-12.09</td><td>0.37</td><td>0.47</td><td>3.30</td><td>3.17</td></tr>
+<tr><td>ROE(%)</td><td>23.53</td><td>45.43</td><td>-22.39</td><td>-39.80</td><td>-30.70</td><td>-31.55</td><td>1.24</td><td>1.96</td><td>17.05</td><td>15.93</td></tr>
+</tbody>
+</table>
+</div>
+
+<style>
+.mcap-btns{display:flex;gap:6px;margin:8px 0}
+.mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e3e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
+.mcap-btn:hover{border-color:#4caf50;color:#4caf50}
+.mcap-btn.active{background:#4caf50;color:#0a0a1a;border-color:#4caf50;font-weight:bold}
+.mcap-chart-wrap{position:relative;width:100%;border-radius:8px;background:#0d0d20;border:1px solid #1e3e3a}
+.mcap-chart-wrap svg{display:block}
+.mcap-tooltip{position:absolute;display:none;background:rgba(10,10,26,.92);border:1px solid #4caf50;border-radius:6px;padding:6px 10px;font-size:12px;color:#fff;pointer-events:none;z-index:10;white-space:nowrap;transform:translate(-50%,-110%)}
+.mcap-tooltip .tt-date{color:#888;font-size:10px}
+.mcap-tooltip .tt-val{color:#4caf50;font-weight:bold}
+.mcap-info{text-align:center;font-size:12px;color:#888;margin-top:8px;padding:6px;background:#0d0d20;border-radius:6px}
+.mcap-v{color:#4caf50;font-weight:bold}
+.mcap-axis path,.mcap-axis line{stroke:#333;stroke-width:1}
+.mcap-axis text{fill:#666;font-size:10px}
+.mcap-grid line{stroke:#1e3e3a;stroke-width:0.5;stroke-dasharray:3,3}
+.mcap-light .mcap-btn{border-color:#c8c0b0;background:#e8e4dc;color:#707070}
+.mcap-light .mcap-btn:hover{border-color:#b8860b;color:#b8860b}
+.mcap-light .mcap-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
+.mcap-light .mcap-chart-wrap{background:#f4f1ea;border-color:#d8d4c8}
+.mcap-light .mcap-tooltip{background:rgba(255,255,255,.95);border-color:#b8860b;color:#3d3d3d}
+.mcap-light .mcap-tooltip .tt-date{color:#808080}
+.mcap-light .mcap-tooltip .tt-val{color:#b8860b}
+.mcap-light .mcap-info{background:#e8e4dc;color:#808080}
+.mcap-light .mcap-v{color:#b8860b}
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var stockCode = '601127';
+  var chartData = [];
+  var viewStart = 0, viewEnd = 0;
+  var isDragging = false, dragStartX = 0, dragViewStart = 0;
+  var svg, tooltip, wrap;
+  var W = 0, H = 380;
+  var M = {top:20, right:20, bottom:35, left:65};
+
+  function init(){
+    svg = document.getElementById('mcapSvg');
+    tooltip = document.getElementById('mcapTooltip');
+    wrap = svg.parentElement;
+    svg.style.cursor = 'crosshair';
+
+    if(document.getElementById('hermes-theme-override')){
+      document.getElementById('s-mcap').classList.add('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf) sf.classList.add('fin-light');
+    }
+
+    var themeWatcher = new MutationObserver(function(){
+      var light = !!document.getElementById('hermes-theme-override');
+      var card = document.getElementById('s-mcap');
+      if(light) card.classList.add('mcap-light');
+      else card.classList.remove('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf){ if(light) sf.classList.add('fin-light'); else sf.classList.remove('fin-light'); }
+      if(chartData.length) render();
+    });
+    if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
+
+    document.querySelectorAll('.mcap-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.mcap-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        loadPeriod(btn.getAttribute('data-period'));
+      });
+    });
+
+    svg.addEventListener('wheel', onWheel, {passive:false});
+    svg.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+    svg.addEventListener('mousemove', onHover);
+    svg.addEventListener('mouseleave', function(){
+      tooltip.style.display='none';
+      var cv=svg.querySelector('#mcapCrossV');if(cv)cv.setAttribute('opacity','0');
+      var ch2=svg.querySelector('#mcapCrossH');if(ch2)ch2.setAttribute('opacity','0');
+      var cd=svg.querySelector('#mcapCrossDot');if(cd)cd.setAttribute('opacity','0');
+    });
+
+    var touchDist = 0;
+    svg.addEventListener('touchstart', function(e){
+      if(e.touches.length === 1){
+        isDragging = true; dragStartX = e.touches[0].clientX; dragViewStart = viewStart;
+      }else if(e.touches.length === 2){
+        touchDist = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+      }
+    }, {passive:true});
+    svg.addEventListener('touchmove', function(e){
+      if(e.touches.length === 1 && isDragging){
+        var dx = e.touches[0].clientX - dragStartX;
+        var range = viewEnd - viewStart;
+        if(range > 1){
+          var shift = Math.round(-dx / ((W-M.left-M.right)/range));
+          var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart + shift));
+          viewStart = ns; viewEnd = viewStart + range; render();
+        }
+        isDragging = false;
+      }else if(e.touches.length === 2){
+        var nd = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+        if(touchDist > 0){doZoom(nd > touchDist ? 1 : -1, (e.touches[0].clientX+e.touches[1].clientX)/2);}
+        touchDist = nd;
+      }
+    }, {passive:true});
+    svg.addEventListener('touchend', function(){isDragging=false});
+    window.addEventListener('resize', function(){if(chartData.length)render()});
+    loadPeriod('week');
+  }
+
+  function getThemeColors(){
+    var light = !!document.getElementById('hermes-theme-override');
+    return {
+      line: light ? '#b8860b' : '#4caf50',
+      grid: light ? '#e0dcd0' : '#1e3e3a',
+      axisText: light ? '#999' : '#666',
+      gradTop: light ? '#b8860b' : '#4caf50',
+      gradBot: light ? '#b8860b' : '#4caf50',
+      gradTo: '0.25', gradBo: '0.01'
+    };
+  }
+
+  function loadPeriod(period){
+    var url = '../kline/' + stockCode + '_' + period + '.json?t=' + Date.now();
+    fetch(url).then(function(r){return r.json()}).then(function(data){
+      chartData = data;
+      var dw = data.length;
+      viewStart = Math.max(0, data.length - dw); viewEnd = data.length;
+      updateStats(data); render();
+    }).catch(function(e){console.error(e)});
+  }
+
+  function updateStats(data){
+    if(!data.length) return;
+    var last = data[data.length-1];
+    var high = data.reduce(function(a,b){return a.value>b.value?a:b});
+    var low = data.reduce(function(a,b){return a.value<b.value?a:b});
+    document.getElementById('mcapCurrent').textContent = last.value.toFixed(1);
+    document.getElementById('mcapHigh').textContent = high.value.toFixed(1);
+    document.getElementById('mcapLow').textContent = low.value.toFixed(1);
+  }
+
+  function render(){
+    if(!chartData.length) return;
+    var rect = wrap.getBoundingClientRect();
+    W = Math.max(300, rect.width || 600); H = 380;
+    svg.style.width = W + 'px'; svg.style.height = H + 'px';
+    var cw = W - M.left - M.right, ch = H - M.top - M.bottom;
+    if(cw <= 0 || ch <= 0) return;
+    var visible = chartData.slice(viewStart, viewEnd);
+    var n = visible.length; if(n === 0) return;
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<n;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad); maxVal = maxVal + pad;
+    var xS = function(i){return M.left+(i/(n-1||1))*cw};
+    var yS = function(v){return M.top+ch-(v-minVal)/(maxVal-minVal)*ch};
+    var pts = '';
+    for(var i=0;i<n;i++){pts += (i===0?'':' ')+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1);}
+    var tc = getThemeColors(), h = '';
+    h += '<g class="mcap-grid">';
+    for(var gi=0;gi<=5;gi++){var gv=minVal+(maxVal-minVal)*(gi/5),gy=yS(gv);h+='<line x1="'+M.left+'" y1="'+gy.toFixed(1)+'" x2="'+(M.left+cw)+'" y2="'+gy.toFixed(1)+'" stroke="'+tc.grid+'"/>';h+='<text x="'+(M.left-8)+'" y="'+(gy+4)+'" text-anchor="end" fill="'+tc.axisText+'" font-size="10">'+fmtVal(gv)+'</text>';}
+    h += '</g><g class="mcap-axis">';
+    var ls = Math.max(1, Math.floor(n / Math.min(10, n)));
+    for(var li=0;li<n;li+=ls){var lx=xS(li);h+='<text x="'+lx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx.toFixed(1)+','+(H-10)+')">'+visible[li].time+'</text>';}
+    h += '<text x="'+xS(n-1).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+xS(n-1).toFixed(1)+','+(H-10)+')">'+visible[n-1].time+'</text></g>';
+    var fp = 'M'+M.left+','+(M.top+ch)+' '; for(var i=0;i<n;i++){fp+='L'+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1)+' ';}
+    fp += 'L'+(M.left+cw)+','+(M.top+ch)+' Z';
+    h += '<path d="'+fp+'" fill="url(#mgG)" opacity="0.35"/>';
+    h += '<polyline points="'+pts+'" fill="none" stroke="'+tc.line+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<line id="mcapCrossV" x1="0" y1="'+M.top+'" x2="0" y2="'+(M.top+ch)+'" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<line id="mcapCrossH" x1="'+M.left+'" y1="0" x2="'+(M.left+cw)+'" y2="0" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<circle id="mcapCrossDot" cx="0" cy="0" r="4" fill="'+tc.line+'" stroke="#fff" stroke-width="1.5" opacity="0" pointer-events="none"/>';
+    var df = '<defs><linearGradient id="mgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+tc.gradTop+'" stop-opacity="'+tc.gradTo+'"/><stop offset="100%" stop-color="'+tc.gradBot+'" stop-opacity="'+tc.gradBo+'"/></linearGradient></defs>';
+    svg.innerHTML = df + h;
+  }
+
+  function fmtVal(v){return v>=10000?(v/10000).toFixed(1)+'万亿':v.toFixed(0)+'亿';}
+
+  function doZoom(dir, cx){
+    var n = chartData.length, range = viewEnd - viewStart;
+    if(dir > 0) range = Math.max(10, Math.round(range * 0.75)); else range = Math.min(n, Math.round(range * 1.35));
+    if(range < 2) range = 2; if(range > n) range = n;
+    var rect = svg.getBoundingClientRect();
+    var mx = (cx || rect.left+rect.width/2) - rect.left - M.left;
+    var cw = W - M.left - M.right;
+    var ci = viewStart + (viewEnd-viewStart) * Math.max(0, Math.min(1, mx/cw));
+    viewStart = Math.round(ci - range/2); viewEnd = viewStart + range;
+    if(viewStart < 0){viewStart=0;viewEnd=range;} if(viewEnd>n){viewEnd=n;viewStart=n-range;}
+    render();
+  }
+
+  function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
+  function onDragStart(e){isDragging=true;dragStartX=e.clientX;dragViewStart=viewStart;svg.style.cursor='grabbing';}
+  function onDragMove(e){
+    if(!isDragging) return;
+    var dx = e.clientX - dragStartX, range = viewEnd-viewStart;
+    if(range<=1) return;
+    var cw = W-M.left-M.right; if(cw<=0) return;
+    var shift = Math.round(-dx/(cw/range));
+    var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart+shift));
+    if(ns !== viewStart){viewStart=ns;viewEnd=viewStart+range;render();}
+  }
+  function onDragEnd(){isDragging=false;svg.style.cursor='crosshair';}
+
+  function onHover(e){
+    if(isDragging || !chartData.length) return;
+    var rect = svg.getBoundingClientRect();
+    var mx = e.clientX-rect.left-M.left, cw=W-M.left-M.right;
+    if(cw<=0||viewEnd-viewStart<=0) return;
+    var idx = viewStart + Math.round(mx/cw*(viewEnd-viewStart-1));
+    if(idx<0||idx>=chartData.length) return;
+    var pt = chartData[idx], ri = idx-viewStart, nn=viewEnd-viewStart;
+    var px = M.left+(ri/(nn-1||1))*cw, vis=chartData.slice(viewStart,viewEnd);
+    var minV=Infinity,maxV=-Infinity; for(var i=0;i<vis.length;i++){var v=vis[i].value;if(v<minV)minV=v;if(v>maxV)maxV=v;}
+    var p=(maxV-minV)*0.05||maxV*0.05||100; minV=Math.max(0,minV-p);maxV=maxV+p;
+    var ch=H-M.top-M.bottom, py=M.top+ch-(pt.value-minV)/(maxV-minV)*ch;
+    var cv=svg.querySelector('#mcapCrossV'),ch2=svg.querySelector('#mcapCrossH'),cd=svg.querySelector('#mcapCrossDot');
+    if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.6');}
+    if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.6');}
+    if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
+    tooltip.innerHTML = '<span class="tt-date">'+pt.time+'</span> · 市值 <span class="tt-val">'+pt.value.toFixed(1)+'亿</span>';
+    tooltip.style.display='block'; tooltip.style.left=px+'px';
+    if(py<50){tooltip.style.top=(py+24)+'px';tooltip.style.transform='translate(-50%,0%)';}
+    else{tooltip.style.top=py+'px';tooltip.style.transform='translate(-50%,-110%)';}
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+<div id="s1" class="card"><h2>一、综合评价</h2>
+  <div class="mg" style="margin-bottom:10px">
+    <div class="mi"><div class="mv" style="color:#ff9800">7.0</div><div class="ml">综合评级</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107">中</div><div class="ml">风险等级</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50">高</div><div class="ml">成长弹性</div></div>
+    <div class="mi"><div class="mv" style="color:#4caf50">23.5%</div><div class="ml">ROE</div></div>
+  </div>
+  <div class="bq">【综合评价】赛力斯通过华为赋能+问界高端SUV矩阵，营收167亿→1,651亿(10倍)，毛利率3.8%→29%，连续两年盈利。M6+M9新品周期强劲。评分7.0/10。</div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ff9800">高端定位</div><div class="ml">高端SUV</div></div>
+    <div class="mi"><div class="mv" style="font-size:14px;color:#ffc107">盈利验证</div><div class="ml">盈利拐点</div>
+  </div>
+  <table class="tbl" style="margin-top:10px">
+    <tr><th style="width:100px">指标</th><th style="width:140px">数值</th><th style="width:40%">说明</th></tr>
+    <tr><td>三年预估空间</td><td class="gold">核心</td><td>华为生态绑定</td></tr>
+    <tr><td>季度监控</td><td>高端SUV爆款</td><td>M9/M8/M7/M6覆盖30-55万价格带，高端SUV市占率>20%</td></tr>
+    <tr><td>逻辑证伪点</td><td class="red">盈利拐点确认</td><td>连续两年盈利(59亿+)，毛利率从个位数提升至29%</td></tr>
+    <tr><td>止损触发</td><td class="red">第二成长曲线</td><td>海外(中东中亚)+智能机器人业务布局</td></tr>
+  </table></div>
+
+<div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
+  <h3>核心定位</h3>
+  <div class="txt">华为生态体系赋能，问界品牌已建立高端智能SUV市场领先地位，新一轮产品周期(M6/M9换代)叠加海外和机器人业务布局，成长确定性强。</div>
+
+  <h3>年度财务摘要（亿元）</h3>
+  <table class="tbl">
+    <tr><th>年份</th><th>营收</th><th>YoY</th><th>归母净利</th><th>净利率</th><th>毛利率</th></tr>
+    <tr><td>2025</td><td>1,650.5亿</td><td class="pos">+13.7%</td><td class="pos">59.57亿</td><td>3.61%</td><td class="pos">29.14%</td></tr>
+    <tr><td>2024</td><td>1,451.8亿</td><td class="pos">+305.0%</td><td class="pos">59.46亿</td><td>4.10%</td><td class="pos">26.15%</td></tr>
+    <tr><td>2023</td><td>358.4亿</td><td class="pos">+5.1%</td><td class="neg">-24.50亿</td><td class="neg">-6.83%</td><td class="neg">9.86%</td></tr>
+    <tr><td>2022</td><td>341.1亿</td><td class="pos">+104.0%</td><td class="neg">-38.32亿</td><td class="neg">-11.24%</td><td>11.32%</td></tr>
+    <tr><td>2021</td><td>167.2亿</td><td class="pos">+16.9%</td><td class="neg">-18.24亿</td><td class="neg">-10.91%</td><td class="neg">3.77%</td></tr>
+</table>
+  <div class="desc" style="margin-top:6px;">2023-2024营收爆发增长因问界品牌放量，2025年进入稳态增长。毛利率从个位数修复至29%+。</div>
+
+  <h3>分业务收入结构（2025年）</h3>
+  <div class="hb"><div class="hl" style="width:60px">新能源汽车</div><div class="ht"><div class="hf" style="width:94%;background:#4caf50"></div></div><div class="hv" style="color:#4caf50">1,556亿 94.3%</div></div>
+  <div class="hb"><div class="hl" style="width:60px">燃油车</div><div class="ht"><div class="hf" style="width:4%;background:#888"></div></div><div class="hv" style="color:#888">~40亿 2.4%</div></div>
+  <div class="hb"><div class="hl" style="width:60px">其他</div><div class="ht"><div class="hf" style="width:4%;background:#888"></div></div><div class="hv" style="color:#f0c040">~54亿 3.3%</div></div>
+
+  <table class="tbl" style="margin-top:10px;">
+    <tr><th>业务线</th><th>收入</th><th>占比</th><th>趋势</th><th>毛利率</th></tr>
+    <tr><td>新能源汽车</td><td>1,556.1亿</td><td>94.3%</td><td class="pos">↑ 14.9%</td><td class="pos">28.76%</td></tr>
+    <tr><td>传统燃油车</td><td>~40亿</td><td>~2.4%</td><td class="neg">↓ 17.7%</td><td>~15%</td></tr>
+    <tr><td>其他业务</td><td>~54亿</td><td>~3.3%</td><td class="warn">→</td><td>—</td></tr>
+</table>
+
+  <h3>商业模式评估</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+    <tr><td>盈利模式</td><td class="gold">整车销售+服务</td><td>问界品牌整车销售为主，辅以售后服务和补能生态</td></tr>
+    <tr><td>客户价值</td><td class="gold">华为智驾+鸿蒙座舱</td><td>华为乾昆智驾ADS、鸿蒙智能座舱定义差异化体验</td></tr>
+    <tr><td>收入结构</td><td>集中度高</td><td>新能源汽车占比94%+，M9/M8/M7三款车型贡献~80%收入</td></tr>
+    <tr><td>规模效应</td><td class="pos">边际改善</td><td>产能利用率144%满产，毛利率从3.8%→29.1%</td></tr>
+    <tr><td>资本需求</td><td class="warn">中高</td><td>高研发投入(125亿/7.58%)，智慧工厂30万台产能满产</td></tr>
+</table>
+
+  <div class="bq">【M1】新能源占比94%，M9/M8双旗舰贡献主要利润。营收1,651亿(+13.7%)，毛利率29%。净利率3.6%仍低。</div></div>
+
+<div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
+  <div class="desc">赛力斯的护城河核心来自"华为生态绑定+高端SUV爆款矩阵"。</div>
+
+  <h3>壁垒类型评估</h3>
+  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:60%;background:#4caf50;">8</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:80%;background:#4caf50;">7</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">6</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:60%;background:#ff9800;">5</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:30%;background:#888;">6</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:50%;background:#8bc34a;">7</div></div></div>
+
+  <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
+    <span style="color:#f0c040;font-size:16px;font-weight:bold;">综合评分 39/60</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">中等偏宽</span>
+  </div>
+
+  <h3>壁垒深度解析</h3>
+  <div class="txt">
+    <b style="color:#4caf50;">客户粘性——华为智选车核心伙伴</b><br>
+    <span class="dot">·</span> 工信部新能源整车生产资质，纯电+增程双技术路线<br>
+    <span class="dot">·</span> 下游议价能力较强：问界品牌高端认知已建立<br>
+    <span class="dot">·</span> 前五大客户集中度11.89%，客户分散度好<br><br>
+    <b style="color:#f0c040;">规模壁垒——中等优势</b><br>
+    <span class="dot">·</span> 年销量47.2万辆，单月最高交付超5万辆，产能利用率144%满产<br>
+    <span class="dot">·</span> M8/M9合计交付超26万辆<br>
+    <span class="dot">·</span> 研发+销售费用率合计~19.5%，研发125亿保障技术领先<br><br>
+    <b style="color:#f0c040;">技术壁垒——中等偏弱</b><br>
+    <span class="dot">·</span> 研发投入125.12亿元(占营收7.58%)，魔方技术平台2.0<br>
+    <span class="dot">·</span> 华为乾昆智驾ADS(896线激光雷达标配)，辅助驾驶里程占比>50%<br>
+    <span class="dot">·</span> 核心依赖华为技术输出：若合作关系变化，护城河将显著减弱<br><br>
+    <b style="color:#888;">垂直整合——薄弱</b><br>
+    <span class="dot">·</span> 资源分配权掌握在华为手中，赛力斯需建设品牌独立性<br>
+    <span class="dot">·</span> 核心零部件以外购为主，垂直整合度低
+  </div>
+
+  <h3>护城河陷阱识别</h3>
+  <div class="txt" style="color:#f44336;">
+    <b>警惕信号：</b><br>
+    <span class="dot">·</span> 新能源汽车行业毛利率15-20%，赛力斯29%处于中上水平<br>
+    <span class="dot">·</span> 问界斩获2025新能源汽车产品质量品牌榜第一<br>
+    <span class="dot">·</span> 价格战风险：若被迫跟进降价，毛利率可能回落至25%以下<br>
+    <span class="dot">·</span> 理想L6/L9、小米SUV等在30-50万区间形成直接竞争
+  </div>
+
+  <div class="bq">【M2】华为智驾+鸿蒙座舱技术壁垒，产能144%满产制造端壁垒。护城河深度与华为合作稳固性正相关。</div>
+
+  <div class="bq">【M2陷阱】若华为自研整车或关系变化，独家优势将减弱。需持续跟踪。</div></div>
+
+<div id="s4" class="card"><h2>M3 管理层分析</h2>
+
+  <h3>管理层基本信息</h3>
+  <table class="tbl">
+    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
+    <tr><td>张正萍</td><td>董事长、总裁</td><td>2020年至今</td><td>36岁，实控人张兴海之子，曾任SF Motors CEO</td></tr>
+    <tr><td>刘联</td><td>副总裁、财务总监</td><td>2019年至今</td><td>43岁，曾任审计监督部部长、总裁助理</td></tr>
+  </table>
+  <div class="txt" style="font-size:12px;">管理层背景详见管理层信息表。张正萍为实控人二代。尹先知(57岁)负责运营，黄其忠(华为背景)负责供应链。张正萍集权，战略清晰(高端化+智能化+全球化)，执行力强。董事会13人(含5名独董)，东风汽车集团为战略股东。</div>
+
+  <h3>管理层评分</h3>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:70%;background:#4caf50;">7</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:60%;background:#8bc34a;">7</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:60%;background:#8bc34a;">7</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:40%;background:#888;">7</div></div></div>
+
+  <div class="bq">【M3】张正萍(36岁)集权，战略清晰(高端化+智能化+全球化)。核心团队稳定。</div>
+
+  <div class="bq">【M3评价】执行力强(M9/M8快速上量)，H股上市后治理改善。激励机制待透明化。</div></div>
+
+<div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
+
+  <h3>核心财务指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>趋势</th></tr>
+    <tr><td>营收（亿）</td><td>1,650.5</td><td>1,451.8</td><td>358.4</td><td>341.1</td><td class="pos">↑</td></tr>
+    <tr><td>毛利率</td><td class="pos">29.14%</td><td class="pos">26.15%</td><td class="neg">9.86%</td><td>11.32%</td><td class="pos">↑</td></tr>
+    <tr><td>净利（亿）</td><td class="pos">59.57</td><td class="pos">59.46</td><td class="neg">-24.50</td><td class="neg">-38.32</td><td class="pos">↑</td></tr>
+    <tr><td>净利润率</td><td>3.61%</td><td>4.10%</td><td class="neg">-6.83%</td><td class="neg">-11.24%</td><td class="warn">→</td></tr>
+    <tr><td>ROE</td><td class="pos">23.53%</td><td class="pos">45.43%</td><td class="neg">-22.39%</td><td class="neg">-39.80%</td><td class="warn">↓</td></tr>
+  </table>
+  <h3>现金流 & 资产负债</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>趋势</th></tr>
+    <tr><td>经营现金流</td><td class="pos">268.8亿</td><td class="pos">241.4亿</td><td>68.6亿</td><td class="neg">-12.7亿</td><td class="pos">↑</td></tr>
+    <tr><td>每股OCF</td><td class="pos">15.43元</td><td class="pos">13.86元</td><td>3.94元</td><td class="neg">-0.73元</td><td class="pos">↑</td></tr>
+    <tr><td>CAPEX(约)</td><td class="neg">-90亿</td><td class="neg">-70亿</td><td class="neg">-25亿</td><td class="neg">-20亿</td><td class="warn">↑</td></tr>
+    <tr><td>总资产</td><td>943.6亿</td><td>804.5亿</td><td>505.1亿</td><td>422.8亿</td><td class="pos">↑</td></tr>
+    <tr><td>资产负债率</td><td>78.3%</td><td>82.5%</td><td>86.1%</td><td>85.7%</td><td class="pos">↓</td></tr>
+  </table>
+  <h3>费用率结构</h3>
+  <table class="tbl">
+    <tr><th>项目</th><th>2025</th><th>占营收比</th><th>2024</th><th>占营收比</th><th>趋势</th></tr>
+    <tr><td>销售费用</td><td>241.94亿</td><td>14.66%</td><td>191.9亿</td><td>13.22%</td><td class="warn">↑</td></tr>
+    <tr><td>管理费用</td><td>47.87亿</td><td>2.90%</td><td>35.5亿</td><td>2.44%</td><td class="warn">↑</td></tr>
+    <tr><td>研发费用</td><td class="pos">79.54亿</td><td>4.82%</td><td>55.9亿</td><td>3.85%</td><td class="pos">↑</td></tr>
+    <tr><td>财务费用</td><td class="neg">-4.20亿</td><td>-0.25%</td><td class="neg">-1.0亿</td><td>-0.07%</td><td class="pos">↓</td></tr>
+    <tr><td>研发投入(含资本化)</td><td class="pos">125.12亿</td><td>7.58%</td><td>70.5亿</td><td>4.86%</td><td class="pos">↑</td></tr>
+  </table>
+  <h3>关键指标卡</h3>
+  <div class="mg">
+    <div class="mi"><div class="mv gold">1,650.5亿</div><div class="ml">2025营收</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">59.57亿</div><div class="ml">归母净利</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">29.14%</div><div class="ml">毛利率</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">289.14亿</div><div class="ml">经营现金流</div></div>
+  </div>
+
+  <div class="bq">【M5】直接材料~88%对上游议价权弱。制造费用仅~6%(自动化优势)。</div></div>
+
+<div id="s6" class="card"><h2>M5 成本结构 & 产业链议价权</h2>
+
+  <h3>成本结构</h3>
+  <table class="tbl">
+    <tr><th>成本项目</th><th>2025金额</th><th>占比</th><th>说明</th></tr>
+    <tr><td>直接材料</td><td>~1,030亿</td><td>~88%</td><td>电池(宁德时代)、芯片(华为)、车身零部件</td></tr>
+    <tr><td>直接人工</td><td>~35亿</td><td>~3%</td><td>智慧工厂高度自动化</td></tr>
+    <tr><td>制造费用</td><td>~70亿</td><td>~6%</td><td>能源动力、设备折旧</td></tr>
+    <tr><td>其他</td><td>~35亿</td><td>~3%</td><td>物流、质量保证</td></tr>
+    <tr><td>合计</td><td>~1,170亿</td><td>100%</td><td>占营收~70.9%(毛利率29.1%)</td></tr>
+  </table>
+  <h3>产业链议价权</h3>
+  <table class="tbl">
+    <tr><th>环节</th><th>议价权</th><th>说明</th></tr>
+    <tr><td>上游（电池/芯片）</td><td class="warn">弱</td><td>核心三电依赖宁德时代，智驾芯片依赖华为昇腾</td></tr>
+    <tr><td>中游（整车制造）</td><td class="pos">中等</td><td>智慧工厂满产(144%利用率)</td></tr>
+    <tr><td>下游（消费者）</td><td class="pos">较强</td><td>问界高端SUV有定价能力</td></tr>
+    <tr><td>经销商/渠道</td><td class="pos">强</td><td>380家用户中心覆盖218城</td></tr>
+  </table>
+  <div class="bq">【M6】PE 20.1x中低水平，PS 0.73x低。FCF~199亿强劲，净利率3.6%是核心矛盾。</div></div>
+
+<div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
+
+  <h3>FCF质量</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>说明</th></tr>
+    <tr><td>经营现金流</td><td class="pos">289.14亿</td><td class="pos">259.6亿</td><td>73.8亿</td><td>净现比~4.9x</td></tr>
+    <tr><td>CAPEX(约)</td><td class="neg">-90亿</td><td class="neg">-70亿</td><td class="neg">-25亿</td><td>智慧工厂扩产</td></tr>
+    <tr><td>自由现金流</td><td class="pos">~199亿</td><td class="pos">~190亿</td><td>~49亿</td><td>来自预收款(合同负债)</td></tr>
+    <tr><td>净现比</td><td class="pos">4.85x</td><td class="pos">4.37x</td><td>—</td><td>现金流质量极好</td></tr>
+    <tr><td>研发资本化率</td><td>36.4%</td><td>~20%</td><td>—</td><td>关注资本化比例变动</td></tr>
+  </table>  <div class="txt">经营现金流289亿(净现比4.85x)，CAPEX~90亿可控，FCF~199亿充沛。</div>
+
+  <h3>估值指标</h3>
+  <table class="tbl">
+    <tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr>
+    <tr><td>PE(TTM)</td><td class="gold">20.1x</td><td>15-50x</td><td>偏低</td></tr>
+    <tr><td>PE(2026E)</td><td>11.4x</td><td>—</td><td>有吸引力</td></tr>
+    <tr><td>PB</td><td>3.15x</td><td>3-9x</td><td class="pos">低位</td></tr>
+    <tr><td>PS(TTM)</td><td>0.73x</td><td>0.7-3.5x</td><td>偏低</td></tr>
+  </table>
+  <h3>PE对比 · 新能源车企</h3>
+  <div class="hb"><span class="hl">赛力斯</span><div class="ht"><div class="hf" style="width:100%;background:#ffc107">20.1x</div></div></div>
+  <div class="hb"><span class="hl">理想汽车</span><div class="ht"><div class="hf" style="width:110%;background:#f44336">~25x</div></div></div>
+  <div class="hb"><span class="hl">比亚迪</span><div class="ht"><div class="hf" style="width:100%;background:#4caf50">20.2x</div></div></div>
+  <div class="hb"><span class="hl">小鹏汽车</span><div class="ht"><div class="hf" style="width:140%;background:#f44336">~35x</div></div></div>
+  <div class="hb"><span class="hl">蔚来</span><div class="ht"><div class="hf" style="width:120%;background:#f44336">~30x</div></div></div>
+
+  <div class="desc" style="margin-top:6px;">📌 赛力斯PE 20.1x与比亚迪相当，低于新势力均值(~28x)。PS 0.73x低于行业均值，PB 3.15x处历史低位。</div>
+
+  <div class="bq">【M7】新能源+15%，市占率~3.7%提升空间大。高端SUV>20%领先。终局60%独立存活。</div></div>
+
+<div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
+
+  <h3>行业空间</h3>
+  <table class="tbl">
+    <tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>赛力斯出货/份额</th><th>市占率</th></tr>
+    <tr><td>中国新能源车</td><td>~1,280万辆</td><td>+15%</td><td>47.2万辆</td><td class="gold">~3.7%</td></tr>
+    <tr><td>高端SUV(30万+)</td><td>~200万辆</td><td>—</td><td>M9/M8/M7合计</td><td class="gold">>20%</td></tr>
+  </table>
+  <div class="mg" style="margin-top:10px;">
+    <div class="mi"><div class="mv gold">1,650.5亿</div><div class="ml">2025营收</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107;">~12%</div><div class="ml">新能源市占率</div></div>
+    <div class="mi"><div class="mv green">>20%</div><div class="ml">高端SUV份额</div></div>
+    <div class="mi"><div class="mv green">47.2万辆</div><div class="ml">新能源销量</div></div>
+  </div>
+
+  <h3>竞争态势</h3>
+  <table class="tbl">
+    <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
+    <tr><td>理想汽车</td><td>增程SUV(20-50万)</td><td>L6/L7/L8/L9完整矩阵，L6累计交付超36万</td></tr>
+    <tr><td>比亚迪</td><td>全价格带(10-50万)</td><td>垂直一体化成本优势，规模远超赛力斯</td></tr>
+    <tr><td>小米汽车</td><td>纯电轿车/SUV(20-35万)</td><td class="orange">SU7月销8k+，SUV昆仑即将上市，M6直接竞品</td></tr>
+    <tr><td>小鹏/蔚来</td><td>新能源汽车为核心的高端智能电动汽车企业</td><td class="orange">小鹏智驾性价比，蔚来换电差异化，但规模有差距，赛力斯差异化在"高端智能SUV+华为生态"</td></tr>
+  </table>
+
+  <h3>行业终局思考</h3>
+  <table class="tbl">
+    <tr><th>终局判断</th><th>概率</th><th>依据</th></tr>
+    <tr><td>独立高端品牌</td><td>60%</td><td>问界品牌已建立认知，产品矩阵完整</td></tr>
+    <tr><td>被整合(华为代工厂)</td><td>25%</td><td>华为智选模式扩展，角色可能弱化</td></tr>
+    <tr><td>价格战出局</td><td>15%</td><td>竞争恶化而盈利无法改善</td></tr>
+  </table>
+  <h3>三年业绩预测</h3>
+  <table class="tbl">
+    <tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>毛利率趋势</th></tr>
+    <tr><td>乐观</td><td class="pos">净利~149亿</td><td class="pos">净利~200亿</td><td class="pos">净利~280亿</td><td class="pos">改善至32%+</td></tr>
+    <tr><td>基准</td><td class="pos">净利~105亿</td><td>净利~150亿</td><td>净利~200亿</td><td>稳定~30%</td></tr>
+    <tr><td>悲观</td><td>净利~70亿</td><td>净利~90亿</td><td>净利~110亿</td><td class="warn">下滑至25%</td></tr>
+  </table>
+  <div class="bq">【M8】M6预订10万+M9预售6万，2026H2交付可期。海外+机器人中长期想象空间。</div></div>
+
+<div id="s10" class="card"><h2>M9 预期差 & 市场共识</h2>
+  <table class="tbl">
+    <tr><th>议题</th><th>市场共识</th><th>独立判断</th><th>方向</th></tr>
+    <tr><td>盈利持续性</td><td>净利59.6亿低于预期</td><td>Q4投放压低了利润，规模效应持续释放</td><td class="pos">偏乐观</td></tr>
+    <tr><td>华为合作关系</td><td>独家性减弱</td><td>M9/M8/M7/M6均由赛力斯生产，深度绑定</td><td class="pos">偏乐观</td></tr>
+    <tr><td>价格战风险</td><td>利润率承压</td><td>高端SUV品牌壁垒较高</td><td class="warn">中性</td></tr>
+  </table>
+  <div class="bq">【M9】市场过度担忧盈利持续性。规模效应将驱动利润率改善。</div></div>
+
+<div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
+
+  <h3>风险类型</h3>
+  <table class="tbl">
+    <tr><th>类型</th><th>描述</th><th>概率</th><th>预警信号</th></tr>
+    <tr><td>华为关系</td><td>华为调整智选车策略</td><td>中</td><td>华为自研整车/与竞品独签</td></tr>
+    <tr><td>价格战</td><td>毛利率持续承压</td><td>高</td><td>Q/Q毛利率连续2季下滑</td></tr>
+    <tr><td>新车型失败</td><td>M6/M9订单转化不及预期</td><td>中低</td><td>月交付低于预期20%+</td></tr>
+    <tr><td>政策变化</td><td>补贴退坡/税政调整</td><td>中</td><td>政策文件公布</td></tr>
+    <tr><td>供应链</td><td>芯片/电池供应短缺</td><td>中低</td><td>上游产能受限</td></tr>
+  </table>
+  <h3>敏感性分析</h3>
+  <table class="tbl">
+    <tr><th>变量</th><th>变化幅度</th><th>对净利影响</th><th>对股价影响</th></tr>
+    <tr><td>毛利率变动</td><td>±1pct</td><td>±~16.5亿</td><td>±~5-8元</td></tr>
+    <tr><td>新能源车销量</td><td>±5万辆</td><td>±~15亿</td><td>±~4-6元</td></tr>
+    <tr><td>行业PE中枢</td><td>±3x</td><td>—</td><td>±~10-15元</td></tr>
+  </table>
+  <h3>三情景分析</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">120元</div><div class="dt">+74.5%<br>M6+M9超预期，年销65万辆+，毛利率32%，净利~149亿</div></div>
+    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">80元</div><div class="dt">+16.3%<br>M6月销1.5万，M9换代平稳，销量55万辆，净利~105亿</div></div>
+    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">40元</div><div class="dt">-41.8%<br>价格战加剧，毛利率降至25%，净利~70亿</div></div>
+  </div>
+
+  <h3>避雷清单</h3>
+  <table class="tbl">
+    <tr><th>检查项</th><th>状态</th><th>严重度</th><th>方向</th></tr>
+    <tr><td>应收账款/营收</td><td class="pos">低(~3%)</td><td>低</td><td class="pos">健康</td></tr>
+    <tr><td>商誉占比净资产</td><td class="pos">低</td><td>低</td><td class="pos">健康</td></tr>
+    <tr><td>大股东质押比例</td><td class="warn">中等(~30%)</td><td>中</td><td class="warn">关注</td></tr>
+    <tr><td>经营现金流3年为正</td><td class="pos">是</td><td>低</td><td class="pos">健康</td></tr>
+    <tr><td>资产负债率趋势</td><td class="pos">下降(86%→78%)</td><td>低</td><td class="pos">改善</td></tr>
+  </table>  <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
+    <span style="color:#4caf50;">✅ 经营现金流289亿充沛，CAPEX~90亿可控核心风险：①华为关系 ②价格战 ③新车型交付 ④净利率低位</span>
+  </div>
+
+  <h3>清算价值</h3>
+  <table class="tbl">
+    <tr><th>资产项目</th><th>账面价值</th><th>清算折扣</th><th>清算价值</th></tr>
+    <tr><td>货币资金</td><td>~300亿</td><td>0%</td><td>~300亿</td></tr>
+    <tr><td>应收账款</td><td>~50亿</td><td>30%</td><td>~35亿</td></tr>
+    <tr><td>存货</td><td>~100亿</td><td>50%</td><td>~50亿</td></tr>
+    <tr><td>固定资产</td><td>~200亿</td><td>40%</td><td>~120亿</td></tr>
+    <tr><td colspan="3">清算价值合计(估算)</td><td>~505亿</td></tr>
+    <tr><td colspan="3">清算价值每股(估算)</td><td>~29.0元/股</td></tr>
+  </table>  <div class="txt">华为生态体系赋能，问界品牌已建立高端智能SUV市场领先地位，新一轮产品周期(M6/M9换代)叠加海外和机器人业务布局，成长确定性强。</div></div>
+
+<div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
+  <h3>六维评分</h3>
+  <div class="hb"><span class="hl">商业模式</span><div class="ht"><div class="hf c7" style="width:70%">7</div></div></div>
+  <div class="hb"><span class="hl">护城河</span><div class="ht"><div class="hf c7" style="width:70%">7</div></div></div>
+  <div class="hb"><span class="hl">管理层</span><div class="ht"><div class="hf c7" style="width:70%">7</div></div></div>
+  <div class="hb"><span class="hl">财务健康</span><div class="ht"><div class="hf c6" style="width:50%">5</div></div></div>
+  <div class="hb"><span class="hl">估值</span><div class="ht"><div class="hf c7" style="width:70%">7</div></div></div>
+  <div class="hb"><span class="hl">成长性</span><div class="ht"><div class="hf c9" style="width:80%">8</div></div></div><h3>核心亮点</h3>
+  <div class="txt"><span class="dot">●</span><b>华为深度赋能</b>智驾+鸿蒙座舱差异化壁垒，高端SUV市占率>20%</div>
+  <div class="txt"><span class="dot">●</span><b>盈利拐点确认</b>连续两年盈利，毛利率3.8%→29%</div>
+  <div class="txt"><span class="dot">●</span><b>新品周期强劲</b>M6预订10万台，M9预售6万台</div>
+  <h3>核心风险</h3>
+  <div class="txt"><span class="dot">●</span><b>华为合作关系变化：</b>净利率仅3.61%，研发+销售费用率偏高(~19.5%)</div>
+  <div class="txt"><span class="dot">●</span><b>价格战加剧风险</b>20-30万价格区间竞争白热化</div>
+  <div class="txt"><span class="dot">●</span><b>新车型销售不及预期：</b>资产负债率78.3%行业中高，但现金流强劲</div>
+  <h3>价值投资理念应用</h3>
+  <table class="tbl">
+    <tr><th style="width:50px">维度</th><th style="width:100px">代表人物</th><th style="width:40%">应用分析</th></tr>
+    <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>商业模式核心是"华为技术赋能+高端SUV产品矩阵"。毛利率从3.8%跳升至29%。净利率3.6%反映费用率偏高。</td></tr>
+    <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>护城河来自"华为生态+问界品牌"双轮驱动。产能144%满产是独立于华为的制造端壁垒。</td></tr>
+    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>张正萍集权，核心团队稳定，执行力强。背景偏制造端，科技能力依赖华为。</td></tr>
+    <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>营收10倍增长，毛利率3.8%→29.1%，现金流289亿远超净利。研发+销售费用率偏高。</td></tr>
+    <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>直接材料占~88%对上游议价权弱，制造费用仅~6%。毛利率改善靠规模效应。</td></tr>
+    <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>PE 20.1x中等偏低，PS 0.73x低于均值。FCF~199亿强劲。</td></tr>
+    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>新能源市场+15%，市占率~3.7%仍有空间，高端SUV>20%领先。</td></tr>
+    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>M6预订10万+M9预售6万，2026H2交付可期。海外和机器人提供中长期想象空间。</td></tr>
+    <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>市场过度担忧盈利持续性。规模效应驱动利润率改善。华为关系深度绑定短期难替代。</td></tr>
+    <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>主要风险在华为关系和行业竞争。净利率3.6%是核心财务弱点。</td></tr>
+    <tr><td>M11</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>市值~1,198亿(68.78元)，PE 20.1x。清算~505亿(~29元/股)。</td></tr>
+  </table>
+  <div class="bq">【M10】核心风险：华为关系(不可控)、价格战、新车型交付。毛利率需维持28%+。</div></div>
+
+<div id="s13" class="card">
+  <h2>附录</h2>
+  <div class="txt"><span class="dot">●</span>数据来源：赛力斯2025年年报、东方财富API、公开信息</div>
+  <div class="txt"><span class="dot">●</span>行业对比数据取自各公司2025年报/2026Q1季报，市场数据截至2026年6月12日。</div>
+  <div class="txt"><span class="dot">●</span>部分业务拆分数据为估算值，以公司年报为准。</div>
+  <div class="txt"><span class="dot">●</span>DCF估值采用简化模型，仅供内部参考，不构成投资建议。</div>
+  <div class="footer">
+    ⚠️ 声明：本内容仅供理论学习和研究练习使用，不构成投资建议，不能作为投资依据。股市有风险，投资需谨慎。<br>
+    2026-06-16 | 数据截止：2026-06-12<br>
+    赛力斯股份有限公司 · 601127.SH
+  </div>
+</div>
+
+</body>
+</html>

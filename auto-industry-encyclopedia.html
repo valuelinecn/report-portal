@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>新能源乘用车产业百科 · 从入门到供应链</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Noto Sans SC',-apple-system,sans-serif;
+  background:#080816;color:#e2e8f0;min-height:100vh;
+  background-image:radial-gradient(ellipse at 20% 10%,rgba(34,211,238,0.05),transparent 60%),
+                   radial-gradient(ellipse at 80% 20%,rgba(251,146,60,0.03),transparent 60%),
+                   radial-gradient(ellipse at 50% 90%,rgba(52,211,153,0.03),transparent 60%);
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#1e293b;border-radius:4px}
+
+.container{max-width:1200px;margin:0 auto;padding:14px}
+.section{display:none}
+.section.active{display:block;animation:fadeIn .35s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.hero-banner{text-align:center;padding:24px 0 14px}
+.hero-banner h1{font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#22d3ee 0%,#f97316 40%,#34d399 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-banner p{color:#64748b;font-size:.7rem;margin-top:6px;max-width:540px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 18px}
+.stat-card{
+  background:rgba(15,23,42,0.6);border:1px solid #1e293b;border-radius:12px;
+  padding:16px 10px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;
+}
+.stat-card:hover{transform:translateY(-3px);border-color:#334155;box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.stat-card::after{content:'→';position:absolute;bottom:6px;right:8px;font-size:.65rem;color:#334155;opacity:0;transition:all .3s}
+.stat-card:hover::after{opacity:1;color:#64748b}
+.stat-card .num{font-size:1.3rem;font-weight:700}
+.stat-card .lbl{font-size:.6rem;color:#64748b;margin-top:4px;line-height:1.4}
+.stat-card .sub{font-size:.5rem;color:#1e293b;margin-top:2px}
+.stat-card.c1 .num{background:linear-gradient(135deg,#22d3ee,#0891b2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c2 .num{background:linear-gradient(135deg,#fb923c,#ea580c);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c3 .num{background:linear-gradient(135deg,#34d399,#059669);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c4 .num{background:linear-gradient(135deg,#f472b6,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.card{
+  background:rgba(15,23,42,0.6);border:1px solid #1e293b;border-radius:12px;
+  padding:14px 12px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;
+}
+.card:hover{transform:translateY(-3px);border-color:#334155;box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.card.cyan::before{background:linear-gradient(90deg,#22d3ee,#0891b2)}
+.card.emerald::before{background:linear-gradient(90deg,#34d399,#059669)}
+.card.amber::before{background:linear-gradient(90deg,#fb923c,#ea580c)}
+.card.pink::before{background:linear-gradient(90deg,#f472b6,#db2777)}
+.card.violet::before{background:linear-gradient(90deg,#a78bfa,#7c3aed)}
+.card .ci{font-size:1.1rem;margin-bottom:3px}
+.card .ct{font-size:.7rem;font-weight:600;color:#e2e8f0;margin-bottom:2px}
+.card .cd{font-size:.55rem;color:#64748b;line-height:1.4}
+.card .ctag{display:inline-block;font-size:.45rem;padding:1px 5px;border-radius:3px;background:rgba(30,41,59,0.5);color:#475569;margin-top:4px}
+
+.section-title{font-size:.9rem;font-weight:700;color:#e2e8f0;margin:18px 0 10px;display:flex;align-items:center;gap:6px}
+.section-title .st-dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);display:none;justify-content:center;align-items:center;padding:16px;z-index:1000;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal{
+  background:#0f172a;border:1px solid #1e293b;border-radius:16px;
+  max-width:580px;width:100%;max-height:85vh;overflow-y:auto;padding:22px 18px 18px;position:relative;
+  animation:slideUp .3s;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.modal-close{position:absolute;top:10px;right:12px;border:none;background:rgba(255,255,255,0.03);color:#64748b;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px}
+.modal-close:hover{background:rgba(255,255,255,0.08);color:#e2e8f0}
+.modal-title{font-size:1rem;font-weight:700;color:#f1f5f9;margin-bottom:12px;padding-right:30px}
+
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.qc{border-radius:10px;padding:12px;border-left:3px solid}
+.qc .ql{font-size:.6rem;font-weight:600;margin-bottom:3px}
+.qc .qt{font-size:.65rem;color:#cbd5e1;line-height:1.6}
+
+.tog{text-align:center;padding:8px;cursor:pointer;color:#64748b;font-size:.6rem;border-top:1px solid rgba(30,41,59,0.4);border-bottom:1px solid rgba(30,41,59,0.4);transition:all .2s}
+.tog:hover{color:#94a3b8;background:rgba(30,41,59,0.2)}
+.deep{display:none;margin-top:6px}
+.dsec{margin-bottom:6px;font-size:.6rem;color:#94a3b8;line-height:1.5;padding:6px 8px;background:rgba(30,41,59,0.2);border-radius:6px}
+
+@media(max-width:500px){
+  .grid-4{grid-template-columns:1fr 1fr}
+  .hero-banner h1{font-size:1.1rem}
+  .modal{padding:16px 12px;max-height:90vh}
+  .qgrid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- ===== HERO ===== -->
+<div class="hero-banner">
+  <h1>🚗 新能源乘用车 · 产业百科</h1>
+  <p>从入门到供应链 · 覆盖市场格局 · 核心技术 · 代表企业与产业链</p>
+</div>
+
+<!-- ===== STATS ROW ===== -->
+<div class="stats-row">
+  <div class="stat-card c1" onclick="openModal('stat1')">
+    <div class="num">1,280万+</div>
+    <div class="lbl">2025年新能源乘用车零售</div>
+    <div class="sub">+17.6% YoY</div>
+  </div>
+  <div class="stat-card c2" onclick="openModal('stat2')">
+    <div class="num">53.9%</div>
+    <div class="lbl">零售渗透率</div>
+    <div class="sub">2025年达历史新高</div>
+  </div>
+  <div class="stat-card c3" onclick="openModal('stat3')">
+    <div class="num">348万+</div>
+    <div class="lbl">比亚迪国内零售</div>
+    <div class="sub">市占率27%</div>
+  </div>
+  <div class="stat-card c4" onclick="openModal('stat4')">
+    <div class="num">~38%</div>
+    <div class="lbl">电池成本占整车</div>
+    <div class="sub">最大单一成本构成</div>
+  </div>
+</div>
+
+<!-- ===== QUICK NAV GRID ===== -->
+<div class="quick-grid">
+  <div class="card cyan" onclick="switchSection('overview')"><div class="ci">📊</div><div class="ct">市场概览</div><div class="cd">规模 · 渗透率 · 增长趋势</div><div class="ctag">5章节</div></div>
+  <div class="card amber" onclick="switchSection('brands')"><div class="ci">🏢</div><div class="ct">品牌格局</div><div class="cd">Top 10 · 梯队划分 · 竞争态势</div><div class="ctag">10+品牌</div></div>
+  <div class="card emerald" onclick="switchSection('supplychain')"><div class="ci">🔩</div><div class="ct">供应链全景</div><div class="cd">上游材料 · 中游三电 · 下游整车</div><div class="ctag">3层纵深</div></div>
+  <div class="card pink" onclick="switchSection('cost')"><div class="ci">💰</div><div class="ct">成本结构</div><div class="cd">电池 · 电机 · 智驾 · 车身</div><div class="ctag">百分比拆解</div></div>
+  <div class="card violet" onclick="switchSection('tech')"><div class="ci">🚀</div><div class="ct">技术前沿</div><div class="cd">800V · 固态电池 · 城市NOA · 压铸</div><div class="ctag">前沿趋势</div></div>
+  <div class="card amber" onclick="switchSection('challenges')"><div class="ci">⚠️</div><div class="ct">行业挑战</div><div class="cd">价格战 · 产能过剩 · 关税壁垒</div><div class="ctag">4大挑战</div></div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- SECTION: 市场概览 -->
+<!-- ========================================================================= -->
+<div class="section active" id="tab-overview">
+<div class="section-title"><span class="st-dot" style="background:#22d3ee"></span> 📊 市场概览 · 产业总览</div>
+
+<div id="ovGrid" class="grid-2"></div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- SECTION: 品牌格局 -->
+<!-- ========================================================================= -->
+<div class="section" id="tab-brands">
+<div class="section-title"><span class="st-dot" style="background:#fb923c"></span> 🏢 品牌格局 · 竞争态势</div>
+<div id="brGrid" class="grid-2"></div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- SECTION: 供应链全景 -->
+<!-- ========================================================================= -->
+<div class="section" id="tab-supplychain">
+<div class="section-title"><span class="st-dot" style="background:#34d399"></span> 🔩 供应链全景 · 3层纵深</div>
+<div id="scGrid" class="grid-2"></div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- SECTION: 成本结构 -->
+<!-- ========================================================================= -->
+<div class="section" id="tab-cost">
+<div class="section-title"><span class="st-dot" style="background:#f472b6"></span> 💰 整车成本结构拆解</div>
+<div id="costGrid" class="grid-2"></div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- SECTION: 技术前沿 -->
+<!-- ========================================================================= -->
+<div class="section" id="tab-tech">
+<div class="section-title"><span class="st-dot" style="background:#a78bfa"></span> 🚀 技术前沿 · 发展方向</div>
+<div id="techGrid" class="grid-2"></div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- SECTION: 行业挑战 -->
+<!-- ========================================================================= -->
+<div class="section" id="tab-challenges">
+<div class="section-title"><span class="st-dot" style="background:#fb923c"></span> ⚠️ 当前行业挑战</div>
+<div id="chGrid" class="grid-2"></div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="modal-title" id="modalTitle"></div>
+  <div id="modalReport" style="display:none;margin-bottom:8px">
+    <a id="modalReportLink" target="_blank" style="display:inline-flex;align-items:center;gap:4px;color:#22d3ee;font-size:.6rem;text-decoration:none;padding:3px 8px;border-radius:4px;background:rgba(34,211,238,0.1);transition:all .2s">📄</a>
+  </div>
+  <div id="modalBody"></div>
+</div>
+</div>
+
+<script>
+// ===== DATA =====
+const DATA = {
+  // 市场概览
+  overview:[
+    {id:'ov1',icon:'📊',title:'市场规模',s1:'2025年中国新能源乘用车零售1,280万辆，同比增长17.6%。',s2:'2000-2020年渗透率从0到5%，2021-2025从5%到54%。',s3:'12.8M辆(零售)·53.9%渗透率·+17.6%YoY·产量>1,600万辆',s4:'很多人以为增长变慢了，其实1,280万已经是全球最大单一市场，是欧洲+北美之和。',d1:'🔧 发展路径 ★★★★☆ 从政策驱动到市场驱动，竞争加速优胜劣汰',d2:'🌍 中国vs海外：中国占全球NEV销量约65%，远超欧美日',d3:'🏢 乘联会(CPCA)·中汽协(CAAM)·工信部',d4:'🏗️ 纯电约65%/插混+增程约35%，插混增速更快',d5:'🎯 2026年预计渗透率突破60%，产量近1,900万辆'},
+    {id:'ov2',icon:'📈',title:'增长驱动力',s1:'核心驱动从政策补贴转向产品力+成本优势。2025年"电比油低"已成常态。',s2:'就像智能手机取代功能机——当成本打平甚至更低时，取代就不可逆了。',s3:'新能源车均价已接近燃油车·比亚迪秦Plus DM-i起售价7.98万·电费仅为油费1/5',s4:'很多人觉得新能源车还是"政策产物"，但2023年起补贴退坡后销量反而加速增长。',d1:'🔧 核心驱动力 ★★★★☆ 产品力(续航/智驾) + 成本优势',d2:'🌍 全球对比：中国NEV成本比欧洲低约30%，比美国低约25%',d3:'🏢 全产业链集群优势·规模效应·电池成本快速下降',d4:'🏗️ 下沉市场渗透：三四线城市+农村成为增量来源',d5:'🎯 出口受阻→内需消化，价格战加速行业洗牌'},
+    {id:'ov3',icon:'🔋',title:'纯电vs插混',s1:'纯电(BEV)占约65%，插混/增程(PHEV/EREV)占约35%。插混增速更快。',s2:'纯电=全面转型，插混=过渡方案，但过渡期比所有人想的都长。',s3:'BEV约830万辆·PHEV/EREV约450万辆·EREV增速>80%·理想以一己之力带火增程',s4:'很多人以为纯电会快速取代插混，但现实是插混(尤其增程)增长远超纯电。',d1:'🔧 技术路线 ★★★☆☆ 纯电效率更高，插混消除里程焦虑',d2:'🌍 海外纯电为主，中国是增程/插混最大市场',d3:'🏢 理想(增程定义者)·比亚迪(DMi)·问界(增程)',d4:'🏗️ 增程适合长途少/有家充的用户，纯电适合日常通勤',d5:'🎯 2026-2027随着超快充普及，纯电占比可能回升'},
+    {id:'ov4',icon:'🌍',title:'出口与全球化',s1:'2025年中国汽车出口约580万辆，其中NEV约200万辆+。但面临欧美关税壁垒。',s2:'就像当年的日本车打入美国——现在是"中国车出海"的重复剧本。',s3:'NEV出口约200万+辆·EU加征17%-35%关税·美国100%关税·比亚迪匈牙利建厂',s4:'很多人觉得出口受阻=出海失败，实际中国车企在东南亚、南美、中东增长极快。',d1:'🔧 出海壁垒 ★★★★☆ 关税/认证/品牌认知三座大山',d2:'🌍 东南亚(泰国印尼)市占率已超15%，南美和中东增速50%+',d3:'🏢 BYD(泰国+匈牙利)·上汽(MG欧洲)·奇瑞(俄罗斯)',d4:'🏗️ 本地化建厂是破解关税的唯一路径',d5:'🎯 2026-2028年海外产能集中释放，东南亚成第二战场'},
+    {id:'ov5',icon:'🏭',title:'产能格局',s1:'中国NEV年产能超3,000万辆，但国内需求约1,600万辆，产能利用率仅~55%。',s2:'产能足够每个中国家庭买一辆还有剩，但好产能和差产能天差地别。',s3:'总产能>3,000万辆·利用率~55%·BYD利用率>90%·二线品牌30-50%',s4:'很多人认为"产能过剩=行业很惨"，实际过剩的是低端产能，优质产能仍然紧缺。',d1:'🔧 产能结构 ★★★☆☆ 结构性过剩，低端过剩高端不足',d2:'🌍 中国产能是美国的6倍+，但高端芯片/传感器仍依赖进口',d3:'🏢 BYD(深圳/西安/长沙)·特斯拉(上海)·蔚来(合肥)',d4:'🏗️ 落后产能关停潮已开始：威马破产/天际停产/哪吒危机',d5:'🎯 2026-2027年产能大出清，剩者为王'},
+  ],
+  // 品牌格局
+  brands:[
+    {id:'br1',icon:'🚘',title:'比亚迪 BYD',s1:'中国新能源车绝对龙头，2025年国内零售约348万辆，市占率27%。垂直整合模式独步天下——电池、芯片、电机全自研。',s2:'就像当年的丰田——不一定是最好看的，但成本控制+规模化无人能及。',s3:'348万辆(国内)·全球约460万辆·营收~7,000亿·净利~400亿',s4:'很多人认为比亚迪是"低端车"品牌，但仰望U8(109万元)和腾势D9证明了高端化成功。',report:{name:'比亚迪',id:'比亚迪'},d1:'🔧 垂直整合 ★★★★★ 自研刀片电池/IGBT/SiC/智驾DiPilot',d2:'🌍 全球最大NEV制造商，东南亚+欧洲+南美全面出海',d3:'🏢 比亚迪(002594.SZ)·"电比油低"战略·荣耀版全系降价',d4:'🏗️ 产品线覆盖秦/宋/汉/唐/海鸥/海豹/腾势/方程豹/仰望',d5:'🎯 2026年目标全球500万辆+，高端化+出海双驱动'},
+    {id:'br2',icon:'🚘',title:'特斯拉 Tesla',s1:'上海超级工厂2025年交付约63万辆，全球交付约180万辆。FSD入华是最大变量。',s2:'像iPhone定义了智能手机——特斯拉定义了纯电汽车的体验标准。',s3:'中国零售约63万辆·全球~180万辆·Model Y中国SUV销冠·FSD入华推进中',s4:'很多人担心特斯拉在中国被"卷死"，但Model Y凭借品牌力+FSD预期，依然稳居高端纯电前三。',d1:'🔧 技术壁垒 ★★★★★ 4680电池/Dojo超算/端到端FSD V13',d2:'🌍 美国+中国+德国三大工厂，全球产能超250万辆',d3:'🏢 Tesla(TSLA)·FSD入华获工信部初步批准',d4:'🏗️ 取消换挡杆/转向灯拨杆→颠覆性简化设计',d5:'🎯 FSD入华时间线+廉价版Model 2决定下一阶段增长'},
+    {id:'br3',icon:'🚘',title:'吉利汽车 Geely',s1:'2025年NEV零售约120万辆，旗下极氪/领克/银河/几何多品牌发力。SEA浩瀚架构开放赋能外部品牌。',s2:'就像一个集团军——旗下各品牌覆盖6万到80万的每一个细分市场。',s3:'~120万辆NEV·极氪~22万辆·银河~35万辆·SEA架构授权smart/极星',s4:'很多人觉得吉利品牌太多分不清，但多品牌策略恰恰是它能在每个细分赛道精准打击的原因。',d1:'🔧 平台能力 ★★★★☆ SEA浩瀚架构支持A到E级全车型',d2:'🌍 收购沃尔沃/极星/路特斯/宝腾，全球化布局最深',d3:'🏢 吉利汽车(00175.HK)·极氪(ZK.NYSE)·领克',d4:'🏗️ 雷神Hi·X混动+SEA纯电双线并进',d5:'🎯 极氪独立上市后加速高端化，领克欧洲市场突破'},
+    {id:'br4',icon:'🚘',title:'理想汽车 Li Auto',s1:'增程(EREV)市场定义者，2025年交付约53万辆。L系列+纯电MEGA双线并进。自2023年起持续盈利。',s2:'像精准的狙击手——只做家庭用户这个靶心，把一件事做到极致。',s3:'~53万辆·唯一持续盈利的造车新势力·L6/L7/L8/L9/MEGA·20-50万全覆盖',s4:'很多人嘲笑理想"增程技术落后"，但用户买单的就是没有里程焦虑+大空间+高性价比。',d1:'🔧 产品定义 ★★★★★ 家庭定位+增程+彩电冰箱大沙发',d2:'🌍 理想聚焦中国，暂无出海计划',d3:'🏢 理想汽车(LI·NASDQ)·盈利的秘密：SKU极少成本控制',d4:'🏗️ MEGA纯电MPV试水，2026年推纯电SUV',d5:'🎯 纯电转型是最大变量，增程基盘能否撑住估值'},
+    {id:'br5',icon:'🚘',title:'长安汽车 Changan',s1:'央企转型代表，2025年NEV零售约88万辆。深蓝+阿维塔+启源三大品牌，阿维塔与华为/CATL深度绑定。',s2:'像老牌国企的华丽转身——有资源有渠道，缺的是技术和品牌力——找华为补上。',s3:'~88万辆NEV·深蓝~30万辆·阿维塔~15万辆·启源~25万辆',s4:'很多人觉得长安在新能源时代掉队了，但它和华为合作后阿维塔12成为高端标杆之一。',d1:'🔧 合作模式 ★★★☆☆ 华为HI模式(Avitr)+自研EPA平台',d2:'🌍 东南亚+中东出口加速',d3:'🏢 长安汽车(000625.SZ)·阿维塔(与华为/CATL合资)',d4:'🏗️ SDA架构(Smart Digital Architecture)中央计算',d5:'🎯 阿维塔能否在30万+市场站稳是关键'},
+    {id:'br6',icon:'🚘',title:'蔚来 NIO',s1:'高端纯电代表，2025年交付约25万辆。换电网络3,000+站是核心壁垒。用户社区运营独树一帜。',s2:'像豪华酒店——卖的不只是房间(车)，还有服务体验(换电+用户社区+生活方式)。',s3:'~25万辆·换电站3,000+·ET5/ES6/ET7·NIO Phone·亏损收窄',s4:'很多人批评蔚来"烧钱造换电站"，但换电确实是电动车补能最好的体验之一。',d1:'🔧 服务体系 ★★★★★ 换电+NIO House+NIO Life全方位生态',d2:'🌍 欧洲市场(挪威/德国/荷兰/瑞典)试探性进入',d3:'🏢 蔚来(NIO·NYSE)·乐道(ONVO)下沉品牌',d4:'🏗️ NT3平台+自研智驾芯片「神玑」',d5:'🎯 乐道品牌能否放量决定盈亏平衡时间'},
+    {id:'br7',icon:'🚘',title:'小鹏 XPeng',s1:'智驾先行者，XNGP城市NOA覆盖300+城市。2025年交付约25万辆。MONA子品牌下沉15万级市场。',s2:'像科技公司做车——优先把技术创新做出来，再慢慢优化成本和规模。',s3:'~25万辆·XNGP城市NOA·MONA M03爆款·飞行汽车X2',s4:'很多人觉得小鹏销量不如理想/蔚来，但它的智驾技术积累是国内第一梯队。',d1:'🔧 智驾能力 ★★★★★ XNGP端到端模型+纯视觉方案',d2:'🌍 与大众汽车技术合作(平台+智驾)',d3:'🏢 小鹏汽车(XPEV·NYSE)',d4:'🏗️ 扶摇架构+800V+一体压铸',d5:'🎯 MONA能否在15万级实现月销2万+扭转局面'},
+    {id:'br8',icon:'🚘',title:'小米汽车 Xiaomi',s1:'新入局者，2025年SU7交付约25万辆(年化)。SU7 Ultra定价52.99万，证明品牌向上能力。',s2:'像手机圈的价格屠夫杀入汽车圈——同样的配方，同样的热度。',s3:'~25万辆·SU7(21.59万起)·SU7 Ultra(52.99万)·订单超预期',s4:'很多人觉得小米造车"没技术积累"，但SU7的做工和驾驶质感远超预期。',d1:'🔧 执行力 ★★★★☆ 3年从立项到量产，速度创纪录',d2:'🌍 目前仅中国，2-3年内出海',d3:'🏢 小米集团(1810.HK)',d4:'🏗️ 自建北京工厂+9100吨一体压铸+Hyper OS',d5:'🎯 SU7之后的第二款SUV车型决定能否站稳'},
+  ],
+  // 供应链全景
+  supplychain:[
+    {id:'sc1',icon:'🔋',title:'上游 · 电池材料',s1:'碳酸锂/氢氧化锂→正极/负极/电解液/隔膜→电芯。中国控制全球约65%锂精炼和80%电池材料加工。',s2:'就像厨房和食材的关系——上游材料决定电池的性能和成本。',s3:'锂价从60万跌至~10万/吨·中国控制65%精炼·正极占电池成本~70%',s4:'很多人只关注电池品牌(宁德/比亚迪)，但电池的材料供应才是最卡脖子的环节。',d1:'🔧 壁垒 ★★★☆☆ 锂矿资源+精炼产能，中国企业主导',d2:'🌍 中国vs海外：中国精炼产能全球第一，但锂矿资源在澳洲/南美',d3:'🏢 赣锋锂业(锂)·天齐锂业(锂)·华友钴业(正极)·恩捷股份(隔膜)',d4:'🏗️ 材料成本波动直接影响电池价格和整车毛利',d5:'🎯 钠离子电池+固态电池将改变材料需求结构'},
+    {id:'sc2',icon:'🔋',title:'中游 · 电池电芯',s1:'全球动力电池龙头宁德时代市占率~38%。宁德+比亚迪合计占国内约70%。CTP/CTC技术不断降本。',s2:'电池是电动车的"发动机"——决定续航、成本和安全。',s3:'宁德时代全球~38%·比亚迪~16%·LFP电池成本$70-80/kWh·能量密度200-300Wh/kg',s4:'很多人担心电池"衰减快"，现代LFP电池循环寿命已超5,000次，可用15年以上。',report:{name:'宁德时代',id:'ningde'},d1:'🔧 壁垒 ★★★★★ 规模+工艺+专利三重壁垒，新进入者极难',d2:'🌍 中日韩三足鼎立，但中国占全球装机量65%+',d3:'🏢 CATL(300750)·比亚迪弗迪·中创新航·亿纬锂能·国轩高科',d4:'🏗️ 神行电池(4C超充)·麒麟电池(CTC)·刀片电池(CTP)',d5:'🎯 固态电池2026-2027年量产，改变游戏规则'},
+    {id:'sc3',icon:'⚡',title:'中游 · 电驱系统',s1:'电机+电控+减速器"三合一"成为主流。SiC碳化硅模块是800V平台核心，国产替代加速中。',s2:'电机相当于发动机+变速箱，但结构简单很多，故障率更低。',s3:'三合一电驱效率~90%+·SiC替代IGBT降耗5-8%·国产SiC进展迅速',s4:'很多人以为电驱技术已经很成熟，但SiC衬底60%仍依赖美国Wolfspeed。',d1:'🔧 壁垒 ★★★☆☆ SiC衬底+模块封装是卡脖子环节',d2:'🌍 中国电驱总成技术接近国际水平，差距在功率半导体',d3:'🏢 比亚迪(自研)·汇川技术·方正电机·华为DriveONE',d4:'🏗️ 800V+SiC是2025-2027年标配',d5:'🎯 分布式驱动(轮毂电机)是远期方向'},
+    {id:'sc4',icon:'🧠',title:'中游 · 智驾系统',s1:'智驾(Tier-1)格局：华为ADS第一梯队，地平线/黑芝麻/英伟达逐鹿。传感器方案从"堆料"到"纯视觉"。',s2:'智驾=车的"大脑+眼睛"，但不同厂商的"智商"差距极大。',s3:'华为ADS 3.0无图NOA·城市NOA覆盖300+城·L3路测许可发放',s4:'很多人以为有L2.5就是自动驾驶了，真正的L4/L5可能还需要5-10年。',d1:'🔧 壁垒 ★★★★★ 算法+数据+芯片闭环，华为/英伟达寡头化',d2:'🌍 中美引领全球智驾，欧洲/日本落后',d3:'🏢 华为车BU·地平线(征程)·黑芝麻(华山)·英伟达(Orin/Thor)',d4:'🏗️ 纯视觉vs激光雷达路线之争仍在持续',d5:'🎯 端到端大模型(FSD V13)是2026年智驾关键词'},
+    {id:'sc5',icon:'🏗️',title:'下游 · 整车制造',s1:'四大工艺(冲压/焊装/涂装/总装)仍是核心。一体化压铸颠覆传统冲压+焊接环节。',s2:'整车制造就像搭积木——之前是几千块小积木，现在是几块大积木。',s3:'一体压铸减少70%零件·车身减重10-15%·比亚迪CTB·特斯拉Giga Press',s4:'很多人以为电动车的制造更简单，其实智驾标定和电池PACK的工艺要求远高于燃油车。',d1:'🔧 制造壁垒 ★★★☆☆ 一体压铸+CTB是新一代核心竞争力',d2:'🌍 中国智能工厂全球领先(特斯拉上海+比亚迪),海外产能建设中',d3:'🏢 比亚迪·特斯拉·蔚来(合肥F2)·小鹏(广州)',d4:'🏗️ 产能布局：珠三角+长三角+中部三大产业集群',d5:'🎯 C2B(Cell-to-Body)将电池和车身彻底融合'},
+    {id:'sc6',icon:'🔌',title:'下游 · 充电与能源',s1:'截至2025年底中国充电桩超1,200万台，特来电/星星充电/国家电网三大运营商。换电模式蔚来主导。',s2:'充电桩就像加油站的加油站——数量够不够、快不快决定出行半径。',s3:'>1,200万台充电桩·车桩比~2.5:1·超充桩>600kW·蔚来换电站3,000+',s4:'很多人觉得充电不方便是因为"充电桩少"，其实一二线城市充电桩已经比加油站多了。',d1:'🔧 基础建设 ★★★☆☆ 一二线已完善，三四线仍有缺口',d2:'🌍 中国充电桩数量占全球60%+，远超欧美',d3:'🏢 特来电·星星充电·国家电网·NIO Power',d4:'🏗️ 800V超充+换电双轨制是中国特色',d5:'🎯 2026年车桩比目标2:1，无线充电开始试点'},
+  ],
+  // 成本结构
+  costs:[
+    {id:'co1',icon:'🔋',title:'电池包',s1:'电动车的"发动机"，占整车成本约38-42%，是最大单一成本项。LFP电池成本已降至$70-80/kWh。',s2:'就像买房子，土地(电池/智驾)成本占了房价的大头，房子越大越贵。',s3:'占整车~40%·LFP $70-80/kWh·NCM $90-110/kWh·续航600km电池约$7,000-8,000',s4:'很多人以为电池越贵越好，但LFP的成本优势和安全性让它成为主流。',d1:'🔧 降本路径：CTP→CTC→固态电池，每代降本10-20%',d2:'🌍 中国电池成本比欧洲低~30%，是核心竞争优势',d3:'🏢 CATL·比亚迪弗迪·中创新航',d4:'🏗️ 正极(70%)>人工(20%)>折旧(10%)',d5:'🎯 2027年目标$60/kWh，燃油车彻底失去成本优势'},
+    {id:'co2',icon:'⚙️',title:'电机+电控',s1:'三合一电驱总成(电机+电控+减速器)占整车约14-16%。SiC模块在800V车型中占约2-3%。',s2:'传统燃油车有发动机+变速箱几百个零件，电驱只有几十个零件。',s3:'电驱总成~15%·SiC模块占整车~2-3%·电机效率>95%',s4:'很多人低估了SiC的价值——800V+SiC可以将续航提升8-10%，相当于白送50km。',d1:'🔧 技术升级：SiC替代IGBT+油冷扁线电机+多合一集成',d2:'🌍 国产SiC追赶中，衬底仍60%依赖进口',d3:'🏢 汇川技术·比亚迪·华为·方正电机',d4:'🏗️ 下一代：分布式轮毂电机+热管理集成',d5:'🎯 2026年SiC国产化率有望达30%'},
+    {id:'co3',icon:'🧱',title:'车身结构',s1:'钢材+铝合金+一体压铸件，占整车约14-16%。一体化压铸正在颠覆传统冲压焊接工艺。',s2:'就像建筑从砖混结构升级到钢结构——更轻更强但工艺门槛更高。',s3:'车身~15%·一体压铸减重15%·铝材占比20-30%到50%',s4:'很多人以为车里"越硬越安全"，恰恰相反——好的吸能结构才是保护乘员的关键。',d1:'🔧 材料革命：高强钢→铝合金→碳纤维，每代减重10-15%',d2:'🌍 一体压铸中国领先(9000T压铸机量产)',d3:'🏢 比亚迪·文灿股份·广东鸿图·拓普集团',d4:'🏗️ 钢铝混合车身是当前主流，全铝仍是高端专属',d5:'🎯 CTC(Cell-to-Body)消除电池包与车身界限'},
+    {id:'co4',icon:'🖥️',title:'智驾系统',s1:'智驾(芯片+传感器+软件)占整车约7-9%，是增长最快的成本项。高端车型占比可达12-15%。',s2:'智驾就像请了个老司机——但他需要眼睛(传感器)、大脑(芯片)和经验(软件)。',s3:'~7-9%·入门级到高端智驾成本从3千升至3万·激光雷达降至~$500',s4:'很多人觉得智驾就是"摄像头+软件"，但华为ADS的研发投入超过100亿。',d1:'🔧 壁垒极高：算法+数据闭环要求百亿级投入',d2:'🌍 中美领先，华为ADS/英伟达Thor/FSD三强争霸',d3:'🏢 华为车BU·地平线·英伟达·禾赛科技(激光雷达)',d4:'🏗️ 纯视觉成本低(约8千)，激光雷达方案约1.5-2万',d5:'🎯 端到端大模型将降低单车智驾软件成本'},
+    {id:'co5',icon:'🛞',title:'底盘+热管理',s1:'底盘(悬架/制动/转向)占整车约9-11%。热管理在电动车中比燃油车更复杂(电池热管理+座舱空调)。',s2:'底盘决定了这辆车"好不好开"，但多数人买车时完全不在乎这一点。',s3:'底盘~10%·热管理~3-4%·空气悬架选装价~2万·热泵空调冬季省电30%',s4:'很多人只看加速性能不看底盘，但好的底盘才是日常驾驶幸福感的核心。',d1:'🔧 趋势：空气悬架下探到20万级·线控制动/转向',d2:'🌍 采埃孚/博世/大陆仍是中高端底盘Tier-1主力',d3:'🏢 保隆科技(空悬)·拓普集团·伯特利(制动)',d4:'🏗️ 热管理集成模块化是降本方向',d5:'🎯 线控底盘+滑板底盘是未来方向'},
+    {id:'co6',icon:'🪟',title:'内外饰+电子',s1:'内饰/屏幕/音响/HUD/氛围灯等占整车约7-9%。中国消费者是"屏幕爱好者"。',s2:'电动车的内饰就像手机——屏幕越大越流畅越受欢迎。',s3:'~8%·中控屏12-17寸·HUD渗透率~20%·音响从5千(普通)到3万(顶级)',s4:'很多人吐槽"大屏丑""不要大屏"，但大屏车型销量就是好。',d1:'🔧 趋势：联屏→中央大屏→AR-HUD取代仪表盘',d2:'🌍 中国消费者对屏幕/内饰的偏好远高于欧美',d3:'🏢 京东方(屏)·德赛西威(域控)·华阳集团',d4:'🏗️ 智能座舱芯片：高通8295已成主流',d5:'🎯 车内空间+座舱交互=下一竞争焦点'},
+  ],
+  // 技术前沿
+  techs:[
+    {id:'tc1',icon:'⚡',title:'800V高压平台',s1:'800V架构实现充电10分钟续航400km。2025年15-20万级车型已普及800V。SiC MOSFET替代IGBT是核心。',s2:'就像手机快充从5W到120W——800V让充电从"过夜"变成"喝杯咖啡"。',s3:'10%-80%快充~10-15min·SiC效率提升~8%·800V渗透率2025超30%',s4:'很多人以为800V只是充电快，其实它还降低了线束重量和铜耗。',d1:'🔧 技术难度 ★★★☆☆ 核心是SiC供应和热管理',d2:'🌍 中国企业普及速度领先欧美',d3:'🏢 比亚迪(全系800V)·小鹏G9·小米SU7·理想MEGA',d4:'🏗️ 需配合超充桩(>350kW)才能发挥全部潜力',d5:'🎯 2026年800V渗透率预计达50%+'},
+    {id:'tc2',icon:'🔋',title:'固态电池',s1:'半固态电池已装车(蔚来150kWh·续航1,044km)，全固态预计2027-2030年量产。能量密度目标500Wh/kg。',s2:'从液态电解质到固态——能量密度翻倍，安全性革命性提升。',s3:'蔚蓝半固态已装车·CATL凝聚态500Wh/kg·全固态目标2030·清陶/卫蓝推进中',s4:'很多人以为固态电池明年就能买到，实际上全固态至少还有3-5年。半固态是中间态。',d1:'🔧 技术难度 ★★★★★ 界面阻抗+循环寿命+成本三大难题',d2:'🌍 中日韩竞赛，丰田/三星/SKOn全力投入',d3:'🏢 CATL·卫蓝新能源·清陶能源·比亚迪',d4:'🏗️ 氧化物/硫化物/聚合物三条技术路线在PK',d5:'🎯 2027年半固态量产，2030年全固态商业化'},
+    {id:'tc3',icon:'🧠',title:'城市NOA/自动驾驶',s1:'华为ADS 3.0无图NOA已覆盖全国。端到端大模型是2025-2026年智驾最大技术变革。',s2:'就像一个老司机在学开车——刚开始要学交规(高精地图)，后来凭经验(无图NOA)。',s3:'华为ADS 3.0无图·FSD V13端到端·城市NOA覆盖300+城·L3路测许可',s4:'很多人把智驾和自动驾驶混为一谈，其实L2+的城市NOA和L4的无人驾驶是质的区别。',d1:'🔧 技术难度 ★★★★★ 端到端模型需要百万级数据闭环',d2:'🌍 中美两强，Waymo/Cruise/华为/百度/Apollo',d3:'🏢 华为·百度Apollo·小鹏·Momenta·元戎启行',d4:'🏗️ 纯视觉vs雷达融合方案各有利弊',d5:'🎯 2026年L3法规落地，城市NOA成选车标配'},
+    {id:'tc4',icon:'🏭',title:'一体化压铸',s1:'9000吨级压铸机将70+零件合并为1个。比亚迪/小鹏/小米/蔚来ET9均已采用。减重10-15%·降本20-30%。',s2:'把乐高积木变成大积木——少了很多拼接(焊接)工序。',s3:'9000吨压铸·零件从70个到1个·减重15%·降本20-30%',s4:'很多人担心一体压铸"坏了只能换整块不能修"，确实存在维修成本高的问题。',d1:'🔧 技术难度 ★★★☆☆ 设备投资大但工艺成熟度提升快',d2:'🌍 中国压铸机厂商全球领先(力劲/伊之密)',d3:'🏢 比亚迪·广东鸿图·文灿股份·力劲科技',d4:'🏗️ 压铸后地板→前机舱→整个白车身',d5:'🎯 2027年可能出现整车一体压铸(除四门两盖)'},
+    {id:'tc5',icon:'🔌',title:'V2G/车网互动',s1:'电动车作为储能单元反向供电。政策推动V2G试点，换电站参与电网调峰已商业化。',s2:'电动车不只是用电的车，还是带四个轮子的"充电宝"。',s3:'V2G试点城市20+·蔚来换电站参与电网调峰·单车可储电60-100kWh',s4:'很多人觉得V2G是"未来"，但在换电模式下(蔚来V2G)已经商业化了。',d1:'🔧 技术难度 ★★☆☆☆ 主要是标准+电网配合',d2:'🌍 中国V2G政策推进力度最大',d3:'🏢 蔚来·国家电网·南方电网·特来电',d4:'🏗️ 双向OBC(车载充电机)是硬件前提',d5:'🎯 2026年V2G补贴有望出台，改变电动车经济模型'},
+    {id:'tc6',icon:'🛞',title:'滑板底盘',s1:'上下车体解耦——底盘是标准化"滑板"，上车身可自由设计。Rivian/REE/CANO龙头。国内PIX/悠跑追赶。',s2:'造车像拼乐高——底盘(滑板)是标准基座，上面换不同的"房子"(车身)。',s3:'上下分体开发周期缩短50%·滑板底盘成本可降30%·适合商用车/物流/Robotaxi',s4:'很多人不了解滑板底盘，但它可能是共享出行和物流车的最佳平台。',d1:'🔧 技术难度 ★★★★☆ 线控转向+线控制动+热管理集成',d2:'🌍 Rivian(R1T)·REE Automotive·Canoo已量产',d3:'🏢 Rivian·REE·悠跑科技·PIX Moving',d4:'🏗️ 最早大规模应用的可能是商用车和物流车',d5:'🎯 2027-2028年乘用车滑板底盘量产'},
+  ],
+  // 行业挑战
+  challenges:[
+    {id:'ch1',icon:'💥',title:'价格战与利润压缩',s1:'2024-2025年行业价格战空前激烈，比亚迪"电比油低"全面降价，二线品牌跟进亏损。仅比亚迪和理想持续盈利。',s2:'就像电商的"百亿补贴"——对消费者是福利，对行业是淘汰赛。',s3:'比亚迪秦Plus低至7.98万·理想净利率~6%·蔚来/小鹏每卖一辆亏~5万·特斯拉毛利率降至~18%',s4:'很多人觉得价格战赢了=行业好了，实际上过度价格战压缩了研发投入，长期不利于技术进步。',d1:'🔧 价格战是市场竞争的正常阶段，预计2026-2027年触底',d2:'🌍 中国价格战烈度全球最大',d3:'🏢 比亚迪(主动降价)·特斯拉(被动跟降)·新势力(被迫应战)',d4:'🏗️ 降本100元在产品端就是100元的降维打击',d5:'🎯 尾部品牌淘汰后，价格战将回归理性'},
+    {id:'ch2',icon:'🏭',title:'产能结构性过剩',s1:'总产能>3,000万辆vs内需~1,600万辆。BYD产能利用率>90%，二线品牌30-50%。威马破产/天际停产/哪吒危机。',s2:'产能过剩就像自助餐——你吃不了那么多，但每道菜还得做。',s3:'总产能>3,000万辆·利用率~55%·过剩主要在10-20万·高端产能不足',s4:'很多人觉得产能过剩=全行业都惨，实际是结构性过剩——低端同质化产品太多、高端产品不够。',d1:'🔧 出清时间预计2026-2028年，最后存活5-8家',d2:'🌍 中国NEV车企数量(100+)远超合理范围',d3:'🏢 已出局：威马/天际/爱驰/恒大汽车·濒危：哪吒/高合',d4:'🏗️ 国企(长安/上汽/东风)NEV部门也在合并重组',d5:'🎯 2026年产能整合加速，淘汰赛进入最关键阶段'},
+    {id:'ch3',icon:'🌍',title:'关税壁垒与出海困境',s1:'EU加征17%-35.3%关税，美国100%关税，加拿大100%。中国车企被迫本地化建厂。',s2:'就像当年的日本汽车被美国"自愿出口限制"——关税越高，越逼着你本地化。',s3:'欧盟17-35%关税·美国100%·加拿大100%·BYD匈牙利建厂·上汽MG欧洲目标年销50万',s4:'很多人认为关税太高=出海没戏，但比亚迪/上汽/吉利的海外销量仍在高速增长。',d1:'🔧 破解方法：东南亚/南美/中东+本地化建厂',d2:'🌍 东南亚NEV渗透率仅~10%，增长空间巨大',d3:'🏢 BYD(泰国/匈牙利)·上汽MG(欧洲)·奇瑞(俄罗斯+拉美)',d4:'🏗️ 2026年SEA/南美将成为第二战场',d5:'🎯 欧洲建厂是长期解决方案，但2-3年才能投产'},
+    {id:'ch4',icon:'📉',title:'原材料价格波动',s1:'碳酸锂从60万/吨跌至10万/吨，波动剧烈。钴价受DRC地缘政治影响。LFP去钴化是趋势。',s2:'锂价像过山车——两年内从60万跌到10万，上游锂矿企业从暴赚到亏损。',s3:'锂价60万→10万·锂矿公司利润跌80%+·正极材料库存减值·车企签长协锁定价格',s4:'很多人认为锂价越低越好，但锂价暴跌会打击上游投资，长期反而可能供给不足。',d1:'🔧 锂价预计2026年在8-12万区间震荡',d2:'🌍 澳洲+南美锂矿供给过剩，非洲新矿在增产',d3:'🏢 赣锋锂业(一体化)·天齐锂业(泰利森)·雅化集团',d4:'🏗️ 钠离子电池(宁德/比亚迪)可规避锂价风险',d5:'🎯 2026-2027年钠离子电池商业化，降低锂依赖'},
+  ]
+};
+
+// ===== RENDER FUNCTIONS =====
+function renderCards(containerId, dataArray) {
+  const grid = document.getElementById(containerId);
+  grid.innerHTML = dataArray.map(d => `
+    <div class="card cyan" onclick="openModal('${d.id}')">
+      <div class="ci">${d.icon}</div>
+      <div class="ct">${d.title}</div>
+      <div class="cd">${d.s1.substring(0,25)}…</div>
+    </div>
+  `).join('');
+}
+
+function renderStatModals() {
+  const stats = [
+    {id:'stat1',icon:'📊',title:'2025年新能源乘用车零售1,280万辆',s1:'2025年中国新能源乘用车零售12,809,000辆，同比增长17.6%。这意味着平均每月卖出超过106万辆新能源车。',s2:'相当于每天有超过3.5万辆新能源车上路——每分钟24辆。',s3:'1,281万辆(零售)·+17.6%·月均106万辆·历史新高',s4:'很多人觉得17.6%的增速在放缓，但1,280万已经是2021年的4倍。',d1:'🔧 数据来源：乘联会(CPCA)2025年度零售数据',d2:'🌍 超过欧洲+北美新能源车销量总和',d3:'🏢 比亚迪占~27%·吉利~9.4%·长安~6.9%',d4:'🏗️ 纯电~65%/插混~35%',d5:'🎯 2026年预计保守增长15-20%，产量近1,900万辆'},
+    {id:'stat2',icon:'📈',title:'53.9%零售渗透率创新高',s1:'2025年新能源乘用车零售渗透率达到53.9%，意味着每卖出2辆新车就有1辆以上是新能源。',s2:'10年前渗透率1%，现在54%——这不是线性增长，是S曲线加速。',s3:'53.9%·2024年47.6%·连续数月>50%·预计2026>60%',s4:'很多人认为渗透率接近上限了，但参考挪威(>90%)，上限还远。',d1:'🔧 S曲线规律：渗透率从10%到50%用了3年，50%到80%可能更快',d2:'🌍 全球最高渗透率：挪威>90%/中国54%/德国25%/美国10%',d3:'🏗️ 下沉市场(三四线+农村)是下一个增长极',d4:'🎯 2026年渗透率有望突破60%'},
+    {id:'stat3',icon:'🚘',title:'比亚迪国内零售348万辆',s1:'比亚迪2025年国内新能源乘用车零售约348万辆，市占率27.2%，连续三年全国第一。',s2:'每卖出4辆新能源车，就有1辆以上是比亚迪。',s3:'348万辆·市占率27.2%·全球约460万辆·营收近万亿',s4:'很多人担心比亚迪"增长见顶"，但其海外销量(约110万辆)增速>70%。',d1:'🔧 垂直整合+规模化是比亚迪的核心竞争力',d2:'🌍 全球最大NEV制造商，出海+高端化是下一阶段',d3:'🏢 比亚迪(002594.SZ)',d4:'🏗️ 秦宋海鸥占销量~60%，腾势仰望提升品牌',d5:'🎯 2026年目标全球500万辆'},
+    {id:'stat4',icon:'💰',title:'电池占整车成本约38%',s1:'电池是新能源汽车最大单一成本项，占比约38-42%。LFP电池成本已降至$70-80/kWh。',s2:'对于电动车，电池成本就像燃油车的发动机+变速箱占整车成本的比例。',s3:'~40%·LFP $70-80/kWh·NCM $90-110/kWh·一辆车电池约$7,000',s4:'很多人以为随着技术进步电池占比会快速下降，实际下降速度比预期慢。',d1:'🔧 电池成本下降路径：CTP→CTC→固态→钠离子',d2:'🌍 中国电池成本全球最低，是核心产业优势',d3:'🏢 CATL·比亚迪弗迪',d4:'🏗️ 2027年目标$60/kWh',d5:'🎯 电池成本降到$50/kWh时，电动车全面取代燃油车'},
+  ];
+  window._statData = {};
+  stats.forEach(s => { window._statData[s.id] = s; });
+}
+
+// ===== MODAL =====
+function openModal(id) {
+  // Check stat data first
+  let d = window._statData ? window._statData[id] : null;
+  if(!d){
+    // Search in all DATA arrays
+    for(const key of ['overview','brands','supplychain','costs','techs','challenges']){
+      const found = DATA[key].find(x=>x.id===id);
+      if(found){ d=found; break; }
+    }
+  }
+  if(!d) return;
+  document.getElementById('modalTitle').textContent = d.icon + ' ' + d.title;
+  document.getElementById('modalBody').innerHTML = `
+    <div class="qgrid">
+      <div class="qc" style="border-color:#22d3ee"><div class="ql" style="color:#22d3ee">📝 一句话说清</div><div class="qt">${d.s1}</div></div>
+      <div class="qc" style="border-color:#34d399"><div class="ql" style="color:#34d399">🤔 打个比方</div><div class="qt">${d.s2}</div></div>
+      <div class="qc" style="border-color:#fb923c"><div class="ql" style="color:#fb923c">📊 必知数字</div><div class="qt">${d.s3}</div></div>
+      <div class="qc" style="border-color:#f472b6"><div class="ql" style="color:#f472b6">❌ 别搞错</div><div class="qt">${d.s4}</div></div>
+    </div>
+    <div class="tog" onclick="toggleDeep(this)">▼ 展开深度分析</div>
+    <div class="deep">
+      <div class="dsec">${d.d1}</div>
+      <div class="dsec">${d.d2}</div>
+      <div class="dsec">${d.d3}</div>
+      <div class="dsec">${d.d4}</div>
+      <div class="dsec">${d.d5}</div>
+    </div>`;
+  const reportDiv=document.getElementById('modalReport');
+  const reportLink=document.getElementById('modalReportLink');
+  if(d.report){
+    reportDiv.style.display='';
+    reportLink.href='reports/'+d.report.id+'.html';
+    reportLink.innerHTML='📄 查看报告：'+d.report.name+' →';
+  } else {
+    reportDiv.style.display='none';
+  }
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+function closeModalOutside(e) { if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+function toggleDeep(el) {
+  const deep = el.nextElementSibling;
+  if(!deep || !deep.classList.contains('deep')) return;
+  const hidden = deep.style.display==='none'||deep.style.display==='';
+  deep.style.display = hidden?'block':'none';
+  el.innerHTML = hidden?'▲ 收起深度分析':'▼ 展开深度分析';
+}
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
+
+// ===== SECTION SWITCHING =====
+function switchSection(name) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  const el = document.getElementById('tab-'+name);
+  if(el) el.classList.add('active');
+}
+
+// ===== INIT =====
+renderCards('ovGrid', DATA.overview);
+renderCards('brGrid', DATA.brands);
+renderCards('scGrid', DATA.supplychain);
+renderCards('costGrid', DATA.costs);
+renderCards('techGrid', DATA.techs);
+renderCards('chGrid', DATA.challenges);
+renderStatModals();
+/* ===== Scroll Position Persistence ===== */
+(function(){
+  const key = document.title;
+  const saved = sessionStorage.getItem('scroll_'+key);
+  if(saved) setTimeout(function(){ window.scrollTo(0, parseInt(saved,10)); }, 50);
+  var ticking=false;
+  window.addEventListener('scroll',function(){
+    if(!ticking){
+      window.requestAnimationFrame(function(){
+        sessionStorage.setItem('scroll_'+key, window.scrollY);
+        ticking=false;
+      });
+      ticking=true;
+    }
+  },{passive:true});
+})();
+</script>
+</body>
+</html>

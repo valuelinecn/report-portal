@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>浙江震元 · 完整投资研究报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;background:#0a0a1a;color:#e0e0e0;padding:14px;font-size:14px;line-height:1.6}
+h1{font-size:22px;color:#fff;margin:16px 0 4px;text-align:center}
+h2{font-size:16px;color:#4caf50;margin:20px 0 10px;border-left:3px solid #4caf50;padding-left:10px}
+h3{font-size:14px;color:#ccc;margin:14px 0 6px}
+h4{font-size:13px;color:#aaa;margin:10px 0 4px}
+.desc{font-size:12px;color:#888;margin-bottom:10px}
+.card{background:#0d1a1a;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid #1a3a3a}
+.sc-wrap{text-align:center;margin-bottom:16px}
+.score-ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(#4caf50 0deg 252deg,#333 252deg 360deg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.score-inner{width:62px;height:62px;border-radius:50%;background:#0d1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-size:24px;font-weight:bold;color:#4caf50;line-height:1}
+.score-label{font-size:10px;color:#888}
+.dim-row{display:flex;align-items:center;margin:6px 0}
+.dim-label{width:60px;font-size:12px;color:#aaa;flex-shrink:0}
+.dim-bg{flex:1;height:10px;background:#1e3e3a;border-radius:5px;margin:0 8px;overflow:hidden}
+.dim-fill{height:100%;border-radius:5px}
+.dim-sc{width:28px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0}
+.c9{background:#4caf50}.c7{background:#8bc34a}.c6{background:#ffc107}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.tbl th{background:#1e3e3a;color:#4caf50;padding:7px 5px;text-align:center;font-weight:500}
+.tbl td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e3e3a;font-size:11px}
+.tbl td:first-child{white-space:nowrap;font-size:12px}
+.tbl tr:last-child td{border-bottom:none}
+.gold{color:#4caf50;font-weight:bold}.green{color:#4caf50}.red{color:#f44336}.orange{color:#ff9800}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mi{background:#0a0a1a;border-radius:8px;padding:10px;text-align:center}
+.mv{font-size:18px;font-weight:bold;color:#fff}
+.ml{font-size:10px;color:#888;margin-top:2px}
+.hb{display:flex;align-items:flex-start;margin:4px 0;min-height:20px}
+.hl{width:72px;font-size:11px;color:#aaa;flex-shrink:0;padding-top:2px}
+.ht{flex:1;height:16px;background:#1e3e3a;border-radius:8px;overflow:visible;margin:0 6px;position:relative}
+.hf{height:16px;border-radius:8px;display:flex;align-items:center;padding-left:6px;font-size:10px;color:#fff;overflow:visible;white-space:nowrap;text-shadow:0 0 3px rgba(0,0,0,.8);min-width:0}
+.hv{font-size:10px;color:#999;white-space:nowrap;flex-shrink:0;padding-top:2px;margin-left:2px}
+.scn{display:flex;gap:6px;margin:8px 0}
+.scc{flex:1;border-radius:8px;padding:10px;text-align:center}
+.scc h4{font-size:12px;margin-bottom:4px;color:#fff}
+.scc .pct{font-size:18px;font-weight:bold}
+.scc .dt{font-size:10px;color:#ccc;margin-top:3px}
+.sc1{background:#1a3a1a;border:1px solid #2a5a2a}.sc1 .pct{color:#4caf50}
+.sc2{background:#1a2a3a;border:1px solid #2a3a5a}.sc2 .pct{color:#e53935}
+.sc3{background:#3a1a1a;border:1px solid #5a2a2a}.sc3 .pct{color:#f44336}
+.tg{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;margin:1px}
+.tgg{background:#1a3a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgr{background:#3a1a1a;color:#f44336;border:1px solid #5a2a2a}
+.tgo{background:#3a2a1a;color:#4caf50;border:1px solid #2a5a2a}
+.tgy{background:#222;color:#aaa;border:1px solid #333}
+.txt{padding:6px 0;font-size:13px;color:#ccc;line-height:1.7}
+.txt .dot{color:#4caf50;margin-right:4px}
+.bq{padding:10px;background:#0a0a1a;border-radius:8px;border-left:3px solid #4caf50;margin:8px 0;font-size:13px;color:#ddd;line-height:1.7}
+.cp{display:flex;align-items:center;margin:4px 0;font-size:12px}
+.cp .nm{width:88px;color:#aaa;flex-shrink:0}
+.cp .bt{flex:1;height:14px;background:#1e3e3a;border-radius:7px;overflow:hidden;margin:0 6px}
+.cp .bf{height:100%;border-radius:7px}
+.cp .vl{width:48px;text-align:right;font-weight:bold;flex-shrink:0}
+.footer{text-align:center;font-size:10px;color:#555;margin:24px 0 10px;padding-top:14px;border-top:1px solid #1e3e3a;line-height:1.8}
+.sticky-top{position:sticky;top:0;z-index:10;background:#0a0a1a;padding:8px 0;border-bottom:1px solid #1e3e3a;margin-bottom:12px}
+.toc{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:10px;color:#888;text-decoration:none;padding:3px 7px;border-radius:10px;border:1px solid #333;white-space:nowrap;flex-shrink:0}
+.toc a:active{background:#1e3e3a;color:#4caf50}
+
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+  <div style="text-align:center;font-size:11px;color:#555;margin-bottom:4px;">📌 点击跳转</div>
+  <div class="toc">
+    <a href="#s0">评分</a><a href="#s1">综合评价</a><a href="#s2">M1商业模式</a>
+    <a href="#s3">M2壁垒</a><a href="#s4">M3管理层</a><a href="#s5">M4财务</a>
+    <a href="#s6">M5成本结构</a><a href="#s7">M6估值</a><a href="#s8">M7市占率</a>
+    <a href="#s9">M8催化剂</a><a href="#s10">M9预期差</a><a href="#s11">M10风险</a>
+    <a href="#s12">综合评级</a><a href="#s13">附录</a>
+  </div>
+</div>
+
+<div id="s0" class="sc-wrap">
+  <div class="score-ring"><div class="score-inner"><div class="score-num">4.8</div><div class="score-label">/10</div></div></div>
+  <h1 style="margin-top:4px;">浙江震元 <span style="font-size:14px;color:#888;font-weight:400;">000705.SZ</span></h1>
+  <div class="desc">区域医药龙头，百年品牌底蕴，但盈利持续恶化，转型尚需时日</div>
+</div>
+
+<div id="s-mcap" class="card">
+  <h2>市值走势</h2>
+  <div class="desc">上市以来市值变化（不复权收盘价 × 总股本）· 鼠标滚轮缩放 · 拖拽平移 · <span style="color:#888;font-size:11px;">每周五17:00更新</span></div>
+
+  <div class="mcap-btns">
+    <button class="mcap-btn active" data-period="week">周线</button>
+    <button class="mcap-btn" data-period="month">月线</button>
+    <button class="mcap-btn" data-period="year">年线</button>
+  </div>
+
+  <div class="mcap-chart-wrap">
+    <div class="mcap-tooltip" id="mcapTooltip"></div>
+    <svg id="mcapSvg" width="100%" height="380"></svg>
+  </div>
+
+  <div class="mcap-info">
+    当前市值：<span class="mcap-v" id="mcapCurrent">--</span> 亿 ·
+    历史最高：<span class="mcap-v" id="mcapHigh">--</span> 亿 ·
+    历史最低：<span class="mcap-v" id="mcapLow">--</span> 亿 ·
+    总股本：<span class="mcap-v" id="mcapShares">3.3412</span> 亿股
+  </div>
+</div>
+
+<div id="s-financial" class="card" style="overflow-x:auto;margin-top:16px">
+  <h2>历年财务数据</h2>
+  <div class="desc">最近10年财务指标 · <span style="color:#4caf50">绿色=增长>30%</span> · <span style="color:#f0a030">橙色=同比下降</span> · <span style="color:#e74c3c">红色=负值/降幅>20%</span></div>
+  <style>
+  .fin-table{width:100%;border-collapse:collapse;font-size:11px}
+  .fin-table th{background:#1e1e3a;color:#ffc107;padding:7px 5px;text-align:center;font-weight:500;white-space:nowrap}
+  .fin-table td{padding:6px 5px;text-align:center;border-bottom:1px solid #1e1e3a;white-space:nowrap}
+  .fin-table tr:hover td{background:#1a1a3a}
+  .fin-table td:first-child{text-align:left;font-weight:500;position:sticky;left:0;background:#0a0a1a;z-index:1}
+  .fin-table tr:hover td:first-child{background:#1a1a2a}
+  .fin-table td.na{color:#555}
+  .fin-table td.pos{color:#4caf50;font-weight:600}
+  .fin-table td.neg{color:#e74c3c;font-weight:600}
+  .fin-table td.warn{color:#f0a030;font-weight:600}
+  .fin-table td.slight{color:#8bc34a;font-weight:600}
+  .fin-light .fin-table th{background:#d8d4c8;color:#8b6914}
+  .fin-light .fin-table td{border-bottom-color:#d8d4c8}
+  .fin-light .fin-table tr:hover td{background:#e8e4dc}
+  .fin-light .fin-table td:first-child{background:#f4f1ea}
+  .fin-light .fin-table tr:hover td:first-child{background:#e8e4dc}
+  .fin-light .fin-table td.pos{color:#2e7d32!important}
+  .fin-light .fin-table td.neg{color:#c0392b!important}
+  .fin-light .fin-table td.warn{color:#b8860b!important}
+  .fin-light .fin-table td.slight{color:#6d8b2b!important}
+ </style>
+  <table class="fin-table">
+<thead><tr><th>指标</th><th>2025</th><th>2024</th><th>2023</th><th>2022</th><th>2021</th><th>2020</th><th>2019</th><th>2018</th><th>2017</th><th>2016</th></tr></thead>
+<tr><td>每股营业收入(元)</td><td class="neg">6.81</td><td class="warn">11.20</td><td class="warn">12.29</td><td class="slight">12.41</td><td class="slight">10.81</td><td class="slight">10.30</td><td class="slight">9.71</td><td class="slight">8.55</td><td class="slight">7.96</td><td>7.53</td></tr>
+<tr><td>每股经营现金流(元)</td><td class="neg">0.12</td><td class="warn">0.23</td><td class="pos">0.27</td><td class="neg">-0.06</td><td class="neg">0.22</td><td class="pos">0.46</td><td class="pos">0.35</td><td class="neg">0.08</td><td class="neg">0.15</td><td>0.35</td></tr>
+<tr><td>每股净利润(元)</td><td class="neg">0.07</td><td class="neg">0.10</td><td class="slight">0.24</td><td class="slight">0.23</td><td class="warn">0.23</td><td class="neg">0.27</td><td class="pos">0.63</td><td class="slight">0.21</td><td class="slight">0.18</td><td>0.14</td></tr>
+<tr><td>每股净资产(元)</td><td class="slight">5.91</td><td class="warn">5.87</td><td class="slight">5.91</td><td class="slight">5.76</td><td class="slight">5.55</td><td class="slight">5.21</td><td class="slight">5.06</td><td class="slight">4.26</td><td class="slight">4.10</td><td>3.87</td></tr>
+<tr><td>总股本(亿股)</td><td class="slight">3.3412</td><td class="slight">3.3412</td><td class="slight">3.3412</td><td class="slight">3.3412</td><td class="slight">3.3412</td><td class="slight">3.3412</td><td class="slight">3.3412</td><td class="slight">3.3412</td><td class="slight">3.2400</td><td>3.2400</td></tr>
+<tr><td>营业收入(亿元)</td><td class="neg">22.76</td><td class="warn">37.41</td><td class="warn">41.06</td><td class="slight">41.45</td><td class="slight">36.12</td><td class="slight">34.40</td><td class="slight">32.43</td><td class="slight">28.58</td><td class="slight">25.78</td><td>24.40</td></tr>
+<tr><td>毛利率(%)</td><td class="pos">24.94</td><td class="slight">18.81</td><td class="slight">18.68</td><td class="warn">18.20</td><td class="warn">19.63</td><td class="slight">21.40</td><td class="slight">21.35</td><td class="slight">20.67</td><td class="slight">16.62</td><td>14.37</td></tr>
+<tr><td>净利润(亿元)</td><td class="neg">0.23</td><td class="neg">0.35</td><td class="slight">0.82</td><td class="slight">0.78</td><td class="warn">0.77</td><td class="neg">0.89</td><td class="pos">2.12</td><td class="slight">0.71</td><td class="pos">0.61</td><td>0.45</td></tr>
+<tr><td>净利润率(%)</td><td class="slight">1.00</td><td class="neg">0.93</td><td class="slight">1.99</td><td class="warn">1.88</td><td class="warn">2.14</td><td class="neg">2.60</td><td class="pos">6.52</td><td class="slight">2.48</td><td class="slight">2.37</td><td>1.86</td></tr>
+<tr><td>ROE(%)</td><td class="neg">1.16</td><td class="neg">1.76</td><td class="slight">4.19</td><td class="warn">4.13</td><td class="warn">4.33</td><td class="neg">5.21</td><td class="pos">13.36</td><td class="slight">5.08</td><td class="pos">4.59</td><td>3.53</td></tr>
+</table>
+</div>
+
+<style>
+.mcap-btns{display:flex;gap:6px;margin:8px 0}
+.mcap-btn{flex:1;padding:6px 0;border:1px solid #333;background:#1e3e3a;color:#888;border-radius:6px;cursor:pointer;font-size:12px;text-align:center;transition:all .2s}
+.mcap-btn:hover{border-color:#4caf50;color:#4caf50}
+.mcap-btn.active{background:#4caf50;color:#0a0a1a;border-color:#4caf50;font-weight:bold}
+.mcap-chart-wrap{position:relative;width:100%;border-radius:8px;background:#0d0d20;border:1px solid #1e3e3a}
+.mcap-chart-wrap svg{display:block}
+.mcap-tooltip{position:absolute;display:none;background:rgba(10,10,26,.92);border:1px solid #4caf50;border-radius:6px;padding:6px 10px;font-size:12px;color:#fff;pointer-events:none;z-index:10;white-space:nowrap;transform:translate(-50%,-110%)}
+.mcap-tooltip .tt-date{color:#888;font-size:10px}
+.mcap-tooltip .tt-val{color:#4caf50;font-weight:bold}
+.mcap-info{text-align:center;font-size:12px;color:#888;margin-top:8px;padding:6px;background:#0d0d20;border-radius:6px}
+.mcap-v{color:#4caf50;font-weight:bold}
+.mcap-axis path,.mcap-axis line{stroke:#333;stroke-width:1}
+.mcap-axis text{fill:#666;font-size:10px}
+.mcap-grid line{stroke:#1e3e3a;stroke-width:0.5;stroke-dasharray:3,3}
+.mcap-light .mcap-btn{border-color:#c8c0b0;background:#e8e4dc;color:#707070}
+.mcap-light .mcap-btn:hover{border-color:#b8860b;color:#b8860b}
+.mcap-light .mcap-btn.active{background:#b8860b;color:#fff;border-color:#b8860b}
+.mcap-light .mcap-chart-wrap{background:#f4f1ea;border-color:#d8d4c8}
+.mcap-light .mcap-tooltip{background:rgba(255,255,255,.95);border-color:#b8860b;color:#3d3d3d}
+.mcap-light .mcap-tooltip .tt-date{color:#808080}
+.mcap-light .mcap-tooltip .tt-val{color:#b8860b}
+.mcap-light .mcap-info{background:#e8e4dc;color:#808080}
+.mcap-light .mcap-v{color:#b8860b}
+</style>
+
+<script>
+(function(){
+  'use strict';
+  var stockCode = '000705';
+  var chartData = [];
+  var viewStart = 0, viewEnd = 0;
+  var isDragging = false, dragStartX = 0, dragViewStart = 0;
+  var svg, tooltip, wrap;
+  var W = 0, H = 380;
+  var M = {top:20, right:20, bottom:35, left:65};
+
+  function init(){
+    svg = document.getElementById('mcapSvg');
+    tooltip = document.getElementById('mcapTooltip');
+    wrap = svg.parentElement;
+    svg.style.cursor = 'crosshair';
+
+    if(document.getElementById('hermes-theme-override')){
+      document.getElementById('s-mcap').classList.add('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf) sf.classList.add('fin-light');
+    }
+
+    var themeWatcher = new MutationObserver(function(){
+      var light = !!document.getElementById('hermes-theme-override');
+      var card = document.getElementById('s-mcap');
+      if(light) card.classList.add('mcap-light');
+      else card.classList.remove('mcap-light');
+      var sf = document.getElementById('s-financial');
+      if(sf){ if(light) sf.classList.add('fin-light'); else sf.classList.remove('fin-light'); }
+      if(chartData.length) render();
+    });
+    if(document.head) themeWatcher.observe(document.head, {childList:true, subtree:true});
+
+    document.querySelectorAll('.mcap-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.mcap-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        loadPeriod(btn.getAttribute('data-period'));
+      });
+    });
+
+    svg.addEventListener('wheel', onWheel, {passive:false});
+    svg.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+    svg.addEventListener('mousemove', onHover);
+    svg.addEventListener('mouseleave', function(){
+      tooltip.style.display='none';
+      var cv=svg.querySelector('#mcapCrossV');if(cv)cv.setAttribute('opacity','0');
+      var ch2=svg.querySelector('#mcapCrossH');if(ch2)ch2.setAttribute('opacity','0');
+      var cd=svg.querySelector('#mcapCrossDot');if(cd)cd.setAttribute('opacity','0');
+    });
+
+    var touchDist = 0;
+    svg.addEventListener('touchstart', function(e){
+      if(e.touches.length === 1){
+        isDragging = true; dragStartX = e.touches[0].clientX; dragViewStart = viewStart;
+      }else if(e.touches.length === 2){
+        touchDist = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+      }
+    }, {passive:true});
+    svg.addEventListener('touchmove', function(e){
+      if(e.touches.length === 1 && isDragging){
+        var dx = e.touches[0].clientX - dragStartX;
+        var range = viewEnd - viewStart;
+        if(range > 1){
+          var shift = Math.round(-dx / ((W-M.left-M.right)/range));
+          var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart + shift));
+          viewStart = ns; viewEnd = viewStart + range; render();
+        }
+        isDragging = false;
+      }else if(e.touches.length === 2){
+        var nd = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
+        if(touchDist > 0){doZoom(nd > touchDist ? 1 : -1, (e.touches[0].clientX+e.touches[1].clientX)/2);}
+        touchDist = nd;
+      }
+    }, {passive:true});
+    svg.addEventListener('touchend', function(){isDragging=false});
+    window.addEventListener('resize', function(){if(chartData.length)render()});
+    loadPeriod('week');
+  }
+
+  function getThemeColors(){
+    var light = !!document.getElementById('hermes-theme-override');
+    return {
+      line: light ? '#b8860b' : '#4caf50',
+      grid: light ? '#e0dcd0' : '#1e3e3a',
+      axisText: light ? '#999' : '#666',
+      gradTop: light ? '#b8860b' : '#4caf50',
+      gradBot: light ? '#b8860b' : '#4caf50',
+      gradTo: '0.25', gradBo: '0.01'
+    };
+  }
+
+  function loadPeriod(period){
+    var url = '../kline/' + stockCode + '_' + period + '.json?t=' + Date.now();
+    fetch(url).then(function(r){return r.json()}).then(function(data){
+      chartData = data;
+      var dw = data.length;
+      viewStart = Math.max(0, data.length - dw); viewEnd = data.length;
+      updateStats(data); render();
+    }).catch(function(e){console.error(e)});
+  }
+
+  function updateStats(data){
+    if(!data.length) return;
+    var last = data[data.length-1];
+    var high = data.reduce(function(a,b){return a.value>b.value?a:b});
+    var low = data.reduce(function(a,b){return a.value<b.value?a:b});
+    document.getElementById('mcapCurrent').textContent = last.value.toFixed(1);
+    document.getElementById('mcapHigh').textContent = high.value.toFixed(1);
+    document.getElementById('mcapLow').textContent = low.value.toFixed(1);
+  }
+
+  function render(){
+    if(!chartData.length) return;
+    var rect = wrap.getBoundingClientRect();
+    W = Math.max(300, rect.width || 600); H = 380;
+    svg.style.width = W + 'px'; svg.style.height = H + 'px';
+    var cw = W - M.left - M.right, ch = H - M.top - M.bottom;
+    if(cw <= 0 || ch <= 0) return;
+    var visible = chartData.slice(viewStart, viewEnd);
+    var n = visible.length; if(n === 0) return;
+    var minVal = Infinity, maxVal = -Infinity;
+    for(var i=0;i<n;i++){var v=visible[i].value;if(v<minVal)minVal=v;if(v>maxVal)maxVal=v;}
+    var pad = (maxVal - minVal) * 0.05 || maxVal * 0.05 || 100;
+    minVal = Math.max(0, minVal - pad); maxVal = maxVal + pad;
+    var xS = function(i){return M.left+(i/(n-1||1))*cw};
+    var yS = function(v){return M.top+ch-(v-minVal)/(maxVal-minVal)*ch};
+    var pts = '';
+    for(var i=0;i<n;i++){pts += (i===0?'':' ')+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1);}
+    var tc = getThemeColors(), h = '';
+    h += '<g class="mcap-grid">';
+    for(var gi=0;gi<=5;gi++){var gv=minVal+(maxVal-minVal)*(gi/5),gy=yS(gv);h+='<line x1="'+M.left+'" y1="'+gy.toFixed(1)+'" x2="'+(M.left+cw)+'" y2="'+gy.toFixed(1)+'" stroke="'+tc.grid+'"/>';h+='<text x="'+(M.left-8)+'" y="'+(gy+4)+'" text-anchor="end" fill="'+tc.axisText+'" font-size="10">'+fmtVal(gv)+'</text>';}
+    h += '</g><g class="mcap-axis">';
+    var ls = Math.max(1, Math.floor(n / Math.min(10, n)));
+    for(var li=0;li<n;li+=ls){var lx=xS(li);h+='<text x="'+lx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+lx.toFixed(1)+','+(H-10)+')">'+visible[li].time+'</text>';}
+    h += '<text x="'+xS(n-1).toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle" fill="'+tc.axisText+'" font-size="9" transform="rotate(-30,'+xS(n-1).toFixed(1)+','+(H-10)+')">'+visible[n-1].time+'</text></g>';
+    var fp = 'M'+M.left+','+(M.top+ch)+' '; for(var i=0;i<n;i++){fp+='L'+xS(i).toFixed(1)+','+yS(visible[i].value).toFixed(1)+' ';}
+    fp += 'L'+(M.left+cw)+','+(M.top+ch)+' Z';
+    h += '<path d="'+fp+'" fill="url(#mgG)" opacity="0.35"/>';
+    h += '<polyline points="'+pts+'" fill="none" stroke="'+tc.line+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    h += '<line id="mcapCrossV" x1="0" y1="'+M.top+'" x2="0" y2="'+(M.top+ch)+'" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<line id="mcapCrossH" x1="'+M.left+'" y1="0" x2="'+(M.left+cw)+'" y2="0" stroke="'+tc.line+'" stroke-width="1" stroke-dasharray="4,3" opacity="0" pointer-events="none"/>';
+    h += '<circle id="mcapCrossDot" cx="0" cy="0" r="4" fill="'+tc.line+'" stroke="#fff" stroke-width="1.5" opacity="0" pointer-events="none"/>';
+    var df = '<defs><linearGradient id="mgG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+tc.gradTop+'" stop-opacity="'+tc.gradTo+'"/><stop offset="100%" stop-color="'+tc.gradBot+'" stop-opacity="'+tc.gradBo+'"/></linearGradient></defs>';
+    svg.innerHTML = df + h;
+  }
+
+  function fmtVal(v){return v>=10000?(v/10000).toFixed(1)+'万亿':v.toFixed(0)+'亿';}
+
+  function doZoom(dir, cx){
+    var n = chartData.length, range = viewEnd - viewStart;
+    if(dir > 0) range = Math.max(10, Math.round(range * 0.75)); else range = Math.min(n, Math.round(range * 1.35));
+    if(range < 2) range = 2; if(range > n) range = n;
+    var rect = svg.getBoundingClientRect();
+    var mx = (cx || rect.left+rect.width/2) - rect.left - M.left;
+    var cw = W - M.left - M.right;
+    var ci = viewStart + (viewEnd-viewStart) * Math.max(0, Math.min(1, mx/cw));
+    viewStart = Math.round(ci - range/2); viewEnd = viewStart + range;
+    if(viewStart < 0){viewStart=0;viewEnd=range;} if(viewEnd>n){viewEnd=n;viewStart=n-range;}
+    render();
+  }
+
+  function onWheel(e){e.preventDefault();doZoom(e.deltaY<0?1:-1,e.clientX);}
+  function onDragStart(e){isDragging=true;dragStartX=e.clientX;dragViewStart=viewStart;svg.style.cursor='grabbing';}
+  function onDragMove(e){
+    if(!isDragging) return;
+    var dx = e.clientX - dragStartX, range = viewEnd-viewStart;
+    if(range<=1) return;
+    var cw = W-M.left-M.right; if(cw<=0) return;
+    var shift = Math.round(-dx/(cw/range));
+    var ns = Math.max(0, Math.min(chartData.length-range, dragViewStart+shift));
+    if(ns !== viewStart){viewStart=ns;viewEnd=viewStart+range;render();}
+  }
+  function onDragEnd(){isDragging=false;svg.style.cursor='crosshair';}
+
+  function onHover(e){
+    if(isDragging || !chartData.length) return;
+    var rect = svg.getBoundingClientRect();
+    var mx = e.clientX-rect.left-M.left, cw=W-M.left-M.right;
+    if(cw<=0||viewEnd-viewStart<=0) return;
+    var idx = viewStart + Math.round(mx/cw*(viewEnd-viewStart-1));
+    if(idx<0||idx>=chartData.length) return;
+    var pt = chartData[idx], ri = idx-viewStart, nn=viewEnd-viewStart;
+    var px = M.left+(ri/(nn-1||1))*cw, vis=chartData.slice(viewStart,viewEnd);
+    var minV=Infinity,maxV=-Infinity; for(var i=0;i<vis.length;i++){var v=vis[i].value;if(v<minV)minV=v;if(v>maxV)maxV=v;}
+    var p=(maxV-minV)*0.05||maxV*0.05||100; minV=Math.max(0,minV-p);maxV=maxV+p;
+    var ch=H-M.top-M.bottom, py=M.top+ch-(pt.value-minV)/(maxV-minV)*ch;
+    var cv=svg.querySelector('#mcapCrossV'),ch2=svg.querySelector('#mcapCrossH'),cd=svg.querySelector('#mcapCrossDot');
+    if(cv){cv.setAttribute('x1',px);cv.setAttribute('x2',px);cv.setAttribute('opacity','0.6');}
+    if(ch2){ch2.setAttribute('y1',py);ch2.setAttribute('y2',py);ch2.setAttribute('opacity','0.6');}
+    if(cd){cd.setAttribute('cx',px);cd.setAttribute('cy',py);cd.setAttribute('opacity','1');}
+    tooltip.innerHTML = '<span class="tt-date">'+pt.time+'</span> · 市值 <span class="tt-val">'+pt.value.toFixed(1)+'亿</span>';
+    tooltip.style.display='block'; tooltip.style.left=px+'px';
+    if(py<50){tooltip.style.top=(py+24)+'px';tooltip.style.transform='translate(-50%,0%)';}
+    else{tooltip.style.top=py+'px';tooltip.style.transform='translate(-50%,-110%)';}
+  }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+<div id="s1" class="card"><h2>一、综合评价</h2>
+  <div class="mg" style="margin-bottom:10px">
+    <div class="mi"><div class="mv" style="color:#ffc107">C+</div><div class="ml">综合评级</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107">中风险</div><div class="ml">风险等级</div></div>
+    <div class="mi"><div class="mv" style="color:#8bc34a">中低</div><div class="ml">成长弹性</div></div>
+    <div class="mi"><div class="mv" style="color:#ffc107">1.16%</div><div class="ml">ROE(2025)</div></div>
+  </div>
+  <div class="bq">商业模式核心看"零售+工业"双轮。零售端震元堂品牌在绍兴区域构建了差异化壁垒（中医坐诊+DTP药房+互联网医院），工业端制剂/原料药一体化+合成生物是未来增长引擎。批发剥离后业务结构更聚焦。</div>
+  <table class="tbl" style="margin-top:10px">
+    <tr><th style="width:100px">指标</th><th style="width:140px">内容</th><th style="width:40%">说明</th></tr>
+    <tr><td>三年预估空间</td><td>2.5-4.0亿</td><td>基于震元生物投产+制剂出口增长，2028年净利恢复至1-2亿，给予25-40x PE对应市值区间</td></tr>
+    <tr><td>核心竞争力</td><td>百年震元堂老字号+区域医药网络</td><td>绍兴区域医药流通龙头，中华老字号品牌壁垒；医药工业原料药+制剂一体化；合成生物新业务布局</td></tr>
+    <tr><td>季度监控</td><td>营收同比、毛利率趋势、经营现金流</td><td>关注批发业务剥离后营收变化、毛利率能否维持改善趋势、OCF是否为正</td></tr>
+    <tr><td>止损触发</td><td>扣非净利润连续两年为负</td><td>2025年扣非-947万，若2026年仍不能转正需重新评估转型逻辑</td></tr>
+  </table></div>
+
+<div id="s2" class="card"><h2>M1 商业模式 & 收入结构</h2>
+  <h3>核心定位</h3>
+  <div class="txt">浙江震元是绍兴区域综合性医药上市企业，主营医药流通（批发+零售）和医药工业（原料药+制剂+合成生物）。2025年批发业务引入华润医药战略投资者后出表（震元医药→华润震元，公司持股49%），导致营收大幅下降，但毛利率从18.81%提升至24.94%，反映出表低毛利批发业务后的结构改善。公司旗下百年老店"震元堂"在绍兴区域有极强品牌认知，处方药零售和DTP药房为差异化优势。</div>
+
+  <h3>分业务收入结构（2024 vs 2025）</h3>
+  <!-- 使用hl/ht/hf样式（参考M2壁垒类型评估），不要用nm/bt/bf/vl -->
+  <!-- 格式：<div class="hb"><span class="hl">缺少数据</span><div class="ht"><div class="hf" style="width:0%;background:#888;">N/A</div></div></div> -->
+  <div class="hb"><span class="hl">医药商业</span><div class="ht"><div class="hf" style="width:76%;background:#ffc107">76%</div></div><span class="hv">17.36亿</span></div>
+  <div class="hb"><span class="hl">医药工业</span><div class="ht"><div class="hf" style="width:24%;background:#8bc34a">24%</div></div><span class="hv">5.40亿</span></div>
+  <div class="hb"><span class="hl">健康服务</span><div class="ht"><div class="hf" style="width:3%;background:#888">3%</div></div><span class="hv">0.70亿</span></div>
+
+  <table class="tbl" style="margin-top:10px;">
+    <tr><th>业务线</th><th>2024年收入</th><th>2025年收入</th><th>趋势</th></tr>
+<tr><td>医药商业-批发</td><td>17.24亿</td><td>5.52亿</td><td class="red">↘️ -68%</td></tr>
+<tr><td>医药商业-零售</td><td>12.39亿</td><td>11.01亿</td><td class="warn">↘️ -11%</td></tr>
+<tr><td>医药工业-制剂</td><td>4.12亿</td><td>3.40亿</td><td class="warn">↘️ -17%</td></tr>
+<tr><td>医药工业-原料药</td><td>2.53亿</td><td>1.72亿</td><td class="red">↘️ -32%</td></tr>
+<tr><td>健康服务及其他</td><td>1.12亿</td><td>1.10亿</td><td>→ 持平</td></tr>
+</table>
+  <div class="desc" style="margin-top:6px;">注：2025年批发业务大幅下降因震元医药出表（引入华润后公司持股49%不再并表）；零售业务相对稳健，毛利率从19.35%升至13.72%（注：与业务结构变化有关），显示零售板块韧性。</div>
+
+  <h3>商业模式评估</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+    <tr><td>收入模式</td><td>中等</td><td>收入以医药流通为主（76%），批发+零售双渠道；医药工业自产原料药和制剂，有一定产业链纵深。引入华润后批发板块获得央企资源，但失去并表控制权。</td></tr>
+    <tr><td>盈利特征</td><td>偏弱</td><td>净利率不足1%（2025年1.00%），ROE仅1.16%。医药流通业务利润率极薄，工业板块毛利较高（44%）但规模小。扣非净利润2025年为-947万元。</td></tr>
+    <tr><td>竞争优势</td><td>中等偏强</td><td>区域品牌壁垒强（百年震元堂）；零售端近200位中医坐诊形成差异化；DTP药房（500+品种）和互联网医院日均3000张处方构建OMO闭环。</td></tr>
+    <tr><td>客户结构</td><td>中等</td><td>前五大客户销售占比13.44%，客户集中度适中；主要客户为公立医院（绍兴市人民医院、中医院等），回款有保障但账期较长。</td></tr>
+</table>
+
+  <h3>产业链议价权</h3>
+  <table class="tbl">
+    <tr><th>维度</th><th>评估</th><th>证据</th></tr>
+    <tr><td>对下游议价力</td><td>偏弱</td><td>下游主要为公立医院和医保定点，议价能力有限；药品集采和医保控费压低终端价格，流通环节利润空间受挤压。</td></tr>
+    <tr><td>对上游议价力</td><td>中等</td><td>前五大供应商采购占比40.60%，集中度偏高（华润、英特、华东医药、川宁生物、上药集团），但公司有自有制剂/原料药生产能力可部分对冲。</td></tr>
+    <tr><td>竞争格局</td><td>中等偏强</td><td>绍兴区域医药流通龙头，全国药品批发排名第36位；零售排名第35位。区域竞争对手（华通医药、华枫医药等）体量较小。</td></tr>
+    <tr><td>潜在替代</td><td>中等</td><td>互联网医药电商（京东健康、阿里健康）对线下零售有替代压力，但处方药和DTP药房监管壁垒高，短期冲击有限。</td></tr>
+    <tr><td>进入壁垒</td><td>中等</td><td>医药流通牌照+区域配送网络形成一定壁垒；品牌老字号和文化壁垒（非遗越医文化）难以复制。但行业集中度提升趋势下，全国龙头可能渗透区域市场。</td></tr>
+  </table>
+
+  <div class="bq">护城河窄而坚实：区域品牌壁垒（百年震元堂+非遗文化）难以复制，近200位中医坐诊的差异化服务模式构成客户粘性。但区域市场容量有限，全国龙头渗透压力持续存在。综合评分4.7/10。</div></div>
+
+<div id="s3" class="card"><h2>M2 壁垒斜率分析</h2>
+  <div class="desc">浙江震元的护城河主要来自区域品牌认知和流通网络，属"窄护城河"类型——有一定进入壁垒，但受政策（集采）和行业集中度提升的双重压力。</div>
+
+  <h3>壁垒类型评估</h3>
+  <div class="hb"><span class="hl">市占率壁垒</span><div class="ht"><div class="hf" style="width:50%;background:#ffc107">5.0</div></div></div>
+  <div class="hb"><span class="hl">客户粘性</span><div class="ht"><div class="hf" style="width:70%;background:#8bc34a">7.0</div></div></div>
+  <div class="hb"><span class="hl">规模壁垒</span><div class="ht"><div class="hf" style="width:60%;background:#ffc107">6.0</div></div></div>
+  <div class="hb"><span class="hl">技术研发</span><div class="ht"><div class="hf" style="width:40%;background:#ffc107">4.0</div></div></div>
+  <div class="hb"><span class="hl">垂直整合</span><div class="ht"><div class="hf" style="width:30%;background:#888">3.0</div></div></div>
+  <div class="hb"><span class="hl">专利壁垒</span><div class="ht"><div class="hf" style="width:30%;background:#888">3.0</div></div></div>
+
+  <div style="padding:8px;background:#0d0d20;border-radius:8px;text-align:center;margin-top:8px;">
+    <span style="color:#e53935;font-size:16px;font-weight:bold;">综合评分 4.7/10</span>
+    <span style="color:#888;font-size:12px;margin-left:6px;">窄护城河</span>
+  </div>
+
+  <h3>壁垒深度解析</h3>
+  <div class="txt">
+    <b style="color:#4caf50;">客户粘性——百年品牌+区域网络，核心优势</b><br>
+    <span class="dot">·</span> "震元堂"始创于1752年，商务部首批认定的中华老字号。震元商标为中国驰名商标，入选胡润中国最具历史文化底蕴品牌榜第39位。震元堂传统中医药文化是绍兴市非物质文化遗产。<br>
+    <span class="dot">·</span> 零售端拥有近200位中医坐诊服务，形成"名店+名医+名药"差异化模式；DTP品种500余个（含独家100余个），绍兴"越惠保"指定合作药店19个品种。<br>
+    <span class="dot">·</span> 前五大客户销售占比13.44%，集中度可控；但公立医院客户的付款周期较长，应收账款占比较高。<br><br>
+    <b style="color:#ffc107;">规模壁垒——中等优势</b><br>
+    <span class="dot">·</span> 全国药品批发排名第36位、零售排名第35位，规模中等；绍兴区域市占率领先但区域市场容量有限。<br>
+    <span class="dot">·</span> 零售端14家门店入选中国药店单店百强（综合药房），4家入选专业药房百强，单店坪效区域领先。<br>
+    <span class="dot">·</span> 批发业务引入华润后获得央企供应链资源；但医药流通行业整体毛利率低（商业12-19%），规模效应有限。<br><br>
+    <b style="color:#ffc107;">技术壁垒——中等偏弱</b><br>
+    <span class="dot">·</span> 震元制药累计发明专利24项，震元生物12项；建有省级企业研究院和博士后工作站。研发投入占营收2.15%（2025年），体量偏小。<br>
+    <span class="dot">·</span> 原料药制剂一体化有一定技术积累（部分品种通过FDA/GMP国际认证），但与头部药企差距明显。<br>
+    <span class="dot">·</span> 合成生物业务（组氨酸、酪氨酸等）处于产业化初期，S1产线2025年8月投产，产能释放需时间验证。<br><br>
+    <b style="color:#888;">垂直整合——薄弱</b><br>
+    <span class="dot">·</span> 产业链覆盖"研发-原料药-制剂-批发-零售-中医服务"，但各环节协同效果有限，批发剥离后产业链进一步缩短。<br>
+    <span class="dot">·</span> 无明显的垂直整合优势，上游原料药部分自产但大部分仍需外购。
+  </div>
+
+  <h3>护城河陷阱识别</h3>
+  <div class="txt" style="color:#f44336;">
+    <b>警惕信号：</b><br>
+    <span class="dot">·</span> 净利率不足1%，利润极薄。2024年净利润仅3473万元，2025年降至2269万元，扣非后为负。微利状态下任何负面冲击都可能直接导致亏损。<br>
+    <span class="dot">·</span> 品牌价值具有区域性——"震元堂"在绍兴地区有极高认知度，但跨区域复制能力有限。全国化扩张缺乏成功验证。<br>
+    <span class="dot">·</span> 医药流通行业集中度持续提升（两票制+集采加速淘汰小企业），全国龙头（国药、上药、华润、九州通）的规模优势可能渗透区域市场。<br>
+    <span class="dot">·</span> 互联网医疗（京东健康、阿里健康、美团买药）对区域零售药店的替代风险持续增加；门诊统筹政策推进可能改变零售药店竞争格局。
+  </div>
+
+  <div class="bq">国资背景管理层风格稳健，2024年完成批发引入华润、零售全资化、合成生物投产三大战略动作。执行力尚可，但决策效率偏低，缺乏超预期资本运作。</div>
+</div>
+
+<div id="s4" class="card"><h2>M3 管理层分析</h2>
+
+  <h3>管理层基本信息</h3>
+  <table class="tbl">
+    <tr><th>姓名</th><th>职务</th><th>任职年限</th><th>背景</th></tr>
+    <tr><td>吴海明</td><td>董事长</td><td>2016年起（9年）</td><td>历任绍兴市国资委副主任等职，国资体系出身，熟悉区域医药产业政策。</td></tr>
+    <tr><td>张誉锋</td><td>董事会秘书/财务负责人</td><td>2024年起（2年）</td><td>财务背景，曾任公司财务部副经理、经理，熟悉公司财务运营。</td></tr>
+  </table>
+  <div class="txt" style="font-size:12px;">管理层背景详见管理层信息表。管理层以国资体系内部提拔为主，对医药流通行业运营经验丰富。2024年完成批发板块引入华润战略投资、零售板块全资化、合成生物基地建设等重大战略动作。战略风格偏稳健，聚焦主业整合。2024年"改革攻坚年"主题下完成批发剥离、零售并表、合成生物投产三大动作，执行力尚可。控股股东为绍兴震元健康产业集团（国资），实际控制人为绍兴市国资委。国资背景保证经营稳定性，但决策效率可能偏低。2024年分红10派0.6元。</div>
+
+  <h3>管理层评分</h3>
+  <div class="hb"><span class="hl">战略执行力</span><div class="ht"><div class="hf" style="width:60%;background:#ffc107">6.0</div></div></div>
+  <div class="hb"><span class="hl">指引准确性</span><div class="ht"><div class="hf" style="width:50%;background:#ffc107">5.0</div></div></div>
+  <div class="hb"><span class="hl">创新能力</span><div class="ht"><div class="hf" style="width:50%;background:#ffc107">5.0</div></div></div>
+  <div class="hb"><span class="hl">股东回报</span><div class="ht"><div class="hf" style="width:40%;background:#888">4.0</div></div></div>
+
+  <div class="bq">财务恶化趋势明显：营收从41亿降至22.8亿（-44%），净利润从8200万降至2269万（-72%），扣非转负。积极因素：毛利率从18.8%升至24.9%，经营现金流持续为正。核心问题：盈利拐点何时到来。</div>
+</div>
+
+<div id="s5" class="card"><h2>M4 财务复盘 & 资本配置</h2>
+
+  <h3>核心财务指标</h3><div style="overflow-x:auto"><table class="tbl"><tr><th>年份</th><th>营收(亿)</th><th>净利(亿)</th><th>毛利率</th><th>净利率</th><th>ROE</th><th>趋势</th></tr><tr><td>2021</td><td>36.12</td><td>0.77</td><td>19.63%</td><td>2.14%</td><td>4.33%</td><td>—</td></tr>
+<tr><td>2022</td><td>41.45</td><td>0.78</td><td>18.20%</td><td>1.88%</td><td>4.13%</td><td>↗️</td></tr>
+<tr><td>2023</td><td>41.06</td><td>0.82</td><td>18.68%</td><td>1.99%</td><td>4.19%</td><td>↗️</td></tr>
+<tr><td>2024</td><td>37.41</td><td>0.35</td><td>18.81%</td><td>0.93%</td><td>1.76%</td><td>↘️</td></tr>
+<tr><td>2025</td><td>22.76</td><td>0.23</td><td>24.94%</td><td>1.00%</td><td>1.16%</td><td>↘️</td></tr>
+</table></div><h3>费用率结构（2024 vs 2025对比）</h3>
+  <table class="tbl">
+<tr><th>费用项</th><th>2024年</th><th>2025年</th><th>趋势</th></tr>
+<tr>
+<td>研发费用</td>
+<td>5,563万</td>
+<td>4,884万</td>
+<td>↘️ -12%</td>
+    </tr>
+<tr>
+<td>销售费用</td>
+<td>4.08亿</td>
+<td>3.46亿</td>
+<td>↘️ -15%</td>
+    </tr>
+<tr>
+<td>管理费用</td>
+<td>1.76亿</td>
+<td>1.46亿</td>
+<td>↘️ -17%</td>
+    </tr>
+<tr>
+<td>财务费用</td>
+<td>-368万</td>
+<td>-230万</td>
+<td>↗️ 利息收入减少</td>
+    </tr>
+  </table>
+
+  <div class="bq">成本结构中商业采购成本占主导（82%），批发剥离后工业成本占比提升（从12%到18%）。工业毛利率44%显著优于商业19%，结构改善有助综合毛利提升。但各项成本呈下降趋势（收入缩减主动降本）。</div></div>
+
+<div id="s6" class="card"><h2>M5 成本结构</h2>
+
+  <h3>成本结构</h3>
+  <div class="txt">公司成本以营业成本为主（占收入75%），其中医药商业采购成本占主导（2024年商业成本33.36亿/总成本88%）。2025年批发剥离后，工业成本占比从12%提升至18%。</div>
+  <table class="tbl">
+<tr><th>成本项目</th><th>2024年</th><th class="gold">2025年</th><th>占比</th><th>趋势</th><th>说明</th></tr>
+<tr>
+<td>营业成本-商业</td>
+<td>33.36亿</td>
+<td class="gold">18.78亿</td>
+<td>82%</td>
+<td class="red">↘️ -44%</td>
+<td>批发剥离出表致商业成本大降</td>
+    </tr>
+<tr>
+<td>营业成本-工业</td>
+<td>3.62亿</td>
+<td class="gold">3.01亿</td>
+<td>18%</td>
+<td class="warn">↘️ -17%</td>
+<td>原料药和制剂成本均下降</td>
+    </tr>
+<tr>
+<td>原材料</td>
+<td>2.15亿</td>
+<td class="gold">1.78亿</td>
+<td>~8%</td>
+<td class="warn">↘️ -17%</td>
+<td>原料药上游原料价格趋稳</td>
+    </tr>
+<tr>
+<td>人工及制造费用</td>
+<td>1.47亿</td>
+<td class="gold">1.23亿</td>
+<td>~5%</td>
+<td class="warn">↘️ -16%</td>
+<td>产能利用率下降但刚性成本仍在</td>
+    </tr>
+  </table>
+
+  <div class="bq">FCF质量一般。2024-2025年CAPEX维持高位（震元生物上虞基地），导致FCF为负。S1线投产后CAPEX有望回落，FCF有望2027年转正。PE 87x极高，PB 1.03x和PS 0.89x体现的是过渡期盈利异常。</div></div>
+
+<div id="s7" class="card"><h2>M6 FCF效率 & 估值</h2>
+
+  <h3>FCF质量</h3>
+  <table class="tbl">
+<tr><th>指标</th><th>2024年</th><th class="gold">2025年</th><th>正常化水平</th></tr>
+<tr>
+<td>经营现金流</td>
+<td>0.77亿</td>
+<td class="gold">0.40亿</td>
+<td>15-20亿</td>
+    </tr>
+<tr>
+<td>CAPEX</td>
+<td>1.08亿</td>
+<td>1.20亿</td>
+<td>0.5-1.5亿</td>
+    </tr>
+<tr>
+<td>FCF</td>
+<td>0.40亿</td>
+<td>-0.80亿</td>
+<td>0-1亿</td>
+    </tr>
+<tr>
+<td>FCF/净利润</td>
+<td>-368万</td>
+<td>-230万</td>
+<td>↗️ 利息收入减少</td>
+    </tr>
+  </table>
+  <div class="txt">2024年经营现金流7609万，CAPEX约1.08亿（主要在震元生物上虞基地建设），FCF为负。2025年经营现金流4063万（下降46.6%），CAPEX仍高但S1产线投产后有望逐步收窄。批发业务剥离改善营运资本结构。当前FCF质量一般，投资性现金流出大于经营流入。</div>
+
+  <h3>估值指标</h3><table class="tbl"><tr><th>指标</th><th>当前值</th><th>历史区间</th><th>评估</th></tr><tr><td>PE(TTM)</td><td>86.9x</td><td>23-97x</td><td class="orange">偏高（盈利低谷）</td></tr><tr><td>PB</td><td>1.03x</td><td>0.9-3.5x</td><td class="green">偏低</td></tr><tr><td>PS(TTM)</td><td>0.89x</td><td>0.5-1.2x</td><td class="green">合理偏低</td></tr></table><h3>PE同行对比（TTM）</h3>
+  
+<div class="hb"><span class="hl">浙江震元</span><div class="ht"><div class="hf" style="width:87%;background:#ffc107">86.9x</div></div></div>
+<div class="hb"><span class="hl">国药一致</span><div class="ht"><div class="hf" style="width:11%;background:#4caf50">10.9x</div></div></div>
+<div class="hb"><span class="hl">上海医药</span><div class="ht"><div class="hf" style="width:13%;background:#4caf50">13.2x</div></div></div>
+<div class="hb"><span class="hl">九州通</span><div class="ht"><div class="hf" style="width:12%;background:#4caf50">12.5x</div></div></div>
+<div class="hb"><span class="hl">老百姓</span><div class="ht"><div class="hf" style="width:19%;background:#8bc34a">18.6x</div></div></div>
+  <div class="desc" style="margin-top:6px;">📌 浙江震元PE(TTM)高达87x，远高于纯流通企业（10-13x）和零售企业（15-20x），主要因2025年净利润仅2269万元（扣非为负）。高PE反映的是盈利微薄而非成长溢价，PB仅1.03x接近净资产，PS 0.89x相对合理。市场用PB/PS而非PE来估值。</div>
+
+  <div class="bq">绍兴区域零售市占率约22%，批发排名全国第36位。竞争格局稳定（区域对手弱于震元），但全国龙头渗透风险需关注。行业集中度提升趋势下区域龙头要么做大要么被收购。</div></div>
+
+<div id="s8" class="card"><h2>M7 增量市占率 & 行业终局</h2>
+
+  <h3>行业空间</h3>
+  <table class="tbl">
+<tr><th>市场</th><th>规模（2025E）</th><th>增速</th><th>浙江震元出货/份额</th><th>市占率</th></tr>
+<tr>
+<td>医药流通（绍兴区域）</td>
+<td>~150亿</td>
+<td>~3%</td>
+<td>~17亿（商业）</td>
+<td>~11%</td>
+    </tr>
+<tr>
+<td>医药零售（绍兴区域）</td>
+<td>~50亿</td>
+<td>~5%</td>
+<td>~11亿（零售）</td>
+<td>~22%</td>
+    </tr>
+<tr>
+<td>原料药/制剂（全国）</td>
+<td>>9000亿</td>
+<td>~5%</td>
+<td>~5.4亿（工业）</td>
+<td><0.1%</td>
+    </tr>
+  </table>
+
+  <h3>竞争态势</h3>
+  <table class="tbl">
+    <tr><th>竞争对手</th><th>竞争维度</th><th style="width:40%">公司相对优势</th></tr>
+    <tr><td>国药控股</td><td>全国批发</td><td>全国龙头，规模碾压；但区域渗透深度不如震元</td></tr>
+    <tr><td>华润医药</td><td>全国批发/区域合作</td><td>已战略入股震元批发板块（华润震元），形成合作而非直接竞争</td></tr>
+    <tr><td>浙江华通医药</td><td>区域零售</td><td>绍兴本地零售竞争者，门店体量和品牌影响力远不及震元堂</td></tr>
+    <tr><td>九州通</td><td>全国批发</td><td>震元核心竞争力是百年品牌+区域深度服务，浙江震元以DTP药房+中医坐诊+互联网医院构建差异化零售生态，避其锋芒</td></tr>
+  </table>
+
+  <h3>行业终局思考</h3>
+  <div class="txt">从行业终局看，医药流通行业将呈现"全国龙头+区域深耕"的两层格局。浙江震元的出路在于：①做深绍兴区域零售（震元堂品牌+中医服务壁垒难以被电商替代）；②医药工业板块做大做强（制剂+原料药+合成生物），从流通企业转型为工商一体化的区域医药集团。批发板块引入华润并出表后，公司自主可控的业务聚焦在零售+工业，路径更加清晰。关键变量：合成生物业务（组氨酸等）能否在3年内实现盈亏平衡。</div>
+
+  <div class="bq">催化剂时间表清晰：2026年S1产能爬坡→2027年合成生物产品认证+原料药项目投产→2027-2028年仿制药获批。关键验证节点：2026H2合成生物收入贡献。业绩预测偏保守（基准2028年35亿）。</div></div>
+
+<div id="s9" class="card"><h2>M8 三年资本计划 & 催化剂</h2>
+
+  <h3>催化剂时间表</h3>
+  <table class="tbl">
+<tr><th style="width:80px">时间</th><th style="width:30%">事件</th><th style="width:40%">预期影响</th></tr>
+<tr>
+<td>2026-2027</td>
+<td>震元生物上虞基地产能爬坡</td>
+<td class="green">S1产线已投产，S2线建设中，贡献增量收入</td>
+    </tr>
+<tr>
+<td>2027</td>
+<td>合成生物产品（组氨酸）获国内外认证</td>
+<td class="green">打开食品/饲料添加剂市场，有望3-5亿收入</td>
+    </tr>
+<tr>
+<td>2027-2028</td>
+<td>震元制药原料药集聚提升项目投产</td>
+<td class="green">原料药产能扩张+制剂出口增长改善盈利</td>
+    </tr>
+<tr>
+<td>2027-2028</td>
+<td>制剂新品种获生产批件（2-3个仿制药）</td>
+<td>增加销售和利润增长点</td>
+    </tr>
+  </table>
+
+  <h3>三年业绩预测</h3>
+  <table class="tbl">
+<tr><th>情景</th><th>2026E</th><th>2027E</th><th>2028E</th><th>毛利率趋势</th></tr>
+<tr>
+<td class="green">乐观</td>
+<td>营收28亿</td>
+<td>营收35亿</td>
+<td>营收42亿</td>
+<td>毛利率28→30%</td>
+    </tr>
+<tr>
+<td class="gold">基准</td>
+<td>营收25亿</td>
+<td>营收30亿</td>
+<td>营收35亿</td>
+<td>毛利率26→28%</td>
+    </tr>
+<tr>
+<td class="red">悲观</td>
+<td>22亿</td>
+<td>24亿</td>
+<td>26亿</td>
+<td>毛利率24→25%</td>
+    </tr>
+  </table>
+
+  <div class="bq">最大预期差：市场过度关注批发剥离导致营收大降，忽略了毛利率改善和工业端合成生物的新增长逻辑。当前估值（PB 1.03x）已反映最悲观预期，任何正面催化都可能触发估值修复。</div></div>
+
+<div id="s10" class="card"><h2>M9 预期差 & 市场共识</h2>
+
+  <table class="tbl" style="table-layout:fixed;width:100%;">
+<colgroup><col style="width:60px"><col style="width:100px"><col style="width:40%"><col style="width:50px"></colgroup>
+<tr><th style="width:60px">议题</th><th style="width:100px">市场共识</th><th style="width:40%">独立判断</th><th style="width:50px">方向</th></tr>
+<tr>
+<td style="word-break:break-word;white-space:normal;">批发剥离影响</td>
+<td style="color:#888;">营收骤降39%，认为主业崩塌</td>
+<td style="color:#4caf50;">出表后毛利率从18.8%→24.9%，华润资源赋能长期有利</td>
+<td>超预期</td>
+    </tr>
+<tr>
+<td style="word-break:break-word;white-space:normal;">合成生物前景</td>
+<td style="color:#888;">中短期难见成果，概念大于实质</td>
+<td style="color:#888;">S1已投产但需2-3年爬坡验证，中长期看好</td>
+<td>关注</td>
+    </tr>
+<tr>
+<td style="word-break:break-word;white-space:normal;">盈利拐点</td>
+<td style="color:#888;">2026年扣非仍难扭亏</td>
+<td style="color:#4caf50;">降本+工业改善有望2026年扣非转正</td>
+<td>改善</td>
+    </tr>
+<tr>
+<td style="word-break:break-word;white-space:normal;">区域市场容量</td>
+<td style="color:#888;">绍兴市场已饱和，成长空间有限</td>
+<td style="color:#4caf50;">零售渗透率仍有空间+合成生物打开全国市场</td>
+<td>超预期</td>
+    </tr>
+<tr>
+<td style="word-break:break-word;white-space:normal;">老字号品牌价值</td>
+<td style="color:#888;">品牌价值被电商削弱</td>
+<td style="color:#4caf50;">中医药非遗+中医坐诊线上不可替代</td>
+<td>超预期</td>
+    </tr>
+  </table>
+
+  <div class="bq">核心风险在盈利恶化（扣非为负），其次是合成生物商业化不确定性和区域市场天花板。财务造假/商誉/大股东减持等传统风险极低。对抗脆弱性的最好保护是足够分散的仓位和明确的止损标准。</div></div>
+
+<div id="s11" class="card"><h2>M10 Pre-mortem & 核心风险</h2>
+
+  <h3>风险类型</h3>
+  <table class="tbl">
+<tr><th style="width:80px">风险类型</th><th>描述</th><th style="width:50px">概率</th><th style="width:40%">预警信号</th></tr>
+<tr>
+<td>行业政策</td>
+<td>集采扩面、医保控费压力加大，压缩流通和工业利润空间</td>
+<td>中</td>
+<td>集采中标品种价格降幅超预期</td>
+    </tr>
+<tr>
+<td>盈利恶化</td>
+<td>扣非净利润连续两年为负，主业盈利持续恶化</td>
+<td>高</td>
+<td>2026年扣非仍为负则触发止损</td>
+    </tr>
+<tr>
+<td>合成生物风险</td>
+<td>合成生物S2产线建设延期或产品认证受阻</td>
+<td>中</td>
+<td>上虞基地产能利用率低于30%</td>
+    </tr>
+<tr>
+<td>区域依赖</td>
+<td>收入高度依赖绍兴区域市场，区域经济下行冲击大</td>
+<td>中</td>
+<td>绍兴区外收入占比持续低于5%</td>
+    </tr>
+<tr>
+<td>应收账款</td>
+<td>公立医院客户账期长，应收账款占比较高</td>
+<td>中低</td>
+<td>应收账款周转天数持续增加</td>
+    </tr>
+  </table>
+
+  <h3>敏感性分析</h3><table class="tbl"><tr><th>压力情景</th><th>净利影响</th><th>股价压力</th></tr><tr><td>营收下降10%</td><td>净利-2250万</td><td>-11.3%</td></tr><tr><td>毛利率下降3pct</td><td>净利-6800万</td><td>-34.1%</td></tr><tr><td>费用率上升</td><td>费用+2000万</td><td>-10.0%</td></tr><tr><td>行业下行周期</td><td>净利-1500万</td><td>-7.5%</td></tr><tr><td>竞争加剧</td><td>市占率-2pct</td><td>-5.0%</td></tr></table><h3>三情景分析</h3>
+  <div class="scn">
+    <div class="scc sc1"><h4>✅ 乐观</h4><div class="pct">14-18元</div><div class="dt">+80~130%<br>合成生物投产超预期+工业利润恢复，给35x PE</div></div>
+    <div class="scc sc2"><h4>🟡 中性</h4><div class="pct">9-12元</div><div class="dt">+15~55%<br>零售稳健+工业改善，PB回归1.5-2x</div></div>
+    <div class="scc sc3"><h4>🔴 悲观</h4><div class="pct">5-7元</div><div class="dt">-20~+10%<br>盈利持续恶化，PB跌至0.8x附近</div></div>
+  </div>
+
+  <h3>避雷清单</h3><table class="tbl"><tr><th>检查项</th><th>结果</th></tr><tr><td>是否存在商誉减值风险</td><td class="green">商誉规模小，风险低</td></tr><tr><td>大股东是否持续减持</td><td class="green">控股股东国资背景，持股稳定</td></tr><tr><td>财务造假信号</td><td class="green">容诚审计标准意见，OCF持续为正</td></tr><tr><td>现金流是否持续为负</td><td class="green">经营现金流连续多年为正（2024年7609万）</td></tr><tr><td>是否有未决诉讼</td><td class="green">无重大未决诉讼</td></tr></table>
+  <div style="padding:10px;background:#1a3a1a;border-radius:8px;text-align:center;margin-top:8px;border:1px solid #2a5a2a;">
+    <span style="color:#4caf50;">✅ 财务风险整体可控。核心风险：盈利持续恶化（扣非为负），需关注2026年能否扭亏。</span>
+  </div>
+
+  <h3>清算价值</h3>
+  <table class="tbl">
+    <tr><th>资产项</th><th>账面价值</th><th>清算价值</th></tr>
+    <tr><td>货币资金</td><td>5.8亿</td><td class="gold">5.8亿</td></tr>
+    <tr><td>应收账款</td><td>4.5亿</td><td>2.7亿（60%回收率）</td></tr>
+    <tr><td>存货</td><td>3.2亿</td><td>1.9亿（60%变现率）</td></tr>
+    <tr><td>固定资产</td><td>4.8亿</td><td>2.4亿（50%折价）</td></tr>
+    <tr><td class="gold">合计</td><td>18.3亿</td><td>12.8亿</td></tr>
+  </table>
+  <div class="txt">按账面净资产19.75亿计，PB约1.03x。清算价值估计约12.8亿（对应每股约3.8元），当前股价约8元，高于清算价值约1倍。这反映市场对其持续经营价值（品牌+网络+合成生物期权）的认可。</div>
+
+  <div class="bq">总体判断：困境反转型企业。零售端品牌护城河稳固提供下限保护，合成生物提供向上弹性。当前估值反映悲观预期，但右侧信号（扣非转正）出现前只能小仓位博弈。安全边际一般，清算支撑约3.8元/股。</div></div>
+
+<div id="s12" class="card"><h2>六、综合评级 & 最终结论</h2>
+  <h3>六维评分</h3>
+  <!-- 替换时禁止用f-string！Python f-string会把{{}}转义为{}，导致花括号残留。
+       正确写法：c.replace('', 'width:70%') -->
+  <div class="hb"><span class="hl">商业模式</span><div class="ht"><div class="hf c7" style="width:65%;background:#8bc34a">6.5</div></div></div>
+  <div class="hb"><span class="hl">护城河</span><div class="ht"><div class="hf c7" style="width:50%;background:#ffc107">5.0</div></div></div>
+  <div class="hb"><span class="hl">管理层</span><div class="ht"><div class="hf c7" style="width:55%;background:#ffc107">5.5</div></div></div>
+  <div class="hb"><span class="hl">财务健康</span><div class="ht"><div class="hf c6" style="width:40%;background:#ffc107">4.0</div></div></div>
+  <div class="hb"><span class="hl">估值</span><div class="ht"><div class="hf c6" style="width:65%;background:#8bc34a">6.5</div></div></div>
+  <div class="hb"><span class="hl">成长性</span><div class="ht"><div class="hf c7" style="width:45%;background:#ffc107">4.5</div></div></div>
+  <h3>核心亮点</h3>
+  <div class="txt"><span class="dot">●</span><b>百年品牌+区域零售护城河</b>震元堂品牌始创1752年（中华老字号），绍兴市非遗中医文化。200位中医坐诊+DTP500+品种+互联网日均3000处方，构筑差异化零售壁垒。</div>
+  <div class="txt"><span class="dot">●</span><b>合成生物布局打开第二增长曲线</b>震元生物上虞基地S1产线2025年8月投产，布局组氨酸等高附加值产品，潜在百亿级食品/饲料添加剂市场。与中科院等顶级机构合作。</div>
+  <div class="txt"><span class="dot">●</span><b>批发引入华润实现战略减负</b>批发板块引入华润医药并出表（持股49%），不再并表后毛利率从18.8%大幅提升至24.9%，资产结构优化。</div>
+  <h3>核心风险</h3>
+  <div class="txt"><span class="dot">●</span><b>盈利能力：</b>净利率不足1%，扣非净利润2025年-947万元。营收从2023年41亿降至2025年22.8亿（-44%），主业加速萎缩。</div>
+  <div class="txt"><span class="dot">●</span><b>转型不确定性</b>合成生物业务尚处于产业化初期，从实验室到商业化量产面临工艺放大、市场开拓、产品认证等系列风险。2-3年内难以贡献实质利润。</div>
+  <div class="txt"><span class="dot">●</span><b>区域市场天花板：</b>收入高度集中于绍兴区域，跨区域扩张乏力。全国大型医药流通企业（国药、上药、华润）渗透压力持续存在。</div>
+  <h3>价值投资理念应用</h3>
+  <table class="tbl">
+    <tr><th style="width:50px">维度</th><th style="width:100px">代表人物</th><th style="width:40%">应用分析</th></tr>
+    <tr><td>M1</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「好生意」</span></td><td>区域医药流通龙头，商业模式偏弱——利润微薄（净利率<1%），但品牌有差异化。不符合巴菲特"好生意"标准。</td></tr>
+    <tr><td>M2</td><td style="white-space:nowrap">段永平<br><span style="font-size:10px;color:#888">「差异化」</span></td><td>震元堂百年品牌有一定差异化，但护城河"窄"且受集采政策侵蚀。段永平式"差异化"不够坚实。</td></tr>
+    <tr><td>M3</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「快速增长型」</span></td><td>满足林奇"快速增长型"特征？不——营收和利润都在下滑。更适合归入"缓慢增长型"或"困境反转型"。</td></tr>
+    <tr><td>M4</td><td style="white-space:nowrap">格雷厄姆<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>PB 1.03x接近清算价值，格雷厄姆式安全边际不明显。净利润2269万对应87x PE，毫无安全边际。</td></tr>
+    <tr><td>M5</td><td style="white-space:nowrap">查理·芒格<br><span style="font-size:10px;color:#888">「护城河」</span></td><td>芒格式护城河分析：品牌价值有但区域性强；规模壁垒低；技术壁垒中等偏弱。综合评分4.7/10。</td></tr>
+    <tr><td>M6</td><td style="white-space:nowrap">约翰·邓普顿<br><span style="font-size:10px;color:#888">「逆向估值」</span></td><td>邓普顿式逆向估值：当前86.9x PE极高，但PB 1.03x和PS 0.89x显示传统估值方法下的地板。等待盈利拐点是逆向逻辑。</td></tr>
+    <tr><td>M7</td><td style="white-space:nowrap">费雪<br><span style="font-size:10px;color:#888">「成长空间」</span></td><td>费雪成长空间：零售区域市占率约22%仍有提升空间；合成生物打开百亿级新市场。成长性更多看工业端。</td></tr>
+    <tr><td>M8</td><td style="white-space:nowrap">彼得·林奇<br><span style="font-size:10px;color:#888">「催化剂驱动」</span></td><td>催化剂：震元生物产能爬坡、制剂新品种获批、原料药出口增长。2027-2028年为关键验证期。</td></tr>
+    <tr><td>M9</td><td style="white-space:nowrap">塞思·卡拉曼<br><span style="font-size:10px;color:#888">「预期差」</span></td><td>最大预期差：市场过度看空其批发剥离后的营收下滑，但忽略了毛利率改善+工业端合成生物的新增长逻辑。</td></tr>
+    <tr><td>M10</td><td style="white-space:nowrap">纳西姆·塔勒布<br><span style="font-size:10px;color:#888">「反脆弱」</span></td><td>反脆弱性弱——盈利极薄，任何负面冲击都可能导致亏损。但区域刚需属性（医药）提供了下限支撑。</td></tr>
+    <tr><td>M11</td><td style="white-space:nowrap">巴菲特<br><span style="font-size:10px;color:#888">「安全边际」</span></td><td>安全边际不足——PB 1.03x和87x PE的组合意味着要么PB继续下跌（净资产缩水）要么PE收缩（盈利改善）。清算价值每股3.8元提供远距安全边际。</td></tr>
+  </table>
+  <div class="bq" style="margin-top:12px">
+    <b>最终结论：</b>浙江震元是绍兴区域医药龙头，百年老字号品牌+医药流通/工业双轮驱动。当前盈利处于历史底部（扣非为负），批发出表后聚焦零售+工业，战略路径更加清晰。合成生物业务提供第二增长曲线期权价值。。投资逻辑：①零售端百年品牌护城河稳固（区域难以替代）；②合成生物（组氨酸等）若成功可带来10亿级收入弹性；③PB 1.03x提供下行保护。风险：盈利拐点不确定、合成生物商业化风险。适用于"困境反转+期权价值"投资框架，小仓位试探性配置
+  </div></div>
+
+<div id="s13" class="card">
+  <h2>附录</h2>
+  <div class="txt"><span class="dot">●</span>数据来源：2025年报 + fin-table API</div>
+  <div class="txt"><span class="dot">●</span>行业对比数据取自各公司2025年报/2026Q1季报，市场数据截至2026年6月12日。</div>
+  <div class="txt"><span class="dot">●</span>部分业务拆分数据为估算值，以公司年报为准。</div>
+  <div class="txt"><span class="dot">●</span>DCF估值采用简化模型，仅供内部参考，不构成投资建议。</div>
+  <div class="footer">
+    ⚠️ 声明：本内容仅供理论学习和研究练习使用，不构成投资建议，不能作为投资依据。股市有风险，投资需谨慎。<br>
+    2026.06.17 | 数据截止：2026-06-12<br>
+    浙江震元股份有限公司 · 000705.SZ..SZ
+  </div>
+</div>
+
+</body>
+</html>
