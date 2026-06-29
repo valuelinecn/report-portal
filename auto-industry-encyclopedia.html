@@ -226,9 +226,9 @@ body{
     <div class="sub">比亚迪·特斯拉·吉利·理想·蔚来·问界·长安·小鹏·小米·零跑·长城</div>
   </div>
   <div class="stat-card c3" onclick="switchSection('supplychain')">
-    <div class="num">8</div>
-    <div class="lbl">供应链核心</div>
-    <div class="sub">动力电池·智驾芯片·激光雷达·电驱·热管理</div>
+    <div class="num">18</div>
+    <div class="lbl">供应链三层拆解</div>
+    <div class="sub">上游原材料·中游零部件·下游配套</div>
   </div>
   <div class="stat-card c4" onclick="switchSection('highlights')">
     <div class="num">🔴5</div>
@@ -276,12 +276,40 @@ body{
   <div id="entGrid" class="cat-grid"></div>
 </div>
 
-<!-- ===== TAB 3: SUPPLY CHAIN =====  -->
+<!-- ===== TAB 3: SUPPLY CHAIN ===== -->
 <div id="tab-supplychain" class="section">
-  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#22d3ee;font-weight:600">← 返回产业总览</span></div>
-  <div class="section-title"><span class="dot" style="background:#34d399"></span> 🔩 供应链纵深 · 三层拆解</div>
-  <div class="section-desc">从原材料到核心零部件到总成。每层点击可查看详细内容。</div>
-  <div id="scGrid" class="sc3-grid"></div>
+  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--t4)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#34d399;font-weight:600">← 返回产业总览</span></div>
+  <div class="section-title"><span class="dot" style="background:#34d399"></span> 🔩 供应链纵深 · 一辆车是怎么造出来的</div>
+  <div class="section-desc">从矿山到整车，三层拆解新能源车的制造链条。点击任意节点查看4+5分析师解说。</div>
+  <div class="sc3-grid">
+    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#fbbf24,#d97706)"></div>
+      <h3><span style="color:#fbbf24">⛏️</span> 上游 · 原材料 <span class="pct">~30%成本</span></h3>
+      <div class="sc3-node" onclick="openModal('sc-lithium')"><h5>🪨 锂矿/碳酸锂</h5><div class="preview">电池的"盐"。天齐锂业·赣锋锂业。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-cathode')"><h5>🔵 正极材料</h5><div class="preview">三元NCM/磷酸铁锂LFP。容百·当升。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-anode')"><h5>⚫ 负极材料</h5><div class="preview">石墨/硅碳负极。贝特瑞·杉杉。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-electrolyte')"><h5>💧 电解液</h5><div class="preview">LiPF6+溶剂。天赐材料全球第一。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-separator')"><h5>📄 隔膜</h5><div class="preview">PP/PE微孔膜。恩捷股份全球第一。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-sic')"><h5>💎 SiC衬底</h5><div class="preview">碳化硅晶片。天科合达·天岳先进。</div></div>
+    </div>
+    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#34d399,#059669)"></div>
+      <h3><span style="color:#34d399">🏭</span> 中游 · 核心零部件 <span class="pct">~55%成本</span></h3>
+      <div class="sc3-node" onclick="openModal('sc-battery')"><h5>🔋 动力电池 <span class="hl-tag">🔴核心</span></h5><div class="preview">占整车成本35-40%。宁德时代·比亚迪。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-motor')"><h5>⚡ 驱动电机</h5><div class="preview">永磁同步电机。汇川·比亚迪·精进。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-ecu')"><h5>🧠 电控系统</h5><div class="preview">MCU/VCU/BMS三合一。汇川·比亚迪。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-chip')"><h5>🔲 智驾芯片 <span class="hl-tag">🔴</span></h5><div class="preview">英伟达/地平线/华为昇腾。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-lidar')"><h5>👁️ 激光雷达</h5><div class="preview">禾赛·速腾聚创。中国全球>60%。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-thermal')"><h5>🌡️ 热管理系统</h5><div class="preview">热泵+电池冷却。三花智控·银轮。</div></div>
+    </div>
+    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#3b82f6,#1d4ed8)"></div>
+      <h3><span style="color:#3b82f6">🔌</span> 下游 · 配套与服务 <span class="pct">~15%成本</span></h3>
+      <div class="sc3-node" onclick="openModal('sc-charger')"><h5>🔌 充电桩</h5><div class="preview">特来电·星星充电。中国>800万台。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-swap')"><h5>🔄 换电站</h5><div class="preview">蔚来2000+站·宁德EVOGO。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-diecast')"><h5>🏗️ 一体化压铸</h5><div class="preview">6000-9000吨压铸机。力劲·伊之密。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-body')"><h5>🚗 轻量化车身</h5><div class="preview">铝合金/碳纤维/热成型钢。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-recycle')"><h5>♻️ 电池回收</h5><div class="preview">退役电池梯次利用+材料回收。格林美。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-harness')"><h5>🔗 线束连接器</h5><div class="preview">高压线束+高速数据。立讯·中航光电。</div></div>
+    </div>
+  </div>
 </div>
 
 <!-- ===== TAB 4: HIGHLIGHTS =====  -->
@@ -468,17 +496,7 @@ const DATA = [
     d3:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 赛力斯指标</h6><p>营收¥1650亿·净利¥59.6亿(+58%)·PE 20x·毛利率28%·ROE 23.5%</p></div>',
     d4:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 产品线</h6><p>问界M5(中型) · M7(中大型) · M9(大型/50万+销冠) · M8(2025新增)</p></div>',
     d5:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 关注焦点</h6><p>华为ADS 4.0能否实现L3。华为智选生态扩大后问界是否被分流。鸿蒙智行能否成为最大智能汽车联盟。</p></div>'},
-  {id:'sc1',icon:'🔋',title:'宁德时代 CATL',tag:'全球电池之王',tagColor:'#34d399',
-    s1:'全球动力电池装机量第一(市占率38%)，连续8年全球第一。客户覆盖特斯拉/宝马/奔驰/蔚来/理想/小米等几乎所有主流车企。2025营收4650亿净利578亿。',
-    s2:'就像手机行业的高通+台积电合体——不管你是苹果还是三星，大概率用高通芯片+台积电制造。电动车也一样，不管特斯拉还是蔚来，大概率用宁德时代的电池。',
-    s3:'全球市占率38%·营收4650亿·净利578亿·PE 22x·ROE 21%·客户>50家',
-    report:{name:'宁德时代',id:'ningde'},
-    s4:'很多人以为宁德时代只是"做电池的"。实际上宁德时代是新能源产业链的"水电煤"——不仅做电池，还在布局换电(EVOGO)、储能(全球40%)、电池回收、固态电池、钠离子电池。',
-    d1:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🔧 技术矩阵</h6><p>麒麟电池 · 凝聚态电池 · 钠离子电池 · M3P · 全固态(硫化物) · 巧克力换电块(EVOGO)。</p></div>',
-    d2:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🌍 全球布局</h6><p>中国(宁德/宜宾/常州) · 德国(已投产) · 匈牙利(在建100GWh) · 印尼(镍矿一体化)。海外营收~35%。</p></div>',
-    d3:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 核心指标</h6><p>营收4650亿·净利578亿·毛利率24.5%·PE 22x·ROE 21%·全球份额38%·储能份额40%</p></div>',
-    d4:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 客户覆盖</h6><p>Tesla(最大客户) · 宝马 · 奔驰 · 大众 · 蔚来 · 理想 · 小米 · 极氪 · 阿维塔 · 丰田</p></div>',
-    d5:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 关注焦点</h6><p>固态电池能否2027年量产。匈牙利工厂海外毛利率。锂价波动——自有矿+长协锁定60%以上需求。</p></div>'},
+
   // ==== 更多整车品牌 ====
   {id:'ent8',icon:'🚙',title:'长安汽车 Changan',tag:'深蓝+启源+阿维塔',tagColor:'#3b82f6',
     s1:'老牌央企转型最坚决的新能源车企。深蓝(增程+纯电)、启源(主流插混)、阿维塔(华为Hi模式高端)三品牌齐发。与华为/宁德时代深度绑定(阿维塔CHN平台)。',
@@ -532,48 +550,12 @@ const DATA = [
     d5:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 关注焦点</h6><p>Hi4混动四驱能否大规模放量(差异化卖点)。坦克品牌出海(中东高端市场)。蜂巢能源IPO+电池外供进展。</p></div>'},
 
   // ==== 动力电池供应商 ====
-  {id:'sc2',icon:'🔌',title:'中创新航 CALB',tag:'电池第三极',tagColor:'#22d3ee',
-    s1:'中国动力电池装机量第三(仅次于宁德/比亚迪)，广汽/小鹏/零跑核心供应商。800V高压电池技术领先，全球首款"顶流"圆柱电池量产。2025港交所上市。',
-    s2:'就像"电池界的联发科"——宁德时代是高通(绝对高端)，中创新航是联发科(中高端性价比)。给那些"不想全用宁德"的车企提供了一个很好的第二选择。',
-    s3:'装机量国内第三·全球第五·广汽/小鹏/零跑核心客户·800V电池领先·港股上市',
-    s4:'很多人不了解中创新航。实际上它在800V高压电池(支持4C/5C超充)上投入巨大，是除宁德时代/比亚迪之外唯一能量产800V电池的中国企业。',
-    d1:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🔧 核心技术</h6><p>800V高压电池(4C/5C超充) · One-Stop电池 · 顶流圆柱电池 · U型电池(刀片类)。</p></div>',
-    d2:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🌍 客户布局</h6><p>广汽(最大客户/埃安系列) · 小鹏 · 零跑 · 长安深蓝 · 吉利 · 东风。正在拓展海外客户。</p></div>',
-    d3:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 核心指标</h6><p>国内装机份额~8% · 营收>¥300亿 · 毛利率~15% · 产能>100GWh(规划)</p></div>',
-    d4:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 产品线</h6><p>LFP刀片类 · 三元800V · 圆柱电池 · 储能电池</p></div>',
-    d5:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 关注焦点</h6><p>港股上市后融资能力提升。800V电池能否打入更多车企。与宁德时代的专利纠纷进展。</p></div>'},
-  {id:'sc3',icon:'⚡',title:'国轩高科 Gotion',tag:'大众背书',tagColor:'#10b981',
-    s1:'中国动力电池装机第四，大众汽车是第一大股东(持股26%)。LFP电池(磷酸铁锂)成本控制能力极强，半固态电池已装车。国际化布局最深(美国/德国/越南/泰国工厂)。',
-    s2:'就像"被大众收养的电池厂"——大众投了几百亿，要的就是让国轩成为大众全球电动化的"电池心脏"。有大众背书，海外建厂拿订单比同行容易得多。',
-    s3:'装机量国内第四·大众为第一大股东·LFP成本优势·海外工厂最多的中国电池厂',
-    s4:'很多人以为国轩只是"二线电池厂"。实际上国轩的国际化布局(美国密歇根/伊利诺伊、德国、越南、泰国)是所有中国电池厂里最多的——大众背书让它可以绕过很多贸易壁垒。',
-    d1:'<div class="d-section"><h6><span class="bar" style="background:#10b981"></span> 🔧 核心技术</h6><p>LFP电池(成本领先) · 半固态电池(已装车) · JTM电池 · 大众标准电芯(Unified Cell)。</p></div>',
-    d2:'<div class="d-section"><h6><span class="bar" style="background:#10b981"></span> 🌍 全球化</h6><p>美国(密歇根+伊利诺伊工厂) · 德国(大众萨尔茨吉特) · 越南(VinFast) · 泰国(哪吒)。</p></div>',
-    d3:'<div class="d-section"><h6><span class="bar" style="background:#10b981"></span> 核心指标</h6><p>国内装机份额~5% · 营收>¥300亿 · 大众订单2025起放量 · 全球产能规划>300GWh</p></div>',
-    d4:'<div class="d-section"><h6><span class="bar" style="background:#10b981"></span> 客户覆盖</h6><p>大众(最大/全球) · 五菱 · 哪吒 · 奇瑞 · 吉利 · VinFast · 美国Lightning eMotors</p></div>',
-    d5:'<div class="d-section"><h6><span class="bar" style="background:#10b981"></span> 关注焦点</h6><p>美国工厂能否顺利投产(政治风险)。大众全球电动化放量给国轩带来的订单弹性。半固态电池大规模量产进度。</p></div>'},
+
+
 
   // ==== 智驾与零部件 ====
-  {id:'sc4',icon:'🧭',title:'地平线 Horizon',tag:'国产智驾芯片第一',tagColor:'#3b82f6',
-    s1:'中国最大的车载AI芯片公司(征程系列)，港股市值一度超¥800亿。J6芯片(560TOPS)2025年量产，已打入比亚迪/理想/大众等主流车企。是英伟达Orin在中国市场最大的竞争对手。',
-    s2:'就像"汽车芯片界的海思"——在美国制裁+英伟达垄断的双重压力下，靠自研BPU架构+开放工具链，硬是在车规AI芯片赛道撕开了一个口子。',
-    s3:'征程6量产(560TOPS)·客户覆盖比亚迪/理想/大众·2024港股上市·市值~¥800亿',
-    s4:'很多人觉得地平线"不如英伟达"。实际上在中低阶智驾市场(10-25万车型)，地平线J3/J5性价比远超英伟达——车企不是每一款车都需要Orin的200+TOPS，J6的560TOPS对绝大多数场景已经够了。',
-    d1:'<div class="d-section"><h6><span class="bar" style="background:#3b82f6"></span> 🔧 核心技术</h6><p>BPU架构(自研) · J6系列(560TOPS) · 开放工具链(TogetheROS) · 端到端算法支持。</p></div>',
-    d2:'<div class="d-section"><h6><span class="bar" style="background:#3b82f6"></span> 🌍 客户版图</h6><p>比亚迪(全系标配J3/J5) · 理想(AD Pro) · 大众(中国合资) · 长安 · 广汽 · 上汽。2025新增海外客户。</p></div>',
-    d3:'<div class="d-section"><h6><span class="bar" style="background:#3b82f6"></span> 核心指标</h6><p>2024港股上市 · 市值~¥800亿 · 解决方案交付>500万套(累计) · 研发投入占比>50%</p></div>',
-    d4:'<div class="d-section"><h6><span class="bar" style="background:#3b82f6"></span> 产品线</h6><p>J3(中低阶) · J5(中阶) · J6(高阶560TOPS) · J6P(旗舰级) · Matrix开发平台</p></div>',
-    d5:'<div class="d-section"><h6><span class="bar" style="background:#3b82f6"></span> 关注焦点</h6><p>J6大规模量产后的口碑(比亚迪+理想是最大客户)。能否打入海外车企(大众后第二个国际客户)。端到端智驾方案能否与英伟达+华为正面竞争。</p></div>'},
-  {id:'sc5',icon:'🛰️',title:'禾赛科技 Hesai',tag:'激光雷达全球第一',tagColor:'#fbbf24',
-    s1:'全球激光雷达出货量第一(2025年>50万颗)，客户覆盖理想/小米/比亚迪/长安等主流车企。AT128(905nm)已成为行业事实标准，价格<$500推动大规模上车。',
-    s2:'就像"给每辆智能车装了一个蝙蝠的超声波系统"——360度不间断扫描，精确知道每个物体的三维坐标和速度。禾赛把激光雷达从"10万美元的科研仪器"做成了"不到500美元的车规零件"。',
-    s3:'全球出货量第一·2025>50万颗·AT128/$500以内·客户>20家车企·美股上市',
-    s4:'很多人以为激光雷达是"过渡技术"会被纯视觉替代。实际上中国所有高阶智驾方案(华为/小鹏/理想)都用了激光雷达作为安全冗余——摄像头在暴雨/逆光/黑夜会失效，激光雷达不会。',
-    d1:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🔧 核心技术</h6><p>AT128(905nm转镜方案) · AT512(超远距) · FT120(纯固态补盲) · 自研SPAD/SiPM探测器 · ASIC芯片。</p></div>',
-    d2:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🌍 客户覆盖</h6><p>理想(L系列全系标配) · 小米(SU7) · 比亚迪(天神之眼) · 长安 · 路特斯 · 集度。海外客户拓展中。</p></div>',
-    d3:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 核心指标</h6><p>2025交付>50万颗 · 营收>¥50亿 · 毛利率~40% · 美股上市(HSAI) · 研发投入>¥15亿/年</p></div>',
-    d4:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 产品线</h6><p>AT128(主雷达) · AT512(超远距300m+) · FT120(补盲) · Pandar系列(Robotaxi)</p></div>',
-    d5:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 关注焦点</h6><p>毛利率能否持续改善(规模效应)。纯固态激光雷达能否量产。海外车企订单(目前主要是中国客户)。</p></div>'},
+
+
 
 
 
@@ -621,6 +603,48 @@ const DATA = [
     d4:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🏗️ 使用范围</h6><p>新能源车智驾(每车1-3颗) · Robotaxi(4-6颗) · 机器人 · 无人机 · 智慧交通(V2X)</p></div>',
     d5:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🎯 关注焦点</h6><p>禾赛/速腾的毛利率能否转正——价格战激烈。特斯拉是否会在FSD中加入4D毫米波雷达(替代激光雷达)。激光雷达+摄像头融合方案vs纯视觉方案谁能胜出。</p></div>'},
 ];
+
+// ===== SUPPLY CHAIN MODALS =====
+function regSC(id,tag,tagBg,tagColor,title,sub,q1,q2,q3,q4,d1,d3){
+  registerModal(id,{tag,tagBg,tagColor,title,sub,q1,q2,q3,q4,d1,'',d3,'',''});
+}
+// Upstream
+regSC("sc-lithium","🪨 锂矿","rgba(251,191,36,0.12)","#fbbf24","锂矿/碳酸锂 — 电池的盐","天齐锂业·赣锋锂业·盐湖股份",
+  "动力电池最上游的原材料。2025年碳酸锂价格~10万元/吨(从60万暴跌80%)，锂资源集中在澳大利亚(锂辉石)+南美(盐湖)+中国(宜春锂云母+盐湖)。",
+  "就像做菜用的盐——电池正极材料需要锂就像菜需要盐，用量不大但没有就做不出来。",
+  "<div class=q-num>10万元/吨</div><div class=q-num-sub>2025年碳酸锂价格，从2022年60万暴跌80%</div>",
+  "很多人以为中国缺锂。实际上中国锂资源储量全球第四(盐湖+锂云母)，天齐锂业拥有全球最大锂矿Greenbushes 51%股权。",
+  "<div class=d-section><h6><span class=bar style=background:#fbbf24></span> 🔧 资源分布</h6><table><tr><td>澳大利亚</td><td>锂辉石</td><td>全球>50%</td></tr><tr><td>南美</td><td>盐湖卤水</td><td>智利/阿根廷/玻利维亚</td></tr><tr><td>中国</td><td>盐湖+锂云母</td><td>宜春/青海/西藏</td></tr></table></div>",
+  "<div class=d-section><h6><span class=bar style=background:#fbbf24></span> 🏢 代表企业</h6><p>天齐锂业(002466) — Greenbushes 51%<br>赣锋锂业(002460) — 全产业链<br>盐湖股份(000792) — 察尔汗盐湖提锂</p></div>");
+regSC("sc-battery","🔋 动力电池","rgba(52,211,153,0.12)","#34d399","动力电池 — 整车最贵的零件","占成本35-40%·宁德时代全球38%",
+  "新能源车的心脏，决定了续航、安全、成本三大核心指标。2025年中国动力电池装车量>500GWh，宁德时代+比亚迪合计>65%。",
+  "就像手机电池——决定了你用多久充一次电，动力电池决定了你的车能跑多远、充多快、安不安全。",
+  "<div class=q-num>500GWh+</div><div class=q-num-sub>2025年中国装车量，宁德38%+比亚迪28%</div>",
+  "很多人以为电池就是一堆电池绑在一起。实际上是高度集成的系统工程——电芯→模组→电池包(BMS+热管理+结构)。",
+  "<div class=d-section><h6><span class=bar style=background:#34d399></span> 🔧 技术路线</h6><table><tr><td>LFP</td><td>比亚迪/宁德</td><td>>70%份额</td></tr><tr><td>三元NCM</td><td>宁德/LG</td><td>高能量密度</td></tr><tr><td>半固态</td><td>卫蓝/清陶</td><td>蔚来已装车</td></tr></table></div>",
+  "<div class=d-section><h6><span class=bar style=background:#34d399></span> 🏢 代表企业</h6><p>宁德时代(300750) — 全球38%<br>比亚迪弗迪 — 全球28%<br>中创新航(3931.HK) — 国内8%</p></div>");
+regSC("sc-motor","⚡ 驱动电机","rgba(52,211,153,0.12)","#34d399","驱动电机 — 把电变成动力","永磁同步电机·汇川/比亚迪/精进",
+  "新能源车的发动机，把电池电能转化为车轮旋转动力。99%使用永磁同步电机(效率>95%)，依赖稀土永磁体(钕铁硼)。",
+  "就像把电池的电力变成推背感——踩下电门，电流通入电机线圈产生磁场，推动转子旋转→车轮转动→推背感。",
+  "<div class=q-num>>95%</div><div class=q-num-sub>永磁同步电机效率，远超工业电机(85-90%)</div>",
+  "很多人以为电机和电风扇电机一样。车规电机要求极高——转速>20000rpm、功率密度>5kW/kg、-40~150°C宽温。",
+  "<div class=d-section><h6><span class=bar style=background:#34d399></span> 🔧 技术趋势</h6><p>油冷(效率+50%) · 扁线绕组(功率密度+20%) · SiC驱动 · 少稀土/无稀土</p></div>",
+  "<div class=d-section><h6><span class=bar style=background:#34d399></span> 🏢 代表企业</h6><p>汇川技术(300124) — 国产电驱龙头<br>比亚迪 — 全自研<br>精进电动(688280) — 出口>50%</p></div>");
+regSC("sc-chip","🔲 智驾芯片","rgba(52,211,153,0.12)","#34d399","智驾芯片 — 自动驾驶的大脑","英伟达Orin/Thor·地平线·华为昇腾",
+  "大算力AI芯片是智驾核心计算平台。英伟达Orin(254TOPS)全球>80%份额，地平线J6(560TOPS)国产最强。美国制裁限制7nm以下制程。",
+  "就像给车装了一台超级计算机——实时处理8-11个摄像头视频流+激光雷达点云+毫米波雷达数据，10毫秒内做出驾驶决策。",
+  "<div class=q-num>560 TOPS</div><div class=q-num-sub>地平线J6算力，已超越英伟达Orin(254TOPS)</div>",
+  "很多人以为算力越高智驾越好。其实算法效率比算力更重要——特斯拉FSD用144TOPS做到的效果远超很多用254TOPS Orin的车型。",
+  "<div class=d-section><h6><span class=bar style=background:#34d399></span> 🔧 竞争格局</h6><table><tr><td>英伟达</td><td>Orin/Thor</td><td>CUDA生态>80%</td></tr><tr><td>地平线</td><td>J6 560TOPS</td><td>比亚迪/理想已用</td></tr><tr><td>华为</td><td>昇腾</td><td>自研自用</td></tr></table></div>",
+  "<div class=d-section><h6><span class=bar style=background:#34d399></span> 🏢 代表企业</h6><p>英伟达(NVDA) — 全球霸主<br>地平线(9660.HK) — 国产第一<br>华为昇腾 — 全栈自研</p></div>");
+regSC("sc-thermal","🌡️ 热管理","rgba(52,211,153,0.12)","#34d399","热管理系统 — 恒温保姆","热泵+电池冷却+座舱空调·三花智控",
+  "同时管理电池(不能超过45°C)、电机(散热)、座舱(舒适温度)的温度。热泵系统让冬季续航提升15-20%。三花智控是全球热管理阀件龙头。",
+  "就像给整车装了一个中央空调——电池太热会起火(要冷却)、冬天太冷续航暴跌(要加热)、座舱要舒适。三套系统互相配合，废热回收利用。",
+  "<div class=q-num>15-20%</div><div class=q-num-sub>热泵系统相比PTC加热，冬季续航提升幅度</div>",
+  "很多人不了解热管理多重要。实际上电池在25-35°C效率最高——每高10°C寿命减半，每低10°C续航减少15%。热管理就是电池的命。",
+  "<div class=d-section><h6><span class=bar style=background:#34d399></span> 🔧 核心组件</h6><p>电子膨胀阀 · 四通换向阀 · 水冷板 · 压缩机(800V) · 冷却液。三花智控全球阀件份额>40%。</p></div>",
+  "<div class=d-section><h6><span class=bar style=background:#34d399></span> 🏢 代表企业</h6><p>三花智控(002050) — 阀件全球>40%<br>银轮股份(002126) — 换热器龙头<br>奥特佳(002239) — 压缩机<br>拓普集团(601689) — 热管理总成</p></div>");
+
 
 function init() {
   // Category cards
