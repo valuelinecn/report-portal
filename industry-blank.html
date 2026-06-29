@@ -201,7 +201,6 @@ body{
 </style>
 </head>
 <body>
-<div class="theme-toggle" onclick="toggleTheme()" title="切换主题">☀️</div>
 
 <div class="container">
 
@@ -563,27 +562,13 @@ function switchSection(name) {
 document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
 init();
 
-// ===== THEME TOGGLE =====
-function toggleTheme(){
-  var h=document.documentElement;
-  var cur=h.getAttribute('data-theme');
-  var next=cur==='light'?'':'light';
-  h.setAttribute('data-theme',next);
-  document.querySelector('.theme-toggle').textContent=next==='light'?'🌙':'☀️';
-  localStorage.setItem('encyclopedia-theme',next||'dark');
-}
-// Init theme from localStorage or parent portal
+// Theme sync from portal (no independent toggle)
 (function(){
-  var saved=localStorage.getItem('encyclopedia-theme');
-  if(saved==='light'){
-    document.documentElement.setAttribute('data-theme','light');
-    document.querySelector('.theme-toggle').textContent='🌙';
-  }
-  // Listen for theme sync from parent portal
+  var t=localStorage.getItem('portal_theme');
+  if(t==='light') document.documentElement.setAttribute('data-theme','light');
   window.addEventListener('message',function(e){
-    if(e.data&&e.data.theme){
+    if(e.data&&typeof e.data.theme==='string'){
       document.documentElement.setAttribute('data-theme',e.data.theme==='light'?'light':'');
-      document.querySelector('.theme-toggle').textContent=e.data.theme==='light'?'🌙':'☀️';
     }
   });
 })();

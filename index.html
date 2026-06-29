@@ -974,6 +974,7 @@ const COMPANIES = [
 // ===== THEME =====
 function toggleTheme() {
   const isLight = document.documentElement.getAttribute('data-theme') === 'light'
+  const theme = isLight ? 'dark' : 'light'
   if (isLight) {
     document.documentElement.removeAttribute('data-theme')
     localStorage.setItem('portal_theme', 'dark')
@@ -982,6 +983,11 @@ function toggleTheme() {
     document.documentElement.setAttribute('data-theme', 'light')
     localStorage.setItem('portal_theme', 'light')
     document.getElementById('themeToggle').textContent = '☀️'
+  }
+  // Broadcast theme to industry iframe
+  var iframe = document.getElementById('industryFrame')
+  if (iframe && iframe.contentWindow) {
+    iframe.contentWindow.postMessage({theme: theme}, '*')
   }
   // Reload report iframe theme if a report is open
   if (document.getElementById('reportView').classList.contains('active')) {
@@ -1558,7 +1564,13 @@ function loadIndustry(type) {
   document.getElementById('industrySelector').style.display = 'none'
   document.getElementById('industryFrameWrap').style.display = 'block'
   document.getElementById('industryFrameTitle').textContent = titles[type] || '🔬 行业研究'
-  document.getElementById('industryFrame').src = files[type]
+  var frame = document.getElementById('industryFrame')
+  frame.src = files[type]
+  // Send current theme to iframe when it loads
+  frame.onload = function(){
+    var theme = document.documentElement.getAttribute('data-theme')==='light'?'light':'dark'
+    frame.contentWindow.postMessage({theme:theme},'*')
+  }
 }
 function backToIndustrySelect() {
   document.getElementById('industryFrame').src = ''

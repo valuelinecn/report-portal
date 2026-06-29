@@ -174,8 +174,6 @@ body{
 </style>
 </head>
 <body>
-<div class="theme-toggle" onclick="toggleTheme()" title="切换主题">☀️</div>
-
 <div class="container">
 
 <!-- TAB 0: OVERVIEW -->
@@ -480,8 +478,7 @@ function openModal(id){
 function closeModal(){ document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; }
 function closeModalOutside(e){ if(e.target===document.getElementById('modalOverlay')) closeModal(); }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
-function toggleTheme(){var h=document.documentElement;var cur=h.getAttribute('data-theme');var next=cur==='light'?'':'light';h.setAttribute('data-theme',next);document.querySelector('.theme-toggle').textContent=next==='light'?'☀️':'☀️';localStorage.setItem('enc-theme',next||'dark')}
-(function(){var s=localStorage.getItem('enc-theme');if(s==='light'){document.documentElement.setAttribute('data-theme','light');document.querySelector('.theme-toggle').textContent='☀️'}window.addEventListener('message',function(e){if(e.data&&e.data.theme){document.documentElement.setAttribute('data-theme',e.data.theme==='light'?'light':'');document.querySelector('.theme-toggle').textContent=e.data.theme==='light'?'☀️':'☀️'}})})();
+(function(){var t=localStorage.getItem('portal_theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');window.addEventListener('message',function(e){if(e.data&&typeof e.data.theme==='string')document.documentElement.setAttribute('data-theme',e.data.theme==='light'?'light':'')})})();
 
 function toggleDeep(el){
   const deep = el.nextElementSibling;
