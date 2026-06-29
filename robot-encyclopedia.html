@@ -1,857 +1,857 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>机器人产业百科 · 从入门到供应链</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Noto Sans SC',-apple-system,sans-serif;
-  background:#080816;color:#e2e8f0;min-height:100vh;
-  background-image:radial-gradient(ellipse at 20% 10%,rgba(34,211,238,0.05),transparent 60%),
-                   radial-gradient(ellipse at 80% 20%,rgba(251,191,36,0.03),transparent 60%),
-                   radial-gradient(ellipse at 50% 90%,rgba(52,211,153,0.03),transparent 60%);
-  overflow-x:hidden;
-}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#1e293b;border-radius:4px}
-
-.container{max-width:1200px;margin:0 auto;padding:14px}
-.section{display:none}
-.section.active{display:block;animation:fadeIn .35s}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-.hero-banner{text-align:center;padding:24px 0 14px}
-.hero-banner h1{font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#22d3ee 0%,#34d399 40%,#fbbf24 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-banner p{color:#64748b;font-size:.7rem;margin-top:6px;max-width:540px;margin-left:auto;margin-right:auto;line-height:1.6}
-
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 18px}
-.stat-card{
-  background:rgba(15,23,42,0.6);border:1px solid #1e293b;border-radius:12px;
-  padding:16px 10px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;
-}
-.stat-card:hover{transform:translateY(-3px);border-color:#334155;box-shadow:0 8px 30px rgba(0,0,0,0.3)}
-.stat-card::after{content:'→';position:absolute;bottom:6px;right:8px;font-size:.65rem;color:#334155;opacity:0;transition:all .3s}
-.stat-card:hover::after{opacity:1;color:#64748b}
-.stat-card .num{font-size:1.3rem;font-weight:700}
-.stat-card .lbl{font-size:.6rem;color:#64748b;margin-top:4px;line-height:1.4}
-.stat-card .sub{font-size:.5rem;color:#1e293b;margin-top:2px}
-.stat-card.c1 .num{background:linear-gradient(135deg,#22d3ee,#0891b2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-card.c2 .num{background:linear-gradient(135deg,#a78bfa,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-card.c3 .num{background:linear-gradient(135deg,#34d399,#059669);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-card.c4 .num{background:linear-gradient(135deg,#fb7185,#e11d48);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-
-.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
-.card{
-  background:rgba(15,23,42,0.6);border:1px solid #1e293b;border-radius:12px;
-  padding:14px 12px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;
-}
-.card:hover{transform:translateY(-3px);border-color:#334155;box-shadow:0 8px 30px rgba(0,0,0,0.3)}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
-.card.cyan::before{background:linear-gradient(90deg,#22d3ee,#0891b2)}
-.card.emerald::before{background:linear-gradient(90deg,#34d399,#059669)}
-.card.rose::before{background:linear-gradient(90deg,#fb7185,#e11d48)}
-.card.violet::before{background:linear-gradient(90deg,#a78bfa,#7c3aed)}
-.card.amber::before{background:linear-gradient(90deg,#fbbf24,#d97706)}
-.card.orange::before{background:linear-gradient(90deg,#fb923c,#ea580c)}
-.card.lime::before{background:linear-gradient(90deg,#a3e635,#65a30d)}
-.card.sky::before{background:linear-gradient(90deg,#38bdf8,#0284c7)}
-.card.purple::before{background:linear-gradient(90deg,#c084fc,#9333ea)}
-.card .tag{font-size:.5rem;padding:2px 7px;border-radius:4px;font-weight:600;display:inline-block;margin-bottom:5px}
-.card h4{font-size:.78rem;font-weight:600;margin-bottom:4px}
-.card p{font-size:.62rem;color:#64748b;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.card .click-hint{font-size:.5rem;color:#334155;margin-top:6px;display:flex;align-items:center;gap:3px}
-
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px}
-
-/* ===== MODAL ===== */
-.modal-overlay{
-  position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);
-  display:none;justify-content:center;align-items:flex-start;padding:16px;overflow-y:auto;
-}
-.modal-overlay.open{display:flex}
-.modal{
-  background:#0f172a;border:1px solid #1e293b;border-radius:16px;
-  max-width:680px;width:100%;margin-top:10px;margin-bottom:10px;
-  position:relative;animation:slideUp .3s;overflow:hidden;
-}
-@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.modal-close{position:sticky;top:0;display:flex;justify-content:space-between;align-items:flex-start;padding:14px 16px 0}
-.modal-close button{background:none;border:none;color:#64748b;font-size:1.2rem;cursor:pointer;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
-.modal-close button:hover{background:#1e293b;color:#e2e8f0}
-.modal-header{padding:0 16px}
-.modal-header .tag{font-size:.55rem;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:4px}
-.modal-header h2{font-size:1rem;font-weight:700;margin-bottom:2px}
-.modal-header .sub{font-size:.6rem;color:#64748b}
-
-.modal-body{padding:12px 16px 18px}
-
-/* Layer 1: 4 Quick Cards */
-.m-qgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
-.m-qc{
-  background:rgba(30,41,59,0.3);border-radius:8px;padding:10px 10px 8px;
-  border-left:2px solid;transition:all .2s;
-}
-.m-qc:hover{background:rgba(30,41,59,0.5)}
-.m-qc .q-icon{font-size:.85rem;margin-bottom:2px}
-.m-qc .q-label{font-size:.55rem;font-weight:600;margin-bottom:2px;text-transform:uppercase;letter-spacing:1px}
-.m-qc .q-text{font-size:.62rem;color:#cbd5e1;line-height:1.6}
-.m-qc .q-num{font-size:.8rem;font-weight:700;line-height:1.3}
-.m-qc .q-num-sub{font-size:.5rem;color:#64748b}
-
-/* Toggle Button */
-.m-toggle{
-  text-align:center;padding:6px 0;margin-bottom:8px;cursor:pointer;
-  color:#64748b;font-size:.6rem;font-weight:600;letter-spacing:1px;
-  border-top:1px solid rgba(30,41,59,0.4);border-bottom:1px solid rgba(30,41,59,0.4);
-  transition:all .2s;display:flex;align-items:center;justify-content:center;gap:4px;
-}
-.m-toggle:hover{color:#94a3b8;background:rgba(30,41,59,0.2)}
-.m-deep{margin-top:4px}
-.m-deep .d-section{margin-bottom:10px}
-.m-deep .d-section:last-child{margin-bottom:0}
-.m-deep .d-section h6{font-size:.6rem;font-weight:600;color:#94a3b8;margin-bottom:4px;display:flex;align-items:center;gap:5px}
-.m-deep .d-section h6 .bar{width:3px;height:10px;border-radius:2px;display:inline-block}
-.m-deep .d-section p{font-size:.6rem;color:#94a3b8;line-height:1.7}
-.m-deep .d-section .gld{color:#fbbf24}
-.m-deep .d-section .hl{color:#fb7185}
-.m-deep .d-section .grn{color:#34d399}
-.m-deep table{width:100%;border-collapse:collapse;font-size:.58rem;margin-top:3px}
-.m-deep table td{padding:3px 7px;border-bottom:1px solid rgba(30,41,59,0.4);color:#94a3b8;vertical-align:top}
-.m-deep table td:first-child{color:#e2e8f0;font-weight:500;width:80px}
-
-/* Supply Chain / Enterprise / HL tabs - unchanged */
-.sc3-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.sc3-col{background:rgba(15,23,42,0.5);border-radius:12px;border:1px solid #1e293b;padding:14px;position:relative;overflow:hidden}
-.sc3-col .bar-top{position:absolute;top:0;left:0;right:0;height:3px}
-.sc3-col h3{font-size:.8rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.sc3-col .pct{font-size:.55rem;color:#64748b;font-weight:400}
-.sc3-node{margin-bottom:6px;padding:8px 10px;background:rgba(30,41,59,0.3);border-radius:8px;cursor:pointer;transition:all .2s;border:1px solid transparent}
-.sc3-node:hover{border-color:#334155;background:rgba(30,41,59,0.5)}
-.sc3-node h5{font-size:.65rem;font-weight:600;margin-bottom:2px;display:flex;align-items:center;gap:4px}
-.sc3-node .preview{font-size:.55rem;color:#64748b;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.sc3-node .hl-tag{font-size:.48rem;padding:1px 5px;border-radius:3px;background:rgba(251,112,133,0.15);color:#fb7185;margin-left:4px;font-weight:600}
-
-.hl-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
-.hl-card{background:rgba(15,23,42,0.5);border:1px solid #1e293b;border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;border-left:3px solid #fb7185}
-.hl-card:hover{border-color:#334155;transform:translateX(3px)}
-.hl-card h5{font-size:.75rem;font-weight:600;color:#fb7185;margin-bottom:4px}
-.hl-card .desc{font-size:.6rem;color:#94a3b8;line-height:1.6}
-.hl-card .meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
-.hl-card .meta span{font-size:.52rem;padding:2px 7px;border-radius:4px;background:rgba(30,41,59,0.6);color:#64748b}
-
-.ent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px}
-.ent-card{background:rgba(15,23,42,0.5);border:1px solid #1e293b;border-radius:10px;padding:10px 12px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
-.ent-card:hover{transform:translateY(-2px);border-color:#334155}
-.ent-card .ent-tag{font-size:.45rem;padding:1px 6px;border-radius:3px;display:inline-block;margin-bottom:3px;font-weight:600}
-.ent-card h5{font-size:.7rem;font-weight:600;margin-bottom:2px}
-.ent-card .ent-code{font-size:.52rem;color:#64748b;margin-bottom:3px}
-.ent-card .ent-desc{font-size:.52rem;color:#64748b;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
-.ent-cat{margin-top:14px;margin-bottom:8px}
-.ent-cat:first-child{margin-top:0}
-.ent-cat h4{font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:6px;padding:6px 0 8px;border-bottom:1px solid rgba(30,41,59,0.4)}
-.ent-cat h4 span{font-size:.55rem;font-weight:400;color:#64748b}
-.section-title{margin-bottom:12px}
-.section-title h2{font-size:1rem;font-weight:700;margin-bottom:3px}
-.section-title p{font-size:.64rem;color:#64748b;line-height:1.5}
-
-@media(max-width:768px){
-  .stats-row{grid-template-columns:repeat(2,1fr)}
-  .sc3-grid,.quick-grid{grid-template-columns:1fr}
-  .cat-grid,.ent-grid{grid-template-columns:repeat(2,1fr)}
-  .hl-list{grid-template-columns:1fr}
-  .m-qgrid{grid-template-columns:1fr}
-  nav .tab{padding:4px 8px;font-size:.6rem}
-  .modal{max-width:100%;margin:8px;border-radius:12px}
-}
-</style>
-</head>
-<body>
-
-<div class="container">
-
-<!-- TAB 0: OVERVIEW -->
-<div id="tab-overview" class="section active">
-  <div class="hero-banner">
-    <h1>机器人产业全景百科</h1>
-    <p>从整机分类到供应链纵深。点击下方统计卡片快速跳转，点击任意卡片查看4+5分析师解说。</p>
-  </div>
-  <div class="stats-row">
-    <div class="stat-card c1" onclick="switchTab('robots')">
-      <div class="num">9</div>
-      <div class="lbl">整机品类</div>
-      <div class="sub">工业·协作·人形·服务·医疗·特种·物流·农业·无人机</div>
-    </div>
-    <div class="stat-card c2" onclick="switchTab('enterprise')">
-      <div class="num">30+</div>
-      <div class="lbl">代表企业</div>
-      <div class="sub">整机厂商 + 核心零部件供应商</div>
-    </div>
-    <div class="stat-card c3" onclick="switchTab('supply')">
-      <div class="num">12</div>
-      <div class="lbl">核心零部件</div>
-      <div class="sub">跨品类复用的关键环节</div>
-    </div>
-    <div class="stat-card c4" onclick="switchTab('highlights')">
-      <div class="num">🔴6</div>
-      <div class="lbl">高壁垒环节</div>
-      <div class="sub">国产化率&lt;30% 的卡脖子零部件</div>
-    </div>
-  </div>
-  <div style="font-size:.65rem;font-weight:600;color:#64748b;margin-bottom:6px">🔥 快速入口</div>
-  <div class="quick-grid">
-    <div class="card rose" onclick="openModal('robot3')">
-      <span class="tag" style="background:#fb718520;color:#fb7185">🔥 最热</span>
-      <h4 style="color:#fb7185">人形机器人 · 万亿赛道</h4>
-      <p>2025-2026量产元年。优必选/智元/宇树/傅利叶全解读</p>
-      <span class="click-hint">👆 4+5分析师解说</span>
-    </div>
-    <div class="card amber" onclick="openModal('hl-screw')">
-      <span class="tag" style="background:#fbbf2420;color:#fbbf24">🔴 最高壁垒</span>
-      <h4 style="color:#fbbf24">行星滚柱丝杠</h4>
-      <p>国产化率&lt;20%。所有零部件中难度最高的</p>
-      <span class="click-hint">👆 4+5分析师解说</span>
-    </div>
-    <div class="card emerald" onclick="openModal('robot2')">
-      <span class="tag" style="background:#34d39920;color:#34d399">📈 增速最快</span>
-      <h4 style="color:#34d399">协作机器人 · 28.2%</h4>
-      <p>国产占全球55%。节卡 · 遨博 · 越疆三强争霸</p>
-      <span class="click-hint">👆 4+5分析师解说</span>
-    </div>
-  </div>
-</div>
-
-<!-- TAB 1: ROBOTS -->
-<div id="tab-robots" class="section">
-  <div class="section-title">
-    <h2>🏭 机器人整机分类 · 9大品类</h2>
-    <p>每品类配有4+5分析师解说：①一句话→②打个比方→③必知数字→④别搞错 → 展开后还有5个深度维度</p>
-  </div>
-  <div class="cat-grid">
-    <div class="card cyan" onclick="openModal('robot1')">
-      <span class="tag" style="background:#22d3ee20;color:#22d3ee">① 工业机器人</span>
-      <h4 style="color:#22d3ee">工业机器人</h4>
-      <p>焊接·搬运·装配·喷涂·洁净。国产市占率约45%。</p>
-      <span class="click-hint">👆 查看4+5解说</span>
-    </div>
-    <div class="card emerald" onclick="openModal('robot2')">
-      <span class="tag" style="background:#34d39920;color:#34d399">② 协作机器人</span>
-      <h4 style="color:#34d399">协作机器人</h4>
-      <p>增速28.2%，国产占全球55%。和人一起干活。</p>
-      <span class="click-hint">👆 查看4+5解说</span>
-    </div>
-    <div class="card rose" onclick="openModal('robot3')">
-      <span class="tag" style="background:#fb718520;color:#fb7185">③ 人形机器人</span>
-      <h4 style="color:#fb7185">人形机器人</h4>
-      <p>万亿赛道，量产元年。供应链最复杂的品类。</p>
-      <span class="click-hint">👆 查看4+5解说</span>
-    </div>
-    <div class="card violet" onclick="openModal('robot4')">
-      <span class="tag" style="background:#a78bfa20;color:#a78bfa">④ 服务机器人</span>
-      <h4 style="color:#a78bfa">服务机器人</h4>
-      <p>扫地/清洁/配送。中国品牌全球>75%。</p>
-      <span class="click-hint">👆 查看4+5解说</span>
-    </div>
-    <div class="card amber" onclick="openModal('robot5')">
-      <span class="tag" style="background:#fbbf2420;color:#fbbf24">⑤ 医疗机器人</span>
-      <h4 style="color:#fbbf24">医疗机器人</h4>
-      <p>手术·康复。注册证壁垒极高。</p>
-      <span class="click-hint">👆 查看4+5解说</span>
-    </div>
-    <div class="card orange" onclick="openModal('robot6')">
-      <span class="tag" style="background:#fb923c20;color:#fb923c">⑥ 特种机器人</span>
-      <h4 style="color:#fb923c">特种机器人</h4>
-      <p>巡检·消防·水下·军工。壁垒极高。</p>
-      <span class="click-hint">👆 查看4+5解说</span>
-    </div>
-    <div class="card lime" onclick="openModal('robot7')">
-      <span class="tag" style="background:#a3e63520;color:#a3e635">⑦ 物流仓储</span>
-      <h4 style="color:#a3e635">物流仓储机器人</h4>
-      <p>AGV/AMR。极智嘉/快仓/海康全球前三甲。</p>
-      <span class="click-hint">👆 查看4+5解说</span>
-    </div>
-    <div class="card sky" onclick="openModal('robot8')">
-      <span class="tag" style="background:#38bdf820;color:#38bdf8">⑧ 农业机器人</span>
-      <h4 style="color:#38bdf8">农业机器人</h4>
-      <p>植保已商用，采摘仍在研发。</p>
-      <span class="click-hint">👆 查看4+5解说</span>
-    </div>
-    <div class="card purple" onclick="openModal('robot9')">
-      <span class="tag" style="background:#c084fc20;color:#c084fc">⑨ 无人机/eVTOL</span>
-      <h4 style="color:#c084fc">无人机 / eVTOL</h4>
-      <p>大疆~80%份额。低空经济元年。</p>
-      <span class="click-hint">👆 查看4+5解说</span>
-    </div>
-  </div>
-</div>
-
-<!-- TAB 2: ENTERPRISE (same as before, abbreviated) -->
-<div id="tab-enterprise" class="section">
-  <div class="section-title">
-    <h2>🏢 代表企业档案库</h2>
-    <p>覆盖整机厂商与核心零部件供应商。点击查看企业详细资料。</p>
-  </div>
-  <div class="ent-cat">
-    <h4>🤖 人形机器人整机 <span>6家</span></h4>
-    <div class="ent-grid">
-      <div class="ent-card" onclick="openModal('comp-ubt')">
-        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
-        <h5>优必选</h5>
-        <div class="ent-code">9880.HK</div>
-        <div class="ent-desc">Walker系列，港股"人形机器人第一股"。</div>
-      </div>
-      <div class="ent-card" onclick="openModal('comp-zhiyuan')">
-        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
-        <h5>智元机器人</h5>
-        <div class="ent-code">未上市 · 独角兽</div>
-        <div class="ent-desc">远征A2，华为天才少年"稚晖君"创办。</div>
-      </div>
-      <div class="ent-card" onclick="openModal('comp-yushu')">
-        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
-        <h5>宇树科技</h5>
-        <div class="ent-code">未上市 · 独角兽</div>
-        <div class="ent-desc">H1，运控能力全球顶流。</div>
-      </div>
-      <div class="ent-card" onclick="openModal('comp-ftl')">
-        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
-        <h5>傅利叶智能</h5>
-        <div class="ent-code">未上市</div>
-        <div class="ent-desc">GR-2，康复出身力控好。</div>
-      </div>
-      <div class="ent-card" onclick="openModal('comp-xiaomi')">
-        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
-        <h5>小米</h5>
-        <div class="ent-code">01810.HK</div>
-        <div class="ent-desc">CyberOne，生态链+AI能力。</div>
-      </div>
-      <div class="ent-card" onclick="openModal('comp-dula')">
-        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
-        <h5>达闼机器人</h5>
-        <div class="ent-code">未上市</div>
-        <div class="ent-desc">Cloud Ginger，云端大脑架构。</div>
-      </div>
-    </div>
-  </div>
-  <div class="ent-cat">
-    <h4>🏭 工业与协作机器人 <span>9家</span></h4>
-    <div class="ent-grid">
-      <div class="ent-card" onclick="openModal('comp-estun')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">工业</span><h5>埃斯顿</h5><div class="ent-code">002747.SZ</div><div class="ent-desc">焊接机器人龙头，全产业链。</div></div>
-      <div class="ent-card" onclick="openModal('comp-xinsong')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">工业</span><h5>新松机器人</h5><div class="ent-code">300024.SZ</div><div class="ent-desc">国产老牌龙头，洁净唯一国产。</div></div>
-      <div class="ent-card" onclick="openModal('comp-efort')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">工业</span><h5>埃夫特</h5><div class="ent-code">688165.SH</div><div class="ent-desc">喷涂领先，海外并购。</div></div>
-      <div class="ent-card" onclick="openModal('comp-tuosida')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">工业</span><h5>拓斯达</h5><div class="ent-code">300607.SZ</div><div class="ent-desc">中低端快速崛起。</div></div>
-      <div class="ent-card" onclick="openModal('comp-jaka')"><span class="ent-tag" style="background:#34d39920;color:#34d399">协作</span><h5>节卡机器人</h5><div class="ent-code">未上市·独角兽</div><div class="ent-desc">柔性方案领先。</div></div>
-      <div class="ent-card" onclick="openModal('comp-aubo')"><span class="ent-tag" style="background:#34d39920;color:#34d399">协作</span><h5>遨博</h5><div class="ent-code">未上市</div><div class="ent-desc">出货量第一。</div></div>
-      <div class="ent-card" onclick="openModal('comp-yuejiang')"><span class="ent-tag" style="background:#34d39920;color:#34d399">协作</span><h5>越疆</h5><div class="ent-code">递表拟上市</div><div class="ent-desc">教育+工业双轮。</div></div>
-      <div class="ent-card" onclick="openModal('comp-elite')"><span class="ent-tag" style="background:#34d39920;color:#34d399">协作</span><h5>艾利特</h5><div class="ent-code">未上市</div><div class="ent-desc">性价比突出。</div></div>
-      <div class="ent-card" onclick="openModal('comp-luoshi')"><span class="ent-tag" style="background:#34d39920;color:#34d399">协作</span><h5>珞石</h5><div class="ent-code">未上市</div><div class="ent-desc">控制算法见长。</div></div>
-    </div>
-  </div>
-  <div class="ent-cat">
-    <h4>🧹 服务·医疗·特种·物流·无人机 <span>8家</span></h4>
-    <div class="ent-grid">
-      <div class="ent-card" onclick="openModal('comp-ecovacs')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">服务</span><h5>科沃斯</h5><div class="ent-code">603486.SH</div><div class="ent-desc">家用清洁绝对龙头。</div></div>
-      <div class="ent-card" onclick="openModal('comp-stone')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">服务</span><h5>石头科技</h5><div class="ent-code">688169.SH</div><div class="ent-desc">扫地第二极，高毛利。</div></div>
-      <div class="ent-card" onclick="openModal('comp-gaoxian')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">服务</span><h5>高仙机器人</h5><div class="ent-code">未上市·独角兽</div><div class="ent-desc">商用清洁全球第一。</div></div>
-      <div class="ent-card" onclick="openModal('comp-tianzhihang')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">医疗</span><h5>天智航</h5><div class="ent-code">688277.SH</div><div class="ent-desc">A股唯一手术机器人。</div></div>
-      <div class="ent-card" onclick="openModal('comp-yijiahe')"><span class="ent-tag" style="background:#fb923c20;color:#fb923c">特种</span><h5>亿嘉和</h5><div class="ent-code">603666.SH</div><div class="ent-desc">电力巡检龙头。</div></div>
-      <div class="ent-card" onclick="openModal('comp-geek')"><span class="ent-tag" style="background:#a3e63520;color:#a3e635">物流</span><h5>极智嘉</h5><div class="ent-code">未上市·独角兽</div><div class="ent-desc">全球AMR出货量第一。</div></div>
-      <div class="ent-card" onclick="openModal('comp-dji')"><span class="ent-tag" style="background:#c084fc20;color:#c084fc">无人机</span><h5>大疆创新</h5><div class="ent-code">未上市</div><div class="ent-desc">全球消费级~80%份额。</div></div>
-      <div class="ent-card" onclick="openModal('comp-zongheng')"><span class="ent-tag" style="background:#c084fc20;color:#c084fc">无人机</span><h5>纵横股份</h5><div class="ent-code">688070.SH</div><div class="ent-desc">工业无人机龙头。</div></div>
-    </div>
-  </div>
-  <div class="ent-cat">
-    <h4>🔩 核心零部件供应商 <span>12家</span></h4>
-    <div class="ent-grid">
-      <div class="ent-card" onclick="openModal('comp-harmonic')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">减速器</span><h5>绿的谐波</h5><div class="ent-code">688017.SH</div><div class="ent-desc">谐波减速器国产龙头。</div></div>
-      <div class="ent-card" onclick="openModal('comp-huichuan')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">伺服</span><h5>汇川技术</h5><div class="ent-code">300124.SZ</div><div class="ent-desc">伺服龙头，机器人新拓展。</div></div>
-      <div class="ent-card" onclick="openModal('comp-hengli')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">丝杠</span><h5>恒立液压</h5><div class="ent-code">601100.SH</div><div class="ent-desc">液压龙头→丝杠新布局。</div></div>
-      <div class="ent-card" onclick="openModal('comp-mingzhi')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">电机</span><h5>鸣志电器</h5><div class="ent-code">603728.SH</div><div class="ent-desc">空心杯电机国产龙头。</div></div>
-      <div class="ent-card" onclick="openModal('comp-obit')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">视觉</span><h5>奥比中光</h5><div class="ent-code">688322.SH</div><div class="ent-desc">3D视觉传感器龙头。</div></div>
-      <div class="ent-card" onclick="openModal('comp-keli')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">传感器</span><h5>柯力传感</h5><div class="ent-code">603662.SH</div><div class="ent-desc">应变式龙头→六维力。</div></div>
-      <div class="ent-card" onclick="openModal('comp-suteng')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">雷达</span><h5>速腾聚创</h5><div class="ent-code">2498.HK</div><div class="ent-desc">激光雷达，车载→机器人。</div></div>
-      <div class="ent-card" onclick="openModal('comp-sanhua')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">Tier-1</span><h5>三花智控</h5><div class="ent-code">002050.SZ</div><div class="ent-desc">旋转关节总成，特斯拉核心。</div></div>
-      <div class="ent-card" onclick="openModal('comp-tuopu')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">Tier-1</span><h5>拓普集团</h5><div class="ent-code">601689.SH</div><div class="ent-desc">线性关节总成，特斯拉核心。</div></div>
-      <div class="ent-card" onclick="openModal('comp-lixun')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">线束</span><h5>立讯精密</h5><div class="ent-code">002475.SZ</div><div class="ent-desc">连接器/线束绝对龙头。</div></div>
-      <div class="ent-card" onclick="openModal('comp-guangwei')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">材料</span><h5>光威复材</h5><div class="ent-code">300699.SZ</div><div class="ent-desc">碳纤维龙头。</div></div>
-      <div class="ent-card" onclick="openModal('comp-buke')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">电机</span><h5>步科股份</h5><div class="ent-code">688160.SH</div><div class="ent-desc">低压伺服，人形方案。</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- TAB 3: SUPPLY CHAIN (sections same) -->
-<div id="tab-supply" class="section">
-  <div class="section-title">
-    <h2>🔩 人形机器人供应链 · 三层拆解</h2>
-    <p>点击任意节点查看4+5分析师解说。</p>
-  </div>
-  <div class="sc3-grid">
-    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#22d3ee,#0891b2)"></div>
-      <h3><span style="color:#22d3ee">🧠</span> 智能大脑 <span class="pct">~25%</span></h3>
-      <div class="sc3-node" onclick="openModal('chip')"><h5>🔲 AI算力芯片 <span class="hl-tag">🔴</span></h5><div class="preview">GPU/ASIC。NVIDIA生态一家独大。</div></div>
-      <div class="sc3-node" onclick="openModal('model')"><h5>🧩 大模型与决策软件</h5><div class="preview">多模态大模型+运动控制算法。</div></div>
-      <div class="sc3-node" onclick="openModal('vision')"><h5>👁️ 视觉/深度传感器</h5><div class="preview">3D ToF/结构光。奥比中光。</div></div>
-    </div>
-    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#34d399,#059669)"></div>
-      <h3><span style="color:#34d399">🦾</span> 躯体执行系统 <span class="pct">~55%</span></h3>
-      <div class="sc3-node" onclick="openModal('hl-motor')"><h5>🔄 无框力矩电机 <span class="hl-tag">🔴</span></h5><div class="preview">旋转关节动力源。</div></div>
-      <div class="sc3-node" onclick="openModal('hl-harmonic')"><h5>⚙️ 谐波减速器 <span class="hl-tag">🔴</span></h5><div class="preview">旋转关节"变速箱"。</div></div>
-      <div class="sc3-node" onclick="openModal('hl-screw')"><h5>📏 行星滚柱丝杠 <span class="hl-tag">🔴最高</span></h5><div class="preview">最卡脖子的环节。</div></div>
-      <div class="sc3-node" onclick="openModal('hl-motor2')"><h5>✋ 空心杯电机 <span class="hl-tag">🔴</span></h5><div class="preview">灵巧手核心。</div></div>
-      <div class="sc3-node" onclick="openModal('hl-sensor')"><h5>📊 六维力矩传感器 <span class="hl-tag">🔴</span></h5><div class="preview">力控"皮肤"。</div></div>
-    </div>
-    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#fbbf24,#d97706)"></div>
-      <h3><span style="color:#fbbf24">🏭</span> 集成配套总成 <span class="pct">~20%</span></h3>
-      <div class="sc3-node" onclick="openModal('tier1')"><h5>🔗 Tier-1 执行器总成</h5><div class="preview">三花+拓普，特斯拉核心。</div></div>
-      <div class="sc3-node" onclick="openModal('battery')"><h5>🔋 高能量密度电池</h5><div class="preview">续航<2小时是最大痛点。</div></div>
-      <div class="sc3-node" onclick="openModal('material')"><h5>🏗️ 轻量化结构件</h5><div class="preview">碳纤维/铝合金/3D打印。</div></div>
-      <div class="sc3-node" onclick="openModal('cable')"><h5>🔌 线束连接器</h5><div class="preview">机器人的"血管和神经"。</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- TAB 4: HIGHLIGHTS -->
-<div id="tab-highlights" class="section">
-  <div class="section-title">
-    <h2>🔴 高壁垒核心部件 · 国产替代清单</h2>
-    <p>6大卡脖子环节，国产化率均低于30%。每项配有4+5分析师解说。</p>
-  </div>
-  <div class="hl-list">
-    <div class="hl-card" onclick="openModal('hl-screw')"><h5>📏 行星滚柱丝杠</h5><div class="desc">线性关节核心，国产化率&lt;20%。最卡脖子的环节。</div><div class="meta"><span>国产化率&lt;20%</span><span>单台~¥8000</span><span>恒立液压/贝斯特</span></div></div>
-    <div class="hl-card" onclick="openModal('hl-sensor')"><h5>📊 六维力矩传感器</h5><div class="desc">力控"皮肤"，标定极复杂。</div><div class="meta"><span>国产化率~25%</span><span>单台~¥6000</span><span>柯力传感/东华测试</span></div></div>
-    <div class="hl-card" onclick="openModal('hl-harmonic')"><h5>⚙️ 谐波减速器</h5><div class="desc">旋转关节核心，绿的谐波已突破。</div><div class="meta"><span>国产化率~35%</span><span>单台~¥4000</span><span>绿的谐波</span></div></div>
-    <div class="hl-card" onclick="openModal('hl-motor2')"><h5>✋ 空心杯电机</h5><div class="desc">灵巧手核心，直径6-16mm。</div><div class="meta"><span>国产化率~30%</span><span>单台~¥2000</span><span>鸣志电器</span></div></div>
-    <div class="hl-card" onclick="openModal('hl-motor')"><h5>🔄 无框力矩电机</h5><div class="desc">旋转关节动力源。</div><div class="meta"><span>国产化率~35%</span><span>单台~¥6000</span><span>步科/昊志</span></div></div>
-    <div class="hl-card" onclick="openModal('chip')"><h5>🧠 AI算力芯片</h5><div class="desc">NVIDIA生态一家独大。</div><div class="meta"><span>国产化率&lt;15%</span><span>单台~¥3000-8000</span><span>海光/寒武纪</span></div></div>
-  </div>
-</div>
-
-</div><!-- /container -->
-
-<!-- MODAL -->
-<div id="modalOverlay" class="modal-overlay" onclick="closeModalOutside(event)">
-<div id="modalContent" class="modal">
-  <div class="modal-close">
-    <div id="modalTag" style="font-size:.5rem;padding:2px 8px;border-radius:4px"></div>
-    <button onclick="closeModal()">✕</button>
-  </div>
-  <div class="modal-header">
-    <h2 id="modalTitle"></h2>
-    <div class="sub" id="modalSub"></div>
-  </div>
-  <div id="modalReport" style="display:none;padding:0 16px 6px">
-    <a id="modalReportLink" target="_blank" style="display:inline-flex;align-items:center;gap:4px;color:#22d3ee;font-size:.6rem;text-decoration:none;padding:3px 8px;border-radius:4px;background:rgba(34,211,238,0.1);transition:all .2s">📄</a>
-  </div>
-  <div class="modal-body" id="modalBody"></div>
-</div>
-</div>
-
-<script>
-const modalData = {};
-function registerModal(id, data){ modalData[id]=data }
-
-function openModal(id){
-  const d = modalData[id]; if(!d) return;
-  document.getElementById('modalTag').textContent=d.tag||'';
-  document.getElementById('modalTag').style.background=d.tagBg||'#1e293b';
-  document.getElementById('modalTag').style.color=d.tagColor||'#64748b';
-  document.getElementById('modalTitle').textContent=d.title||'';
-  document.getElementById('modalSub').textContent=d.sub||'';
-  document.getElementById('modalBody').innerHTML=d.body||'';
-  const reportDiv=document.getElementById('modalReport');
-  const reportLink=document.getElementById('modalReportLink');
-  if(d.report){
-    reportDiv.style.display='';
-    reportLink.href='reports/'+d.report.id+'.html';
-    reportLink.innerHTML='📄 查看报告：'+d.report.name+' →';
-  } else {
-    reportDiv.style.display='none';
-  }
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(){ document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; }
-function closeModalOutside(e){ if(e.target===document.getElementById('modalOverlay')) closeModal(); }
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
-
-function toggleDeep(el){
-  const deep = el.nextElementSibling;
-  if(!deep || !deep.classList.contains('m-deep')) return;
-  const isHidden = deep.style.display==='none';
-  deep.style.display = isHidden ? 'block' : 'none';
-  el.innerHTML = isHidden ? '▲ 收起深度分析' : '▼ 展开深度分析';
-}
-
-function switchTab(tabId){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  const section = document.getElementById('tab-'+tabId);
-  if(section) section.classList.add('active');
-  window.location.hash = tabId;
-}
-const hashTab = window.location.hash.replace('#','');
-if(hashTab && document.getElementById('tab-'+hashTab)) switchTab(hashTab);
-
-/* ================================================================ */
-/* MODAL DATA: 4+5双层模板                                           */
-/* Usage:                                                           */
-/*  registerModal('id',{tag,tagBg,tagColor,title,sub,               */
-/*    q1,q1c,q2,q2c,q3,q3c,q4,q4c,   ← 4 quick cards               */
-/*    d1,d2,d3,d4,d5                 ← 5 deep items (html)         */
-/*  })                                                              */
-/* ================================================================ */
-/* helper: build 4+5 modal body */
-function m45(o){
-  const c = o.tagColor||'#22d3ee';
-  return `
-<div class="m-qgrid">
-  <div class="m-qc" style="border-color:${c}"><div class="q-icon">📝</div><div class="q-label" style="color:${c}">一句话说清</div><div class="q-text">${o.q1||''}</div></div>
-  <div class="m-qc" style="border-color:#34d399"><div class="q-icon">🤔</div><div class="q-label" style="color:#34d399">打个比方</div><div class="q-text">${o.q2||''}</div></div>
-  <div class="m-qc" style="border-color:#fbbf24"><div class="q-icon">📊</div><div class="q-label" style="color:#fbbf24">必知数字</div>${o.q3||''}</div>
-  <div class="m-qc" style="border-color:#fb7185"><div class="q-icon">❌</div><div class="q-label" style="color:#fb7185">别搞错</div><div class="q-text">${o.q4||''}</div></div>
-</div>
-<div class="m-toggle" onclick="toggleDeep(this)">▼ 展开深度分析</div>
-<div class="m-deep" style="display:none">
-  ${o.d1||''}${o.d2||''}${o.d3||''}${o.d4||''}${o.d5||''}
-</div>`;
-}
-
-/* ---- ROBOT 1: 工业机器人 ---- */
-registerModal('robot1',{
-  tag:'① 工业机器人',tagBg:'rgba(34,211,238,0.15)',tagColor:'#22d3ee',
-  title:'工业机器人 — 制造业的"铁打主力"',
-  sub:'焊接·搬运·装配·喷涂·洁净',
-  q1:'工厂里那些力大无穷的机械臂。焊接、搬重物、拧螺丝、喷漆，7×24小时不停歇。必须关在安全围栏里——撞到人会很危险。',
-  q2:'就像工厂里的"铁打的主力工人"——不睡觉、不吃饭、不喊累，一台能顶3-5个工人的产量。但只会干一件事，换个活就要重新编程。',
-  q3:'<div class="q-num">35万台</div><div class="q-num-sub">2025年中国装机量，全球占比~55%，连续多年第一</div>',
-  q4:'很多人以为国产工业机器人已经全面替代了。其实高端市场（发那科/ABB/安川/库卡"四大家族"）仍占约60%，国产品牌在中低端已主导，但高端"卡脖子"问题还没完全解决。',
-  d1:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🔧 技术难度 ★★★☆☆</h6><p>中低端(搬运/码垛)难度低，国产已成熟。高端(焊接/装配)+洁净机器人难度高，核心在控制算法和精密加工。</p></div>',
-  d2:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🌍 国产 vs 海外</h6><table><tr><td>高端焊接</td><td>发那科/ABB</td><td><span class="grn">埃斯顿(Cloos技术)</span></td></tr><tr><td>洁净机器人</td><td>日本电装</td><td><span class="hl">新松（唯一国产）</span></td></tr><tr><td>喷涂</td><td>ABB/杜尔</td><td><span class="grn">埃夫特(收购CMA)</span></td></tr></table></div>',
-  d3:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🏢 代表企业</h6><p><span class="gld">埃斯顿(002747)</span> — 焊接龙头，收购德国Cloos<br><span class="gld">新松(300024)</span> — 老牌龙头，洁净唯一<br><span class="gld">埃夫特(688165)</span> — 喷涂领先<br><span class="gld">拓斯达(300607)</span> — 中低端快速崛起</p></div>',
-  d4:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🏗️ 谁在用</h6><p>汽车(焊接+喷漆) · 3C电子(装配+搬运) · 金属加工(码垛) · 半导体/面板(洁净搬运)<br><span style="color:#64748b;font-size:.55rem;">→ 工业机器人的核心零部件需求：RV减速器/谐波减速器 · 伺服电机 · 控制器 · 编码器</span></p></div>',
-  d5:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🎯 关注焦点</h6><p>国产替代从"能做"到"做得和进口一样好"——高端焊接和精密装配是接下来3年的主战场。新增量在新能源(光伏/锂电)产线需求。</p></div>'
+1|<!DOCTYPE html>
+2|<html lang="zh-CN">
+3|<head>
+4|<meta charset="UTF-8">
+5|<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+6|<title>机器人产业百科 · 从入门到供应链</title>
+7|<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+8|<style>
+9|*{margin:0;padding:0;box-sizing:border-box}
+10|body{
+11|  font-family:'Noto Sans SC',-apple-system,sans-serif;
+12|  background:#080816;color:#e2e8f0;min-height:100vh;
+13|  background-image:radial-gradient(ellipse at 20% 10%,rgba(34,211,238,0.05),transparent 60%),
+14|                   radial-gradient(ellipse at 80% 20%,rgba(251,191,36,0.03),transparent 60%),
+15|                   radial-gradient(ellipse at 50% 90%,rgba(52,211,153,0.03),transparent 60%);
+16|  overflow-x:hidden;
+17|}
+18|::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#1e293b;border-radius:4px}
+19|
+20|.container{max-width:1200px;margin:0 auto;padding:14px}
+21|.section{display:none}
+22|.section.active{display:block;animation:fadeIn .35s}
+23|@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+24|
+25|.hero-banner{text-align:center;padding:24px 0 14px}
+26|.hero-banner h1{font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#22d3ee 0%,#34d399 40%,#fbbf24 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+27|.hero-banner p{color:#64748b;font-size:.7rem;margin-top:6px;max-width:540px;margin-left:auto;margin-right:auto;line-height:1.6}
+28|
+29|.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 18px}
+30|.stat-card{
+31|  background:rgba(15,23,42,0.6);border:1px solid #1e293b;border-radius:12px;
+32|  padding:16px 10px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;
+33|}
+34|.stat-card:hover{transform:translateY(-3px);border-color:#334155;box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+35|.stat-card::after{content:'→';position:absolute;bottom:6px;right:8px;font-size:.65rem;color:#334155;opacity:0;transition:all .3s}
+36|.stat-card:hover::after{opacity:1;color:#64748b}
+37|.stat-card .num{font-size:1.3rem;font-weight:700}
+38|.stat-card .lbl{font-size:.6rem;color:#64748b;margin-top:4px;line-height:1.4}
+39|.stat-card .sub{font-size:.5rem;color:#1e293b;margin-top:2px}
+40|.stat-card.c1 .num{background:linear-gradient(135deg,#22d3ee,#0891b2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+41|.stat-card.c2 .num{background:linear-gradient(135deg,#a78bfa,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+42|.stat-card.c3 .num{background:linear-gradient(135deg,#34d399,#059669);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+43|.stat-card.c4 .num{background:linear-gradient(135deg,#fb7185,#e11d48);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+44|
+45|.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+46|.card{
+47|  background:rgba(15,23,42,0.6);border:1px solid #1e293b;border-radius:12px;
+48|  padding:14px 12px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;
+49|}
+50|.card:hover{transform:translateY(-3px);border-color:#334155;box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+51|.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+52|.card.cyan::before{background:linear-gradient(90deg,#22d3ee,#0891b2)}
+53|.card.emerald::before{background:linear-gradient(90deg,#34d399,#059669)}
+54|.card.rose::before{background:linear-gradient(90deg,#fb7185,#e11d48)}
+55|.card.violet::before{background:linear-gradient(90deg,#a78bfa,#7c3aed)}
+56|.card.amber::before{background:linear-gradient(90deg,#fbbf24,#d97706)}
+57|.card.orange::before{background:linear-gradient(90deg,#fb923c,#ea580c)}
+58|.card.lime::before{background:linear-gradient(90deg,#a3e635,#65a30d)}
+59|.card.sky::before{background:linear-gradient(90deg,#38bdf8,#0284c7)}
+60|.card.purple::before{background:linear-gradient(90deg,#c084fc,#9333ea)}
+61|.card .tag{font-size:.5rem;padding:2px 7px;border-radius:4px;font-weight:600;display:inline-block;margin-bottom:5px}
+62|.card h4{font-size:.78rem;font-weight:600;margin-bottom:4px}
+63|.card p{font-size:.62rem;color:#64748b;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+64|.card .click-hint{font-size:.5rem;color:#334155;margin-top:6px;display:flex;align-items:center;gap:3px}
+65|
+66|.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px}
+67|
+68|/* ===== MODAL ===== */
+69|.modal-overlay{
+70|  position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);
+71|  display:none;justify-content:center;align-items:flex-start;padding:16px;overflow-y:auto;
+72|}
+73|.modal-overlay.open{display:flex}
+74|.modal{
+75|  background:#0f172a;border:1px solid #1e293b;border-radius:16px;
+76|  max-width:680px;width:100%;margin-top:10px;margin-bottom:10px;
+77|  position:relative;animation:slideUp .3s;overflow:hidden;
+78|}
+79|@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+80|.modal-close{position:sticky;top:0;display:flex;justify-content:space-between;align-items:flex-start;padding:14px 16px 0}
+81|.modal-close button{background:none;border:none;color:#64748b;font-size:1.2rem;cursor:pointer;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+82|.modal-close button:hover{background:#1e293b;color:#e2e8f0}
+83|.modal-header{padding:0 16px}
+84|.modal-header .tag{font-size:.55rem;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:4px}
+85|.modal-header h2{font-size:1rem;font-weight:700;margin-bottom:2px}
+86|.modal-header .sub{font-size:.6rem;color:#64748b}
+87|
+88|.modal-body{padding:12px 16px 18px}
+89|
+90|/* Layer 1: 4 Quick Cards */
+91|.m-qgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+92|.m-qc{
+93|  background:rgba(30,41,59,0.3);border-radius:8px;padding:10px 10px 8px;
+94|  border-left:2px solid;transition:all .2s;
+95|}
+96|.m-qc:hover{background:rgba(30,41,59,0.5)}
+97|.m-qc .q-icon{font-size:.85rem;margin-bottom:2px}
+98|.m-qc .q-label{font-size:.55rem;font-weight:600;margin-bottom:2px;text-transform:uppercase;letter-spacing:1px}
+99|.m-qc .q-text{font-size:.62rem;color:#cbd5e1;line-height:1.6}
+100|.m-qc .q-num{font-size:.8rem;font-weight:700;line-height:1.3}
+101|.m-qc .q-num-sub{font-size:.5rem;color:#64748b}
+102|
+103|/* Toggle Button */
+104|.m-toggle{
+105|  text-align:center;padding:6px 0;margin-bottom:8px;cursor:pointer;
+106|  color:#64748b;font-size:.6rem;font-weight:600;letter-spacing:1px;
+107|  border-top:1px solid rgba(30,41,59,0.4);border-bottom:1px solid rgba(30,41,59,0.4);
+108|  transition:all .2s;display:flex;align-items:center;justify-content:center;gap:4px;
+109|}
+110|.m-toggle:hover{color:#94a3b8;background:rgba(30,41,59,0.2)}
+111|.m-deep{margin-top:4px}
+112|.m-deep .d-section{margin-bottom:10px}
+113|.m-deep .d-section:last-child{margin-bottom:0}
+114|.m-deep .d-section h6{font-size:.6rem;font-weight:600;color:#94a3b8;margin-bottom:4px;display:flex;align-items:center;gap:5px}
+115|.m-deep .d-section h6 .bar{width:3px;height:10px;border-radius:2px;display:inline-block}
+116|.m-deep .d-section p{font-size:.6rem;color:#94a3b8;line-height:1.7}
+117|.m-deep .d-section .gld{color:#fbbf24}
+118|.m-deep .d-section .hl{color:#fb7185}
+119|.m-deep .d-section .grn{color:#34d399}
+120|.m-deep table{width:100%;border-collapse:collapse;font-size:.58rem;margin-top:3px}
+121|.m-deep table td{padding:3px 7px;border-bottom:1px solid rgba(30,41,59,0.4);color:#94a3b8;vertical-align:top}
+122|.m-deep table td:first-child{color:#e2e8f0;font-weight:500;width:80px}
+123|
+124|/* Supply Chain / Enterprise / HL tabs - unchanged */
+125|.sc3-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+126|.sc3-col{background:rgba(15,23,42,0.5);border-radius:12px;border:1px solid #1e293b;padding:14px;position:relative;overflow:hidden}
+127|.sc3-col .bar-top{position:absolute;top:0;left:0;right:0;height:3px}
+128|.sc3-col h3{font-size:.8rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+129|.sc3-col .pct{font-size:.55rem;color:#64748b;font-weight:400}
+130|.sc3-node{margin-bottom:6px;padding:8px 10px;background:rgba(30,41,59,0.3);border-radius:8px;cursor:pointer;transition:all .2s;border:1px solid transparent}
+131|.sc3-node:hover{border-color:#334155;background:rgba(30,41,59,0.5)}
+132|.sc3-node h5{font-size:.65rem;font-weight:600;margin-bottom:2px;display:flex;align-items:center;gap:4px}
+133|.sc3-node .preview{font-size:.55rem;color:#64748b;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+134|.sc3-node .hl-tag{font-size:.48rem;padding:1px 5px;border-radius:3px;background:rgba(251,112,133,0.15);color:#fb7185;margin-left:4px;font-weight:600}
+135|
+136|.hl-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+137|.hl-card{background:rgba(15,23,42,0.5);border:1px solid #1e293b;border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;border-left:3px solid #fb7185}
+138|.hl-card:hover{border-color:#334155;transform:translateX(3px)}
+139|.hl-card h5{font-size:.75rem;font-weight:600;color:#fb7185;margin-bottom:4px}
+140|.hl-card .desc{font-size:.6rem;color:#94a3b8;line-height:1.6}
+141|.hl-card .meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+142|.hl-card .meta span{font-size:.52rem;padding:2px 7px;border-radius:4px;background:rgba(30,41,59,0.6);color:#64748b}
+143|
+144|.ent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px}
+145|.ent-card{background:rgba(15,23,42,0.5);border:1px solid #1e293b;border-radius:10px;padding:10px 12px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+146|.ent-card:hover{transform:translateY(-2px);border-color:#334155}
+147|.ent-card .ent-tag{font-size:.45rem;padding:1px 6px;border-radius:3px;display:inline-block;margin-bottom:3px;font-weight:600}
+148|.ent-card h5{font-size:.7rem;font-weight:600;margin-bottom:2px}
+149|.ent-card .ent-code{font-size:.52rem;color:#64748b;margin-bottom:3px}
+150|.ent-card .ent-desc{font-size:.52rem;color:#64748b;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
+151|.ent-cat{margin-top:14px;margin-bottom:8px}
+152|.ent-cat:first-child{margin-top:0}
+153|.ent-cat h4{font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:6px;padding:6px 0 8px;border-bottom:1px solid rgba(30,41,59,0.4)}
+154|.ent-cat h4 span{font-size:.55rem;font-weight:400;color:#64748b}
+155|.section-title{margin-bottom:12px}
+156|.section-title h2{font-size:1rem;font-weight:700;margin-bottom:3px}
+157|.section-title p{font-size:.64rem;color:#64748b;line-height:1.5}
+158|
+159|@media(max-width:768px){
+160|  .stats-row{grid-template-columns:repeat(2,1fr)}
+161|  .sc3-grid,.quick-grid{grid-template-columns:1fr}
+162|  .cat-grid,.ent-grid{grid-template-columns:repeat(2,1fr)}
+163|  .hl-list{grid-template-columns:1fr}
+164|  .m-qgrid{grid-template-columns:1fr}
+165|  nav .tab{padding:4px 8px;font-size:.6rem}
+166|  .modal{max-width:100%;margin:8px;border-radius:12px}
+167|}
+168|</style>
+169|</head>
+170|<body>
+171|
+172|<div class="container">
+173|
+174|<!-- TAB 0: OVERVIEW -->
+175|<div id="tab-overview" class="section active">
+176|  <div class="hero-banner">
+177|    <h1>机器人产业全景百科</h1>
+178|    <p>从整机分类到供应链纵深。点击下方统计卡片快速跳转，点击任意卡片查看4+5分析师解说。</p>
+179|  </div>
+180|  <div class="stats-row">
+181|    <div class="stat-card c1" onclick="switchTab('robots')">
+182|      <div class="num">9</div>
+183|      <div class="lbl">整机品类</div>
+184|      <div class="sub">工业·协作·人形·服务·医疗·特种·物流·农业·无人机</div>
+185|    </div>
+186|    <div class="stat-card c2" onclick="switchTab('enterprise')">
+187|      <div class="num">30+</div>
+188|      <div class="lbl">代表企业</div>
+189|      <div class="sub">整机厂商 + 核心零部件供应商</div>
+190|    </div>
+191|    <div class="stat-card c3" onclick="switchTab('supply')">
+192|      <div class="num">12</div>
+193|      <div class="lbl">核心零部件</div>
+194|      <div class="sub">跨品类复用的关键环节</div>
+195|    </div>
+196|    <div class="stat-card c4" onclick="switchTab('highlights')">
+197|      <div class="num">🔴6</div>
+198|      <div class="lbl">高壁垒环节</div>
+199|      <div class="sub">国产化率&lt;30% 的卡脖子零部件</div>
+200|    </div>
+201|  </div>
+202|  <div style="font-size:.65rem;font-weight:600;color:#64748b;margin-bottom:6px">🔥 快速入口</div>
+203|  <div class="quick-grid">
+204|    <div class="card rose" onclick="openModal('robot3')">
+205|      <span class="tag" style="background:#fb718520;color:#fb7185">🔥 最热</span>
+206|      <h4 style="color:#fb7185">人形机器人 · 万亿赛道</h4>
+207|      <p>2025-2026量产元年。优必选/智元/宇树/傅利叶全解读</p>
+208|      <span class="click-hint">👆 4+5分析师解说</span>
+209|    </div>
+210|    <div class="card amber" onclick="openModal('hl-screw')">
+211|      <span class="tag" style="background:#fbbf2420;color:#fbbf24">🔴 最高壁垒</span>
+212|      <h4 style="color:#fbbf24">行星滚柱丝杠</h4>
+213|      <p>国产化率&lt;20%。所有零部件中难度最高的</p>
+214|      <span class="click-hint">👆 4+5分析师解说</span>
+215|    </div>
+216|    <div class="card emerald" onclick="openModal('robot2')">
+217|      <span class="tag" style="background:#34d39920;color:#34d399">📈 增速最快</span>
+218|      <h4 style="color:#34d399">协作机器人 · 28.2%</h4>
+219|      <p>国产占全球55%。节卡 · 遨博 · 越疆三强争霸</p>
+220|      <span class="click-hint">👆 4+5分析师解说</span>
+221|    </div>
+222|  </div>
+223|</div>
+224|
+225|<!-- TAB 1: ROBOTS -->
+226|<div id="tab-robots" class="section">
+227|  <div class="section-title">
+228|    <h2>🏭 机器人整机分类 · 9大品类</h2>
+229|    <p>每品类配有4+5分析师解说：①一句话→②打个比方→③必知数字→④别搞错 → 展开后还有5个深度维度</p>
+230|  </div>
+231|  <div class="cat-grid">
+232|    <div class="card cyan" onclick="openModal('robot1')">
+233|      <span class="tag" style="background:#22d3ee20;color:#22d3ee">① 工业机器人</span>
+234|      <h4 style="color:#22d3ee">工业机器人</h4>
+235|      <p>焊接·搬运·装配·喷涂·洁净。国产市占率约45%。</p>
+236|      <span class="click-hint">👆 查看4+5解说</span>
+237|    </div>
+238|    <div class="card emerald" onclick="openModal('robot2')">
+239|      <span class="tag" style="background:#34d39920;color:#34d399">② 协作机器人</span>
+240|      <h4 style="color:#34d399">协作机器人</h4>
+241|      <p>增速28.2%，国产占全球55%。和人一起干活。</p>
+242|      <span class="click-hint">👆 查看4+5解说</span>
+243|    </div>
+244|    <div class="card rose" onclick="openModal('robot3')">
+245|      <span class="tag" style="background:#fb718520;color:#fb7185">③ 人形机器人</span>
+246|      <h4 style="color:#fb7185">人形机器人</h4>
+247|      <p>万亿赛道，量产元年。供应链最复杂的品类。</p>
+248|      <span class="click-hint">👆 查看4+5解说</span>
+249|    </div>
+250|    <div class="card violet" onclick="openModal('robot4')">
+251|      <span class="tag" style="background:#a78bfa20;color:#a78bfa">④ 服务机器人</span>
+252|      <h4 style="color:#a78bfa">服务机器人</h4>
+253|      <p>扫地/清洁/配送。中国品牌全球>75%。</p>
+254|      <span class="click-hint">👆 查看4+5解说</span>
+255|    </div>
+256|    <div class="card amber" onclick="openModal('robot5')">
+257|      <span class="tag" style="background:#fbbf2420;color:#fbbf24">⑤ 医疗机器人</span>
+258|      <h4 style="color:#fbbf24">医疗机器人</h4>
+259|      <p>手术·康复。注册证壁垒极高。</p>
+260|      <span class="click-hint">👆 查看4+5解说</span>
+261|    </div>
+262|    <div class="card orange" onclick="openModal('robot6')">
+263|      <span class="tag" style="background:#fb923c20;color:#fb923c">⑥ 特种机器人</span>
+264|      <h4 style="color:#fb923c">特种机器人</h4>
+265|      <p>巡检·消防·水下·军工。壁垒极高。</p>
+266|      <span class="click-hint">👆 查看4+5解说</span>
+267|    </div>
+268|    <div class="card lime" onclick="openModal('robot7')">
+269|      <span class="tag" style="background:#a3e63520;color:#a3e635">⑦ 物流仓储</span>
+270|      <h4 style="color:#a3e635">物流仓储机器人</h4>
+271|      <p>AGV/AMR。极智嘉/快仓/海康全球前三甲。</p>
+272|      <span class="click-hint">👆 查看4+5解说</span>
+273|    </div>
+274|    <div class="card sky" onclick="openModal('robot8')">
+275|      <span class="tag" style="background:#38bdf820;color:#38bdf8">⑧ 农业机器人</span>
+276|      <h4 style="color:#38bdf8">农业机器人</h4>
+277|      <p>植保已商用，采摘仍在研发。</p>
+278|      <span class="click-hint">👆 查看4+5解说</span>
+279|    </div>
+280|    <div class="card purple" onclick="openModal('robot9')">
+281|      <span class="tag" style="background:#c084fc20;color:#c084fc">⑨ 无人机/eVTOL</span>
+282|      <h4 style="color:#c084fc">无人机 / eVTOL</h4>
+283|      <p>大疆~80%份额。低空经济元年。</p>
+284|      <span class="click-hint">👆 查看4+5解说</span>
+285|    </div>
+286|  </div>
+287|</div>
+288|
+289|<!-- TAB 2: ENTERPRISE (same as before, abbreviated) -->
+290|<div id="tab-enterprise" class="section">
+291|  <div class="section-title">
+292|    <h2>🏢 代表企业档案库</h2>
+293|    <p>覆盖整机厂商与核心零部件供应商。点击查看企业详细资料。</p>
+294|  </div>
+295|  <div class="ent-cat">
+296|    <h4>🤖 人形机器人整机 <span>6家</span></h4>
+297|    <div class="ent-grid">
+298|      <div class="ent-card" onclick="openModal('comp-ubt')">
+299|        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
+300|        <h5>优必选</h5>
+301|        <div class="ent-code">9880.HK</div>
+302|        <div class="ent-desc">Walker系列，港股"人形机器人第一股"。</div>
+303|      </div>
+304|      <div class="ent-card" onclick="openModal('comp-zhiyuan')">
+305|        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
+306|        <h5>智元机器人</h5>
+307|        <div class="ent-code">未上市 · 独角兽</div>
+308|        <div class="ent-desc">远征A2，华为天才少年"稚晖君"创办。</div>
+309|      </div>
+310|      <div class="ent-card" onclick="openModal('comp-yushu')">
+311|        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
+312|        <h5>宇树科技</h5>
+313|        <div class="ent-code">未上市 · 独角兽</div>
+314|        <div class="ent-desc">H1，运控能力全球顶流。</div>
+315|      </div>
+316|      <div class="ent-card" onclick="openModal('comp-ftl')">
+317|        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
+318|        <h5>傅利叶智能</h5>
+319|        <div class="ent-code">未上市</div>
+320|        <div class="ent-desc">GR-2，康复出身力控好。</div>
+321|      </div>
+322|      <div class="ent-card" onclick="openModal('comp-xiaomi')">
+323|        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
+324|        <h5>小米</h5>
+325|        <div class="ent-code">01810.HK</div>
+326|        <div class="ent-desc">CyberOne，生态链+AI能力。</div>
+327|      </div>
+328|      <div class="ent-card" onclick="openModal('comp-dula')">
+329|        <span class="ent-tag" style="background:#fb718520;color:#fb7185">人形</span>
+330|        <h5>达闼机器人</h5>
+331|        <div class="ent-code">未上市</div>
+332|        <div class="ent-desc">Cloud Ginger，云端大脑架构。</div>
+333|      </div>
+334|    </div>
+335|  </div>
+336|  <div class="ent-cat">
+337|    <h4>🏭 工业与协作机器人 <span>9家</span></h4>
+338|    <div class="ent-grid">
+339|      <div class="ent-card" onclick="openModal('comp-estun')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">工业</span><h5>埃斯顿</h5><div class="ent-code">002747.SZ</div><div class="ent-desc">焊接机器人龙头，全产业链。</div></div>
+340|      <div class="ent-card" onclick="openModal('comp-xinsong')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">工业</span><h5>新松机器人</h5><div class="ent-code">300024.SZ</div><div class="ent-desc">国产老牌龙头，洁净唯一国产。</div></div>
+341|      <div class="ent-card" onclick="openModal('comp-efort')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">工业</span><h5>埃夫特</h5><div class="ent-code">688165.SH</div><div class="ent-desc">喷涂领先，海外并购。</div></div>
+342|      <div class="ent-card" onclick="openModal('comp-tuosida')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">工业</span><h5>拓斯达</h5><div class="ent-code">300607.SZ</div><div class="ent-desc">中低端快速崛起。</div></div>
+343|      <div class="ent-card" onclick="openModal('comp-jaka')"><span class="ent-tag" style="background:#34d39920;color:#34d399">协作</span><h5>节卡机器人</h5><div class="ent-code">未上市·独角兽</div><div class="ent-desc">柔性方案领先。</div></div>
+344|      <div class="ent-card" onclick="openModal('comp-aubo')"><span class="ent-tag" style="background:#34d39920;color:#34d399">协作</span><h5>遨博</h5><div class="ent-code">未上市</div><div class="ent-desc">出货量第一。</div></div>
+345|      <div class="ent-card" onclick="openModal('comp-yuejiang')"><span class="ent-tag" style="background:#34d39920;color:#34d399">协作</span><h5>越疆</h5><div class="ent-code">递表拟上市</div><div class="ent-desc">教育+工业双轮。</div></div>
+346|      <div class="ent-card" onclick="openModal('comp-elite')"><span class="ent-tag" style="background:#34d39920;color:#34d399">协作</span><h5>艾利特</h5><div class="ent-code">未上市</div><div class="ent-desc">性价比突出。</div></div>
+347|      <div class="ent-card" onclick="openModal('comp-luoshi')"><span class="ent-tag" style="background:#34d39920;color:#34d399">协作</span><h5>珞石</h5><div class="ent-code">未上市</div><div class="ent-desc">控制算法见长。</div></div>
+348|    </div>
+349|  </div>
+350|  <div class="ent-cat">
+351|    <h4>🧹 服务·医疗·特种·物流·无人机 <span>8家</span></h4>
+352|    <div class="ent-grid">
+353|      <div class="ent-card" onclick="openModal('comp-ecovacs')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">服务</span><h5>科沃斯</h5><div class="ent-code">603486.SH</div><div class="ent-desc">家用清洁绝对龙头。</div></div>
+354|      <div class="ent-card" onclick="openModal('comp-stone')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">服务</span><h5>石头科技</h5><div class="ent-code">688169.SH</div><div class="ent-desc">扫地第二极，高毛利。</div></div>
+355|      <div class="ent-card" onclick="openModal('comp-gaoxian')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">服务</span><h5>高仙机器人</h5><div class="ent-code">未上市·独角兽</div><div class="ent-desc">商用清洁全球第一。</div></div>
+356|      <div class="ent-card" onclick="openModal('comp-tianzhihang')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">医疗</span><h5>天智航</h5><div class="ent-code">688277.SH</div><div class="ent-desc">A股唯一手术机器人。</div></div>
+357|      <div class="ent-card" onclick="openModal('comp-yijiahe')"><span class="ent-tag" style="background:#fb923c20;color:#fb923c">特种</span><h5>亿嘉和</h5><div class="ent-code">603666.SH</div><div class="ent-desc">电力巡检龙头。</div></div>
+358|      <div class="ent-card" onclick="openModal('comp-geek')"><span class="ent-tag" style="background:#a3e63520;color:#a3e635">物流</span><h5>极智嘉</h5><div class="ent-code">未上市·独角兽</div><div class="ent-desc">全球AMR出货量第一。</div></div>
+359|      <div class="ent-card" onclick="openModal('comp-dji')"><span class="ent-tag" style="background:#c084fc20;color:#c084fc">无人机</span><h5>大疆创新</h5><div class="ent-code">未上市</div><div class="ent-desc">全球消费级~80%份额。</div></div>
+360|      <div class="ent-card" onclick="openModal('comp-zongheng')"><span class="ent-tag" style="background:#c084fc20;color:#c084fc">无人机</span><h5>纵横股份</h5><div class="ent-code">688070.SH</div><div class="ent-desc">工业无人机龙头。</div></div>
+361|    </div>
+362|  </div>
+363|  <div class="ent-cat">
+364|    <h4>🔩 核心零部件供应商 <span>12家</span></h4>
+365|    <div class="ent-grid">
+366|      <div class="ent-card" onclick="openModal('comp-harmonic')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">减速器</span><h5>绿的谐波</h5><div class="ent-code">688017.SH</div><div class="ent-desc">谐波减速器国产龙头。</div></div>
+367|      <div class="ent-card" onclick="openModal('comp-huichuan')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">伺服</span><h5>汇川技术</h5><div class="ent-code">300124.SZ</div><div class="ent-desc">伺服龙头，机器人新拓展。</div></div>
+368|      <div class="ent-card" onclick="openModal('comp-hengli')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">丝杠</span><h5>恒立液压</h5><div class="ent-code">601100.SH</div><div class="ent-desc">液压龙头→丝杠新布局。</div></div>
+369|      <div class="ent-card" onclick="openModal('comp-mingzhi')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">电机</span><h5>鸣志电器</h5><div class="ent-code">603728.SH</div><div class="ent-desc">空心杯电机国产龙头。</div></div>
+370|      <div class="ent-card" onclick="openModal('comp-obit')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">视觉</span><h5>奥比中光</h5><div class="ent-code">688322.SH</div><div class="ent-desc">3D视觉传感器龙头。</div></div>
+371|      <div class="ent-card" onclick="openModal('comp-keli')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">传感器</span><h5>柯力传感</h5><div class="ent-code">603662.SH</div><div class="ent-desc">应变式龙头→六维力。</div></div>
+372|      <div class="ent-card" onclick="openModal('comp-suteng')"><span class="ent-tag" style="background:#22d3ee20;color:#22d3ee">雷达</span><h5>速腾聚创</h5><div class="ent-code">2498.HK</div><div class="ent-desc">激光雷达，车载→机器人。</div></div>
+373|      <div class="ent-card" onclick="openModal('comp-sanhua')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">Tier-1</span><h5>三花智控</h5><div class="ent-code">002050.SZ</div><div class="ent-desc">旋转关节总成，特斯拉核心。</div></div>
+374|      <div class="ent-card" onclick="openModal('comp-tuopu')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">Tier-1</span><h5>拓普集团</h5><div class="ent-code">601689.SH</div><div class="ent-desc">线性关节总成，特斯拉核心。</div></div>
+375|      <div class="ent-card" onclick="openModal('comp-lixun')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">线束</span><h5>立讯精密</h5><div class="ent-code">002475.SZ</div><div class="ent-desc">连接器/线束绝对龙头。</div></div>
+376|      <div class="ent-card" onclick="openModal('comp-guangwei')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">材料</span><h5>光威复材</h5><div class="ent-code">300699.SZ</div><div class="ent-desc">碳纤维龙头。</div></div>
+377|      <div class="ent-card" onclick="openModal('comp-buke')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">电机</span><h5>步科股份</h5><div class="ent-code">688160.SH</div><div class="ent-desc">低压伺服，人形方案。</div></div>
+378|    </div>
+379|  </div>
+380|</div>
+381|
+382|<!-- TAB 3: SUPPLY CHAIN (sections same) -->
+383|<div id="tab-supply" class="section">
+384|  <div class="section-title">
+385|    <h2>🔩 人形机器人供应链 · 三层拆解</h2>
+386|    <p>点击任意节点查看4+5分析师解说。</p>
+387|  </div>
+388|  <div class="sc3-grid">
+389|    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#22d3ee,#0891b2)"></div>
+390|      <h3><span style="color:#22d3ee">🧠</span> 智能大脑 <span class="pct">~25%</span></h3>
+391|      <div class="sc3-node" onclick="openModal('chip')"><h5>🔲 AI算力芯片 <span class="hl-tag">🔴</span></h5><div class="preview">GPU/ASIC。NVIDIA生态一家独大。</div></div>
+392|      <div class="sc3-node" onclick="openModal('model')"><h5>🧩 大模型与决策软件</h5><div class="preview">多模态大模型+运动控制算法。</div></div>
+393|      <div class="sc3-node" onclick="openModal('vision')"><h5>👁️ 视觉/深度传感器</h5><div class="preview">3D ToF/结构光。奥比中光。</div></div>
+394|    </div>
+395|    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#34d399,#059669)"></div>
+396|      <h3><span style="color:#34d399">🦾</span> 躯体执行系统 <span class="pct">~55%</span></h3>
+397|      <div class="sc3-node" onclick="openModal('hl-motor')"><h5>🔄 无框力矩电机 <span class="hl-tag">🔴</span></h5><div class="preview">旋转关节动力源。</div></div>
+398|      <div class="sc3-node" onclick="openModal('hl-harmonic')"><h5>⚙️ 谐波减速器 <span class="hl-tag">🔴</span></h5><div class="preview">旋转关节"变速箱"。</div></div>
+399|      <div class="sc3-node" onclick="openModal('hl-screw')"><h5>📏 行星滚柱丝杠 <span class="hl-tag">🔴最高</span></h5><div class="preview">最卡脖子的环节。</div></div>
+400|      <div class="sc3-node" onclick="openModal('hl-motor2')"><h5>✋ 空心杯电机 <span class="hl-tag">🔴</span></h5><div class="preview">灵巧手核心。</div></div>
+401|      <div class="sc3-node" onclick="openModal('hl-sensor')"><h5>📊 六维力矩传感器 <span class="hl-tag">🔴</span></h5><div class="preview">力控"皮肤"。</div></div>
+402|    </div>
+403|    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#fbbf24,#d97706)"></div>
+404|      <h3><span style="color:#fbbf24">🏭</span> 集成配套总成 <span class="pct">~20%</span></h3>
+405|      <div class="sc3-node" onclick="openModal('tier1')"><h5>🔗 Tier-1 执行器总成</h5><div class="preview">三花+拓普，特斯拉核心。</div></div>
+406|      <div class="sc3-node" onclick="openModal('battery')"><h5>🔋 高能量密度电池</h5><div class="preview">续航<2小时是最大痛点。</div></div>
+407|      <div class="sc3-node" onclick="openModal('material')"><h5>🏗️ 轻量化结构件</h5><div class="preview">碳纤维/铝合金/3D打印。</div></div>
+408|      <div class="sc3-node" onclick="openModal('cable')"><h5>🔌 线束连接器</h5><div class="preview">机器人的"血管和神经"。</div></div>
+409|    </div>
+410|  </div>
+411|</div>
+412|
+413|<!-- TAB 4: HIGHLIGHTS -->
+414|<div id="tab-highlights" class="section">
+415|  <div class="section-title">
+416|    <h2>🔴 高壁垒核心部件 · 国产替代清单</h2>
+417|    <p>6大卡脖子环节，国产化率均低于30%。每项配有4+5分析师解说。</p>
+418|  </div>
+419|  <div class="hl-list">
+420|    <div class="hl-card" onclick="openModal('hl-screw')"><h5>📏 行星滚柱丝杠</h5><div class="desc">线性关节核心，国产化率&lt;20%。最卡脖子的环节。</div><div class="meta"><span>国产化率&lt;20%</span><span>单台~¥8000</span><span>恒立液压/贝斯特</span></div></div>
+421|    <div class="hl-card" onclick="openModal('hl-sensor')"><h5>📊 六维力矩传感器</h5><div class="desc">力控"皮肤"，标定极复杂。</div><div class="meta"><span>国产化率~25%</span><span>单台~¥6000</span><span>柯力传感/东华测试</span></div></div>
+422|    <div class="hl-card" onclick="openModal('hl-harmonic')"><h5>⚙️ 谐波减速器</h5><div class="desc">旋转关节核心，绿的谐波已突破。</div><div class="meta"><span>国产化率~35%</span><span>单台~¥4000</span><span>绿的谐波</span></div></div>
+423|    <div class="hl-card" onclick="openModal('hl-motor2')"><h5>✋ 空心杯电机</h5><div class="desc">灵巧手核心，直径6-16mm。</div><div class="meta"><span>国产化率~30%</span><span>单台~¥2000</span><span>鸣志电器</span></div></div>
+424|    <div class="hl-card" onclick="openModal('hl-motor')"><h5>🔄 无框力矩电机</h5><div class="desc">旋转关节动力源。</div><div class="meta"><span>国产化率~35%</span><span>单台~¥6000</span><span>步科/昊志</span></div></div>
+425|    <div class="hl-card" onclick="openModal('chip')"><h5>🧠 AI算力芯片</h5><div class="desc">NVIDIA生态一家独大。</div><div class="meta"><span>国产化率&lt;15%</span><span>单台~¥3000-8000</span><span>海光/寒武纪</span></div></div>
+426|  </div>
+427|</div>
+428|
+429|</div><!-- /container -->
+430|
+431|<!-- MODAL -->
+432|<div id="modalOverlay" class="modal-overlay" onclick="closeModalOutside(event)">
+433|<div id="modalContent" class="modal">
+434|  <div class="modal-close">
+435|    <div id="modalTag" style="font-size:.5rem;padding:2px 8px;border-radius:4px"></div>
+436|    <button onclick="closeModal()">✕</button>
+437|  </div>
+438|  <div class="modal-header">
+439|    <h2 id="modalTitle"></h2>
+440|    <div class="sub" id="modalSub"></div>
+441|  </div>
+442|  <div id="modalReport" style="display:none;padding:0 16px 6px">
+443|    <a id="modalReportLink" target="_blank" style="display:inline-flex;align-items:center;gap:4px;color:#22d3ee;font-size:.6rem;text-decoration:none;padding:3px 8px;border-radius:4px;background:rgba(34,211,238,0.1);transition:all .2s">📄</a>
+444|  </div>
+445|  <div class="modal-body" id="modalBody"></div>
+446|</div>
+447|</div>
+448|
+449|<script>
+450|const modalData = {};
+451|function registerModal(id, data){ modalData[id]=data }
+452|
+453|function openModal(id){
+454|  const d = modalData[id]; if(!d) return;
+455|  document.getElementById('modalTag').textContent=d.tag||'';
+456|  document.getElementById('modalTag').style.background=d.tagBg||'#1e293b';
+457|  document.getElementById('modalTag').style.color=d.tagColor||'#64748b';
+458|  document.getElementById('modalTitle').textContent=d.title||'';
+459|  document.getElementById('modalSub').textContent=d.sub||'';
+460|  document.getElementById('modalBody').innerHTML=d.body||'';
+461|  const reportDiv=document.getElementById('modalReport');
+462|  const reportLink=document.getElementById('modalReportLink');
+463|  if(d.report){
+464|    reportDiv.style.display='';
+465|    reportLink.href='reports/'+d.report.id+'.html';
+466|    reportLink.innerHTML='📄 查看报告：'+d.report.name+' →';
+467|  } else {
+468|    reportDiv.style.display='none';
+469|  }
+470|  document.getElementById('modalOverlay').classList.add('open');
+471|  document.body.style.overflow='hidden';
+472|}
+473|function closeModal(){ document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; }
+474|function closeModalOutside(e){ if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+475|document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
+476|
+477|function toggleDeep(el){
+478|  const deep = el.nextElementSibling;
+479|  if(!deep || !deep.classList.contains('m-deep')) return;
+480|  const isHidden = deep.style.display==='none';
+481|  deep.style.display = isHidden ? 'block' : 'none';
+482|  el.innerHTML = isHidden ? '▲ 收起深度分析' : '▼ 展开深度分析';
+483|}
+484|
+485|function switchTab(tabId){
+486|  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+487|  const section = document.getElementById('tab-'+tabId);
+488|  if(section) section.classList.add('active');
+489|  window.location.hash = tabId;
+490|}
+491|const hashTab = window.location.hash.replace('#','');
+492|if(hashTab && document.getElementById('tab-'+hashTab)) switchTab(hashTab);
+493|
+494|/* ================================================================ */
+495|/* MODAL DATA: 4+5双层模板                                           */
+496|/* Usage:                                                           */
+497|/*  registerModal('id',{tag,tagBg,tagColor,title,sub,               */
+498|/*    q1,q1c,q2,q2c,q3,q3c,q4,q4c,   ← 4 quick cards               */
+499|/*    d1,d2,d3,d4,d5                 ← 5 deep items (html)         */
+500|/*  })                                                              */
+501|/* ================================================================ */
+502|/* helper: build 4+5 modal body */
+503|function m45(o){
+504|  const c = o.tagColor||'#22d3ee';
+505|  return `
+506|<div class="m-qgrid">
+507|  <div class="m-qc" style="border-color:${c}"><div class="q-icon">📝</div><div class="q-label" style="color:${c}">一句话说清</div><div class="q-text">${o.q1||''}</div></div>
+508|  <div class="m-qc" style="border-color:#34d399"><div class="q-icon">🤔</div><div class="q-label" style="color:#34d399">打个比方</div><div class="q-text">${o.q2||''}</div></div>
+509|  <div class="m-qc" style="border-color:#fbbf24"><div class="q-icon">📊</div><div class="q-label" style="color:#fbbf24">必知数字</div>${o.q3||''}</div>
+510|  <div class="m-qc" style="border-color:#fb7185"><div class="q-icon">❌</div><div class="q-label" style="color:#fb7185">别搞错</div><div class="q-text">${o.q4||''}</div></div>
+511|</div>
+512|<div class="m-toggle" onclick="toggleDeep(this)">▼ 展开深度分析</div>
+513|<div class="m-deep" style="display:none">
+514|  ${o.d1||''}${o.d2||''}${o.d3||''}${o.d4||''}${o.d5||''}
+515|</div>`;
+516|}
+517|
+518|/* ---- ROBOT 1: 工业机器人 ---- */
+519|registerModal('robot1',{
+520|  tag:'① 工业机器人',tagBg:'rgba(34,211,238,0.15)',tagColor:'#22d3ee',
+521|  title:'工业机器人 — 制造业的"铁打主力"',
+522|  sub:'焊接·搬运·装配·喷涂·洁净',
+523|  q1:'工厂里那些力大无穷的机械臂。焊接、搬重物、拧螺丝、喷漆，7×24小时不停歇。必须关在安全围栏里——撞到人会很危险。',
+524|  q2:'就像工厂里的"铁打的主力工人"——不睡觉、不吃饭、不喊累，一台能顶3-5个工人的产量。但只会干一件事，换个活就要重新编程。',
+525|  q3:'<div class="q-num">35万台</div><div class="q-num-sub">2025年中国装机量，全球占比~55%，连续多年第一</div>',
+526|  q4:'很多人以为国产工业机器人已经全面替代了。其实高端市场（发那科/ABB/安川/库卡"四大家族"）仍占约60%，国产品牌在中低端已主导，但高端"卡脖子"问题还没完全解决。',
+527|  d1:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🔧 技术难度 ★★★☆☆</h6><p>中低端(搬运/码垛)难度低，国产已成熟。高端(焊接/装配)+洁净机器人难度高，核心在控制算法和精密加工。</p></div>',
+528|  d2:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🌍 国产 vs 海外</h6><table><tr><td>高端焊接</td><td>发那科/ABB</td><td><span class="grn">埃斯顿(Cloos技术)</span></td></tr><tr><td>洁净机器人</td><td>日本电装</td><td><span class="hl">新松（唯一国产）</span></td></tr><tr><td>喷涂</td><td>ABB/杜尔</td><td><span class="grn">埃夫特(收购CMA)</span></td></tr></table></div>',
+529|  d3:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🏢 代表企业</h6><p><span class="gld">埃斯顿(002747)</span> — 焊接龙头，收购德国Cloos<br><span class="gld">新松(300024)</span> — 老牌龙头，洁净唯一<br><span class="gld">埃夫特(688165)</span> — 喷涂领先<br><span class="gld">拓斯达(300607)</span> — 中低端快速崛起</p></div>',
+530|  d4:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🏗️ 谁在用</h6><p>汽车(焊接+喷漆) · 3C电子(装配+搬运) · 金属加工(码垛) · 半导体/面板(洁净搬运)<br><span style="color:#64748b;font-size:.55rem;">→ 工业机器人的核心零部件需求：RV减速器/谐波减速器 · 伺服电机 · 控制器 · 编码器</span></p></div>',
+531|  d5:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🎯 关注焦点</h6><p>国产替代从"能做"到"做得和进口一样好"——高端焊接和精密装配是接下来3年的主战场。新增量在新能源(光伏/锂电)产线需求。</p></div>'
+532|});
+533|
+534|/* ---- ROBOT 2: 协作机器人 ---- */
+535|registerModal('robot2',{
+536|  tag:'② 协作机器人',tagBg:'rgba(52,211,153,0.15)',tagColor:'#34d399',
+537|  title:'协作机器人 — 和人类"肩并肩"的同事',
+538|  sub:'Cobot · 安全 · 灵活 · 易部署 · 增速28.2%',
+539|  q1:'不用关笼子的机器人。碰到人自动停下，拖拽示教（人教一遍动作它就会了）。适合上下料/锁螺丝/质检/码垛。',
+540|  q2:'就像"一个力气不太大的实习生"——你得教它做什么，学会之后它就乖乖重复做。力气不大(通常负载3-20kg)，但安全可靠。',
+541|  q3:'<div class="q-num">28.2%</div><div class="q-num-sub">2024年增速，唯一两位数增长的工业机器人品类</div>',
+542|  q4:'很多人以为协作机器人就是"小号的工业机器人"。其实最大的区别不是大小，而是<span class="hl">安全性设计</span>——有六维力传感器+碰撞检测+限速限力，人可以不用围栏站在旁边。',
+543|  d1:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🔧 技术难度 ★★★☆☆</h6><p>相比工业机器人，协作机器人精度和速度要求低一些，但对力控安全、拖拽示教、人机交互软件要求高。</p></div>',
+544|  d2:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🌍 国产 vs 海外</h6><p>这是一个<span class="grn">中国品牌主导的赛道</span>——国产协作机器人全球份额~55%。海外优傲(Universal Robots)仍占高端，但节卡/遨博/越疆增速远超UR。</p></div>',
+545|  d3:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🏢 代表企业</h6><p><span class="gld">节卡</span> — 柔性方案领先，融资最多<br><span class="gld">遨博</span> — 出货量第一，大客户覆盖广<br><span class="gld">越疆</span> — 教育+工业双轮，出海最强<br>艾利特/珞石/大族机器人紧随</p></div>',
+546|  d4:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🏗️ 谁在用</h6><p>中小制造企业(3C装配+五金加工) · 实验室 · 医疗 · 餐饮(自动烹饪)<br><span style="color:#64748b;font-size:.55rem;">→ 协作机器人技术与人形机器人高度重合(力控/关节模组/安全交互)</span></p></div>',
+547|  d5:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🎯 关注焦点</h6><p>谁的IPO先落地(节卡/越疆都在排队)。协作+视觉+AI是下一个方向——机器人"看懂"活再干，而非人教会它干。</p></div>'
+548|});
+549|
+550|/* ---- ROBOT 3: 人形机器人 ---- */
+551|registerModal('robot3',{
+552|  tag:'③ 人形机器人 ⭐',tagBg:'rgba(251,112,133,0.2)',tagColor:'#fb7185',
+553|  title:'人形机器人 — 机器人的"终极形态"',
+554|  sub:'双足·灵巧手·具身智能 · 万亿赛道',
+555|  q1:'长得像人的通用机器人——有头、躯干、双臂、双腿、灵巧手。不是某一种工具，而是"换了软件就能换工种"的通用平台。',
+556|  q2:'就像<span class="hl">智能手机 vs 功能机</span>——以前每个家电都要一个遥控器(一台机器干一种活)，人形机器人是"一个平台装不同APP"：洗碗→搬货→照顾老人，换软件就行。',
+557|  q3:'<div class="q-num">$1540亿</div><div class="q-num-sub">高盛预测2035年全球市场规模，年复合增长率94%</div>',
+558|  q4:'很多人觉得人形机器人离自己很远，像科幻片里的东西。但2025-2026就是量产元年——特斯拉Optimus Gen3预计2025年小批量，优必选Walker已经交付。AI大模型是最大推动力：<span class="hl">"大脑"问题解决了，"身体"有新能源汽车供应链可以用</span>。',
+559|  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★★</h6><p>所有品类中难度最高。双足平衡+灵巧手精细操作+大模型决策——三项都是世界级难题。一台机器人需要28-40个关节电机、14-20个减速器、16个丝杠、4-6个六维力传感器。</p></div>',
+560|  d2:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🌍 国产 vs 海外</h6><table><tr><td>整机领先</td><td>Tesla Optimus</td><td>优必选·智元·宇树</td></tr><tr><td>运控技术</td><td>Boston Dynamics</td><td><span class="grn">宇树H1可并列</span></td></tr><tr><td>大模型</td><td>Google/OpenAI</td><td>百度·讯飞·商汤</td></tr><tr><td>量产能力</td><td>Tesla(预计2025)</td><td>优必选(已小批量)</td></tr></table></div>',
+561|  d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">优必选(9880.HK)</span> — 港股第一股，Walker已交付<br><span class="gld">智元</span> — 远征A2，华为天才少年创办<br><span class="gld">宇树H1</span> — 运控能力全球顶流<br><span class="gld">傅利叶GR-2</span> — 康复背景力控好<br><span class="gld">小米CyberOne</span> — 生态链+AI<br><span class="gld">特斯拉Optimus</span> — 海外最强，量产预期2025</p></div>',
+562|  d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 需要哪些零部件</h6><p><span class="hl">28-40个</span>无框力矩电机 · <span class="hl">14-20个</span>谐波减速器 · <span class="hl">16个</span>行星滚柱丝杠 · <span class="hl">4-6个</span>六维力矩传感器 · <span class="hl">12个</span>空心杯电机(双手) · <span class="hl">1个</span>AI算力模组 · <span class="hl">1个</span>高能量密度电池包<br>当前BOM成本¥30-50万，目标¥14万以内。</p></div>',
+563|  d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p>特斯拉Optimus Gen3能否如期小批量 → 将定义行业供应链标准。优必选/智元能否在国内拿到大批量订单。行星滚柱丝杠和六维力传感器的国产化进展——这两项决定整机成本能否降到¥20万以下。</p></div>'
+564|});
+565|
+566|/* ---- ROBOT 4-9 (abbreviated for space, same 4+5 format) ---- */
+567|function quickRobot(id,tag,tagBg,tagColor,title,sub,q1,q2,q3,q4,d1,d2,d3,d4,d5){
+568|  registerModal(id,{tag,tagBg,tagColor,title,sub,q1,q2,q3,q4,d1,d2,d3,d4,d5});
+569|}
+570|quickRobot('robot4','④ 服务机器人','rgba(167,139,250,0.15)','#a78bfa','服务机器人 — 你可能真的见过的那种','扫地·清洁·配送·教育',
+571|'你大概率见过的机器人——扫地/送餐/商场里转悠。轮子+传感器+屏幕，没有手脚。出货量最大的品类。',
+572|'就像"家里请的住家阿姨"——不是力气最大的也不是最聪明的，但天天干活、最接地气。',
+573|'<div class="q-num">全球>75%</div><div class="q-num-sub">中国品牌全球市占率，从扫地到配送全面领先</div>',
+574|'很多人以为服务机器人门槛低，谁都能做。但科沃斯/石头/追觅三家的技术迭代(随机碰撞→LDS激光→视觉AI→自清洁)已经把后来者的路堵死了。',
+575|'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🔧 技术难度 ★★☆☆☆</h6><p>单机技术门槛不高，但规模化+成本控制+品牌渠道是真正的壁垒。</p></div>',
+576|'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🌍 国产 vs 海外</h6><p>iRobot曾经是全球龙头→被科沃斯/石头超越。现在中国品牌在技术和产品迭代上已全面领先，这是中国消费电子供应链的红利。</p></div>',
+577|'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🏢 代表企业</h6><p><span class="gld">科沃斯(603486)</span> — 绝对龙头<br><span class="gld">石头科技(688169)</span> — 高毛利，激光导航强<br><span class="gld">高仙</span> — 商用清洁全球第一<br><span class="gld">普渡</span> — 餐饮配送出海领先</p></div>',
+578|'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🏗️ 需要什么</h6><p>核心零部件接近消费电子：激光雷达(低成本版) · 锂电池 · 轮毂电机 · 单/双目摄像头 · PCB主控 · SLAM算法模块</p></div>',
+579|'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🎯 关注焦点</h6><p>出海空间有多大——海外家庭对扫地机器人的渗透率仍远低于中国。商用清洁是下一个高增长赛道(劳动力替代逻辑强)。</p></div>');
+580|
+581|quickRobot('robot5','⑤ 医疗机器人','rgba(251,191,36,0.15)','#fbbf24','医疗机器人 — 最"严谨"的机器人','手术·康复·辅助',
+582|'做手术的机器人和帮你走路的机器人。医生坐操控台前，机械臂做微创手术精度比人手高10倍。',
+583|'就像"开了外挂的外科医生"——医生手抖一下可能出问题，机器人会把抖动量过滤掉。它也"不累"，站12个小时精度不变。',
+584|'<div class="q-num">2-4年</div><div class="q-num-sub">拿一张NMPA三类医疗器械证的平均时间，壁垒是时间</div>',
+585|'很多人以为医疗机器人和工业机器人差不多。其实医疗机器人的核心壁垒不是技术本身——而是<span class="hl">拿证</span>。拿证要2-4年+数千万，先发优势几乎不可动摇。',
+586|'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🔧 技术难度 ★★★★★</h6><p>精度要求堪比人形机器人，还要满足医疗器械的可靠性/灭菌/电气安全等额外要求。</p></div>',
+587|'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🌍 国产 vs 海外</h6><p>达芬奇(Intuitive Surgical)是神一样的存在——全球腔镜手术机器人垄断80%+。国产图迈(微创)已拿证进入医保，国产替代刚起步。</p></div>',
+588|'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🏢 代表企业</h6><p><span class="gld">天智航(688277)</span> — A股唯一手术机器人<br><span class="gld">微创图迈</span> — 腔镜手术<br><span class="gld">傅利叶</span> — 康复外骨骼<br><span class="gld">程天科技</span> — 下肢外骨骼</p></div>',
+589|'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🏗️ 技术交叉</h6><p>手术机器人的核心零部件(高精度减速器/六维力传感器/高速伺服)与人形机器人高度重合。康复机器人的外骨骼关节和仿生控制也是人形运动控制的前哨站。</p></div>',
+590|'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🎯 关注焦点</h6><p>医保覆盖率——天智航/微创图迈已进医保，这是弹性最大的催化剂。拿了证之后，放量速度取决于医院采购预算。</p></div>');
+591|
+592|quickRobot('robot6','⑥ 特种机器人','rgba(251,146,60,0.15)','#fb923c','特种机器人 — 去人不能去的地方','巡检·消防·水下·军工',
+593|'代替人去"脏乱差累危险"地方的机器人。电力巡检/冲进火场/深海勘探/排爆/军事侦察。',
+594|'就像"不怕死的特种兵"——人去太危险(高压电/火场/深水/炸弹)。机器人坏了不心疼，人去可能就没命了。',
+595|'<div class="q-num">~¥500亿</div><div class="q-num-sub">全球特种机器人市场规模，天花板不高但利润极好</div>',
+596|'很多人以为特种机器人技术很原始。其实它要求最高——防水防尘防爆等级(IP68)+极端温度(-40~85°C)+军工级通信加密，比工业机器人难做得多。',
+597|'<div class="d-section"><h6><span class="bar" style="background:#fb923c"></span> 🔧 技术难度 ★★★★☆</h6><p>核心壁垒不在机械结构而在<span class="gld">极端环境适应性</span>——IP68防水防尘+宽温(-40~85°C)+防爆认证+军工级通信加密。坏了可能出人命，可靠性要求碾压工业机器人。</p></div>','<div class="d-section"><h6><span class="bar" style="background:#fb923c"></span> 🌍 国产 vs 海外</h6><table><tr><td>电力巡检</td><td>—</td><td><span class="grn">亿嘉和/申昊/国自主导</span></td></tr><tr><td>水下</td><td>Oceaneering(美)</td><td><span class="hl">深之蓝追赶</span></td></tr><tr><td>排爆/军工</td><td>iRobot(美)</td><td>中信重工/航天科工</td></tr></table></div>','<div class="d-section"><h6><span class="bar" style="background:#fb923c"></span> 🏢 代表企业</h6><p><span class="gld">亿嘉和(603666)</span> — 电力巡检龙头<br><span class="gld">中信重工(601608)</span> — 消防/排爆<br><span class="gld">深之蓝</span> — 水下机器人独角兽<br><span class="gld">航天科工/中航</span> — 军工</p></div>','<div class="d-section"><h6><span class="bar" style="background:#fb923c"></span> 🏗️ 使用范围</h6><p>电力巡检(国家电网+南方电网年采购数十亿) · 消防灭火(替代消防员进火场) · 深海勘探 · 排爆反恐 · 核电站检修 · 军事侦察</p></div>','<div class="d-section"><h6><span class="bar" style="background:#fb923c"></span> 🎯 关注焦点</h6><p>亿嘉和在手订单+智能电网"十四五"投资加码。水下机器人军民融合推进。特种机器人从政府采购向石化/矿山等行业应用拓展。</p></div>');
+598|
+599|quickRobot('robot7','⑦ 物流仓储','rgba(163,230,53,0.2)','#a3e635','物流仓储机器人 — "快递不爆仓"的幕后功臣','AGV·AMR·无人叉车',
+600|'仓库里跑来跑去的小车——把货架搬到拣货员面前、把包裹自动分拣、无人叉车搬重物。京东/菜鸟仓库里全是它们。',
+601|'就像"仓库里的蚂蚁工兵"——不抬头不休息，一台小车一天能走几十公里、搬几吨货。效率比人工高3-5倍。',
+602|'<div class="q-num">3家</div><div class="q-num-sub">极智嘉/快仓/海康机器人——全球AMR前三甲都是中国的</div>',
+603|'很多人以为物流机器人就是"放个车在地上走"那么简单。实际上AMR要做到：每秒定位+实时避障+多台协同不碰撞+8小时不间断工作，软件难度极高。',
+604|'<div class="d-section"><h6><span class="bar" style="background:#a3e635"></span> 🔧 技术难度 ★★★☆☆</h6><p>硬件门槛不高(轮式底盘成熟)，核心壁垒在<span class="gld">软件</span>——多机协同调度(200+台同时运行不碰撞)+实时定位(±5mm)+WMS/WCS系统对接。软件复杂度随规模指数上升。</p></div>','<div class="d-section"><h6><span class="bar" style="background:#a3e635"></span> 🌍 国产 vs 海外</h6><p><span class="grn">中国全面领先</span>——全球AMR前三甲极智嘉/快仓/海康机器人全是中国的。海外Locus Robotics(美)和Swisslog(瑞士)份额已被替代。中国电商/快递场景的规模优势无可匹敵。</p></div>','<div class="d-section"><h6><span class="bar" style="background:#a3e635"></span> 🏢 代表企业</h6><p><span class="gld">极智嘉</span> — 全球AMR出货量第一<br><span class="gld">快仓</span> — 电商仓储方案强<br><span class="gld">海康机器人</span> — 背靠海康威视<br>杭叉/安徽合力(无人叉车转型)</p></div>','<div class="d-section"><h6><span class="bar" style="background:#a3e635"></span> 🏗️ 使用范围</h6><p>电商仓库(京东"亚洲一号"/菜鸟/Amazon) · 制造车间(汽车/3C产线物料搬运) · 医药仓储(自动分拣+冷链) · 快递中转(无人叉车+包裹分拣)</p></div>','<div class="d-section"><h6><span class="bar" style="background:#a3e635"></span> 🎯 关注焦点</h6><p>极智嘉IPO进展(全球最大独立AMR公司)。海康机器人从母公司分拆上市。"AI+AMR"——视觉导航替代二维码导航，让AMR不用贴地码就能跑。</p></div>');
+605|
+606|quickRobot('robot8','⑧ 农业机器人','rgba(56,189,248,0.15)','#38bdf8','农业机器人 — 谁来种地？','植保·采摘·畜牧——劳动力替代的逻辑最硬',
+607|'帮农民打药/施肥/采摘/喂牛的机器人。农业劳动力越来越难招、越来越贵，机器人是唯一的解。',
+608|'就像"新时代的农民"——年轻人不愿意下地了。机器人的逻辑很硬：人口老龄化+农村空心化+土地流转集约化。',
+609|'<div class="q-num">~10%</div><div class="q-num-sub">农业机器人渗透率(植保领域)，采摘等仍接近0%</div>',
+610|'很多人以为农业机器人就是"农田里的扫地机器人"。其实农业场景比家里难100倍——地面不平/光照变化大/作物形态不标准/要防水防尘。</div>',
+611|'<div class="d-section"><h6><span class="bar" style="background:#38bdf8"></span> 🔧 技术难度 ★★★★☆</h6><p>农业场景比工厂难百倍——<span class="gld">非结构化环境</span>(地面不平/光照变化/风雨泥)+作物形态不标准+防水防尘防腐蚀。植保无人机已成熟，采摘机器人还在实验室阶段——"看见果子"容易，"摘下来不碰坏"极难。</p></div>','<div class="d-section"><h6><span class="bar" style="background:#38bdf8"></span> 🌍 国产 vs 海外</h6><table><tr><td>植保无人机</td><td>雅马哈(日)/John Deere(美)</td><td><span class="grn">大疆+极飞>80%全球份额</span></td></tr><tr><td>采摘机器人</td><td>AppHarvest(美)/Tevel(以)</td><td><span class="hl">博田/中科原动力追赶</span></td></tr></table></div>','<div class="d-section"><h6><span class="bar" style="background:#38bdf8"></span> 🏢 代表企业</h6><p><span class="gld">极飞科技</span> — 植保无人机龙头<br><span class="gld">大疆农业</span> — 植保无人机<br><span class="gld">博田</span> — 采摘机器人(研发中)</p></div>','<div class="d-section"><h6><span class="bar" style="background:#38bdf8"></span> 🏗️ 使用范围</h6><p>植保(打药/施肥，渗透率~10%) · 采摘(水果/蔬菜，渗透率<1%，最大蓝海) · 畜牧(自动喂料/挤奶/巡检) · 大田耕种(自动驾驶拖拉机/插秧机)</p></div>','<div class="d-section"><h6><span class="bar" style="background:#38bdf8"></span> 🎯 关注焦点</h6><p>采摘机器人能否从实验室走向田间小批量验证——苹果/番茄/草莓采摘难度最高。劳动力短缺倒逼：60岁以上农民占比>40%，"谁来种地"不只是口号。</p></div>');
+612|
+613|quickRobot('robot9','⑨ 无人机/eVTOL','rgba(192,132,252,0.15)','#c084fc','无人机 & eVTOL — "飞行的机器人"','消费级·工业级·载人·低空经济',
+614|'会飞的机器人——航拍/测绘/巡检/物流。eVTOL就是"能载人的大无人机"，低空出行。',
+615|'就像"天空中的精灵"——大疆让我们有了"上帝视角"，eVTOL即将让我们在三维空间出行。从"地上跑"到"天上飞"的范式革命。',
+616|'<div class="q-num">80%</div><div class="q-num-sub">大疆在全球消费级无人机的份额，绝对统治</div>',
+617|'很多人认为大疆只是一家无人机公司。实际上大疆是<span class="hl">全球最成功的机器人公司之一</span>——飞行控制/计算机视觉/云台增稳/电机电调全部自研，技术上和人形机器人高度相通。',
+618|'<div class="d-section"><h6><span class="bar" style="background:#c084fc"></span> 🔧 技术难度 ★★★★☆</h6><p>消费级无人机难度中等(大疆已"卷"到极致)，eVTOL难度极高——<span class="gld">适航认证</span>(全球仅亿航EH216-S拿到)+飞控冗余+能源密度(电池续航瓶颈)+城市低空空管系统。从"能飞"到"能载人商业运营"的鸿沟极大。</p></div>','<div class="d-section"><h6><span class="bar" style="background:#c084fc"></span> 🌍 国产 vs 海外</h6><table><tr><td>消费级</td><td>Skydio(美)/Parrot(法)</td><td><span class="grn">大疆~80%绝对主导</span></td></tr><tr><td>工业级</td><td>—</td><td>纵横股份/科比特</td></tr><tr><td>eVTOL</td><td>Joby/Archer(美认证中)</td><td><span class="grn">亿航已拿全球首证</span></td></tr></table></div>','<div class="d-section"><h6><span class="bar" style="background:#c084fc"></span> 🏢 代表企业</h6><p><span class="gld">大疆创新</span> — 全球消费级~80%份额<br><span class="gld">纵横股份(688070)</span> — 工业级CW系列<br><span class="gld">亿航智能(EH)</span> — eVTOL全球首个适航证<br><span class="gld">小鹏汇天</span> — 旅航者X2即将量产</p></div>','<div class="d-section"><h6><span class="bar" style="background:#c084fc"></span> 🏗️ 使用范围</h6><p>消费级(航拍/旅拍/极限运动) · 工业级(测绘/巡检/物流/农业) · 载人eVTOL(城市空中出行/景区观光/医疗急救) · 军事(侦察/打击)</p></div>','<div class="d-section"><h6><span class="bar" style="background:#c084fc"></span> 🎯 关注焦点</h6><p>亿航EH216-S在更多城市拿到商业运营许可(目前仅广州/合肥试点)。小鹏汇天旅航者X2量产交付时间表。低空空域管理改革政策推进速度——"低空经济"已是国策。</p></div>');
+619|
+620|/* ---- SUPPLY CHAIN COMPONENTS ---- */
+621|registerModal('chip',{
+622|  tag:'🧠 AI算力芯片',tagBg:'rgba(34,211,238,0.15)',tagColor:'#22d3ee',
+623|  title:'AI算力芯片 — 机器人的"大脑皮层"',
+624|  sub:'GPU/ASIC · NVIDIA生态一家独大 · 国产化率<15%',
+625|  q1:'机器人的"大脑"——处理摄像头画面、理解指令、规划动作、做决策。没有好芯片，机器人就是"行动自如的傻子"。',
+626|  q2:'就像你手机里那个帮你处理照片的NPU——但要求高100倍。人的反应速度~200ms，机器人需要&lt;10ms做出避障和平衡决策。',
+627|  q3:'<div class="q-num"><15%</div><div class="q-num-sub">国产AI芯片在机器人领域的市占率，NVIDIA Jetson占绝对主导</div>',
+628|  q4:'很多人以为机器人和电脑/手机用同样的芯片。其实机器人芯片要求非常不同：<span class="hl">同时跑视觉AI+大模型推理+实时运动控制</span>，而且功耗不能高(电池供电)。这比服务器的GPU难做。',
+629|  d1:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🔧 技术难度 ★★★★★</h6><p>算力(50-200TOPS)+功耗(&lt;15W)+实时性(毫秒级推理)。NVIDIA Jetson生态(Orin/Thor)一统江湖，最大差距不在芯片算力而在软件生态(CUDA的替代品)。</p></div>',
+630|  d2:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🌍 国产 vs 海外</h6><table><tr><td>领军</td><td>NVIDIA Jetson</td><td><span class="hl">绝对垄断</span></td></tr><tr><td>国产追赶</td><td>—</td><td>海光DCU·寒武纪·华为昇腾</td></tr><tr><td>端侧SoC</td><td>—</td><td>瑞芯微RK3588·地平线</td></tr></table></div>',
+631|  d3:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🏢 代表企业</h6><p><span class="gld">海光信息(688041)</span> — DCU协处理器<br><span class="gld">寒武纪(688256)</span> — 思元系列<br><span class="gld">华为昇腾</span> — 全栈AI<br><span class="gld">地平线(9660.HK)</span> — 征程BPU<br><span class="gld">瑞芯微(603893)</span> — 端侧SoC</p></div>',
+632|  d4:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🏗️ 使用范围</h6><p>人形机器人(算力需求最高) · 服务机器人 · 无人机 · 医疗机器人 · 几乎所有需要AI推理的机器人</p></div>',
+633|  d5:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🎯 关注焦点</h6><p>NVIDIA Thor(2025量产)把算力推到了2000TOPS——国产差距会进一步拉大。地平线/瑞芯微在端侧SoC的机器人生态建设是关键。</p></div>'
+634|});
+635|
+636|registerModal('hl-screw',{
+637|  tag:'📏 行星滚柱丝杠',tagBg:'rgba(251,112,133,0.15)',tagColor:'#fb7185',
+638|  title:'行星滚柱丝杠 — 机器人"最强肌肉"',
+639|  sub:'🔴最高壁垒 · 国产化率<20% · 单台价值量~¥8000',
+640|  q1:'把电机旋转变成直线推拉的高精度零件。每台人形机器人需要16个(髋/膝/踝)，是BOM中价值量最高的单一零件。',
+641|  q2:'就像"一个超级精密的千斤顶"——电机转圈→丝杠推拉→关节伸直/弯曲。但精度要求高到变态：误差不能超过头发丝的1/50。',
+642|  q3:'<div class="q-num"><20%</div><div class="q-num-sub">国产化率。全球被德国舍弗勒+斯凯孚垄断80%+</div>',
+643|  q4:'很多人以为行星滚柱丝杠和普通滚珠丝杠差不多。其实前者多了一排滚动体，<span class="hl">承载能力是后者的3-5倍，寿命长10倍</span>——这就是为什么它这么贵又这么难做。',
+644|  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★★</h6><p>四大壁垒：<span class="gld">材料</span>(特种合金钢+热处理)→<span class="gld">加工</span>(高精度螺纹磨削，设备进口Gleason/Reishauer)→<span class="gld">装配</span>(均载技术)→<span class="gld">检测</span>(微米级精度+寿命验证)。所有零件中的"科代表"。</p></div>',
+645|  d2:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🌍 国产 vs 海外</h6><table><tr><td>精度等级</td><td>舍弗勒P1-P3</td><td class="hl">恒立/贝斯特P3-P5(追赶)</td></tr><tr><td>寿命</td><td>>10,000h</td><td class="hl">~5,000h(验证中)</td></tr><tr><td>价格</td><td>¥5,000-8,000</td><td class="grn">¥2,000-3,000</td></tr></table></div>',
+646|  d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">恒立液压(601100)</span> — 液压龙头，投入最大，新厂数百亩<br><span class="gld">贝斯特(300580)</span> — 磨床工艺深厚<br><span class="gld">北特科技(603009)</span> — 小批量在即<br>五洲新春·长盛轴承·鼎智科技</p></div>',
+647|  d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 使用范围</h6><p><span class="hl">人形机器人</span>(线性关节16个/台) · 工业机器人(重载直线运动) · 特种机器人(重型关节)</p></div>',
+648|  d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p><span class="gld">2025-2026谁能通过特斯拉Optimus的B样验证？</span>——验证通过=拿到大订单。恒立液压和贝斯特进度最快，但海外供应商的产能扩张也在加速。</p></div>'
+649|});
+650|
+651|/* Other 5 HL components (abbreviated, same 4+5 format) */
+652|registerModal('hl-sensor',{
+653|  tag:'📊 六维力矩传感器',tagBg:'rgba(251,112,133,0.15)',tagColor:'#fb7185',
+654|  title:'六维力矩传感器 — 机器人的"触觉皮肤"',
+655|  sub:'🔴高壁垒 · 标定极复杂 · 单台~¥6000 · 国产化率~25%',
+656|  q1:'能同时检测3个方向推力和3个方向扭转力的传感器。没有它，机器人抓鸡蛋会捏碎、踩到不平的地会摔倒。',
+657|  q2:'就像"人的触觉神经末梢"——你不知道自己的手指用了多大力气捏鸡蛋，但传感器知道，精确到克级。',
+658|  q3:'<div class="q-num">~¥300万</div><div class="q-num-sub">一台进口标定设备的价格，这是国产化的最大障碍之一</div>',
+659|  q4:'很多人觉得这东西和普通的电子秤差不多。完全不一样——<span class="hl">6个方向的力会互相干扰</span>，要"解耦"成6个独立的数据。这就像在一个弹簧床上同时测量你往前推的力和往左转的扭矩——极难。',
+660|  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★★</h6><p>①解耦算法 · ②标定设备(进口¥300万+) · ③温漂补偿 · ④长期稳定性。海外ATI Industrial Automation和OnRobot垄断。</p></div>',
+d2:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🌍 国产 vs 海外</h6><table><tr><td>全球龙头</td><td>ATI(美)市场份额~40%</td><td>机器人标配</td></tr><tr><td>二强</td><td>OnRobot(丹麦)</td><td>协作机器人主供</td></tr><tr><td>国产追赶</td><td><span class="hl">柯力传感/东华测试</span></td><td>已送样头部整机厂</td></tr></table></div>',
+d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">柯力传感(603662)</span> — 应变式龙头→六维力<br><span class="gld">东华测试(300354)</span> — 力学测试+传感器<br><span class="gld">昊志机电</span> — 自研六维力用于自家</p></div>',
+d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 使用范围</h6><p>人形机器人(腕/踝/腰，4-6个) · 协作机器人(碰撞检测) · 工业机器人(精密装配) · 医疗机器人(力控手术)</p></div>',
+d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p>柯力传感的六维力产品送样进展——如果通过头部整机厂验证，国产替代将从0到1。</p></div>'
 });
-
-/* ---- ROBOT 2: 协作机器人 ---- */
-registerModal('robot2',{
-  tag:'② 协作机器人',tagBg:'rgba(52,211,153,0.15)',tagColor:'#34d399',
-  title:'协作机器人 — 和人类"肩并肩"的同事',
-  sub:'Cobot · 安全 · 灵活 · 易部署 · 增速28.2%',
-  q1:'不用关笼子的机器人。碰到人自动停下，拖拽示教（人教一遍动作它就会了）。适合上下料/锁螺丝/质检/码垛。',
-  q2:'就像"一个力气不太大的实习生"——你得教它做什么，学会之后它就乖乖重复做。力气不大(通常负载3-20kg)，但安全可靠。',
-  q3:'<div class="q-num">28.2%</div><div class="q-num-sub">2024年增速，唯一两位数增长的工业机器人品类</div>',
-  q4:'很多人以为协作机器人就是"小号的工业机器人"。其实最大的区别不是大小，而是<span class="hl">安全性设计</span>——有六维力传感器+碰撞检测+限速限力，人可以不用围栏站在旁边。',
-  d1:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🔧 技术难度 ★★★☆☆</h6><p>相比工业机器人，协作机器人精度和速度要求低一些，但对力控安全、拖拽示教、人机交互软件要求高。</p></div>',
-  d2:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🌍 国产 vs 海外</h6><p>这是一个<span class="grn">中国品牌主导的赛道</span>——国产协作机器人全球份额~55%。海外优傲(Universal Robots)仍占高端，但节卡/遨博/越疆增速远超UR。</p></div>',
-  d3:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🏢 代表企业</h6><p><span class="gld">节卡</span> — 柔性方案领先，融资最多<br><span class="gld">遨博</span> — 出货量第一，大客户覆盖广<br><span class="gld">越疆</span> — 教育+工业双轮，出海最强<br>艾利特/珞石/大族机器人紧随</p></div>',
-  d4:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🏗️ 谁在用</h6><p>中小制造企业(3C装配+五金加工) · 实验室 · 医疗 · 餐饮(自动烹饪)<br><span style="color:#64748b;font-size:.55rem;">→ 协作机器人技术与人形机器人高度重合(力控/关节模组/安全交互)</span></p></div>',
-  d5:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🎯 关注焦点</h6><p>谁的IPO先落地(节卡/越疆都在排队)。协作+视觉+AI是下一个方向——机器人"看懂"活再干，而非人教会它干。</p></div>'
-});
-
-/* ---- ROBOT 3: 人形机器人 ---- */
-registerModal('robot3',{
-  tag:'③ 人形机器人 ⭐',tagBg:'rgba(251,112,133,0.2)',tagColor:'#fb7185',
-  title:'人形机器人 — 机器人的"终极形态"',
-  sub:'双足·灵巧手·具身智能 · 万亿赛道',
-  q1:'长得像人的通用机器人——有头、躯干、双臂、双腿、灵巧手。不是某一种工具，而是"换了软件就能换工种"的通用平台。',
-  q2:'就像<span class="hl">智能手机 vs 功能机</span>——以前每个家电都要一个遥控器(一台机器干一种活)，人形机器人是"一个平台装不同APP"：洗碗→搬货→照顾老人，换软件就行。',
-  q3:'<div class="q-num">$1540亿</div><div class="q-num-sub">高盛预测2035年全球市场规模，年复合增长率94%</div>',
-  q4:'很多人觉得人形机器人离自己很远，像科幻片里的东西。但2025-2026就是量产元年——特斯拉Optimus Gen3预计2025年小批量，优必选Walker已经交付。AI大模型是最大推动力：<span class="hl">"大脑"问题解决了，"身体"有新能源汽车供应链可以用</span>。',
-  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★★</h6><p>所有品类中难度最高。双足平衡+灵巧手精细操作+大模型决策——三项都是世界级难题。一台机器人需要28-40个关节电机、14-20个减速器、16个丝杠、4-6个六维力传感器。</p></div>',
-  d2:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🌍 国产 vs 海外</h6><table><tr><td>整机领先</td><td>Tesla Optimus</td><td>优必选·智元·宇树</td></tr><tr><td>运控技术</td><td>Boston Dynamics</td><td><span class="grn">宇树H1可并列</span></td></tr><tr><td>大模型</td><td>Google/OpenAI</td><td>百度·讯飞·商汤</td></tr><tr><td>量产能力</td><td>Tesla(预计2025)</td><td>优必选(已小批量)</td></tr></table></div>',
-  d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">优必选(9880.HK)</span> — 港股第一股，Walker已交付<br><span class="gld">智元</span> — 远征A2，华为天才少年创办<br><span class="gld">宇树H1</span> — 运控能力全球顶流<br><span class="gld">傅利叶GR-2</span> — 康复背景力控好<br><span class="gld">小米CyberOne</span> — 生态链+AI<br><span class="gld">特斯拉Optimus</span> — 海外最强，量产预期2025</p></div>',
-  d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 需要哪些零部件</h6><p><span class="hl">28-40个</span>无框力矩电机 · <span class="hl">14-20个</span>谐波减速器 · <span class="hl">16个</span>行星滚柱丝杠 · <span class="hl">4-6个</span>六维力矩传感器 · <span class="hl">12个</span>空心杯电机(双手) · <span class="hl">1个</span>AI算力模组 · <span class="hl">1个</span>高能量密度电池包<br>当前BOM成本¥30-50万，目标¥14万以内。</p></div>',
-  d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p>特斯拉Optimus Gen3能否如期小批量 → 将定义行业供应链标准。优必选/智元能否在国内拿到大批量订单。行星滚柱丝杠和六维力传感器的国产化进展——这两项决定整机成本能否降到¥20万以下。</p></div>'
-});
-
-/* ---- ROBOT 4-9 (abbreviated for space, same 4+5 format) ---- */
-function quickRobot(id,tag,tagBg,tagColor,title,sub,q1,q2,q3,q4,d1,d2,d3,d4,d5){
-  registerModal(id,{tag,tagBg,tagColor,title,sub,q1,q2,q3,q4,d1,d2,d3,d4,d5});
-}
-quickRobot('robot4','④ 服务机器人','rgba(167,139,250,0.15)','#a78bfa','服务机器人 — 你可能真的见过的那种','扫地·清洁·配送·教育',
-'你大概率见过的机器人——扫地/送餐/商场里转悠。轮子+传感器+屏幕，没有手脚。出货量最大的品类。',
-'就像"家里请的住家阿姨"——不是力气最大的也不是最聪明的，但天天干活、最接地气。',
-'<div class="q-num">全球>75%</div><div class="q-num-sub">中国品牌全球市占率，从扫地到配送全面领先</div>',
-'很多人以为服务机器人门槛低，谁都能做。但科沃斯/石头/追觅三家的技术迭代(随机碰撞→LDS激光→视觉AI→自清洁)已经把后来者的路堵死了。',
-'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🔧 技术难度 ★★☆☆☆</h6><p>单机技术门槛不高，但规模化+成本控制+品牌渠道是真正的壁垒。</p></div>',
-'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🌍 国产 vs 海外</h6><p>iRobot曾经是全球龙头→被科沃斯/石头超越。现在中国品牌在技术和产品迭代上已全面领先，这是中国消费电子供应链的红利。</p></div>',
-'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🏢 代表企业</h6><p><span class="gld">科沃斯(603486)</span> — 绝对龙头<br><span class="gld">石头科技(688169)</span> — 高毛利，激光导航强<br><span class="gld">高仙</span> — 商用清洁全球第一<br><span class="gld">普渡</span> — 餐饮配送出海领先</p></div>',
-'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🏗️ 需要什么</h6><p>核心零部件接近消费电子：激光雷达(低成本版) · 锂电池 · 轮毂电机 · 单/双目摄像头 · PCB主控 · SLAM算法模块</p></div>',
-'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🎯 关注焦点</h6><p>出海空间有多大——海外家庭对扫地机器人的渗透率仍远低于中国。商用清洁是下一个高增长赛道(劳动力替代逻辑强)。</p></div>');
-
-quickRobot('robot5','⑤ 医疗机器人','rgba(251,191,36,0.15)','#fbbf24','医疗机器人 — 最"严谨"的机器人','手术·康复·辅助',
-'做手术的机器人和帮你走路的机器人。医生坐操控台前，机械臂做微创手术精度比人手高10倍。',
-'就像"开了外挂的外科医生"——医生手抖一下可能出问题，机器人会把抖动量过滤掉。它也"不累"，站12个小时精度不变。',
-'<div class="q-num">2-4年</div><div class="q-num-sub">拿一张NMPA三类医疗器械证的平均时间，壁垒是时间</div>',
-'很多人以为医疗机器人和工业机器人差不多。其实医疗机器人的核心壁垒不是技术本身——而是<span class="hl">拿证</span>。拿证要2-4年+数千万，先发优势几乎不可动摇。',
-'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🔧 技术难度 ★★★★★</h6><p>精度要求堪比人形机器人，还要满足医疗器械的可靠性/灭菌/电气安全等额外要求。</p></div>',
-'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🌍 国产 vs 海外</h6><p>达芬奇(Intuitive Surgical)是神一样的存在——全球腔镜手术机器人垄断80%+。国产图迈(微创)已拿证进入医保，国产替代刚起步。</p></div>',
-'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🏢 代表企业</h6><p><span class="gld">天智航(688277)</span> — A股唯一手术机器人<br><span class="gld">微创图迈</span> — 腔镜手术<br><span class="gld">傅利叶</span> — 康复外骨骼<br><span class="gld">程天科技</span> — 下肢外骨骼</p></div>',
-'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🏗️ 技术交叉</h6><p>手术机器人的核心零部件(高精度减速器/六维力传感器/高速伺服)与人形机器人高度重合。康复机器人的外骨骼关节和仿生控制也是人形运动控制的前哨站。</p></div>',
-'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🎯 关注焦点</h6><p>医保覆盖率——天智航/微创图迈已进医保，这是弹性最大的催化剂。拿了证之后，放量速度取决于医院采购预算。</p></div>');
-
-quickRobot('robot6','⑥ 特种机器人','rgba(251,146,60,0.15)','#fb923c','特种机器人 — 去人不能去的地方','巡检·消防·水下·军工',
-'代替人去"脏乱差累危险"地方的机器人。电力巡检/冲进火场/深海勘探/排爆/军事侦察。',
-'就像"不怕死的特种兵"——人去太危险(高压电/火场/深水/炸弹)。机器人坏了不心疼，人去可能就没命了。',
-'<div class="q-num">~¥500亿</div><div class="q-num-sub">全球特种机器人市场规模，天花板不高但利润极好</div>',
-'很多人以为特种机器人技术很原始。其实它要求最高——防水防尘防爆等级(IP68)+极端温度(-40~85°C)+军工级通信加密，比工业机器人难做得多。',
-'','','<div class="d-section"><h6><span class="bar" style="background:#fb923c"></span> 🏢 代表企业</h6><p><span class="gld">亿嘉和(603666)</span> — 电力巡检龙头<br><span class="gld">中信重工(601608)</span> — 消防/排爆<br><span class="gld">深之蓝</span> — 水下机器人独角兽<br><span class="gld">航天科工/中航</span> — 军工</p></div>','','');
-
-quickRobot('robot7','⑦ 物流仓储','rgba(163,230,53,0.2)','#a3e635','物流仓储机器人 — "快递不爆仓"的幕后功臣','AGV·AMR·无人叉车',
-'仓库里跑来跑去的小车——把货架搬到拣货员面前、把包裹自动分拣、无人叉车搬重物。京东/菜鸟仓库里全是它们。',
-'就像"仓库里的蚂蚁工兵"——不抬头不休息，一台小车一天能走几十公里、搬几吨货。效率比人工高3-5倍。',
-'<div class="q-num">3家</div><div class="q-num-sub">极智嘉/快仓/海康机器人——全球AMR前三甲都是中国的</div>',
-'很多人以为物流机器人就是"放个车在地上走"那么简单。实际上AMR要做到：每秒定位+实时避障+多台协同不碰撞+8小时不间断工作，软件难度极高。',
-'','','<div class="d-section"><h6><span class="bar" style="background:#a3e635"></span> 🏢 代表企业</h6><p><span class="gld">极智嘉</span> — 全球AMR出货量第一<br><span class="gld">快仓</span> — 电商仓储方案强<br><span class="gld">海康机器人</span> — 背靠海康威视<br>杭叉/安徽合力(无人叉车转型)</p></div>','','');
-
-quickRobot('robot8','⑧ 农业机器人','rgba(56,189,248,0.15)','#38bdf8','农业机器人 — 谁来种地？','植保·采摘·畜牧——劳动力替代的逻辑最硬',
-'帮农民打药/施肥/采摘/喂牛的机器人。农业劳动力越来越难招、越来越贵，机器人是唯一的解。',
-'就像"新时代的农民"——年轻人不愿意下地了。机器人的逻辑很硬：人口老龄化+农村空心化+土地流转集约化。',
-'<div class="q-num">~10%</div><div class="q-num-sub">农业机器人渗透率(植保领域)，采摘等仍接近0%</div>',
-'很多人以为农业机器人就是"农田里的扫地机器人"。其实农业场景比家里难100倍——地面不平/光照变化大/作物形态不标准/要防水防尘。</div>',
-'','','<div class="d-section"><h6><span class="bar" style="background:#38bdf8"></span> 🏢 代表企业</h6><p><span class="gld">极飞科技</span> — 植保无人机龙头<br><span class="gld">大疆农业</span> — 植保无人机<br><span class="gld">博田</span> — 采摘机器人(研发中)</p></div>','','');
-
-quickRobot('robot9','⑨ 无人机/eVTOL','rgba(192,132,252,0.15)','#c084fc','无人机 & eVTOL — "飞行的机器人"','消费级·工业级·载人·低空经济',
-'会飞的机器人——航拍/测绘/巡检/物流。eVTOL就是"能载人的大无人机"，低空出行。',
-'就像"天空中的精灵"——大疆让我们有了"上帝视角"，eVTOL即将让我们在三维空间出行。从"地上跑"到"天上飞"的范式革命。',
-'<div class="q-num">80%</div><div class="q-num-sub">大疆在全球消费级无人机的份额，绝对统治</div>',
-'很多人认为大疆只是一家无人机公司。实际上大疆是<span class="hl">全球最成功的机器人公司之一</span>——飞行控制/计算机视觉/云台增稳/电机电调全部自研，技术上和人形机器人高度相通。',
-'','','<div class="d-section"><h6><span class="bar" style="background:#c084fc"></span> 🏢 代表企业</h6><p><span class="gld">大疆创新</span> — 全球消费级~80%份额<br><span class="gld">纵横股份(688070)</span> — 工业级CW系列<br><span class="gld">亿航智能(EH)</span> — eVTOL全球首个适航证<br><span class="gld">小鹏汇天</span> — 旅航者X2即将量产</p></div>','','');
-
-/* ---- SUPPLY CHAIN COMPONENTS ---- */
-registerModal('chip',{
-  tag:'🧠 AI算力芯片',tagBg:'rgba(34,211,238,0.15)',tagColor:'#22d3ee',
-  title:'AI算力芯片 — 机器人的"大脑皮层"',
-  sub:'GPU/ASIC · NVIDIA生态一家独大 · 国产化率<15%',
-  q1:'机器人的"大脑"——处理摄像头画面、理解指令、规划动作、做决策。没有好芯片，机器人就是"行动自如的傻子"。',
-  q2:'就像你手机里那个帮你处理照片的NPU——但要求高100倍。人的反应速度~200ms，机器人需要&lt;10ms做出避障和平衡决策。',
-  q3:'<div class="q-num"><15%</div><div class="q-num-sub">国产AI芯片在机器人领域的市占率，NVIDIA Jetson占绝对主导</div>',
-  q4:'很多人以为机器人和电脑/手机用同样的芯片。其实机器人芯片要求非常不同：<span class="hl">同时跑视觉AI+大模型推理+实时运动控制</span>，而且功耗不能高(电池供电)。这比服务器的GPU难做。',
-  d1:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🔧 技术难度 ★★★★★</h6><p>算力(50-200TOPS)+功耗(&lt;15W)+实时性(毫秒级推理)。NVIDIA Jetson生态(Orin/Thor)一统江湖，最大差距不在芯片算力而在软件生态(CUDA的替代品)。</p></div>',
-  d2:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🌍 国产 vs 海外</h6><table><tr><td>领军</td><td>NVIDIA Jetson</td><td><span class="hl">绝对垄断</span></td></tr><tr><td>国产追赶</td><td>—</td><td>海光DCU·寒武纪·华为昇腾</td></tr><tr><td>端侧SoC</td><td>—</td><td>瑞芯微RK3588·地平线</td></tr></table></div>',
-  d3:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🏢 代表企业</h6><p><span class="gld">海光信息(688041)</span> — DCU协处理器<br><span class="gld">寒武纪(688256)</span> — 思元系列<br><span class="gld">华为昇腾</span> — 全栈AI<br><span class="gld">地平线(9660.HK)</span> — 征程BPU<br><span class="gld">瑞芯微(603893)</span> — 端侧SoC</p></div>',
-  d4:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🏗️ 使用范围</h6><p>人形机器人(算力需求最高) · 服务机器人 · 无人机 · 医疗机器人 · 几乎所有需要AI推理的机器人</p></div>',
-  d5:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 🎯 关注焦点</h6><p>NVIDIA Thor(2025量产)把算力推到了2000TOPS——国产差距会进一步拉大。地平线/瑞芯微在端侧SoC的机器人生态建设是关键。</p></div>'
-});
-
-registerModal('hl-screw',{
-  tag:'📏 行星滚柱丝杠',tagBg:'rgba(251,112,133,0.15)',tagColor:'#fb7185',
-  title:'行星滚柱丝杠 — 机器人"最强肌肉"',
-  sub:'🔴最高壁垒 · 国产化率<20% · 单台价值量~¥8000',
-  q1:'把电机旋转变成直线推拉的高精度零件。每台人形机器人需要16个(髋/膝/踝)，是BOM中价值量最高的单一零件。',
-  q2:'就像"一个超级精密的千斤顶"——电机转圈→丝杠推拉→关节伸直/弯曲。但精度要求高到变态：误差不能超过头发丝的1/50。',
-  q3:'<div class="q-num"><20%</div><div class="q-num-sub">国产化率。全球被德国舍弗勒+斯凯孚垄断80%+</div>',
-  q4:'很多人以为行星滚柱丝杠和普通滚珠丝杠差不多。其实前者多了一排滚动体，<span class="hl">承载能力是后者的3-5倍，寿命长10倍</span>——这就是为什么它这么贵又这么难做。',
-  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★★</h6><p>四大壁垒：<span class="gld">材料</span>(特种合金钢+热处理)→<span class="gld">加工</span>(高精度螺纹磨削，设备进口Gleason/Reishauer)→<span class="gld">装配</span>(均载技术)→<span class="gld">检测</span>(微米级精度+寿命验证)。所有零件中的"科代表"。</p></div>',
-  d2:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🌍 国产 vs 海外</h6><table><tr><td>精度等级</td><td>舍弗勒P1-P3</td><td class="hl">恒立/贝斯特P3-P5(追赶)</td></tr><tr><td>寿命</td><td>>10,000h</td><td class="hl">~5,000h(验证中)</td></tr><tr><td>价格</td><td>¥5,000-8,000</td><td class="grn">¥2,000-3,000</td></tr></table></div>',
-  d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">恒立液压(601100)</span> — 液压龙头，投入最大，新厂数百亩<br><span class="gld">贝斯特(300580)</span> — 磨床工艺深厚<br><span class="gld">北特科技(603009)</span> — 小批量在即<br>五洲新春·长盛轴承·鼎智科技</p></div>',
-  d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 使用范围</h6><p><span class="hl">人形机器人</span>(线性关节16个/台) · 工业机器人(重载直线运动) · 特种机器人(重型关节)</p></div>',
-  d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p><span class="gld">2025-2026谁能通过特斯拉Optimus的B样验证？</span>——验证通过=拿到大订单。恒立液压和贝斯特进度最快，但海外供应商的产能扩张也在加速。</p></div>'
-});
-
-/* Other 5 HL components (abbreviated, same 4+5 format) */
-registerModal('hl-sensor',{
-  tag:'📊 六维力矩传感器',tagBg:'rgba(251,112,133,0.15)',tagColor:'#fb7185',
-  title:'六维力矩传感器 — 机器人的"触觉皮肤"',
-  sub:'🔴高壁垒 · 标定极复杂 · 单台~¥6000 · 国产化率~25%',
-  q1:'能同时检测3个方向推力和3个方向扭转力的传感器。没有它，机器人抓鸡蛋会捏碎、踩到不平的地会摔倒。',
-  q2:'就像"人的触觉神经末梢"——你不知道自己的手指用了多大力气捏鸡蛋，但传感器知道，精确到克级。',
-  q3:'<div class="q-num">~¥300万</div><div class="q-num-sub">一台进口标定设备的价格，这是国产化的最大障碍之一</div>',
-  q4:'很多人觉得这东西和普通的电子秤差不多。完全不一样——<span class="hl">6个方向的力会互相干扰</span>，要"解耦"成6个独立的数据。这就像在一个弹簧床上同时测量你往前推的力和往左转的扭矩——极难。',
-  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★★</h6><p>①解耦算法 · ②标定设备(进口¥300万+) · ③温漂补偿 · ④长期稳定性。海外ATI Industrial Automation和OnRobot垄断。</p></div>',
-  d2:'',
-  d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">柯力传感(603662)</span> — 应变式龙头→六维力<br><span class="gld">东华测试(300354)</span> — 力学测试+传感器<br><span class="gld">昊志机电</span> — 自研六维力用于自家</p></div>',
-  d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 使用范围</h6><p>人形机器人(腕/踝/腰，4-6个) · 协作机器人(碰撞检测) · 工业机器人(精密装配) · 医疗机器人(力控手术)</p></div>',
-  d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p>柯力传感的六维力产品送样进展——如果通过头部整机厂验证，国产替代将从0到1。</p></div>'
-});
-
-registerModal('hl-harmonic',{
-  tag:'⚙️ 谐波减速器',tagBg:'rgba(251,112,133,0.15)',tagColor:'#fb7185',
-  title:'谐波减速器 — 关节的"精密变速箱"',
-  sub:'🔴高壁垒 · 绿的谐波已突破 · 单台~¥4000 · 国产化率~35%',
-  q1:'电机转速太高(几千转/分钟)，降到机器人关节需要的速度同时增大扭矩。谐波减速器就是做这个的——精度是机械领域的巅峰。',
-  q2:'就像汽车变速箱——发动机转速高，变速箱降速增扭才能驱动车轮。但机器人减速器精度高到<span class="hl">把360°分成21600份，偏差不能超过1份</span>。',
-  q3:'<div class="q-num">绿的谐波</div><div class="q-num-sub">国产替代最大的成功故事——自研"三次谐波"技术绕开日本哈默纳科专利</div>',
-  q4:'很多人以为谐波减速器国产替代已经完成了。其实<span class="hl">高端和大负载型</span>谐波减速器(用于大型工业机器人)国产仍有不小差距，人形机器人用得上的轻载型反而国产做得更好。',
-  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★☆</h6><p>核心难点：柔轮材料(特殊的超高强度合金)+齿形设计(3D曲线)+热处理工艺。绿的谐波用"三次谐波"绕开哈默纳科专利，但高端(精度1弧分以内)仍有差距。</p></div>',
-  d2:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🌍 国产 vs 海外</h6><table><tr><td>全球龙头</td><td>哈默纳科(日本)</td><td>全球份额~60%</td></tr><tr><td>国产突破</td><td><span class="grn">绿的谐波</span></td><td>已供应优必选/新松/埃斯顿</td></tr></table></div>',
-  d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">绿的谐波(688017)</span> — 国产龙头<br><span class="gld">中大力德(002896)</span> — 谐波+行星全布局<br><span class="gld">昊志机电(300503)</span> — 自用+外供<br><span class="gld">国茂股份(603915)</span> — 减速机平台</p></div>',
-  d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 使用范围</h6><p>人形机器人(14-20个/台) · 协作机器人(6个/台) · 工业机器人(轻载型) · 医疗手术机器人</p></div>',
-  d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p>绿的谐波在人形机器人客户中的渗透率提升 + 能否进入特斯拉供应链。哈默纳科在日本建了新厂扩产——价格战可能在2026年打响。</p></div>'
-});
-
-registerModal('hl-motor2',{
-  tag:'✋ 空心杯电机',tagBg:'rgba(251,112,133,0.15)',tagColor:'#fb7185',
-  title:'空心杯电机 — 灵巧手的心脏',
-  sub:'🔴高壁垒 · 直径6-16mm · 鸣志电器突破 · 国产化率~30%',
-  q1:'直径只有一根手指粗(6-16mm)的微型电机，装在机器人的每根手指关节里，让机器人能抓握/捏取/打字。',
-  q2:'就像"你手表里的微型马达"——但比那精密100倍。要在极小的空间里输出足够的力，还要精准控制力道(捏鸡蛋不碎、拿豆腐不烂)。',
-  q3:'<div class="q-num">6-16mm</div><div class="q-num-sub">空心杯电机的直径范围，要在这么小空间里做到高精度力控</div>',
-  q4:'很多人以为空心杯电机就是"缩小版的普通电机"。其实结构完全不一样——<span class="hl">转子没有铁芯</span>，像个"小杯子"绕满线圈。没铁芯就没齿槽效应，所以转动特别顺滑、响应特别快。',
-  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★☆</h6><p>壁垒：<span class="gld">绕线工艺</span>(在6mm上精密绕线圈，专用精密绕线机)+<span class="gld">磁钢材料</span>(高性能钕铁硼)+<span class="gld">动平衡</span>(微型高速控制)。海外瑞士Maxon/德国Faulhaber是百年企业。</p></div>',
-  d2:'',
-  d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">鸣志电器(603728)</span> — 国产龙头，已进入多家整机厂<br><span class="gld">江苏雷利(300660)</span> — 微特电机+空心杯<br><span class="gld">雷赛智能(002979)</span> — 运动控制+电机<br><span class="gld">伟创电气(688698)</span> — 新品布局</p></div>',
-  d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 使用范围</h6><p>人形机器人灵巧手(12个/双手) · 医疗手术机器人 · 精密自动化设备 · 航空航天微动</p></div>',
-  d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p>鸣志电器的人形机器人灵巧手订单能否从样品转为批量。Maxon在常州建了工厂——国产替代的优势是性价比和响应速度。</p></div>'
-});
-
-registerModal('hl-motor',{
-  tag:'🔄 无框力矩电机',tagBg:'rgba(251,112,133,0.15)',tagColor:'#fb7185',
-  title:'无框力矩电机 — 旋转关节的动力源',
-  sub:'🔴高壁垒 · 单台28-40个 · 单台~¥6000 · 国产化率~35%',
-  q1:'没有外壳的"裸电机"，直接嵌入关节里，和减速器/编码器集成一体。每个旋转关节(肩/肘/髋/膝)都需要一个。',
-  q2:'就像"汽车轮毂电机"——电机的转子直接变成关节的一部分，不浪费一丝空间和重量。',
-  q3:'<div class="q-num">28-40个</div><div class="q-num-sub">一台人形机器人用的无框力矩电机数量——是所有零部件中需求量最大的</div>',
-  q4:'很多人认为无框力矩电机和普通伺服电机一样。要求完全不同——<span class="hl">扁平化(厚度薄)+高扭矩密度+低齿槽转矩(低速转起来没有一顿一顿感)+抗冲击(机器人摔倒不损坏)</span>，比工业伺服电机难做。',
-  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★☆</h6><p>四大要求：扁平化设计 · 高扭矩密度(磁钢/绕组优化) · 低齿槽转矩 · 抗冲击可靠性。海外Maxon(瑞士)/科尔摩根(美国)领先。</p></div>',
-  d2:'',
-  d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">步科股份(688160)</span> — 低压伺服领先，有人形专用方案<br><span class="gld">昊志机电(300503)</span> — 机器人关节电机自研<br><span class="gld">汇川技术(300124)</span> — 伺服龙头，正向机器人电机拓展<br><span class="gld">伟创电气/禾川科技</span></p></div>',
-  d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 使用范围</h6><p>人形机器人(最多，28-40个/台) · 协作机器人(6-8个/台) · 工业机器人 · 医疗机器人</p></div>',
-  d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p>谁能做出"扭矩密度追上Maxon、价格做到Maxon的1/3"的产品——这决定了人形机器人关节模组的BOM成本。</p></div>'
-});
-
-/* Other supply chain nodes (shorter versions) */
-registerModal('model',{
-  tag:'🧩 大模型与决策软件',tagBg:'rgba(34,211,238,0.12)',tagColor:'#22d3ee',
-  title:'大模型与决策软件 — 机器人的"灵魂"',
-  sub:'多模态 · 具身智能 · 软件护城河',
-  q1:'让机器人"看懂/听懂/想明白再行动"的AI软件。传统机器人是编好程序重复做，带大模型的机器人能理解新场景并自主决策。',
-  q2:'以前机器人像"一个只会背剧本的演员"——剧本写什么演什么。有了大模型，它变成了"一个能即兴表演的演员"——看到什么场景自己决定怎么演。',
-  q3:'<div class="q-num">从"编程"到"对话"</div><div class="q-num-sub">机器人交互方式正在被大模型颠覆——说句话它就能理解任务</div>',
-  q4:'很多人以为机器人装个ChatGPT就智能了。实际行业里最难的不是大模型本身，而是<span class="hl">把语言理解+视觉感知+运动控制串成一条完整链路</span>——"懂你说什么-看到什么-决定怎么做-指挥关节动起来"。'
-});
-
-registerModal('vision',{
-  tag:'👁️ 视觉/深度传感器',tagBg:'rgba(34,211,238,0.12)',tagColor:'#22d3ee',
-  title:'视觉/深度传感器 — 机器人的"眼睛"',
-  sub:'3D ToF/结构光/双目 · 奥比中光',
-  q1:'让机器人"看见"世界的传感器——3D结构光(投射光斑算深度)像Face ID、激光雷达(旋转扫描建地图)、双目视觉(两个摄像头算距离)像人眼。',
-  q2:'就像人的眼睛+皮尺的组合——不仅看清楚这是什么，还能精确知道它距离多远(误差毫米级)，这样机器人才能伸手去抓。'
-});
-
-registerModal('tier1',{
-  tag:'🔗 Tier-1 执行器总成',tagBg:'rgba(251,191,36,0.12)',tagColor:'#fbbf24',
-  title:'Tier-1 执行器总成 — 供应链皇冠上的明珠',
-  sub:'三花智控(旋转) · 拓普集团(线性)',
-  q1:'"一级供应商"——不卖单个零件，卖整装好的关节模组。把电机+减速器+编码器+抱闸集成在一起，整机厂拿回去直接装。',
-  q2:'就像买车不买发动机/变速箱/底盘自己组装，而是买一个完整的"底盘模块"。Tier-1让整机厂从"拼乐高"升级到"买乐高成品套装"。',
-  q3:'<div class="q-num">2家</div><div class="q-num-sub">三花智控+拓普集团——两家Tesla汽车供应商→人形机器人Tier-1</div>',
-  q4:'很多人不了解Tier-1多重要——<span class="hl">没有Tier-1，整机厂要和几十家零部件厂分别对接、自己测试组装、自己承担集成风险</span>。Tier-1模式的成熟度，决定了人形机器人能否从"手工打造"走向"工业量产"。'
-});
-
-registerModal('battery',{
-  tag:'🔋 高能量密度电池',tagBg:'rgba(251,191,36,0.12)',tagColor:'#fbbf24',
-  title:'电池 — 机器人的"能量源"',
-  sub:'续航<2小时 · 宁德时代 · 亿纬锂能',
-  report:{name:'宁德时代',id:'ningde'},
-  q1:'人形机器人的"充电宝"——一台150cm/60kg的机器人功耗200-500W，需要50V/2-3kWh电池包，但续航不到2小时。',
-  q2:'就像手机用了半天就要充电——但机器人如果在工厂里干活，2小时就要换一次电池的话，生产效率就太差了。'
-});
-
-registerModal('material',{
-  tag:'🏗️ 轻量化结构件',tagBg:'rgba(251,191,36,0.12)',tagColor:'#fbbf24',
-  title:'轻量化结构件 — 减重就是增性能',
-  sub:'碳纤维 · 铝合金 · 3D打印',
-  q1:'用碳纤维/铝合金/3D打印做的机器人的骨架和外壳——减重1kg的效果，比汽车减重10kg还明显。',
-  q2:'就像运动员减重——每减掉1kg肥肉，跑得快+跳得高+不容易受伤。机器人也一样：四肢每轻100g，关节电机就能小一号、电池能用更久。'
-});
-
-registerModal('cable',{
-  tag:'🔌 线束连接器',tagBg:'rgba(251,191,36,0.12)',tagColor:'#fbbf24',
-  title:'线束连接器 — 机器人的"血管和神经"',
-  sub:'立讯精密 · 中航光电 · 柔性耐弯折',
-  q1:'机器人全身的"电线网络"——给关节供电+传信号+连传感器。穿过关节活动部位，几百万次弯折不能断。',
-  q2:'就像穿着衣服做瑜伽——每根线在关节折来折去。普通电线折100次就断了，机器人线束要折100万次还没事。'
-});
-
-/* ---- COMPANY MODALS (abbreviated, keep simple) ---- */
-function regComp(id,tag,tagBg,tagColor,name,code,det){
-  registerModal(id,{tag,tagBg,tagColor,title:name,sub:code,
-    q1:det,q2:'',q3:'',q4:'',d1:'',d2:'',d3:'',d4:'',d5:'',
-    body:`<div class="m-qgrid"><div class="m-qc" style="border-color:${tagColor}"><div class="q-icon">📝</div><div class="q-label" style="color:${tagColor}">一句话</div><div class="q-text">${det}</div></div></div>`
-  });
-}
-regComp('comp-ubt','人形','rgba(251,112,133,0.15)','#fb7185','优必选','9880.HK','Walker系列人形机器人，全球首款量产交付的双足机器人。港股"人形机器人第一股"。教育+消费+商业多线布局。供应链大量采用国产零部件。')
-regComp('comp-zhiyuan','人形','rgba(251,112,133,0.15)','#fb7185','智元机器人','未上市·独角兽','远征A2人形机器人，前华为"天才少年"稚晖君(彭志辉)2023年创办。自研具身大模型，软硬件一体能力最强。获高瓴/红杉/比亚迪投资。')
-regComp('comp-yushu','人形','rgba(251,112,133,0.15)','#fb7185','宇树科技','未上市·独角兽','以四足Go2起家，H1人形运控能力全球顶流。走运动控制路线，性价比高。出口占比高。红杉/顺为投资。')
-regComp('comp-ftl','人形','rgba(251,112,133,0.15)','#fb7185','傅利叶智能','未上市·独角兽','康复外骨骼→GR系列人形机器人。力控技术积累深(从医疗康复迁移)，通用+医疗双赛道，海外布局好。')
-regComp('comp-xiaomi','人形','rgba(251,112,133,0.15)','#fb7185','小米','01810.HK','CyberOne人形+CyberDog四足。生态链+AI+大规模制造能力。目前人形偏研发阶段，量产规划未明确。')
-regComp('comp-dula','人形','rgba(251,112,133,0.15)','#fb7185','达闼机器人','未上市','Cloud Ginger云端大脑架构，机器人本体+云端AI结合。起步最早的一批，在商业服务+人形赛道布局。')
-regComp('comp-estun','工业','rgba(34,211,238,0.15)','#22d3ee','埃斯顿','002747.SZ','国产焊接机器人龙头。收购德国Cloos掌握高端焊接技术。自主伺服+机器人本体全产业链，国产市占率前三。')
-regComp('comp-xinsong','工业','rgba(34,211,238,0.15)','#22d3ee','新松机器人','300024.SZ','中科院系，国产老牌龙头。产品线最全（焊接/搬运/装配/洁净）。唯一国产可量产洁净机器人（半导体用）。')
-regComp('comp-efort','工业','rgba(34,211,238,0.15)','#22d3ee','埃夫特','688165.SH','多关节+Scara。收购意大利CMA(喷涂)、WFC后喷涂领先。海外技术整合有经验。')
-regComp('comp-jaka','协作','rgba(52,211,153,0.15)','#34d399','节卡机器人','未上市·独角兽','柔性智能产线方案强。大客户含苹果/丰田，全球化布局，融资最多的协作机器人公司。')
-regComp('comp-aubo','协作','rgba(52,211,153,0.15)','#34d399','遨博','未上市','AUBO协作机器人国内出货量第一。产品线齐全（3-20kg负载），大客户覆盖广（3C/汽车/五金）。')
-regComp('comp-yuejiang','协作','rgba(52,211,153,0.15)','#34d399','越疆','递表拟上市','Dobot教育+CR系列工业协作。教育市场根基深厚，工业端快速追赶，出海成绩最好。')
-regComp('comp-ecovacs','服务','rgba(167,139,250,0.15)','#a78bfa','科沃斯','603486.SH','家用清洁绝对龙头，"地宝"全球知名。技术路线持续引领（随机碰撞→LDS→视觉AI→自清洁）。')
-regComp('comp-stone','服务','rgba(167,139,250,0.15)','#a78bfa','石头科技','688169.SH','扫地机器人第二极。激光导航+双目避障领先，高毛利(50%+)。"小米生态链独立最成功的案例"。')
-regComp('comp-harmonic','减速器','rgba(251,112,133,0.15)','#fb7185','绿的谐波','688017.SH','谐波减速器国产龙头。自研"三次谐波"绕开哈默纳科专利，已供优必选/新松/埃斯顿。国产替代最大突破。')
-regComp('comp-huichuan','伺服','rgba(34,211,238,0.15)','#22d3ee','汇川技术','300124.SZ','国产伺服驱动器龙头(~30%市占率)。平台型企业，正向机器人专用电机扩展。供应链"水电煤"。')
-regComp('comp-hengli','丝杠','rgba(251,112,133,0.15)','#fb7185','恒立液压','601100.SH','液压油缸全球龙头→切入行星滚柱丝杠。液压技术同源精密直线运动，投入最大（数百亩新厂）。')
-regComp('comp-mingzhi','电机','rgba(251,112,133,0.15)','#fb7185','鸣志电器','603728.SH','空心杯电机国产龙头，直径6-16mm覆盖。已进入优必选/智元等灵巧手供应链。')
-regComp('comp-obit','视觉','rgba(34,211,238,0.15)','#22d3ee','奥比中光','688322.SH','3D视觉传感器国产龙头。ToF+结构光双技术，进入优必选/小米机器人供应链。')
-regComp('comp-sanhua','Tier-1','rgba(251,191,36,0.15)','#fbbf24','三花智控','002050.SZ','热管理巨头→旋转关节执行器总成。Tesla Optimus核心Tier-1，精密制造全球领先。')
-regComp('comp-tuopu','Tier-1','rgba(251,191,36,0.15)','#fbbf24','拓普集团','601689.SH','汽车NVH/底盘巨头→线性关节执行器总成。Tesla Optimus核心Tier-1，一体化压铸+精密加工能力强。')
-regComp('comp-lixun','线束','rgba(251,191,36,0.15)','#fbbf24','立讯精密','002475.SZ','连接器/线束全球龙头，苹果供应链核心。从消费电子→汽车→机器人的能力迁移。')
-regComp('comp-buke','电机','rgba(251,112,133,0.15)','#fb7185','步科股份','688160.SH','低压伺服领先，已推出人形专用无框力矩电机方案。在小而专注的机器人电机领域有独特优势。')
-/* Remaining company stubs */
-regComp('comp-tuosida','工业','rgba(34,211,238,0.15)','#22d3ee','拓斯达','300607.SZ','从注塑机辅机→工业机器人。中低端快速崛起，性价比优势明显。')
-regComp('comp-elite','协作','rgba(52,211,153,0.15)','#34d399','艾利特','未上市','ELITE协作机器人，主打性价比和易用性，3C/汽车零部件领域案例多。')
-regComp('comp-luoshi','协作','rgba(52,211,153,0.15)','#34d399','珞石','未上市','ROKAE轻型工业机器人，控制算法见长，精密装配(轴孔配合)有技术优势。')
-regComp('comp-gaoxian','服务','rgba(167,139,250,0.15)','#a78bfa','高仙机器人','未上市·独角兽','商用清洁机器人全球出货量第一，海外营收超50%，中国机器人出海标杆。')
-regComp('comp-tianzhihang','医疗','rgba(251,191,36,0.15)','#fbbf24','天智航','688277.SH','A股唯一手术机器人。骨科手术机器人（天玑系列）拿NMPA三类证并进医保。')
-regComp('comp-yijiahe','特种','rgba(251,146,60,0.15)','#fb923c','亿嘉和','603666.SH','电力巡检机器人龙头，国家电网核心供应商。向消防/化工扩展。')
-regComp('comp-geek','物流','rgba(163,230,53,0.2)','#a3e635','极智嘉','未上市·独角兽','全球AMR出货量第一，海外营收超50%（欧洲/日本/美国），全球化最成功。')
-regComp('comp-dji','无人机','rgba(192,132,252,0.15)','#c084fc','大疆创新','未上市','全球消费级无人机~80%份额。工业级+农业+车载多元布局，中国科技全球化标杆。')
-regComp('comp-zongheng','无人机','rgba(192,132,252,0.15)','#c084fc','纵横股份','688070.SH','工业无人机龙头（CW系列垂直起降固定翼），在测绘/巡检/安防领域领先。')
-regComp('comp-keli','传感器','rgba(251,112,133,0.15)','#fb7185','柯力传感','603662.SH','应变式传感器国内龙头，正向六维力矩传感器拓展。力传感器技术积累深厚。')
-regComp('comp-suteng','雷达','rgba(34,211,238,0.15)','#22d3ee','速腾聚创','2498.HK','激光雷达港股上市，从车载(ADAS)向机器人迁移。Helios系列机器人专用雷达已量产。')
-regComp('comp-guangwei','材料','rgba(251,191,36,0.15)','#fbbf24','光威复材','300699.SZ','碳纤维龙头，航空级碳纤维供应商。碳纤维比铝轻40%+刚度高3倍，是机器人轻量化的最优解。')
-
-/* Fix modals that didn't use the body field */
-/* The m45 function builds the body. For modals that pass body directly (like company modals),
-   we keep that. For modals that used q1/q2/q3/q4, we need to build via m45. */
-/* Patch: auto-build body for modals with q1 format */
-const origRegister = registerModal;
-registerModal = function(id, data){
-  if(data.q1 && !data.body){
-    data.body = m45(data);
-  }
-  origRegister(id, data);
-};
-/* Re-patch already registered modals */
-Object.keys(modalData).forEach(k=>{
-  const d = modalData[k];
-  if(d.q1 && !d.body && !d._patched){
-    d.body = m45(d);
-    d._patched = true;
-  }
-});
-/* ===== Scroll Position Persistence ===== */
-(function(){
-  const key = document.title;
-  const saved = sessionStorage.getItem('scroll_'+key);
-  if(saved) setTimeout(function(){ window.scrollTo(0, parseInt(saved,10)); }, 50);
-  var ticking=false;
-  window.addEventListener('scroll',function(){
-    if(!ticking){
-      window.requestAnimationFrame(function(){
-        sessionStorage.setItem('scroll_'+key, window.scrollY);
-        ticking=false;
-      });
-      ticking=true;
-    }
-  },{passive:true});
-})();
-</script>
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-(function(c,l,a,r,i,t,y){
-c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window, document, "clarity", "script", "xecsshff8t");
-</script>
-<!-- End Microsoft Clarity -->
-
-</body>
-</html>
+666|
+667|registerModal('hl-harmonic',{
+668|  tag:'⚙️ 谐波减速器',tagBg:'rgba(251,112,133,0.15)',tagColor:'#fb7185',
+669|  title:'谐波减速器 — 关节的"精密变速箱"',
+670|  sub:'🔴高壁垒 · 绿的谐波已突破 · 单台~¥4000 · 国产化率~35%',
+671|  q1:'电机转速太高(几千转/分钟)，降到机器人关节需要的速度同时增大扭矩。谐波减速器就是做这个的——精度是机械领域的巅峰。',
+672|  q2:'就像汽车变速箱——发动机转速高，变速箱降速增扭才能驱动车轮。但机器人减速器精度高到<span class="hl">把360°分成21600份，偏差不能超过1份</span>。',
+673|  q3:'<div class="q-num">绿的谐波</div><div class="q-num-sub">国产替代最大的成功故事——自研"三次谐波"技术绕开日本哈默纳科专利</div>',
+674|  q4:'很多人以为谐波减速器国产替代已经完成了。其实<span class="hl">高端和大负载型</span>谐波减速器(用于大型工业机器人)国产仍有不小差距，人形机器人用得上的轻载型反而国产做得更好。',
+675|  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★☆</h6><p>核心难点：柔轮材料(特殊的超高强度合金)+齿形设计(3D曲线)+热处理工艺。绿的谐波用"三次谐波"绕开哈默纳科专利，但高端(精度1弧分以内)仍有差距。</p></div>',
+676|  d2:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🌍 国产 vs 海外</h6><table><tr><td>全球龙头</td><td>哈默纳科(日本)</td><td>全球份额~60%</td></tr><tr><td>国产突破</td><td><span class="grn">绿的谐波</span></td><td>已供应优必选/新松/埃斯顿</td></tr></table></div>',
+677|  d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">绿的谐波(688017)</span> — 国产龙头<br><span class="gld">中大力德(002896)</span> — 谐波+行星全布局<br><span class="gld">昊志机电(300503)</span> — 自用+外供<br><span class="gld">国茂股份(603915)</span> — 减速机平台</p></div>',
+678|  d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 使用范围</h6><p>人形机器人(14-20个/台) · 协作机器人(6个/台) · 工业机器人(轻载型) · 医疗手术机器人</p></div>',
+679|  d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p>绿的谐波在人形机器人客户中的渗透率提升 + 能否进入特斯拉供应链。哈默纳科在日本建了新厂扩产——价格战可能在2026年打响。</p></div>'
+680|});
+681|
+682|registerModal('hl-motor2',{
+683|  tag:'✋ 空心杯电机',tagBg:'rgba(251,112,133,0.15)',tagColor:'#fb7185',
+684|  title:'空心杯电机 — 灵巧手的心脏',
+685|  sub:'🔴高壁垒 · 直径6-16mm · 鸣志电器突破 · 国产化率~30%',
+686|  q1:'直径只有一根手指粗(6-16mm)的微型电机，装在机器人的每根手指关节里，让机器人能抓握/捏取/打字。',
+687|  q2:'就像"你手表里的微型马达"——但比那精密100倍。要在极小的空间里输出足够的力，还要精准控制力道(捏鸡蛋不碎、拿豆腐不烂)。',
+688|  q3:'<div class="q-num">6-16mm</div><div class="q-num-sub">空心杯电机的直径范围，要在这么小空间里做到高精度力控</div>',
+689|  q4:'很多人以为空心杯电机就是"缩小版的普通电机"。其实结构完全不一样——<span class="hl">转子没有铁芯</span>，像个"小杯子"绕满线圈。没铁芯就没齿槽效应，所以转动特别顺滑、响应特别快。',
+690|  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★☆</h6><p>壁垒：<span class="gld">绕线工艺</span>(在6mm上精密绕线圈，专用精密绕线机)+<span class="gld">磁钢材料</span>(高性能钕铁硼)+<span class="gld">动平衡</span>(微型高速控制)。海外瑞士Maxon/德国Faulhaber是百年企业。</p></div>',
+d2:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🌍 国产 vs 海外</h6><table><tr><td>瑞士</td><td>Maxon Motor(百年)</td><td>航天级，最贵最高端</td></tr><tr><td>德国</td><td>Faulhaber(百年)</td><td>医疗器械标准</td></tr><tr><td>国产突破</td><td><span class="grn">鸣志电器(603728)</span></td><td>6-16mm全系列，已供整机厂</td></tr></table></div>',
+d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">鸣志电器(603728)</span> — 国产龙头，已进入多家整机厂<br><span class="gld">江苏雷利(300660)</span> — 微特电机+空心杯<br><span class="gld">雷赛智能(002979)</span> — 运动控制+电机<br><span class="gld">伟创电气(688698)</span> — 新品布局</p></div>',
+693|  d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 使用范围</h6><p>人形机器人灵巧手(12个/双手) · 医疗手术机器人 · 精密自动化设备 · 航空航天微动</p></div>',
+694|  d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p>鸣志电器的人形机器人灵巧手订单能否从样品转为批量。Maxon在常州建了工厂——国产替代的优势是性价比和响应速度。</p></div>'
+695|});
+696|
+697|registerModal('hl-motor',{
+698|  tag:'🔄 无框力矩电机',tagBg:'rgba(251,112,133,0.15)',tagColor:'#fb7185',
+699|  title:'无框力矩电机 — 旋转关节的动力源',
+700|  sub:'🔴高壁垒 · 单台28-40个 · 单台~¥6000 · 国产化率~35%',
+701|  q1:'没有外壳的"裸电机"，直接嵌入关节里，和减速器/编码器集成一体。每个旋转关节(肩/肘/髋/膝)都需要一个。',
+702|  q2:'就像"汽车轮毂电机"——电机的转子直接变成关节的一部分，不浪费一丝空间和重量。',
+703|  q3:'<div class="q-num">28-40个</div><div class="q-num-sub">一台人形机器人用的无框力矩电机数量——是所有零部件中需求量最大的</div>',
+704|  q4:'很多人认为无框力矩电机和普通伺服电机一样。要求完全不同——<span class="hl">扁平化(厚度薄)+高扭矩密度+低齿槽转矩(低速转起来没有一顿一顿感)+抗冲击(机器人摔倒不损坏)</span>，比工业伺服电机难做。',
+705|  d1:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🔧 技术难度 ★★★★☆</h6><p>四大要求：扁平化设计 · 高扭矩密度(磁钢/绕组优化) · 低齿槽转矩 · 抗冲击可靠性。海外Maxon(瑞士)/科尔摩根(美国)领先。</p></div>',
+d2:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🌍 国产 vs 海外</h6><table><tr><td>瑞士</td><td>Maxon(航天级)</td><td>精度和可靠性标杆</td></tr><tr><td>美国</td><td>科尔摩根Kollmorgen</td><td>工业机器人主供</td></tr><tr><td>国产</td><td><span class="grn">步科/汇川/昊志</span></td><td>性价比+定制响应快</td></tr></table></div>',
+d3:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏢 代表企业</h6><p><span class="gld">步科股份(688160)</span> — 低压伺服领先，有人形专用方案<br><span class="gld">昊志机电(300503)</span> — 机器人关节电机自研<br><span class="gld">汇川技术(300124)</span> — 伺服龙头，正向机器人电机拓展<br><span class="gld">伟创电气/禾川科技</span></p></div>',
+708|  d4:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🏗️ 使用范围</h6><p>人形机器人(最多，28-40个/台) · 协作机器人(6-8个/台) · 工业机器人 · 医疗机器人</p></div>',
+709|  d5:'<div class="d-section"><h6><span class="bar" style="background:#fb7185"></span> 🎯 关注焦点</h6><p>谁能做出"扭矩密度追上Maxon、价格做到Maxon的1/3"的产品——这决定了人形机器人关节模组的BOM成本。</p></div>'
+710|});
+711|
+712|/* Other supply chain nodes (shorter versions) */
+713|registerModal('model',{
+714|  tag:'🧩 大模型与决策软件',tagBg:'rgba(34,211,238,0.12)',tagColor:'#22d3ee',
+715|  title:'大模型与决策软件 — 机器人的"灵魂"',
+716|  sub:'多模态 · 具身智能 · 软件护城河',
+717|  q1:'让机器人"看懂/听懂/想明白再行动"的AI软件。传统机器人是编好程序重复做，带大模型的机器人能理解新场景并自主决策。',
+718|  q2:'以前机器人像"一个只会背剧本的演员"——剧本写什么演什么。有了大模型，它变成了"一个能即兴表演的演员"——看到什么场景自己决定怎么演。',
+719|  q3:'<div class="q-num">从"编程"到"对话"</div><div class="q-num-sub">机器人交互方式正在被大模型颠覆——说句话它就能理解任务</div>',
+720|  q4:'很多人以为机器人装个ChatGPT就智能了。实际行业里最难的不是大模型本身，而是<span class="hl">把语言理解+视觉感知+运动控制串成一条完整链路</span>——"懂你说什么-看到什么-决定怎么做-指挥关节动起来"。'
+721|});
+722|
+723|registerModal('vision',{
+724|  tag:'👁️ 视觉/深度传感器',tagBg:'rgba(34,211,238,0.12)',tagColor:'#22d3ee',
+725|  title:'视觉/深度传感器 — 机器人的"眼睛"',
+726|  sub:'3D ToF/结构光/双目 · 奥比中光',
+727|  q1:'让机器人"看见"世界的传感器——3D结构光(投射光斑算深度)像Face ID、激光雷达(旋转扫描建地图)、双目视觉(两个摄像头算距离)像人眼。',
+728|  q2:'就像人的眼睛+皮尺的组合——不仅看清楚这是什么，还能精确知道它距离多远(误差毫米级)，这样机器人才能伸手去抓。'
+729|});
+730|
+731|registerModal('tier1',{
+732|  tag:'🔗 Tier-1 执行器总成',tagBg:'rgba(251,191,36,0.12)',tagColor:'#fbbf24',
+733|  title:'Tier-1 执行器总成 — 供应链皇冠上的明珠',
+734|  sub:'三花智控(旋转) · 拓普集团(线性)',
+735|  q1:'"一级供应商"——不卖单个零件，卖整装好的关节模组。把电机+减速器+编码器+抱闸集成在一起，整机厂拿回去直接装。',
+736|  q2:'就像买车不买发动机/变速箱/底盘自己组装，而是买一个完整的"底盘模块"。Tier-1让整机厂从"拼乐高"升级到"买乐高成品套装"。',
+737|  q3:'<div class="q-num">2家</div><div class="q-num-sub">三花智控+拓普集团——两家Tesla汽车供应商→人形机器人Tier-1</div>',
+738|  q4:'很多人不了解Tier-1多重要——<span class="hl">没有Tier-1，整机厂要和几十家零部件厂分别对接、自己测试组装、自己承担集成风险</span>。Tier-1模式的成熟度，决定了人形机器人能否从"手工打造"走向"工业量产"。'
+739|});
+740|
+741|registerModal('battery',{
+742|  tag:'🔋 高能量密度电池',tagBg:'rgba(251,191,36,0.12)',tagColor:'#fbbf24',
+743|  title:'电池 — 机器人的"能量源"',
+744|  sub:'续航<2小时 · 宁德时代 · 亿纬锂能',
+745|  report:{name:'宁德时代',id:'ningde'},
+746|  q1:'人形机器人的"充电宝"——一台150cm/60kg的机器人功耗200-500W，需要50V/2-3kWh电池包，但续航不到2小时。',
+747|  q2:'就像手机用了半天就要充电——但机器人如果在工厂里干活，2小时就要换一次电池的话，生产效率就太差了。'
+748|});
+749|
+750|registerModal('material',{
+751|  tag:'🏗️ 轻量化结构件',tagBg:'rgba(251,191,36,0.12)',tagColor:'#fbbf24',
+752|  title:'轻量化结构件 — 减重就是增性能',
+753|  sub:'碳纤维 · 铝合金 · 3D打印',
+754|  q1:'用碳纤维/铝合金/3D打印做的机器人的骨架和外壳——减重1kg的效果，比汽车减重10kg还明显。',
+755|  q2:'就像运动员减重——每减掉1kg肥肉，跑得快+跳得高+不容易受伤。机器人也一样：四肢每轻100g，关节电机就能小一号、电池能用更久。'
+756|});
+757|
+758|registerModal('cable',{
+759|  tag:'🔌 线束连接器',tagBg:'rgba(251,191,36,0.12)',tagColor:'#fbbf24',
+760|  title:'线束连接器 — 机器人的"血管和神经"',
+761|  sub:'立讯精密 · 中航光电 · 柔性耐弯折',
+762|  q1:'机器人全身的"电线网络"——给关节供电+传信号+连传感器。穿过关节活动部位，几百万次弯折不能断。',
+763|  q2:'就像穿着衣服做瑜伽——每根线在关节折来折去。普通电线折100次就断了，机器人线束要折100万次还没事。'
+764|});
+765|
+766|/* ---- COMPANY MODALS (abbreviated, keep simple) ---- */
+767|function regComp(id,tag,tagBg,tagColor,name,code,det){
+768|  registerModal(id,{tag,tagBg,tagColor,title:name,sub:code,
+769|    q1:det,q2:'',q3:'',q4:'',d1:'',d2:'',d3:'',d4:'',d5:'',
+770|    body:`<div class="m-qgrid"><div class="m-qc" style="border-color:${tagColor}"><div class="q-icon">📝</div><div class="q-label" style="color:${tagColor}">一句话</div><div class="q-text">${det}</div></div></div>`
+771|  });
+772|}
+773|regComp('comp-ubt','人形','rgba(251,112,133,0.15)','#fb7185','优必选','9880.HK','Walker系列人形机器人，全球首款量产交付的双足机器人。港股"人形机器人第一股"。教育+消费+商业多线布局。供应链大量采用国产零部件。')
+774|regComp('comp-zhiyuan','人形','rgba(251,112,133,0.15)','#fb7185','智元机器人','未上市·独角兽','远征A2人形机器人，前华为"天才少年"稚晖君(彭志辉)2023年创办。自研具身大模型，软硬件一体能力最强。获高瓴/红杉/比亚迪投资。')
+775|regComp('comp-yushu','人形','rgba(251,112,133,0.15)','#fb7185','宇树科技','未上市·独角兽','以四足Go2起家，H1人形运控能力全球顶流。走运动控制路线，性价比高。出口占比高。红杉/顺为投资。')
+776|regComp('comp-ftl','人形','rgba(251,112,133,0.15)','#fb7185','傅利叶智能','未上市·独角兽','康复外骨骼→GR系列人形机器人。力控技术积累深(从医疗康复迁移)，通用+医疗双赛道，海外布局好。')
+777|regComp('comp-xiaomi','人形','rgba(251,112,133,0.15)','#fb7185','小米','01810.HK','CyberOne人形+CyberDog四足。生态链+AI+大规模制造能力。目前人形偏研发阶段，量产规划未明确。')
+778|regComp('comp-dula','人形','rgba(251,112,133,0.15)','#fb7185','达闼机器人','未上市','Cloud Ginger云端大脑架构，机器人本体+云端AI结合。起步最早的一批，在商业服务+人形赛道布局。')
+779|regComp('comp-estun','工业','rgba(34,211,238,0.15)','#22d3ee','埃斯顿','002747.SZ','国产焊接机器人龙头。收购德国Cloos掌握高端焊接技术。自主伺服+机器人本体全产业链，国产市占率前三。')
+780|regComp('comp-xinsong','工业','rgba(34,211,238,0.15)','#22d3ee','新松机器人','300024.SZ','中科院系，国产老牌龙头。产品线最全（焊接/搬运/装配/洁净）。唯一国产可量产洁净机器人（半导体用）。')
+781|regComp('comp-efort','工业','rgba(34,211,238,0.15)','#22d3ee','埃夫特','688165.SH','多关节+Scara。收购意大利CMA(喷涂)、WFC后喷涂领先。海外技术整合有经验。')
+782|regComp('comp-jaka','协作','rgba(52,211,153,0.15)','#34d399','节卡机器人','未上市·独角兽','柔性智能产线方案强。大客户含苹果/丰田，全球化布局，融资最多的协作机器人公司。')
+783|regComp('comp-aubo','协作','rgba(52,211,153,0.15)','#34d399','遨博','未上市','AUBO协作机器人国内出货量第一。产品线齐全（3-20kg负载），大客户覆盖广（3C/汽车/五金）。')
+784|regComp('comp-yuejiang','协作','rgba(52,211,153,0.15)','#34d399','越疆','递表拟上市','Dobot教育+CR系列工业协作。教育市场根基深厚，工业端快速追赶，出海成绩最好。')
+785|regComp('comp-ecovacs','服务','rgba(167,139,250,0.15)','#a78bfa','科沃斯','603486.SH','家用清洁绝对龙头，"地宝"全球知名。技术路线持续引领（随机碰撞→LDS→视觉AI→自清洁）。')
+786|regComp('comp-stone','服务','rgba(167,139,250,0.15)','#a78bfa','石头科技','688169.SH','扫地机器人第二极。激光导航+双目避障领先，高毛利(50%+)。"小米生态链独立最成功的案例"。')
+787|regComp('comp-harmonic','减速器','rgba(251,112,133,0.15)','#fb7185','绿的谐波','688017.SH','谐波减速器国产龙头。自研"三次谐波"绕开哈默纳科专利，已供优必选/新松/埃斯顿。国产替代最大突破。')
+788|regComp('comp-huichuan','伺服','rgba(34,211,238,0.15)','#22d3ee','汇川技术','300124.SZ','国产伺服驱动器龙头(~30%市占率)。平台型企业，正向机器人专用电机扩展。供应链"水电煤"。')
+789|regComp('comp-hengli','丝杠','rgba(251,112,133,0.15)','#fb7185','恒立液压','601100.SH','液压油缸全球龙头→切入行星滚柱丝杠。液压技术同源精密直线运动，投入最大（数百亩新厂）。')
+790|regComp('comp-mingzhi','电机','rgba(251,112,133,0.15)','#fb7185','鸣志电器','603728.SH','空心杯电机国产龙头，直径6-16mm覆盖。已进入优必选/智元等灵巧手供应链。')
+791|regComp('comp-obit','视觉','rgba(34,211,238,0.15)','#22d3ee','奥比中光','688322.SH','3D视觉传感器国产龙头。ToF+结构光双技术，进入优必选/小米机器人供应链。')
+792|regComp('comp-sanhua','Tier-1','rgba(251,191,36,0.15)','#fbbf24','三花智控','002050.SZ','热管理巨头→旋转关节执行器总成。Tesla Optimus核心Tier-1，精密制造全球领先。')
+793|regComp('comp-tuopu','Tier-1','rgba(251,191,36,0.15)','#fbbf24','拓普集团','601689.SH','汽车NVH/底盘巨头→线性关节执行器总成。Tesla Optimus核心Tier-1，一体化压铸+精密加工能力强。')
+794|regComp('comp-lixun','线束','rgba(251,191,36,0.15)','#fbbf24','立讯精密','002475.SZ','连接器/线束全球龙头，苹果供应链核心。从消费电子→汽车→机器人的能力迁移。')
+795|regComp('comp-buke','电机','rgba(251,112,133,0.15)','#fb7185','步科股份','688160.SH','低压伺服领先，已推出人形专用无框力矩电机方案。在小而专注的机器人电机领域有独特优势。')
+796|/* Remaining company stubs */
+797|regComp('comp-tuosida','工业','rgba(34,211,238,0.15)','#22d3ee','拓斯达','300607.SZ','从注塑机辅机→工业机器人。中低端快速崛起，性价比优势明显。')
+798|regComp('comp-elite','协作','rgba(52,211,153,0.15)','#34d399','艾利特','未上市','ELITE协作机器人，主打性价比和易用性，3C/汽车零部件领域案例多。')
+799|regComp('comp-luoshi','协作','rgba(52,211,153,0.15)','#34d399','珞石','未上市','ROKAE轻型工业机器人，控制算法见长，精密装配(轴孔配合)有技术优势。')
+800|regComp('comp-gaoxian','服务','rgba(167,139,250,0.15)','#a78bfa','高仙机器人','未上市·独角兽','商用清洁机器人全球出货量第一，海外营收超50%，中国机器人出海标杆。')
+801|regComp('comp-tianzhihang','医疗','rgba(251,191,36,0.15)','#fbbf24','天智航','688277.SH','A股唯一手术机器人。骨科手术机器人（天玑系列）拿NMPA三类证并进医保。')
+802|regComp('comp-yijiahe','特种','rgba(251,146,60,0.15)','#fb923c','亿嘉和','603666.SH','电力巡检机器人龙头，国家电网核心供应商。向消防/化工扩展。')
+803|regComp('comp-geek','物流','rgba(163,230,53,0.2)','#a3e635','极智嘉','未上市·独角兽','全球AMR出货量第一，海外营收超50%（欧洲/日本/美国），全球化最成功。')
+804|regComp('comp-dji','无人机','rgba(192,132,252,0.15)','#c084fc','大疆创新','未上市','全球消费级无人机~80%份额。工业级+农业+车载多元布局，中国科技全球化标杆。')
+805|regComp('comp-zongheng','无人机','rgba(192,132,252,0.15)','#c084fc','纵横股份','688070.SH','工业无人机龙头（CW系列垂直起降固定翼），在测绘/巡检/安防领域领先。')
+806|regComp('comp-keli','传感器','rgba(251,112,133,0.15)','#fb7185','柯力传感','603662.SH','应变式传感器国内龙头，正向六维力矩传感器拓展。力传感器技术积累深厚。')
+807|regComp('comp-suteng','雷达','rgba(34,211,238,0.15)','#22d3ee','速腾聚创','2498.HK','激光雷达港股上市，从车载(ADAS)向机器人迁移。Helios系列机器人专用雷达已量产。')
+808|regComp('comp-guangwei','材料','rgba(251,191,36,0.15)','#fbbf24','光威复材','300699.SZ','碳纤维龙头，航空级碳纤维供应商。碳纤维比铝轻40%+刚度高3倍，是机器人轻量化的最优解。')
+809|
+810|/* Fix modals that didn't use the body field */
+811|/* The m45 function builds the body. For modals that pass body directly (like company modals),
+812|   we keep that. For modals that used q1/q2/q3/q4, we need to build via m45. */
+813|/* Patch: auto-build body for modals with q1 format */
+814|const origRegister = registerModal;
+815|registerModal = function(id, data){
+816|  if(data.q1 && !data.body){
+817|    data.body = m45(data);
+818|  }
+819|  origRegister(id, data);
+820|};
+821|/* Re-patch already registered modals */
+822|Object.keys(modalData).forEach(k=>{
+823|  const d = modalData[k];
+824|  if(d.q1 && !d.body && !d._patched){
+825|    d.body = m45(d);
+826|    d._patched = true;
+827|  }
+828|});
+829|/* ===== Scroll Position Persistence ===== */
+830|(function(){
+831|  const key = document.title;
+832|  const saved = sessionStorage.getItem('scroll_'+key);
+833|  if(saved) setTimeout(function(){ window.scrollTo(0, parseInt(saved,10)); }, 50);
+834|  var ticking=false;
+835|  window.addEventListener('scroll',function(){
+836|    if(!ticking){
+837|      window.requestAnimationFrame(function(){
+838|        sessionStorage.setItem('scroll_'+key, window.scrollY);
+839|        ticking=false;
+840|      });
+841|      ticking=true;
+842|    }
+843|  },{passive:true});
+844|})();
+845|</script>
+846|<!-- Microsoft Clarity -->
+847|<script type="text/javascript">
+848|(function(c,l,a,r,i,t,y){
+849|c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+850|t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+851|y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+852|})(window, document, "clarity", "script", "xecsshff8t");
+853|</script>
+854|<!-- End Microsoft Clarity -->
+855|
+856|</body>
+857|
