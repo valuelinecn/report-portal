@@ -500,8 +500,7 @@ html{scroll-behavior:smooth}
 /* Industry selector light theme */
 [data-theme="light"] #industrySelector [onclick*="loadIndustry('robot')"]{background:linear-gradient(135deg,#e8f4f8,#d0eaf5)!important;border-color:rgba(34,211,238,0.3)!important}
 [data-theme="light"] #industrySelector [onclick*="loadIndustry('robot')"] div:last-child{color:#555!important}
-[data-theme="light"] #industrySelector [onclick*="loadIndustry('auto')"]{background:linear-gradient(135deg,#d8f0e0,#c0e5d0)!important;border-color:rgba(52,211,153,0.3)!important}
-[data-theme="light"] #industrySelector [onclick*="loadIndustry('auto')"] div:last-child{color:#555!important}
+
 [data-theme="light"] .section-bc{background:var(--bg5)}
 
 </style>
@@ -932,17 +931,13 @@ html{scroll-behavior:smooth}
     <div class="section-bc" style="position:absolute;top:0;left:0;right:0"><span class="bc-home" onclick="goHome()">⌂ 首页</span><span class="bc-sep">/</span><span class="bc-current">🔬 行业研究</span></div>
     <div style="font-size:1.2rem;font-weight:700;color:var(--t1);margin-bottom:4px;margin-top:20px">🔬 行业研究</div>
     <div style="font-size:.7rem;color:var(--m5);margin-bottom:24px">选择行业查看深度研究内容</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:460px;width:100%">
+    <div style="display:grid;grid-template-columns:1fr;gap:14px;max-width:300px;width:100%">
       <div onclick="loadIndustry('robot')" style="background:linear-gradient(135deg,#1a2a4a,#0d1f3c);border:1px solid rgba(34,211,238,0.15);border-radius:16px;padding:30px 20px;cursor:pointer;text-align:center;transition:all .3s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
         <div style="font-size:2.4rem;margin-bottom:8px">🤖</div>
         <div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-bottom:4px">机器人产业</div>
         <div style="font-size:.6rem;color:#64748b;line-height:1.4">人形机器人供应链 · 三层拆解</div>
       </div>
-      <div onclick="loadIndustry('auto')" style="background:linear-gradient(135deg,#1a3a2a,#0d2a1a);border:1px solid rgba(52,211,153,0.15);border-radius:16px;padding:30px 20px;cursor:pointer;text-align:center;transition:all .3s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
-        <div style="font-size:2.4rem;margin-bottom:8px">🚗</div>
-        <div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-bottom:4px">新能源乘用车</div>
-        <div style="font-size:.6rem;color:#64748b;line-height:1.4">市场格局 · 供应链 · 技术前沿</div>
-      </div>
+
     </div>
   </div>
   <div id="industryFrameWrap" style="display:none;height:100%">
@@ -959,20 +954,20 @@ html{scroll-behavior:smooth}
 <script defer src="waline/waline.js"></script>
 <script>
 const COMPANIES = [
-    {id:'ningde',name:'宁德时代',nameEn:'CATL',score:7.5,scoreMax:10,color:'#4fc3f7',heat:9,industry:'新能源 · 动力电池',industrySector:['新能源车·电池'],desc:'全球动力电池装机量第一，新能源产业链核心。',tags:['电池龙头','新能源','全球第一'],metrics:{营收:'4,650亿',净利:'578亿',毛利率:'24.5%',PE:'22.4x',ROE:'21%',全球市占率:'38%'},file:'ningde.html'},
+    {id:'ningde',name:'宁德时代',nameEn:'CATL',score:7.5,scoreMax:10,color:'#4fc3f7',heat:9,industry:'新能源 · 动力电池',desc:'全球动力电池装机量第一，新能源产业链核心。',tags:['电池龙头','新能源','全球第一'],metrics:{营收:'4,650亿',净利:'578亿',毛利率:'24.5%',PE:'22.4x',ROE:'21%',全球市占率:'38%'},file:'ningde.html'},
   {id:'300144',name:'宋城演艺',nameEn:'Songcheng',score:7.5,scoreMax:10,color:'#ff9800',heat:8,industry:'文旅 · 演艺',desc:'文旅演艺绝对龙头，千古情IP壁垒+轻资产扩张+AI赋能。',tags:['文旅龙头','千古情','轻资产','高股息'],metrics:{营收:'22.6亿',净利:'8.2亿',毛利率:'64.8%',PE:'28x',ROE:'9.9%',市占率:'60%+'},file:'300144.html'},
   {id:'600085',name:'同仁堂',nameEn:'Tongrentang',score:7.0,scoreMax:10,color:'#ff9800',heat:7,industry:'医药 · 中药 · 老字号',desc:'三百余年品牌壁垒，安宫牛黄丸双天然高端市场绝对主导，老龄化+中药政策红利长期受益。',tags:['老字号','安宫龙头','心脑血管','高分红','国企'],metrics:{营收:'172.6亿',净利:'11.9亿',毛利率:'42.87%',PE:'35x',ROE:'8.9%',市占率:'15%'},file:'600085.html'},
   {id:'600030',name:'中信证券',nameEn:'CITIC Securities',score:7.5,scoreMax:10,color:'#ffc107',heat:9,industry:'金融 · 券商 · 龙头',desc:'全业务链龙头，投行/财富管理双龙头，ROE 10.59%领先。周期属性显著，估值低位。',tags:['全业务链','龙头券商','跨境投行','周期属性'],metrics:{营收:'748.5亿',净利:'300.8亿',净利率:'40.2%',PE:'15x',ROE:'10.6%',总资产:'2万亿+'},file:'600030.html'},
   {id:'600329',name:'达仁堂',nameEn:'Da Ren Tang',score:6.5,scoreMax:10,color:'#ff9800',heat:6,industry:'医药 · 中药 · 老字号',desc:'中华老字号中药龙头，拥有速效救心丸国家秘密品种。2024年剥离商业聚焦精品中药，毛利率跃升至74%。但扣非PE 55x偏高，安全边际不足。',tags:['老字号','中药龙头','国家秘密','高分红','国企'],metrics:{营收:'49.17亿',净利:'21.31亿',毛利率:'74.02%',扣非PE:'55x',扣非ROE:'9.54%',总市值:'416亿'},file:'600329.html'},
   {id:'605305',name:'中际联合',nameEn:'Zhongji Innolight',score:7.5,scoreMax:10,color:'#ffc107',heat:8,industry:'高端制造 · 风电设备 · 隐形冠军',desc:'风电高空安全设备隐形冠军，国内市占率>70%，出海加速+新产品线驱动第二增长曲线。',tags:['隐形冠军','风电设备','出海','高ROE','低负债'],metrics:{营收:'18.78亿',净利:'5.30亿',毛利率:'47.27%',PE:'15x',ROE:'19.1%',市占率:'75%'},file:'605305.html'},
-  {id:'000807',name:'云铝股份',nameEn:'Yunnan Aluminium',score:7.5,scoreMax:10,color:'#ffc107',heat:8,industry:'有色金属 · 电解铝 · 绿色铝',industrySector:['新能源车·上游材料'],desc:'绿色铝一体化龙头，水电铝成本优势构筑护城河，受益铝价中枢上移和供给侧改革。',tags:['绿色铝','央企龙头','水电铝','高ROE','低负债'],metrics:{营收:'600.4亿',净利:'60.6亿',毛利率:'16.79%',PE:'14x',ROE:'19.7%',市占率:'7.5%'},file:'000807.html'},
+  {id:'000807',name:'云铝股份',nameEn:'Yunnan Aluminium',score:7.5,scoreMax:10,color:'#ffc107',heat:8,industry:'有色金属 · 电解铝 · 绿色铝',desc:'绿色铝一体化龙头，水电铝成本优势构筑护城河，受益铝价中枢上移和供给侧改革。',tags:['绿色铝','央企龙头','水电铝','高ROE','低负债'],metrics:{营收:'600.4亿',净利:'60.6亿',毛利率:'16.79%',PE:'14x',ROE:'19.7%',市占率:'7.5%'},file:'000807.html'},
   {id:'600183',name:'生益科技',nameEn:'Sytech',score:7.5,scoreMax:10,color:'#4caf50',heat:7,industry:'电子 · 覆铜板(CCL)',desc:'全球刚性覆铜板第二(13.7%市占率)，ROE 21.25%净利33.34亿(+92%)高增长。PE 17x/PB 3.6x合理偏低。大比例分红每10股派8元。',tags:['覆铜板','AI算力','全球第二','高ROE','高分红'],metrics:{营收:'284.31亿',净利:'33.34亿',毛利率:'~25%',PE:'~17x',ROE:'21.25%',市占率:'~14%'},file:'600183.html'},
 
     {id:'603986',name:'兆易创新',nameEn:'GigaDevice',score:6.5,scoreMax:10,color:'#ffc107',heat:7,industry:'半导体 · NOR Flash · MCU',desc:'NOR Flash全球第三、MCU国内领先，存储与MCU双轮驱动。2025年营收92亿(+25%)净利16.5亿(+49%)。PE 236x偏高。',tags:['半导体','NOR Flash','MCU'],metrics:{营收:'92.03亿',净利:'16.48亿',毛利率:'~38%',PE:'236x',PB:'20.6x',市占率:'~18%'},file:'603986.html'},
   {id:'600706',name:'曲江文旅',nameEn:'Qujiang Cultural Tourism',score:3.0,scoreMax:10,color:'#ff9800',heat:3,industry:'文旅 · 景区运营',desc:'西安国有文旅平台，运营大唐芙蓉园/大雁塔，毛利率7.64%持续亏损。PB 0.9x破净。',tags:['文旅','国企','景区运营','低毛利率'],metrics:{营收:'9.67亿',净利:'-1.96亿',ROE:'-34.96%',PB:'0.9x',毛利率:'7.64%'},file:'600706.html'},
   {id:'000009',name:'中国宝安',nameEn:'China Baoan Group',score:5.5,scoreMax:10,color:'#f0c040',heat:5,industry:'综合 · 控股集团',desc:'横跨高新技术(贝特瑞负极龙头)+生物医药(马应龙)的综合控股集团。营收230亿净利2亿。',tags:['负极龙头','马应龙','综合控股'],metrics:{营收:'230亿',净利:'2.03亿',毛利率:'25.8%',PE:'85.5x',ROE:'2.04%',市占率:'负极~22%'},file:'000009.html'},
   {id:'600009',name:'上海机场',nameEn:'Shanghai Airport',score:6.0,scoreMax:10,color:'#f0c040',heat:6,industry:'交通运输 · 航空枢纽',desc:'中国最大航空枢纽运营商，长三角唯一国际门户。2025年营收133亿净利21亿持续恢复。PE 28x/PB 2.5x合理偏低。区位垄断护城河深厚。',tags:['航空枢纽','区位垄断','免税弹性','疫后恢复'],metrics:{营收:'133.46亿',净利:'21.17亿',毛利率:'27.5%',PE:'28x',ROE:'5.03%',市占率:'~19%'},file:'600009.html'},
-  {id:'601127',name:'赛力斯',nameEn:'Seres',score:7.0,scoreMax:10,color:'#ff9800',heat:7,industry:'新能源车 · 高端SUV · 华为生态',industrySector:['新能源车·整车'],desc:'华为智选车核心伙伴，问界品牌持续放量，2025年营收1650亿(+13.7%)净利60亿(+58.3%)。PE 20x/PS 0.72x偏低。',tags:['华为生态','问界品牌','高端SUV','低估值'],metrics:{营收:'1,650.5亿',净利:'59.6亿',毛利率:'28.21%',PE:'20x',ROE:'23.53%',市占率:'~2.9%'},file:'601127.html'},
+  {id:'601127',name:'赛力斯',nameEn:'Seres',score:7.0,scoreMax:10,color:'#ff9800',heat:7,industry:'新能源车 · 高端SUV · 华为生态',desc:'华为智选车核心伙伴，问界品牌持续放量，2025年营收1650亿(+13.7%)净利60亿(+58.3%)。PE 20x/PS 0.72x偏低。',tags:['华为生态','问界品牌','高端SUV','低估值'],metrics:{营收:'1,650.5亿',净利:'59.6亿',毛利率:'28.21%',PE:'20x',ROE:'23.53%',市占率:'~2.9%'},file:'601127.html'},
   {id:'002230',name:'科大讯飞',nameEn:'iFlytek',score:6.5,scoreMax:10,color:'#f0c040',heat:7,industry:'AI · 大模型 · 智慧教育',industrySector:['机器人·智能大脑'],desc:'中国AI龙头，讯飞星火大模型中标金额23亿行业第一。营收271亿(+16.1%)净利8.4亿(+27.8%)。PE 118x偏高但PS 3.6x合理。',tags:['AI国家队','星火大模型','智慧教育','开发者生态'],metrics:{营收:'271亿',净利:'8.39亿',毛利率:'~57%',PE:'118x',PS:'3.6x',市占率:'中标~2.3%'},file:'002230.html'},
   {id:'600993',name:'马应龙',nameEn:'Mayinglong',score:7.5,scoreMax:10,color:'#f0c040',heat:8,industry:'中药 · OTC · 消费品医疗',desc:'四百年中华老字号，肛肠治痔龙头市占率超50%。营收38.67亿(+3.7%)净利5.81亿(+10.1%)，PE 17x合理。高分红(股息率~3%)零负债。',tags:['中华老字号','肛肠龙头','高分红','消费医疗'],metrics:{营收:'38.67亿',净利:'5.81亿',毛利率:'49.19%',PE:'17.1x',ROE:'13.77%',市占率:'治痔~50%+'},file:'600993.html'},
   {id:'000705',name:'浙江震元',score:4.8,desc:'绍兴区域医药龙头，百年震元堂品牌底蕴深厚。盈利处于底部（扣非为负），合成生物提供期权弹性。PB 1.03x提供下行保护。',tags:['医药流通','老字号','困境反转型','合成生物'],metrics:{营收:'22.76亿',净利:'0.23亿',毛利率:'24.94%',PE:'86.9x',ROE:'1.16%',市占率:'区域零售~22%'},file:'000705.html'}];
@@ -1028,7 +1023,7 @@ function switchTab(name) {
 }
 
 // ===== INDUSTRY SECTOR MAPPING =====
-const SECTOR_MAP = {'机器人':{name:'机器人产业',type:'robot'},'新能源车':{name:'新能源乘用车',type:'auto'}};
+const SECTOR_MAP = {'机器人':{name:'机器人产业',type:'robot'}};
 function getIndustryLinks(sectors) {
   if(!sectors||!sectors.length) return [];
   var result = [];
@@ -1477,7 +1472,6 @@ function goHome() {
 // Industry research search index
 const INDUSTRY_INDEX = [
   {section:'行业研究',type:'机器人产业',title:'机器人产业百科',desc:'人形机器人供应链 · 三层拆解：智能大脑/躯体执行/集成配套',tags:['机器人','人形机器人','供应链','减速器','传感器','电机'],file:'robot-encyclopedia.html'},
-  {section:'行业研究',type:'新能源乘用车',title:'新能源乘用车产业百科',desc:'市场格局 · 品牌竞争 · 三电系统 · 智驾技术 · 成本结构',tags:['新能源车','电动车','电池','比亚迪','特斯拉','智能驾驶','800V'],file:'auto-industry-encyclopedia.html'},
 ]
 // Auto-generated item entries for each card inside the encyclopedias
 function getIndustryItems() {
@@ -1488,13 +1482,6 @@ function getIndustryItems() {
     {section:'行业研究',type:'机器人产业',title:'代表企业',desc:'优必选·智元·宇树·傅利叶·小米·特斯拉·达闼',tags:['机器人'],file:'robot-encyclopedia.html#enterprise'},
     {section:'行业研究',type:'机器人产业',title:'供应链纵深',desc:'三层供应链拆解：智能大脑·躯体执行系统·集成配套',tags:['机器人','供应链'],file:'robot-encyclopedia.html#supply'},
     {section:'行业研究',type:'机器人产业',title:'高壁垒清单',desc:'行星滚柱丝杠·六维力传感器·谐波减速器·空心杯电机',tags:['机器人','高壁垒'],file:'robot-encyclopedia.html#highlights'},
-    // Auto encyclopedia items
-    {section:'行业研究',type:'新能源乘用车',title:'市场概览',desc:'1,280万辆·54%渗透率·纯电vs插混·出口·产能格局',tags:['新能源车'],file:'auto-industry-encyclopedia.html#overview'},
-    {section:'行业研究',type:'新能源乘用车',title:'品牌格局',desc:'比亚迪·特斯拉·吉利·理想·长安·蔚来·小鹏·小米',tags:['新能源车','品牌'],file:'auto-industry-encyclopedia.html#brands'},
-    {section:'行业研究',type:'新能源乘用车',title:'供应链全景',desc:'电池材料·电芯·电驱·智驾·整车制造·充电设施',tags:['新能源车','供应链'],file:'auto-industry-encyclopedia.html#supplychain'},
-    {section:'行业研究',type:'新能源乘用车',title:'成本结构',desc:'电池40%·电机15%·车身15%·智驾8%·底盘10%·内饰8%',tags:['新能源车','成本'],file:'auto-industry-encyclopedia.html#cost'},
-    {section:'行业研究',type:'新能源乘用车',title:'技术前沿',desc:'800V·固态电池·城市NOA·一体化压铸·V2G·滑板底盘',tags:['新能源车','技术'],file:'auto-industry-encyclopedia.html#tech'},
-    {section:'行业研究',type:'新能源乘用车',title:'行业挑战',desc:'价格战·产能过剩·关税壁垒·原材料波动',tags:['新能源车','挑战'],file:'auto-industry-encyclopedia.html#challenges'},
   ]
 }
 
@@ -1566,8 +1553,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== INDUSTRY RESEARCH SELECTOR =====
 function loadIndustry(type) {
-  const files = { robot:'robot-encyclopedia.html', auto:'auto-industry-encyclopedia.html' }
-  const titles = { robot:'🤖 机器人产业百科', auto:'🚗 新能源乘用车产业百科' }
+  const files = { robot:'robot-encyclopedia.html' }
+  const titles = { robot:'🤖 机器人产业百科' }
   document.getElementById('industrySelector').style.display = 'none'
   document.getElementById('industryFrameWrap').style.display = 'block'
   document.getElementById('industryFrameTitle').textContent = titles[type] || '🔬 行业研究'
