@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<!-- ==========  ========== -->
+<title>新能源乘用车产业百科 · 从入门到供应链</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===== THEME VARIABLES ===== */
+:root{
+  --bg:#080816;--bg2:#0f172a;--bg3:rgba(15,23,42,0.6);--bg4:rgba(30,41,59,0.3);--bg5:rgba(15,23,42,0.5);
+  --border:#1e293b;--border2:#334155;
+  --t1:#e2e8f0;--t2:#cbd5e1;--t3:#94a3b8;--t4:#64748b;--t5:#334155;
+  --overlay:rgba(0,0,0,0.6);--scroll:#1e293b;
+  --toggle-bg:rgba(30,41,59,0.8);--toggle-border:#334155;
+}
+[data-theme="light"]{
+  --bg:#f4f1ea;--bg2:#ffffff;--bg3:rgba(245,245,240,0.85);--bg4:rgba(235,235,225,0.6);--bg5:rgba(250,250,245,0.9);
+  --border:#d8d4c8;--border2:#c0bcb0;
+  --t1:#1a1a2e;--t2:#2d2d2d;--t3:#505050;--t4:#707070;--t5:#b0b0b0;
+  --overlay:rgba(0,0,0,0.3);--scroll:#ccc;
+  --toggle-bg:rgba(255,255,255,0.85);--toggle-border:#d8d4c8;
+}
+
+/* ===== THEME TOGGLE ===== */
+.theme-toggle{position:fixed;top:10px;right:10px;z-index:999;background:var(--toggle-bg);border:1px solid var(--toggle-border);color:var(--t4);font-size:16px;cursor:pointer;padding:5px 9px;border-radius:8px;transition:all .2s;line-height:1;backdrop-filter:blur(8px)}
+.theme-toggle:hover{color:var(--t1);border-color:var(--t3)}
+
+/* ===== BASE ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Noto Sans SC',-apple-system,sans-serif;
+  background:var(--bg);color:var(--t1);min-height:100vh;
+  background-image:radial-gradient(ellipse at 20% 10%,rgba(34,211,238,0.05),transparent 60%),
+                   radial-gradient(ellipse at 80% 20%,rgba(251,191,36,0.03),transparent 60%),
+                   radial-gradient(ellipse at 50% 90%,rgba(52,211,153,0.03),transparent 60%);
+  overflow-x:hidden;transition:background .3s,color .3s;
+}
+[data-theme="light"] body{background-image:none}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--scroll);border-radius:4px}
+.container{max-width:1200px;margin:0 auto;padding:14px}
+.section{display:none}
+.section.active{display:block;animation:fadeIn .35s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== HERO ===== */
+.hero-banner{text-align:center;padding:24px 0 14px}
+/*  */
+.hero-banner h1{font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#34d399 0%,#059669 40%,#fbbf24 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-banner p{color:var(--t4);font-size:.7rem;margin-top:6px;max-width:540px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+/* ===== STAT CARDS (4) ===== */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 18px}
+.stat-card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:12px;
+  padding:16px 10px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;
+}
+.stat-card:hover{transform:translateY(-3px);border-color:var(--t5);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.stat-card::after{content:'→';position:absolute;bottom:6px;right:8px;font-size:.65rem;color:var(--t5);opacity:0;transition:all .3s}
+.stat-card:hover::after{opacity:1;color:var(--t4)}
+.stat-card .num{font-size:1.3rem;font-weight:700}
+.stat-card .lbl{font-size:.6rem;color:var(--t4);margin-top:4px;line-height:1.4}
+.stat-card .sub{font-size:.5rem;color:#1e293b;margin-top:2px}
+/*  */
+.stat-card.c1 .num{background:linear-gradient(135deg,#a78bfa,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c2 .num{background:linear-gradient(135deg,#10b981,#047857);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c3 .num{background:linear-gradient(135deg,#a78bfa,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c4 .num{background:linear-gradient(135deg,#ef4444,#dc2626);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ===== HOT CARDS (3) ===== */
+.hot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.hot-card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:12px;
+  padding:14px 12px;cursor:pointer;transition:all .25s;;position:relative;overflow:hidden;
+}
+.hot-card:hover{transform:translateY(-3px);border-color:var(--t5);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.hot-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.hot-card.hot-rose::before{background:linear-gradient(90deg,#fb7185,#e11d48)}
+.hot-card.hot-amber::before{background:linear-gradient(90deg,#fbbf24,#d97706)}
+.hot-card.hot-emerald::before{background:linear-gradient(90deg,#34d399,#059669)}
+.hot-card .tag{font-size:.5rem;padding:2px 7px;border-radius:4px;font-weight:600;display:inline-block;margin-bottom:5px}
+.hot-card h4{font-size:.78rem;font-weight:600;margin-bottom:4px}
+.hot-card p{font-size:.62rem;color:var(--t4);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hot-card .click-hint{font-size:.5rem;color:var(--t5);margin-top:6px;display:flex;align-items:center;gap:3px}
+
+/* ===== CARD GRID ===== */
+.section-title{font-size:.9rem;font-weight:700;color:var(--t1);margin:18px 0 10px;display:flex;align-items:center;gap:6px}
+.section-title .dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.section-desc{font-size:.64rem;color:var(--t4);margin-bottom:10px;line-height:1.5}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px}
+.card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:12px;
+  padding:14px 12px;cursor:pointer;transition:all .25s;;position:relative;overflow:hidden;
+}
+.card:hover{transform:translateY(-3px);border-color:var(--t5);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.card.cyan::before{background:linear-gradient(90deg,#22d3ee,#0891b2)}
+.card.emerald::before{background:linear-gradient(90deg,#34d399,#059669)}
+.card.rose::before{background:linear-gradient(90deg,#fb7185,#e11d48)}
+.card.violet::before{background:linear-gradient(90deg,#a78bfa,#7c3aed)}
+.card.amber::before{background:linear-gradient(90deg,#fbbf24,#d97706)}
+.card.orange::before{background:linear-gradient(90deg,#fb923c,#ea580c)}
+.card.lime::before{background:linear-gradient(90deg,#a3e635,#65a30d)}
+.card.sky::before{background:linear-gradient(90deg,#38bdf8,#0284c7)}
+.card.purple::before{background:linear-gradient(90deg,#c084fc,#9333ea)}
+.card .tag{font-size:.5rem;padding:2px 7px;border-radius:4px;font-weight:600;display:inline-block;margin-bottom:5px}
+.card h4{font-size:.78rem;font-weight:600;margin-bottom:4px}
+.card p{font-size:.62rem;color:var(--t4);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card .click-hint{font-size:.5rem;color:var(--t5);margin-top:6px;display:flex;align-items:center;gap:3px}
+
+/* ===== MODAL (4+5 template) ===== */
+.modal-overlay{
+  position:fixed;inset:0;z-index:200;background:var(--overlay);backdrop-filter:blur(6px);
+  display:none;justify-content:center;align-items:flex-start;padding:16px;overflow-y:auto;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  max-width:680px;width:100%;margin-top:10px;margin-bottom:10px;
+  position:relative;animation:slideUp .3s;overflow:hidden;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.modal-close{position:sticky;top:0;display:flex;justify-content:space-between;align-items:flex-start;padding:14px 16px 0}
+.modal-close button{background:none;border:none;color:var(--t4);font-size:1.2rem;cursor:pointer;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.modal-close button:hover{background:#1e293b;color:var(--t1)}
+.modal-header{padding:0 16px}
+.modal-header .tag{font-size:.55rem;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:4px}
+.modal-header h2{font-size:1rem;font-weight:700;margin-bottom:2px}
+.modal-header .sub{font-size:.6rem;color:var(--t4)}
+.modal-body{padding:12px 16px 18px}
+/* Layer 1: 4 Quick Cards */
+.m-qgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.m-qc{
+  background:var(--bg4);border-radius:8px;padding:10px 10px 8px;
+  border-left:2px solid;transition:all .2s;
+}
+.m-qc:hover{background:var(--bg4)}
+.m-qc .q-icon{font-size:.85rem;margin-bottom:2px}
+.m-qc .q-label{font-size:.55rem;font-weight:600;margin-bottom:2px;text-transform:uppercase;letter-spacing:1px}
+.m-qc .q-text{font-size:.62rem;color:var(--t2);line-height:1.6}
+.m-qc .q-num{font-size:.8rem;font-weight:700;line-height:1.3}
+.m-qc .q-num-sub{font-size:.5rem;color:var(--t4)}
+/* Toggle for 5 Deep Dimensions */
+.m-toggle{
+  text-align:center;padding:6px 0;margin-bottom:8px;cursor:pointer;
+  color:var(--t4);font-size:.6rem;font-weight:600;letter-spacing:1px;
+  border-top:1px solid rgba(30,41,59,0.4);border-bottom:1px solid var(--border);
+  transition:all .2s;display:flex;align-items:center;justify-content:center;gap:4px;
+}
+.m-toggle:hover{color:var(--t3);background:rgba(30,41,59,0.2)}
+.m-deep{margin-top:4px}
+.m-deep .d-section{margin-bottom:10px}
+.m-deep .d-section:last-child{margin-bottom:0}
+.m-deep .d-section h6{font-size:.6rem;font-weight:600;color:var(--t3);margin-bottom:4px;display:flex;align-items:center;gap:5px}
+.m-deep .d-section h6 .bar{width:3px;height:10px;border-radius:2px;display:inline-block}
+.m-deep .d-section p{font-size:.6rem;color:var(--t3);line-height:1.7}
+/* Report link */
+.modal-report{margin-top:8px;padding:8px 12px;border-radius:8px;border:1px solid rgba(34,211,238,0.2);background:rgba(34,211,238,0.05);text-align:center;cursor:pointer;transition:all .2s;font-size:.65rem;color:#22d3ee;font-weight:600}
+.modal-report:hover{background:rgba(34,211,238,0.1)}
+
+/* ===== ENTERPRISE / SUPPLY CHAIN CUSTOM SECTIONS ===== */
+.ent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px}
+.ent-card{background:var(--bg5);border:1px solid var(--border);border-radius:10px;padding:10px 12px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.ent-card:hover{transform:translateY(-2px);border-color:var(--t5)}
+.ent-card .ent-tag{font-size:.45rem;padding:1px 6px;border-radius:3px;display:inline-block;margin-bottom:3px;font-weight:600}
+.ent-card h5{font-size:.7rem;font-weight:600;margin-bottom:2px}
+.ent-card .ent-desc{font-size:.52rem;color:var(--t4);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
+.ent-cat{margin-top:14px;margin-bottom:8px}
+.ent-cat:first-child{margin-top:0}
+.ent-cat h4{font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:6px;padding:6px 0 8px;border-bottom:1px solid var(--border)}
+.ent-cat h4 span{font-size:.55rem;font-weight:400;color:var(--t4)}
+/* Supply chain 3-column */
+.sc3-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.sc3-col{background:var(--bg5);border-radius:12px;border:1px solid var(--border);padding:14px;position:relative;overflow:hidden}
+.sc3-col .bar-top{position:absolute;top:0;left:0;right:0;height:3px}
+.sc3-col h3{font-size:.8rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.sc3-col .pct{font-size:.55rem;color:var(--t4);font-weight:400}
+.sc3-node{margin-bottom:6px;padding:8px 10px;background:var(--bg4);border-radius:8px;cursor:pointer;transition:all .2s;border:1px solid transparent}
+.sc3-node:hover{border-color:var(--t5);background:var(--bg4)}
+.sc3-node h5{font-size:.65rem;font-weight:600;margin-bottom:2px;display:flex;align-items:center;gap:4px}
+.sc3-node .preview{font-size:.55rem;color:var(--t4);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sc3-node .hl-tag{font-size:.48rem;padding:1px 5px;border-radius:3px;background:rgba(251,112,133,0.15);color:#fb7185;margin-left:4px;font-weight:600}
+/* High-barrier list */
+.hl-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.hl-card{background:var(--bg5);border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;border-left:3px solid #fb7185}
+.hl-card:hover{border-color:var(--t5);transform:translateX(3px)}
+.hl-card h5{font-size:.75rem;font-weight:600;color:#fb7185;margin-bottom:4px}
+.hl-card .desc{font-size:.6rem;color:var(--t3);line-height:1.6}
+.hl-card .meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.hl-card .meta span{font-size:.52rem;padding:2px 7px;border-radius:4px;background:var(--bg4);color:var(--t4)}
+
+@media(max-width:768px){
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .hot-grid,.sc3-grid{grid-template-columns:1fr}
+  .cat-grid,.ent-grid{grid-template-columns:repeat(2,1fr)}
+  .hl-list{grid-template-columns:1fr}
+  .m-qgrid{grid-template-columns:1fr}
+  .modal{max-width:100%;margin:8px;border-radius:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- ===== TAB 0: OVERVIEW (HOME) ===== -->
+<div id="tab-overview" class="section active">
+
+<!-- ===== HERO ===== -->
+<div class="hero-banner">
+  <h1>新能源乘用车产业全景百科</h1>
+  <p>从产业分类到供应链纵深。点击下方统计卡片快速跳转，点击任意卡片查看4+5分析师解说。</p>
+</div>
+
+<!-- ===== STAT CARDS (4) ===== -->
+<div class="stats-row">
+  <div class="stat-card c1" onclick="switchSection('category')">
+    <div class="num">4</div>
+    <div class="lbl">动力类型</div>
+    <div class="sub">纯电·插混·增程·换电</div>
+  </div>
+  <div class="stat-card c2" onclick="switchSection('enterprise')">
+    <div class="num">25+</div>
+    <div class="lbl">代表企业</div>
+    <div class="sub">整车品牌 + 三电系统 + 智驾 + 零部件</div>
+  </div>
+  <div class="stat-card c3" onclick="switchSection('supplychain')">
+    <div class="num">12</div>
+    <div class="lbl">核心零部件</div>
+    <div class="sub">电池·电机·电控·智驾·芯片·轻量化</div>
+  </div>
+  <div class="stat-card c4" onclick="switchSection('highlights')">
+    <div class="num">🔴5</div>
+    <div class="lbl">高壁垒环节</div>
+    <div class="sub">国产化率&lt;30% 的卡脖子环节</div>
+  </div>
+</div>
+
+<!-- ===== HOT CARDS (3) =====  -->
+<div style="font-size:.65rem;font-weight:600;color:var(--t4);margin-bottom:6px">🔥 快速入口</div>
+<div class="hot-grid">
+  <div class="hot-card hot-rose" onclick="openModal('hot1')">
+    <span class="tag" style="background:#fb718520;color:#fb7185">🔥 最热</span>
+    <h4 style="color:#fb7185">【最热门产品/话题】</h4>
+    <p>【一句话描述为什么最热】</p>
+    <span class="click-hint">👆 4+5分析师解说</span>
+  </div>
+  <div class="hot-card hot-amber" onclick="openModal('hot2')">
+    <span class="tag" style="background:#fbbf2420;color:#fbbf24">🔴 最高壁垒</span>
+    <h4 style="color:#fbbf24">【最高壁垒环节】</h4>
+    <p>【描述壁垒所在】</p>
+    <span class="click-hint">👆 4+5分析师解说</span>
+  </div>
+  <div class="hot-card hot-emerald" onclick="openModal('hot3')">
+    <span class="tag" style="background:#34d39920;color:#34d399">📈 增速最快</span>
+    <h4 style="color:#34d399">【增长最快的细分】</h4>
+    <p>【描述增速数据】</p>
+    <span class="click-hint">👆 4+5分析师解说</span>
+  </div>
+</div>
+</div><!-- /tab-overview -->
+
+<!-- ===== TAB 1: CATEGORY =====  -->
+<div id="tab-category" class="section active">
+  <div class="section-title"><span class="dot" style="background:#22d3ee"></span> 📦 产品分类 · N大品类</div>
+  <div class="section-desc">每品类配有4+5分析师解说：①一句话→②打个比方→③必知数字→④别搞错 → 展开后还有5个深度维度</div>
+  <div id="catGrid" class="cat-grid"></div>
+</div>
+
+<!-- ===== TAB 2: ENTERPRISE =====  -->
+<div id="tab-enterprise" class="section">
+  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#22d3ee;font-weight:600">← 返回产业总览</span></div>
+  <div class="section-title"><span class="dot" style="background:#a78bfa"></span> 🏢 代表企业档案库</div>
+  <div class="section-desc">覆盖整车品牌、三电供应商与智驾方案商。点击查看企业详细资料。</div>
+  <div id="entGrid" class="cat-grid"></div>
+</div>
+
+<!-- ===== TAB 3: SUPPLY CHAIN =====  -->
+<div id="tab-supplychain" class="section">
+  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#22d3ee;font-weight:600">← 返回产业总览</span></div>
+  <div class="section-title"><span class="dot" style="background:#34d399"></span> 🔩 供应链纵深 · 三层拆解</div>
+  <div class="section-desc">从原材料到核心零部件到总成。每层点击可查看详细内容。</div>
+  <div id="scGrid" class="sc3-grid"></div>
+</div>
+
+<!-- ===== TAB 4: HIGHLIGHTS =====  -->
+<div id="tab-highlights" class="section">
+  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#22d3ee;font-weight:600">← 返回产业总览</span></div>
+  <div class="section-title"><span class="dot" style="background:#fb7185"></span> 🔴 高壁垒环节清单</div>
+  <div class="section-desc">国产化率&lt;30%的卡脖子零部件，直接影响供应链安全与国产替代空间。</div>
+  <div id="hlGrid" class="hl-list"></div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+<div class="modal">
+  <div class="modal-close">
+    <div class="modal-header">
+      <div id="modalTag" class="tag" style="display:none"></div>
+      <h2 id="modalTitle"></h2>
+      <div id="modalSub" class="sub"></div>
+    </div>
+    <button onclick="closeModal()">✕</button>
+  </div>
+  <div class="modal-body" id="modalBody"></div>
+</div>
+</div>
+
+<script>
+// =====================================================================
+// 
+// =====================================================================
+// 每个条目字段说明：
+//   id:      唯一标识
+//   icon:    图标
+//   title:   标题
+//   tag:     标签（可选，如"① 工业机器人"）
+//   tagColor: 标签颜色
+//   s1:      📝 一句话说清
+//   s2:      🤔 打个比方
+//   s3:      📊 必知数字
+//   s4:      ❌ 别搞错
+//   d1~d5:   🔧/🌍/🏢/🏗️/🎯 深度分析5维
+//   report:  {name:'公司名',id:'报告id'}  【可选】关联企业报告
+
+const DATA = [
+  // ==== HOT CARDS (3) ====
+  {id:'hot1',icon:'🔥',title:'城市NOA · 端到端智驾',tag:'🔥 最热',tagColor:'#ef4444',
+    s1:'2025年是城市NOA量产元年。端到端大模型替代传统模块化算法，车辆自己"看懂路→做决策→控车"。华为ADS 3.0、小鹏XNGP、理想AD Max已推送全量用户。',
+    s2:'就像驾校教练换成了AI——以前是"看到红灯→判断停车→踩刹车"每个步骤单独写代码，现在是整体训练一个AI模型，输入摄像头画面直接输出方向盘和油门指令。',
+    s3:'渗透率~15%·2026目标30%·华为/小鹏/理想三强·特斯拉FSD入华在即',
+    s4:'很多人以为城市NOA就是"更高级的自适应巡航"。其实区别巨大：高速NOA场景单一（车道线+前车），城市NOA要处理红绿灯+路口+行人+外卖骑手+加塞车，复杂度高100倍。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🔧 技术难度 ★★★★★</h6><p>端到端模型需要海量真实路采数据(百万公里级)+超大算力训练(千卡GPU集群)。华为云端算力最强，小鹏数据积累最早，理想迭代最快。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🌍 国产 vs 海外</h6><table><tr><td>中国</td><td>华为ADS 3.0</td><td>覆盖最广(400+城市)</td></tr><tr><td>中国</td><td>小鹏XNGP</td><td>全量无图NOA</td></tr><tr><td>海外</td><td>Tesla FSD v13</td><td>纯视觉方案，2025入华</td></tr></table></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🏢 代表企业</h6><p><span class="gld">华为ADS</span> — 覆盖最广，鸿蒙生态<br><span class="gld">小鹏汽车(9868.HK)</span> — 全量无图<br><span class="gld">理想汽车(2015.HK)</span> — AD Max迭代最快<br><span class="gld">Momenta</span> — 第三方方案，已供比亚迪</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🏗 需要什么</h6><p>大算力智驾芯片(英伟达Orin/地平线J6) · 激光雷达 · 8-11个摄像头 · 海量路采数据 · 千卡级训练集群</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🎯 关注焦点</h6><p>Tesla FSD中国落地时间——如果来了，整个行业竞争格局会被重塑。华为ADS 4.0能否做到"全国都能开且不出错"。端到端方案的"长尾问题"——99%场景解决后，最后1%的罕见场景怎么处理。</p></div>'},
+  {id:'hot2',icon:'🔴',title:'全固态电池 · 量产前夜',tag:'🔴 最高壁垒',tagColor:'#fbbf24',
+    s1:'全固态电池用固态电解质替代液态电解液，能量密度翻倍(500Wh/kg+)、不起火不爆炸。是动力电池的终极形态，日本丰田专利最多，中国宁德时代/比亚迪/卫蓝新能源全力追赶。',
+    s2:'就像从"煤油灯"到"LED灯"——液态电池像煤油灯(会漏、会燃、寿命短)，固态电池像LED灯(高效、安全、长寿)。但目前还在实验室和产线之间，量产成本是液态的5-10倍。',
+    s3:'能量密度500Wh/kg·量产时间2027-2028·日本丰田专利>1300项·国产化率<10%',
+    s4:'很多人以为固态电池"明年就能用上"。实际上从实验室样品到车规级量产至少需要3-5年——核心瓶颈是固态电解质的离子电导率(室温下比液态低100倍)和固-固界面接触(充放电膨胀导致接触不良)。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🔧 技术难度 ★★★★★</h6><p>三大路线：硫化物(丰田/宁德，电导率最高但怕水)、氧化物(卫蓝/清陶，稳定性好但界面阻抗大)、聚合物(Bollore，最早商用但能量密度低)。都面临<span class="gld">量产一致性+成本</span>难题。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🌍 国产 vs 海外</h6><table><tr><td>日本</td><td>丰田(专利>1300项)</td><td>硫化物路线，2027量产</td></tr><tr><td>韩国</td><td>三星SDI</td><td>硫化物，2027试产</td></tr><tr><td>中国</td><td>宁德/比亚迪/卫蓝</td><td>全路线，半固态已装车</td></tr></table></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🏢 代表企业</h6><p><span class="gld">宁德时代(300750)</span> — 凝聚态+硫化物双路线<br><span class="gld">比亚迪</span> — 硫化物自研自用<br><span class="gld">卫蓝新能源</span> — 半固态已装车(蔚来ET7 150kWh)<br><span class="gld">清陶能源</span> — 半固态(智己L6)</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🏗 使用范围</h6><p>新能源车(续航1000km+的核心抓手) · eVTOL(能量密度要求最高) · 消费电子 · 储能</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🎯 关注焦点</h6><p>丰田2027年能否兑现硫化物固态电池量产承诺——如果丰田率先量产，将改变全球动力电池格局。宁德时代的凝聚态电池(半固态)2025年已小批量。蔚来150kWh半固态电池包实际用户反馈。</p></div>'},
+  {id:'hot3',icon:'📈',title:'SiC+800V · 超快充普及',tag:'📈 增速最快',tagColor:'#a3e635',
+    s1:'碳化硅(SiC)功率器件替代传统硅基IGBT，能量损耗减半+体积缩小50%+耐压更高，是800V高压平台的"物理基础"。2025年800V车型从30万+下探到15万，SiC渗透率从<5%跳升至~15%。',
+    s2:'就像从"普通插座"升级到"快充插座"——之前充30分钟跑200公里，现在充15分钟跑400公里。SiC就是让这一切发生的"超级开关"，承受800V高压却不发热烧坏。',
+    s3:'2025渗透率~15%·2027目标50%·全球SiC衬底70%在中国生产·单车价值~$500-800',
+    s4:'很多人以为800V就是"电压高一点"。实际上800V需要全车电器架构重构——电池包串并联重新设计+BMS升级+电机耐压提升+空调压缩机换800V版+充电桩适配。从400V升级到800V，相当于给车"换血"而非"输液"。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#a3e635"></span> 🔧 技术难度 ★★★★☆</h6><p>SiC衬底长晶最难(需2000°C高温+极慢生长速度~0.5mm/h)，缺陷控制是核心壁垒。器件端：栅氧层可靠性+封装散热是瓶颈。全球衬底产能70%在中国(天科合达/天岳先进)，但器件设计仍落后Wolfspeed/英飞凌。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#a3e635"></span> 🌍 国产 vs 海外</h6><table><tr><td>衬底</td><td>Wolfspeed(美)</td><td><span class="grn">天科合达/天岳先进(全球>50%产能)</span></td></tr><tr><td>器件</td><td>英飞凌/ST</td><td><span class="hl">士兰微/斯达半导(追赶)</span></td></tr></table></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#a3e635"></span> 🏢 代表企业</h6><p><span class="gld">天科合达</span> — SiC衬底全球前三<br><span class="gld">天岳先进(688234)</span> — 8英寸衬底领先<br><span class="gld">士兰微(600460)</span> — 器件IDM<br><span class="gld">斯达半导(603290)</span> — 车规SiC模块</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#a3e635"></span> 🏗 使用范围</h6><p>新能源车主驱逆变器(最大用量) · 车载OBC/DCDC · 充电桩(超充桩必须SiC) · 光伏逆变器</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#a3e635"></span> 🎯 关注焦点</h6><p>SiC衬底从6英寸→8英寸量产——成本可再降30-40%。比亚迪自研SiC模块大规模上车。特斯拉Model 3/Y下一代是否全面切换800V+SiC。</p></div>'},
+
+  // ==== 产品分类 (4品类) ====
+  {id:'cat1',icon:'🔋',title:'纯电动 BEV',tag:'① 纯电动',tagColor:'#34d399',
+    s1:'完全靠电池驱动，无发动机无油箱。2025年中国销量~800万辆，占新能源车总量~60%。充电桩依赖度高，适合有家充桩的城市用户。',
+    s2:'就像手机从"功能机"到"智能机"——纯电车是"自带充电宝"的移动智能终端，OTA升级+自动驾驶+智能座舱，完全重新定义了汽车。',
+    s3:'年销~800万辆·增速~20%·续航500-1000km·代表:比亚迪/特斯拉/蔚来/小鹏/小米',
+    s4:'很多人以为纯电车"北方冬天没法开"。实际上2025年主流车型冬季续航达成率已从2020年的40%提升至65-70%(热泵+电池自加热+SiC降低能耗)，-10°C也能正常使用。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🔧 技术难度 ★★★★☆</h6><p>核心在<span class="gld">电池+热管理+能耗优化</span>。电池成本占整车40%，续航焦虑仍是第一痛点。800V+SiC是下一代标配。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🌍 国产 vs 海外</h6><p><span class="grn">中国纯电车全球份额>60%</span>——比亚迪全球纯电销量第二(仅次于特斯拉)。海外大众ID/现代Ioniq/Tesla Model Y是主要竞争车型。中国在电池+智能化上全面领先。</p></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🏢 代表企业</h6><p><span class="gld">比亚迪(002594)</span> — 纯电年销~200万辆<br><span class="gld">特斯拉中国</span> — Model Y全球销冠<br><span class="gld">蔚来(9866.HK)</span> — 换电+服务<br><span class="gld">小米(1810.HK)</span> — SU7爆款</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🏗 核心零部件</h6><p>动力电池(宁德/比亚迪) · 驱动电机(汇川/比亚迪) · OBC+DCDC · 热泵(三花智控) · VCU+BMS</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🎯 关注焦点</h6><p>小米SU7能否保持月销过万。蔚来乐道/萤火虫下沉市场效果。固态电池能否让纯电续航突破1000km。</p></div>'},
+
+  {id:'cat2',icon:'⚡',title:'插电混动 PHEV',tag:'② 插电混动',tagColor:'#10b981',
+    s1:'既能充电又能加油，有发动机+电机两套系统。短途用电(50-200km纯电续航)，长途用油。2025年增速最快的品类(+80%)，份额已接近纯电。比亚迪DM-i是绝对霸主。',
+    s2:'就像"带充电宝的笔记本电脑"——在家插电用(纯电模式)，出门没插座用电池(混动模式)，电池+发动机互补，完全不焦虑。',
+    s3:'年销~600万辆·增速~80%·纯电续航50-200km·DM-i市占率>70%',
+    s4:'很多人以为插混是"过渡方案"会被淘汰。实际上插混在充电桩不足的三四线城市和长途出行场景中具有不可替代的优势——2025年增速远超纯电，比亚迪DM-i单车利润甚至高于同价位纯电。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#10b981"></span> 🔧 技术难度 ★★★★☆</h6><p>核心在<span class="gld">混动专用发动机热效率</span>(比亚迪骁云46.06%全球最高)+DHT变速箱(单档/两档/三档之争)+电控策略(何时用电何时用油)。比亚迪DM-i先发优势极大。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#10b981"></span> 🌍 国产 vs 海外</h6><p><span class="grn">中国插混全球绝对领先</span>——比亚迪DM-i从2021年发布至今已迭代至第5代，热效率+油耗+平顺性碾压日系混动(丰田THS/本田i-MMD)。海外车企基本放弃插混路线。</p></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#10b981"></span> 🏢 代表企业</h6><p><span class="gld">比亚迪(002594)</span> — DM-i市占率>70%<br><span class="gld">吉利汽车(0175.HK)</span> — 雷神混动，增速第二<br><span class="gld">长安汽车(000625)</span> — 深蓝+启源双品牌<br><span class="gld">长城汽车(601633)</span> — Hi4混动四驱</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#10b981"></span> 🏗 核心零部件</h6><p>混动专用发动机 · DHT变速箱 · 双电机(发电机+驱动电机) · 功率型刀片电池 · 混动电控</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#10b981"></span> 🎯 关注焦点</h6><p>比亚迪DM-i 5.0油耗能否突破2L/100km。吉利雷神混动能否挑战DM-i。插混出口海外(东南亚/南美/欧洲)的增速。</p></div>'},
+
+  {id:'cat3',icon:'🔄',title:'增程式 EREV',tag:'③ 增程式',tagColor:'#a78bfa',
+    s1:'发动机只发电不驱动车轮——本质是"带了个汽油发电机的纯电车"。驾驶感受和纯电完全一样，长途用油发电不焦虑。理想汽车是这个品类的开创者和霸主。',
+    s2:'就像"带了个汽油发电机的特斯拉"——平时插电充电(纯电开150-200km)，长途时发动机自动启动发电给电池充电，发动机和车轮之间没有任何机械连接。',
+    s3:'年销~120万辆·增速~50%·理想市占率>65%·问界/零跑/深蓝追赶',
+    s4:'很多人不屑增程为"脱裤子放屁"。但从用户角度，增程完美解决了"既要纯电驾驶体验+又要长途不焦虑"的矛盾——理想L系列月销超5万辆证明了这个市场的真实需求。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🔧 技术难度 ★★★☆☆</h6><p>技术难度低于插混(没有机械耦合)，核心在<span class="gld">增程器NVH优化</span>(发动机启停不能有体感)+电控策略。护城河在软件(智能座舱+智驾)而非硬件。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🌍 国产 vs 海外</h6><p><span class="grn">中国独有的大品类</span>——海外仅日产e-Power(类似但电池极小)。理想/问界/零跑已把增程做到极致(纯电续航200km+油耗6L/100km)。</p></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🏢 代表企业</h6><p><span class="gld">理想汽车(2015.HK)</span> — 增程鼻祖，市占率>65%<br><span class="gld">AITO问界(赛力斯601127)</span> — 华为加持<br><span class="gld">零跑(9863.HK)</span> — 性价比路线<br><span class="gld">深蓝汽车(长安)</span> — 增程+纯电双线</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🏗 核心零部件</h6><p>增程器(小排量发动机仅发电) · 大容量电池(40-50kWh) · 驱动电机(和纯电相同) · 发电机</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#a78bfa"></span> 🎯 关注焦点</h6><p>理想纯电SUV(i系列)能否复制L系列成功。问界M9/M8通过华为渠道继续放量。增程长期是否会被更高效的插混取代。</p></div>'},
+
+  {id:'cat4',icon:'🔁',title:'换电模式 Swap',tag:'④ 换电',tagColor:'#ef4444',
+    s1:'3分钟换一块满电电池，比加油还快。蔚来是中国换电的绝对主导者(2000+座换电站)，宁德时代推出EVOGO"巧克力"换电块进军营运车市场。标准化和成本是最大障碍。',
+    s2:'就像"5号电池换电"——遥控器没电了换电池，不用等充电。蔚来车开到换电站，3分钟自动换好满电电池开走，比排队充电快10倍。',
+    s3:'蔚来换电站2000+座·单次换电3分钟·日均换电>8万次·换电标准尚未统一',
+    s4:'很多人觉得换电是"重资产烧钱"。但蔚来的换电站已经接近盈亏平衡(日均60单/站)，而且换电站天然是储能站——可以利用峰谷电价差套利+参与电网调频，长期可能变成赚钱的"能源资产"。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🔧 技术难度 ★★★★☆</h6><p>核心在<span class="gld">电池包标准化</span>(不同车型共用)+自动换电机器人精度(毫米级定位)+电池健康检测(换电时自动诊断)。蔚来已迭代至第4代换电站。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🌍 国产 vs 海外</h6><p><span class="grn">中国独家领先</span>——蔚来是全球唯一规模化运营乘用车换电的企业。以色列Better Place(2013年破产)是前车之鉴。Tesla曾展示换电但放弃。换电是典型的"中国方案"。</p></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🏢 代表企业</h6><p><span class="gld">蔚来(9866.HK)</span> — 2000+换电站<br><span class="gld">宁德时代(300750)</span> — EVOGO巧克力换电<br><span class="gld">奥动新能源</span> — 北汽/广汽方案</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🏗 核心零部件</h6><p>换电站(含机器人+电池仓+充电系统) · 标准化电池包 · 电池健康检测系统 · 站端储能</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🎯 关注焦点</h6><p>换电标准能否统一。蔚来换电站开放给其他品牌后的实际使用率。宁德时代巧克力换电在网约车市场的渗透速度。</p></div>'},
+
+  // ==== 代表企业 (6家) ====
+  {id:'ent1',icon:'🏆',title:'比亚迪 BYD',tag:'整车龙头',tagColor:'#34d399',
+    s1:'中国新能源车绝对霸主，2025年全球销量~400万辆(+25%)，纯电+插混双线并进。垂直一体化(电池+芯片+电机全部自研)，成本控制能力全球无敌。',
+    s2:'就像手机界的"三星+苹果"合体——既有三星的全产业链自研，又有苹果的品牌势能，还像小米一样卷性价比。',
+    s3:'年销~400万辆·全球新能源第一·自研刀片电池+DM-i·2025营收>8000亿',
+    s4:'很多人以为比亚迪只是"便宜车"。实际上2025年30万+车型(腾势/方程豹/仰望)月销已过3万辆，仰望U8原地掉头+浮水模式是全球独有技术。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🔧 技术矩阵</h6><p>刀片电池 · DM-i 5.0 · 易四方(四电机独立驱动) · 云辇(智能车身控制) · DiPilot智驾。垂直整合度全球最高。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🌍 全球布局</h6><p>出口>50万辆(东南亚/南美/欧洲)。泰国/巴西/匈牙利建厂，本地化生产规避关税。海外售价是国内2-3倍仍畅销。</p></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 📊 核心指标</h6><p>市值~¥8000亿 · PE ~18x · 毛利率~20% · 净利~¥400亿 · 研发投入>¥500亿/年(超过特斯拉)</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🏗 产品矩阵</h6><p>王朝(汉/唐/秦/宋/元) · 海洋(海豹/海豚/海狮) · 腾势(D9 MPV销冠) · 方程豹(硬派越野) · 仰望(U8/U9百万级)</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#34d399"></span> 🎯 关注焦点</h6><p>智驾能否追上来——比亚迪2025年All in智驾(天神之眼)。高端化能否持续。海外工厂能否如期投产规避关税。</p></div>'},
+
+  {id:'ent2',icon:'🌍',title:'特斯拉 Tesla',tag:'全球标杆',tagColor:'#ef4444',
+    s1:'全球新能源车市值第一，2025年中国销量~65万辆。FSD是特斯拉最大期权——如果中国落地将重塑智驾格局。Optimus人形机器人是下一个万亿故事。',
+    s2:'就像苹果之于手机——特斯拉定义了"智能电动车应该长什么样"：OTA升级+大屏座舱+FSD智驾+直营模式。',
+    s3:'中国年销~65万辆·全球~180万辆·FSD v13待入华·Optimus Gen3试产',
+    s4:'很多人以为特斯拉在中国"快不行了"。实际上Model Y仍是2025年全球最畅销车型，特斯拉的品牌溢价+FSD潜力+超充网络+成本控制仍是行业顶级。只是产品线太窄(仅4款车)限制增长。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🔧 核心技术</h6><p>FSD端到端(纯视觉) · 4680电池 · 一体化压铸(6000-9000吨) · Dojo超算 · Optimus机器人。护城河在<span class="gld">AI+制造</span>而非造车本身。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🌍 中国市场</h6><p>上海工厂年产能~100万辆(出口+内销)。FSD入华面临数据合规+测绘资质壁垒。Model 2(低价车)如果推出将冲击10-15万市场。</p></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 📊 核心指标</h6><p>市值~$6000亿 · PE ~60x · 毛利率~18% · 全球交付~180万辆 · 超充站>6000座</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🏗 产品线</h6><p>Model Y(全球销冠) · Model 3 · Model S/X · Cybertruck(北美) · 下一代平台(Model 2?)</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🎯 关注焦点</h6><p>FSD中国落地时间+定价(最大催化剂)。Model 2能否2026年量产。Optimus从"实验室"到"工厂试点"的进展。</p></div>'},
+
+  // ==== 高壁垒环节 (5) ====
+  {id:'hl1',icon:'🔴',title:'全固态电池',tag:'🔴 国产<10%',tagColor:'#ef4444',
+    s1:'能量密度500Wh/kg，不起火不爆炸，动力电池终极形态。日本丰田专利>1300项全球第一，中国宁德/比亚迪/卫蓝全路线追赶。半固态已装车(蔚来/智己)，全固态预计2027-2028量产。',
+    s2:'就像从煤油灯到LED灯——液态电池会漏会燃，固态电池高效安全。但量产成本是液态的5-10倍。',
+    s3:'能量密度500Wh/kg·量产2027-2028·丰田专利>1300项·半固态续航>1000km',
+    s4:'很多人以为固态电池很快就能用上。实际上从实验室样品到车规量产至少3-5年——核心瓶颈是固态电解质离子电导率(比液态低100倍)和充放电膨胀导致固-固界面接触不良。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🔧 技术难度 ★★★★★</h6><p>硫化物(丰田/宁德)/氧化物(卫蓝/清陶)/聚合物三条路线。都面临量产一致性和成本难题。半固态(氧化物+少量电解液)是过渡方案。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🌍 国产vs海外</h6><table><tr><td>日本</td><td>丰田(专利>1300)</td><td>硫化物，2027量产目标</td></tr><tr><td>韩国</td><td>三星SDI</td><td>硫化物，2027试产</td></tr><tr><td>中国</td><td>宁德/比亚迪</td><td>全路线，半固态已装车</td></tr></table></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🏢 代表企业</h6><p><span class="gld">宁德时代(300750)</span> — 凝聚态+硫化物<br><span class="gld">比亚迪</span> — 硫化物自研<br><span class="gld">卫蓝新能源</span> — 半固态装车蔚来<br><span class="gld">清陶能源</span> — 半固态装车智己</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🏗️ 影响范围</h6><p>新能源车(续航1000km+) · eVTOL · 消费电子 · 储能。固态电池一旦量产，将对液态锂电池产业链产生颠覆性冲击。</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🎯 关注焦点</h6><p>丰田2027年能否兑现量产承诺。宁德凝聚态电池(半固态)2025年小批量进展。硫化物固态电解质降本——从¥5000/kg到¥500/kg。</p></div>'},
+  {id:'hl2',icon:'🧠',title:'高端智驾芯片',tag:'🔴 国产<20%',tagColor:'#ef4444',
+    s1:'大算力自动驾驶芯片是智驾的大脑。英伟达Orin/Thor垄断高端市场(>80%)，国产地平线J6/黑芝麻A2000在追赶。美国制裁限制了国产芯片的先进制程(7nm以下)，但7nm+先进封装仍可做到200+TOPS。',
+    s2:'就像手机芯片的高通vs麒麟——英伟达是"高通"，地平线/黑芝麻是"麒麟"。差距在制程+软件生态(CUDA)，但国产在中低阶市场已经能用。',
+    s3:'英伟达份额>80%·国产化率<20%·地平线J6 560TOPS·黑芝麻A2000 250+TOPS',
+    s4:'很多人以为"国产芯片已经能替代了"。实际上智驾芯片的壁垒不仅是算力，更在软件生态——英伟达CUDA有15年积累，所有AI训练框架都基于CUDA。地平线虽然硬件不差，但工具链成熟度差2-3年。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🔧 技术难度 ★★★★★</h6><p>算力+功耗+实时性三角平衡+软件生态(CUDA壁垒)。美国制裁限制7nm以下制程，国产靠7nm+chiplet堆叠+先进封装追赶。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🌍 国产vs海外</h6><table><tr><td>英伟达</td><td>Orin/Thor</td><td>>80%份额，CUDA生态</td></tr><tr><td>高通</td><td>Snapdragon Ride</td><td>座舱+智驾一体</td></tr><tr><td>国产</td><td>地平线J6</td><td>比亚迪/理想已采用</td></tr></table></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🏢 代表企业</h6><p><span class="gld">地平线(9660.HK)</span> — 国产智驾芯片第一<br><span class="gld">黑芝麻智能</span> — A2000系列<br><span class="gld">华为昇腾</span> — 自研自用(MDC平台)<br><span class="gld">芯驰科技</span> — 座舱+网关芯片</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🏗️ 使用范围</h6><p>新能源车智驾域控制器(每车1-2颗) · 机器人 · 无人机 · 智能交通。车规级要求-40~125°C宽温+15年可靠性。</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🎯 关注焦点</h6><p>地平线J6在比亚迪/理想上的大规模量产表现。美国是否进一步限制7nm以上制程的AI芯片出口。华为MDC车载计算平台能否开放给更多车企。</p></div>'},
+  {id:'hl3',icon:'💎',title:'碳化硅SiC功率器件',tag:'🔴 国产~25%',tagColor:'#ef4444',
+    s1:'碳化硅替代传统硅基IGBT，能量损耗减半、体积缩小50%、耐压更高。全球衬底产能70%在中国(天科合达/天岳先进)，但器件设计仍落后Wolfspeed/英飞凌。800V平台必须用SiC。',
+    s2:'就像从"普通开关"升级到"超级开关"——硅基IGBT像普通开关(会发热/体积大)，SiC像超导体开关(高效/紧凑)，800V高压只有SiC扛得住。',
+    s3:'渗透率~15%·2027目标50%·全球衬底70%在中国·单车价值$500-800',
+    s4:'很多人以为SiC中国已经领先了。实际上领先的只是衬底(原材料)，器件设计和制造仍是短板——Wolfspeed/英飞凌的SiC MOSFET良率和可靠性领先国产2-3年。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🔧 技术难度 ★★★★☆</h6><p>衬底长晶最难(2000°C+极慢生长0.5mm/h)。器件端栅氧层可靠性+封装散热是瓶颈。8英寸衬底量产可降本30-40%。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🌍 国产vs海外</h6><table><tr><td>衬底</td><td>Wolfspeed</td><td><span class="grn">天科合达/天岳(>50%产能)</span></td></tr><tr><td>器件</td><td>英飞凌/ST</td><td><span class="hl">士兰微/斯达半导(追赶)</span></td></tr></table></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🏢 代表企业</h6><p><span class="gld">天科合达</span> — SiC衬底全球前三<br><span class="gld">天岳先进(688234)</span> — 8英寸衬底领先<br><span class="gld">士兰微(600460)</span> — 器件IDM<br><span class="gld">斯达半导(603290)</span> — 车规SiC模块</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🏗️ 使用范围</h6><p>新能源车主驱逆变器(最大用量) · 车载OBC/DCDC · 超充桩 · 光伏逆变器 · 工业电机</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 🎯 关注焦点</h6><p>SiC衬底6英寸→8英寸量产降本。比亚迪自研SiC模块大规模上车。特斯拉下一代平台是否全面切换800V+SiC。</p></div>'},
+  {id:'hl4',icon:'👁️',title:'激光雷达 LiDAR',tag:'🔴 国产~50%',tagColor:'#fbbf24',
+    s1:'智能驾驶的"眼睛"，禾赛科技/速腾聚创全球出货量前二(合计>60%)，已打入特斯拉以外的几乎所有主流车企。价格从$10000降至$500以内，大规模上车(比亚迪/理想/小米全系标配)。',
+    s2:'就像给车装了一个"360度不间断扫描的3D眼睛"——摄像头像人眼(看得清但测不准距离)，激光雷达像蝙蝠的超声波(精确知道每个物体的三维坐标)。',
+    s3:'禾赛+速腾全球>60%份额·单颗价格<$500·2025上车量>200万颗·AT128/RS-LiDAR主流',
+    s4:'很多人以为特斯拉不用激光雷达就说明它没用。实际上特斯拉不用是因为成本+纯视觉信仰，不代表激光雷达不重要——中国所有高阶智驾方案(华为/小鹏/理想)都用了激光雷达作为安全冗余。',
+    d1:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🔧 技术难度 ★★★★☆</h6><p>核心在发射端(激光器+扫描结构)+接收端(SPAD/SiPM探测器)+信号处理(点云算法)。禾赛AT128是905nm转镜方案，速腾M1是MEMS方案。</p></div>',
+    d2:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🌍 国产vs海外</h6><table><tr><td>中国</td><td><span class="grn">禾赛/速腾全球前二</span></td><td>>60%份额，价格碾压</td></tr><tr><td>美国</td><td>Luminar/Ouster</td><td>高端1550nm方案</td></tr><tr><td>以色列</td><td>Innoviz</td><td>宝马/大众供应商</td></tr></table></div>',
+    d3:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🏢 代表企业</h6><p><span class="gld">禾赛科技(HSAI)</span> — 全球出货量第一<br><span class="gld">速腾聚创(2498.HK)</span> — 全球第二，Robotaxi最强<br><span class="gld">图达通</span> — 蔚来主供(1550nm)<br><span class="gld">华为</span> — 自研激光雷达(问界/阿维塔)</p></div>',
+    d4:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🏗️ 使用范围</h6><p>新能源车智驾(每车1-3颗) · Robotaxi(4-6颗) · 机器人 · 无人机 · 智慧交通(V2X)</p></div>',
+    d5:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🎯 关注焦点</h6><p>禾赛/速腾的毛利率能否转正——价格战激烈。特斯拉是否会在FSD中加入4D毫米波雷达(替代激光雷达)。激光雷达+摄像头融合方案vs纯视觉方案谁能胜出。</p></div>'},
+];
+
+function init() {
+  // Category cards
+  const cats = DATA.filter(d => d.id.startsWith('cat'));
+  renderCards('catGrid', cats, 'cyan');
+  // Enterprise cards
+  const ents = DATA.filter(d => d.id.startsWith('ent'));
+  renderCards('entGrid', ents, 'violet');
+  // Supply chain
+  const scs = DATA.filter(d => d.id.startsWith('sc'));
+  renderSC(scs);
+  // High-barrier list
+  const hls = DATA.filter(d => d.id.startsWith('hl'));
+  renderHL(hls);
+}
+
+function renderCards(gridId, items, color) {
+  const grid = document.getElementById(gridId);
+  if(!grid || !items.length) return;
+  grid.innerHTML = items.map(d => `
+    <div class="card ${color}" onclick="openModal('${d.id}')">
+      ${d.tag ? `<span class="tag" style="background:${d.tagColor}20;color:${d.tagColor}">${d.tag}</span>` : ''}
+      <h4 style="color:${d.tagColor || '#22d3ee'}">${d.icon} ${d.title}</h4>
+      <p>${(d.s1||'').substring(0,40)}…</p>
+      <span class="click-hint">👆 查看4+5解说</span>
+    </div>
+  `).join('');
+}
+
+function renderSC(items) {
+  const grid = document.getElementById('scGrid');
+  if(!grid) return;
+  const layers = ['上游：原材料', '中游：核心零部件', '下游：总成与集成'];
+  const colors = ['#22d3ee','#34d399','#fbbf24'];
+  grid.innerHTML = items.map((d,i) => `
+    <div class="sc3-col">
+      <div class="bar-top" style="background:${colors[i%3]}"></div>
+      <h3>${d.icon} ${layers[i%3]||d.title}</h3>
+      <div class="sc3-node" onclick="openModal('${d.id}')">
+        <h5>${d.title} <span class="pct">点击查看</span></h5>
+        <div class="preview">${(d.s1||'').substring(0,50)}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderHL(items) {
+  const grid = document.getElementById('hlGrid');
+  if(!grid) return;
+  grid.innerHTML = items.map(d => `
+    <div class="hl-card" onclick="openModal('${d.id}')">
+      <h5>${d.icon} ${d.title}</h5>
+      <div class="desc">${(d.s1||'').substring(0,60)}…</div>
+      ${d.tag ? `<div class="meta"><span>${d.tag}</span></div>` : ''}
+    </div>
+  `).join('');
+}
+
+function openModal(id) {
+  const d = DATA.find(x => x.id === id);
+  if(!d) return;
+  document.getElementById('modalTitle').textContent = d.icon + ' ' + d.title;
+  const tagEl = document.getElementById('modalTag');
+  if(d.tag) { tagEl.style.display='inline-block'; tagEl.textContent=d.tag; tagEl.style.background=d.tagColor+'20'; tagEl.style.color=d.tagColor; }
+  else { tagEl.style.display='none'; }
+  document.getElementById('modalSub').textContent = '';
+  const qColors = ['#22d3ee','#34d399','#fbbf24','#fb7185'];
+  const qLabels = ['📝 一句话说清','🤔 打个比方','📊 必知数字','❌ 别搞错'];
+  const qFields = ['s1','s2','s3','s4'];
+  let html = '<div class="m-qgrid">';
+  qFields.forEach((f,i) => {
+    if(d[f]) html += `<div class="m-qc" style="border-color:${qColors[i]}"><div class="q-label" style="color:${qColors[i]}">${qLabels[i]}</div><div class="q-text">${d[f]}</div></div>`;
+  });
+  html += '</div><div class="m-toggle" onclick="toggleDeep(this)">▼ 展开深度分析</div><div class="m-deep" style="display:none">';
+  const dLabels = ['🔧 技术/模式难度','🌍 国产 vs 海外','🏢 代表企业','🏗️ 适用范围/场景','🎯 关注焦点'];
+  const dBars = ['#fb7185','#fbbf24','#34d399','#22d3ee','#a78bfa'];
+  for(let i=1;i<=5;i++) {
+    const val = d['d'+i];
+    if(val) html += `<div class="d-section"><h6><span class="bar" style="background:${dBars[i-1]}"></span>${dLabels[i-1]}</h6><p>${val}</p></div>`;
+  }
+  html += '</div>';
+  // Report link
+  if(d.report) {
+    html += `<div class="modal-report" onclick="window.open('reports/${d.report.id}.html','_blank')">📄 查看报告：${d.report.name} →</div>`;
+  }
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+function closeModalOutside(e) { if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+function toggleDeep(el) {
+  const deep = el.nextElementSibling;
+  if(!deep || !deep.classList.contains('m-deep')) return;
+  const hidden = deep.style.display==='none'||deep.style.display==='';
+  deep.style.display = hidden?'block':'none';
+  el.innerHTML = hidden?'▲ 收起深度分析':'▼ 展开深度分析';
+}
+
+function switchSection(name) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  const el = document.getElementById('tab-'+name);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Scroll persistence
+(function(){
+  const key = 'scroll_industry';
+  window.addEventListener('scroll', function(){ sessionStorage.setItem(key, window.scrollY); }, {passive:true});
+  const saved = sessionStorage.getItem(key);
+  if(saved) setTimeout(function(){ window.scrollTo(0, parseInt(saved)); }, 50);
+})();
+
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
+init();
+
+// Theme sync from portal (no independent toggle)
+(function(){
+  var t=localStorage.getItem('portal_theme');
+  if(t==='light') document.documentElement.setAttribute('data-theme','light');
+  window.addEventListener('message',function(e){
+    if(e.data&&typeof e.data.theme==='string'){
+      document.documentElement.setAttribute('data-theme',e.data.theme==='light'?'light':'');
+    }
+  });
+})();
+</script>
+</body>
+</html>
