@@ -751,6 +751,45 @@ function switchSection(name) {
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+// Modal data store for registerModal-based entries
+const modalData = {};
+function registerModal(id, data){ modalData[id] = data; }
+
+// Update openModal to check both DATA and modalData
+const _origOpenModal = openModal;
+openModal = function(id) {
+  const d = DATA.find(x => x.id === id);
+  if(d) return _origOpenModal(id);
+  // Check modalData
+  const md = modalData[id];
+  if(!md) return;
+  document.getElementById('modalTitle').textContent = (md.icon||'') + ' ' + (md.title||'');
+  const tagEl = document.getElementById('modalTag');
+  if(md.tag) { tagEl.style.display='inline-block'; tagEl.textContent=md.tag; tagEl.style.background=(md.tagColor||'#22d3ee')+'20'; tagEl.style.color=md.tagColor||'#22d3ee'; }
+  else { tagEl.style.display='none'; }
+  document.getElementById('modalSub').textContent = md.sub||'';
+  const qColors = ['#22d3ee','#34d399','#fbbf24','#fb7185'];
+  const qLabels = ['📝 一句话说清','🤔 打个比方','📊 必知数字','❌ 别搞错'];
+  const qFields = ['q1','q2','q3','q4'];
+  let html = '<div class="m-qgrid">';
+  qFields.forEach((f,i) => {
+    if(md[f]) html += '<div class="m-qc" style="border-color:'+qColors[i]+'"><div class="q-label" style="color:'+qColors[i]+'">'+qLabels[i]+'</div><div class="q-text">'+md[f]+'</div></div>';
+  });
+  html += '</div><div class="m-toggle" onclick="toggleDeep(this)">▼ 展开深度分析</div><div class="m-deep" style="display:none">';
+  const dLabels = ['🔧 技术/模式难度','🌍 国产 vs 海外','🏢 代表企业','🏗️ 适用范围/场景','🎯 关注焦点'];
+  const dBars = ['#fb7185','#fbbf24','#34d399','#22d3ee','#a78bfa'];
+  for(let i=1;i<=5;i++) {
+    const val = md['d'+i];
+    if(val) html += '<div class="d-section"><h6><span class="bar" style="background:'+dBars[i-1]+'"></span>'+dLabels[i-1]+'</h6><p>'+val+'</p></div>';
+  }
+  html += '</div>';
+  if(md.report) {
+    html += '<div class="modal-report" onclick="window.open(\'reports/'+md.report.id+'.html\',\'_blank\')">📄 查看报告：'+md.report.name+' →</div>';
+  }
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('open');
+};
+
 // Scroll persistence
 (function(){
   const key = 'scroll_industry';
