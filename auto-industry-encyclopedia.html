@@ -226,9 +226,9 @@ body{
     <div class="sub">比亚迪·特斯拉·吉利·理想·蔚来·问界·长安·小鹏·小米·零跑·长城</div>
   </div>
   <div class="stat-card c3" onclick="switchSection('supplychain')">
-    <div class="num">18</div>
-    <div class="lbl">供应链三层拆解</div>
-    <div class="sub">上游原材料·中游零部件·下游配套</div>
+    <div class="num">15</div>
+    <div class="lbl">三层功能拆解</div>
+    <div class="sub">🧠智能系统·⚡三电系统·🏗️车身与制造</div>
   </div>
   <div class="stat-card c4" onclick="switchSection('highlights')">
     <div class="num">🔴5</div>
@@ -279,35 +279,32 @@ body{
 <!-- ===== TAB 3: SUPPLY CHAIN ===== -->
 <div id="tab-supplychain" class="section">
   <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--t4)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#34d399;font-weight:600">← 返回产业总览</span></div>
-  <div class="section-title"><span class="dot" style="background:#34d399"></span> 🔩 供应链纵深 · 一辆车是怎么造出来的</div>
-  <div class="section-desc">从矿山到整车，三层拆解新能源车的制造链条。点击任意节点查看4+5分析师解说。</div>
+  <div class="section-title"><span class="dot" style="background:#34d399"></span> 🔩 三层功能拆解 · 一辆车是怎么构成的</div>
+  <div class="section-desc">和人形机器人一样——大脑想、身体动、骨架撑。点击任意节点查看4+5分析师解说。</div>
   <div class="sc3-grid">
-    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#fbbf24,#d97706)"></div>
-      <h3><span style="color:#fbbf24">⛏️</span> 上游 · 原材料 <span class="pct">~30%成本</span></h3>
-      <div class="sc3-node" onclick="openModal('sc-lithium')"><h5>🪨 锂矿/碳酸锂</h5><div class="preview">电池的"盐"。天齐锂业·赣锋锂业。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-cathode')"><h5>🔵 正极材料</h5><div class="preview">三元NCM/磷酸铁锂LFP。容百·当升。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-anode')"><h5>⚫ 负极材料</h5><div class="preview">石墨/硅碳负极。贝特瑞·杉杉。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-electrolyte')"><h5>💧 电解液</h5><div class="preview">LiPF6+溶剂。天赐材料全球第一。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-separator')"><h5>📄 隔膜</h5><div class="preview">PP/PE微孔膜。恩捷股份全球第一。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-sic')"><h5>💎 SiC衬底</h5><div class="preview">碳化硅晶片。天科合达·天岳先进。</div></div>
+    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#3b82f6,#1d4ed8)"></div>
+      <h3><span style="color:#3b82f6">🧠</span> 智能系统 <span class="pct">~15%成本</span></h3>
+      <div class="sc3-node" onclick="openModal('sc-chip')"><h5>🔲 AI智驾芯片 <span class="hl-tag">🔴</span></h5><div class="preview">车的"大脑皮层"。英伟达Orin/地平线J6/华为昇腾。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-lidar-inner')"><h5>👁️ 激光雷达</h5><div class="preview">360°扫描的"眼睛"。禾赛/速腾聚创全球前二。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-camera')"><h5>📷 车载摄像头</h5><div class="preview">8-11颗环视+前视。舜宇光学/欧菲光。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-domain')"><h5>🧩 域控制器</h5><div class="preview">智驾+座舱的"主板"。德赛西威/经纬恒润。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-cockpit')"><h5>🖥️ 智能座舱</h5><div class="preview">大屏+语音+AI。高通8155/8295+鸿蒙OS。</div></div>
     </div>
     <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#34d399,#059669)"></div>
-      <h3><span style="color:#34d399">🏭</span> 中游 · 核心零部件 <span class="pct">~55%成本</span></h3>
-      <div class="sc3-node" onclick="openModal('sc-battery')"><h5>🔋 动力电池 <span class="hl-tag">🔴核心</span></h5><div class="preview">占整车成本35-40%。宁德时代·比亚迪。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-motor')"><h5>⚡ 驱动电机</h5><div class="preview">永磁同步电机。汇川·比亚迪·精进。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-ecu')"><h5>🧠 电控系统</h5><div class="preview">MCU/VCU/BMS三合一。汇川·比亚迪。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-chip')"><h5>🔲 智驾芯片 <span class="hl-tag">🔴</span></h5><div class="preview">英伟达/地平线/华为昇腾。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-lidar')"><h5>👁️ 激光雷达</h5><div class="preview">禾赛·速腾聚创。中国全球>60%。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-thermal')"><h5>🌡️ 热管理系统</h5><div class="preview">热泵+电池冷却。三花智控·银轮。</div></div>
+      <h3><span style="color:#34d399">⚡</span> 三电系统 <span class="pct">~55%成本</span></h3>
+      <div class="sc3-node" onclick="openModal('sc-battery')"><h5>🔋 动力电池 <span class="hl-tag">🔴核心</span></h5><div class="preview">占整车成本35-40%。宁德时代/比亚迪/中创新航。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-motor')"><h5>🔄 驱动电机</h5><div class="preview">把电变成推背感。汇川/比亚迪自研/精进电动。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-ecu')"><h5>🧠 电控三合一</h5><div class="preview">MCU+VCU+BMS，毫秒级协调。汇川/比亚迪/华为。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-thermal')"><h5>🌡️ 热管理系统</h5><div class="preview">电池+电机+座舱恒温。三花智控全球阀件>40%。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-sic-inner')"><h5>💎 SiC功率器件 <span class="hl-tag">🔴</span></h5><div class="preview">800V的"超级开关"。天科合达/士兰微/斯达半导。</div></div>
     </div>
-    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#3b82f6,#1d4ed8)"></div>
-      <h3><span style="color:#3b82f6">🔌</span> 下游 · 配套与服务 <span class="pct">~15%成本</span></h3>
-      <div class="sc3-node" onclick="openModal('sc-charger')"><h5>🔌 充电桩</h5><div class="preview">特来电·星星充电。中国>800万台。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-swap')"><h5>🔄 换电站</h5><div class="preview">蔚来2000+站·宁德EVOGO。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-diecast')"><h5>🏗️ 一体化压铸</h5><div class="preview">6000-9000吨压铸机。力劲·伊之密。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-body')"><h5>🚗 轻量化车身</h5><div class="preview">铝合金/碳纤维/热成型钢。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-recycle')"><h5>♻️ 电池回收</h5><div class="preview">退役电池梯次利用+材料回收。格林美。</div></div>
-      <div class="sc3-node" onclick="openModal('sc-harness')"><h5>🔗 线束连接器</h5><div class="preview">高压线束+高速数据。立讯·中航光电。</div></div>
+    <div class="sc3-col"><div class="bar-top" style="background:linear-gradient(90deg,#fbbf24,#d97706)"></div>
+      <h3><span style="color:#fbbf24">🏗️</span> 车身与制造 <span class="pct">~30%成本</span></h3>
+      <div class="sc3-node" onclick="openModal('sc-diecast')"><h5>🏗️ 一体化压铸</h5><div class="preview">后底板一次成型。力劲/伊之密/特斯拉Giga Press。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-body')"><h5>🪶 轻量化车身</h5><div class="preview">铝换钢+碳纤维。南山铝业/光威复材/拓普集团。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-harness')"><h5>🔌 高压线束</h5><div class="preview">车的"血管神经"。立讯精密/中航光电/得润电子。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-charger')"><h5>⚡ 充电/换电</h5><div class="preview">特来电·星星充电·蔚来换电·宁德EVOGO。</div></div>
+      <div class="sc3-node" onclick="openModal('sc-recycle')"><h5>♻️ 电池回收</h5><div class="preview">退役电池梯次利用。格林美·邦普循环(宁德)。</div></div>
     </div>
   </div>
 </div>
