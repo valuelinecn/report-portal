@@ -221,14 +221,14 @@ body{
     <div class="sub">纯电·插混·增程·换电</div>
   </div>
   <div class="stat-card c2" onclick="switchSection('enterprise')">
-    <div class="num">25+</div>
-    <div class="lbl">代表企业</div>
-    <div class="sub">整车品牌 + 三电系统 + 智驾 + 零部件</div>
+    <div class="num">11</div>
+    <div class="lbl">整车品牌</div>
+    <div class="sub">比亚迪·特斯拉·吉利·理想·蔚来·问界·长安·小鹏·小米·零跑·长城</div>
   </div>
   <div class="stat-card c3" onclick="switchSection('supplychain')">
-    <div class="num">12</div>
-    <div class="lbl">核心零部件</div>
-    <div class="sub">电池·电机·电控·智驾·芯片·轻量化</div>
+    <div class="num">8</div>
+    <div class="lbl">供应链核心</div>
+    <div class="sub">动力电池·智驾芯片·激光雷达·电驱·热管理</div>
   </div>
   <div class="stat-card c4" onclick="switchSection('highlights')">
     <div class="num">🔴5</div>
@@ -468,7 +468,7 @@ const DATA = [
     d3:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 赛力斯指标</h6><p>营收¥1650亿·净利¥59.6亿(+58%)·PE 20x·毛利率28%·ROE 23.5%</p></div>',
     d4:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 产品线</h6><p>问界M5(中型) · M7(中大型) · M9(大型/50万+销冠) · M8(2025新增)</p></div>',
     d5:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 关注焦点</h6><p>华为ADS 4.0能否实现L3。华为智选生态扩大后问界是否被分流。鸿蒙智行能否成为最大智能汽车联盟。</p></div>'},
-  {id:'ent7',icon:'🔋',title:'宁德时代 CATL',tag:'全球电池之王',tagColor:'#34d399',
+  {id:'sc1',icon:'🔋',title:'宁德时代 CATL',tag:'全球电池之王',tagColor:'#34d399',
     s1:'全球动力电池装机量第一(市占率38%)，连续8年全球第一。客户覆盖特斯拉/宝马/奔驰/蔚来/理想/小米等几乎所有主流车企。2025营收4650亿净利578亿。',
     s2:'就像手机行业的高通+台积电合体——不管你是苹果还是三星，大概率用高通芯片+台积电制造。电动车也一样，不管特斯拉还是蔚来，大概率用宁德时代的电池。',
     s3:'全球市占率38%·营收4650亿·净利578亿·PE 22x·ROE 21%·客户>50家',
@@ -532,7 +532,7 @@ const DATA = [
     d5:'<div class="d-section"><h6><span class="bar" style="background:#ef4444"></span> 关注焦点</h6><p>Hi4混动四驱能否大规模放量(差异化卖点)。坦克品牌出海(中东高端市场)。蜂巢能源IPO+电池外供进展。</p></div>'},
 
   // ==== 动力电池供应商 ====
-  {id:'ent13',icon:'🔌',title:'中创新航 CALB',tag:'电池第三极',tagColor:'#22d3ee',
+  {id:'sc2',icon:'🔌',title:'中创新航 CALB',tag:'电池第三极',tagColor:'#22d3ee',
     s1:'中国动力电池装机量第三(仅次于宁德/比亚迪)，广汽/小鹏/零跑核心供应商。800V高压电池技术领先，全球首款"顶流"圆柱电池量产。2025港交所上市。',
     s2:'就像"电池界的联发科"——宁德时代是高通(绝对高端)，中创新航是联发科(中高端性价比)。给那些"不想全用宁德"的车企提供了一个很好的第二选择。',
     s3:'装机量国内第三·全球第五·广汽/小鹏/零跑核心客户·800V电池领先·港股上市',
@@ -542,7 +542,7 @@ const DATA = [
     d3:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 核心指标</h6><p>国内装机份额~8% · 营收>¥300亿 · 毛利率~15% · 产能>100GWh(规划)</p></div>',
     d4:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 产品线</h6><p>LFP刀片类 · 三元800V · 圆柱电池 · 储能电池</p></div>',
     d5:'<div class="d-section"><h6><span class="bar" style="background:#22d3ee"></span> 关注焦点</h6><p>港股上市后融资能力提升。800V电池能否打入更多车企。与宁德时代的专利纠纷进展。</p></div>'},
-  {id:'ent14',icon:'⚡',title:'国轩高科 Gotion',tag:'大众背书',tagColor:'#10b981',
+  {id:'sc3',icon:'⚡',title:'国轩高科 Gotion',tag:'大众背书',tagColor:'#10b981',
     s1:'中国动力电池装机第四，大众汽车是第一大股东(持股26%)。LFP电池(磷酸铁锂)成本控制能力极强，半固态电池已装车。国际化布局最深(美国/德国/越南/泰国工厂)。',
     s2:'就像"被大众收养的电池厂"——大众投了几百亿，要的就是让国轩成为大众全球电动化的"电池心脏"。有大众背书，海外建厂拿订单比同行容易得多。',
     s3:'装机量国内第四·大众为第一大股东·LFP成本优势·海外工厂最多的中国电池厂',
@@ -554,7 +554,7 @@ const DATA = [
     d5:'<div class="d-section"><h6><span class="bar" style="background:#10b981"></span> 关注焦点</h6><p>美国工厂能否顺利投产(政治风险)。大众全球电动化放量给国轩带来的订单弹性。半固态电池大规模量产进度。</p></div>'},
 
   // ==== 智驾与零部件 ====
-  {id:'ent15',icon:'🧭',title:'地平线 Horizon Robotics',tag:'国产智驾芯片第一',tagColor:'#3b82f6',
+  {id:'sc4',icon:'🧭',title:'地平线 Horizon',tag:'国产智驾芯片第一',tagColor:'#3b82f6',
     s1:'中国最大的车载AI芯片公司(征程系列)，港股市值一度超¥800亿。J6芯片(560TOPS)2025年量产，已打入比亚迪/理想/大众等主流车企。是英伟达Orin在中国市场最大的竞争对手。',
     s2:'就像"汽车芯片界的海思"——在美国制裁+英伟达垄断的双重压力下，靠自研BPU架构+开放工具链，硬是在车规AI芯片赛道撕开了一个口子。',
     s3:'征程6量产(560TOPS)·客户覆盖比亚迪/理想/大众·2024港股上市·市值~¥800亿',
@@ -564,7 +564,7 @@ const DATA = [
     d3:'<div class="d-section"><h6><span class="bar" style="background:#3b82f6"></span> 核心指标</h6><p>2024港股上市 · 市值~¥800亿 · 解决方案交付>500万套(累计) · 研发投入占比>50%</p></div>',
     d4:'<div class="d-section"><h6><span class="bar" style="background:#3b82f6"></span> 产品线</h6><p>J3(中低阶) · J5(中阶) · J6(高阶560TOPS) · J6P(旗舰级) · Matrix开发平台</p></div>',
     d5:'<div class="d-section"><h6><span class="bar" style="background:#3b82f6"></span> 关注焦点</h6><p>J6大规模量产后的口碑(比亚迪+理想是最大客户)。能否打入海外车企(大众后第二个国际客户)。端到端智驾方案能否与英伟达+华为正面竞争。</p></div>'},
-  {id:'ent16',icon:'🛰️',title:'禾赛科技 Hesai',tag:'激光雷达全球第一',tagColor:'#fbbf24',
+  {id:'sc5',icon:'🛰️',title:'禾赛科技 Hesai',tag:'激光雷达全球第一',tagColor:'#fbbf24',
     s1:'全球激光雷达出货量第一(2025年>50万颗)，客户覆盖理想/小米/比亚迪/长安等主流车企。AT128(905nm)已成为行业事实标准，价格<$500推动大规模上车。',
     s2:'就像"给每辆智能车装了一个蝙蝠的超声波系统"——360度不间断扫描，精确知道每个物体的三维坐标和速度。禾赛把激光雷达从"10万美元的科研仪器"做成了"不到500美元的车规零件"。',
     s3:'全球出货量第一·2025>50万颗·AT128/$500以内·客户>20家车企·美股上市',
