@@ -1196,7 +1196,7 @@ function openReport(id) {
   var indLinks = c.industrySector ? getIndustryLinks(c.industrySector) : [];
   var indHTML = '';
   if(indLinks.length) {
-    indHTML = indLinks.map(function(l){ return '<span onclick=\"closeReport();switchTab(\'robot\');setTimeout(function(){ loadIndustry(\''+l.type+'\') },350)\" style=\"cursor:pointer;display:inline-block;padding:1px 8px;border-radius:4px;background:rgba(34,211,238,0.12);color:#22d3ee;font-size:11px;font-weight:600;margin-right:8px;border:1px solid rgba(34,211,238,0.2)\">🔬 '+l.name+' →</span>'; }).join('');
+    indHTML = indLinks.map(function(l){ return '<span onclick="closeReport();switchTab(\'robot\');setTimeout(function(){ loadIndustry(\''+l.type+'\') },350)" style="cursor:pointer;display:inline-block;padding:1px 8px;border-radius:4px;background:rgba(34,211,238,0.12);color:#22d3ee;font-size:11px;font-weight:600;margin-right:8px;border:1px solid rgba(34,211,238,0.2)">\uD83D\uDD2C '+l.name+' \u2192</span>'; }).join('');
   }
   document.getElementById('reportTitle').innerHTML = indHTML + `<span>${c.name}</span> · ${c.industry}`
   document.getElementById('reportView').classList.add('active')
@@ -2278,6 +2278,16 @@ document.addEventListener('DOMContentLoaded', () => {
 </footer>
 
 <button class="back-top" onclick="var rv=document.getElementById('reportView'),bv=document.getElementById('bookDetailView');if(rv&&rv.classList.contains('active')){var f=document.getElementById('reportFrame');if(f&&f.contentWindow)f.contentWindow.scrollTo({top:0,behavior:'smooth'})}else if(bv&&bv.classList.contains('active')){var s=document.querySelector('.detail-scroll');if(s)s.scrollTo({top:0,behavior:'smooth'})}else{window.scrollTo({top:0,behavior:'smooth'})}">↑</button>
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "xecsshff8t");
+</script>
+<!-- End Microsoft Clarity -->
 
 </body>
 </html>
