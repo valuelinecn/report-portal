@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<!-- ========== [TODO] 修改标题 ========== -->
+<title>【行业名称】产业百科 · 从入门到供应链</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===== THEME VARIABLES ===== */
+:root{
+  --bg:#080816;--bg2:#0f172a;--bg3:rgba(15,23,42,0.6);--bg4:rgba(30,41,59,0.3);--bg5:rgba(15,23,42,0.5);
+  --border:#1e293b;--border2:#334155;
+  --t1:#e2e8f0;--t2:#cbd5e1;--t3:#94a3b8;--t4:#64748b;--t5:#334155;
+  --overlay:rgba(0,0,0,0.6);--scroll:#1e293b;
+  --toggle-bg:rgba(30,41,59,0.8);--toggle-border:#334155;
+}
+[data-theme="light"]{
+  --bg:#f4f1ea;--bg2:#ffffff;--bg3:rgba(245,245,240,0.85);--bg4:rgba(235,235,225,0.6);--bg5:rgba(250,250,245,0.9);
+  --border:#d8d4c8;--border2:#c0bcb0;
+  --t1:#1a1a2e;--t2:#2d2d2d;--t3:#505050;--t4:#707070;--t5:#b0b0b0;
+  --overlay:rgba(0,0,0,0.3);--scroll:#ccc;
+  --toggle-bg:rgba(255,255,255,0.85);--toggle-border:#d8d4c8;
+}
+
+/* ===== THEME TOGGLE ===== */
+.theme-toggle{position:fixed;top:10px;right:10px;z-index:999;background:var(--toggle-bg);border:1px solid var(--toggle-border);color:var(--t4);font-size:16px;cursor:pointer;padding:5px 9px;border-radius:8px;transition:all .2s;line-height:1;backdrop-filter:blur(8px)}
+.theme-toggle:hover{color:var(--t1);border-color:var(--t3)}
+
+/* ===== BASE ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Noto Sans SC',-apple-system,sans-serif;
+  background:var(--bg);color:var(--t1);min-height:100vh;
+  background-image:radial-gradient(ellipse at 20% 10%,rgba(34,211,238,0.05),transparent 60%),
+                   radial-gradient(ellipse at 80% 20%,rgba(251,191,36,0.03),transparent 60%),
+                   radial-gradient(ellipse at 50% 90%,rgba(52,211,153,0.03),transparent 60%);
+  overflow-x:hidden;transition:background .3s,color .3s;
+}
+[data-theme="light"] body{background-image:none}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--scroll);border-radius:4px}
+.container{max-width:1200px;margin:0 auto;padding:14px}
+.section{display:none}
+.section.active{display:block;animation:fadeIn .35s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== HERO ===== */
+.hero-banner{text-align:center;padding:24px 0 14px}
+/* [TODO] 修改渐变色以匹配行业主题 */
+.hero-banner h1{font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#22d3ee 0%,#34d399 40%,#fbbf24 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-banner p{color:var(--t4);font-size:.7rem;margin-top:6px;max-width:540px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+/* ===== STAT CARDS (4) ===== */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 18px}
+.stat-card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:12px;
+  padding:16px 10px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;
+}
+.stat-card:hover{transform:translateY(-3px);border-color:var(--t5);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.stat-card::after{content:'→';position:absolute;bottom:6px;right:8px;font-size:.65rem;color:var(--t5);opacity:0;transition:all .3s}
+.stat-card:hover::after{opacity:1;color:var(--t4)}
+.stat-card .num{font-size:1.3rem;font-weight:700}
+.stat-card .lbl{font-size:.6rem;color:var(--t4);margin-top:4px;line-height:1.4}
+.stat-card .sub{font-size:.5rem;color:#1e293b;margin-top:2px}
+/* [TODO] 修改4张统计卡的颜色渐变 */
+.stat-card.c1 .num{background:linear-gradient(135deg,#22d3ee,#0891b2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c2 .num{background:linear-gradient(135deg,#a78bfa,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c3 .num{background:linear-gradient(135deg,#34d399,#059669);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c4 .num{background:linear-gradient(135deg,#fb7185,#e11d48);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ===== HOT CARDS (3) ===== */
+.hot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.hot-card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:12px;
+  padding:14px 12px;cursor:pointer;transition:all .25s;;position:relative;overflow:hidden;
+}
+.hot-card:hover{transform:translateY(-3px);border-color:var(--t5);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.hot-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.hot-card.hot-rose::before{background:linear-gradient(90deg,#fb7185,#e11d48)}
+.hot-card.hot-amber::before{background:linear-gradient(90deg,#fbbf24,#d97706)}
+.hot-card.hot-emerald::before{background:linear-gradient(90deg,#34d399,#059669)}
+.hot-card .tag{font-size:.5rem;padding:2px 7px;border-radius:4px;font-weight:600;display:inline-block;margin-bottom:5px}
+.hot-card h4{font-size:.78rem;font-weight:600;margin-bottom:4px}
+.hot-card p{font-size:.62rem;color:var(--t4);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hot-card .click-hint{font-size:.5rem;color:var(--t5);margin-top:6px;display:flex;align-items:center;gap:3px}
+
+/* ===== CARD GRID ===== */
+.section-title{font-size:.9rem;font-weight:700;color:var(--t1);margin:18px 0 10px;display:flex;align-items:center;gap:6px}
+.section-title .dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.section-desc{font-size:.64rem;color:var(--t4);margin-bottom:10px;line-height:1.5}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px}
+.card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:12px;
+  padding:14px 12px;cursor:pointer;transition:all .25s;;position:relative;overflow:hidden;
+}
+.card:hover{transform:translateY(-3px);border-color:var(--t5);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.card.cyan::before{background:linear-gradient(90deg,#22d3ee,#0891b2)}
+.card.emerald::before{background:linear-gradient(90deg,#34d399,#059669)}
+.card.rose::before{background:linear-gradient(90deg,#fb7185,#e11d48)}
+.card.violet::before{background:linear-gradient(90deg,#a78bfa,#7c3aed)}
+.card.amber::before{background:linear-gradient(90deg,#fbbf24,#d97706)}
+.card.orange::before{background:linear-gradient(90deg,#fb923c,#ea580c)}
+.card.lime::before{background:linear-gradient(90deg,#a3e635,#65a30d)}
+.card.sky::before{background:linear-gradient(90deg,#38bdf8,#0284c7)}
+.card.purple::before{background:linear-gradient(90deg,#c084fc,#9333ea)}
+.card .tag{font-size:.5rem;padding:2px 7px;border-radius:4px;font-weight:600;display:inline-block;margin-bottom:5px}
+.card h4{font-size:.78rem;font-weight:600;margin-bottom:4px}
+.card p{font-size:.62rem;color:var(--t4);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card .click-hint{font-size:.5rem;color:var(--t5);margin-top:6px;display:flex;align-items:center;gap:3px}
+
+/* ===== MODAL (4+5 template) ===== */
+.modal-overlay{
+  position:fixed;inset:0;z-index:200;background:var(--overlay);backdrop-filter:blur(6px);
+  display:none;justify-content:center;align-items:flex-start;padding:16px;overflow-y:auto;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  max-width:680px;width:100%;margin-top:10px;margin-bottom:10px;
+  position:relative;animation:slideUp .3s;overflow:hidden;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.modal-close{position:sticky;top:0;display:flex;justify-content:space-between;align-items:flex-start;padding:14px 16px 0}
+.modal-close button{background:none;border:none;color:var(--t4);font-size:1.2rem;cursor:pointer;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.modal-close button:hover{background:#1e293b;color:var(--t1)}
+.modal-header{padding:0 16px}
+.modal-header .tag{font-size:.55rem;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:4px}
+.modal-header h2{font-size:1rem;font-weight:700;margin-bottom:2px}
+.modal-header .sub{font-size:.6rem;color:var(--t4)}
+.modal-body{padding:12px 16px 18px}
+/* Layer 1: 4 Quick Cards */
+.m-qgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.m-qc{
+  background:var(--bg4);border-radius:8px;padding:10px 10px 8px;
+  border-left:2px solid;transition:all .2s;
+}
+.m-qc:hover{background:var(--bg4)}
+.m-qc .q-icon{font-size:.85rem;margin-bottom:2px}
+.m-qc .q-label{font-size:.55rem;font-weight:600;margin-bottom:2px;text-transform:uppercase;letter-spacing:1px}
+.m-qc .q-text{font-size:.62rem;color:var(--t2);line-height:1.6}
+.m-qc .q-num{font-size:.8rem;font-weight:700;line-height:1.3}
+.m-qc .q-num-sub{font-size:.5rem;color:var(--t4)}
+/* Toggle for 5 Deep Dimensions */
+.m-toggle{
+  text-align:center;padding:6px 0;margin-bottom:8px;cursor:pointer;
+  color:var(--t4);font-size:.6rem;font-weight:600;letter-spacing:1px;
+  border-top:1px solid rgba(30,41,59,0.4);border-bottom:1px solid var(--border);
+  transition:all .2s;display:flex;align-items:center;justify-content:center;gap:4px;
+}
+.m-toggle:hover{color:var(--t3);background:rgba(30,41,59,0.2)}
+.m-deep{margin-top:4px}
+.m-deep .d-section{margin-bottom:10px}
+.m-deep .d-section:last-child{margin-bottom:0}
+.m-deep .d-section h6{font-size:.6rem;font-weight:600;color:var(--t3);margin-bottom:4px;display:flex;align-items:center;gap:5px}
+.m-deep .d-section h6 .bar{width:3px;height:10px;border-radius:2px;display:inline-block}
+.m-deep .d-section p{font-size:.6rem;color:var(--t3);line-height:1.7}
+/* Report link */
+.modal-report{margin-top:8px;padding:8px 12px;border-radius:8px;border:1px solid rgba(34,211,238,0.2);background:rgba(34,211,238,0.05);text-align:center;cursor:pointer;transition:all .2s;font-size:.65rem;color:#22d3ee;font-weight:600}
+.modal-report:hover{background:rgba(34,211,238,0.1)}
+
+/* ===== ENTERPRISE / SUPPLY CHAIN CUSTOM SECTIONS ===== */
+.ent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px}
+.ent-card{background:var(--bg5);border:1px solid var(--border);border-radius:10px;padding:10px 12px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.ent-card:hover{transform:translateY(-2px);border-color:var(--t5)}
+.ent-card .ent-tag{font-size:.45rem;padding:1px 6px;border-radius:3px;display:inline-block;margin-bottom:3px;font-weight:600}
+.ent-card h5{font-size:.7rem;font-weight:600;margin-bottom:2px}
+.ent-card .ent-desc{font-size:.52rem;color:var(--t4);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
+.ent-cat{margin-top:14px;margin-bottom:8px}
+.ent-cat:first-child{margin-top:0}
+.ent-cat h4{font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:6px;padding:6px 0 8px;border-bottom:1px solid var(--border)}
+.ent-cat h4 span{font-size:.55rem;font-weight:400;color:var(--t4)}
+/* Supply chain 3-column */
+.sc3-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.sc3-col{background:var(--bg5);border-radius:12px;border:1px solid var(--border);padding:14px;position:relative;overflow:hidden}
+.sc3-col .bar-top{position:absolute;top:0;left:0;right:0;height:3px}
+.sc3-col h3{font-size:.8rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.sc3-col .pct{font-size:.55rem;color:var(--t4);font-weight:400}
+.sc3-node{margin-bottom:6px;padding:8px 10px;background:var(--bg4);border-radius:8px;cursor:pointer;transition:all .2s;border:1px solid transparent}
+.sc3-node:hover{border-color:var(--t5);background:var(--bg4)}
+.sc3-node h5{font-size:.65rem;font-weight:600;margin-bottom:2px;display:flex;align-items:center;gap:4px}
+.sc3-node .preview{font-size:.55rem;color:var(--t4);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sc3-node .hl-tag{font-size:.48rem;padding:1px 5px;border-radius:3px;background:rgba(251,112,133,0.15);color:#fb7185;margin-left:4px;font-weight:600}
+/* High-barrier list */
+.hl-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.hl-card{background:var(--bg5);border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;border-left:3px solid #fb7185}
+.hl-card:hover{border-color:var(--t5);transform:translateX(3px)}
+.hl-card h5{font-size:.75rem;font-weight:600;color:#fb7185;margin-bottom:4px}
+.hl-card .desc{font-size:.6rem;color:var(--t3);line-height:1.6}
+.hl-card .meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.hl-card .meta span{font-size:.52rem;padding:2px 7px;border-radius:4px;background:var(--bg4);color:var(--t4)}
+
+@media(max-width:768px){
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .hot-grid,.sc3-grid{grid-template-columns:1fr}
+  .cat-grid,.ent-grid{grid-template-columns:repeat(2,1fr)}
+  .hl-list{grid-template-columns:1fr}
+  .m-qgrid{grid-template-columns:1fr}
+  .modal{max-width:100%;margin:8px;border-radius:12px}
+}
+</style>
+</head>
+<body>
+<div class="theme-toggle" onclick="toggleTheme()" title="切换主题">☀️</div>
+
+<div class="container">
+
+<!-- ===== TAB 0: OVERVIEW (HOME) ===== -->
+<div id="tab-overview" class="section active">
+
+<!-- ===== HERO ===== [TODO: 修改标题/描述/渐变] -->
+<div class="hero-banner">
+  <h1>【行业名称】产业全景百科</h1>
+  <p>从产业分类到供应链纵深。点击下方统计卡片快速跳转，点击任意卡片查看4+5分析师解说。</p>
+</div>
+
+<!-- ===== STAT CARDS (4) ===== [TODO: 修改4个统计数据] -->
+<div class="stats-row">
+  <div class="stat-card c1" onclick="switchSection('category')">
+    <div class="num">N</div>
+    <div class="lbl">产品分类</div>
+    <div class="sub">该行业的细分品类</div>
+  </div>
+  <div class="stat-card c2" onclick="switchSection('enterprise')">
+    <div class="num">N家</div>
+    <div class="lbl">代表企业</div>
+    <div class="sub">整机厂商 + 核心供应商</div>
+  </div>
+  <div class="stat-card c3" onclick="switchSection('supplychain')">
+    <div class="num">N</div>
+    <div class="lbl">核心零部件</div>
+    <div class="sub">关键环节拆解</div>
+  </div>
+  <div class="stat-card c4" onclick="switchSection('highlights')">
+    <div class="num">🔴N</div>
+    <div class="lbl">高壁垒环节</div>
+    <div class="sub">国产化率&lt;30% 的卡脖子环节</div>
+  </div>
+</div>
+
+<!-- ===== HOT CARDS (3) ===== [TODO: 修改3张热力卡片] -->
+<div style="font-size:.65rem;font-weight:600;color:var(--t4);margin-bottom:6px">🔥 快速入口</div>
+<div class="hot-grid">
+  <div class="hot-card hot-rose" onclick="openModal('hot1')">
+    <span class="tag" style="background:#fb718520;color:#fb7185">🔥 最热</span>
+    <h4 style="color:#fb7185">【最热门产品/话题】</h4>
+    <p>【一句话描述为什么最热】</p>
+    <span class="click-hint">👆 4+5分析师解说</span>
+  </div>
+  <div class="hot-card hot-amber" onclick="openModal('hot2')">
+    <span class="tag" style="background:#fbbf2420;color:#fbbf24">🔴 最高壁垒</span>
+    <h4 style="color:#fbbf24">【最高壁垒环节】</h4>
+    <p>【描述壁垒所在】</p>
+    <span class="click-hint">👆 4+5分析师解说</span>
+  </div>
+  <div class="hot-card hot-emerald" onclick="openModal('hot3')">
+    <span class="tag" style="background:#34d39920;color:#34d399">📈 增速最快</span>
+    <h4 style="color:#34d399">【增长最快的细分】</h4>
+    <p>【描述增速数据】</p>
+    <span class="click-hint">👆 4+5分析师解说</span>
+  </div>
+</div>
+</div><!-- /tab-overview -->
+
+<!-- ===== TAB 1: CATEGORY ===== [TODO: 修改产品分类内容] -->
+<div id="tab-category" class="section active">
+  <div class="section-title"><span class="dot" style="background:#22d3ee"></span> 📦 产品分类 · N大品类</div>
+  <div class="section-desc">每品类配有4+5分析师解说：①一句话→②打个比方→③必知数字→④别搞错 → 展开后还有5个深度维度</div>
+  <div id="catGrid" class="cat-grid"></div>
+</div>
+
+<!-- ===== TAB 2: ENTERPRISE ===== [TODO: 修改代表企业内容] -->
+<div id="tab-enterprise" class="section">
+  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#22d3ee;font-weight:600">← 返回产业总览</span></div>
+  <div class="section-title"><span class="dot" style="background:#a78bfa"></span> 🏢 代表企业档案库</div>
+  <div class="section-desc">覆盖整机厂商与核心零部件供应商。点击查看企业详细资料。</div>
+  <div id="entGrid" class="cat-grid"></div>
+</div>
+
+<!-- ===== TAB 3: SUPPLY CHAIN ===== [TODO: 修改供应链内容] -->
+<div id="tab-supplychain" class="section">
+  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#22d3ee;font-weight:600">← 返回产业总览</span></div>
+  <div class="section-title"><span class="dot" style="background:#34d399"></span> 🔩 供应链纵深 · 三层拆解</div>
+  <div class="section-desc">从原材料到核心零部件到总成。每层点击可查看详细内容。</div>
+  <div id="scGrid" class="sc3-grid"></div>
+</div>
+
+<!-- ===== TAB 4: HIGHLIGHTS ===== [TODO: 修改高壁垒环节内容] -->
+<div id="tab-highlights" class="section">
+  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#22d3ee;font-weight:600">← 返回产业总览</span></div>
+  <div class="section-title"><span class="dot" style="background:#fb7185"></span> 🔴 高壁垒环节清单</div>
+  <div class="section-desc">国产化率&lt;30%的卡脖子零部件，直接影响供应链安全与国产替代空间。</div>
+  <div id="hlGrid" class="hl-list"></div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+<div class="modal">
+  <div class="modal-close">
+    <div class="modal-header">
+      <div id="modalTag" class="tag" style="display:none"></div>
+      <h2 id="modalTitle"></h2>
+      <div id="modalSub" class="sub"></div>
+    </div>
+    <button onclick="closeModal()">✕</button>
+  </div>
+  <div class="modal-body" id="modalBody"></div>
+</div>
+</div>
+
+<script>
+// =====================================================================
+// [TODO] 数据填充区
+// =====================================================================
+// 每个条目字段说明：
+//   id:      唯一标识
+//   icon:    图标
+//   title:   标题
+//   tag:     标签（可选，如"① 工业机器人"）
+//   tagColor: 标签颜色
+//   s1:      📝 一句话说清
+//   s2:      🤔 打个比方
+//   s3:      📊 必知数字
+//   s4:      ❌ 别搞错
+//   d1~d5:   🔧/🌍/🏢/🏗️/🎯 深度分析5维
+//   report:  {name:'公司名',id:'报告id'}  【可选】关联企业报告
+
+const DATA = [
+  // ---- HOT CARDS (3) ----
+  // [TODO: 修改3张热力卡片数据]
+  {id:'hot1',icon:'🔥',title:'最热：XX行业明星品类',
+    tag:'🔥 最热', tagColor:'#fb7185',
+    s1:'2025年该品类市场规模XXX亿元，同比增长XX%，是整个行业增长最快的细分领域。',
+    s2:'就像智能手机时代的iPhone——一个明星产品带火了整个产业链。',
+    s3:'规模XXX亿·增速XX%·国产率XX%·头部企业X家',
+    s4:'很多人以为这个品类已经很成熟了，实际上渗透率才XX%，还有X倍空间。',
+    d1:'🔧 技术难度 ★★★☆☆ 核心壁垒在于XX工艺和XX材料',
+    d2:'🌍 国产vs海外：国内企业市占率XX%，在XX领域已实现进口替代',
+    d3:'🏢 代表企业：公司A(龙头)·公司B(新锐)·公司C(跨界)',
+    d4:'🏗️ 应用场景：场景1·场景2·场景3，其中场景1占比最大',
+    d5:'🎯 2026年关注焦点：XX技术突破+XX政策落地'},
+  {id:'hot2',icon:'🔴',title:'最高壁垒：XX核心环节',
+    tag:'🔴 最高壁垒', tagColor:'#fbbf24',
+    s1:'国产化率<XX%，海外巨头垄断，是国内供应链最卡脖子的环节。',
+    s2:'就像芯片领域的EUV光刻机——不是不想做，是门槛实在太高。',
+    s3:'国产化率<XX%·海外巨头垄断XX%·单品价值量XXX元·认证周期X年',
+    s4:'很多人以为国产替代很快就能突破，实际上从研发到量产验证至少需要X年。',
+    d1:'🔧 技术难度 ★★★★★ XX工艺+XX材料+XX设备三重壁垒',
+    d2:'🌍 海外龙头：公司A(份额XX%)·公司B(份额XX%)·国产差距X年',
+    d3:'🏢 国内布局：公司C(已送样)·公司D(研发中)·公司E(战略投资)',
+    d4:'🏗️ 如果突破：单车/单机价值量XXX元，市场空间XXX亿',
+    d5:'🎯 2026年关注：XX公司能否通过头部客户验证'},
+  {id:'hot3',icon:'📈',title:'增速最快：XX高增长赛道',
+    tag:'📈 增速最快', tagColor:'#34d399',
+    s1:'XX赛道近X年复合增速XX%，预计2026-2028年仍将保持XX%以上增长。',
+    s2:'就像新能源车渗透率从5%到50%的过程——还在加速期。',
+    s3:'CAGR XX%·市场空间XXX亿·渗透率XX%·2026年预计XXX亿',
+    s4:'很多人看到高增速就冲进去，但高增速往往伴随着剧烈竞争和价格战。',
+    d1:'🔧 驱动因素：政策+技术+成本下降三重共振',
+    d2:'🌍 中国vs全球：中国份额XX%，且增速快于全球平均',
+    d3:'🏢 竞争格局：分散(CR3<XX%)→集中过程中，龙头尚未确定',
+    d4:'🏗️ 关键催化剂：XX标准落地+XX项目招标+XX产能释放',
+    d5:'🎯 2026年Q1-Q2关注：XX公司IPO/XX产能投产/XX补贴政策'},
+
+  // ---- 产品分类 (category) ----
+  // [TODO: 每个分类一条，id以cat开头]
+  {id:'cat1',icon:'🏭',title:'品类A',
+    tag:'① 品类名称示例', tagColor:'#22d3ee',
+    s1:'【示例】这是品类的核心定义和一句话说明。2025年市场规模XXX亿元。',
+    s2:'【示例】打个比方帮助理解这个品类是做什么的。',
+    s3:'【示例】规模XXX亿·增速XX%·国产率XX%·头部X家',
+    s4:'【示例】关于这个品类的常见误解。',
+    d1:'🔧 【示例】技术难度 ★★★☆☆',
+    d2:'🌍 【示例】国产vs海外对比',
+    d3:'🏢 【示例】代表企业',
+    d4:'🏗️ 【示例】应用场景',
+    d5:'🎯 【示例】2026年关注焦点'},
+  {id:'cat2',icon:'🤖',title:'品类B',
+    tag:'② 品类名称', tagColor:'#34d399',
+    s1:'[TODO] 填充此品类',s2:'[TODO]',s3:'[TODO]',s4:'[TODO]',
+    d1:'[TODO]',d2:'[TODO]',d3:'[TODO]',d4:'[TODO]',d5:'[TODO]'},
+  {id:'cat3',icon:'🔧',title:'品类C',
+    tag:'③ 品类名称', tagColor:'#fb7185',
+    s1:'[TODO] 填充此品类',s2:'[TODO]',s3:'[TODO]',s4:'[TODO]',
+    d1:'[TODO]',d2:'[TODO]',d3:'[TODO]',d4:'[TODO]',d5:'[TODO]'},
+
+  // ---- 代表企业 (enterprise) ----
+  // [TODO: 每个企业一条，id以ent开头。可添加 report 字段关联企业报告]
+  {id:'ent1',icon:'🏢',title:'公司A（示例）',
+    tag:'整机龙头', tagColor:'#22d3ee',
+    s1:'【示例】该公司是XX领域的绝对龙头，市占率XX%，2025年营收XXX亿。',
+    s2:'【示例】就像该领域的"苹果"——品牌溢价+技术壁垒+生态锁定。',
+    s3:'【示例】营收XXX亿·净利XX亿·毛利率XX%·PE XX倍',
+    s4:'【示例】关于这家公司的常见投资误解。',
+    d1:'🔧 【示例】核心壁垒：XX技术+XX渠道+XX品牌',
+    d2:'🌍 【示例】海外对标：公司X(市值XXX亿)·差距与优势',
+    d3:'🏢 【示例】竞争格局：CR3=XX%，公司A领先身位明显',
+    d4:'🏗️ 【示例】增长驱动：XX新产品+XX新市场+XX政策',
+    d5:'🎯 【示例】2026年关注：XX产能投产+XX大客户突破'},
+  {id:'ent2',icon:'🏢',title:'公司B',
+    tag:'零部件供应商', tagColor:'#a78bfa',
+    s1:'[TODO] 填充此公司',s2:'[TODO]',s3:'[TODO]',s4:'[TODO]',
+    d1:'[TODO]',d2:'[TODO]',d3:'[TODO]',d4:'[TODO]',d5:'[TODO]'},
+
+  // ---- 供应链各层 (supply chain: layer1-3) ----
+  // [TODO: 每个节点一条，id以sc开头]
+  {id:'sc1',icon:'🔩',title:'上游·原材料（示例）',
+    s1:'【示例】上游原材料的核心概况，全球供给格局，价格趋势。',
+    s2:'【示例】就像做菜需要好的食材——原材料的品质和成本决定了最终产品。',
+    s3:'【示例】全球产量XXX万吨·中国占比XX%·价格趋势XX·龙头XX',
+    s4:'【示例】关于这个原材料的常见误解。',
+    d1:'🔧 【示例】壁垒：资源禀赋+加工工艺',
+    d2:'🌍 【示例】海外vs国产：海外巨头垄断XX%，国产替代空间大',
+    d3:'🏢 【示例】代表企业：公司A(龙头)·公司B(新锐)',
+    d4:'🏗️ 【示例】下游应用：XX行业占比最大',
+    d5:'🎯 【示例】2026年关注：XX新矿投产+XX技术路线切换'},
+  {id:'sc2',icon:'⚙️',title:'中游·核心零部件',
+    s1:'[TODO]',s2:'[TODO]',s3:'[TODO]',s4:'[TODO]',
+    d1:'[TODO]',d2:'[TODO]',d3:'[TODO]',d4:'[TODO]',d5:'[TODO]'},
+  {id:'sc3',icon:'🏗️',title:'下游·总成与集成',
+    s1:'[TODO]',s2:'[TODO]',s3:'[TODO]',s4:'[TODO]',
+    d1:'[TODO]',d2:'[TODO]',d3:'[TODO]',d4:'[TODO]',d5:'[TODO]'},
+
+  // ---- 高壁垒环节 (highlights) ----
+  // [TODO: 每个高壁垒环节一条，id以hl开头]
+  {id:'hl1',icon:'🔴',title:'环节A（示例）',
+    tag:'国产化率<20%', tagColor:'#fb7185',
+    s1:'【示例】这是国产化率最低、壁垒最高的环节。海外巨头垄断XX年。',
+    s2:'【示例】就像被卡脖子的高端芯片——虽然只占成本X%，但没有就做不了。',
+    s3:'【示例】国产化率<20%·海外垄断XX%·单品价值XXX元·国产替代空间XXX亿',
+    s4:'【示例】很多人低估了这个环节的突破难度，认证周期X年起步。',
+    d1:'🔧 【示例】技术壁垒：XX工艺+XX材料+XX设备',
+    d2:'🌍 【示例】海外龙头：公司A(份额XX%)·公司B(份额XX%)',
+    d3:'🏢 【示例】国内布局：公司C已送样·公司D研发中',
+    d4:'🏗️ 【示例】突破意义：单车价值量XXX元，市场空间XXX亿',
+    d5:'🎯 【示例】2026年关键信号：XX公司通过头部客户验证'},
+  {id:'hl2',icon:'🔴',title:'环节B',
+    tag:'国产化率<30%', tagColor:'#fb7185',
+    s1:'[TODO]',s2:'[TODO]',s3:'[TODO]',s4:'[TODO]',
+    d1:'[TODO]',d2:'[TODO]',d3:'[TODO]',d4:'[TODO]',d5:'[TODO]'},
+];
+
+// =====================================================================
+// 渲染代码 —— 无需修改
+// =====================================================================
+const HL_TAG = '🔴高壁垒';
+
+function init() {
+  // Category cards
+  const cats = DATA.filter(d => d.id.startsWith('cat'));
+  renderCards('catGrid', cats, 'cyan');
+  // Enterprise cards
+  const ents = DATA.filter(d => d.id.startsWith('ent'));
+  renderCards('entGrid', ents, 'violet');
+  // Supply chain
+  const scs = DATA.filter(d => d.id.startsWith('sc'));
+  renderSC(scs);
+  // High-barrier list
+  const hls = DATA.filter(d => d.id.startsWith('hl'));
+  renderHL(hls);
+}
+
+function renderCards(gridId, items, color) {
+  const grid = document.getElementById(gridId);
+  if(!grid || !items.length) return;
+  grid.innerHTML = items.map(d => `
+    <div class="card ${color}" onclick="openModal('${d.id}')">
+      ${d.tag ? `<span class="tag" style="background:${d.tagColor}20;color:${d.tagColor}">${d.tag}</span>` : ''}
+      <h4 style="color:${d.tagColor || '#22d3ee'}">${d.icon} ${d.title}</h4>
+      <p>${(d.s1||'').substring(0,40)}…</p>
+      <span class="click-hint">👆 查看4+5解说</span>
+    </div>
+  `).join('');
+}
+
+function renderSC(items) {
+  const grid = document.getElementById('scGrid');
+  if(!grid) return;
+  const layers = ['上游：原材料', '中游：核心零部件', '下游：总成与集成'];
+  const colors = ['#22d3ee','#34d399','#fbbf24'];
+  grid.innerHTML = items.map((d,i) => `
+    <div class="sc3-col">
+      <div class="bar-top" style="background:${colors[i%3]}"></div>
+      <h3>${d.icon} ${layers[i%3]||d.title}</h3>
+      <div class="sc3-node" onclick="openModal('${d.id}')">
+        <h5>${d.title} <span class="pct">点击查看</span></h5>
+        <div class="preview">${(d.s1||'').substring(0,50)}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderHL(items) {
+  const grid = document.getElementById('hlGrid');
+  if(!grid) return;
+  grid.innerHTML = items.map(d => `
+    <div class="hl-card" onclick="openModal('${d.id}')">
+      <h5>${d.icon} ${d.title}</h5>
+      <div class="desc">${(d.s1||'').substring(0,60)}…</div>
+      ${d.tag ? `<div class="meta"><span>${d.tag}</span></div>` : ''}
+    </div>
+  `).join('');
+}
+
+function openModal(id) {
+  const d = DATA.find(x => x.id === id);
+  if(!d) return;
+  document.getElementById('modalTitle').textContent = d.icon + ' ' + d.title;
+  const tagEl = document.getElementById('modalTag');
+  if(d.tag) { tagEl.style.display='inline-block'; tagEl.textContent=d.tag; tagEl.style.background=d.tagColor+'20'; tagEl.style.color=d.tagColor; }
+  else { tagEl.style.display='none'; }
+  document.getElementById('modalSub').textContent = '';
+  const qColors = ['#22d3ee','#34d399','#fbbf24','#fb7185'];
+  const qLabels = ['📝 一句话说清','🤔 打个比方','📊 必知数字','❌ 别搞错'];
+  const qFields = ['s1','s2','s3','s4'];
+  let html = '<div class="m-qgrid">';
+  qFields.forEach((f,i) => {
+    if(d[f]) html += `<div class="m-qc" style="border-color:${qColors[i]}"><div class="q-label" style="color:${qColors[i]}">${qLabels[i]}</div><div class="q-text">${d[f]}</div></div>`;
+  });
+  html += '</div><div class="m-toggle" onclick="toggleDeep(this)">▼ 展开深度分析</div><div class="m-deep" style="display:none">';
+  const dLabels = ['🔧 技术/模式难度','🌍 国产 vs 海外','🏢 代表企业','🏗️ 适用范围/场景','🎯 关注焦点'];
+  const dBars = ['#fb7185','#fbbf24','#34d399','#22d3ee','#a78bfa'];
+  for(let i=1;i<=5;i++) {
+    const val = d['d'+i];
+    if(val) html += `<div class="d-section"><h6><span class="bar" style="background:${dBars[i-1]}"></span>${dLabels[i-1]}</h6><p>${val}</p></div>`;
+  }
+  html += '</div>';
+  // Report link
+  if(d.report) {
+    html += `<div class="modal-report" onclick="window.open('reports/${d.report.id}.html','_blank')">📄 查看报告：${d.report.name} →</div>`;
+  }
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+function closeModalOutside(e) { if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+function toggleDeep(el) {
+  const deep = el.nextElementSibling;
+  if(!deep || !deep.classList.contains('m-deep')) return;
+  const hidden = deep.style.display==='none'||deep.style.display==='';
+  deep.style.display = hidden?'block':'none';
+  el.innerHTML = hidden?'▲ 收起深度分析':'▼ 展开深度分析';
+}
+
+function switchSection(name) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  const el = document.getElementById('tab-'+name);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Scroll persistence
+(function(){
+  const key = 'scroll_industry';
+  window.addEventListener('scroll', function(){ sessionStorage.setItem(key, window.scrollY); }, {passive:true});
+  const saved = sessionStorage.getItem(key);
+  if(saved) setTimeout(function(){ window.scrollTo(0, parseInt(saved)); }, 50);
+})();
+
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
+init();
+
+// ===== THEME TOGGLE =====
+function toggleTheme(){
+  var h=document.documentElement;
+  var cur=h.getAttribute('data-theme');
+  var next=cur==='light'?'':'light';
+  h.setAttribute('data-theme',next);
+  document.querySelector('.theme-toggle').textContent=next==='light'?'🌙':'☀️';
+  localStorage.setItem('encyclopedia-theme',next||'dark');
+}
+// Init theme from localStorage or parent portal
+(function(){
+  var saved=localStorage.getItem('encyclopedia-theme');
+  if(saved==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.querySelector('.theme-toggle').textContent='🌙';
+  }
+  // Listen for theme sync from parent portal
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.theme){
+      document.documentElement.setAttribute('data-theme',e.data.theme==='light'?'light':'');
+      document.querySelector('.theme-toggle').textContent=e.data.theme==='light'?'🌙':'☀️';
+    }
+  });
+})();
+</script>
+</body>
+</html>
