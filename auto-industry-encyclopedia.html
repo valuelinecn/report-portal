@@ -601,6 +601,10 @@ const DATA = [
     d5:'<div class="d-section"><h6><span class="bar" style="background:#fbbf24"></span> 🎯 关注焦点</h6><p>禾赛/速腾的毛利率能否转正——价格战激烈。特斯拉是否会在FSD中加入4D毫米波雷达(替代激光雷达)。激光雷达+摄像头融合方案vs纯视觉方案谁能胜出。</p></div>'},
 ];
 
+// Modal data store for registerModal-based entries (must be before regSC calls)
+const modalData = {};
+function registerModal(id, data){ modalData[id] = data; }
+
 // ===== SUPPLY CHAIN MODALS =====
 function regSC(id,tag,tagBg,tagColor,title,sub,q1,q2,q3,q4,d1,d3){
   registerModal(id,{tag,tagBg,tagColor,title,sub,q1,q2,q3,q4,d1,d2:'',d3,d4:'',d5:''});
@@ -747,10 +751,6 @@ function switchSection(name) {
   if(el) el.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
-// Modal data store for registerModal-based entries
-const modalData = {};
-function registerModal(id, data){ modalData[id] = data; }
 
 // Update openModal to check both DATA and modalData
 const _origOpenModal = openModal;
