@@ -39,6 +39,29 @@ var view = 'l1', curId = null;
 function opt(data) {
   return {
     backgroundColor: 'transparent',
+    tooltip: {
+      show: true, trigger: 'item',
+      backgroundColor: 'rgba(10,10,30,0.92)',
+      borderColor: 'rgba(167,139,250,0.15)',
+      borderWidth: 1, borderRadius: 8, padding: [8, 12],
+      textStyle: {fontSize: 11, fontFamily: 'sans-serif'},
+      formatter: function(p) {
+        if (!p.data || p.dataType !== 'node') return '';
+        var d = p.data;
+        var lt = document.body.classList.contains('light');
+        var c1 = lt ? '#333' : '#e2e8f0', c2 = lt ? '#666' : '#94a3b8', c3 = lt ? 'rgba(99,102,241,0.6)' : 'rgba(167,139,250,0.6)';
+        var h = '<div style="font-size:13px;font-weight:700;color:' + c1 + '">' + (d._icon || '') + ' ' + d.name + '</div>';
+        if (d._desc) h += '<div style="font-size:10px;color:' + c2 + ';margin-top:2px">' + d._desc + '</div>';
+        if (d._cos && d._cos.length) {
+          h += '<div style="font-size:9px;color:' + c3 + ';margin-top:4px">关联企业：</div>';
+          d._cos.forEach(function(co) {
+            var hl = CL[co] ? 'style="color:#34d399"' : '';
+            h += '<div ' + hl + ' style="font-size:9px;padding:1px 0">' + (CL[co] ? '📄 ' : '· ') + co + '</div>';
+          });
+        }
+        return h;
+      }
+    },
     series: [{
       type: 'graph', layout: 'force', roam: true,
       force: {repulsion: 300, edgeLength: [50, 150], gravity: 0.05},
@@ -69,20 +92,20 @@ function l2(id) {
   var s = SW.find(function(d) { return d.id === id; });
   if (!s) return;
   var hi = !!IL[s.name], n = [], l = [];
-  n.push({name: s.icon + ' ' + s.name + (hi ? ' \uD83D\uDD2C' : ''), symbolSize: 28, itemStyle: {color: s.color || '#a78bfa', shadowBlur: 12, shadowColor: (s.color || '#a78bfa') + '80'}, id: id, _is: true});
+  n.push({name: s.icon + ' ' + s.name, symbolSize: 28, itemStyle: {color: s.color || '#a78bfa', shadowBlur: 15, shadowColor: (s.color || '#a78bfa') + '80'}, id: id, _is: true, _icon: s.icon});
   n.push({name: '\u2190', symbolSize: 12, itemStyle: {color: 'rgba(167,139,250,0.2)'}, id: 'b'});
   l.push({source: 'b', target: id});
   (s.children || []).forEach(function(c) {
-    var cs = [];
-    for (var k in CSW2) { if (CSW2[k] === c) cs.push(k); }
-    var hc = cs.length > 0;
-    n.push({name: c, symbolSize: hc ? 14 : 10, itemStyle: {color: s.color || '#6366f1', opacity: hc ? 1 : 0.3}, id: 's-' + c});
+    var cos = [];
+    for (var k in CSW2) { if (CSW2[k] === c) cos.push(k); }
+    var hasCos = cos.length > 0;
+    var il = IL[c];
+    var sz = hasCos ? 16 : (il ? 14 : 11);
+    var clr = il ? '#22d3ee' : (hasCos ? '#34d399' : s.color || '#6366f1');
+    var op = hasCos || il ? 1 : 0.35;
+    var mark = il ? ' \uD83D\uDD2C' : (hasCos ? ' \uD83D\uDCC4' : '');
+    n.push({name: c + mark, symbolSize: sz, itemStyle: {color: clr, opacity: op}, id: 's-' + c, _cos: cos, _icon: '\uD83D\uDCC2', _desc: hasCos ? cos.length + '家关联企业' : (il ? '有行业研究' : ''), _s2: c, _il: il});
     l.push({source: id, target: 's-' + c});
-    cs.forEach(function(co) {
-      var hl = !!CL[co];
-      n.push({name: co, symbolSize: hl ? 9 : 5, itemStyle: {color: hl ? '#34d399' : 'rgba(148,163,184,0.15)'}, id: 'c-' + co, _co: co});
-      l.push({source: 's-' + c, target: 'c-' + co});
-    });
   });
   chart.setOption(opt({n: n, l: l}));
   document.getElementById('bc').innerHTML = '<span onclick="l1()" style="cursor:pointer">\uD83C\uDF0C</span><span style="color:rgba(148,163,184,0.15)"> \u203A </span><span class="cur">' + s.icon + ' ' + s.name + '</span>';
@@ -98,9 +121,11 @@ chart.on('click', function(params) {
     if (sw && IL[sw.name]) window.open(IL[sw.name], '_blank');
     return;
   }
-  if (d._co) {
-    var lk = CL[d._co];
-    if (lk) window.open(lk, '_blank');
+  // Secondary industry click
+  if (d._il) { window.open(d._il, '_blank'); return; }
+  if (d._cos && d._cos.length) {
+    // Show company list in tooltip - already handled by formatter
+    // Optionally could open a popup here
   }
 });
 
