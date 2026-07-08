@@ -502,6 +502,8 @@ html{scroll-behavior:smooth}
 [data-theme="light"] #industrySelector [onclick*="loadIndustry('robot')"] div:last-child{color:#555!important}
 [data-theme="light"] #industrySelector [onclick*="loadIndustry('auto')"]{background:linear-gradient(135deg,#d8f0e0,#c0e5d0)!important;border-color:rgba(52,211,153,0.3)!important}
 [data-theme="light"] #industrySelector [onclick*="loadIndustry('auto')"] div:last-child{color:#555!important}
+[data-theme="light"] #industrySelector [onclick*="loadIndustry('chip')"]{background:linear-gradient(135deg,#ede8f8,#d8d0f0)!important;border-color:rgba(167,139,250,0.3)!important}
+[data-theme="light"] #industrySelector [onclick*="loadIndustry('chip')"] div:last-child{color:#555!important}
 
 [data-theme="light"] .section-bc{background:var(--bg5)}
 
@@ -944,6 +946,11 @@ html{scroll-behavior:smooth}
         <div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-bottom:4px">新能源乘用车</div>
         <div style="font-size:.6rem;color:#64748b;line-height:1.4">动力类型 · 品牌格局 · 三电供应链</div>
       </div>
+      <div onclick="loadIndustry('chip')" style="background:linear-gradient(135deg,#1a1a3a,#0d0d2a);border:1px solid rgba(167,139,250,0.15);border-radius:16px;padding:30px 20px;cursor:pointer;text-align:center;transition:all .3s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+        <div style="font-size:2.4rem;margin-bottom:8px">🔬</div>
+        <div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-bottom:4px">半导体产业</div>
+        <div style="font-size:.6rem;color:#64748b;line-height:1.4">芯片设计 · 制造工艺 · 封装系统</div>
+      </div>
 
     </div>
   </div>
@@ -968,9 +975,9 @@ const COMPANIES = [
   {id:'600329',name:'达仁堂',nameEn:'Da Ren Tang',score:6.5,scoreMax:10,color:'#ff9800',heat:6,industry:'医药 · 中药 · 老字号',desc:'中华老字号中药龙头，拥有速效救心丸国家秘密品种。2024年剥离商业聚焦精品中药，毛利率跃升至74%。但扣非PE 55x偏高，安全边际不足。',tags:['老字号','中药龙头','国家秘密','高分红','国企'],metrics:{营收:'49.17亿',净利:'21.31亿',毛利率:'74.02%',扣非PE:'55x',扣非ROE:'9.54%',总市值:'416亿'},file:'600329.html'},
   {id:'605305',name:'中际联合',nameEn:'Zhongji Innolight',score:7.5,scoreMax:10,color:'#ffc107',heat:8,industry:'高端制造 · 风电设备 · 隐形冠军',desc:'风电高空安全设备隐形冠军，国内市占率>70%，出海加速+新产品线驱动第二增长曲线。',tags:['隐形冠军','风电设备','出海','高ROE','低负债'],metrics:{营收:'18.78亿',净利:'5.30亿',毛利率:'47.27%',PE:'15x',ROE:'19.1%',市占率:'75%'},file:'605305.html'},
   {id:'000807',name:'云铝股份',nameEn:'Yunnan Aluminium',score:7.5,scoreMax:10,color:'#ffc107',heat:8,industry:'有色金属 · 电解铝 · 绿色铝',desc:'绿色铝一体化龙头，水电铝成本优势构筑护城河，受益铝价中枢上移和供给侧改革。',tags:['绿色铝','央企龙头','水电铝','高ROE','低负债'],metrics:{营收:'600.4亿',净利:'60.6亿',毛利率:'16.79%',PE:'14x',ROE:'19.7%',市占率:'7.5%'},file:'000807.html'},
-  {id:'600183',name:'生益科技',nameEn:'Sytech',score:7.5,scoreMax:10,color:'#4caf50',heat:7,industry:'电子 · 覆铜板(CCL)',desc:'全球刚性覆铜板第二(13.7%市占率)，ROE 21.25%净利33.34亿(+92%)高增长。PE 17x/PB 3.6x合理偏低。大比例分红每10股派8元。',tags:['覆铜板','AI算力','全球第二','高ROE','高分红'],metrics:{营收:'284.31亿',净利:'33.34亿',毛利率:'~25%',PE:'~17x',ROE:'21.25%',市占率:'~14%'},file:'600183.html'},
+  {id:'600183',name:'生益科技',nameEn:'Sytech',score:7.5,scoreMax:10,color:'#4caf50',heat:7,industry:'电子 · 覆铜板(CCL)',industrySector:['半导体·材料'],desc:'全球刚性覆铜板第二(13.7%市占率)，ROE 21.25%净利33.34亿(+92%)高增长。PE 17x/PB 3.6x合理偏低。大比例分红每10股派8元。',tags:['覆铜板','AI算力','全球第二','高ROE','高分红'],metrics:{营收:'284.31亿',净利:'33.34亿',毛利率:'~25%',PE:'~17x',ROE:'21.25%',市占率:'~14%'},file:'600183.html'},
 
-    {id:'603986',name:'兆易创新',nameEn:'GigaDevice',score:6.5,scoreMax:10,color:'#ffc107',heat:7,industry:'半导体 · NOR Flash · MCU',desc:'NOR Flash全球第三、MCU国内领先，存储与MCU双轮驱动。2025年营收92亿(+25%)净利16.5亿(+49%)。PE 236x偏高。',tags:['半导体','NOR Flash','MCU'],metrics:{营收:'92.03亿',净利:'16.48亿',毛利率:'~38%',PE:'236x',PB:'20.6x',市占率:'~18%'},file:'603986.html'},
+    {id:'603986',name:'兆易创新',nameEn:'GigaDevice',score:6.5,scoreMax:10,color:'#ffc107',heat:7,industry:'半导体 · NOR Flash · MCU',industrySector:['半导体·IC设计'],desc:'NOR Flash全球第三、MCU国内领先，存储与MCU双轮驱动。2025年营收92亿(+25%)净利16.5亿(+49%)。PE 236x偏高。',tags:['半导体','NOR Flash','MCU'],metrics:{营收:'92.03亿',净利:'16.48亿',毛利率:'~38%',PE:'236x',PB:'20.6x',市占率:'~18%'},file:'603986.html'},
   {id:'600706',name:'曲江文旅',nameEn:'Qujiang Cultural Tourism',score:3.0,scoreMax:10,color:'#ff9800',heat:3,industry:'文旅 · 景区运营',desc:'西安国有文旅平台，运营大唐芙蓉园/大雁塔，毛利率7.64%持续亏损。PB 0.9x破净。',tags:['文旅','国企','景区运营','低毛利率'],metrics:{营收:'9.67亿',净利:'-1.96亿',ROE:'-34.96%',PB:'0.9x',毛利率:'7.64%'},file:'600706.html'},
   {id:'000009',name:'中国宝安',nameEn:'China Baoan Group',score:5.5,scoreMax:10,color:'#f0c040',heat:5,industry:'综合 · 控股集团',desc:'横跨高新技术(贝特瑞负极龙头)+生物医药(马应龙)的综合控股集团。营收230亿净利2亿。',tags:['负极龙头','马应龙','综合控股'],metrics:{营收:'230亿',净利:'2.03亿',毛利率:'25.8%',PE:'85.5x',ROE:'2.04%',市占率:'负极~22%'},file:'000009.html'},
   {id:'600009',name:'上海机场',nameEn:'Shanghai Airport',score:6.0,scoreMax:10,color:'#f0c040',heat:6,industry:'交通运输 · 航空枢纽',desc:'中国最大航空枢纽运营商，长三角唯一国际门户。2025年营收133亿净利21亿持续恢复。PE 28x/PB 2.5x合理偏低。区位垄断护城河深厚。',tags:['航空枢纽','区位垄断','免税弹性','疫后恢复'],metrics:{营收:'133.46亿',净利:'21.17亿',毛利率:'27.5%',PE:'28x',ROE:'5.03%',市占率:'~19%'},file:'600009.html'},
@@ -1036,7 +1043,7 @@ function switchTab(name) {
 }
 
 // ===== INDUSTRY SECTOR MAPPING =====
-const SECTOR_MAP = {'机器人':{name:'机器人产业',type:'robot'},'新能源车':{name:'新能源乘用车',type:'auto'}};
+const SECTOR_MAP = {'机器人':{name:'机器人产业',type:'robot'},'新能源车':{name:'新能源乘用车',type:'auto'},'半导体':{name:'半导体产业',type:'chip'}};
 function getIndustryLinks(sectors) {
   if(!sectors||!sectors.length) return [];
   var result = [];
@@ -1486,6 +1493,7 @@ function goHome() {
 const INDUSTRY_INDEX = [
   {section:'行业研究',type:'机器人产业',title:'机器人产业百科',desc:'人形机器人供应链 · 三层拆解：智能大脑/躯体执行/集成配套',tags:['机器人','人形机器人','供应链','减速器','传感器','电机'],file:'robot-encyclopedia.html'},
   {section:'行业研究',type:'新能源乘用车',title:'新能源乘用车产业百科',desc:'动力类型 · 品牌格局 · 三电系统 · 智驾技术 · 供应链',tags:['新能源车','电动车','电池','比亚迪','特斯拉','智驾','800V'],file:'auto-industry-encyclopedia.html'},
+  {section:'行业研究',type:'半导体',title:'半导体产业百科',desc:'芯片设计·制造工艺·封装系统·国产替代·卡脖子环节',tags:['半导体','芯片','AI芯片','光刻机','国产替代'],file:'chip-industry-encyclopedia.html'},
 ]
 // Auto-generated item entries for each card inside the encyclopedias
 function getIndustryItems() {
@@ -1500,6 +1508,12 @@ function getIndustryItems() {
     {section:'行业研究',type:'新能源乘用车',title:'代表企业',desc:'比亚迪·特斯拉·吉利·理想·长安·蔚来·小鹏·小米',tags:['新能源车','品牌'],file:'auto-industry-encyclopedia.html#enterprise'},
     {section:'行业研究',type:'新能源乘用车',title:'供应链全景',desc:'电池材料·动力电池·电机电控·智驾系统·轻量化',tags:['新能源车','供应链'],file:'auto-industry-encyclopedia.html#supplychain'},
     {section:'行业研究',type:'新能源乘用车',title:'高壁垒环节',desc:'固态电池·智驾芯片·SiC·激光雷达·一体化压铸',tags:['新能源车','高壁垒'],file:'auto-industry-encyclopedia.html#highlights'},
+    // Semiconductor items
+    {section:'行业研究',type:'半导体',title:'产业总览',desc:'全球半导体市场·品类划分·三层功能拆解',tags:['半导体'],file:'chip-industry-encyclopedia.html#overview'},
+    {section:'行业研究',type:'半导体',title:'芯片品类',desc:'逻辑芯片·存储器·模拟芯片·传感器·MCU',tags:['半导体','品类'],file:'chip-industry-encyclopedia.html#category'},
+    {section:'行业研究',type:'半导体',title:'设计领军',desc:'英伟达·高通·AMD·博通·联发科·兆易创新·海思·韦尔',tags:['半导体','设计'],file:'chip-industry-encyclopedia.html#enterprise'},
+    {section:'行业研究',type:'半导体',title:'三层功能拆解',desc:'芯片设计之魂·制造之骨·封装之体',tags:['半导体','供应链'],file:'chip-industry-encyclopedia.html#supplychain'},
+    {section:'行业研究',type:'半导体',title:'高壁垒环节',desc:'EUV光刻机·EDA·高端IP·先进制程·高端材料',tags:['半导体','高壁垒'],file:'chip-industry-encyclopedia.html#highlights'},
   ]
 }
 
@@ -1571,8 +1585,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== INDUSTRY RESEARCH SELECTOR =====
 function loadIndustry(type) {
-  const files = { robot:'robot-encyclopedia.html', auto:'auto-industry-encyclopedia.html' }
-  const titles = { robot:'🤖 机器人产业百科', auto:'🚗 新能源乘用车产业百科' }
+  const files = { robot:'robot-encyclopedia.html', auto:'auto-industry-encyclopedia.html', chip:'chip-industry-encyclopedia.html' }
+  const titles = { robot:'🤖 机器人产业百科', auto:'🚗 新能源乘用车产业百科', chip:'🔬 半导体产业百科' }
   document.getElementById('industrySelector').style.display = 'none'
   document.getElementById('industryFrameWrap').style.display = 'block'
   document.getElementById('industryFrameTitle').textContent = titles[type] || '🔬 行业研究'
