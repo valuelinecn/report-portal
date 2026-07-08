@@ -149,6 +149,9 @@ function showL2(id){
       nodeClick:false,
     }]
   });
+
+  // Resize after display (container starts hidden)
+  setTimeout(function(){chart.resize()}, 50);
 }
 
 chart.on('click',function(p){
