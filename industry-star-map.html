@@ -8,10 +8,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#06061a;overflow:hidden;height:100dvh;font-family:sans-serif;color:#e2e8f0}
-
-/* Stars BG */
-body::before{
-  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:radial-gradient(1px 1px at 10% 20%,rgba(255,255,255,0.4),transparent),
     radial-gradient(1px 1px at 30% 60%,rgba(255,255,255,0.3),transparent),
     radial-gradient(1.5px 1.5px at 50% 10%,rgba(255,255,255,0.5),transparent),
@@ -19,15 +16,11 @@ body::before{
     radial-gradient(1px 1px at 90% 80%,rgba(255,255,255,0.4),transparent),
     radial-gradient(1px 1px at 45% 45%,rgba(167,139,250,0.3),transparent),
     radial-gradient(1.5px 1.5px at 60% 88%,rgba(167,139,250,0.25),transparent),
-    radial-gradient(1px 1px at 25% 35%,rgba(99,102,241,0.3),transparent);
-}
+    radial-gradient(1px 1px at 25% 35%,rgba(99,102,241,0.3),transparent);}
 @keyframes tk{0%,100%{opacity:1}50%{opacity:0.3}}
-body::after{
-  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(2px 2px at 20% 30%,rgba(255,255,255,0.5),transparent),radial-gradient(2px 2px at 75% 60%,rgba(167,139,250,0.4),transparent);
-  animation:tk 3s ease-in-out infinite;
-}
-
+  animation:tk 3s ease-in-out infinite;}
 #bar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;padding:6px 10px;background:rgba(6,6,26,0.85);backdrop-filter:blur(12px);gap:6px;font-size:11px}
 #bar button{background:transparent;border:1px solid rgba(167,139,250,0.1);border-radius:6px;padding:3px 8px;color:rgba(167,139,250,0.5);font-size:10px;cursor:pointer}
 #bar button:hover{border-color:rgba(167,139,250,0.3);color:#a78bfa}
@@ -37,27 +30,17 @@ body::after{
 #bc .cur{color:rgba(167,139,250,0.6);font-weight:600}
 #in{padding:2px 6px;border-radius:4px;border:1px solid rgba(167,139,250,0.1);background:rgba(167,139,250,0.04);color:#94a3b8;font-size:10px;width:80px;outline:none}
 #in:focus{border-color:rgba(167,139,250,0.25);width:120px;color:#e2e8f0}
-#in::placeholder{color:rgba(148,163,184,0.25)}
 #hint{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:5;font-size:9px;color:rgba(148,163,184,0.15);pointer-events:none;transition:opacity .8s}
-
-/* Level 1: Industry Grid */
 #l1{position:fixed;top:34px;bottom:0;left:0;right:0;z-index:1;overflow-y:auto;padding:10px 10px 40px}
 #l1 .t{font-size:10px;color:rgba(148,163,184,0.3);text-align:center;padding:4px 0 8px;letter-spacing:1px}
 .l1-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:6px}
-.l1-i{
-  background:rgba(15,23,42,0.5);border:1px solid rgba(148,163,184,0.06);border-radius:10px;
-  padding:8px 6px;cursor:pointer;transition:all .2s;text-align:center;line-height:1.3;
-  backdrop-filter:blur(4px);
-}
+.l1-i{background:rgba(15,23,42,0.5);border:1px solid rgba(148,163,184,0.06);border-radius:10px;padding:8px 6px;cursor:pointer;transition:all .2s;text-align:center;line-height:1.3;backdrop-filter:blur(4px)}
 .l1-i:active{transform:scale(0.95)}
 .l1-i .ic{font-size:16px}
 .l1-i .nm{font-size:8px;color:#94a3b8;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .l1-i .ct{font-size:7px;color:rgba(148,163,184,0.3);margin-top:1px}
-
-/* Level 2: ECharts */
 #l2{position:fixed;top:34px;bottom:0;left:0;right:0;z-index:1;display:none}
 #c{width:100%;height:100%}
-
 .sr-item{padding:3px 8px;cursor:pointer;font-size:10px;color:#94a3b8;border-radius:4px}
 .sr-item:hover{background:rgba(167,139,250,0.12);color:#e2e8f0}
 body.light{background:#f4f1ea}
@@ -72,105 +55,98 @@ body.light::before,body.light::after{opacity:0.4}
 </style>
 </head>
 <body>
-<div id="bar"><button id="backBtn" onclick="goBack()">←</button><div id="bc"></div><input id="in" placeholder="🔍 搜索" oninput="srch(this.value)"></div>
+<div id="bar"><button onclick="goBack()">←</button><div id="bc"></div><input id="in" placeholder="🔍 搜索" oninput="srch(this.value)"></div>
 <div id="l1"></div>
 <div id="l2"><div id="c"></div></div>
-<div id="hint">点击行业查看细分赛道</div>
+<div id="hint">点击行业展开二级 → 三级 → 研究</div>
 <script>
-var SW=[{"id":"sw1","name":"农林牧渔","icon":"🌾","color":"#22d3ee","children":["种植业","渔业","林业","饲料","养殖业","农产品加工","农业综合"]},{"id":"sw2","name":"食品饮料","icon":"🍶","color":"#fbbf24","children":["白酒","啤酒","其他酒类","软饮料","乳品","调味发酵品","食品综合","肉制品","休闲食品"]},{"id":"sw3","name":"纺织服饰","icon":"👔","color":"#fb7185","children":["纺织品","服装家纺","皮革制品"]},{"id":"sw4","name":"轻工制造","icon":"📦","color":"#34d399","children":["造纸","包装印刷","家具","文娱用品","其他轻工"]},{"id":"sw5","name":"医药生物","icon":"💊","color":"#fb7185","children":["化学制药","中药","生物制品","医药商业","医疗器械","医疗服务"]},{"id":"sw6","name":"公用事业","icon":"⚡","color":"#f97316","children":["电力","燃气","供水","环保","市政工程"]},{"id":"sw7","name":"交通运输","icon":"🚄","color":"#f97316","children":["铁路","公路","机场","港口","航运","航空","物流"]},{"id":"sw8","name":"房地产","icon":"🏘️","color":"#f97316","children":["房地产开发","产业地产","商业地产","物业管理","房地产服务"]},{"id":"sw9","name":"商贸零售","icon":"🛒","color":"#fbbf24","children":["百货","超市","专业连锁","电商","贸易","商业物业经营"]},{"id":"sw10","name":"社会服务","icon":"🎭","color":"#fbbf24","children":["酒店","餐饮","旅游景区","休闲服务","教育","专业服务"]},{"id":"sw11","name":"美容护理","icon":"💄","color":"#fb7185","children":["美容护理","化妆品","个护用品"]},{"id":"sw12","name":"银行","icon":"🏦","color":"#eab308","children":["国有大型银行","股份制银行","城商行","农商行","银行"]},{"id":"sw13","name":"非银金融","icon":"💰","color":"#eab308","children":["证券","保险","多元金融","金融信息服务"]},{"id":"sw14","name":"综合","icon":"📊","color":"#94a3b8","children":["综合"]},{"id":"sw15","name":"建筑材料","icon":"🧱","color":"#fb923c","children":["水泥","玻璃","玻纤","耐火材料","管材","其他建材"]},{"id":"sw16","name":"建筑装饰","icon":"🏗️","color":"#fb923c","children":["房屋建设","基础建设","钢结构","装修装饰","园林工程"]},{"id":"sw17","name":"电力设备","icon":"🔋","color":"#22d3ee","children":["光伏设备","风电设备","储能设备","电池","电网设备","电机","综合电力设备"]},{"id":"sw18","name":"机械设备","icon":"⚙️","color":"#22d3ee","children":["通用机械","专用机械","仪器仪表","自动化设备","工程机械","轨交设备"]},{"id":"sw19","name":"汽车","icon":"🚗","color":"#22d3ee","children":["乘用车","商用车","汽车零部件","汽车服务","摩托车"]},{"id":"sw20","name":"家用电器","icon":"🏠","color":"#fbbf24","children":["白电","黑电","厨电","小家电","照明","零部件"]},{"id":"sw21","name":"有色金属","icon":"🪨","color":"#fb923c","children":["铜","铝","铅锌","黄金","稀土","锂","钨","新材料"]},{"id":"sw22","name":"钢铁","icon":"🔩","color":"#fb923c","children":["普钢","特钢","铁矿石","钢加工","冶钢原料"]},{"id":"sw23","name":"基础化工","icon":"🧪","color":"#fb923c","children":["石油化工","煤化工","氟化工","氯碱","化纤","塑料","橡胶","农药","化肥","涂料油墨","电子化学品"]},{"id":"sw24","name":"石油石化","icon":"🛢️","color":"#fb923c","children":["石油开采","炼化","油田服务","油气储运","油品销售"]},{"id":"sw25","name":"煤炭","icon":"🪨","color":"#fb923c","children":["动力煤","焦煤","焦炭","煤化工"]},{"id":"sw26","name":"环保","icon":"🌿","color":"#34d399","children":["水治理","固废治理","大气治理","环境监测","生态修复"]},{"id":"sw27","name":"国防军工","icon":"🛡️","color":"#22d3ee","children":["航空航天装备","船舶","兵器","军工电子","军工材料"]},{"id":"sw28","name":"计算机","icon":"💻","color":"#3b82f6","children":["软件开发","IT服务","云计算","人工智能","信息安全","计算机设备"]},{"id":"sw29","name":"电子","icon":"🔬","color":"#3b82f6","children":["半导体","芯片设计","消费电子","电子元件","光学光电子","电子化学品II"]},{"id":"sw30","name":"通信","icon":"📡","color":"#3b82f6","children":["通信网络设备","通信运营","通信服务","光通信","卫星通信"]},{"id":"sw31","name":"传媒","icon":"🎬","color":"#3b82f6","children":["影视院线","广告营销","游戏","出版","广播电视","数字媒体","有线网络"]}];
+var SW=[{"id": "sw1", "name": "农林牧渔", "icon": "🌾", "color": "#22d3ee", "children": [{"name": "种植业", "children": ["种子", "粮食种植", "其他种植业"]}, {"name": "渔业", "children": ["海洋捕捞", "水产养殖", "其他渔业"]}, {"name": "林业", "children": ["木材采运", "林产品采集", "其他林业"]}, {"name": "畜禽养殖", "children": ["生猪养殖", "肉鸡养殖", "其他畜禽养殖"]}, {"name": "饲料", "children": ["畜禽饲料", "水产饲料", "其他饲料"]}, {"name": "农产品加工", "children": ["果蔬加工", "粮油加工", "其他农产品加工"]}, {"name": "农业综合", "children": ["农业服务", "土地流转", "其他农业综合"]}]}, {"id": "sw2", "name": "食品饮料", "icon": "🍶", "color": "#fbbf24", "children": [{"name": "白酒", "children": ["高端白酒", "次高端白酒", "中低端白酒"]}, {"name": "啤酒", "children": ["工业啤酒", "精酿啤酒"]}, {"name": "葡萄酒", "children": ["国产葡萄酒", "进口葡萄酒代理"]}, {"name": "其他酒类", "children": ["黄酒", "果酒", "其他酒"]}, {"name": "软饮料", "children": ["碳酸饮料", "茶饮料", "果汁饮料", "功能饮料", "其他软饮料"]}, {"name": "乳制品", "children": ["液态奶", "奶粉", "奶酪", "其他乳制品"]}, {"name": "调味品", "children": ["酱油", "醋", "复合调味料", "其他调味品"]}, {"name": "肉制品", "children": ["低温肉制品", "高温肉制品", "其他肉制品"]}, {"name": "食品综合", "children": ["休闲食品", "烘焙食品", "速冻食品", "其他食品"]}]}, {"id": "sw3", "name": "纺织服饰", "icon": "👔", "color": "#fb7185", "children": [{"name": "纺织", "children": ["棉纺", "毛纺", "化纤纺织", "印染", "其他纺织"]}, {"name": "服装", "children": ["男装", "女装", "休闲运动装", "童装", "内衣", "其他服装"]}, {"name": "鞋帽", "children": ["皮鞋", "运动鞋", "布鞋", "其他鞋类"]}, {"name": "家纺", "children": ["床品", "毛巾", "窗帘", "其他家用纺织品"]}]}, {"id": "sw4", "name": "轻工制造", "icon": "📦", "color": "#34d399", "children": [{"name": "造纸", "children": ["文化纸", "包装纸", "特种纸", "生活用纸"]}, {"name": "包装印刷", "children": ["纸包装", "塑料包装", "金属包装", "玻璃包装", "印刷"]}, {"name": "家具", "children": ["板式家具", "实木家具", "软体家具", "办公家具"]}, {"name": "文教用品", "children": ["文具", "体育器材", "乐器", "其他文教"]}, {"name": "珠宝首饰", "children": ["黄金首饰", "钻石首饰", "翡翠玉石", "其他珠宝"]}, {"name": "其他轻工", "children": ["玩具", "日化用品", "服装辅料"]}]}, {"id": "sw5", "name": "医药生物", "icon": "💊", "color": "#fb7185", "children": [{"name": "化学制药", "children": ["化学原料药", "化学制剂(仿制药)", "化学制剂(创新药)"]}, {"name": "中药", "children": ["中药饮片", "中成药(品牌OTC)", "中成药(处方药)"]}, {"name": "生物制品", "children": ["疫苗", "血制品", "其他生物制品"]}, {"name": "医药商业", "children": ["医药流通(批发)", "医药零售(药店)"]}, {"name": "医疗器械", "children": ["医疗设备", "高值耗材", "低值耗材", "体外诊断(IVD)"]}, {"name": "医疗服务", "children": ["综合医院", "专科医院", "第三方检测中心", "医疗信息化"]}]}, {"id": "sw6", "name": "公用事业", "icon": "⚡", "color": "#f97316", "children": [{"name": "电力", "children": ["火电", "水电", "核电", "风电", "光伏发电", "生物质发电"]}, {"name": "燃气", "children": ["城市燃气", "天然气管道"]}, {"name": "水务", "children": ["自来水供应", "污水处理", "水环境治理"]}, {"name": "环保", "children": ["大气治理", "固废处理", "土壤修复", "环保技术服务"]}]}, {"id": "sw7", "name": "交通运输", "icon": "🚄", "color": "#f97316", "children": [{"name": "铁路运输", "children": ["铁路客运", "铁路货运"]}, {"name": "公路运输", "children": ["公路客运", "公路货运"]}, {"name": "航空运输", "children": ["民航客运", "民航货运", "机场服务"]}, {"name": "水上运输", "children": ["远洋运输", "沿海运输", "内河运输", "港口服务"]}, {"name": "物流", "children": ["快递", "零担快运", "合同物流", "国际货代"]}]}, {"id": "sw8", "name": "房地产", "icon": "🏘️", "color": "#f97316", "children": [{"name": "住宅开发", "children": ["一线城市住宅", "二线城市住宅", "三四线住宅"]}, {"name": "商业地产", "children": ["购物中心", "写字楼", "商业综合体"]}, {"name": "产业地产", "children": ["园区开发", "物流地产", "工业厂房"]}, {"name": "房地产服务", "children": ["物业管理", "房产经纪", "房屋租赁"]}]}, {"id": "sw9", "name": "商贸零售", "icon": "🛒", "color": "#fbbf24", "children": [{"name": "一般零售", "children": ["百货商场", "超市", "便利店", "其他零售"]}, {"name": "专业零售", "children": ["家电零售", "家居零售", "医药零售", "其他专业零售"]}, {"name": "贸易代理", "children": ["大宗商品贸易", "进出口代理", "其他贸易"]}, {"name": "电子商务", "children": ["B2B电商", "B2C电商", "跨境电商", "社交电商"]}]}, {"id": "sw10", "name": "社会服务", "icon": "🎭", "color": "#fbbf24", "children": [{"name": "酒店", "children": ["经济型酒店", "中高端酒店", "民宿短租"]}, {"name": "餐饮", "children": ["正餐", "快餐", "火锅", "其他餐饮"]}, {"name": "旅游综合", "children": ["旅行社", "景区运营", "旅游演艺", "其他旅游服务"]}, {"name": "教育服务", "children": ["线下培训", "在线教育", "实训基地"]}]}, {"id": "sw11", "name": "美容护理", "icon": "💄", "color": "#fb7185", "children": [{"name": "美容", "children": ["美容院线", "医疗美容", "其他美容"]}, {"name": "化妆品", "children": ["护肤品", "彩妆", "化妆品代工"]}, {"name": "个护用品", "children": ["口腔护理", "洗护用品", "卫生用品"]}]}, {"id": "sw12", "name": "银行", "icon": "🏦", "color": "#eab308", "children": [{"name": "国有大型银行", "children": ["工商银行", "农业银行", "中国银行", "建设银行", "交通银行"]}, {"name": "股份制银行", "children": ["招商银行", "浦发银行", "中信银行", "兴业银行", "其他股份行"]}, {"name": "城商行", "children": ["北京银行", "上海银行", "南京银行", "其他城商行"]}, {"name": "农商行", "children": ["重庆农商行", "上海农商行", "其他农商行"]}]}, {"id": "sw13", "name": "非银金融", "icon": "💰", "color": "#eab308", "children": [{"name": "证券", "children": ["传统券商", "互联网券商", "投资银行"]}, {"name": "保险", "children": ["寿险", "财险", "健康险", "再保险"]}, {"name": "信托", "children": ["信托公司", "信托产品管理"]}, {"name": "金融控股", "children": ["金控集团", "地方金控"]}, {"name": "其他非银", "children": ["期货公司", "融资租赁", "金融科技"]}]}, {"id": "sw14", "name": "综合", "icon": "📊", "color": "#94a3b8", "children": [{"name": "综合类", "children": ["综合投资", "综合性企业", "其他综合"]}]}, {"id": "sw15", "name": "建筑材料", "icon": "🧱", "color": "#fb923c", "children": [{"name": "水泥", "children": ["水泥制造", "水泥熟料", "其他水泥制品"]}, {"name": "玻璃", "children": ["浮法玻璃", "光伏玻璃", "药用玻璃", "其他玻璃"]}, {"name": "陶瓷", "children": ["建筑陶瓷", "卫生陶瓷", "其他陶瓷"]}, {"name": "耐火材料", "children": ["定形耐火材料", "不定形耐火材料"]}, {"name": "其他建材", "children": ["管材管件", "防水材料", "石膏板", "其他新型建材"]}]}, {"id": "sw16", "name": "建筑装饰", "icon": "🏗️", "color": "#fb923c", "children": [{"name": "房屋建设", "children": ["住宅建设", "商业建筑", "保障房建设"]}, {"name": "基础设施建设", "children": ["铁路", "公路", "桥梁隧道", "港口机场", "水利水电", "其他基建"]}, {"name": "专业工程", "children": ["钢结构工程", "幕墙工程", "装饰装修", "园林工程", "其他专业"]}, {"name": "工程咨询服务", "children": ["勘察设计", "监理", "检测评估", "其他工程服务"]}]}, {"id": "sw17", "name": "电力设备", "icon": "🔋", "color": "#22d3ee", "children": [{"name": "光伏", "children": ["硅料", "硅片", "电池片", "组件", "逆变器", "光伏电站运营"]}, {"name": "风电", "children": ["风机整机", "叶片", "塔筒", "齿轮箱", "其他风电零部件"]}, {"name": "核电", "children": ["核电站运营", "核岛设备", "常规岛设备"]}, {"name": "储能", "children": ["锂电池储能", "铅酸电池储能", "其他储能技术"]}, {"name": "输变电设备", "children": ["变压器", "开关设备", "电线电缆", "其他输变电"]}, {"name": "电机", "children": ["普通电机", "特种电机", "其他电机"]}, {"name": "锂电设备", "children": ["前段设备", "中段设备", "后段设备"]}]}, {"id": "sw18", "name": "机械设备", "icon": "⚙️", "color": "#22d3ee", "children": [{"name": "工程机械", "children": ["挖掘机", "起重机", "装载机", "推土机", "压路机", "其他工程机械"]}, {"name": "机床", "children": ["数控金属切削机床", "数控金属成型机床", "其他机床"]}, {"name": "通用设备", "children": ["泵", "阀门", "压缩机", "风机", "减速机", "其他通用设备"]}, {"name": "专用设备", "children": ["纺织机械", "印刷机械", "塑料机械", "矿山机械", "其他专用设备"]}, {"name": "仪器仪表", "children": ["传感器", "自动化仪表", "电工仪器仪表", "其他仪器仪表"]}]}, {"id": "sw19", "name": "汽车", "icon": "🚗", "color": "#22d3ee", "children": [{"name": "乘用车", "children": ["轿车", "SUV", "MPV", "其他乘用车"]}, {"name": "商用车", "children": ["重卡", "轻卡", "客车", "专用车"]}, {"name": "汽车零部件", "children": ["发动机系统", "传动系统", "底盘系统", "电子系统", "车身内饰"]}, {"name": "汽车服务", "children": ["经销商集团", "汽车维修保养", "汽车金融租赁"]}, {"name": "摩托车", "children": ["摩托车整车", "电动车(两轮)", "其他"]}]}, {"id": "sw20", "name": "家用电器", "icon": "🏠", "color": "#fbbf24", "children": [{"name": "白电", "children": ["空调", "冰箱", "洗衣机", "厨卫电器"]}, {"name": "黑电", "children": ["彩电", "音响", "家庭影院"]}, {"name": "小家电", "children": ["厨房小家电", "清洁电器", "个人护理电器", "其他小家电"]}, {"name": "照明", "children": ["LED照明", "传统照明", "照明工程"]}, {"name": "家电零部件", "children": ["压缩机", "电机", "控制器", "其他零部件"]}]}, {"id": "sw21", "name": "有色金属", "icon": "🪨", "color": "#fb923c", "children": [{"name": "工业金属", "children": ["铜", "铝", "锌", "铅", "镍", "锡", "其他工业金属"]}, {"name": "黄金", "children": ["黄金开采", "黄金冶炼", "黄金饰品"]}, {"name": "稀有金属", "children": ["锂", "钴", "稀土", "钨", "钼", "钛", "其他稀有金属"]}, {"name": "金属新材料", "children": ["超导材料", "磁性材料", "硬质合金", "其他新材料"]}]}, {"id": "sw22", "name": "钢铁", "icon": "🔩", "color": "#fb923c", "children": [{"name": "普钢", "children": ["长材(螺纹钢线材)", "板材(热轧冷轧)", "管材", "其他普钢"]}, {"name": "特钢", "children": ["合金结构钢", "不锈钢", "工具钢", "其他特钢"]}, {"name": "铁合金", "children": ["硅铁", "锰铁", "铬铁", "其他铁合金"]}, {"name": "冶金原料", "children": ["焦炭", "铁精粉", "废钢"]}]}, {"id": "sw23", "name": "基础化工", "icon": "🧪", "color": "#fb923c", "children": [{"name": "石油化工", "children": ["炼油", "乙烯丙烯", "芳烃", "其他石化"]}, {"name": "基础化工", "children": ["烧碱纯碱", "硫酸硝酸", "氯碱", "其他基础化工"]}, {"name": "化肥农药", "children": ["氮肥", "磷肥", "钾肥", "复合肥", "农药原药", "农药制剂"]}, {"name": "专用化学品", "children": ["涂料染料", "胶粘剂", "催化剂", "电子化学品", "其他专用化学"]}, {"name": "化纤", "children": ["涤纶", "锦纶", "粘胶", "氨纶", "其他化纤"]}, {"name": "塑料橡胶", "children": ["通用塑料", "工程塑料", "合成橡胶", "轮胎", "其他橡塑制品"]}]}, {"id": "sw24", "name": "石油石化", "icon": "🛢️", "color": "#fb923c", "children": [{"name": "石油开采", "children": ["原油开采", "天然气开采", "油砂"]}, {"name": "炼化", "children": ["炼油", "乙烯", "芳烃", "其他炼化"]}, {"name": "油田服务", "children": ["钻井服务", "完井服务", "油田技术服务"]}, {"name": "油气储运", "children": ["油气管道", "储油设施", "LNG接收站"]}]}, {"id": "sw25", "name": "煤炭", "icon": "🪨", "color": "#fb923c", "children": [{"name": "动力煤", "children": ["动力煤开采", "动力煤洗选", "动力煤贸易"]}, {"name": "焦煤", "children": ["焦煤开采", "焦煤洗选"]}, {"name": "焦炭", "children": ["焦炭生产", "焦化副产品"]}, {"name": "煤化工", "children": ["煤制甲醇", "煤制烯烃", "煤制油", "其他煤化工"]}]}, {"id": "sw26", "name": "国防军工", "icon": "🛡️", "color": "#22d3ee", "children": [{"name": "航空装备", "children": ["飞机整机", "航空发动机", "机载系统", "航空零部件"]}, {"name": "航天装备", "children": ["卫星制造", "火箭制造", "航天器地面设备"]}, {"name": "地面兵装", "children": ["坦克装甲车辆", "火炮", "弹药", "其他地面武器"]}, {"name": "船舶制造", "children": ["军用舰船", "特种船", "船用配套"]}, {"name": "军工电子", "children": ["军用电子元器件", "军用雷达", "通信设备", "军工信息化"]}]}, {"id": "sw27", "name": "计算机", "icon": "💻", "color": "#3b82f6", "children": [{"name": "软件开发", "children": ["操作系统", "数据库", "应用软件(通用)", "应用软件(行业)"]}, {"name": "IT服务", "children": ["IT咨询", "系统集成", "运维服务", "其他IT服务"]}, {"name": "云计算", "children": ["IaaS", "PaaS", "SaaS"]}, {"name": "人工智能", "children": ["AI芯片", "AI软件框架", "AI应用解决方案"]}, {"name": "信息安全", "children": ["安全硬件", "安全软件", "安全服务"]}, {"name": "计算机设备", "children": ["PC及服务器", "云计算基础设施", "其他计算机硬件"]}]}, {"id": "sw28", "name": "电子", "icon": "🔬", "color": "#3b82f6", "children": [{"name": "半导体", "children": ["集成电路设计", "集成电路制造", "封装测试", "半导体材料", "半导体设备"]}, {"name": "芯片设计", "children": ["EDA工具", "IP核", "AI芯片设计", "SoC设计", "模拟芯片设计"]}, {"name": "消费电子", "children": ["智能手机产业链", "可穿戴设备", "其他消费电子"]}, {"name": "电子元件", "children": ["被动元件(电容电阻电感)", "PCB(印刷电路板)", "其他电子元件"]}, {"name": "光学光电子", "children": ["液晶面板", "LED", "光学元件", "其他光电子"]}, {"name": "电子化学品", "children": ["光刻胶", "电子特气", "湿电子化学品", "其他电子化学品"]}]}, {"id": "sw29", "name": "通信", "icon": "📡", "color": "#3b82f6", "children": [{"name": "通信网络设备", "children": ["基站设备", "传输设备", "数据通信设备", "其他通信设备"]}, {"name": "通信运营", "children": ["移动通信运营", "固网通信运营", "虚拟运营商"]}, {"name": "通信服务", "children": ["通信技术服务", "IDC服务", "CDN服务"]}, {"name": "光通信", "children": ["光纤光缆", "光模块", "光器件", "光设备"]}, {"name": "卫星通信", "children": ["卫星制造", "地面终端", "卫星运营服务"]}]}, {"id": "sw30", "name": "传媒", "icon": "🎬", "color": "#3b82f6", "children": [{"name": "影视院线", "children": ["电影制作发行", "电视剧制作", "院线", "其他影视"]}, {"name": "广告营销", "children": ["线上广告", "线下广告", "广告代理"]}, {"name": "游戏", "children": ["客户端游戏", "移动游戏", "游戏发行运营"]}, {"name": "出版", "children": ["图书出版", "报纸出版", "数字出版"]}, {"name": "广播电视", "children": ["有线电视网络", "广播电台", "电视媒体"]}, {"name": "数字媒体", "children": ["网络文学", "动漫", "短视频", "直播"]}]}];
+
+// Company/encyclopedia links for tertiary research (expand as user adds research)
+var RS={}; // {三级行业名: 链接} e.g. {"集成电路设计":"chip-design-encyclopedia.html"}
 var CSW2={"兆易创新":"半导体","生益科技":"电子元件","宁德时代":"电池","比亚迪":"乘用车","特斯拉":"乘用车","赛力斯":"乘用车","同仁堂":"中药","达仁堂":"中药","马应龙":"中药","浙江震元":"医药商业","宋城演艺":"旅游景区","上海机场":"机场","中信证券":"证券","云铝股份":"铝","埃斯顿":"自动化设备","新松机器人":"自动化设备","科沃斯":"小家电","石头科技":"小家电","英伟达":"芯片设计","高通":"芯片设计","AMD":"芯片设计","博通":"芯片设计","联发科":"芯片设计","华为海思":"芯片设计","韦尔股份":"芯片设计","Synopsys":"芯片设计","Cadence":"芯片设计","芯原股份":"芯片设计","创意电子":"芯片设计"};
 var CL={"兆易创新":"603986.html","生益科技":"600183.html","宁德时代":"ningde.html","赛力斯":"601127.html","同仁堂":"600085.html","达仁堂":"600329.html","马应龙":"600993.html","浙江震元":"000705.html","宋城演艺":"300144.html","上海机场":"600009.html","中信证券":"600030.html","云铝股份":"000807.html","埃斯顿":"robot-encyclopedia.html","新松机器人":"robot-encyclopedia.html","科沃斯":"robot-encyclopedia.html","石头科技":"robot-encyclopedia.html"};
 var IL={"电子":"chip-industry-encyclopedia.html","芯片设计":"chip-design-encyclopedia.html","汽车":"auto-industry-encyclopedia.html","自动化设备":"robot-encyclopedia.html"};
 
-// ===== Level 1: HTML Grid =====
 function showL1(){
-  document.getElementById('l1').style.display='block';
-  document.getElementById('l2').style.display='none';
+  document.getElementById('l1').style.display='block';document.getElementById('l2').style.display='none';
   document.getElementById('bc').innerHTML='<span class="cur">🌌 全行业</span>';
-  var html='<div class="t">申万行业分类 · 31个一级行业</div><div class="l1-g">';
+  var h='<div class="t">申万行业分类 · 31一级 → 134二级 → 346三级</div><div class="l1-g">';
   SW.forEach(function(d){
-    var cnt=(d.children||[]).length;
-    var has=!!IL[d.name];
-    html+='<div class="l1-i" onclick="showL2(\''+d.id+'\')" style="border-left:2px solid '+(has?'#22d3ee':d.color||'#6366f1')+'">'+
-      '<div class="ic">'+d.icon+'</div>'+
-      '<div class="nm">'+d.name+'</div>'+
-      '<div class="ct">'+cnt+'个二级</div>'+
-      '</div>';
+    var cnt=0;(d.children||[]).forEach(function(s){cnt+=(s.children||[]).length;});
+    h+='<div class="l1-i" data-swid="'+d.id+'" style="border-left:2px solid '+(d.color||'#6366f1')+'">'+
+      '<div class="ic">'+d.icon+'</div><div class="nm">'+d.name+'</div><div class="ct">'+cnt+'个三级</div></div>';
   });
-  html+='</div>';
-  document.getElementById('l1').innerHTML=html;
+  document.getElementById('l1').innerHTML=h+'</div>';
+  // Event delegation for grid clicks
+  document.getElementById('l1').onclick=function(e){
+    var el=e.target.closest('.l1-i');
+    if(el&&el.dataset.swid)showL2(el.dataset.swid);
+  };
 }
 
-// ===== Level 2: ECharts Force Graph =====
-var chart = echarts.init(document.getElementById('c'));
-var curSw1 = null;
-
+var chart=echarts.init(document.getElementById('c')),curSw1=null;
 function showL2(id){
-  var s=SW.find(function(d){return d.id===id});
-  if(!s)return;
-  curSw1=id;
-  document.getElementById('l1').style.display='none';
-  document.getElementById('l2').style.display='block';
+  var s=SW.find(function(d){return d.id===id});if(!s)return;
+  curSw1=id;document.getElementById('l1').style.display='none';document.getElementById('l2').style.display='block';
   document.getElementById('bc').innerHTML='<span onclick="showL1()" style="cursor:pointer">🌌</span><span style="color:rgba(148,163,184,0.15)"> › </span><span class="cur">'+s.icon+' '+s.name+'</span>';
-  
-  var hi=!!IL[s.name],n=[],l=[];
-  n.push({name:s.icon+' '+s.name+(hi?' 🔬':''),symbolSize:28,itemStyle:{color:s.color||'#a78bfa',shadowBlur:15,shadowColor:(s.color||'#a78bfa')+'80'},id:id,_is:true});
+  var n=[],l=[];
+  // Back button
   n.push({name:'← 返回',symbolSize:12,itemStyle:{color:'rgba(167,139,250,0.2)'},id:'b'});
-  l.push({source:'b',target:id});
+  l.push({source:'b',target:'hub-'+id});
+  // Hub
+  n.push({name:s.icon+' '+s.name,symbolSize:22,itemStyle:{color:s.color||'#a78bfa',shadowBlur:10,shadowColor:(s.color||'#a78bfa')+'60'},id:'hub-'+id});
   (s.children||[]).forEach(function(c){
-    var cos=[];for(var k in CSW2){if(CSW2[k]===c)cos.push(k);}
-    var hc=cos.length>0;var il=IL[c];
-    var sz=hc?16:(il?14:12);
-    var cl=il?'#22d3ee':(hc?'#34d399':'#94a3b8');
-    var mk=il?' 🔬':(hc?' 📄':'');
-    n.push({name:c+mk,symbolSize:sz,itemStyle:{color:cl,shadowBlur:hc||il?8:0,shadowColor:cl+'40'},id:'s-'+c,_cos:cos,_desc:cos.length?cos.length+'家关联企业':(il?'有行业百科':''),_il:il});
-    l.push({source:id,target:'s-'+c});
+    var tid='s2-'+c.name;
+    n.push({name:c.name,symbolSize:12,itemStyle:{color:s.color||'#6366f1'},id:tid});
+    l.push({source:'hub-'+id,target:tid});
+    (c.children||[]).forEach(function(t){
+      var has=!!RS[t];
+      n.push({name:t,symbolSize:has?8:5,itemStyle:{color:has?'#34d399':'rgba(148,163,184,0.25)'},id:'t3-'+t,_t3:t,_has:has});
+      l.push({source:tid,target:'t3-'+t});
+    });
   });
-  
   chart.setOption({
     backgroundColor:'transparent',
     tooltip:{show:true,trigger:'item',backgroundColor:'rgba(10,10,30,0.92)',borderColor:'rgba(167,139,250,0.15)',borderWidth:1,borderRadius:8,padding:[8,12],
       formatter:function(p){
         if(!p.data||p.dataType!=='node')return'';
         var d=p.data;var lt=document.body.classList.contains('light');
-        var h='<div style="font-size:12px;font-weight:700;color:'+(lt?'#333':'#e2e8f0')+'">'+(d._icon||'')+' '+d.name+'</div>';
-        if(d._desc)h+='<div style="font-size:9px;color:'+(lt?'#666':'#94a3b8')+';margin-top:2px">'+d._desc+'</div>';
-        if(d._cos&&d._cos.length){h+='<div style="font-size:8px;color:'+(lt?'rgba(99,102,241,0.6)':'rgba(167,139,250,0.6)')+';margin-top:3px">关联企业：</div>';d._cos.forEach(function(co){h+='<div '+(CL[co]?'style="color:#34d399"':'')+' style="font-size:8px;padding:1px 0">'+(CL[co]?'📄 ':'· ')+co+'</div>';});}
+        var h='<div style="font-size:11px;font-weight:700;color:'+(lt?'#333':'#e2e8f0')+'">'+d.name+'</div>';
+        if(d._t3)h+='<div style="font-size:9px;color:'+(lt?'#666':'#94a3b8')+';margin-top:2px">'+(d._has?'📄 已有研究 点击查看':'🔬 待研究')+'</div>';
         return h;
       }
     },
     series:[{
       type:'graph',layout:'force',roam:true,
-      force:{repulsion:250,edgeLength:[80,200],gravity:0.06,friction:0.2,layoutAnimation:true},
+      force:{repulsion:200,edgeLength:[30,120],gravity:0.08,friction:0.2,layoutAnimation:true},
       data:n,links:l,
-      label:{show:true,fontSize:8.5,color:'#94a3b8'},
-      lineStyle:{color:'rgba(255,255,255,0.1)',width:0.4},
-      emphasis:{focus:'adjacency',scale:1.25,lineStyle:{width:1.5,opacity:0.4}},
+      label:{show:true,fontSize:7.5,color:'#94a3b8'},
+      lineStyle:{color:'rgba(255,255,255,0.08)',width:0.3},
+      emphasis:{focus:'adjacency',scale:1.2,lineStyle:{width:1.5,opacity:0.4}},
       nodeClick:false,
     }]
   });
-
-  // Resize after display (container starts hidden)
-  setTimeout(function(){chart.resize()}, 50);
+  setTimeout(function(){chart.resize()},50);
 }
 
 chart.on('click',function(p){
-  if(!p.data||p.dataType!=='node'){if(curSw1)showL2(curSw1);return;}
+  if(!p.data||p.dataType!=='node')return;
   var d=p.data;
   if(d.id==='b'){showL1();return;}
-  if(d._is){var sw=SW.find(function(x){return x.id===d.id});if(sw&&IL[sw.name])window.open(IL[sw.name],'_blank');return;}
-  if(d._il){window.open(d._il,'_blank');return;}
+  if(d._t3&&d._has){var lk=RS[d._t3];if(lk)window.open(lk,'_blank');}
 });
 
-// ===== Search =====
 function srch(v){
   var q=v.trim().toLowerCase();if(!q){var o=document.getElementById('sr');if(o)o.remove();return;}
   var r=[];
   SW.forEach(function(d){
     if(d.name.toLowerCase().includes(q))r.push({t:d.icon+' '+d.name,a:function(){showL2(d.id);}});
-    (d.children||[]).forEach(function(c){if(c.toLowerCase().includes(q))r.push({t:'📁 '+c,a:function(){showL2(d.id);}});});
+    (d.children||[]).forEach(function(c){
+      if(c.name.toLowerCase().includes(q))r.push({t:'📁 '+c.name,a:function(){showL2(d.id);}});
+      (c.children||[]).forEach(function(t){if(t.toLowerCase().includes(q))r.push({t:'📂 '+t,a:function(){showL2(d.id);}});});
+    });
   });
-  for(var k in CSW2){if(k.toLowerCase().includes(q)&&CL[k]){(function(kk){r.push({t:'🏢 '+kk,a:function(){window.open(CL[kk],'_blank');}});})(k);}}
   if(!r.length)return;
   r=r.filter(function(i,x,a){return a.findIndex(function(j){return j.t===i.t})===x;}).slice(0,8);
   var e=document.createElement('div');e.id='sr';
@@ -180,18 +156,16 @@ function srch(v){
 }
 document.addEventListener('click',function(e){if(!e.target.closest('#in')&&!e.target.closest('#sr')){var o=document.getElementById('sr');if(o)o.remove();}});
 
-// ===== Theme =====
 function applyTheme(t){document.body.classList.toggle('light',t==='light')}
 (function(){var t=localStorage.getItem('portal_theme');if(t==='light')applyTheme('light');window.addEventListener('message',function(e){if(e.data&&typeof e.data.theme==='string')applyTheme(e.data.theme);if(e.data&&e.data.backToIndustrySelect)goBack();});})();
 
 function goBack(){if(window.parent&&window.parent!==window){window.parent.postMessage({backToIndustrySelect:true},'*');}else{window.location.href='index.html';}}
 
-// ===== Init =====
 showL1();
 window.addEventListener('resize',function(){if(chart)chart.resize()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(curSw1)showL1();else goBack();}});
 setTimeout(function(){var h=document.getElementById('hint');if(h)h.style.opacity='0'},5000);
-console.log('Starmap v5 loaded');
+console.log('Starmap v6 (3-level) loaded');
 </script>
 </body>
 </html>
