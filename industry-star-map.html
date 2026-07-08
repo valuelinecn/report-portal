@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>🌌 产业星图 · 全行业关系图谱</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Noto Sans SC',-apple-system,sans-serif;
+  background:#06061a;color:#e2e8f0;overflow:hidden;height:100vh;
+  user-select:none;-webkit-user-select:none;
+}
+#canvasWrap{position:relative;width:100%;height:100vh}
+canvas{display:block;width:100%;height:100%}
+
+/* Info Panel */
+#infoPanel{
+  position:fixed;bottom:30px;left:50%;transform:translateX(-50%);
+  background:rgba(10,10,30,0.85);backdrop-filter:blur(12px);
+  border:1px solid rgba(167,139,250,0.2);border-radius:16px;
+  padding:16px 24px;max-width:500px;width:90%;
+  text-align:center;opacity:0;transition:all .4s;
+  pointer-events:none;z-index:10;
+}
+#infoPanel.show{opacity:1;pointer-events:auto}
+#infoPanel .ip-icon{font-size:1.8rem;margin-bottom:4px}
+#infoPanel .ip-title{font-size:.9rem;font-weight:700;margin-bottom:2px}
+#infoPanel .ip-desc{font-size:.64rem;color:var(--t4,#94a3b8);margin-bottom:6px;line-height:1.5}
+#infoPanel .ip-path{font-size:.52rem;color:rgba(167,139,250,0.6)}
+#infoPanel .ip-btn{
+  display:inline-block;margin-top:6px;padding:6px 18px;border-radius:8px;
+  background:rgba(167,139,250,0.15);color:#a78bfa;font-size:.6rem;font-weight:600;
+  border:1px solid rgba(167,139,250,0.25);cursor:pointer;transition:all .2s;
+}
+#infoPanel .ip-btn:hover{background:rgba(167,139,250,0.25)}
+
+/* Top right legend */
+#legend{
+  position:fixed;top:16px;right:16px;z-index:5;
+  font-size:.5rem;color:rgba(148,163,184,0.6);
+  text-align:right;line-height:1.6;
+}
+#legend span{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
+#legend .l1{background:#a78bfa;box-shadow:0 0 6px #a78bfa80}
+#legend .l2{background:#6366f1;box-shadow:0 0 4px #6366f180}
+#legend .l3{background:#3b82f6;box-shadow:0 0 2px #3b82f680}
+
+/* Back button */
+#backBtn{
+  position:fixed;top:16px;left:16px;z-index:5;
+  background:rgba(10,10,30,0.6);border:1px solid rgba(167,139,250,0.15);
+  border-radius:10px;padding:6px 12px;cursor:pointer;
+  font-size:.6rem;color:rgba(167,139,250,0.7);transition:all .2s;
+  display:flex;align-items:center;gap:4px;backdrop-filter:blur(8px);
+}
+#backBtn:hover{background:rgba(167,139,250,0.1);color:#a78bfa}
+
+@media(max-width:768px){
+  #infoPanel{bottom:16px;padding:12px 16px}
+  #infoPanel .ip-icon{font-size:1.4rem}
+  #legend{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="canvasWrap"><canvas id="starCanvas"></canvas></div>
+
+<div id="backBtn" onclick="goBack()">← 返回门户</div>
+
+<div id="legend">
+  <div><span class="l1"></span>产业 · 一级赛道</div>
+  <div><span class="l2"></span>细分赛道 · 子行业</div>
+  <div><span class="l3"></span>代表企业</div>
+</div>
+
+<div id="infoPanel">
+  <div class="ip-icon" id="ipIcon">🌌</div>
+  <div class="ip-title" id="ipTitle">产业星图</div>
+  <div class="ip-desc" id="ipDesc">探索行业之间的关联</div>
+  <div class="ip-path" id="ipPath"></div>
+  <div class="ip-btn" id="ipBtn" onclick="navTo()">查看详情 →</div>
+</div>
+
+<script>
+// =====================================================================
+// 星图数据
+// =====================================================================
+const STAR_DATA = {
+  id:'hub',label:'产业星图',icon:'🌌',
+  desc:'点击星球探索行业关系',
+  children:[
+    // ===== 机器人 =====
+    {id:'robot',label:'机器人产业',icon:'🤖',desc:'人形机器人·工业·服务·无人机',file:'robot-encyclopedia.html',
+      children:[
+        {id:'robot-human',label:'人形机器人',icon:'🧍',desc:'通用人形·双臂协作·灵巧操作',file:'robot-encyclopedia.html#robots',
+          children:[
+            {id:'comp-ubt',label:'优必选',icon:'🏢',desc:'人形机器人龙头，Walker系列',isCompany:true,file:'robot-encyclopedia.html'},
+            {id:'comp-zhiyuan',label:'智元',icon:'🏢',desc:'智元机器人，A1人形',isCompany:true,file:'robot-encyclopedia.html'},
+            {id:'comp-yushu',label:'宇树',icon:'🏢',desc:'宇树科技，H1/Go2',isCompany:true,file:'robot-encyclopedia.html'},
+          ]},
+        {id:'robot-industrial',label:'工业机器人',icon:'🏭',desc:'焊接·喷涂·搬运·协作',file:'robot-encyclopedia.html#supply',
+          children:[
+            {id:'comp-estun',label:'埃斯顿',icon:'🏢',desc:'焊接机器人龙头',isCompany:true,file:'robot-encyclopedia.html'},
+            {id:'comp-xinsong',label:'新松',icon:'🏢',desc:'国产老牌龙头',isCompany:true,file:'robot-encyclopedia.html'},
+          ]},
+        {id:'robot-service',label:'服务/特种',icon:'🤖',desc:'清洁·医疗·巡检·配送',file:'robot-encyclopedia.html#supply',
+          children:[
+            {id:'comp-ecovacs',label:'科沃斯',icon:'🏢',desc:'家用清洁龙头',isCompany:true,file:'robot-encyclopedia.html'},
+            {id:'comp-stone',label:'石头科技',icon:'🏢',desc:'扫地第二极',isCompany:true,file:'robot-encyclopedia.html'},
+          ]},
+      ]},
+    // ===== 新能源车 =====
+    {id:'auto',label:'新能源乘用车',icon:'🚗',desc:'纯电·插混·增程·换电',file:'auto-industry-encyclopedia.html',
+      children:[
+        {id:'auto-ev',label:'纯电动',icon:'⚡',desc:'纯电驱动·大容量电池',file:'auto-industry-encyclopedia.html#category',
+          children:[
+            {id:'comp-byd',label:'比亚迪',icon:'🏢',desc:'新能源全球第一',isCompany:true,file:'auto-industry-encyclopedia.html'},
+            {id:'comp-tesla',label:'特斯拉',icon:'🏢',desc:'全球纯电标杆',isCompany:true,file:'auto-industry-encyclopedia.html'},
+            {id:'comp-nio',label:'蔚来',icon:'🏢',desc:'高端纯电+换电',isCompany:true,file:'auto-industry-encyclopedia.html'},
+            {id:'comp-xpeng',label:'小鹏',icon:'🏢',desc:'智驾领先',isCompany:true,file:'auto-industry-encyclopedia.html'},
+          ]},
+        {id:'auto-pshev',label:'插混/增程',icon:'🔄',desc:'双模·混动·增程',file:'auto-industry-encyclopedia.html#category',
+          children:[
+            {id:'comp-lixiang',label:'理想',icon:'🏢',desc:'增程SUV王者',isCompany:true,file:'auto-industry-encyclopedia.html'},
+            {id:'comp-serres',label:'赛力斯',icon:'🏢',desc:'华为智选伙伴',isCompany:true,file:'601127.html'},
+          ]},
+        {id:'auto-battery',label:'动力电池',icon:'🔋',desc:'电芯·模组·PACK·BMS',file:'auto-industry-encyclopedia.html#supplychain',
+          children:[
+            {id:'comp-catl',label:'宁德时代',icon:'🏢',desc:'全球动力电池第一',isCompany:true,file:'ningde.html'},
+          ]},
+      ]},
+    // ===== 半导体 =====
+    {id:'chip',label:'半导体',icon:'🔬',desc:'芯片设计·制造·封装·设备',file:'chip-industry-encyclopedia.html',
+      children:[
+        {id:'chip-fabless',label:'IC设计',icon:'🧠',desc:'CPU/GPU/AI/SoC通信模拟',file:'chip-industry-encyclopedia.html#enterprise',
+          children:[
+            {id:'comp-nvda',label:'英伟达',icon:'🏢',desc:'AI芯片之王',isCompany:true,file:'chip-industry-encyclopedia.html'},
+            {id:'comp-qcom',label:'高通',icon:'🏢',desc:'移动SoC之王',isCompany:true,file:'chip-industry-encyclopedia.html'},
+            {id:'comp-amd',label:'AMD',icon:'🏢',desc:'CPU/GPU双引擎',isCompany:true,file:'chip-industry-encyclopedia.html'},
+            {id:'comp-avgo',label:'博通',icon:'🏢',desc:'网络芯片之王',isCompany:true,file:'chip-industry-encyclopedia.html'},
+            {id:'comp-gd',label:'兆易创新',icon:'🏢',desc:'NOR Flash全球第三',isCompany:true,file:'603986.html'},
+          ]},
+        {id:'chip-mfg',label:'制造设备',icon:'⚡',desc:'晶圆代工·光刻·刻蚀·材料',file:'chip-industry-encyclopedia.html#supplychain',
+          children:[
+            {id:'comp-tsmc',label:'台积电',icon:'🏢',desc:'全球代工62%',isCompany:true,file:'chip-industry-encyclopedia.html'},
+            {id:'comp-smic',label:'中芯国际',icon:'🏢',desc:'大陆代工龙头',isCompany:true,file:'chip-industry-encyclopedia.html'},
+            {id:'comp-asml',label:'ASML',icon:'🏢',desc:'光刻机之王',isCompany:true,file:'chip-industry-encyclopedia.html'},
+            {id:'comp-naura',label:'北方华创',icon:'🏢',desc:'国产设备龙头',isCompany:true,file:'chip-industry-encyclopedia.html'},
+          ]},
+        {id:'chip-packaging',label:'封装测试',icon:'📦',desc:'先进封装·OSAT·存储',file:'chip-industry-encyclopedia.html#supplychain',
+          children:[
+            {id:'comp-ase',label:'日月光',icon:'🏢',desc:'全球封测第一',isCompany:true,file:'chip-industry-encyclopedia.html'},
+            {id:'comp-jcet',label:'长电科技',icon:'🏢',desc:'中国封测龙头',isCompany:true,file:'chip-industry-encyclopedia.html'},
+          ]},
+      ]},
+    // ===== 芯片设计 =====
+    {id:'chip-design',label:'芯片设计',icon:'✏️',desc:'架构·EDA·IP·设计到流片',file:'chip-design-encyclopedia.html',
+      children:[
+        {id:'cd-eda',label:'EDA工具',icon:'📐',desc:'全流程芯片设计工具',file:'chip-design-encyclopedia.html#supplychain',
+          children:[
+            {id:'comp-snps',label:'Synopsys',icon:'🏢',desc:'EDA第一~35%',isCompany:true,file:'chip-design-encyclopedia.html'},
+            {id:'comp-cdns',label:'Cadence',icon:'🏢',desc:'EDA第二~30%',isCompany:true,file:'chip-design-encyclopedia.html'},
+            {id:'comp-empyrean',label:'华大九天',icon:'🏢',desc:'国产EDA第一·模拟领先',isCompany:true,file:'chip-design-encyclopedia.html'},
+          ]},
+        {id:'cd-ip',label:'IP核',icon:'🧩',desc:'CPU/GPU/接口IP授权',file:'chip-design-encyclopedia.html#supplychain',
+          children:[
+            {id:'comp-arm',label:'Arm',icon:'🏢',desc:'移动CPU IP>90%',isCompany:true,file:'chip-design-encyclopedia.html'},
+            {id:'comp-verisilicon',label:'芯原股份',icon:'🏢',desc:'中国IP第一',isCompany:true,file:'chip-design-encyclopedia.html'},
+          ]},
+        {id:'cd-ai',label:'AI芯片',icon:'🧠',desc:'GPU·NPU·TPU架构',file:'chip-design-encyclopedia.html#category',
+          children:[
+            {id:'comp-nvda2',label:'英伟达',icon:'🏢',desc:'AI训练>85%',isCompany:true,file:'chip-design-encyclopedia.html'},
+            {id:'comp-hisilicon',label:'华为昇腾',icon:'🏢',desc:'国产AI芯片旗舰',isCompany:true,file:'chip-design-encyclopedia.html'},
+          ]},
+        {id:'cd-soc',label:'移动SoC',icon:'📱',desc:'手机SoC·AI手机·基带',file:'chip-design-encyclopedia.html#category',
+          children:[
+            {id:'comp-qcom2',label:'高通',icon:'🏢',desc:'骁龙旗舰>40%',isCompany:true,file:'chip-design-encyclopedia.html'},
+            {id:'comp-mtk',label:'联发科',icon:'🏢',desc:'SoC出货量第一',isCompany:true,file:'chip-design-encyclopedia.html'},
+          ]},
+      ]},
+  ]
+};
+
+// =====================================================================
+// 星图渲染引擎
+// =====================================================================
+const canvas = document.getElementById('starCanvas');
+const ctx = canvas.getContext('2d');
+let W, H, centerX, centerY;
+let animId = null;
+let nodes = [];
+let hoveredNode = null;
+let selectedNode = null;
+
+function resize(){
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width * window.devicePixelRatio;
+  canvas.height = rect.height * window.devicePixelRatio;
+  W = canvas.width; H = canvas.height;
+  centerX = W/2; centerY = H*0.45;
+  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+}
+
+// Background twinkling stars
+const bgStars = [];
+function initBgStars(count){
+  bgStars.length = 0;
+  for(let i=0;i<count;i++){
+    bgStars.push({
+      x:Math.random()*W, y:Math.random()*H,
+      r:Math.random()*1.5+0.3,
+      speed:Math.random()*0.02+0.005,
+      phase:Math.random()*Math.PI*2,
+      alpha:Math.random()*0.5+0.2,
+    });
+  }
+}
+
+function drawBgStars(time){
+  for(const s of bgStars){
+    const a = s.alpha * (0.5 + 0.5*Math.sin(time*s.speed + s.phase));
+    ctx.beginPath();
+    ctx.arc(s.x/dev, s.y/dev, s.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(200,210,255,${a})`;
+    ctx.fill();
+  }
+}
+
+let dev = 1;
+function getDeviceScale(){
+  dev = window.devicePixelRatio || 1;
+}
+
+// Build node tree from data
+function buildNodes(data, parent, depth, angle, angleSpan){
+  const node = {
+    id:data.id,
+    label:data.label,
+    icon:data.icon,
+    desc:data.desc||'',
+    file:data.file||null,
+    isCompany:data.isCompany||false,
+    children:[],
+    parent:parent,
+    depth:depth||0,
+    angle:angle||0,
+    x:0,y:0,
+    targetX:0,targetY:0,
+    radius:0, // computed
+    alpha:1,
+    glow:0,
+    vx:0,vy:0,
+  };
+  
+  // Size by depth
+  const sizes = [26, 18, 12, 8];
+  const colors = [
+    {main:'#a78bfa',glow:'#a78bfa80'},
+    {main:'#6366f1',glow:'#6366f180'},
+    {main:'#3b82f6',glow:'#3b82f680'},
+    {main:'#22d3ee',glow:'#22d3ee80'},
+  ];
+  node.radius = sizes[Math.min(node.depth, sizes.length-1)] * (W/800);
+  node.color = colors[Math.min(node.depth, colors.length-1)];
+  
+  nodes.push(node);
+  
+  if(data.children && data.children.length){
+    const n = data.children.length;
+    const span = angleSpan || Math.PI*0.4;
+    const start = angle - span/2;
+    for(let i=0;i<n;i++){
+      const childAngle = start + (i/(n-1||1))*span;
+      buildNodes(data.children[i], node, node.depth+1, childAngle, Math.PI*0.2);
+    }
+  }
+  
+  return node;
+}
+
+function layoutNodes(){
+  // Radial layout
+  for(const n of nodes){
+    if(!n.parent){
+      // Hub
+      n.targetX = centerX;
+      n.targetY = centerY;
+    } else {
+      const depth = n.depth;
+      const dist = (70 + depth*90) * (W/800);
+      const px = n.parent.targetX || centerX;
+      const py = n.parent.targetY || centerY;
+      // Scatter around parent with some randomness
+      const spread = 0.3 + depth*0.05;
+      const a = n.angle + (Math.random()-0.5)*spread;
+      n.targetX = px + Math.cos(a)*dist;
+      n.targetY = py + Math.sin(a)*dist;
+      // Keep in bounds
+      n.targetX = Math.max(40, Math.min(W-40, n.targetX));
+      n.targetY = Math.max(40, Math.min(H-40, n.targetY));
+    }
+    n.x = n.targetX;
+    n.y = n.targetY;
+  }
+}
+
+// Draw constellation lines
+function drawLines(){
+  for(const n of nodes){
+    if(!n.parent) continue;
+    const p = n.parent;
+    ctx.beginPath();
+    ctx.moveTo(p.x/dev, p.y/dev);
+    ctx.lineTo(n.x/dev, n.y/dev);
+    const a = Math.min(1, 0.08 + 0.07*(3-n.depth));
+    ctx.strokeStyle = `rgba(167,139,250,${a})`;
+    ctx.lineWidth = 0.5 * (W/800);
+    ctx.setLineDash([4,8]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+}
+
+// Draw a single star node
+function drawNode(n, time){
+  const x = n.x/dev, y = n.y/dev, r = n.radius;
+  const isHover = n === hoveredNode;
+  const isSel = n === selectedNode;
+  const pulse = 1 + 0.05*Math.sin(time*0.001 + n.id.length);
+  const scale = isHover ? 1.3 : 1;
+  const finalR = r * pulse * scale;
+  
+  // Glow
+  const grad = ctx.createRadialGradient(x, y, 0, x, y, finalR*3);
+  const glowAlpha = isHover ? 0.6 : (isSel ? 0.4 : 0.2);
+  grad.addColorStop(0, n.color.glow.replace('80', Math.floor(255*glowAlpha).toString(16).padStart(2,'0')));
+  grad.addColorStop(1, 'transparent');
+  ctx.beginPath();
+  ctx.arc(x, y, finalR*3, 0, Math.PI*2);
+  ctx.fillStyle = grad;
+  ctx.fill();
+  
+  // Core glow ring
+  if(isHover || isSel){
+    ctx.beginPath();
+    ctx.arc(x, y, finalR*1.5, 0, Math.PI*2);
+    ctx.strokeStyle = isHover ? 'rgba(255,255,255,0.3)' : 'rgba(167,139,250,0.4)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+  
+  // Star body
+  const bodyGrad = ctx.createRadialGradient(x-finalR*0.3, y-finalR*0.3, 0, x, y, finalR);
+  bodyGrad.addColorStop(0, '#ffffff');
+  bodyGrad.addColorStop(0.3, n.color.main);
+  bodyGrad.addColorStop(1, n.color.main.replace(')', ',0.6)').replace('rgb','rgba'));
+  ctx.beginPath();
+  ctx.arc(x, y, finalR, 0, Math.PI*2);
+  ctx.fillStyle = bodyGrad;
+  ctx.fill();
+  
+  // Highlight
+  ctx.beginPath();
+  ctx.arc(x-finalR*0.25, y-finalR*0.25, finalR*0.35, 0, Math.PI*2);
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.fill();
+  
+  // Icon text for larger nodes
+  if(finalR > 10 || isHover){
+    ctx.font = `${Math.min(finalR*1.2, 14)}px sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(n.icon, x, y);
+  }
+  
+  // Label
+  if(n.depth > 0 || isHover){
+    const fontSize = n.isCompany ? 8 : (n.depth <= 1 ? 10 : 9);
+    ctx.font = `${fontSize}px 'Noto Sans SC',sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    const labelY = y + finalR + 5;
+    // Shadow
+    ctx.fillStyle = 'rgba(6,6,26,0.7)';
+    ctx.fillRect(x-ctx.measureText(n.label).width/2-4, labelY-1, ctx.measureText(n.label).width+8, fontSize+4);
+    ctx.fillStyle = isHover ? '#ffffff' : (n.isCompany ? '#94a3b8' : '#e2e8f0');
+    ctx.fillText(n.label, x, labelY);
+  }
+}
+
+// Physics animation
+function animateNodes(){
+  for(const n of nodes){
+    const dx = n.targetX - n.x;
+    const dy = n.targetY - n.y;
+    const spring = 0.02;
+    n.vx += dx * spring;
+    n.vy += dy * spring;
+    n.vx *= 0.92;
+    n.vy *= 0.92;
+    n.x += n.vx;
+    n.y += n.vy;
+  }
+}
+
+// Hit testing
+function hitTest(mx, my){
+  let closest = null, minDist = Infinity;
+  for(const n of nodes){
+    const dx = n.x/dev - mx;
+    const dy = n.y/dev - my;
+    const d = Math.sqrt(dx*dx + dy*dy);
+    if(d < n.radius*1.5 + 20 && d < minDist){
+      minDist = d;
+      closest = n;
+    }
+  }
+  return closest;
+}
+
+// ===== RENDER LOOP =====
+function render(time){
+  ctx.clearRect(0, 0, W/dev, H/dev);
+  
+  // Background
+  const bgGrad = ctx.createRadialGradient(centerX/dev, centerY/dev, 0, centerX/dev, centerY/dev, W*0.7/dev);
+  bgGrad.addColorStop(0, '#0a0a2e');
+  bgGrad.addColorStop(0.5, '#06061a');
+  bgGrad.addColorStop(1, '#020210');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, W/dev, H/dev);
+  
+  // Twinkling stars
+  drawBgStars(time);
+  
+  // Constellation lines
+  drawLines();
+  
+  // Physics
+  animateNodes();
+  
+  // Nodes
+  const drawOrder = [...nodes].sort((a,b) => {
+    if(b===hoveredNode) return 1;
+    if(a===hoveredNode) return -1;
+    return (a.depth||0) - (b.depth||0);
+  });
+  for(const n of drawOrder){
+    drawNode(n, time);
+  }
+  
+  // Center glow
+  const cg = ctx.createRadialGradient(centerX/dev, centerY/dev, 0, centerX/dev, centerY/dev, 80*(W/800));
+  cg.addColorStop(0, 'rgba(167,139,250,0.08)');
+  cg.addColorStop(1, 'transparent');
+  ctx.fillStyle = cg;
+  ctx.fillRect(0, 0, W/dev, H/dev);
+  
+  animId = requestAnimationFrame(render);
+}
+
+// ===== INTERACTION =====
+let mouseX = -1, mouseY = -1;
+
+canvas.addEventListener('mousemove', function(e){
+  const rect = canvas.getBoundingClientRect();
+  mouseX = (e.clientX - rect.left) * (canvas.width/rect.width) / dev;
+  mouseY = (e.clientY - rect.top) * (canvas.height/rect.height) / dev;
+  const hit = hitTest(mouseX, mouseY);
+  hoveredNode = hit;
+  canvas.style.cursor = hit ? 'pointer' : 'default';
+  updateInfoPanel(hit);
+});
+
+canvas.addEventListener('mouseleave', function(){
+  hoveredNode = null;
+  canvas.style.cursor = 'default';
+  if(!selectedNode) hideInfoPanel();
+});
+
+canvas.addEventListener('click', function(e){
+  const rect = canvas.getBoundingClientRect();
+  const cx = (e.clientX - rect.left) * (canvas.width/rect.width) / dev;
+  const cy = (e.clientY - rect.top) * (canvas.height/rect.height) / dev;
+  const hit = hitTest(cx, cy);
+  if(hit){
+    selectedNode = hit;
+    updateInfoPanel(hit);
+    // If has file, navigate after brief delay
+    if(hit.file){
+      navTo(hit);
+    }
+  } else {
+    selectedNode = null;
+    hideInfoPanel();
+  }
+});
+
+// Touch support
+let touchTimeout = null;
+canvas.addEventListener('touchstart', function(e){
+  const touch = e.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  mouseX = (touch.clientX - rect.left) * (canvas.width/rect.width) / dev;
+  mouseY = (touch.clientY - rect.top) * (canvas.height/rect.height) / dev;
+  const hit = hitTest(mouseX, mouseY);
+  if(hit){
+    selectedNode = hit;
+    updateInfoPanel(hit);
+    clearTimeout(touchTimeout);
+    touchTimeout = setTimeout(() => {
+      if(hit.file) navTo(hit);
+    }, 400);
+  } else {
+    selectedNode = null;
+    hideInfoPanel();
+  }
+  e.preventDefault();
+}, {passive:false});
+
+// ===== INFO PANEL =====
+function updateInfoPanel(node){
+  const panel = document.getElementById('infoPanel');
+  if(!node){
+    hideInfoPanel();
+    return;
+  }
+  document.getElementById('ipIcon').textContent = node.icon || '🌌';
+  document.getElementById('ipTitle').textContent = node.label;
+  document.getElementById('ipDesc').textContent = node.desc || (node.isCompany ? '点击查看企业详情' : '点击查看行业百科');
+  // Build path
+  let path = [], cur = node;
+  while(cur.parent){
+    cur = cur.parent;
+    if(cur.label !== '产业星图') path.unshift(cur.label);
+  }
+  document.getElementById('ipPath').textContent = path.length ? path.join(' → ') : '产业星图';
+  const btn = document.getElementById('ipBtn');
+  btn.textContent = node.file ? (node.isCompany ? '查看企业 →' : '查看研究 →') : '暂无详情';
+  btn.style.opacity = node.file ? '1' : '0.3';
+  panel.classList.add('show');
+}
+
+function hideInfoPanel(){
+  if(!selectedNode) document.getElementById('infoPanel').classList.remove('show');
+}
+
+function navTo(node){
+  const n = node || selectedNode;
+  if(!n || !n.file) return;
+  // Determine if it's a company report or encyclopedia
+  if(n.isCompany && n.file.match(/^\d+\.html$/)){
+    // Company report
+    window.open('reports/' + n.file, '_blank');
+  } else {
+    // Encyclopedia
+    window.open(n.file, '_blank');
+  }
+}
+
+function goBack(){
+  if(window.parent && window.parent !== window){
+    window.parent.postMessage({backToIndustrySelect:true}, '*');
+  } else {
+    window.location.href = 'index.html';
+  }
+}
+
+// Init
+getDeviceScale();
+resize();
+initBgStars(200);
+buildNodes(STAR_DATA, null, 0, 0, Math.PI*2);
+layoutNodes();
+render(0);
+
+window.addEventListener('resize', function(){
+  resize();
+  initBgStars(200);
+  layoutNodes();
+});
+
+// ===== KEYBOARD =====
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    selectedNode = null;
+    hideInfoPanel();
+  }
+});
+
+// Theme sync from portal
+(function(){
+  var t = localStorage.getItem('portal_theme');
+  if(t === 'light'){
+    document.body.style.background = '#f4f1ea';
+  }
+  window.addEventListener('message', function(e){
+    if(e.data && typeof e.data.theme === 'string'){
+      document.body.style.background = e.data.theme === 'light' ? '#f4f1ea' : '#06061a';
+    }
+    if(e.data && e.data.backToIndustrySelect){
+      goBack();
+    }
+  });
+})();
+
+console.log('🌌 产业星图 loaded!');
+</script>
+</body>
+</html>
