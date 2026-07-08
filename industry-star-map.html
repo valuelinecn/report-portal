@@ -119,13 +119,15 @@ function l1() {
   });
   var o = baseOpt();
   o.series = [{
-    type: 'graph', layout: 'circular', roam: true,
-    circular: {rotateLabel: true},
+    type: 'graph', layout: 'force', roam: true,
+    force: {repulsion: 500, edgeLength: 160, gravity: 0.02, friction: 0.2, layoutAnimation: true},
     data: n, links: l,
     label: {show: true, fontSize: 9, color: '#94a3b8'},
     lineStyle: {color: 'rgba(255,255,255,0.06)', width: 0.3},
     emphasis: {focus: 'adjacency', scale: 1.25, lineStyle: {width: 2, opacity: 0.4, color: 'rgba(167,139,250,0.6)'}},
     nodeClick: false,
+    animationDuration: 800,
+    animationEasing: 'elasticOut',
   }];
   chart.setOption(o);
   document.getElementById('bc').innerHTML = '<span class="cur">\uD83C\uDF0C 全行业</span>';
