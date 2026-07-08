@@ -7,235 +7,188 @@
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#06061a;overflow:hidden;height:100dvh;font-family:sans-serif}
-#c{width:100%;height:100dvh;position:relative;z-index:1}
-/* Star field background */
+body{background:#06061a;overflow:hidden;height:100dvh;font-family:sans-serif;color:#e2e8f0}
+
+/* Stars BG */
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    radial-gradient(1px 1px at 10% 20%,rgba(255,255,255,0.4),transparent),
+  background-image:radial-gradient(1px 1px at 10% 20%,rgba(255,255,255,0.4),transparent),
     radial-gradient(1px 1px at 30% 60%,rgba(255,255,255,0.3),transparent),
     radial-gradient(1.5px 1.5px at 50% 10%,rgba(255,255,255,0.5),transparent),
     radial-gradient(1px 1px at 70% 40%,rgba(255,255,255,0.3),transparent),
     radial-gradient(1px 1px at 90% 80%,rgba(255,255,255,0.4),transparent),
-    radial-gradient(1.5px 1.5px at 15% 85%,rgba(255,255,255,0.3),transparent),
-    radial-gradient(1px 1px at 45% 45%,rgba(255,255,255,0.2),transparent),
-    radial-gradient(1px 1px at 65% 75%,rgba(255,255,255,0.35),transparent),
-    radial-gradient(1.5px 1.5px at 82% 15%,rgba(255,255,255,0.4),transparent),
-    radial-gradient(1px 1px at 5% 50%,rgba(255,255,255,0.3),transparent),
-    radial-gradient(1px 1px at 38% 72%,rgba(255,255,255,0.25),transparent),
-    radial-gradient(1.5px 1.5px at 55% 30%,rgba(255,255,255,0.35),transparent),
-    radial-gradient(1px 1px at 75% 5%,rgba(255,255,255,0.3),transparent),
-    radial-gradient(1px 1px at 92% 55%,rgba(255,255,255,0.4),transparent),
-    radial-gradient(1px 1px at 25% 35%,rgba(167,139,250,0.3),transparent),
+    radial-gradient(1px 1px at 45% 45%,rgba(167,139,250,0.3),transparent),
     radial-gradient(1.5px 1.5px at 60% 88%,rgba(167,139,250,0.25),transparent),
-    radial-gradient(1px 1px at 88% 33%,rgba(99,102,241,0.3),transparent),
-    radial-gradient(1px 1px at 3% 95%,rgba(167,139,250,0.2),transparent),
-    radial-gradient(1.5px 1.5px at 48% 55%,rgba(255,255,255,0.3),transparent),
-    radial-gradient(1px 1px at 22% 8%,rgba(255,255,255,0.25),transparent);
+    radial-gradient(1px 1px at 25% 35%,rgba(99,102,241,0.3),transparent);
 }
-/* Twinkle animation for select stars */
-@keyframes twinkle1{0%,100%{opacity:1}50%{opacity:0.3}}
-@keyframes twinkle2{0%,100%{opacity:0.3}50%{opacity:1}}
+@keyframes tk{0%,100%{opacity:1}50%{opacity:0.3}}
 body::after{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    radial-gradient(2px 2px at 20% 30%,rgba(255,255,255,0.6),transparent),
-    radial-gradient(2px 2px at 75% 60%,rgba(167,139,250,0.5),transparent);
-  animation:twinkle1 3s ease-in-out infinite;
+  background:radial-gradient(2px 2px at 20% 30%,rgba(255,255,255,0.5),transparent),radial-gradient(2px 2px at 75% 60%,rgba(167,139,250,0.4),transparent);
+  animation:tk 3s ease-in-out infinite;
 }
-#bar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;padding:6px 10px;background:rgba(6,6,26,0.8);backdrop-filter:blur(12px);gap:6px;color:#94a3b8;font-size:11px}
+
+#bar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;padding:6px 10px;background:rgba(6,6,26,0.85);backdrop-filter:blur(12px);gap:6px;font-size:11px}
 #bar button{background:transparent;border:1px solid rgba(167,139,250,0.1);border-radius:6px;padding:3px 8px;color:rgba(167,139,250,0.5);font-size:10px;cursor:pointer}
 #bar button:hover{border-color:rgba(167,139,250,0.3);color:#a78bfa}
 #bc{flex:1;display:flex;gap:3px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-size:10px;align-items:center}
-#bc span{cursor:pointer;padding:1px 4px;border-radius:3px;color:rgba(148,163,184,0.4);transition:color .2s}
+#bc span{cursor:pointer;padding:1px 4px;border-radius:3px;color:rgba(148,163,184,0.4)}
 #bc span:hover{color:#a78bfa}
 #bc .cur{color:rgba(167,139,250,0.6);font-weight:600}
-#in{padding:2px 6px;border-radius:4px;border:1px solid rgba(167,139,250,0.1);background:rgba(167,139,250,0.04);color:#94a3b8;font-size:10px;width:80px;outline:none;transition:all .2s}
+#in{padding:2px 6px;border-radius:4px;border:1px solid rgba(167,139,250,0.1);background:rgba(167,139,250,0.04);color:#94a3b8;font-size:10px;width:80px;outline:none}
 #in:focus{border-color:rgba(167,139,250,0.25);width:120px;color:#e2e8f0}
 #in::placeholder{color:rgba(148,163,184,0.25)}
 #hint{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:5;font-size:9px;color:rgba(148,163,184,0.15);pointer-events:none;transition:opacity .8s}
-.sr-item{padding:3px 8px;cursor:pointer;font-size:10px;color:#94a3b8;border-radius:4px;transition:background .15s}
+
+/* Level 1: Industry Grid */
+#l1{position:fixed;top:34px;bottom:0;left:0;right:0;z-index:1;overflow-y:auto;padding:10px 10px 40px}
+#l1 .t{font-size:10px;color:rgba(148,163,184,0.3);text-align:center;padding:4px 0 8px;letter-spacing:1px}
+.l1-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:6px}
+.l1-i{
+  background:rgba(15,23,42,0.5);border:1px solid rgba(148,163,184,0.06);border-radius:10px;
+  padding:8px 6px;cursor:pointer;transition:all .2s;text-align:center;line-height:1.3;
+  backdrop-filter:blur(4px);
+}
+.l1-i:active{transform:scale(0.95)}
+.l1-i .ic{font-size:16px}
+.l1-i .nm{font-size:8px;color:#94a3b8;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.l1-i .ct{font-size:7px;color:rgba(148,163,184,0.3);margin-top:1px}
+
+/* Level 2: ECharts */
+#l2{position:fixed;top:34px;bottom:0;left:0;right:0;z-index:1;display:none}
+#c{width:100%;height:100%}
+
+.sr-item{padding:3px 8px;cursor:pointer;font-size:10px;color:#94a3b8;border-radius:4px}
 .sr-item:hover{background:rgba(167,139,250,0.12);color:#e2e8f0}
 body.light{background:#f4f1ea}
 body.light #bar{background:rgba(244,241,234,0.85)}
 body.light #in{color:#505050}
-body.light #in:focus{color:#333}
-body.light #in::placeholder{color:rgba(80,80,80,0.2)}
+body.light .l1-i{background:rgba(255,255,255,0.6);border-color:rgba(99,102,241,0.06)}
+body.light .l1-i .nm{color:#666}
+body.light .l1-i .ct{color:rgba(80,80,80,0.3)}
 body.light #hint{color:rgba(80,80,80,0.1)}
 body.light::before,body.light::after{opacity:0.4}
+@media(min-width:500px){.l1-g{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}}
 </style>
 </head>
 <body>
-<div id="bar"><button id="backBtn" onclick="goBack()">←</button><div id="bc"></div><input id="in" placeholder="🔍 搜索行业" oninput="srch(this.value)"></div>
-<div id="c"></div>
-<div id="hint">点击行业展开 · 滚轮缩放 · 拖拽移动</div>
+<div id="bar"><button id="backBtn" onclick="goBack()">←</button><div id="bc"></div><input id="in" placeholder="🔍 搜索" oninput="srch(this.value)"></div>
+<div id="l1"></div>
+<div id="l2"><div id="c"></div></div>
+<div id="hint">点击行业查看细分赛道</div>
 <script>
 var SW=[{"id":"sw1","name":"农林牧渔","icon":"🌾","color":"#22d3ee","children":["种植业","渔业","林业","饲料","养殖业","农产品加工","农业综合"]},{"id":"sw2","name":"食品饮料","icon":"🍶","color":"#fbbf24","children":["白酒","啤酒","其他酒类","软饮料","乳品","调味发酵品","食品综合","肉制品","休闲食品"]},{"id":"sw3","name":"纺织服饰","icon":"👔","color":"#fb7185","children":["纺织品","服装家纺","皮革制品"]},{"id":"sw4","name":"轻工制造","icon":"📦","color":"#34d399","children":["造纸","包装印刷","家具","文娱用品","其他轻工"]},{"id":"sw5","name":"医药生物","icon":"💊","color":"#fb7185","children":["化学制药","中药","生物制品","医药商业","医疗器械","医疗服务"]},{"id":"sw6","name":"公用事业","icon":"⚡","color":"#f97316","children":["电力","燃气","供水","环保","市政工程"]},{"id":"sw7","name":"交通运输","icon":"🚄","color":"#f97316","children":["铁路","公路","机场","港口","航运","航空","物流"]},{"id":"sw8","name":"房地产","icon":"🏘️","color":"#f97316","children":["房地产开发","产业地产","商业地产","物业管理","房地产服务"]},{"id":"sw9","name":"商贸零售","icon":"🛒","color":"#fbbf24","children":["百货","超市","专业连锁","电商","贸易","商业物业经营"]},{"id":"sw10","name":"社会服务","icon":"🎭","color":"#fbbf24","children":["酒店","餐饮","旅游景区","休闲服务","教育","专业服务"]},{"id":"sw11","name":"美容护理","icon":"💄","color":"#fb7185","children":["美容护理","化妆品","个护用品"]},{"id":"sw12","name":"银行","icon":"🏦","color":"#eab308","children":["国有大型银行","股份制银行","城商行","农商行","银行"]},{"id":"sw13","name":"非银金融","icon":"💰","color":"#eab308","children":["证券","保险","多元金融","金融信息服务"]},{"id":"sw14","name":"综合","icon":"📊","color":"#94a3b8","children":["综合"]},{"id":"sw15","name":"建筑材料","icon":"🧱","color":"#fb923c","children":["水泥","玻璃","玻纤","耐火材料","管材","其他建材"]},{"id":"sw16","name":"建筑装饰","icon":"🏗️","color":"#fb923c","children":["房屋建设","基础建设","钢结构","装修装饰","园林工程"]},{"id":"sw17","name":"电力设备","icon":"🔋","color":"#22d3ee","children":["光伏设备","风电设备","储能设备","电池","电网设备","电机","综合电力设备"]},{"id":"sw18","name":"机械设备","icon":"⚙️","color":"#22d3ee","children":["通用机械","专用机械","仪器仪表","自动化设备","工程机械","轨交设备"]},{"id":"sw19","name":"汽车","icon":"🚗","color":"#22d3ee","children":["乘用车","商用车","汽车零部件","汽车服务","摩托车"]},{"id":"sw20","name":"家用电器","icon":"🏠","color":"#fbbf24","children":["白电","黑电","厨电","小家电","照明","零部件"]},{"id":"sw21","name":"有色金属","icon":"🪨","color":"#fb923c","children":["铜","铝","铅锌","黄金","稀土","锂","钨","新材料"]},{"id":"sw22","name":"钢铁","icon":"🔩","color":"#fb923c","children":["普钢","特钢","铁矿石","钢加工","冶钢原料"]},{"id":"sw23","name":"基础化工","icon":"🧪","color":"#fb923c","children":["石油化工","煤化工","氟化工","氯碱","化纤","塑料","橡胶","农药","化肥","涂料油墨","电子化学品"]},{"id":"sw24","name":"石油石化","icon":"🛢️","color":"#fb923c","children":["石油开采","炼化","油田服务","油气储运","油品销售"]},{"id":"sw25","name":"煤炭","icon":"🪨","color":"#fb923c","children":["动力煤","焦煤","焦炭","煤化工"]},{"id":"sw26","name":"环保","icon":"🌿","color":"#34d399","children":["水治理","固废治理","大气治理","环境监测","生态修复"]},{"id":"sw27","name":"国防军工","icon":"🛡️","color":"#22d3ee","children":["航空航天装备","船舶","兵器","军工电子","军工材料"]},{"id":"sw28","name":"计算机","icon":"💻","color":"#3b82f6","children":["软件开发","IT服务","云计算","人工智能","信息安全","计算机设备"]},{"id":"sw29","name":"电子","icon":"🔬","color":"#3b82f6","children":["半导体","芯片设计","消费电子","电子元件","光学光电子","电子化学品II"]},{"id":"sw30","name":"通信","icon":"📡","color":"#3b82f6","children":["通信网络设备","通信运营","通信服务","光通信","卫星通信"]},{"id":"sw31","name":"传媒","icon":"🎬","color":"#3b82f6","children":["影视院线","广告营销","游戏","出版","广播电视","数字媒体","有线网络"]}];
 var CSW2={"兆易创新":"半导体","生益科技":"电子元件","宁德时代":"电池","比亚迪":"乘用车","特斯拉":"乘用车","赛力斯":"乘用车","同仁堂":"中药","达仁堂":"中药","马应龙":"中药","浙江震元":"医药商业","宋城演艺":"旅游景区","上海机场":"机场","中信证券":"证券","云铝股份":"铝","埃斯顿":"自动化设备","新松机器人":"自动化设备","科沃斯":"小家电","石头科技":"小家电","英伟达":"芯片设计","高通":"芯片设计","AMD":"芯片设计","博通":"芯片设计","联发科":"芯片设计","华为海思":"芯片设计","韦尔股份":"芯片设计","Synopsys":"芯片设计","Cadence":"芯片设计","芯原股份":"芯片设计","创意电子":"芯片设计"};
 var CL={"兆易创新":"603986.html","生益科技":"600183.html","宁德时代":"ningde.html","赛力斯":"601127.html","同仁堂":"600085.html","达仁堂":"600329.html","马应龙":"600993.html","浙江震元":"000705.html","宋城演艺":"300144.html","上海机场":"600009.html","中信证券":"600030.html","云铝股份":"000807.html","埃斯顿":"robot-encyclopedia.html","新松机器人":"robot-encyclopedia.html","科沃斯":"robot-encyclopedia.html","石头科技":"robot-encyclopedia.html"};
 var IL={"电子":"chip-industry-encyclopedia.html","芯片设计":"chip-design-encyclopedia.html","汽车":"auto-industry-encyclopedia.html","自动化设备":"robot-encyclopedia.html"};
-var chart = echarts.init(document.getElementById('c'));
-var view = 'l1', curId = null;
 
-function baseOpt() {
-  return {
-    backgroundColor: 'transparent',
-    tooltip: {
-      show: true, trigger: 'item',
-      backgroundColor: 'rgba(10,10,30,0.92)',
-      borderColor: 'rgba(167,139,250,0.15)',
-      borderWidth: 1, borderRadius: 8, padding: [8, 12],
-      textStyle: {fontSize: 11, fontFamily: 'sans-serif'},
-      formatter: function(p) {
-        if (!p.data || p.dataType !== 'node') return '';
-        var d = p.data;
-        var lt = document.body.classList.contains('light');
-        var c1 = lt ? '#333' : '#e2e8f0', c2 = lt ? '#666' : '#94a3b8', c3 = lt ? 'rgba(99,102,241,0.6)' : 'rgba(167,139,250,0.6)';
-        var h = '<div style="font-size:13px;font-weight:700;color:' + c1 + '">' + (d._icon || '') + ' ' + d.name + '</div>';
-        if (d._desc) h += '<div style="font-size:10px;color:' + c2 + ';margin-top:2px">' + d._desc + '</div>';
-        if (d._childCount) h += '<div style="font-size:9px;color:' + c3 + ';margin-top:2px">' + d._childCount + '个二级行业</div>';
-        if (d._cos && d._cos.length) {
-          h += '<div style="font-size:9px;color:' + c3 + ';margin-top:4px">关联企业：</div>';
-          d._cos.forEach(function(co) {
-            h += '<div ' + (CL[co] ? 'style="color:#34d399"' : '') + ' style="font-size:9px;padding:1px 0">' + (CL[co] ? '📄 ' : '· ') + co + '</div>';
-          });
-        }
+// ===== Level 1: HTML Grid =====
+function showL1(){
+  document.getElementById('l1').style.display='block';
+  document.getElementById('l2').style.display='none';
+  document.getElementById('bc').innerHTML='<span class="cur">🌌 全行业</span>';
+  var html='<div class="t">申万行业分类 · 31个一级行业</div><div class="l1-g">';
+  SW.forEach(function(d){
+    var cnt=(d.children||[]).length;
+    var has=!!IL[d.name];
+    html+='<div class="l1-i" onclick="showL2(\''+d.id+'\')" style="border-left:2px solid '+(has?'#22d3ee':d.color||'#6366f1')+'">'+
+      '<div class="ic">'+d.icon+'</div>'+
+      '<div class="nm">'+d.name+'</div>'+
+      '<div class="ct">'+cnt+'个二级</div>'+
+      '</div>';
+  });
+  html+='</div>';
+  document.getElementById('l1').innerHTML=html;
+}
+
+// ===== Level 2: ECharts Force Graph =====
+var chart = echarts.init(document.getElementById('c'));
+var curSw1 = null;
+
+function showL2(id){
+  var s=SW.find(function(d){return d.id===id});
+  if(!s)return;
+  curSw1=id;
+  document.getElementById('l1').style.display='none';
+  document.getElementById('l2').style.display='block';
+  document.getElementById('bc').innerHTML='<span onclick="showL1()" style="cursor:pointer">🌌</span><span style="color:rgba(148,163,184,0.15)"> › </span><span class="cur">'+s.icon+' '+s.name+'</span>';
+  
+  var hi=!!IL[s.name],n=[],l=[];
+  n.push({name:s.icon+' '+s.name+(hi?' 🔬':''),symbolSize:28,itemStyle:{color:s.color||'#a78bfa',shadowBlur:15,shadowColor:(s.color||'#a78bfa')+'80'},id:id,_is:true});
+  n.push({name:'← 返回',symbolSize:12,itemStyle:{color:'rgba(167,139,250,0.2)'},id:'b'});
+  l.push({source:'b',target:id});
+  (s.children||[]).forEach(function(c){
+    var cos=[];for(var k in CSW2){if(CSW2[k]===c)cos.push(k);}
+    var hc=cos.length>0;var il=IL[c];
+    var sz=hc?16:(il?14:12);
+    var cl=il?'#22d3ee':(hc?'#34d399':'#94a3b8');
+    var mk=il?' 🔬':(hc?' 📄':'');
+    n.push({name:c+mk,symbolSize:sz,itemStyle:{color:cl,shadowBlur:hc||il?8:0,shadowColor:cl+'40'},id:'s-'+c,_cos:cos,_desc:cos.length?cos.length+'家关联企业':(il?'有行业百科':''),_il:il});
+    l.push({source:id,target:'s-'+c});
+  });
+  
+  chart.setOption({
+    backgroundColor:'transparent',
+    tooltip:{show:true,trigger:'item',backgroundColor:'rgba(10,10,30,0.92)',borderColor:'rgba(167,139,250,0.15)',borderWidth:1,borderRadius:8,padding:[8,12],
+      formatter:function(p){
+        if(!p.data||p.dataType!=='node')return'';
+        var d=p.data;var lt=document.body.classList.contains('light');
+        var h='<div style="font-size:12px;font-weight:700;color:'+(lt?'#333':'#e2e8f0')+'">'+(d._icon||'')+' '+d.name+'</div>';
+        if(d._desc)h+='<div style="font-size:9px;color:'+(lt?'#666':'#94a3b8')+';margin-top:2px">'+d._desc+'</div>';
+        if(d._cos&&d._cos.length){h+='<div style="font-size:8px;color:'+(lt?'rgba(99,102,241,0.6)':'rgba(167,139,250,0.6)')+';margin-top:3px">关联企业：</div>';d._cos.forEach(function(co){h+='<div '+(CL[co]?'style="color:#34d399"':'')+' style="font-size:8px;padding:1px 0">'+(CL[co]?'📄 ':'· ')+co+'</div>';});}
         return h;
       }
     },
-  };
-}
-
-function l1() {
-  view = 'l1'; curId = null;
-  var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-  var n = [{name: '\uD83C\uDF0C 产业星图', symbolSize: 26, itemStyle: {color: '#a78bfa', shadowBlur: 20, shadowColor: 'rgba(167,139,250,0.5)'}, id: 'h', x: cx, y: cy, fixed: true}];
-  var l = [];
-  var radius = Math.min(cx, cy) * 0.55;
-  SW.forEach(function(d, i) {
-    var cnt = (d.children || []).length;
-    var sz = IL[d.name] ? 20 : 17;
-    var angle = (i / SW.length) * Math.PI * 2 - Math.PI / 2;
-    n.push({name: d.icon + ' ' + d.name + ' ' + cnt, symbolSize: sz, itemStyle: {color: d.color || '#6366f1', shadowBlur: IL[d.name] ? 10 : 3, shadowColor: (d.color||'#6366f1')+'40'}, id: d.id, _s: d, _icon: d.icon, _childCount: cnt, _hasResearch: !!IL[d.name], x: cx + Math.cos(angle) * radius, y: cy + Math.sin(angle) * radius});
-    l.push({source: 'h', target: d.id});
+    series:[{
+      type:'graph',layout:'force',roam:true,
+      force:{repulsion:250,edgeLength:[80,200],gravity:0.06,friction:0.2,layoutAnimation:true},
+      data:n,links:l,
+      label:{show:true,fontSize:8.5,color:'#94a3b8'},
+      lineStyle:{color:'rgba(255,255,255,0.1)',width:0.4},
+      emphasis:{focus:'adjacency',scale:1.25,lineStyle:{width:1.5,opacity:0.4}},
+      nodeClick:false,
+    }]
   });
-  var o = baseOpt();
-  o.series = [{
-    type: 'graph', layout: 'force', roam: true,
-    force: {repulsion: 100, edgeLength: [80, 150], gravity: 0.08, friction: 0.5, layoutAnimation: true},
-    data: n, links: l,
-    label: {show: true, fontSize: 9, color: '#94a3b8'},
-    lineStyle: {color: 'rgba(255,255,255,0.06)', width: 0.3},
-    emphasis: {focus: 'adjacency', scale: 1.25, lineStyle: {width: 2, opacity: 0.4, color: 'rgba(167,139,250,0.6)'}},
-    nodeClick: false,
-  }];
-  chart.setOption(o);
-  document.getElementById('bc').innerHTML = '<span class="cur">\uD83C\uDF0C 全行业</span>';
 }
 
-function l2(id) {
-  view = 'l2'; curId = id;
-  var s = SW.find(function(d) { return d.id === id; });
-  if (!s) return;
-  var hi = !!IL[s.name], n = [], l = [];
-  var hubSz = 30;
-  n.push({name: s.icon + ' ' + s.name, symbolSize: hubSz, itemStyle: {color: s.color || '#a78bfa', shadowBlur: 20, shadowColor: (s.color || '#a78bfa') + '60'}, id: id, _is: true, _icon: s.icon});
-  n.push({name: '\u2190', symbolSize: 12, itemStyle: {color: 'rgba(167,139,250,0.2)'}, id: 'b'});
-  l.push({source: 'b', target: id});
-  (s.children || []).forEach(function(c) {
-    var cos = [];
-    for (var k in CSW2) { if (CSW2[k] === c) cos.push(k); }
-    var hasCos = cos.length > 0;
-    var il = IL[c];
-    var sz = hasCos ? 16 : (il ? 14 : 12);
-    var clr = il ? '#22d3ee' : (hasCos ? '#34d399' : '#94a3b8');
-    var mark = il ? ' \uD83D\uDD2C' : (hasCos ? ' \uD83D\uDCC4' : '');
-    var bGlow = (il || hasCos) ? 10 : 0;
-    n.push({name: c + mark, symbolSize: sz, itemStyle: {color: clr, shadowBlur: bGlow, shadowColor: clr+'50'}, id: 's-' + c, _cos: cos, _icon: '\uD83D\uDCC2', _desc: hasCos ? cos.length + '家关联企业' : (il ? '有行业百科' : ''), _s2: c, _il: il});
-    l.push({source: id, target: 's-' + c});
-  });
-  var o = baseOpt();
-  o.series = [{
-    type: 'graph', layout: 'force', roam: true,
-    force: {repulsion: 250, edgeLength: [50, 180], gravity: 0.08, friction: 0.15},
-    data: n, links: l,
-    label: {show: true, fontSize: 8.5, color: '#94a3b8'},
-    lineStyle: {color: 'rgba(255,255,255,0.08)', width: 0.4},
-    emphasis: {focus: 'adjacency', scale: 1.25, lineStyle: {width: 2, opacity: 0.4, color: 'rgba(167,139,250,0.5)'}},
-    nodeClick: false,
-  }];
-  chart.setOption(o);
-  document.getElementById('bc').innerHTML = '<span onclick="l1()" style="cursor:pointer">\uD83C\uDF0C</span><span style="color:rgba(148,163,184,0.15)"> › </span><span class="cur">' + s.icon + ' ' + s.name + '</span>';
-}
-
-chart.on('click', function(params) {
-  if (!params.data || params.dataType !== 'node') { if (view === 'l2') l1(); return; }
-  var d = params.data;
-  if (d.id === 'b') { l1(); return; }
-  if (view === 'l1' && d._s) { l2(d._s.id); return; }
-  if (d._is) {
-    var sw = SW.find(function(x) { return x.id === d.id; });
-    if (sw && IL[sw.name]) window.open(IL[sw.name], '_blank');
-    return;
-  }
-  if (d._il) { window.open(d._il, '_blank'); return; }
-  if (d._cos && d._cos.length) { /* tooltip handles display */ }
+chart.on('click',function(p){
+  if(!p.data||p.dataType!=='node'){if(curSw1)showL2(curSw1);return;}
+  var d=p.data;
+  if(d.id==='b'){showL1();return;}
+  if(d._is){var sw=SW.find(function(x){return x.id===d.id});if(sw&&IL[sw.name])window.open(IL[sw.name],'_blank');return;}
+  if(d._il){window.open(d._il,'_blank');return;}
 });
 
-function srch(v) {
-  var q = v.trim().toLowerCase();
-  if (!q) { var o = document.getElementById('sr'); if (o) o.remove(); return; }
-  var r = [];
-  SW.forEach(function(d) {
-    if (d.name.toLowerCase().includes(q)) r.push({t: d.icon + ' ' + d.name + ' (' + (d.children||[]).length + '个二级)', a: function() { l2(d.id); }});
-    (d.children || []).forEach(function(c) { if (c.toLowerCase().includes(q)) r.push({t: '\uD83D\uDCC1 ' + c, a: function() { l2(d.id); }}); });
+// ===== Search =====
+function srch(v){
+  var q=v.trim().toLowerCase();if(!q){var o=document.getElementById('sr');if(o)o.remove();return;}
+  var r=[];
+  SW.forEach(function(d){
+    if(d.name.toLowerCase().includes(q))r.push({t:d.icon+' '+d.name,a:function(){showL2(d.id);}});
+    (d.children||[]).forEach(function(c){if(c.toLowerCase().includes(q))r.push({t:'📁 '+c,a:function(){showL2(d.id);}});});
   });
-  for (var k in CSW2) {
-    if (k.toLowerCase().includes(q) && CL[k]) {
-      (function(kk) { r.push({t: '\uD83C\uDFE2 ' + kk, a: function() { window.open(CL[kk], '_blank'); }}); })(k);
-    }
-  }
-  if (!r.length) return;
-  r = r.filter(function(i, x, a) { return a.findIndex(function(j) { return j.t === i.t; }) === x; }).slice(0, 8);
-  var e = document.createElement('div');
-  e.id = 'sr';
-  e.style.cssText = 'position:fixed;top:34px;right:10px;z-index:99;background:rgba(10,10,30,0.95);backdrop-filter:blur(12px);border:1px solid rgba(167,139,250,0.1);border-radius:6px;padding:4px;max-height:180px;overflow-y:auto;min-width:130px';
-  e.innerHTML = r.map(function(i) {
-    return '<div class="sr-item" onclick="var s=document.getElementById(\'sr\');if(s)s.remove();document.getElementById(\'in\').value=\'\';(' + i.a.toString() + ')()">' + i.t + '</div>';
-  }).join('');
-  var old = document.getElementById('sr');
-  if (old) old.remove();
-  document.body.appendChild(e);
+  for(var k in CSW2){if(k.toLowerCase().includes(q)&&CL[k]){(function(kk){r.push({t:'🏢 '+kk,a:function(){window.open(CL[kk],'_blank');}});})(k);}}
+  if(!r.length)return;
+  r=r.filter(function(i,x,a){return a.findIndex(function(j){return j.t===i.t})===x;}).slice(0,8);
+  var e=document.createElement('div');e.id='sr';
+  e.style.cssText='position:fixed;top:34px;right:10px;z-index:99;background:rgba(10,10,30,0.95);border:1px solid rgba(167,139,250,0.1);border-radius:6px;padding:4px;max-height:180px;overflow-y:auto;min-width:130px';
+  e.innerHTML=r.map(function(i){return'<div class="sr-item" onclick="var s=document.getElementById(\'sr\');if(s)s.remove();document.getElementById(\'in\').value=\'\';('+i.a.toString()+')()">'+i.t+'</div>';}).join('');
+  var old=document.getElementById('sr');if(old)old.remove();document.body.appendChild(e);
 }
+document.addEventListener('click',function(e){if(!e.target.closest('#in')&&!e.target.closest('#sr')){var o=document.getElementById('sr');if(o)o.remove();}});
 
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('#in') && !e.target.closest('#sr')) { var o = document.getElementById('sr'); if (o) o.remove(); }
-});
+// ===== Theme =====
+function applyTheme(t){document.body.classList.toggle('light',t==='light')}
+(function(){var t=localStorage.getItem('portal_theme');if(t==='light')applyTheme('light');window.addEventListener('message',function(e){if(e.data&&typeof e.data.theme==='string')applyTheme(e.data.theme);if(e.data&&e.data.backToIndustrySelect)goBack();});})();
 
-function applyTheme(t) { document.body.classList.toggle('light', t === 'light'); }
+function goBack(){if(window.parent&&window.parent!==window){window.parent.postMessage({backToIndustrySelect:true},'*');}else{window.location.href='index.html';}}
 
-(function() {
-  var t = localStorage.getItem('portal_theme');
-  if (t === 'light') applyTheme('light');
-  window.addEventListener('message', function(e) {
-    if (e.data && typeof e.data.theme === 'string') applyTheme(e.data.theme);
-    if (e.data && e.data.backToIndustrySelect) goBack();
-  });
-})();
-
-function goBack() {
-  if (window.parent && window.parent !== window) { window.parent.postMessage({backToIndustrySelect: true}, '*'); }
-  else { window.location.href = 'index.html'; }
-}
-
-l1();
-window.addEventListener('resize', function() { chart.resize(); });
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') { if (view === 'l2') l1(); else goBack(); }
-});
-setTimeout(function() { var h = document.getElementById('hint'); if (h) h.style.opacity = '0'; }, 5000);
-console.log('Starmap v4 loaded');
+// ===== Init =====
+showL1();
+window.addEventListener('resize',function(){if(chart)chart.resize()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(curSw1)showL1();else goBack();}});
+setTimeout(function(){var h=document.getElementById('hint');if(h)h.style.opacity='0'},5000);
+console.log('Starmap v5 loaded');
 </script>
 </body>
 </html>
