@@ -109,21 +109,18 @@ function baseOpt() {
 
 function l1() {
   view = 'l1'; curId = null;
-  var n = [{name: '\uD83C\uDF0C 产业星图', symbolSize: 30, itemStyle: {color: '#a78bfa', shadowBlur: 25, shadowColor: 'rgba(167,139,250,0.5)'}, id: 'h', x: 0, y: 0}];
+  var n = [{name: '\uD83C\uDF0C 产业星图', symbolSize: 30, itemStyle: {color: '#a78bfa', shadowBlur: 25, shadowColor: 'rgba(167,139,250,0.5)'}, id: 'h'}];
   var l = [];
-  var angleStep = (Math.PI * 2) / SW.length;
-  var radius = 250;
-  SW.forEach(function(d, i) {
+  SW.forEach(function(d) {
     var cnt = (d.children || []).length;
     var sz = IL[d.name] ? 24 : 20;
-    var angle = i * angleStep - Math.PI / 2;
-    n.push({name: d.icon + ' ' + d.name + ' ' + cnt, symbolSize: sz, itemStyle: {color: d.color || '#6366f1', shadowBlur: IL[d.name] ? 12 : 4, shadowColor: (d.color||'#6366f1')+'40'}, id: d.id, _s: d, _icon: d.icon, _childCount: cnt, _hasResearch: !!IL[d.name], x: Math.cos(angle) * radius, y: Math.sin(angle) * radius});
+    n.push({name: d.icon + ' ' + d.name + ' ' + cnt, symbolSize: sz, itemStyle: {color: d.color || '#6366f1', shadowBlur: IL[d.name] ? 12 : 4, shadowColor: (d.color||'#6366f1')+'40'}, id: d.id, _s: d, _icon: d.icon, _childCount: cnt, _hasResearch: !!IL[d.name]});
     l.push({source: 'h', target: d.id});
   });
   var o = baseOpt();
   o.series = [{
     type: 'graph', layout: 'force', roam: true,
-    force: {repulsion: 1200, edgeLength: 300, gravity: 0.002, friction: 0.8, layoutAnimation: false},
+    force: {repulsion: 300, edgeLength: 100, gravity: 0.05, friction: 0.1, layoutAnimation: true},
     data: n, links: l,
     label: {show: true, fontSize: 9, color: '#94a3b8'},
     lineStyle: {color: 'rgba(255,255,255,0.06)', width: 0.3},
