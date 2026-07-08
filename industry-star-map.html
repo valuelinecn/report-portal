@@ -60,6 +60,15 @@ body.light #hint{color:rgba(80,80,80,0.15)!important}
 <div id="hint">🖱️ 点击行业展开二级 · 滚轮缩放 · 拖拽移动</div>
 
 <script>
+// Debug: show errors on screen
+window.onerror = function(msg, url, line){
+  document.getElementById('chart').innerHTML = '<div style="padding:40px;color:#fb7185;font-size:.7rem;text-align:center">⚠️ ' + msg + '<br>line: ' + line + '</div>';
+  return true;
+};
+// Add error display for ECharts loading
+if(typeof echarts === 'undefined'){
+  document.getElementById('chart').innerHTML = '<div style="padding:40px;color:#fb7185;font-size:.7rem;text-align:center">⚠️ ECharts未加载，请检查网络<br>尝试刷新页面</div>';
+}
 // =====================================================================
 // 申万一级行业数据 (31个)
 // =====================================================================
@@ -490,7 +499,12 @@ function goBack(){
 }
 
 // ===== Init =====
-renderLevel1();
+try {
+  renderLevel1();
+  console.log('🌌 产业星图 loaded');
+} catch(e) {
+  document.getElementById('chart').innerHTML = '<div style="padding:40px;color:#fb7185;font-size:.7rem;text-align:center">⚠️ 渲染错误: ' + e.message + '<br>请刷新重试</div>';
+}
 window.addEventListener('resize',function(){myChart.resize()});
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') {
