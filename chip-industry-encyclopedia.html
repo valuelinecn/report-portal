@@ -162,9 +162,10 @@ body{
 /* ===== ENTERPRISE / SUPPLY CHAIN CUSTOM SECTIONS ===== */
 .ent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px}
 .ent-card{background:var(--bg5);border:1px solid var(--border);border-radius:10px;padding:10px 12px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
-.ent-card:hover{transform:translateY(-2px);border-color:var(--t5)}
+.ent-card:hover{transform:translateY(-2px);border-color:var(--border2)}
 .ent-card .ent-tag{font-size:.45rem;padding:1px 6px;border-radius:3px;display:inline-block;margin-bottom:3px;font-weight:600}
 .ent-card h5{font-size:.7rem;font-weight:600;margin-bottom:2px}
+.ent-card .ent-code{font-size:.52rem;color:var(--t4);margin-bottom:3px}
 .ent-card .ent-desc{font-size:.52rem;color:var(--t4);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
 .ent-cat{margin-top:14px;margin-bottom:8px}
 .ent-cat:first-child{margin-top:0}
@@ -274,7 +275,46 @@ body{
   <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#a78bfa;font-weight:600">← 返回产业总览</span></div>
   <div class="section-title"><span class="dot" style="background:#fb7185"></span> 🏢 代表企业图谱</div>
   <div class="section-desc">覆盖整机厂商与核心零部件供应商。点击查看企业详细资料。</div>
-  <div id="entGrid" class="cat-grid"></div>
+  <div id="entGrid">
+  <!-- 🧠 IC设计 -->
+  <div class="ent-cat"><h4>🧠 IC设计 <span>8家</span></h4></div>
+  <div class="ent-grid">
+    <div class="ent-card" onclick="openModal('ent1')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">AI芯片</span><h5>英伟达 NVIDIA</h5><div class="ent-code">NVDA</div><div class="ent-desc">AI训练市占率>85%，CUDA生态壁垒深厚。</div></div>
+    <div class="ent-card" onclick="openModal('ent2')"><span class="ent-tag" style="background:#3b82f620;color:#3b82f6">移动</span><h5>高通 Qualcomm</h5><div class="ent-code">QCOM</div><div class="ent-desc">骁龙旗舰SoC市占率>40%，AI手机驱动增长。</div></div>
+    <div class="ent-card" onclick="openModal('ent3')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">CPU/GPU</span><h5>AMD</h5><div class="ent-code">AMD</div><div class="ent-desc">CPU市场~30%，MI300 AI GPU挑战英伟达。</div></div>
+    <div class="ent-card" onclick="openModal('ent4')"><span class="ent-tag" style="background:#34d39920;color:#34d399">网络</span><h5>博通 Broadcom</h5><div class="ent-code">AVGO</div><div class="ent-desc">交换机芯片>60%，定制AI ASIC新增长引擎。</div></div>
+    <div class="ent-card" onclick="openModal('ent5')"><span class="ent-tag" style="background:#3b82f620;color:#3b82f6">国产旗舰</span><h5>华为海思 HiSilicon</h5><div class="ent-code">(未上市)</div><div class="ent-desc">麒麟回归+昇腾放量，中国设计旗舰。</div></div>
+    <div class="ent-card" onclick="openModal('ent6')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">存储+MCU</span><h5>兆易创新 GigaDevice</h5><div class="ent-code">603986.SH</div><div class="ent-desc">NOR Flash全球第三，MCU国产替代先锋。</div></div>
+    <div class="ent-card" onclick="openModal('ent8')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">SoC</span><h5>联发科 MediaTek</h5><div class="ent-code">2454.TW</div><div class="ent-desc">手机SoC出货量第一，天玑旗舰逼近高通。</div></div>
+    <div class="ent-card" onclick="openModal('ent7')"><span class="ent-tag" style="background:#34d39920;color:#34d399">CIS</span><h5>韦尔股份 / 豪威</h5><div class="ent-code">603501.SH</div><div class="ent-desc">CIS全球第三，汽车CIS快速放量。</div></div>
+  </div>
+  <!-- 💾 IDM/存储 -->
+  <div class="ent-cat"><h4>💾 IDM/存储 <span>4家</span></h4></div>
+  <div class="ent-grid">
+    <div class="ent-card" onclick="openModal('ent9')"><span class="ent-tag" style="background:#3b82f620;color:#3b82f6">存储+代工</span><h5>三星 Samsung</h5><div class="ent-code">005930.KS</div><div class="ent-desc">DRAM第一~40%，NAND第一~35%，Foundry第二。</div></div>
+    <div class="ent-card" onclick="openModal('ent10')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">CPU+代工</span><h5>英特尔 Intel</h5><div class="ent-code">INTC</div><div class="ent-desc">x86 CPU>60%，18A(1.8nm)工艺2025量产。</div></div>
+    <div class="ent-card" onclick="openModal('ent11')"><span class="ent-tag" style="background:#3b82f620;color:#3b82f6">HBM</span><h5>SK海力士</h5><div class="ent-code">000660.KS</div><div class="ent-desc">HBM全球第一>50%，AI芯片核心配套。</div></div>
+    <div class="ent-card" onclick="openModal('ent12')"><span class="ent-tag" style="background:#34d39920;color:#34d399">模拟</span><h5>德州仪器 TI</h5><div class="ent-code">TXN</div><div class="ent-desc">模拟芯片之王~15%，产品>8万种，IDM模式。</div></div>
+  </div>
+  <!-- 🏭 晶圆代工 -->
+  <div class="ent-cat"><h4>🏭 晶圆代工 <span>2家</span></h4></div>
+  <div class="ent-grid">
+    <div class="ent-card" onclick="openModal('ent13')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">代工之王</span><h5>台积电 TSMC</h5><div class="ent-code">TSM</div><div class="ent-desc">全球代工62%，7nm以下>92%，3nm已量产。</div></div>
+    <div class="ent-card" onclick="openModal('ent14')"><span class="ent-tag" style="background:#3b82f620;color:#3b82f6">国产代工</span><h5>中芯国际 SMIC</h5><div class="ent-code">688981.SH</div><div class="ent-desc">成熟制程国内第一，N+2(7nm)受设备限制。</div></div>
+  </div>
+  <!-- 🔦 设备材料 -->
+  <div class="ent-cat"><h4>🔦 设备材料 <span>2家</span></h4></div>
+  <div class="ent-grid">
+    <div class="ent-card" onclick="openModal('ent15')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">光刻机</span><h5>ASML (阿斯麦)</h5><div class="ent-code">ASML</div><div class="ent-desc">全球唯一EUV供应商，单台>3亿欧元。</div></div>
+    <div class="ent-card" onclick="openModal('ent16')"><span class="ent-tag" style="background:#34d39920;color:#34d399">国产设备</span><h5>北方华创 Naura</h5><div class="ent-code">002371.SZ</div><div class="ent-desc">中国最大半导体设备企业，订单同比>50%。</div></div>
+  </div>
+  <!-- 📦 封测 -->
+  <div class="ent-cat"><h4>📦 封测 <span>2家</span></h4></div>
+  <div class="ent-grid">
+    <div class="ent-card" onclick="openModal('ent17')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">封测之王</span><h5>日月光 ASE</h5><div class="ent-code">3711.TW</div><div class="ent-desc">全球封测第一~26%，先进封装积极布局。</div></div>
+    <div class="ent-card" onclick="openModal('ent18')"><span class="ent-tag" style="background:#3b82f620;color:#3b82f6">国产封测</span><h5>长电科技 JCET</h5><div class="ent-code">600584.SH</div><div class="ent-desc">中国封测第一~11%，收购星科金朋。</div></div>
+  </div>
+</div>
 </div>
 
 <!-- ===== TAB 3: SUPPLY CHAIN ===== [TODO: 修改供应链内容] -->
@@ -879,8 +919,8 @@ function init() {
   const cats = DATA.filter(d => d.id.startsWith('cat'));
   renderCards('catGrid', cats, 'violet');
   // Enterprise cards (grouped by segment)
-  const ents = DATA.filter(d => d.id.startsWith('ent'));
-  renderEnts('entGrid', ents, 'violet');
+  // Enterprise cards (hardcoded HTML)
+  // const ents = DATA.filter... removed to use hardcoded HTML
   // Supply chain (hardcoded HTML, no JS rendering needed)
   // High-barrier list
   const hls = DATA.filter(d => d.id.startsWith('hl'));
@@ -917,33 +957,6 @@ function renderSC(items) {
   `).join('');
 }
 
-
-function renderEnts(gridId, items, color) {
-  const grid = document.getElementById(gridId);
-  if(!grid || !items.length) return;
-  const groups = {};
-  items.forEach(function(d) {
-    var g = d.group || '其他';
-    if(!groups[g]) groups[g] = [];
-    groups[g].push(d);
-  });
-  var groupOrder = ['🧠 IC设计', '💾 IDM/存储', '🏭 晶圆代工', '🔦 设备材料', '📦 封测'];
-  var html = '';
-  groupOrder.forEach(function(g) {
-    if(!groups[g]) return;
-    html += '<div class="ent-cat"><h4>' + g + ' <span>' + groups[g].length + '家</span></h4></div>';
-    html += '<div class="ent-grid">';
-    groups[g].forEach(function(d) {
-      html += '<div class="ent-card" onclick="openModal(\'' + d.id + '\')">';
-      if(d.tag) html += '<span class="ent-tag" style="background:' + d.tagColor + '20;color:' + d.tagColor + '">' + d.tag + '</span>';
-      html += '<h5>' + d.icon + ' ' + d.title + '</h5>';
-      html += '<div class="ent-desc">' + (d.s1||'').substring(0,50) + '…</div>';
-      html += '</div>';
-    });
-    html += '</div>';
-  });
-  grid.innerHTML = html;
-}
 
 function renderHL(items) {
   const grid = document.getElementById('hlGrid');
