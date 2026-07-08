@@ -168,7 +168,7 @@ function addNode(name, icon, category, desc, link, sector, symbolSize) {
     value: [icon || '●', name],
     symbolSize: symbolSize || 20,
     itemStyle: {color: color, borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1},
-    label: {show: category <= 1, fontSize: category===0?12:10, color: '#e2e8f0'},
+    label: {show: category <= 1, fontSize: category===0?12:10, fontWeight: category===0?'700':'400'},
   };
   // Top level gets glow
   if(category === 0) {
