@@ -130,21 +130,14 @@ function buildLevel1(){
     symbolSize:36,category:0,itemStyle:{color:'#a78bfa',shadowBlur:30,shadowColor:'rgba(167,139,250,0.4)'},
     label:{show:true,fontSize:13,fontWeight:'bold'},
   });
-  // 31 industries arranged in a circle
-  var n = SW_DATA.length;
+  // 31 industries
   SW_DATA.forEach(function(d,i){
-    var angle = (i/n)*Math.PI*2 - Math.PI/2;
-    var r = 180;
-    var x = Math.cos(angle)*r;
-    var y = Math.sin(angle)*r;
     var hasInd = !!IND_LINKS[d.name];
     var cx = d.color || '#3b82f6';
     nodes.push({
       id:d.id,name:d.name,icon:d.icon,value:[d.icon,d.name],
       symbolSize:hasInd?26:22,
       category:1,
-      x:x,y:y,
-      fixed:true,
       itemStyle:{
         color:cx,shadowBlur:hasInd?15:5,shadowColor:cx+'40',
         borderColor:'rgba(255,255,255,'+(hasInd?'0.2':'0.05')+')',borderWidth:hasInd?1.5:0.5,
@@ -208,7 +201,7 @@ function buildLevel2(sw1Id){
       value:[hasCompany?'📂':'○', cname],
       symbolSize:hasCompany?18:14,
       category:2,
-      x:Math.cos(angle)*r, y:Math.sin(angle)*r, fixed:true,
+      
       itemStyle:{
         color:cx,shadowBlur:hasCompany?8:2,shadowColor:cx+'30',
         borderColor:'rgba(255,255,255,'+(hasCompany?'0.15':'0.03')+')',borderWidth:hasCompany?1:0.3,
@@ -230,7 +223,7 @@ function buildLevel2(sw1Id){
         value:['🏢', co],
         symbolSize:hasLink?12:8,
         category:3,
-        x:Math.cos(cAngle)*cr,y:Math.sin(cAngle)*cr,fixed:true,
+        
         itemStyle:{
           color:hasLink?'#34d399':'rgba(148,163,184,0.3)',
           shadowBlur:hasLink?10:0,shadowColor:'rgba(52,211,153,0.3)',
@@ -267,13 +260,14 @@ function renderLevel1(){
       extraCssText:'background:rgba(10,10,30,0.92)!important;backdrop-filter:blur(12px)!important;border-radius:12px!important',
     },
     series:[{
-      type:'graph',layout:'none',roam:true,draggable:true,
+      type:'graph',layout:'force',roam:true,
+      force:{repulsion:400,edgeLength:[80,200],gravity:0.05,friction:0.1,layoutAnimation:true},
       data:data.nodes,links:data.links,
       lineStyle:{color:'source',curveness:0.1,width:0.4,opacity:0.12},
       label:{show:true,position:'bottom',formatter:function(p){return p.data?p.data.icon+' '+p.data.name:'';},fontSize:8,color:'#94a3b8',offset:[0,3]},
       emphasis:{focus:'adjacency',lineStyle:{width:1.5,opacity:0.3}},
       itemStyle:{borderColor:'rgba(255,255,255,0.1)',borderWidth:0.5},
-      roam:true,nodeClick:false,
+      nodeClick:false,
       categories:[{name:'中心',itemStyle:{color:'#a78bfa'}},{name:'一级行业',itemStyle:{color:'#6366f1'}},{name:'二级行业',itemStyle:{color:'#3b82f6'}},{name:'占位',itemStyle:{color:'transparent'}}],
     }],
   };
@@ -308,7 +302,8 @@ function renderLevel2(sw1Id){
       extraCssText:'background:rgba(10,10,30,0.92)!important;backdrop-filter:blur(12px)!important;border-radius:12px!important',
     },
     series:[{
-      type:'graph',layout:'none',roam:true,draggable:true,
+      type:'graph',layout:'force',roam:true,
+      force:{repulsion:300,edgeLength:[100,250],gravity:0.08,friction:0.1,layoutAnimation:true},
       data:d.nodes,links:d.links,
       lineStyle:{color:'source',curveness:0.1,width:0.5,opacity:0.2},
       label:{show:true,position:'bottom',formatter:function(p){
@@ -318,7 +313,7 @@ function renderLevel2(sw1Id){
       },fontSize:7.5,color:'#94a3b8',offset:[0,2]},
       emphasis:{focus:'adjacency',lineStyle:{width:1.5,opacity:0.4}},
       itemStyle:{borderColor:'rgba(255,255,255,0.1)',borderWidth:0.5},
-      roam:true,nodeClick:false,
+      nodeClick:false,
       categories:[{name:'行业',itemStyle:{color:'#a78bfa'}},{name:'二级行业',itemStyle:{color:'#6366f1'}},{name:'企业',itemStyle:{color:'#3b82f6'}},{name:'占位',itemStyle:{color:'transparent'}}],
     }],
   };
