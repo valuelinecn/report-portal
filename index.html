@@ -504,6 +504,8 @@ html{scroll-behavior:smooth}
 [data-theme="light"] #industrySelector [onclick*="loadIndustry('auto')"] div:last-child{color:#555!important}
 [data-theme="light"] #industrySelector [onclick*="loadIndustry('chip')"]{background:linear-gradient(135deg,#ede8f8,#d8d0f0)!important;border-color:rgba(167,139,250,0.3)!important}
 [data-theme="light"] #industrySelector [onclick*="loadIndustry('chip')"] div:last-child{color:#555!important}
+[data-theme="light"] #industrySelector [onclick*="loadIndustry('chip-design')"]{background:linear-gradient(135deg,#e8e4f8,#d0d0f0)!important;border-color:rgba(99,102,241,0.3)!important}
+[data-theme="light"] #industrySelector [onclick*="loadIndustry('chip-design')"] div:last-child{color:#555!important}
 
 [data-theme="light"] .section-bc{background:var(--bg5)}
 
@@ -951,6 +953,11 @@ html{scroll-behavior:smooth}
         <div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-bottom:4px">半导体产业</div>
         <div style="font-size:.6rem;color:#64748b;line-height:1.4">芯片设计 · 制造工艺 · 封装系统</div>
       </div>
+      <div onclick="loadIndustry('chip-design')" style="background:linear-gradient(135deg,#1a1a3a,#0d0d2a);border:1px solid rgba(99,102,241,0.15);border-radius:16px;padding:30px 20px;cursor:pointer;text-align:center;transition:all .3s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+        <div style="font-size:2.4rem;margin-bottom:8px">✏️</div>
+        <div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-bottom:4px">芯片设计</div>
+        <div style="font-size:.6rem;color:#64748b;line-height:1.4">架构 · EDA · IP · 设计到流片</div>
+      </div>
 
     </div>
   </div>
@@ -1043,7 +1050,7 @@ function switchTab(name) {
 }
 
 // ===== INDUSTRY SECTOR MAPPING =====
-const SECTOR_MAP = {'机器人':{name:'机器人产业',type:'robot'},'新能源车':{name:'新能源乘用车',type:'auto'},'半导体':{name:'半导体产业',type:'chip'}};
+const SECTOR_MAP = {'机器人':{name:'机器人产业',type:'robot'},'新能源车':{name:'新能源乘用车',type:'auto'},'半导体':{name:'半导体产业',type:'chip'},'芯片设计':{name:'芯片设计产业',type:'chip-design'}};
 function getIndustryLinks(sectors) {
   if(!sectors||!sectors.length) return [];
   var result = [];
@@ -1494,6 +1501,7 @@ const INDUSTRY_INDEX = [
   {section:'行业研究',type:'机器人产业',title:'机器人产业百科',desc:'人形机器人供应链 · 三层拆解：智能大脑/躯体执行/集成配套',tags:['机器人','人形机器人','供应链','减速器','传感器','电机'],file:'robot-encyclopedia.html'},
   {section:'行业研究',type:'新能源乘用车',title:'新能源乘用车产业百科',desc:'动力类型 · 品牌格局 · 三电系统 · 智驾技术 · 供应链',tags:['新能源车','电动车','电池','比亚迪','特斯拉','智驾','800V'],file:'auto-industry-encyclopedia.html'},
   {section:'行业研究',type:'半导体',title:'半导体产业百科',desc:'芯片设计·制造工艺·封装系统·国产替代·卡脖子环节',tags:['半导体','芯片','AI芯片','光刻机','国产替代'],file:'chip-industry-encyclopedia.html'},
+  {section:'行业研究',type:'芯片设计',title:'芯片设计产业百科',desc:'芯片架构·EDA工具·IP核·设计流程',tags:['芯片设计','EDA','IP','架构','RISC-V','AI芯片'],file:'chip-design-encyclopedia.html'},
 ]
 // Auto-generated item entries for each card inside the encyclopedias
 function getIndustryItems() {
@@ -1514,6 +1522,12 @@ function getIndustryItems() {
     {section:'行业研究',type:'半导体',title:'设计领军',desc:'英伟达·高通·AMD·博通·联发科·兆易创新·海思·韦尔',tags:['半导体','设计'],file:'chip-industry-encyclopedia.html#enterprise'},
     {section:'行业研究',type:'半导体',title:'三层功能拆解',desc:'芯片设计之魂·制造之骨·封装之体',tags:['半导体','供应链'],file:'chip-industry-encyclopedia.html#supplychain'},
     {section:'行业研究',type:'半导体',title:'高壁垒环节',desc:'EUV光刻机·EDA·高端IP·先进制程·高端材料',tags:['半导体','高壁垒'],file:'chip-industry-encyclopedia.html#highlights'},
+    // Chip design items
+    {section:'行业研究',type:'芯片设计',title:'产业总览',desc:'芯片设计三大层·品类划分',tags:['芯片设计'],file:'chip-design-encyclopedia.html#overview'},
+    {section:'行业研究',type:'芯片设计',title:'设计品类',desc:'CPU·GPU/AI·SoC·网络·模拟',tags:['芯片设计','品类'],file:'chip-design-encyclopedia.html#category'},
+    {section:'行业研究',type:'芯片设计',title:'代表企业',desc:'英伟达·高通·AMD·Synopsys·Cadence·芯原等12家',tags:['芯片设计','企业'],file:'chip-design-encyclopedia.html#enterprise'},
+    {section:'行业研究',type:'芯片设计',title:'设计三层拆解',desc:'架构定义·EDA/IP·设计到流片',tags:['芯片设计','设计流程'],file:'chip-design-encyclopedia.html#supplychain'},
+    {section:'行业研究',type:'芯片设计',title:'高壁垒环节',desc:'EDA·IP·先进工艺物理设计·生态锁定',tags:['芯片设计','高壁垒'],file:'chip-design-encyclopedia.html#highlights'},
   ]
 }
 
@@ -1585,8 +1599,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== INDUSTRY RESEARCH SELECTOR =====
 function loadIndustry(type) {
-  const files = { robot:'robot-encyclopedia.html', auto:'auto-industry-encyclopedia.html', chip:'chip-industry-encyclopedia.html' }
-  const titles = { robot:'🤖 机器人产业百科', auto:'🚗 新能源乘用车产业百科', chip:'🔬 半导体产业百科' }
+  const files = { robot:'robot-encyclopedia.html', auto:'auto-industry-encyclopedia.html', chip:'chip-industry-encyclopedia.html', 'chip-design':'chip-design-encyclopedia.html' }
+  const titles = { robot:'🤖 机器人产业百科', auto:'🚗 新能源乘用车产业百科', chip:'🔬 半导体产业百科', 'chip-design':'✏️ 芯片设计产业百科' }
   document.getElementById('industrySelector').style.display = 'none'
   document.getElementById('industryFrameWrap').style.display = 'block'
   document.getElementById('industryFrameTitle').textContent = titles[type] || '🔬 行业研究'
