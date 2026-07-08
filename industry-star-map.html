@@ -3,514 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>🌌 产业星图 · 申万全行业关系图谱</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<title>🌌 产业星图 · 申万全行业</title>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Noto Sans SC',sans-serif;background:#06061a;overflow:hidden;height:100vh;color:#e2e8f0}
-#chart{width:100%;height:100vh}
-
-/* Top bar */
-#topBar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;padding:8px 16px;background:rgba(6,6,26,0.8);backdrop-filter:blur(12px);border-bottom:1px solid rgba(167,139,250,0.08);gap:8px}
-#backBtn{padding:4px 10px;border-radius:8px;cursor:pointer;font-size:.55rem;color:rgba(167,139,250,0.6);border:1px solid rgba(167,139,250,0.1);background:transparent;transition:all .2s;white-space:nowrap}
-#backBtn:hover{background:rgba(167,139,250,0.1);color:#a78bfa}
-#breadcrumb{flex:1;font-size:.55rem;color:rgba(148,163,184,0.5);display:flex;align-items:center;gap:4px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
-#breadcrumb::-webkit-scrollbar{display:none}
-#breadcrumb .bc-item{cursor:pointer;padding:2px 6px;border-radius:4px;transition:all .2s;color:rgba(148,163,184,0.5)}
-#breadcrumb .bc-item:hover{color:#a78bfa;background:rgba(167,139,250,0.08)}
-#breadcrumb .bc-sep{color:rgba(148,163,184,0.2);font-size:.4rem}
-#breadcrumb .bc-current{color:rgba(167,139,250,0.7);font-weight:600}
-#searchInput{padding:4px 10px;border-radius:8px;border:1px solid rgba(167,139,250,0.12);background:rgba(167,139,250,0.06);color:#94a3b8;font-size:.55rem;width:120px;outline:none;transition:all .2s;font-family:'Noto Sans SC',sans-serif}
-#searchInput:focus{border-color:rgba(167,139,250,0.3);width:180px;color:#e2e8f0}
-#searchInput::placeholder{color:rgba(148,163,184,0.3)}
-#searchResults{position:fixed;top:42px;right:16px;z-index:99;background:rgba(10,10,30,0.95);backdrop-filter:blur(12px);border:1px solid rgba(167,139,250,0.12);border-radius:10px;padding:6px;display:none;max-height:240px;overflow-y:auto;min-width:160px}
-#searchResults .sr-item{padding:5px 10px;border-radius:6px;cursor:pointer;font-size:.55rem;color:#94a3b8;transition:all .15s;display:flex;align-items:center;gap:4px}
-#searchResults .sr-item:hover{background:rgba(167,139,250,0.1);color:#e2e8f0}
-
-/* Hint */
-#hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:10;font-size:.5rem;color:rgba(148,163,184,0.25);letter-spacing:1px;pointer-events:none;transition:opacity .8s}
-
-/* Light theme */
-body.light{background:#f4f1ea!important}
-body.light #topBar{background:rgba(244,241,234,0.9)!important;border-bottom-color:rgba(167,139,250,0.1)!important}
-body.light #backBtn{color:rgba(99,102,241,0.5)!important;border-color:rgba(99,102,241,0.12)!important}
-body.light #backBtn:hover{background:rgba(99,102,241,0.08)!important;color:#6366f1!important}
-body.light #breadcrumb .bc-item{color:rgba(80,80,80,0.4)!important}
-body.light #breadcrumb .bc-item:hover{color:#6366f1!important}
-body.light #breadcrumb .bc-current{color:rgba(99,102,241,0.7)!important}
-body.light #searchInput{background:rgba(99,102,241,0.04)!important;border-color:rgba(99,102,241,0.1)!important;color:#505050!important}
-body.light #searchInput:focus{border-color:rgba(99,102,241,0.2)!important}
-body.light #searchResults{background:rgba(250,248,240,0.98)!important;border-color:rgba(99,102,241,0.1)!important}
-body.light #searchResults .sr-item{color:#666!important}
-body.light #searchResults .sr-item:hover{background:rgba(99,102,241,0.06)!important;color:#333!important}
-body.light #hint{color:rgba(80,80,80,0.15)!important}
-@media(max-width:768px){#searchInput{width:80px}#searchInput:focus{width:120px}#topBar{padding:6px 8px;gap:4px}}
+body{background:#06061a;overflow:hidden;height:100dvh;font-family:sans-serif}
+#c{width:100%;height:100dvh}
+#bar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;padding:6px 10px;background:rgba(6,6,26,0.8);gap:6px;color:#94a3b8;font-size:11px}
+#bar button{background:transparent;border:1px solid rgba(167,139,250,0.1);border-radius:6px;padding:3px 8px;color:rgba(167,139,250,0.5);font-size:10px;cursor:pointer}
+#bc{flex:1;display:flex;gap:3px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-size:10px}
+#bc span{cursor:pointer;padding:1px 4px;border-radius:3px;color:rgba(148,163,184,0.4)}
+#bc .cur{color:rgba(167,139,250,0.6);font-weight:600}
+#in{padding:2px 6px;border-radius:4px;border:1px solid rgba(167,139,250,0.1);background:rgba(167,139,250,0.04);color:#94a3b8;font-size:10px;width:80px;outline:none}
+#hint{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);font-size:9px;color:rgba(148,163,184,0.15);pointer-events:none}
+.sr-item{padding:3px 8px;cursor:pointer;font-size:10px;color:#94a3b8;border-radius:4px}
+.sr-item:hover{background:rgba(167,139,250,0.1)}
+body.light{background:#f4f1ea}
+body.light #bar{background:rgba(244,241,234,0.85)}
+body.light #in{color:#505050}
+body.light #hint{color:rgba(80,80,80,0.12)}
 </style>
 </head>
 <body>
-
-<div id="topBar">
-  <button id="backBtn" onclick="goBack()">← 返回</button>
-  <div id="breadcrumb"></div>
-  <input id="searchInput" placeholder="🔍 搜索行业或企业" oninput="onSearch(this.value)">
-</div>
-<div id="searchResults"></div>
-<div id="chart"></div>
-<div id="hint">🖱️ 点击行业展开二级 · 滚轮缩放 · 拖拽移动</div>
-
+<div id="bar"><button onclick="goBack()">←</button><div id="bc"></div><input id="in" placeholder="🔍" oninput="srch(this.value)"></div>
+<div id="c"></div>
+<div id="hint">点击行业展开 · 滚轮缩放 · 拖拽移动</div>
 <script>
-// Debug: show errors on screen
-window.onerror = function(msg, url, line){
-  document.getElementById('chart').innerHTML = '<div style="padding:40px;color:#fb7185;font-size:.7rem;text-align:center">⚠️ ' + msg + '<br>line: ' + line + '</div>';
-  return true;
-};
-// Add error display for ECharts loading
-if(typeof echarts === 'undefined'){
-  document.getElementById('chart').innerHTML = '<div style="padding:40px;color:#fb7185;font-size:.7rem;text-align:center">⚠️ ECharts未加载，请检查网络<br>尝试刷新页面</div>';
-}
-// =====================================================================
-// 申万一级行业数据 (31个)
-// =====================================================================
-var SW_DATA = [{"id": "sw1", "name": "农林牧渔", "icon": "🌾", "color": "#22d3ee", "children": ["种植业", "渔业", "林业", "饲料", "养殖业", "农产品加工", "农业综合"]}, {"id": "sw2", "name": "食品饮料", "icon": "🍶", "color": "#fbbf24", "children": ["白酒", "啤酒", "其他酒类", "软饮料", "乳品", "调味发酵品", "食品综合", "肉制品", "休闲食品"]}, {"id": "sw3", "name": "纺织服饰", "icon": "👔", "color": "#fb7185", "children": ["纺织品", "服装家纺", "皮革制品"]}, {"id": "sw4", "name": "轻工制造", "icon": "📦", "color": "#34d399", "children": ["造纸", "包装印刷", "家具", "文娱用品", "其他轻工"]}, {"id": "sw5", "name": "医药生物", "icon": "💊", "color": "#fb7185", "children": ["化学制药", "中药", "生物制品", "医药商业", "医疗器械", "医疗服务"]}, {"id": "sw6", "name": "公用事业", "icon": "⚡", "color": "#f97316", "children": ["电力", "燃气", "供水", "环保", "市政工程"]}, {"id": "sw7", "name": "交通运输", "icon": "🚄", "color": "#f97316", "children": ["铁路", "公路", "机场", "港口", "航运", "航空", "物流"]}, {"id": "sw8", "name": "房地产", "icon": "🏘️", "color": "#f97316", "children": ["房地产开发", "产业地产", "商业地产", "物业管理", "房地产服务"]}, {"id": "sw9", "name": "商贸零售", "icon": "🛒", "color": "#fbbf24", "children": ["百货", "超市", "专业连锁", "电商", "贸易", "商业物业经营"]}, {"id": "sw10", "name": "社会服务", "icon": "🎭", "color": "#fbbf24", "children": ["酒店", "餐饮", "旅游景区", "休闲服务", "教育", "专业服务"]}, {"id": "sw11", "name": "美容护理", "icon": "💄", "color": "#fb7185", "children": ["美容护理", "化妆品", "个护用品"]}, {"id": "sw12", "name": "银行", "icon": "🏦", "color": "#eab308", "children": ["国有大型银行", "股份制银行", "城商行", "农商行", "银行"]}, {"id": "sw13", "name": "非银金融", "icon": "💰", "color": "#eab308", "children": ["证券", "保险", "多元金融", "金融信息服务"]}, {"id": "sw14", "name": "综合", "icon": "📊", "color": "#94a3b8", "children": ["综合"]}, {"id": "sw15", "name": "建筑材料", "icon": "🧱", "color": "#fb923c", "children": ["水泥", "玻璃", "玻纤", "耐火材料", "管材", "其他建材"]}, {"id": "sw16", "name": "建筑装饰", "icon": "🏗️", "color": "#fb923c", "children": ["房屋建设", "基础建设", "钢结构", "装修装饰", "园林工程"]}, {"id": "sw17", "name": "电力设备", "icon": "🔋", "color": "#22d3ee", "children": ["光伏设备", "风电设备", "储能设备", "电池", "电网设备", "电机", "综合电力设备"]}, {"id": "sw18", "name": "机械设备", "icon": "⚙️", "color": "#22d3ee", "children": ["通用机械", "专用机械", "仪器仪表", "自动化设备", "工程机械", "轨交设备"]}, {"id": "sw19", "name": "汽车", "icon": "🚗", "color": "#22d3ee", "children": ["乘用车", "商用车", "汽车零部件", "汽车服务", "摩托车"]}, {"id": "sw20", "name": "家用电器", "icon": "🏠", "color": "#fbbf24", "children": ["白电", "黑电", "厨电", "小家电", "照明", "零部件"]}, {"id": "sw21", "name": "有色金属", "icon": "🪨", "color": "#fb923c", "children": ["铜", "铝", "铅锌", "黄金", "稀土", "锂", "钨", "新材料"]}, {"id": "sw22", "name": "钢铁", "icon": "🔩", "color": "#fb923c", "children": ["普钢", "特钢", "铁矿石", "钢加工", "冶钢原料"]}, {"id": "sw23", "name": "基础化工", "icon": "🧪", "color": "#fb923c", "children": ["石油化工", "煤化工", "氟化工", "氯碱", "化纤", "塑料", "橡胶", "农药", "化肥", "涂料油墨", "电子化学品"]}, {"id": "sw24", "name": "石油石化", "icon": "🛢️", "color": "#fb923c", "children": ["石油开采", "炼化", "油田服务", "油气储运", "油品销售"]}, {"id": "sw25", "name": "煤炭", "icon": "🪨", "color": "#fb923c", "children": ["动力煤", "焦煤", "焦炭", "煤化工"]}, {"id": "sw26", "name": "环保", "icon": "🌿", "color": "#34d399", "children": ["水治理", "固废治理", "大气治理", "环境监测", "生态修复"]}, {"id": "sw27", "name": "国防军工", "icon": "🛡️", "color": "#22d3ee", "children": ["航空航天装备", "船舶", "兵器", "军工电子", "军工材料"]}, {"id": "sw28", "name": "计算机", "icon": "💻", "color": "#3b82f6", "children": ["软件开发", "IT服务", "云计算", "人工智能", "信息安全", "计算机设备"]}, {"id": "sw29", "name": "电子", "icon": "🔬", "color": "#3b82f6", "children": ["半导体", "芯片设计", "消费电子", "电子元件", "光学光电子", "电子化学品"]}, {"id": "sw30", "name": "通信", "icon": "📡", "color": "#3b82f6", "children": ["通信网络设备", "通信运营", "通信服务", "光通信", "卫星通信"]}, {"id": "sw31", "name": "传媒", "icon": "🎬", "color": "#3b82f6", "children": ["影视院线", "广告营销", "游戏", "出版", "广播电视", "数字媒体", "有线网络"]}];
+var SW=[{"id":"sw1","name":"农林牧渔","icon":"🌾","color":"#22d3ee","children":["种植业","渔业","林业","饲料","养殖业","农产品加工","农业综合"]},{"id":"sw2","name":"食品饮料","icon":"🍶","color":"#fbbf24","children":["白酒","啤酒","其他酒类","软饮料","乳品","调味发酵品","食品综合","肉制品","休闲食品"]},{"id":"sw3","name":"纺织服饰","icon":"👔","color":"#fb7185","children":["纺织品","服装家纺","皮革制品"]},{"id":"sw4","name":"轻工制造","icon":"📦","color":"#34d399","children":["造纸","包装印刷","家具","文娱用品","其他轻工"]},{"id":"sw5","name":"医药生物","icon":"💊","color":"#fb7185","children":["化学制药","中药","生物制品","医药商业","医疗器械","医疗服务"]},{"id":"sw6","name":"公用事业","icon":"⚡","color":"#f97316","children":["电力","燃气","供水","环保","市政工程"]},{"id":"sw7","name":"交通运输","icon":"🚄","color":"#f97316","children":["铁路","公路","机场","港口","航运","航空","物流"]},{"id":"sw8","name":"房地产","icon":"🏘️","color":"#f97316","children":["房地产开发","产业地产","商业地产","物业管理","房地产服务"]},{"id":"sw9","name":"商贸零售","icon":"🛒","color":"#fbbf24","children":["百货","超市","专业连锁","电商","贸易","商业物业经营"]},{"id":"sw10","name":"社会服务","icon":"🎭","color":"#fbbf24","children":["酒店","餐饮","旅游景区","休闲服务","教育","专业服务"]},{"id":"sw11","name":"美容护理","icon":"💄","color":"#fb7185","children":["美容护理","化妆品","个护用品"]},{"id":"sw12","name":"银行","icon":"🏦","color":"#eab308","children":["国有大型银行","股份制银行","城商行","农商行","银行"]},{"id":"sw13","name":"非银金融","icon":"💰","color":"#eab308","children":["证券","保险","多元金融","金融信息服务"]},{"id":"sw14","name":"综合","icon":"📊","color":"#94a3b8","children":["综合"]},{"id":"sw15","name":"建筑材料","icon":"🧱","color":"#fb923c","children":["水泥","玻璃","玻纤","耐火材料","管材","其他建材"]},{"id":"sw16","name":"建筑装饰","icon":"🏗️","color":"#fb923c","children":["房屋建设","基础建设","钢结构","装修装饰","园林工程"]},{"id":"sw17","name":"电力设备","icon":"🔋","color":"#22d3ee","children":["光伏设备","风电设备","储能设备","电池","电网设备","电机","综合电力设备"]},{"id":"sw18","name":"机械设备","icon":"⚙️","color":"#22d3ee","children":["通用机械","专用机械","仪器仪表","自动化设备","工程机械","轨交设备"]},{"id":"sw19","name":"汽车","icon":"🚗","color":"#22d3ee","children":["乘用车","商用车","汽车零部件","汽车服务","摩托车"]},{"id":"sw20","name":"家用电器","icon":"🏠","color":"#fbbf24","children":["白电","黑电","厨电","小家电","照明","零部件"]},{"id":"sw21","name":"有色金属","icon":"🪨","color":"#fb923c","children":["铜","铝","铅锌","黄金","稀土","锂","钨","新材料"]},{"id":"sw22","name":"钢铁","icon":"🔩","color":"#fb923c","children":["普钢","特钢","铁矿石","钢加工","冶钢原料"]},{"id":"sw23","name":"基础化工","icon":"🧪","color":"#fb923c","children":["石油化工","煤化工","氟化工","氯碱","化纤","塑料","橡胶","农药","化肥","涂料油墨","电子化学品"]},{"id":"sw24","name":"石油石化","icon":"🛢️","color":"#fb923c","children":["石油开采","炼化","油田服务","油气储运","油品销售"]},{"id":"sw25","name":"煤炭","icon":"🪨","color":"#fb923c","children":["动力煤","焦煤","焦炭","煤化工"]},{"id":"sw26","name":"环保","icon":"🌿","color":"#34d399","children":["水治理","固废治理","大气治理","环境监测","生态修复"]},{"id":"sw27","name":"国防军工","icon":"🛡️","color":"#22d3ee","children":["航空航天装备","船舶","兵器","军工电子","军工材料"]},{"id":"sw28","name":"计算机","icon":"💻","color":"#3b82f6","children":["软件开发","IT服务","云计算","人工智能","信息安全","计算机设备"]},{"id":"sw29","name":"电子","icon":"🔬","color":"#3b82f6","children":["半导体","芯片设计","消费电子","电子元件","光学光电子","电子化学品II"]},{"id":"sw30","name":"通信","icon":"📡","color":"#3b82f6","children":["通信网络设备","通信运营","通信服务","光通信","卫星通信"]},{"id":"sw31","name":"传媒","icon":"🎬","color":"#3b82f6","children":["影视院线","广告营销","游戏","出版","广播电视","数字媒体","有线网络"]}];
+var CSW2={"兆易创新":"半导体","生益科技":"电子元件","宁德时代":"电池","比亚迪":"乘用车","特斯拉":"乘用车","赛力斯":"乘用车","同仁堂":"中药","达仁堂":"中药","马应龙":"中药","浙江震元":"医药商业","宋城演艺":"旅游景区","上海机场":"机场","中信证券":"证券","云铝股份":"铝","埃斯顿":"自动化设备","新松机器人":"自动化设备","科沃斯":"小家电","石头科技":"小家电","英伟达":"芯片设计","高通":"芯片设计","AMD":"芯片设计","博通":"芯片设计","联发科":"芯片设计","华为海思":"芯片设计","韦尔股份":"芯片设计","Synopsys":"芯片设计","Cadence":"芯片设计","芯原股份":"芯片设计","创意电子":"芯片设计"};
+var CL={"兆易创新":"603986.html","生益科技":"600183.html","宁德时代":"ningde.html","赛力斯":"601127.html","同仁堂":"600085.html","达仁堂":"600329.html","马应龙":"600993.html","浙江震元":"000705.html","宋城演艺":"300144.html","上海机场":"600009.html","中信证券":"600030.html","云铝股份":"000807.html","埃斯顿":"robot-encyclopedia.html","新松机器人":"robot-encyclopedia.html","科沃斯":"robot-encyclopedia.html","石头科技":"robot-encyclopedia.html"};
+var IL={"电子":"chip-industry-encyclopedia.html","芯片设计":"chip-design-encyclopedia.html","汽车":"auto-industry-encyclopedia.html","自动化设备":"robot-encyclopedia.html"};
+var chart = echarts.init(document.getElementById('c'));
+var view = 'l1', curId = null;
 
-// =====================================================================
-// 企业映射
-// =====================================================================
-var COMPANY_SW2 = {"兆易创新": "半导体", "生益科技": "电子元件", "宁德时代": "电池", "比亚迪": "乘用车", "特斯拉": "乘用车", "赛力斯": "乘用车", "同仁堂": "中药", "达仁堂": "中药", "马应龙": "中药", "浙江震元": "医药商业", "宋城演艺": "旅游景区", "上海机场": "机场", "中信证券": "证券", "云铝股份": "铝", "埃斯顿": "自动化设备", "新松机器人": "自动化设备", "科沃斯": "小家电", "石头科技": "小家电", "英伟达": "芯片设计", "高通": "芯片设计", "AMD": "芯片设计", "博通": "芯片设计", "联发科": "芯片设计", "华为海思": "芯片设计", "韦尔股份": "芯片设计", "Synopsys": "芯片设计", "Cadence": "芯片设计", "芯原股份": "芯片设计", "创意电子": "芯片设计"};
-var COMPANY_LINKS = {"兆易创新": "603986.html", "生益科技": "600183.html", "宁德时代": "ningde.html", "赛力斯": "601127.html", "同仁堂": "600085.html", "达仁堂": "600329.html", "马应龙": "600993.html", "浙江震元": "000705.html", "宋城演艺": "300144.html", "上海机场": "600009.html", "中信证券": "600030.html", "云铝股份": "000807.html", "埃斯顿": "robot-encyclopedia.html", "新松机器人": "robot-encyclopedia.html", "科沃斯": "robot-encyclopedia.html", "石头科技": "robot-encyclopedia.html"};
-var COMPANY_DESC = {
-  '兆易创新':'NOR Flash全球第三，MCU国产替代',
-  '生益科技':'覆铜板全球第二，AI算力受益',
-  '宁德时代':'全球动力电池装机量第一',
-  '比亚迪':'新能源车全球销量第一',
-  '特斯拉':'全球纯电标杆',
-  '赛力斯':'华为智选车核心伙伴',
-  '同仁堂':'三百余年安宫牛黄丸品牌',
-  '达仁堂':'速效救心丸国家秘密品种',
-  '马应龙':'四百年肛肠治痔龙头',
-  '浙江震元':'绍兴区域医药龙头',
-  '宋城演艺':'文旅演艺绝对龙头',
-  '上海机场':'中国最大航空枢纽',
-  '中信证券':'全业务链券商龙头',
-  '云铝股份':'绿色铝一体化龙头',
-  '埃斯顿':'焊接机器人龙头',
-  '新松机器人':'国产老牌机器人龙头',
-  '科沃斯':'家用清洁绝对龙头',
-  '石头科技':'扫地第二极',
-  '英伟达':'AI芯片之王，CUDA生态',
-  '高通':'移动SoC之王',
-  'AMD':'CPU/GPU双引擎',
-  '博通':'通信网络芯片之王',
-  '联发科':'手机SoC出货量第一',
-  '华为海思':'中国芯片设计旗舰',
-  '韦尔股份':'CIS传感器全球第三',
-  'Synopsys':'EDA+IP双龙头',
-  'Cadence':'EDA第二，模拟领先',
-  '芯原股份':'中国IP+设计服务龙头',
-  '创意电子':'台积电背景设计服务',
-};
-
-// Industry encyclopedia links
-var IND_LINKS = {"电子": "chip-industry-encyclopedia.html", "芯片设计": "chip-design-encyclopedia.html", "汽车": "auto-industry-encyclopedia.html", "自动化设备": "robot-encyclopedia.html"};
-
-// =====================================================================
-// ECharts 渲染
-// =====================================================================
-var chartDom = document.getElementById('chart');
-var myChart = echarts.init(chartDom, 'dark');
-var state = {view:'level1', currentSw1:null};
-
-function buildLevel1(){
-  var nodes = [];
-  var links = [];
-  // Hub
-  nodes.push({
-    id:'hub',name:'产业星图',icon:'🌌',value:['🌌','产业星图'],
-    symbolSize:36,category:0,itemStyle:{color:'#a78bfa',shadowBlur:30,shadowColor:'rgba(167,139,250,0.4)'},
-    label:{show:true,fontSize:13,fontWeight:'bold'},
-  });
-  // 31 industries
-  SW_DATA.forEach(function(d,i){
-    var hasInd = !!IND_LINKS[d.name];
-    var cx = d.color || '#3b82f6';
-    nodes.push({
-      id:d.id,name:d.name,icon:d.icon,value:[d.icon,d.name],
-      symbolSize:hasInd?26:22,
-      category:1,
-      itemStyle:{
-        color:cx,shadowBlur:hasInd?15:5,shadowColor:cx+'40',
-        borderColor:'rgba(255,255,255,'+(hasInd?'0.2':'0.05')+')',borderWidth:hasInd?1.5:0.5,
-      },
-      _hasResearch:hasInd,
-      _sw1:d,
-    });
-    links.push({source:'hub',target:d.id});
-  });
-  return {nodes:nodes, links:links};
-}
-
-function buildLevel2(sw1Id){
-  var sw1 = SW_DATA.find(function(d){return d.id===sw1Id});
-  if(!sw1) return null;
-  var nodes = [];
-  var links = [];
-  // Back to level1 node
-  nodes.push({
-    id:'back-'+sw1Id,name:sw1.name,icon:sw1.icon,value:['←','← '+sw1.name],
-    symbolSize:18,category:0,itemStyle:{color:'rgba(167,139,250,0.4)',borderColor:'rgba(167,139,250,0.15)',borderWidth:1},
-    _isBack:true,
-    label:{show:true,fontSize:8},
-  });
-  links.push({source:'back-'+sw1Id,target:'hub-placeholder'});
-  
-  // Central industry hub
-  var hasInd = !!IND_LINKS[sw1.name];
-  nodes.push({
-    id:sw1Id,name:sw1.name,icon:sw1.icon,value:[sw1.icon,sw1.name],
-    symbolSize:32,category:0,itemStyle:{
-      color:sw1.color,shadowBlur:25,shadowColor:sw1.color+'60',
-      borderColor:'rgba(255,255,255,0.2)',borderWidth:2,
-    },
-    _hasResearch:hasInd,_sw1:sw1,
-    _isCurrentHub:true,
-    label:{show:true,fontSize:12,fontWeight:'bold'},
-  });
-  
-  // Placeholder hub for centering
-  nodes.push({id:'hub-placeholder',name:'',symbolSize:1,category:3,itemStyle:{color:'transparent',opacity:0},label:{show:false}});
-  links.push({source:sw1Id,target:'hub-placeholder'});
-  
-  // Secondary industries
-  var children = sw1.children || [];
-  children.forEach(function(cname,i){
-    var n = children.length;
-    var angle = (i/n)*Math.PI*2 - Math.PI/2;
-    var r = 130;
-    var cx = sw1.color || '#3b82f6';
-    
-    // Companies in this secondary industry
-    var companies = [];
-    for(var key in COMPANY_SW2){
-      if(COMPANY_SW2[key] === cname) companies.push(key);
-    }
-    var hasCompany = companies.length > 0;
-    
-    nodes.push({
-      id:'sw2-'+cname,name:cname,icon:'📂',
-      value:[hasCompany?'📂':'○', cname],
-      symbolSize:hasCompany?18:14,
-      category:2,
-      
-      itemStyle:{
-        color:cx,shadowBlur:hasCompany?8:2,shadowColor:cx+'30',
-        borderColor:'rgba(255,255,255,'+(hasCompany?'0.15':'0.03')+')',borderWidth:hasCompany?1:0.3,
-        opacity:hasCompany?1:0.5,
-      },
-      _isSw2:true,_sw1Parent:sw1Id,_companyCount:companies.length,_companies:companies,
-      label:{show:true,fontSize:7,color:'#94a3b8'},
-    });
-    links.push({source:sw1Id,target:'sw2-'+cname});
-    
-    // Company nodes
-    companies.forEach(function(co,j){
-      var link = COMPANY_LINKS[co] || '';
-      var hasLink = !!link;
-      var cAngle = angle + (j - (companies.length-1)/2)*0.15;
-      var cr = 185;
-      nodes.push({
-        id:'co-'+co,name:co,icon:'🏢',
-        value:['🏢', co],
-        symbolSize:hasLink?12:8,
-        category:3,
-        
-        itemStyle:{
-          color:hasLink?'#34d399':'rgba(148,163,184,0.3)',
-          shadowBlur:hasLink?10:0,shadowColor:'rgba(52,211,153,0.3)',
-          borderColor:'rgba(255,255,255,'+(hasLink?'0.2':'0.05')+')',borderWidth:hasLink?1:0.3,
-        },
-        _isCompany:true,_companyName:co,_hasLink:hasLink,
-        label:{show:true,fontSize:6,color:hasLink?'#94a3b8':'rgba(148,163,184,0.35)'},
-      });
-      links.push({source:'sw2-'+cname,target:'co-'+co});
-    });
-  });
-  
-  return {nodes:nodes, links:links};
-}
-
-var currentOption = null;
-
-function renderLevel1(){
-  state.view = 'level1';
-  state.currentSw1 = null;
-  var data = buildLevel1();
-  
-  var option = {
-    backgroundColor:'transparent',
-    tooltip:{show:true,trigger:'item',backgroundColor:'rgba(10,10,30,0.92)',borderColor:'rgba(167,139,250,0.2)',borderWidth:1,borderRadius:12,padding:[10,14],
-      formatter:function(p){
-        if(!p.data||p.dataType!=='node') return '';
-        var d=p.data;var lt=document.body.classList.contains('light');
-        var html='<div style="font-size:1rem;margin-bottom:2px">'+(d.icon||'●')+'</div>';
-        html+='<div style="font-size:.75rem;font-weight:700;color:'+(lt?'#333':'#e2e8f0')+'">'+d.name+'</div>';
-        if(d._hasResearch) html+='<div style="font-size:.5rem;color:'+(lt?'rgba(99,102,241,0.6)':'rgba(167,139,250,0.6)')+';margin-top:2px">🔬 已有行业研究 · 点击查看</div>';
-        return html;
-      },
-      extraCssText:'background:rgba(10,10,30,0.92)!important;backdrop-filter:blur(12px)!important;border-radius:12px!important',
-    },
-    series:[{
-      type:'graph',layout:'force',roam:true,
-      force:{repulsion:400,edgeLength:[80,200],gravity:0.05,friction:0.1,layoutAnimation:true},
-      data:data.nodes,links:data.links,
-      lineStyle:{color:'source',curveness:0.1,width:0.4,opacity:0.12},
-      label:{show:true,position:'bottom',formatter:function(p){return p.data?p.data.icon+' '+p.data.name:'';},fontSize:8,color:'#94a3b8',offset:[0,3]},
-      emphasis:{focus:'adjacency',lineStyle:{width:1.5,opacity:0.3}},
-      itemStyle:{borderColor:'rgba(255,255,255,0.1)',borderWidth:0.5},
-      nodeClick:false,
-      categories:[{name:'中心',itemStyle:{color:'#a78bfa'}},{name:'一级行业',itemStyle:{color:'#6366f1'}},{name:'二级行业',itemStyle:{color:'#3b82f6'}},{name:'占位',itemStyle:{color:'transparent'}}],
-    }],
+function opt(data) {
+  return {
+    backgroundColor: 'transparent',
+    series: [{
+      type: 'graph', layout: 'force', roam: true,
+      force: {repulsion: 300, edgeLength: [50, 150], gravity: 0.05},
+      data: data.n, links: data.l,
+      label: {show: true, fontSize: 9, color: '#94a3b8'},
+      lineStyle: {color: 'rgba(255,255,255,0.1)', width: 0.5},
+      emphasis: {focus: 'adjacency'},
+      nodeClick: false,
+    }]
   };
-  currentOption = option;
-  myChart.setOption(option);
-  updateBreadcrumb([]);
 }
 
-function renderLevel2(sw1Id){
-  state.view = 'level2';
-  state.currentSw1 = sw1Id;
-  var d = buildLevel2(sw1Id);
-  if(!d) return;
-  
-  var sw1 = SW_DATA.find(function(x){return x.id===sw1Id});
-  var hasInd = !!IND_LINKS[sw1.name];
-  
-  var option = {
-    backgroundColor:'transparent',
-    tooltip:{show:true,trigger:'item',backgroundColor:'rgba(10,10,30,0.92)',borderColor:'rgba(167,139,250,0.2)',borderWidth:1,borderRadius:12,padding:[10,14],
-      formatter:function(p){
-        if(!p.data||p.dataType!=='node') return '';
-        var d=p.data;var lt=document.body.classList.contains('light');
-        var html='<div style="font-size:1rem;margin-bottom:2px">'+(d.icon||'●')+'</div>';
-        html+='<div style="font-size:.75rem;font-weight:700;color:'+(lt?'#333':'#e2e8f0')+'">'+d.name+'</div>';
-        if(d._isBack) html+='<div style="font-size:.5rem;color:'+(lt?'rgba(99,102,241,0.5)':'rgba(167,139,250,0.5)')+';margin-top:2px">点击返回一级总览</div>';
-        else if(d._isCurrentHub&&hasInd) html+='<div style="font-size:.5rem;color:rgba(52,211,153,0.7);margin-top:2px">🔬 查看行业百科 →</div>';
-        else if(d._isCompany) html+=d._hasLink?'<div style="font-size:.5rem;color:rgba(52,211,153,0.7);margin-top:2px">📄 查看研究报告 →</div>':'<div style="font-size:.5rem;color:rgba(148,163,184,0.3);margin-top:2px">暂无研究</div>';
-        else if(d._companyCount) html+='<div style="font-size:.5rem;color:rgba(148,163,184,0.4);margin-top:2px">'+d._companyCount+'家关联企业</div>';
-        return html;
-      },
-      extraCssText:'background:rgba(10,10,30,0.92)!important;backdrop-filter:blur(12px)!important;border-radius:12px!important',
-    },
-    series:[{
-      type:'graph',layout:'force',roam:true,
-      force:{repulsion:300,edgeLength:[100,250],gravity:0.08,friction:0.1,layoutAnimation:true},
-      data:d.nodes,links:d.links,
-      lineStyle:{color:'source',curveness:0.1,width:0.5,opacity:0.2},
-      label:{show:true,position:'bottom',formatter:function(p){
-        if(!p.data) return '';
-        if(p.data._isBack) return '';
-        return p.data.icon+' '+p.data.name;
-      },fontSize:7.5,color:'#94a3b8',offset:[0,2]},
-      emphasis:{focus:'adjacency',lineStyle:{width:1.5,opacity:0.4}},
-      itemStyle:{borderColor:'rgba(255,255,255,0.1)',borderWidth:0.5},
-      nodeClick:false,
-      categories:[{name:'行业',itemStyle:{color:'#a78bfa'}},{name:'二级行业',itemStyle:{color:'#6366f1'}},{name:'企业',itemStyle:{color:'#3b82f6'}},{name:'占位',itemStyle:{color:'transparent'}}],
-    }],
-  };
-  currentOption = option;
-  myChart.setOption(option);
-  
-  // Breadcrumb
-  updateBreadcrumb([{name:sw1.name,id:sw1.id}]);
+function l1() {
+  view = 'l1'; curId = null;
+  var n = [{name: '\uD83C\uDF0C \u4EA7\u4E1A\u661F\u56FE', symbolSize: 32, itemStyle: {color: '#a78bfa'}, id: 'h'}];
+  var l = [];
+  SW.forEach(function(d) {
+    var sz = IL[d.name] ? 24 : 20;
+    n.push({name: d.icon + ' ' + d.name, symbolSize: sz, itemStyle: {color: d.color || '#6366f1'}, id: d.id, _s: d});
+    l.push({source: 'h', target: d.id});
+  });
+  chart.setOption(opt({n: n, l: l}));
+  document.getElementById('bc').innerHTML = '<span class="cur">\uD83C\uDF0C \u5168\u884C\u4E1A</span>';
 }
 
-// ===== Click handler =====
-myChart.on('click', function(params){
-  if(params.dataType !== 'node' || !params.data) return;
+function l2(id) {
+  view = 'l2'; curId = id;
+  var s = SW.find(function(d) { return d.id === id; });
+  if (!s) return;
+  var hi = !!IL[s.name], n = [], l = [];
+  n.push({name: s.icon + ' ' + s.name + (hi ? ' \uD83D\uDD2C' : ''), symbolSize: 28, itemStyle: {color: s.color || '#a78bfa', shadowBlur: 12, shadowColor: (s.color || '#a78bfa') + '80'}, id: id, _is: true});
+  n.push({name: '\u2190', symbolSize: 12, itemStyle: {color: 'rgba(167,139,250,0.2)'}, id: 'b'});
+  l.push({source: 'b', target: id});
+  (s.children || []).forEach(function(c) {
+    var cs = [];
+    for (var k in CSW2) { if (CSW2[k] === c) cs.push(k); }
+    var hc = cs.length > 0;
+    n.push({name: c, symbolSize: hc ? 14 : 10, itemStyle: {color: s.color || '#6366f1', opacity: hc ? 1 : 0.3}, id: 's-' + c});
+    l.push({source: id, target: 's-' + c});
+    cs.forEach(function(co) {
+      var hl = !!CL[co];
+      n.push({name: co, symbolSize: hl ? 9 : 5, itemStyle: {color: hl ? '#34d399' : 'rgba(148,163,184,0.15)'}, id: 'c-' + co, _co: co});
+      l.push({source: 's-' + c, target: 'c-' + co});
+    });
+  });
+  chart.setOption(opt({n: n, l: l}));
+  document.getElementById('bc').innerHTML = '<span onclick="l1()" style="cursor:pointer">\uD83C\uDF0C</span><span style="color:rgba(148,163,184,0.15)"> \u203A </span><span class="cur">' + s.icon + ' ' + s.name + '</span>';
+}
+
+chart.on('click', function(params) {
+  if (!params.data || params.dataType !== 'node') { if (view === 'l2') l1(); return; }
   var d = params.data;
-  
-  // Back button
-  if(d._isBack){
-    renderLevel1();
+  if (d.id === 'b') { l1(); return; }
+  if (view === 'l1' && d._s) { l2(d._s.id); return; }
+  if (d._is) {
+    var sw = SW.find(function(x) { return x.id === d.id; });
+    if (sw && IL[sw.name]) window.open(IL[sw.name], '_blank');
     return;
   }
-  
-  // Level1: click industry to expand
-  if(state.view === 'level1' && d._sw1){
-    renderLevel2(d._sw1.id);
-    return;
-  }
-  
-  // Level2: click industry hub → encyclopedia
-  if(d._isCurrentHub && d._hasResearch){
-    var link = IND_LINKS[d.name];
-    if(link) window.open(link, '_blank');
-    return;
-  }
-  
-  // Level2: click company → report
-  if(d._isCompany && d._hasLink){
-    var link = COMPANY_LINKS[d._companyName];
-    if(link) window.open(link, '_blank');
-    return;
-  }
-  
-  // Level2: click industry hub without research → just info
-});
-
-// ===== Reset on blank click =====
-myChart.on('click', function(params){
-  if(params.dataType !== 'node'){
-    if(state.view === 'level2') renderLevel1();
+  if (d._co) {
+    var lk = CL[d._co];
+    if (lk) window.open(lk, '_blank');
   }
 });
 
-// ===== Double-click =====
-myChart.on('dblclick', function(params){
-  if(state.view === 'level2' && (!params.data || params.dataType !== 'node')){
-    renderLevel1();
-  }
-});
-
-// ===== Search =====
-var searchTimeout = null;
-function onSearch(val){
-  clearTimeout(searchTimeout);
-  var q = val.trim().toLowerCase();
-  var results = document.getElementById('searchResults');
-  if(!q){
-    results.style.display = 'none';
+function srch(v) {
+  var q = v.trim().toLowerCase();
+  if (!q) {
+    var o = document.getElementById('sr');
+    if (o) o.remove();
     return;
   }
-  var items = [];
-  // Search SW1
-  SW_DATA.forEach(function(d){
-    if(d.name.toLowerCase().includes(q) || d.id.includes(q)){
-      items.push({name:d.name,icon:d.icon,type:'一级行业',_sw1:d});
-    }
-    // Search children
-    (d.children||[]).forEach(function(c){
-      if(c.toLowerCase().includes(q)){
-        items.push({name:c,icon:'📂',type:'二级行业',_sw1Parent:d.id});
-      }
+  var r = [];
+  SW.forEach(function(d) {
+    if (d.name.toLowerCase().includes(q)) r.push({t: d.icon + ' ' + d.name, a: function() { l2(d.id); }});
+    (d.children || []).forEach(function(c) {
+      if (c.toLowerCase().includes(q)) r.push({t: '\uD83D\uDCC1 ' + c, a: function() { l2(d.id); }});
     });
   });
-  // Search companies
-  for(var key in COMPANY_SW2){
-    if(key.toLowerCase().includes(q)){
-      items.push({name:key,icon:'🏢',type:'企业',_isCompany:true,_hasLink:!!COMPANY_LINKS[key]});
+  for (var k in CSW2) {
+    if (k.toLowerCase().includes(q) && CL[k]) {
+      (function(kk) {
+        r.push({t: '\uD83C\uDFE2 ' + kk, a: function() { window.open(CL[kk], '_blank'); }});
+      })(k);
     }
   }
-  // Deduplicate
-  var seen = {};
-  items = items.filter(function(it){if(seen[it.name])return false;seen[it.name]=true;return true;});
-  items = items.slice(0, 15);
-  
-  if(items.length===0){
-    results.style.display='none';
-    return;
-  }
-  var html = items.map(function(it){
-    var extra = '';
-    if(it._sw1 && IND_LINKS[it._sw1.name]) extra='🔬';
-    if(it._isCompany && it._hasLink) extra='📄';
-    return '<div class="sr-item" onclick="searchGo(''+it.name.replace(/'/g,"\'")+'',''+(it._sw1?it._sw1.id:it._sw1Parent||'')+'','+(it._isCompany?'true':'false')+')">'+it.icon+' '+it.name+' <span style="color:rgba(148,163,184,0.3);margin-left:4px">'+it.type+'</span> '+extra+'</div>';
+  if (!r.length) return;
+  r = r.filter(function(i, x, a) { return a.findIndex(function(j) { return j.t === i.t; }) === x; }).slice(0, 8);
+  var e = document.createElement('div');
+  e.id = 'sr';
+  e.style.cssText = 'position:fixed;top:34px;right:10px;z-index:99;background:rgba(10,10,30,0.95);border:1px solid rgba(167,139,250,0.1);border-radius:6px;padding:4px;max-height:180px;overflow-y:auto;min-width:120px';
+  e.innerHTML = r.map(function(i) {
+    return '<div class="sr-item" onclick="var s=document.getElementById(\'sr\');if(s)s.remove();document.getElementById(\'in\').value=\'\';(' + i.a.toString() + ')()">' + i.t + '</div>';
   }).join('');
-  results.innerHTML = html;
-  results.style.display = 'block';
+  var old = document.getElementById('sr');
+  if (old) old.remove();
+  document.body.appendChild(e);
 }
 
-function searchGo(name,sw1Id,isCompany){
-  document.getElementById('searchResults').style.display='none';
-  document.getElementById('searchInput').value='';
-  if(isCompany){
-    // Navigate to company report
-    var link = COMPANY_LINKS[name];
-    if(link) {window.open(link,'_blank');return;}
-  }
-  // Navigate to industry
-  var sw1 = SW_DATA.find(function(d){return d.id===sw1Id||d.name===name});
-  if(sw1) {renderLevel2(sw1.id);return;}
-  // Maybe it's a SW1 name
-  var sw1ByName = SW_DATA.find(function(d){return d.name===name});
-  if(sw1ByName) {renderLevel2(sw1ByName.id);return;}
-}
-
-// Hide search on click outside
-document.addEventListener('click', function(e){
-  if(!e.target.closest('#searchInput')&&!e.target.closest('#searchResults')){
-    document.getElementById('searchResults').style.display='none';
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#in') && !e.target.closest('#sr')) {
+    var o = document.getElementById('sr');
+    if (o) o.remove();
   }
 });
 
-// ===== Breadcrumb =====
-function updateBreadcrumb(path){
-  var el = document.getElementById('breadcrumb');
-  var html = '<span class="bc-item" onclick="renderLevel1()">🌌 产业星图</span>';
-  path.forEach(function(p,i){
-    html += '<span class="bc-sep">›</span>';
-    if(i===path.length-1){
-      html += '<span class="bc-current">'+p.name+'</span>';
-    } else {
-      html += '<span class="bc-item" onclick="renderLevel2(''+p.id+'')">'+p.name+'</span>';
-    }
-  });
-  el.innerHTML = html;
-}
+function applyTheme(t) { document.body.classList.toggle('light', t === 'light'); }
 
-// ===== Theme =====
-function applyTheme(theme){
-  if(theme==='light'){
-    document.body.classList.add('light');
-    if(currentOption){
-      currentOption.series[0].label.color='#505050';
-      myChart.setOption(currentOption);
-    }
-  } else {
-    document.body.classList.remove('light');
-    if(currentOption){
-      currentOption.series[0].label.color='#94a3b8';
-      myChart.setOption(currentOption);
-    }
-  }
-}
-
-(function(){
-  var t=localStorage.getItem('portal_theme');
-  if(t==='light') applyTheme('light');
-  window.addEventListener('message',function(e){
-    if(e.data&&typeof e.data.theme==='string') applyTheme(e.data.theme);
-    if(e.data&&e.data.backToIndustrySelect) goBack();
+(function() {
+  var t = localStorage.getItem('portal_theme');
+  if (t === 'light') applyTheme('light');
+  window.addEventListener('message', function(e) {
+    if (e.data && typeof e.data.theme === 'string') applyTheme(e.data.theme);
+    if (e.data && e.data.backToIndustrySelect) goBack();
   });
 })();
 
-// ===== Back =====
-function goBack(){
-  if(window.parent&&window.parent!==window){
-    window.parent.postMessage({backToIndustrySelect:true},'*');
+function goBack() {
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({backToIndustrySelect: true}, '*');
   } else {
-    window.location.href='index.html';
+    window.location.href = 'index.html';
   }
 }
 
-// ===== Init =====
-try {
-  renderLevel1();
-  console.log('🌌 产业星图 loaded');
-} catch(e) {
-  document.getElementById('chart').innerHTML = '<div style="padding:40px;color:#fb7185;font-size:.7rem;text-align:center">⚠️ 渲染错误: ' + e.message + '<br>请刷新重试</div>';
-}
-window.addEventListener('resize',function(){myChart.resize()});
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape') {
-    if(state.view==='level2') renderLevel1();
-    else goBack();
-  }
+l1();
+window.addEventListener('resize', function() { chart.resize(); });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { if (view === 'l2') l1(); else goBack(); }
 });
-// Hide hint after 6s
-setTimeout(function(){document.getElementById('hint').style.opacity='0'},6000);
-
-console.log('🌌 产业星图(申万31一级) loaded');
+setTimeout(function() { var h = document.getElementById('hint'); if (h) h.style.opacity = '0'; }, 5000);
+console.log('Starmap v3 loaded');
 </script>
 </body>
 </html>
