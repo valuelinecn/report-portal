@@ -98,11 +98,11 @@ function showL2(id){
   n.push({name:s.icon+' '+s.name,symbolSize:22,itemStyle:{color:s.color||'#a78bfa',shadowBlur:10,shadowColor:(s.color||'#a78bfa')+'60'},id:'hub-'+id});
   (s.children||[]).forEach(function(c){
     var tid='s2-'+c.name;
-    n.push({name:c.name,symbolSize:12,itemStyle:{color:s.color||'#6366f1'},id:tid});
+    n.push({name:c.name,symbolSize:16,itemStyle:{color:s.color||'#6366f1',shadowBlur:4,shadowColor:(s.color||'#6366f1')+'40'},id:tid,label:{show:true,fontSize:8,color:'#94a3b8'}});
     l.push({source:'hub-'+id,target:tid});
     (c.children||[]).forEach(function(t){
       var has=!!RS[t];
-      n.push({name:t,symbolSize:has?8:5,itemStyle:{color:has?'#34d399':'rgba(148,163,184,0.25)'},id:'t3-'+t,_t3:t,_has:has});
+      n.push({name:t,symbolSize:has?6:3.5,itemStyle:{color:has?'#34d399':'rgba(148,163,184,0.15)'},id:'t3-'+t,_t3:t,_has:has,label:{show:false}});
       l.push({source:tid,target:'t3-'+t});
     });
   });
