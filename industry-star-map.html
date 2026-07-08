@@ -119,8 +119,8 @@ function l1() {
   });
   var o = baseOpt();
   o.series = [{
-    type: 'graph', layout: 'force', roam: true,
-    force: {repulsion: 350, edgeLength: [40, 160], gravity: 0.04},
+    type: 'graph', layout: 'circular', roam: true,
+    circular: {rotateLabel: true},
     data: n, links: l,
     label: {show: true, fontSize: 9, color: '#94a3b8'},
     lineStyle: {color: 'rgba(255,255,255,0.06)', width: 0.3},
