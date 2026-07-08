@@ -936,15 +936,8 @@ html{scroll-behavior:smooth}
   <div id="industrySelector" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 20px 40px;background:var(--bg4);position:relative">
     <div class="section-bc" style="position:absolute;top:0;left:0;right:0"><span class="bc-home" onclick="goHome()">⌂ 首页</span><span class="bc-sep">/</span><span class="bc-current">🔬 行业研究</span></div>
     <div style="font-size:1.2rem;font-weight:700;color:var(--t1);margin-bottom:4px;margin-top:20px">🔬 行业研究</div>
-    <div style="font-size:.7rem;color:var(--m5);margin-bottom:20px">选择行业查看深度研究内容</div>
-    <div style="display:flex;flex-direction:column;gap:14px;max-width:460px;width:100%">
-      <div onclick="loadIndustry('star-map')" style="background:linear-gradient(135deg,#1a0a3a,#0d0d2a);border:1px solid rgba(167,139,250,0.25);border-radius:16px;padding:22px 20px;cursor:pointer;text-align:center;transition:all .3s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(167,139,250,0.5)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(167,139,250,0.25)'">
-        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#6366f1,#a78bfa,#22d3ee)"></div>
-        <div style="font-size:1.8rem;margin-bottom:4px">🌌</div>
-        <div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-bottom:2px">产业星图 · 全行业关系图谱</div>
-        <div style="font-size:.6rem;color:rgba(167,139,250,0.6);line-height:1.4">🌠 互动式产业关系导航 · 点击星球探索</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div style="font-size:.7rem;color:var(--m5);margin-bottom:24px">选择行业查看深度研究内容</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:460px;width:100%">
       <div onclick="loadIndustry('robot')" style="background:linear-gradient(135deg,#1a2a4a,#0d1f3c);border:1px solid rgba(34,211,238,0.15);border-radius:16px;padding:30px 20px;cursor:pointer;text-align:center;transition:all .3s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
         <div style="font-size:2.4rem;margin-bottom:8px">🤖</div>
         <div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-bottom:4px">机器人产业</div>
@@ -1057,7 +1050,7 @@ function switchTab(name) {
 }
 
 // ===== INDUSTRY SECTOR MAPPING =====
-const SECTOR_MAP = {'产业星图':{name:'🌌 产业星图',type:'star-map'},'机器人':{name:'机器人产业',type:'robot'},'新能源车':{name:'新能源乘用车',type:'auto'},'半导体':{name:'半导体产业',type:'chip'},'芯片设计':{name:'芯片设计产业',type:'chip-design'}};
+const SECTOR_MAP = {'机器人':{name:'机器人产业',type:'robot'},'新能源车':{name:'新能源乘用车',type:'auto'},'半导体':{name:'半导体产业',type:'chip'},'芯片设计':{name:'芯片设计产业',type:'chip-design'}};
 function getIndustryLinks(sectors) {
   if(!sectors||!sectors.length) return [];
   var result = [];
@@ -1606,8 +1599,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== INDUSTRY RESEARCH SELECTOR =====
 function loadIndustry(type) {
-  const files = { 'star-map':'industry-star-map.html', robot:'robot-encyclopedia.html', auto:'auto-industry-encyclopedia.html', chip:'chip-industry-encyclopedia.html', 'chip-design':'chip-design-encyclopedia.html' }
-  const titles = { 'star-map':'🌌 产业星图', robot:'🤖 机器人产业百科', auto:'🚗 新能源乘用车产业百科', chip:'🔬 半导体产业百科', 'chip-design':'✏️ 芯片设计产业百科' }
+  const files = { robot:'robot-encyclopedia.html', auto:'auto-industry-encyclopedia.html', chip:'chip-industry-encyclopedia.html', 'chip-design':'chip-design-encyclopedia.html' }
+  const titles = { robot:'🤖 机器人产业百科', auto:'🚗 新能源乘用车产业百科', chip:'🔬 半导体产业百科', 'chip-design':'✏️ 芯片设计产业百科' }
   document.getElementById('industrySelector').style.display = 'none'
   document.getElementById('industryFrameWrap').style.display = 'block'
   document.getElementById('industryFrameTitle').textContent = titles[type] || '🔬 行业研究'
