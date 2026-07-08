@@ -20,10 +20,6 @@
     document.body.appendChild(btn);
     splash.querySelector('.splash-close').onclick = function(){ splash.classList.remove('open'); };
     btn.onclick = function(){ splash.classList.add('open'); };
-    if(!sessionStorage.getItem('starmap_shown')){
-      sessionStorage.setItem('starmap_shown','1');
-      setTimeout(function(){ splash.classList.add('open'); }, 800);
-    }
   } else {
     document.addEventListener('DOMContentLoaded', arguments.callee);
   }
