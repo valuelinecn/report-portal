@@ -21,6 +21,11 @@ body{font-family:'Noto Sans SC',sans-serif;background:#06061a;overflow:hidden;he
 #backBtn:hover{background:rgba(167,139,250,0.1);color:#a78bfa}
 /* Title */
 #title{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;font-size:.7rem;font-weight:600;color:rgba(148,163,184,0.5);letter-spacing:2px;pointer-events:none}
+/* Light theme */
+body.light{background:#f4f1ea!important}
+body.light #backBtn{background:rgba(245,240,230,0.85)!important;border-color:rgba(167,139,250,0.2)!important;color:rgba(99,102,241,0.8)!important}
+body.light #backBtn:hover{background:rgba(167,139,250,0.12)!important;color:#6366f1!important}
+body.light #title{color:rgba(80,80,80,0.4)!important}
 @media(max-width:768px){#title{font-size:.55rem;top:12px}}
 </style>
 </head>
@@ -220,11 +225,12 @@ var option = {
     formatter: function(params) {
       if(!params.data || params.dataType !== 'node') return '';
       var d = params.data;
+      var isLight = document.body.classList.contains('light');
       var icon = d.icon || '●';
       var html = '<div style="font-size:1.1rem;margin-bottom:2px">' + icon + '</div>';
-      html += '<div style="font-size:.8rem;font-weight:700;color:#e2e8f0">' + d.name + '</div>';
-      if(d.desc) html += '<div style="font-size:.58rem;color:#94a3b8;margin-top:2px;max-width:200px">' + d.desc + '</div>';
-      if(d.link) html += '<div style="font-size:.52rem;color:rgba(167,139,250,0.6);margin-top:3px">点击跳转 →</div>';
+      html += '<div style="font-size:.8rem;font-weight:700;color:' + (isLight?'#333':'#e2e8f0') + '">' + d.name + '</div>';
+      if(d.desc) html += '<div style="font-size:.58rem;color:' + (isLight?'#666':'#94a3b8') + ';margin-top:2px;max-width:200px">' + d.desc + '</div>';
+      if(d.link) html += '<div style="font-size:.52rem;color:' + (isLight?'rgba(99,102,241,0.7)':'rgba(167,139,250,0.6)') + ';margin-top:3px">点击跳转 →</div>';
       return html;
     },
     extraCssText: 'background:rgba(10,10,30,0.92)!important;backdrop-filter:blur(12px)!important;border:1px solid rgba(167,139,250,0.2)!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,0.5)!important;font-family:Noto Sans SC!important',
@@ -311,14 +317,39 @@ function goBack() {
 }
 
 // ===== Theme sync =====
+function applyTheme(theme){
+  if(theme === 'light'){
+    document.body.classList.add('light');
+    // Update ECharts labels for light theme
+    myChart.setOption({
+      series: [{
+        label: {color: '#505050'},
+      }],
+      tooltip: {
+        textStyle: {color: '#333'},
+        extraCssText: 'background:rgba(250,248,240,0.95)!important;border:1px solid rgba(167,139,250,0.2)!important;border-radius:12px!important;box-shadow:0 4px 16px rgba(0,0,0,0.08)!important',
+      },
+    });
+  } else {
+    document.body.classList.remove('light');
+    myChart.setOption({
+      series: [{
+        label: {color: '#94a3b8'},
+      }],
+      tooltip: {
+        textStyle: {color: '#e2e8f0'},
+        extraCssText: 'background:rgba(10,10,30,0.92)!important;backdrop-filter:blur(12px)!important;border:1px solid rgba(167,139,250,0.2)!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,0.5)!important',
+      },
+    });
+  }
+}
+
 (function(){
   var t = localStorage.getItem('portal_theme');
-  if(t === 'light') {
-    document.body.style.background = '#f4f1ea';
-  }
+  if(t === 'light') applyTheme('light');
   window.addEventListener('message', function(e){
     if(e.data && typeof e.data.theme === 'string') {
-      document.body.style.background = e.data.theme === 'light' ? '#f4f1ea' : '#06061a';
+      applyTheme(e.data.theme);
     }
     if(e.data && e.data.backToIndustrySelect) {
       goBack();
