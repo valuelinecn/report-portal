@@ -509,6 +509,17 @@ html{scroll-behavior:smooth}
 
 [data-theme="light"] .section-bc{background:var(--bg5)}
 
+/* Star Map Splash */
+#starmapSplash{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0);display:none;opacity:0;transition:opacity .4s}
+#starmapSplash.open{display:flex;opacity:1}
+#starmapSplash iframe{width:100%;height:100%;border:none;background:#06061a;border-radius:0}
+#starmapSplash .splash-close{position:absolute;top:10px;right:14px;z-index:10000;background:rgba(10,10,30,0.6);border:1px solid rgba(167,139,250,0.15);color:rgba(167,139,250,0.7);font-size:16px;width:30px;height:30px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;backdrop-filter:blur(8px)}
+#starmapSplash .splash-close:hover{background:rgba(167,139,250,0.15);color:#a78bfa}
+#starmapBtn{position:fixed;bottom:20px;right:20px;z-index:999;width:44px;height:44px;border-radius:50%;background:rgba(10,10,30,0.75);border:1px solid rgba(167,139,250,0.15);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .3s;backdrop-filter:blur(8px);box-shadow:0 4px 20px rgba(0,0,0,0.4)}
+#starmapBtn:hover{transform:scale(1.15);background:rgba(167,139,250,0.12);border-color:rgba(167,139,250,0.3);box-shadow:0 4px 24px rgba(167,139,250,0.15)}
+[data-theme="light"] #starmapBtn{background:rgba(245,240,230,0.85);border-color:rgba(167,139,250,0.15);box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+[data-theme="light"] #starmapBtn:hover{background:rgba(167,139,250,0.1);border-color:rgba(99,102,241,0.25)}
+
 </style>
 </head>
 <body>
@@ -2334,6 +2345,22 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window, document, "clarity", "script", "xecsshff8t");
 </script>
 <!-- End Microsoft Clarity -->
+
+<!-- Star Map Splash -->
+<div id="starmapSplash"><button class="splash-close" onclick="closeStarmap()">✕</button><iframe id="starmapFrame" src="industry-star-map.html"></iframe></div>
+<button id="starmapBtn" onclick="openStarmap()" title="产业星图">🌌</button>
+
+<script>
+// Starmap splash: show once per session
+function openStarmap(){document.getElementById('starmapSplash').classList.add('open')}
+function closeStarmap(){document.getElementById('starmapSplash').classList.remove('open')}
+(function(){
+  if(!sessionStorage.getItem('starmap_shown')){
+    sessionStorage.setItem('starmap_shown','1');
+    setTimeout(function(){openStarmap()},600);
+  }
+})();
+</script>
 
 </body>
 </html>
