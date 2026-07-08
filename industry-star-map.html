@@ -100,9 +100,9 @@ function l2(id) {
     for (var k in CSW2) { if (CSW2[k] === c) cos.push(k); }
     var hasCos = cos.length > 0;
     var il = IL[c];
-    var sz = hasCos ? 16 : (il ? 14 : 11);
-    var clr = il ? '#22d3ee' : (hasCos ? '#34d399' : s.color || '#6366f1');
-    var op = hasCos || il ? 1 : 0.35;
+    var sz = hasCos ? 16 : (il ? 14 : 12);
+    var clr = il ? '#22d3ee' : (hasCos ? '#34d399' : s.color || '#94a3b8');
+    var op = 1;
     var mark = il ? ' \uD83D\uDD2C' : (hasCos ? ' \uD83D\uDCC4' : '');
     n.push({name: c + mark, symbolSize: sz, itemStyle: {color: clr, opacity: op}, id: 's-' + c, _cos: cos, _icon: '\uD83D\uDCC2', _desc: hasCos ? cos.length + '家关联企业' : (il ? '有行业研究' : ''), _s2: c, _il: il});
     l.push({source: id, target: 's-' + c});
