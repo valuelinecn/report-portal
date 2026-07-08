@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<!-- 标题已修改 -->
+<title>✏️ 芯片设计产业百科 · 从架构到流片</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===== THEME VARIABLES ===== */
+:root{
+  --bg:#080816;--bg2:#0f172a;--bg3:rgba(15,23,42,0.6);--bg4:rgba(30,41,59,0.3);--bg5:rgba(15,23,42,0.5);
+  --border:#1e293b;--border2:#334155;
+  --t1:#e2e8f0;--t2:#cbd5e1;--t3:#94a3b8;--t4:#64748b;--t5:#334155;
+  --overlay:rgba(0,0,0,0.6);--scroll:#1e293b;
+  --toggle-bg:rgba(30,41,59,0.8);--toggle-border:#334155;
+}
+[data-theme="light"]{
+  --bg:#f4f1ea;--bg2:#ffffff;--bg3:rgba(245,245,240,0.85);--bg4:rgba(235,235,225,0.6);--bg5:rgba(250,250,245,0.9);
+  --border:#d8d4c8;--border2:#c0bcb0;
+  --t1:#1a1a2e;--t2:#2d2d2d;--t3:#505050;--t4:#707070;--t5:#b0b0b0;
+  --overlay:rgba(0,0,0,0.3);--scroll:#ccc;
+  --toggle-bg:rgba(255,255,255,0.85);--toggle-border:#d8d4c8;
+}
+
+/* ===== THEME TOGGLE ===== */
+.theme-toggle{position:fixed;top:10px;right:10px;z-index:999;background:var(--toggle-bg);border:1px solid var(--toggle-border);color:var(--t4);font-size:16px;cursor:pointer;padding:5px 9px;border-radius:8px;transition:all .2s;line-height:1;backdrop-filter:blur(8px)}
+.theme-toggle:hover{color:var(--t1);border-color:var(--t3)}
+
+/* ===== BASE ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Noto Sans SC',-apple-system,sans-serif;
+  background:var(--bg);color:var(--t1);min-height:100vh;
+  background-image:radial-gradient(ellipse at 20% 10%,rgba(99,102,241,0.05),transparent 60%),
+                   radial-gradient(ellipse at 80% 20%,rgba(59,130,246,0.03),transparent 60%),
+                   radial-gradient(ellipse at 50% 90%,rgba(167,139,250,0.03),transparent 60%);
+  overflow-x:hidden;transition:background .3s,color .3s;
+}
+[data-theme="light"] body{background-image:none}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--scroll);border-radius:4px}
+.container{max-width:1200px;margin:0 auto;padding:14px}
+.section{display:none}
+.section.active{display:block;animation:fadeIn .35s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== HERO ===== */
+.hero-banner{text-align:center;padding:24px 0 14px}
+/* 渐变色已改为indigo-blue */
+.hero-banner h1{font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#6366f1 0%,#3b82f6 40%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-banner p{color:var(--t4);font-size:.7rem;margin-top:6px;max-width:540px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+/* ===== STAT CARDS (4) ===== */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 18px}
+.stat-card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:12px;
+  padding:16px 10px;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;
+}
+.stat-card:hover{transform:translateY(-3px);border-color:var(--t5);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.stat-card::after{content:'→';position:absolute;bottom:6px;right:8px;font-size:.65rem;color:var(--t5);opacity:0;transition:all .3s}
+.stat-card:hover::after{opacity:1;color:var(--t4)}
+.stat-card .num{font-size:1.3rem;font-weight:700}
+.stat-card .lbl{font-size:.6rem;color:var(--t4);margin-top:4px;line-height:1.4}
+.stat-card .sub{font-size:.5rem;color:#1e293b;margin-top:2px}
+/* 统计卡颜色已修改 */
+.stat-card.c1 .num{background:linear-gradient(135deg,#6366f1,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c2 .num{background:linear-gradient(135deg,#fb7185,#e11d48);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c3 .num{background:linear-gradient(135deg,#34d399,#059669);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card.c4 .num{background:linear-gradient(135deg,#fb7185,#e11d48);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ===== HOT CARDS (3) ===== */
+.hot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.hot-card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:12px;
+  padding:14px 12px;cursor:pointer;transition:all .25s;;position:relative;overflow:hidden;
+}
+.hot-card:hover{transform:translateY(-3px);border-color:var(--t5);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.hot-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.hot-card.hot-rose::before{background:linear-gradient(90deg,#fb7185,#e11d48)}
+.hot-card.hot-amber::before{background:linear-gradient(90deg,#fbbf24,#d97706)}
+.hot-card.hot-emerald::before{background:linear-gradient(90deg,#34d399,#059669)}
+.hot-card .tag{font-size:.5rem;padding:2px 7px;border-radius:4px;font-weight:600;display:inline-block;margin-bottom:5px}
+.hot-card h4{font-size:.78rem;font-weight:600;margin-bottom:4px}
+.hot-card p{font-size:.62rem;color:var(--t4);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hot-card .click-hint{font-size:.5rem;color:var(--t5);margin-top:6px;display:flex;align-items:center;gap:3px}
+
+/* ===== CARD GRID ===== */
+.section-title{font-size:.9rem;font-weight:700;color:var(--t1);margin:18px 0 10px;display:flex;align-items:center;gap:6px}
+.section-title .dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.section-desc{font-size:.64rem;color:var(--t4);margin-bottom:10px;line-height:1.5}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px}
+.card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:12px;
+  padding:14px 12px;cursor:pointer;transition:all .25s;;position:relative;overflow:hidden;
+}
+.card:hover{transform:translateY(-3px);border-color:var(--t5);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.card.cyan::before{background:linear-gradient(90deg,#22d3ee,#0891b2)}
+.card.emerald::before{background:linear-gradient(90deg,#34d399,#059669)}
+.card.rose::before{background:linear-gradient(90deg,#fb7185,#e11d48)}
+.card.violet::before{background:linear-gradient(90deg,#a78bfa,#7c3aed)}
+.card.amber::before{background:linear-gradient(90deg,#fbbf24,#d97706)}
+.card.orange::before{background:linear-gradient(90deg,#fb923c,#ea580c)}
+.card.lime::before{background:linear-gradient(90deg,#a3e635,#65a30d)}
+.card.sky::before{background:linear-gradient(90deg,#38bdf8,#0284c7)}
+.card.purple::before{background:linear-gradient(90deg,#c084fc,#9333ea)}
+.card .tag{font-size:.5rem;padding:2px 7px;border-radius:4px;font-weight:600;display:inline-block;margin-bottom:5px}
+.card h4{font-size:.78rem;font-weight:600;margin-bottom:4px}
+.card p{font-size:.62rem;color:var(--t4);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card .click-hint{font-size:.5rem;color:var(--t5);margin-top:6px;display:flex;align-items:center;gap:3px}
+
+/* ===== MODAL (4+5 template) ===== */
+.modal-overlay{
+  position:fixed;inset:0;z-index:200;background:var(--overlay);backdrop-filter:blur(6px);
+  display:none;justify-content:center;align-items:flex-start;padding:16px;overflow-y:auto;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  max-width:680px;width:100%;margin-top:10px;margin-bottom:10px;
+  position:relative;animation:slideUp .3s;overflow:hidden;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.modal-close{position:sticky;top:0;display:flex;justify-content:space-between;align-items:flex-start;padding:14px 16px 0}
+.modal-close button{background:none;border:none;color:var(--t4);font-size:1.2rem;cursor:pointer;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.modal-close button:hover{background:#1e293b;color:var(--t1)}
+.modal-header{padding:0 16px}
+.modal-header .tag{font-size:.55rem;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:4px}
+.modal-header h2{font-size:1rem;font-weight:700;margin-bottom:2px}
+.modal-header .sub{font-size:.6rem;color:var(--t4)}
+.modal-body{padding:12px 16px 18px}
+/* Layer 1: 4 Quick Cards */
+.m-qgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.m-qc{
+  background:var(--bg4);border-radius:8px;padding:10px 10px 8px;
+  border-left:2px solid;transition:all .2s;
+}
+.m-qc:hover{background:var(--bg4)}
+.m-qc .q-icon{font-size:.85rem;margin-bottom:2px}
+.m-qc .q-label{font-size:.55rem;font-weight:600;margin-bottom:2px;text-transform:uppercase;letter-spacing:1px}
+.m-qc .q-text{font-size:.62rem;color:var(--t2);line-height:1.6}
+.m-qc .q-num{font-size:.8rem;font-weight:700;line-height:1.3}
+.m-qc .q-num-sub{font-size:.5rem;color:var(--t4)}
+/* Toggle for 5 Deep Dimensions */
+.m-toggle{
+  text-align:center;padding:6px 0;margin-bottom:8px;cursor:pointer;
+  color:var(--t4);font-size:.6rem;font-weight:600;letter-spacing:1px;
+  border-top:1px solid rgba(30,41,59,0.4);border-bottom:1px solid var(--border);
+  transition:all .2s;display:flex;align-items:center;justify-content:center;gap:4px;
+}
+.m-toggle:hover{color:var(--t3);background:rgba(30,41,59,0.2)}
+.m-deep{margin-top:4px}
+.m-deep .d-section{margin-bottom:10px}
+.m-deep .d-section:last-child{margin-bottom:0}
+.m-deep .d-section h6{font-size:.6rem;font-weight:600;color:var(--t3);margin-bottom:4px;display:flex;align-items:center;gap:5px}
+.m-deep .d-section h6 .bar{width:3px;height:10px;border-radius:2px;display:inline-block}
+.m-deep .d-section p{font-size:.6rem;color:var(--t3);line-height:1.7}
+/* Report link */
+.modal-report{margin-top:8px;padding:8px 12px;border-radius:8px;border:1px solid rgba(34,211,238,0.2);background:rgba(34,211,238,0.05);text-align:center;cursor:pointer;transition:all .2s;font-size:.65rem;color:#22d3ee;font-weight:600}
+.modal-report:hover{background:rgba(34,211,238,0.1)}
+
+/* ===== ENTERPRISE / SUPPLY CHAIN CUSTOM SECTIONS ===== */
+.ent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px}
+.ent-card{background:var(--bg5);border:1px solid var(--border);border-radius:10px;padding:10px 12px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.ent-card:hover{transform:translateY(-2px);border-color:var(--border2)}
+.ent-card .ent-tag{font-size:.45rem;padding:1px 6px;border-radius:3px;display:inline-block;margin-bottom:3px;font-weight:600}
+.ent-card h5{font-size:.7rem;font-weight:600;margin-bottom:2px}
+.ent-card .ent-code{font-size:.52rem;color:var(--t4);margin-bottom:3px}
+.ent-card .ent-desc{font-size:.52rem;color:var(--t4);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
+.ent-cat{margin-top:14px;margin-bottom:8px}
+.ent-cat:first-child{margin-top:0}
+.ent-cat h4{font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:6px;padding:6px 0 8px;border-bottom:1px solid var(--border)}
+.ent-cat h4 span{font-size:.55rem;font-weight:400;color:var(--t4)}
+/* Supply chain 3-column */
+.sc3-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.sc3-col{background:var(--bg5);border-radius:12px;border:1px solid var(--border);padding:14px;position:relative;overflow:hidden}
+.sc3-col .bar-top{position:absolute;top:0;left:0;right:0;height:3px}
+.sc3-col h3{font-size:.8rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.sc3-col .pct{font-size:.55rem;color:var(--t4);font-weight:400}
+.sc3-node{margin-bottom:6px;padding:8px 10px;background:var(--bg4);border-radius:8px;cursor:pointer;transition:all .2s;border:1px solid transparent}
+.sc3-node:hover{border-color:var(--t5);background:var(--bg4)}
+.sc3-node h5{font-size:.65rem;font-weight:600;margin-bottom:2px;display:flex;align-items:center;gap:4px}
+.sc3-node .preview{font-size:.55rem;color:var(--t4);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sc3-node .hl-tag{font-size:.48rem;padding:1px 5px;border-radius:3px;background:rgba(251,112,133,0.15);color:#fb7185;margin-left:4px;font-weight:600}
+/* High-barrier list */
+.hl-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.hl-card{background:var(--bg5);border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;border-left:3px solid #fb7185}
+.hl-card:hover{border-color:var(--t5);transform:translateX(3px)}
+.hl-card h5{font-size:.75rem;font-weight:600;color:#fb7185;margin-bottom:4px}
+.hl-card .desc{font-size:.6rem;color:var(--t3);line-height:1.6}
+.hl-card .meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.hl-card .meta span{font-size:.52rem;padding:2px 7px;border-radius:4px;background:var(--bg4);color:var(--t4)}
+
+@media(max-width:768px){
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .hot-grid,.sc3-grid{grid-template-columns:1fr}
+  .cat-grid,.ent-grid{grid-template-columns:repeat(2,1fr)}
+  .hl-list{grid-template-columns:1fr}
+  .m-qgrid{grid-template-columns:1fr}
+  .modal{max-width:100%;margin:8px;border-radius:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- ===== TAB 0: OVERVIEW (HOME) ===== -->
+<div id="tab-overview" class="section active">
+
+<!-- ===== HERO ===== [TODO: 修改标题/描述/渐变] -->
+<div class="hero-banner">
+  <h1>✏️ 芯片设计产业全景百科</h1>
+  <p>从芯片架构到EDA工具到流片实现。点击下方统计卡片快速跳转。</p>
+</div>
+
+<!-- ===== STAT CARDS (4) ===== [TODO: 修改4个统计数据] -->
+<div class="stats-row">
+  <div class="stat-card c1" onclick="switchSection('category')">
+    <div class="num">5</div>
+    <div class="lbl">设计品类</div>
+    <div class="sub">CPU·GPU/AI·SoC·网络·模拟</div>
+  </div>
+  <div class="stat-card c2" onclick="switchSection('enterprise')">
+    <div class="num">12家</div>
+    <div class="lbl">设计企业</div>
+    <div class="sub">Fabless·EDA·设计服务</div>
+  </div>
+  <div class="stat-card c3" onclick="switchSection('supplychain')">
+    <div class="num">3层</div>
+    <div class="lbl">设计生态</div>
+    <div class="sub">架构→EDA→流片实现</div>
+  </div>
+  <div class="stat-card c4" onclick="switchSection('highlights')">
+    <div class="num">🔴5</div>
+    <div class="lbl">高壁垒环节</div>
+    <div class="sub">国产化率&lt;30% 的卡脖子环节</div>
+  </div>
+</div>
+
+<!-- ===== HOT CARDS (3) ===== [TODO: 修改3张热力卡片] -->
+<div style="font-size:.65rem;font-weight:600;color:var(--t4);margin-bottom:6px">🔥 快速入口</div>
+<div class="hot-grid">
+  <div class="hot-card hot-rose" onclick="openModal('hot1')">
+    <span class="tag" style="background:#fb718520;color:#fb7185">🔥 最热</span>
+    <h4 style="color:#fb7185">AI芯片设计 · GPU/NPU架构</h4>
+    <p>2025年全球AI芯片设计市场超1000亿美元，英伟达GPU+华为昇腾+Groq等新架构百花齐放。</p>
+    <span class="click-hint">👆 4+5分析师解说</span>
+  </div>
+  <div class="hot-card hot-amber" onclick="openModal('hot2')">
+    <span class="tag" style="background:#fbbf2420;color:#fbbf24">🔴 最高壁垒</span>
+    <h4 style="color:#fbbf24">EDA全流程 · Synopsys/Cadence</h4>
+    <p>全球EDA市场~200亿美元，Synopsys+Cadence垄断>65%。国产化率<2%，数字全流程自给率<5%。</p>
+    <span class="click-hint">👆 4+5分析师解说</span>
+  </div>
+  <div class="hot-card hot-emerald" onclick="openModal('hot3')">
+    <span class="tag" style="background:#34d39920;color:#34d399">📈 增速最快</span>
+    <h4 style="color:#34d399">RISC-V开放架构</h4>
+    <p>年出货量>10亿颗，中国大力扶持。在AI端侧/MCU领域快速渗透，生态距Arm仍有5-8年差距。</p>
+    <span class="click-hint">👆 4+5分析师解说</span>
+  </div>
+</div>
+</div><!-- /tab-overview -->
+
+<!-- ===== TAB 1: CATEGORY ===== [TODO: 修改产品分类内容] -->
+<div id="tab-category" class="section">
+  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#6366f1;font-weight:600">← 返回产业总览</span></div>
+  <div class="section-title"><span class="dot" style="background:#6366f1"></span> 📦 设计品类 · 5大品类</div>
+  <div class="section-desc">每品类配有4+5分析师解说：①一句话→②打个比方→③必知数字→④别搞错 → 展开后还有5个深度维度</div>
+  <div id="catGrid" class="cat-grid"></div>
+</div>
+
+<!-- ===== TAB 2: ENTERPRISE ===== [TODO: 修改代表企业内容] -->
+<div id="tab-enterprise" class="section">
+  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#6366f1;font-weight:600">← 返回产业总览</span></div>
+  <div class="section-title"><span class="dot" style="background:#a78bfa"></span> 🏢 芯片设计企业 · 12家</div>
+  <div class="section-desc">覆盖整机厂商与核心零部件供应商。点击查看企业详细资料。</div>
+  <div id="entGrid">
+  <!-- First row: Fabless (8) -->
+  <div class="ent-cat"><h4>🧠 IC设计 (Fabless) <span>8家</span></h4></div>
+  <div class="ent-grid">
+    <div class="ent-card" onclick="openModal('ent1')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">AI芯片</span><h5>英伟达 NVIDIA</h5><div class="ent-code">NVDA</div><div class="ent-desc">AI芯片设计之王，CUDA生态壁垒。</div></div>
+    <div class="ent-card" onclick="openModal('ent2')"><span class="ent-tag" style="background:#3b82f620;color:#3b82f6">移动SoC</span><h5>高通 Qualcomm</h5><div class="ent-code">QCOM</div><div class="ent-desc">骁龙旗舰SoC>40%，AI手机驱动。</div></div>
+    <div class="ent-card" onclick="openModal('ent3')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">CPU/GPU</span><h5>AMD</h5><div class="ent-code">AMD</div><div class="ent-desc">CPU~30%，Chiplet设计先驱。</div></div>
+    <div class="ent-card" onclick="openModal('ent4')"><span class="ent-tag" style="background:#34d39920;color:#34d399">网络</span><h5>博通 Broadcom</h5><div class="ent-code">AVGO</div><div class="ent-desc">交换机>60%，定制AI ASIC新引擎。</div></div>
+    <div class="ent-card" onclick="openModal('ent5')"><span class="ent-tag" style="background:#fb718520;color:#fb7185">SoC</span><h5>联发科 MediaTek</h5><div class="ent-code">2454.TW</div><div class="ent-desc">SoC出货量第一，天玑旗舰崛起。</div></div>
+    <div class="ent-card" onclick="openModal('ent6')"><span class="ent-tag" style="background:#3b82f620;color:#3b82f6">国产旗舰</span><h5>华为海思 HiSilicon</h5><div class="ent-code">(未上市)</div><div class="ent-desc">麒麟回归+昇腾放量，中国旗舰。</div></div>
+    <div class="ent-card" onclick="openModal('ent7')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">存储/MCU</span><h5>兆易创新 GigaDevice</h5><div class="ent-code">603986.SH</div><div class="ent-desc">NOR Flash全球第三，MCU国产替代。</div></div>
+    <div class="ent-card" onclick="openModal('ent8')"><span class="ent-tag" style="background:#34d39920;color:#34d399">CIS</span><h5>韦尔股份 / 豪威</h5><div class="ent-code">603501.SH</div><div class="ent-desc">CIS全球第三，汽车CIS放量中。</div></div>
+  </div>
+  <!-- EDA (2) -->
+  <div class="ent-cat"><h4>📐 EDA工具 <span>2家</span></h4></div>
+  <div class="ent-grid">
+    <div class="ent-card" onclick="openModal('ent9')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">EDA第一</span><h5>新思科技 Synopsys</h5><div class="ent-code">SNPS</div><div class="ent-desc">EDA~35%+IP第二，全流程覆盖。</div></div>
+    <div class="ent-card" onclick="openModal('ent10')"><span class="ent-tag" style="background:#3b82f620;color:#3b82f6">EDA第二</span><h5>铿腾电子 Cadence</h5><div class="ent-code">CDNS</div><div class="ent-desc">EDA~30%，模拟EDA>40%领先。</div></div>
+  </div>
+  <!-- Design Service (2) -->
+  <div class="ent-cat"><h4>🏭 设计服务 <span>2家</span></h4></div>
+  <div class="ent-grid">
+    <div class="ent-card" onclick="openModal('ent11')"><span class="ent-tag" style="background:#a78bfa20;color:#a78bfa">中国第一</span><h5>芯原股份 VeriSilicon</h5><div class="ent-code">688521.SH</div><div class="ent-desc">中国IP+设计服务龙头。</div></div>
+    <div class="ent-card" onclick="openModal('ent12')"><span class="ent-tag" style="background:#fbbf2420;color:#fbbf24">先进工艺</span><h5>创意电子 GUC</h5><div class="ent-code">3443.TW</div><div class="ent-desc">台积电背景，3nm后端设计全球领先。</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ===== TAB 3: SUPPLY CHAIN ===== [TODO: 修改供应链内容] -->
+<div id="tab-supplychain" class="section">
+  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#6366f1;font-weight:600">← 返回产业总览</span></div>
+  <div class="section-title"><span class="dot" style="background:#34d399"></span> 🔩 设计三层 · 造一颗芯片设计凭什么成立</div>
+  <div class="section-desc">从芯片架构定义到EDA/IP工具到RTL→GDS流片实现。每个节点点击查看4+5分析师解说。</div>
+  <div class="sc3-grid">
+  <!-- Column 1: Architecture -->
+  <div class="sc3-col">
+    <div class="bar-top" style="background:#6366f1"></div>
+    <h3>🧠 架构与生态 <span class="pct">定义芯片"是什么"</span></h3>
+    <div class="sc3-node" onclick="openModal('sc-arch-x86')">
+      <h5>🖥️ x86架构 <span class="hl-tag">生态垄断</span></h5>
+      <div class="preview">Intel/AMD双头垄断服务器>90%，中国海光兼容x86</div>
+    </div>
+    <div class="sc3-node" onclick="openModal('sc-arch-arm')">
+      <h5>📱 ARM架构</h5>
+      <div class="preview">移动>90%，向服务器/PC渗透，苹果M系列引领</div>
+    </div>
+    <div class="sc3-node" onclick="openModal('sc-arch-riscv')">
+      <h5>🔓 RISC-V开源</h5>
+      <div class="preview">年出货>10亿颗，中国换道超车最大机会</div>
+    </div>
+    <div class="sc3-node" onclick="openModal('sc-arch-ai')">
+      <h5>🧠 AI芯片架构</h5>
+      <div class="preview">GPU/NPU/TPU/存算一体百花齐放，CUDA生态最深壁垒</div>
+    </div>
+  </div>
+  <!-- Column 2: EDA & IP -->
+  <div class="sc3-col">
+    <div class="bar-top" style="background:#3b82f6"></div>
+    <h3>📐 EDA与IP体系 <span class="pct">用"什么"设计芯片</span></h3>
+    <div class="sc3-node" onclick="openModal('sc-eda-eda')">
+      <h5>📐 EDA工具 <span class="hl-tag">🔴高壁垒</span></h5>
+      <div class="preview">三巨头垄断~78%，国产~2%，美国限制出口</div>
+    </div>
+    <div class="sc3-node" onclick="openModal('sc-eda-ip')">
+      <h5>🧩 IP核 <span class="hl-tag">🔴高壁垒</span></h5>
+      <div class="preview">Arm垄断CPU>90%，国产IP仅~2%，RISC-V是希望</div>
+    </div>
+    <div class="sc3-node" onclick="openModal('sc-eda-des')">
+      <h5>🏭 设计服务</h5>
+      <div class="preview">Alchip/创意/世芯，AI芯片外包设计需求爆发</div>
+    </div>
+    <div class="sc3-node" onclick="openModal('sc-eda-verif')">
+      <h5>🔍 验证与仿真</h5>
+      <div class="preview">占设计周期50-70%，Synopsys ZeBu/Cadence Palladium</div>
+    </div>
+  </div>
+  <!-- Column 3: Design to Silicon -->
+  <div class="sc3-col">
+    <div class="bar-top" style="background:#34d399"></div>
+    <h3>🏭 设计到流片 <span class="pct">"怎么"把设计变成芯片</span></h3>
+    <div class="sc3-node" onclick="openModal('sc-flow-front')">
+      <h5>📝 前端设计</h5>
+      <div class="preview">RTL设计(Verilog) + 功能验证 + 逻辑综合</div>
+    </div>
+    <div class="sc3-node" onclick="openModal('sc-flow-back')">
+      <h5>🏗️ 后端物理设计</h5>
+      <div class="preview">布局布线→GDSII，先进工艺(3nm)最复杂的环节</div>
+    </div>
+    <div class="sc3-node" onclick="openModal('sc-flow-dft')">
+      <h5>🔬 可测性设计(DFT)</h5>
+      <div class="preview">扫描链+BIST+ATPG，确保芯片可测试</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== TAB 4: HIGHLIGHTS ===== [TODO: 修改高壁垒环节内容] -->
+<div id="tab-highlights" class="section">
+  <div style="display:flex;align-items:center;gap:6px;padding:0 0 8px;font-size:.6rem;color:var(--m5,#64748b)"><span onclick="switchSection('overview')" style="cursor:pointer;color:#6366f1;font-weight:600">← 返回产业总览</span></div>
+  <div class="section-title"><span class="dot" style="background:#fb7185"></span> 🔴 高壁垒环节清单</div>
+  <div class="section-desc">国产化率&lt;30%的卡脖子零部件，直接影响供应链安全与国产替代空间。</div>
+  <div id="hlGrid" class="hl-list"></div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+<div class="modal">
+  <div class="modal-close">
+    <div class="modal-header">
+      <div id="modalTag" class="tag" style="display:none"></div>
+      <h2 id="modalTitle"></h2>
+      <div id="modalSub" class="sub"></div>
+    </div>
+    <button onclick="closeModal()">✕</button>
+  </div>
+  <div class="modal-body" id="modalBody"></div>
+</div>
+</div>
+
+<script>
+// =====================================================================
+// 数据填充区
+// =====================================================================
+// 每个条目字段说明：
+//   id:      唯一标识
+//   icon:    图标
+//   title:   标题
+//   tag:     标签（可选，如"① 工业机器人"）
+//   tagColor: 标签颜色
+//   s1:      📝 一句话说清
+//   s2:      🤔 打个比方
+//   s3:      📊 必知数字
+//   s4:      ❌ 别搞错
+//   d1~d5:   🔧/🌍/🏢/🏗️/🎯 深度分析5维
+//   report:  {name:'公司名',id:'报告id'}  可选关联企业报告
+
+const DATA = [
+  // ---- HOT CARDS (3) ----
+  {id:'hot1',icon:'🔥',title:'AI芯片设计 · GPU/NPU架构',
+    tag:'🔥 最热', tagColor:'#fb7185',
+    s1:'2025年全球AI芯片设计市场超1000亿美元，英伟达数据中心GPU营收>800亿。GPU·NPU·TPU多种架构并存，AI训练/推理需求爆发。',
+    s2:'AI芯片设计就像设计超级大脑——每个晶体管都是为了更快地"思考"（矩阵运算）而优化。',
+    s3:'AI芯片市场>1000亿美元·英伟达训练>85%·华为昇腾~8%·GPU/NPU/TPU/存算一体架构百花齐放',
+    s4:'很多人以为AI芯片只有GPU一种，实际上NPU(神经网络处理器)在推理场景能效比GPU高5-10倍。',
+    d1:'🔧 技术难度 ★★★★★ 万亿晶体管级设计+先进制程(3nm/2nm)+HBM整合+Chiplet架构+软件生态(CUDA)',
+    d2:'🌍 英伟达训练>85%·AMD(推理)~8%·华为昇腾(中国)~8%·Google TPU/亚马逊Trainium(自研)',
+    d3:'🏢 代表企业：英伟达(NVDA)·AMD(AMD)·华为海思(昇腾)·寒武纪·壁仞·燧原·Groq·Cerebras',
+    d4:'🏗️ 应用场景：云端训练(60%)·云端推理(25%)·边缘AI(10%)·自动驾驶(5%)，AI PC/手机是2025年新增长极',
+    d5:'🎯 2026年关注：英伟达Rubin架构、华为昇腾910C、存算一体芯片量产、Chiplet AI芯片'},
+  {id:'hot2',icon:'🔴',title:'EDA全流程软件',
+    tag:'🔴 最高壁垒', tagColor:'#fbbf24',
+    s1:'EDA(电子设计自动化)是芯片设计的"画笔"，全球三巨头Synopsys(35%)·Cadence(30%)·Siemens(13%)垄断~78%。国产EDA仅~2%。没有EDA就没有芯片设计。',
+    s2:'EDA就像设计师的CAD+Photoshop+结构计算三合一软件——没有它，再好的芯片设计想法也只能停留在纸上。',
+    s3:'全球EDA市场~200亿美元·三巨头~78%·国产EDA~2%·数字全流程自给率<5%·模拟EDA国产率~20%',
+    s4:'很多人以为"开源EDA也能用"，实际上工业级EDA需要与晶圆厂工艺深度绑定(PDK)，开源工具无法用于量产。',
+    d1:'🔧 技术壁垒 ★★★★★ 全流程协同(逻辑综合→布局布线→物理验证→仿真)+晶圆厂生态绑定(PDK/Design Rule)',
+    d2:'🌍 Synopsys(美)~35%·Cadence(美)~30%·Siemens EDA(德)~13%。美国2022年起限制3nm以下EDA对华出口',
+    d3:'🏢 国产代表：华大九天(模拟EDA第一)·概伦电子(SPICE)·国微集团(数字)·芯华章(验证)·合见工软',
+    d4:'🏗️ 突破意义：EDA国产替代每提升10%=5000+芯片设计岗位不受制于人。中国EDA市场空间约40亿美元',
+    d5:'🎯 2026年关注：华大九天数字全流程突破、美国EDA出口管制是否加码'},
+  {id:'hot3',icon:'📈',title:'RISC-V开放架构',
+    tag:'📈 增速最快', tagColor:'#34d399',
+    s1:'RISC-V是开源指令集架构，年出货量>10亿颗。中国大力扶持，视其为"换道超车"绕开Arm/x86封锁的机会。在AI端侧/MCU领域渗透最快。',
+    s2:'RISC-V就像"世界语"——开源免费、全球共建。虽然生态还不完善，但发展速度远超当年的Linux。',
+    s3:'年出货>10亿颗·中国RISC-V生态联盟>1000家成员·AI端侧芯片最积极采用·生态距Arm仍差5-8年',
+    s4:'很多人以为RISC-V"性能不行"，实际上RISC-V在AI加速、IoT、MCU等场景已能商业化，未来3-5年有望进入服务器/PC。',
+    d1:'🔧 技术壁垒 ★★★☆☆ 不在指令集本身而是：软件生态(GCC/LLVM)+工具链+操作系统支持+开发者社区',
+    d2:'🌍 Arm(移动>90%)·x86(服务器>90%)·RISC-V(开源基金会)。中国阿里平头哥·赛昉科技·芯来科技投入最大',
+    d3:'🏢 代表企业：平头哥(阿里玄铁)·赛昉科技·芯来科技·StarFive·SiFive(美国)',
+    d4:'🏗️ 应用场景：AI端侧加速(40%)·MCU(30%)·IoT(15%)·存储控制器(10%)·未来PC/服务器(5%)',
+    d5:'🎯 2026年关注：RISC-V AI芯片量产、Arm IPO后授权策略变化、中国RISC-V生态联盟进展'},
+
+  // ---- 设计品类 (5大品类) ----
+  {id:'cat1',icon:'🧠',title:'CPU设计',
+    tag:'① 计算核心', tagColor:'#6366f1',
+    s1:'CPU(中央处理器)是芯片设计最经典的品类。全球CPU市场>600亿美元，x86(Intel/AMD)垄断服务器>90%，Arm在PC/服务器领域快速渗透。',
+    s2:'CPU就像人类的大脑皮层——负责通用计算和逻辑判断，什么都能做但不是最快的。',
+    s3:'全球CPU市场>600亿美元·x86服务器>90%·Arm服务器~10%·RISC-V起步·Intel+AMD双头垄断',
+    s4:'很多人以为"CPU已死"，实际上CPU仍是每台计算机必需的核心，AI时代CPU负责数据预处理和调度、GPU负责加速计算。',
+    d1:'🔧 技术壁垒 ★★★★★ 微架构设计(分支预测/缓存/LSU)+指令集生态锁定(x86)+先进制程+频率/功耗平衡',
+    d2:'🌍 x86(Intel+AMD)垄断服务器>90%。Arm服务器(Ampere/亚马逊Graviton)快速增长。RISC-V蓄力中',
+    d3:'🏢 代表企业：Intel(INTC)·AMD(AMD)·中科海光(国产x86)·飞腾(国产Arm)·龙芯(国产自主)',
+    d4:'🏗️ 应用场景：服务器/数据中心(45%)·PC(35%)·嵌入式(15%)·AI服务器管理CPU(5%)',
+    d5:'🎯 2026年关注：Arm服务器芯片市占率突破20%、Intel 18A工艺CPU、RISC-V服务器原型'},
+  {id:'cat2',icon:'🎮',title:'GPU/AI加速器',
+    tag:'② 算力引擎', tagColor:'#3b82f6',
+    s1:'GPU/AI加速器是芯片设计最热门的品类。GPU从图形渲染进化到通用计算(GPGPU/CUDA)，成为AI时代的核心算力基石。全球市场>1000亿美元。',
+    s2:'GPU就像超级计算器——CPU是1个天才做所有事，GPU是1万个普通学生一起做作业，更适合AI矩阵运算。',
+    s3:'AI芯片市场>1000亿美元·GPU占>80%·英伟达训练>85%·NPU推理能效比GPU高5-10倍',
+    s4:'很多人以为"GPU=游戏显卡"，实际上数据中心GPU营收已远超游戏GPU，英伟达数据中心收入占比>85%。',
+    d1:'🔧 技术壁垒 ★★★★★ 万亿晶体管设计+CUDA生态锁定+先进封装(CoWoS)+HBM整合+高速迭代(年更)',
+    d2:'🌍 英伟达训练>85%·AMD~8%·Intel(Gaudi)·华为昇腾(国产AI)·Google TPU·Groq·Cerebras',
+    d3:'🏢 代表企业：英伟达(NVDA)·AMD(AMD)·华为海思(昇腾)·寒武纪·壁仞·燧原',
+    d4:'🏗️ 应用场景：AI训练(50%)·AI推理(30%)·图形渲染(10%)·游戏(5%)·科学计算(5%)',
+    d5:'🎯 2026年关注：英伟达Rubin架构、AI推理芯片百花齐放、Chiplet互联标准UCIe'},
+  {id:'cat3',icon:'📱',title:'移动SoC设计',
+    tag:'③ 万物互联', tagColor:'#fbbf24',
+    s1:'移动SoC(系统级芯片)集成CPU+GPU+NPU+DSP+ISP+Modem等，是智能手机的"大脑"。全球市场>500亿美元。AI手机驱动新一轮升级。',
+    s2:'移动SoC就像瑞士军刀——在一颗芯片上集成了手机需要的所有功能，面积只有小指甲盖大小。',
+    s3:'全球市场>500亿美元·高通骁龙>40%·联发科天玑~33%·苹果A系列·华为麒麟回归·AI算力每代翻倍',
+    s4:'很多人以为SoC只是"CPU+GPU放一起"，实际上SoC需要平衡功耗、面积、性能三角，集成度极高。',
+    d1:'🔧 技术壁垒 ★★★★☆ CPU/GPU/NPU多核异构架构+先进制程(3nm)+通信基带整合+功耗管理+IP集成',
+    d2:'🌍 高通(旗舰领先)·联发科(出货量第一)·苹果(自研A/M系列)·华为海思(麒麟回归)·三星(Exynos)',
+    d3:'🏢 代表企业：高通(QCOM)·联发科(2454.TW)·苹果(AAPL)·华为海思·三星LSI',
+    d4:'🏗️ 应用场景：手机(80%)·平板(10%)·AI PC(5%)·可穿戴(5%)。AI手机带动2025-2027换机潮',
+    d5:'🎯 2026年关注：AI手机渗透率、苹果自研基带、高通+联发科3nm SoC对决'},
+  {id:'cat4',icon:'🌐',title:'通信/网络芯片',
+    tag:'④ 连接万物', tagColor:'#34d399',
+    s1:'通信/网络芯片包括交换机芯片、以太网PHY、WiFi/BT组合、5G基站芯片等。数据中心升级+6G研发驱动需求，博通在交换机领域一家独大。',
+    s2:'通信芯片就像高速公路系统——没有它们，数据就无法在网络中快速传输。',
+    s3:'全球通信/网络芯片市场~400亿美元·博通交换机>60%·Marvell>15%·5G基站芯片华为海思领先',
+    d1:'🔧 技术壁垒 ★★★★☆ 高速SerDes(112G/224G)+交换架构(高吞吐低延迟)+网络协议栈+先进工艺',
+    d2:'🌍 博通(AVGO)交换机>60%·Marvell(MRVL)~15%·华为海思(基站芯片)。数据中心向800G/1.6T升级',
+    d3:'🏢 代表企业：博通(AVGO)·Marvell(MRVL)·华为海思(基站)·中兴通讯(基站)·联发科(连接)',
+    d4:'🏗️ 应用场景：数据中心(45%)·通信基站(25%)·企业网络(15%)·家庭网络(10%)·IoT(5%)',
+    d5:'🎯 2026年关注：1.6T交换机芯片商用、6G研发、WiFi 7渗透率'},
+  {id:'cat5',icon:'🔌',title:'模拟/混合信号设计',
+    tag:'⑤ 真实世界', tagColor:'#fb7185',
+    s1:'模拟/混合信号芯片设计是连接数字世界与物理世界的桥梁。虽然单体价值低，但品类>10万种。全球市场~810亿美元。设计门槛不依赖先进制程而依赖经验积累。',
+    s2:'模拟芯片设计就像"不用尺子画画"——数字设计是0和1，模拟设计是连续信号，靠的是工程师的经验和直觉。',
+    s3:'全球模拟芯片市场~810亿美元·TI产品>8万种·TI市占率~15%·优秀模拟工程师培养周期>10年',
+    s4:'很多人以为"模拟是低端"，实际上高端模拟芯片(BMS/隔离/高速ADC)利润率和设计难度极高。',
+    d1:'🔧 技术壁垒 ★★★☆☆ 不在制程而在：工艺经验积累+IP库+客户认证+产品广度+晶圆厂工艺理解',
+    d2:'🌍 TI(~15%)·ADI(~12%)·Infineon(~8%)·ST(~6%)·NXP(~5%)。国产模拟芯片替代率~55%领先',
+    d3:'🏢 代表企业：TI(TXN)·ADI(ADI)·思瑞浦·圣邦股份·纳芯微·矽力杰',
+    d4:'🏗️ 应用场景：汽车电子(30%)·工业(25%)·通信(15%)·消费电子(15%)·数据中心(10%)·医疗(5%)',
+    d5:'🎯 2026年关注：国产车规级模拟芯片量产、TI 12英寸产能释放影响'},
+
+  // ---- 设计企业 (12家) ----
+  {id:'ent1',icon:'🏢',title:'英伟达 NVIDIA',
+    tag:'AI芯片之王', tagColor:'#a78bfa',
+    s1:'全球AI芯片设计绝对霸主，CUDA生态+硬件迭代(H100/B200/Rubin)构筑双重护城河。2025年数据中心GPU营收超800亿美元。',
+    s2:'英伟达在芯片设计界的地位就像"设计界的苹果"——顶尖硬件+极致生态锁定。',
+    s3:'营收800亿+(数据中心)·毛利率>70%·AI训练市占率>85%·CUDA开发者>400万·市值3万亿+',
+    s4:'很多人以为英伟达壁垒在"硬件性能"，实际上CUDA生态才是真正的护城河，开发者粘性极高。',
+    d1:'🔧 核心壁垒：GPU架构(Blackwell)+CUDA生态(>400万开发者)+NVLink+Chiplet(CoWoS)+年更迭代',
+    d2:'🌍 AI训练>85%·AMD~8%·Intel(Gaudi)·华为(昇腾)。推理市场面临更多竞争者(Groq/Cerebras)',
+    d3:'🏢 竞争：AMD(MI300)·Intel(Gaudi)·华为(昇腾)·Google(TPU)·Groq·Cerebras',
+    d4:'🏗️ 增长驱动：AI推理需求爆发(训练→推理)+自动驾驶(DriveThor)+Omniverse数字孪生',
+    d5:'🎯 2026年关注：Rubin架构、CoWoS产能缓解后增速、中国市场竞争'},
+  {id:'ent2',icon:'📱',title:'高通 Qualcomm',
+    tag:'移动SoC之王', tagColor:'#3b82f6',
+    s1:'全球移动SoC设计龙头，骁龙旗舰手机芯片市占率>40%。AI手机时代，高通在端侧AI推理能力领先。',
+    s2:'高通的设计能力就像手机界的"发动机"——每一款旗舰手机都在用高通设计的芯片。',
+    s3:'营收~400亿美元·手机SoC>40%·基带>50%·AI PC(Snapdragon X)新增长曲线',
+    d1:'🔧 核心壁垒：SoC异构架构+5G基带IP+Arm CPU授权+GPU(Adreno)+AI引擎+通信专利',
+    d2:'🌍 对手：联发科(天玑)·苹果(A系列)·三星(Exynos)·华为(麒麟回归)',
+    d3:'🏢 竞争：联发科(2454.TW)·苹果·三星LSI·华为海思·紫光展锐',
+    d4:'🏗️ 增长驱动：AI手机换机+AI PC(Snapdragon X Elite)+汽车座舱+IoT',
+    d5:'🎯 2026年关注：苹果自研基带对高通的冲击、AI PC市场增长'},
+  {id:'ent3',icon:'🖥️',title:'AMD',
+    tag:'CPU/GPU双引擎', tagColor:'#fbbf24',
+    s1:'全球第二大CPU/GPU设计公司，CPU市场~30%，MI300 AI GPU挑战英伟达。Chiplet设计理念引领业界。',
+    s2:'AMD是芯片设计界的"追赶者"——CPU追Intel，GPU追英伟达，但追得极快。',
+    s3:'营收~260亿美元·CPU~30%·AI GPU(MI300)年化~50亿·Chiplet设计先驱',
+    d1:'🔧 核心壁垒：Zen CPU架构+CDNA GPU+Chiplet设计(引领业界)+3D V-Cache+先进封装',
+    d2:'🌍 CPU vs Intel(~65%)。AI GPU vs 英伟达(~8% AI芯片份额)',
+    d3:'🏢 竞争：Intel(CPU)·英伟达(AI GPU)·中科海光(国产x86)',
+    d4:'🏗️ 增长驱动：AI推理(MI300性价比)+服务器CPU份额+PC换机周期',
+    d5:'🎯 2026年关注：MI400 AI芯片发布、Chiplet架构迭代'},
+  {id:'ent4',icon:'🌐',title:'博通 Broadcom',
+    tag:'通信网络芯片之王', tagColor:'#34d399',
+    s1:'全球通信/网络芯片设计龙头，交换机芯片市占率>60%。定制AI ASIC(谷歌TPU)是新增长引擎。',
+    s2:'博通是"芯片界的瑞士军刀"——网络、无线、ASIC定制样样精通，而且每样都是顶尖。',
+    s3:'营收~500亿美元(含VMware)·网络芯片>60%·定制AI芯片(谷歌TPU)·市值>8000亿美元',
+    d1:'🔧 核心壁垒：高集成交换芯片架构+SerDes IP+ASIC定制设计+收购整合能力',
+    d2:'🌍 网络芯片: Marvell(~15%)·MediaTek(消费级)。定制AI: 谷歌TPU·Meta定制',
+    d3:'🏢 竞争：Marvell(MRVL)·Intel(网络)·英伟达(SmartNIC)',
+    d4:'🏗️ 增长驱动：800G/1.6T数据中心交换机+定制AI ASIC(谷歌/Meta)+VMware整合',
+    d5:'🎯 2026年关注：1.6T网络芯片商用、谷歌TPU v6订单'},
+  {id:'ent5',icon:'📡',title:'联发科 MediaTek',
+    tag:'SoC出货量第一', tagColor:'#fb7185',
+    s1:'全球手机SoC出货量第一(年>8亿颗)，天玑9300/9400旗舰系列性能逼近骁龙。AI+中低端市场双轮驱动。',
+    s2:'联发科是"芯片界的丰田"——出货量最大，性价比最高，正在向高端发起冲击。',
+    s3:'营收~500亿美元·SoC出货>8亿颗·市占率~33%·天玑旗舰对标骁龙8 Elite',
+    d1:'🔧 核心壁垒：多核CPU架构(Arm)+AI APU+5G基带+成本控制(TSMC深度绑定)',
+    d2:'🌍 vs高通: 高端旗舰(~60%高通)·中端(~40%联发科)',
+    d3:'🏢 竞争：高通·华为海思·三星(Exynos)·紫光展锐',
+    d4:'🏗️ 增长驱动：AI手机换机+Chromebook/平板+WiFi 7+Edge AI',
+    d5:'🎯 2026年关注：天玑9400+ vs 骁龙8 Gen 4'},
+  {id:'ent6',icon:'🇨🇳',title:'华为海思 HiSilicon',
+    tag:'中国设计旗舰', tagColor:'#3b82f6',
+    s1:'中国最大IC设计公司，麒麟(手机SoC)+昇腾(AI)+鲲鹏(服务器)+天罡(基站)四大产品线。被制裁后通过7nm+堆叠实现麒麟回归。',
+    s2:'海思是中国芯片设计的"国家队队长"——被制裁反而激发出了更强大的创新能力。',
+    s3:'营收~400亿+(估算)·麒麟9100回归·昇腾910B对标A100·员工>7000人',
+    d1:'🔧 核心壁垒：自研ARM CPU(泰山)+达芬奇AI架构+SoC整合+Chiplet封装(堆叠技术)',
+    d2:'🌍 制裁困境：无法用5nm以下先进制程，通过7nm+堆叠技术，性能落后高通1-2代',
+    d3:'🏢 竞争：高通(SoC)·英伟达(AI)·Intel(服务器)',
+    d4:'🏗️ 增长驱动：华为手机回归(麒麟)+昇腾信创采购+鲲鹏服务器',
+    d5:'🎯 2026年关注：麒麟9100制程突破、昇腾910C'},
+  {id:'ent7',icon:'🇨🇳',title:'兆易创新 GigaDevice',
+    tag:'国产NOR Flash+MCU设计', tagColor:'#a78bfa',
+    s1:'NOR Flash全球第三(~18%)和32位MCU国内领先的设计公司。受益于存储涨价+国产替代。',
+    s2:'兆易创新是"细分赛道之王"——在NOR Flash这个看似小众的领域做到全球前三。',
+    s3:'营收92亿·净利16.5亿(+49%)·NOR Flash全球第三·MCU国内前三',
+    d1:'🔧 核心壁垒：NOR Flash工艺(55nm/45nm)+MCU生态(Arm Cortex)+客户覆盖',
+    d2:'🌍 NOR Flash: 华邦/旺宏/兆易三强>80%。MCU vs NXP/STM差距仍大',
+    d3:'🏢 竞争：华邦·旺宏·赛普拉斯·NXP·STM·中颖电子',
+    d4:'🏗️ 增长驱动：存储涨价+MCU国产替代+汽车MCU+DRAM新业务',
+    d5:'🎯 2026年关注：DRAM业务进展、车规MCU量产'},
+  {id:'ent8',icon:'🇨🇳',title:'韦尔股份 / 豪威',
+    tag:'国产CIS设计龙头', tagColor:'#34d399',
+    s1:'全球第三大图像传感器(CIS)设计公司，手机CIS~12%，汽车CIS快速放量。通过收购豪威科技(OmniVision)跻身全球前列。',
+    s2:'韦尔/豪威是"摄像头芯片界的华为"——全球每3颗手机CIS就有1颗来自豪威。',
+    s3:'营收~260亿·手机CIS第三~12%·汽车CIS第四~8%',
+    d1:'🔧 核心壁垒：BSI/堆叠CIS工艺+像素设计(OmniPixel)+汽车认证+品牌客户',
+    d2:'🌍 索尼(42%)·三星(25%)·豪威(12%)·格科微·思特威',
+    d3:'🏢 竞争：索尼·三星·格科微·思特威',
+    d4:'🏗️ 增长驱动：手机多摄+车载ADAS+安防+机器视觉',
+    d5:'🎯 2026年关注：苹果供应链突破、汽车CIS放量'},
+  {id:'ent9',icon:'📐',title:'新思科技 Synopsys',
+    tag:'EDA+IP双龙头', tagColor:'#a78bfa',
+    s1:'全球EDA第一~35%市值，同时是全球最大芯片IP提供商。从逻辑综合到物理验证全流程覆盖。AI辅助EDA(DSO.ai)引领行业变革。',
+    s2:'Synopsys是"芯片设计的操作系统"——几乎所有芯片设计都要用到它的工具。',
+    s3:'营收~65亿美元·EDA第一~35%·IP第二~20%·AI EDA(DSO.ai)领先·市值~800亿美元',
+    d1:'🔧 核心壁垒：全流程EDA工具链+DesignWare IP库+晶圆厂PDK生态绑定+长期客户关系',
+    d2:'🌍 EDA: Synopsys~35%·Cadence~30%·Siemens~13%。IP: Arm第一·Synopsys第二',
+    d3:'🏢 竞争：Cadence(CDNS)·Siemens EDA·华大九天(国产)·概伦电子(国产)',
+    d4:'🏗️ 驱动因素：芯片设计复杂度提升+先进工艺节点EDA需求+AI辅助EDA工具普及',
+    d5:'🎯 2026年关注：AI EDA(DSO.ai)渗透率、中国市场受出口管制影响'},
+  {id:'ent10',icon:'🎨',title:'铿腾电子 Cadence',
+    tag:'EDA第二+系统设计', tagColor:'#3b82f6',
+    s1:'全球EDA第二~30%份额，在定制模拟设计、PCB设计、系统仿真领域领先。近年通过收购拓展到系统设计与AI EDA。',
+    s2:'Cadence是"模拟芯片设计的首选"——TI/ADI/Infineon的模拟设计几乎都跑在Cadence平台上。',
+    s3:'营收~45亿美元·EDA第二~30%·模拟EDA市场占比>40%·系统设计增长最快·市值~700亿美元',
+    d1:'🔧 核心壁垒：Virtuoso(模拟设计)生态+Allegro(PCB设计)+EDA+AI优化+与Synopsys双头垄断',
+    d2:'🌍 EDA: Synopsys~35%·Cadence~30%。模拟EDA: Cadence>40%绝对领先',
+    d3:'🏢 竞争：Synopsys(SNPS)·Siemens EDA·华大九天(模拟)·概伦电子(SPICE)',
+    d4:'🏗️ 驱动因素：系统级设计需求增长+AI辅助+5G/汽车电子设计复杂度提升',
+    d5:'🎯 2026年关注：AI EDA进展、中国市场受限影响'},
+  {id:'ent11',icon:'🇨🇳',title:'芯原股份 VeriSilicon',
+    tag:'中国IP+设计服务龙头', tagColor:'#a78bfa',
+    s1:'中国最大芯片IP提供商和设计服务公司，提供从IP授权到一站式芯片设计服务。在GPU/NPU/IPC等IP领域有自主技术。',
+    s2:'芯原就像"芯片设计的好帮手"——你没有的IP可以买它的，你不想做的设计它可以帮你做。',
+    s3:'营收~30亿·中国IP第一·设计服务覆盖多种工艺·GPU/NPU/IP自主IP·科创板上市',
+    d1:'🔧 核心壁垒：自主IP(GPU/NPU)+设计服务经验+与晶圆厂(TSMC/SMIC)合作关系+客户覆盖',
+    d2:'🌍 vs Arm/Synopsys: 在IP品类和生态上差距较大。vs Alchip/创意: 设计服务规模较小',
+    d3:'🏢 竞争：Arm(IP)·Alchip(设计服务)·创意电子(设计服务)·灿芯半导体',
+    d4:'🏗️ 驱动因素：国产芯片设计需求爆发+RISC-V生态+中国半导体自主化',
+    d5:'🎯 2026年关注：GPU IP客户拓展、设计服务收入增长'},
+  {id:'ent12',icon:'🏭',title:'创意电子 GUC',
+    tag:'台积电背景设计服务', tagColor:'#fbbf24',
+    s1:'全球领先的芯片设计服务公司，台积电转投资子公司，在先进工艺(3nm/5nm)后端设计方面全球顶尖。深度绑定台积电产能。',
+    s2:'创意电子就像"芯片设计的装修队"——你有设计图(RTL)，它帮你完成最复杂的装修(GDSII布局布线)。',
+    s3:'营收~10亿美元·先进工艺(3nm/5nm)设计服务·台积电子公司·深度绑定TSMC产能',
+    d1:'🔧 核心壁垒：先进工艺(3nm/5nm)后端设计经验+台积电产能优先权+先进封装设计能力',
+    d2:'🌍 设计服务: Alchip(~5亿)·创意·世芯(~4亿)。Alchip绑定英伟达，创意绑定台积电',
+    d3:'🏢 竞争：Alchip(英伟达供应商)·世芯(AWS供应商)·芯原(中国)·灿芯(中国)',
+    d4:'🏗️ 驱动因素：先进工艺设计复杂度提升+AI芯片设计外包需求+台积电产能绑定',
+    d5:'🎯 2026年关注：3nm设计服务需求、CoWoS设计服务能力'},
+
+  // ---- 供应链子节点 (11个) ----
+  // 🧠 架构与生态
+  {id:'sc-arch-x86',icon:'🖥️',title:'x86架构生态',
+    tag:'服务器/PC之王', tagColor:'#fbbf24',
+    s1:'x86架构统治PC和服务器市场>90%，Intel+AMD双头垄断。x86的兼容性生态(软件+OS+开发者)是最深的壁垒。中国有x86兼容芯片(海光)。',
+    s2:'x86就像"英语"——使用者最多、生态最成熟、无可替代，但正在被"西班牙语(Arm)"和"世界语(RISC-V)"挑战。',
+    d1:'🔧 壁垒 ★★★★★ 指令集专利锁定+软件生态(Windows/Linux/数百万应用)+开发者习惯+性能迭代',
+    d2:'🌍 Intel+AMD双头垄断，总计>90%服务器。中国海光信息(x86兼容)国产替代中',
+    d3:'🏢 代表：Intel(INTC)·AMD(AMD)·中科海光(688041)·兆芯',
+    d4:'🏗️ 应用场景：服务器(45%)·PC(40%)·工作站(10%)·超算(5%)',
+    d5:'🎯 2026年关注：Arm服务器份额突破20%、海光x86迭代'},
+  {id:'sc-arch-arm',icon:'📱',title:'ARM架构生态',
+    tag:'移动之王→服务器进军', tagColor:'#3b82f6',
+    s1:'Arm架构统治移动芯片>90%，正向服务器/PC/AI领域快速渗透。授权模式(IP核授权而非芯片设计授权)是核心商业模式。',
+    s2:'Arm就像"西班牙语"——使用者最广(手机>90%)，正从移动端向桌面/服务器扩展。',
+    d1:'🔧 壁垒 ★★★★☆ IP授权模式(低功耗架构)+移动生态锁定+Neoverse服务器核+开发者工具链',
+    d2:'🌍 Arm英国控股，软银旗下。Arm服务器: 亚马逊Graviton·Ampere·华为鲲鹏。PC: 苹果M系列领先',
+    d3:'🏢 代表：Arm(控股)·苹果(M系列)·亚马逊(Graviton)·华为(鲲鹏)·飞腾',
+    d4:'🏗️ 应用场景：手机(>90%)·平板(>80%)·服务器(~10%)·PC(~5%)·IoT/MCU(>90%)',
+    d5:'🎯 2026年关注：Arm IPO后授权策略变化、Arm PC市场份额'},
+  {id:'sc-arch-riscv',icon:'🔓',title:'RISC-V开源架构',
+    tag:'换道超车机会', tagColor:'#34d399',
+    s1:'RISC-V是开源、免费的指令集架构，年出货>10亿颗。中国大力扶持视为绕开x86/Arm封锁的机会。AI端侧/MCU渗透最快。',
+    s2:'RISC-V就像"世界语"——开源免费、全球共建。生态虽不成熟但发展速度远超当年的Linux。',
+    d1:'🔧 壁垒 ★★★☆☆ 不在指令集本身，而在：软件生态(GCC/LLVM)+工具链+OS支持+开发者社区+性能优化',
+    d2:'🌍 RISC-V国际基金会管理。中国投入最大(阿里平头哥/赛昉/芯来/StarFive)。SiFive(美国)领先',
+    d3:'🏢 代表：平头哥(阿里玄铁)·SiFive(美)·赛昉科技·芯来科技·StarFive',
+    d4:'🏗️ 应用场景：AI端侧(40%)·MCU(30%)·IoT(15%)·存储(10%)·未来PC/服务器(5%)',
+    d5:'🎯 2026年关注：RISC-V AI芯片量产、中国RISC-V生态联盟进展'},
+  {id:'sc-arch-ai',icon:'🧠',title:'AI芯片架构创新',
+    tag:'百花齐放', tagColor:'#a78bfa',
+    s1:'AI芯片架构从GPU一统天下走向多元化：GPU(英伟达通用最强)·NPU(华为/苹果端侧能效)·TPU(Google定制矩阵)·存算一体(颠覆冯·诺依曼)。',
+    s2:'AI芯片架构就像不同交通工具——GPU是卡车(万能但耗油)，NPU是小轿车(高效)，TPU是高铁(专线最快的)。',
+    d1:'🔧 壁垒 ★★★★★ 万亿晶体管设计+先进制程+软件栈(CUDA/PyTorch)+HBM带宽+散热功耗',
+    d2:'🌍 英伟达GPU>85%训练·Google TPU v6·华为昇腾·Groq LPU·Cerebras WSE·Tenstorrent·各类NPU',
+    d3:'🏢 代表：英伟达·Google·华为·AMD·Groq·Cerebras·Tenstorrent·寒武纪',
+    d4:'🏗️ 应用场景：云端训练→云端推理→边缘推理→端侧推理(手机/PC/IoT)，推理需求爆发',
+    d5:'🎯 2026年关注：存算一体芯片量产、Chiplet AI芯片、光子芯片'},
+  // 🛠️ EDA与IP
+  {id:'sc-eda-eda',icon:'📐',title:'EDA工具',
+    tag:'🔴卡脖子', tagColor:'#fb7185',
+    s1:'EDA是芯片设计必需的工具链，Synopsys+Cadence+Siemens EDA三巨头垄断~78%。国产EDA仅~2%，数字全流程自给率<5%。',
+    s2:'EDA就像建筑师的设计软件——没有CAD就画不了图纸，没有EDA就设计不了芯片。',
+    d1:'🔧 壁垒 ★★★★★ 全流程协同(综合→布局布线→验证→仿真)+晶圆厂PDK绑定+先进工艺支持',
+    d2:'🌍 Synopsys~35%·Cadence~30%·Siemens~13%。美国限制3nm以下EDA对华出口',
+    d3:'🏢 国产：华大九天(模拟第一)·概伦电子·国微集团·芯华章·合见工软',
+    d4:'🏗️ 应用场景：所有芯片设计必备。中国EDA市场空间~40亿美元',
+    d5:'🎯 2026年关注：华大九天数字全流程突破、美国EDA出口管制'},
+  {id:'sc-eda-ip',icon:'🧩',title:'IP核',
+    tag:'🔴卡脖子', tagColor:'#fb7185',
+    s1:'IP核是芯片设计的预制模块，Arm垄断移动CPU IP>90%，Synopsys/Cadence垄断接口IP。国产IP占比~2%。',
+    s2:'IP核就像乐高积木——芯片设计不是从零开始，而是用IP核搭积木拼出来的。',
+    d1:'🔧 壁垒 ★★★★☆ CPU架构授权(生态锁定)+高速接口IP先进工艺移植+Ecosystem锁定+专利',
+    d2:'🌍 Arm(CPU)~90%移动·Synopsys(接口)·Cadence(DSP)。国产：芯原·平头哥(RISC-V)·赛昉',
+    d3:'🏢 国产：芯原股份(国内最大)·平头哥(玄铁RISC-V)·赛昉科技',
+    d4:'🏗️ 应用场景：所有SoC芯片都需要IP。RISC-V是换道超车最大机会',
+    d5:'🎯 2026年关注：RISC-V IP渗透率、Arm IPO后授权变化'},
+  {id:'sc-eda-des',icon:'🏭',title:'设计服务',
+    tag:'外包设计', tagColor:'#a78bfa',
+    s1:'芯片设计服务公司帮Fabless从RTL到GDSII的全流程物理设计。Alchip绑定英伟达/AMD，创意电子背靠台积电，世芯服务AWS。',
+    s2:'设计服务就像"芯片设计的装修队"——客户有户型图，他们负责水电瓦木各个工序完成精装修。',
+    d1:'🔧 壁垒 ★★★☆☆ 先进工艺(3nm)后端设计经验+与晶圆厂关系+大客户绑定+人才储备',
+    d2:'🌍 Alchip(英伟达绑定)·创意电子(TSMC子公司)·世芯(AWS)。中国芯原·灿芯',
+    d3:'🏢 代表：Alchip(台)·创意电子(台)·世芯(台)·芯原(中)·灿芯(中)',
+    d4:'🏗️ 应用场景：AI芯片设计外包·先进工艺后端物理设计',
+    d5:'🎯 2026年关注：AI芯片设计外包需求增长、先进工艺(3nm/2nm)设计挑战'},
+  {id:'sc-eda-verif',icon:'🔍',title:'验证与仿真',
+    tag:'占设计时间50%+', tagColor:'#fbbf24',
+    s1:'验证(Verification)是芯片设计中最耗时环节，占整个设计周期50-70%。包括仿真(Simulation)·形式验证·硬件加速(Emulation)·FPGA原型验证。',
+    s2:'验证就像"芯片设计的质检员"——花最多时间找bug，因为芯片流片一次成本>百万美元，一次bug就毁所有。',
+    d1:'🔧 壁垒 ★★★★☆ 硬件加速器(ZeBu/Palladium)+UVM验证方法学+验证IP+EDA绑定',
+    d2:'🌍 Synopsys(VCS+ZeBu)·Cadence(Xcelium+Palladium)·Siemens(Questa)。国产：芯华章',
+    d3:'🏢 代表：Synopsys·Cadence·Siemens EDA·芯华章(国产验证)',
+    d4:'🏗️ 应用场景：所有芯片设计流程中的验证环节，AI芯片验证复杂度暴增',
+    d5:'🎯 2026年关注：AI辅助验证工具、国产验证工具突破'},
+  // 🏭 设计到流片
+  {id:'sc-flow-front',icon:'📝',title:'前端设计',
+    tag:'RTL设计+验证', tagColor:'#6366f1',
+    s1:'前端设计是芯片设计的"写代码"阶段——用Verilog/VHDL/SystemVerilog描述电路行为，再通过逻辑综合转化为门级网表。',
+    s2:'前端设计就像"写乐高说明书"——用代码描述电路应该长什么样、怎么工作，再由工具自动生成实际电路。',
+    d1:'🔧 壁垒 ★★★★☆ 硬件描述语言(Verilog/VHDL)+架构设计能力+功耗/面积/性能平衡+验证方法学',
+    d2:'🌍 全球IC设计工程师>50万人。中国IC设计公司>3000家，前端设计人才紧缺',
+    d3:'🏢 代表工具：Synopsys Design Compiler·Cadence Genus·开放工具(Yosys)',
+    d4:'🏗️ 工艺流程：规格定义→架构设计→RTL编码→功能验证→逻辑综合→形式验证',
+    d5:'🎯 2026年关注：AI辅助RTL生成、高等级综合(HLS)普及、验证自动化'},
+  {id:'sc-flow-back',icon:'🏗️',title:'后端物理设计',
+    tag:'布局布线→GDSII', tagColor:'#3b82f6',
+    s1:'后端物理设计(P&R)是把逻辑网表变成物理版图(GDSII)的环节，包括布局·时钟树综合·布线·物理验证·Sign-off。后端是先进工艺的"瓶颈"。',
+    s2:'后端设计就像"把装修图纸变成实际房屋"——要确定每个"家具"(标准单元)的精确位置、连线和供电。',
+    d1:'🔧 壁垒 ★★★★☆ EDA工具依赖+先进工艺Design Rule复杂化(3nm规则>1万条)+时序收敛+IR drop',
+    d2:'🌍 工具: Synopsys IC Compiler·Cadence Innovus。先进工艺后端经验极度稀缺',
+    d3:'🏢 代表：Synopsys·Cadence。后端服务：Alchip·创意·世芯·芯原',
+    d4:'🏗️ 工艺流程：Floorplan→Placement→CTS→Routing→物理验证→RC抽取→Sign-off',
+    d5:'🎯 2026年关注：3nm/2nm后端设计方法论、AI辅助布局布线'},
+  {id:'sc-flow-dft',icon:'🔬',title:'可测性设计(DFT)',
+    tag:'测试保障', tagColor:'#34d399',
+    s1:'DFT(Design for Test)是确保芯片生产出来后能测试好坏的设计技术。包括扫描链·BIST·JTAG·边界扫描等。先进工艺的DFT复杂度暴增。',
+    s2:'DFT就像"给芯片装体检设备"——芯片出厂前要能全面检查每个晶体管的好坏。',
+    d1:'🔧 壁垒 ★★★☆☆ 扫描链设计+MBIST+ATPG+测试覆盖率目标(>98%)+诊断分析',
+    d2:'🌍 工具: Synopsys DFTMAX·Cadence Modus·Mentor Tessent(西门子)',
+    d3:'🏢 代表：Synopsys·Cadence·Siemens EDA(收购Mentor)',
+    d4:'🏗️ 工艺流程：DFT规划→扫描插入→ATPG→测试向量→ATE测试',
+    d5:'🎯 2026年关注：AI辅助ATPG、先进工艺DFT挑战、2.5D/3D封装测试'},
+
+  // ---- 高壁垒环节 (5个) ----
+  {id:'hl1',icon:'🔴',title:'EDA全流程工具链',
+    tag:'国产化率~2%', tagColor:'#fb7185',
+    s1:'EDA是中国芯片设计最卡脖子的环节。三巨头垄断~78%，国产仅~2%。数字全流程(综合→布局布线→物理验证)几乎全部依赖进口。',
+    s2:'EDA就像"芯片设计的画笔"——没有它连第一笔画不出来。不是"贵不贵"的问题，而是"有没有"的问题。',
+    s3:'国产EDA~2%·三巨头~78%·数字全流程自给率<5%·模拟EDA~20%·美国限制3nm以下EDA对华出口',
+    d1:'🔧 技术壁垒 ★★★★★ 全流程协同+晶圆厂PDK绑定+先进工艺(3nm)Design Rule+客户生态锁定',
+    d2:'🌍 Synopsys(美)~35%·Cadence(美)~30%·Siemens(德)~13%。美国全面限制对华出口',
+    d3:'🏢 国产布局：华大九天(模拟)·概伦电子(SPICE)·国微(数字)·芯华章(验证)·合见工软',
+    d4:'🏗️ 突破意义：每提升10%国产化率=5000+设计岗位不受制于人。市场空间~40亿美元',
+    d5:'🎯 2026年关注：华大九天数字全流程发布、美国出口管制加码'},
+  {id:'hl2',icon:'🔴',title:'高端IP核',
+    tag:'国产化率~2%', tagColor:'#fb7185',
+    s1:'Arm垄断移动CPU IP>90%，高端接口IP(DDR5/PCIe6/HBM)的Synopsys+Cadence垄断。国产IP仅~2%。没有高端IP就做不了高端SoC。',
+    s2:'IP核就像乐高积木——没有关键积木，再好的创意也拼不出想要的设计。',
+    s3:'国产IP~2%·Arm移动>90%·Synopsys接口IP~35%·全球IP市场~70亿美元',
+    d1:'🔧 技术壁垒 ★★★★☆ CPU架构生态(授权模式)+高速接口IP工艺移植+与被授权方协同+专利',
+    d2:'🌍 Arm(CPU)·Synopsys(接口)·Cadence(DSP)。中国芯原·平头哥(RISC-V)差距5-7年',
+    d3:'🏢 国产：芯原股份·平头哥·赛昉·华夏芯',
+    d4:'🏗️ 突破意义：RISC-V是中国"换道超车"最大机会。IP每提升10%国产化=减少对外依赖',
+    d5:'🎯 2026年关注：RISC-V IP生态进展、Arm IPO后授权策略变化'},
+  {id:'hl3',icon:'🔴',title:'先进工艺(3nm)物理设计',
+    tag:'全球仅3家晶圆厂', tagColor:'#fb7185',
+    s1:'3nm/2nm先进工艺的物理设计(后端)是芯片设计中最复杂的环节。Design Rule>1万条，需要顶级EDA工具+深厚的设计经验。全球仅TSMC/三星/Intel支持3nm。',
+    s2:'先进工艺设计就像"在针尖上雕刻"——3nm的晶体管间距只有20个硅原子宽，每增加一个设计规则都是新的约束。',
+    s3:'支持3nm设计的晶圆厂仅3家·Design Rule>1万条·单次流片费用>3000万美元·中国无法获得EUV',
+    d1:'🔧 技术壁垒 ★★★★★ EUV依赖+Design Rule复杂度+EDA工具支持+时序/功耗/面积Tristan优化',
+    d2:'🌍 可做3nm的仅有TSMC·三星·Intel。中国中芯国际被设备封锁，N+2(7nm)已是最先进',
+    d3:'🏢 国内：中芯国际(N+2等效7nm)·无法获得EUV制造3nm。设计：华为可通过堆叠/Chiplet绕道',
+    d4:'🏗️ 突破意义：中国芯片设计公司可以做3nm设计，但无法在国内流片。必须依赖TSMC/三星',
+    d5:'🎯 2026年关注：TSMC 2nm(N2)设计套件发布、中芯国际设备限制'},
+  {id:'hl4',icon:'🔴',title:'架构生态锁定',
+    tag:'x86+Arm+CUDA', tagColor:'#fbbf24',
+    s1:'x86(Intel/AMD)锁定服务器/PC·Arm锁定移动·CUDA(英伟达)锁定AI训练。三大生态的软件/开发者/OS绑定是最难突破的"软壁垒"。',
+    s2:'生态锁定就像"社交平台效应"——全世界都用微信，你换到另一个App就找不到朋友了。',
+    s3:'x86服务器>90%·Arm移动>90%·CUDA开发者>400万·RISC-V年出货>10亿颗但生态差5-8年',
+    d1:'🔧 技术壁垒 ★★★★★ 指令集专利+操作系统绑定(Windows/Linux)+应用兼容性+开发者生态+惯性',
+    d2:'🌍 x86(Intel+AMD)·Arm(ARM)·CUDA(英伟达)。中国通过RISC-V+自主OS绕道',
+    d3:'🏢 代表：Intel(x86)·AMD(x86)·Arm(CPU IP)·英伟达(CUDA)·中科海光(x86)·龙芯(自主)',
+    d4:'🏗️ 突破意义：架构生态一旦锁定极难替代。RISC-V+Linux是唯一"去依附"路径',
+    d5:'🎯 2026年关注：RISC-V服务器进展、Arm PC份额、CUDA替代生态'},
+  {id:'hl5',icon:'🔴',title:'高性能模拟设计能力',
+    tag:'工程师培养>10年', tagColor:'#fb7185',
+    s1:'高性能模拟/混合信号芯片设计是芯片设计中"最不依赖制程但最依赖人"的领域。资深模拟工程师需要10年+培养周期，全球极度稀缺。',
+    s2:'模拟设计就像"不用尺子画直线"——数字是0和1，模拟是连续信号。顶级模拟设计师是"艺术家"级别的。',
+    s3:'优秀模拟工程师培养>10年·全球模拟设计人才极度短缺·中国模拟芯片国产化率~55%·高端模拟差距仍大',
+    d1:'🔧 技术壁垒 ★★★☆☆ 不在制程而在：工艺经验(与晶圆厂紧密协同)+IP库积累+产品广度+人才',
+    d2:'🌍 TI(~15%)·ADI(~12%)·Infineon(~8%)。中国模拟设计人才缺口>1万人',
+    d3:'🏢 代表：TI·ADI·思瑞浦·圣邦·纳芯微·矽力杰',
+    d4:'🏗️ 突破意义：模拟设计人才是芯片设计行业最稀缺资源。中国高端模拟(BMS/隔离/高速ADC)差距>5年',
+    d5:'🎯 2026年关注：中国模拟设计人才培养、国产车规级模拟突破'},
+];
+
+// =====================================================================
+// 渲染代码 —— 无需修改
+// =====================================================================
+const HL_TAG = '🔴高壁垒';
+
+function init() {
+  // Category cards
+  const cats = DATA.filter(d => d.id.startsWith('cat'));
+  renderCards('catGrid', cats, 'cyan');
+  // Enterprise cards (hardcoded HTML)
+
+  // Supply chain (hardcoded HTML)
+  // High-barrier list
+  const hls = DATA.filter(d => d.id.startsWith('hl'));
+  renderHL(hls);
+}
+
+function renderCards(gridId, items, color) {
+  const grid = document.getElementById(gridId);
+  if(!grid || !items.length) return;
+  grid.innerHTML = items.map(d => `
+    <div class="card ${color}" onclick="openModal('${d.id}')">
+      ${d.tag ? `<span class="tag" style="background:${d.tagColor}20;color:${d.tagColor}">${d.tag}</span>` : ''}
+      <h4 style="color:${d.tagColor || '#22d3ee'}">${d.icon} ${d.title}</h4>
+      <p>${(d.s1||'').substring(0,40)}…</p>
+      <span class="click-hint">👆 查看4+5解说</span>
+    </div>
+  `).join('');
+}
+
+function renderSC(items) {
+  const grid = document.getElementById('scGrid');
+  if(!grid) return;
+  const layers = ['上游：原材料', '中游：核心零部件', '下游：总成与集成'];
+  const colors = ['#22d3ee','#34d399','#fbbf24'];
+  grid.innerHTML = items.map((d,i) => `
+    <div class="sc3-col">
+      <div class="bar-top" style="background:${colors[i%3]}"></div>
+      <h3>${d.icon} ${layers[i%3]||d.title}</h3>
+      <div class="sc3-node" onclick="openModal('${d.id}')">
+        <h5>${d.title} <span class="pct">点击查看</span></h5>
+        <div class="preview">${(d.s1||'').substring(0,50)}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderHL(items) {
+  const grid = document.getElementById('hlGrid');
+  if(!grid) return;
+  grid.innerHTML = items.map(d => `
+    <div class="hl-card" onclick="openModal('${d.id}')">
+      <h5>${d.icon} ${d.title}</h5>
+      <div class="desc">${(d.s1||'').substring(0,60)}…</div>
+      ${d.tag ? `<div class="meta"><span>${d.tag}</span></div>` : ''}
+    </div>
+  `).join('');
+}
+
+function openModal(id) {
+  const d = DATA.find(x => x.id === id);
+  if(!d) return;
+  document.getElementById('modalTitle').textContent = d.icon + ' ' + d.title;
+  const tagEl = document.getElementById('modalTag');
+  if(d.tag) { tagEl.style.display='inline-block'; tagEl.textContent=d.tag; tagEl.style.background=d.tagColor+'20'; tagEl.style.color=d.tagColor; }
+  else { tagEl.style.display='none'; }
+  document.getElementById('modalSub').textContent = '';
+  const qColors = ['#22d3ee','#34d399','#fbbf24','#fb7185'];
+  const qLabels = ['📝 一句话说清','🤔 打个比方','📊 必知数字','❌ 别搞错'];
+  const qFields = ['s1','s2','s3','s4'];
+  let html = '<div class="m-qgrid">';
+  qFields.forEach((f,i) => {
+    if(d[f]) html += `<div class="m-qc" style="border-color:${qColors[i]}"><div class="q-label" style="color:${qColors[i]}">${qLabels[i]}</div><div class="q-text">${d[f]}</div></div>`;
+  });
+  html += '</div><div class="m-toggle" onclick="toggleDeep(this)">▼ 展开深度分析</div><div class="m-deep" style="display:none">';
+  const dLabels = ['🔧 技术/模式难度','🌍 国产 vs 海外','🏢 代表企业','🏗️ 适用范围/场景','🎯 关注焦点'];
+  const dBars = ['#fb7185','#fbbf24','#34d399','#22d3ee','#a78bfa'];
+  for(let i=1;i<=5;i++) {
+    const val = d['d'+i];
+    if(val) html += `<div class="d-section"><h6><span class="bar" style="background:${dBars[i-1]}"></span>${dLabels[i-1]}</h6><p>${val}</p></div>`;
+  }
+  html += '</div>';
+  // Report link
+  if(d.report) {
+    html += `<div class="modal-report" onclick="window.open('reports/${d.report.id}.html','_blank')">📄 查看报告：${d.report.name} →</div>`;
+  }
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+function closeModalOutside(e) { if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+function toggleDeep(el) {
+  const deep = el.nextElementSibling;
+  if(!deep || !deep.classList.contains('m-deep')) return;
+  const hidden = deep.style.display==='none'||deep.style.display==='';
+  deep.style.display = hidden?'block':'none';
+  el.innerHTML = hidden?'▲ 收起深度分析':'▼ 展开深度分析';
+}
+
+function switchSection(name) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  const el = document.getElementById('tab-'+name);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Scroll persistence
+(function(){
+  const key = 'scroll_industry';
+  window.addEventListener('scroll', function(){ sessionStorage.setItem(key, window.scrollY); }, {passive:true});
+  const saved = sessionStorage.getItem(key);
+  if(saved) setTimeout(function(){ window.scrollTo(0, parseInt(saved)); }, 50);
+})();
+
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
+init();
+
+// Theme sync from portal (no independent toggle)
+(function(){
+  var t=localStorage.getItem('portal_theme');
+  if(t==='light') document.documentElement.setAttribute('data-theme','light');
+  window.addEventListener('message',function(e){
+    if(e.data&&typeof e.data.theme==='string'){
+      document.documentElement.setAttribute('data-theme',e.data.theme==='light'?'light':'');
+    }
+  });
+})();
+</script>
+</body>
+</html>
