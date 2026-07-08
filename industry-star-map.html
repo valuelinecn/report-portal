@@ -8,24 +8,66 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#06061a;overflow:hidden;height:100dvh;font-family:sans-serif}
-#c{width:100%;height:100dvh}
-#bar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;padding:6px 10px;background:rgba(6,6,26,0.8);gap:6px;color:#94a3b8;font-size:11px}
+#c{width:100%;height:100dvh;position:relative;z-index:1}
+/* Star field background */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%,rgba(255,255,255,0.4),transparent),
+    radial-gradient(1px 1px at 30% 60%,rgba(255,255,255,0.3),transparent),
+    radial-gradient(1.5px 1.5px at 50% 10%,rgba(255,255,255,0.5),transparent),
+    radial-gradient(1px 1px at 70% 40%,rgba(255,255,255,0.3),transparent),
+    radial-gradient(1px 1px at 90% 80%,rgba(255,255,255,0.4),transparent),
+    radial-gradient(1.5px 1.5px at 15% 85%,rgba(255,255,255,0.3),transparent),
+    radial-gradient(1px 1px at 45% 45%,rgba(255,255,255,0.2),transparent),
+    radial-gradient(1px 1px at 65% 75%,rgba(255,255,255,0.35),transparent),
+    radial-gradient(1.5px 1.5px at 82% 15%,rgba(255,255,255,0.4),transparent),
+    radial-gradient(1px 1px at 5% 50%,rgba(255,255,255,0.3),transparent),
+    radial-gradient(1px 1px at 38% 72%,rgba(255,255,255,0.25),transparent),
+    radial-gradient(1.5px 1.5px at 55% 30%,rgba(255,255,255,0.35),transparent),
+    radial-gradient(1px 1px at 75% 5%,rgba(255,255,255,0.3),transparent),
+    radial-gradient(1px 1px at 92% 55%,rgba(255,255,255,0.4),transparent),
+    radial-gradient(1px 1px at 25% 35%,rgba(167,139,250,0.3),transparent),
+    radial-gradient(1.5px 1.5px at 60% 88%,rgba(167,139,250,0.25),transparent),
+    radial-gradient(1px 1px at 88% 33%,rgba(99,102,241,0.3),transparent),
+    radial-gradient(1px 1px at 3% 95%,rgba(167,139,250,0.2),transparent),
+    radial-gradient(1.5px 1.5px at 48% 55%,rgba(255,255,255,0.3),transparent),
+    radial-gradient(1px 1px at 22% 8%,rgba(255,255,255,0.25),transparent);
+}
+/* Twinkle animation for select stars */
+@keyframes twinkle1{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes twinkle2{0%,100%{opacity:0.3}50%{opacity:1}}
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%,rgba(255,255,255,0.6),transparent),
+    radial-gradient(2px 2px at 75% 60%,rgba(167,139,250,0.5),transparent);
+  animation:twinkle1 3s ease-in-out infinite;
+}
+#bar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;padding:6px 10px;background:rgba(6,6,26,0.8);backdrop-filter:blur(12px);gap:6px;color:#94a3b8;font-size:11px}
 #bar button{background:transparent;border:1px solid rgba(167,139,250,0.1);border-radius:6px;padding:3px 8px;color:rgba(167,139,250,0.5);font-size:10px;cursor:pointer}
-#bc{flex:1;display:flex;gap:3px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-size:10px}
-#bc span{cursor:pointer;padding:1px 4px;border-radius:3px;color:rgba(148,163,184,0.4)}
+#bar button:hover{border-color:rgba(167,139,250,0.3);color:#a78bfa}
+#bc{flex:1;display:flex;gap:3px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-size:10px;align-items:center}
+#bc span{cursor:pointer;padding:1px 4px;border-radius:3px;color:rgba(148,163,184,0.4);transition:color .2s}
+#bc span:hover{color:#a78bfa}
 #bc .cur{color:rgba(167,139,250,0.6);font-weight:600}
-#in{padding:2px 6px;border-radius:4px;border:1px solid rgba(167,139,250,0.1);background:rgba(167,139,250,0.04);color:#94a3b8;font-size:10px;width:80px;outline:none}
-#hint{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);font-size:9px;color:rgba(148,163,184,0.15);pointer-events:none}
-.sr-item{padding:3px 8px;cursor:pointer;font-size:10px;color:#94a3b8;border-radius:4px}
-.sr-item:hover{background:rgba(167,139,250,0.1)}
+#in{padding:2px 6px;border-radius:4px;border:1px solid rgba(167,139,250,0.1);background:rgba(167,139,250,0.04);color:#94a3b8;font-size:10px;width:80px;outline:none;transition:all .2s}
+#in:focus{border-color:rgba(167,139,250,0.25);width:120px;color:#e2e8f0}
+#in::placeholder{color:rgba(148,163,184,0.25)}
+#hint{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:5;font-size:9px;color:rgba(148,163,184,0.15);pointer-events:none;transition:opacity .8s}
+.sr-item{padding:3px 8px;cursor:pointer;font-size:10px;color:#94a3b8;border-radius:4px;transition:background .15s}
+.sr-item:hover{background:rgba(167,139,250,0.12);color:#e2e8f0}
 body.light{background:#f4f1ea}
 body.light #bar{background:rgba(244,241,234,0.85)}
 body.light #in{color:#505050}
-body.light #hint{color:rgba(80,80,80,0.12)}
+body.light #in:focus{color:#333}
+body.light #in::placeholder{color:rgba(80,80,80,0.2)}
+body.light #hint{color:rgba(80,80,80,0.1)}
+body.light::before,body.light::after{opacity:0.4}
 </style>
 </head>
 <body>
-<div id="bar"><button onclick="goBack()">←</button><div id="bc"></div><input id="in" placeholder="🔍" oninput="srch(this.value)"></div>
+<div id="bar"><button id="backBtn" onclick="goBack()">←</button><div id="bc"></div><input id="in" placeholder="🔍 搜索行业" oninput="srch(this.value)"></div>
 <div id="c"></div>
 <div id="hint">点击行业展开 · 滚轮缩放 · 拖拽移动</div>
 <script>
@@ -36,7 +78,7 @@ var IL={"电子":"chip-industry-encyclopedia.html","芯片设计":"chip-design-e
 var chart = echarts.init(document.getElementById('c'));
 var view = 'l1', curId = null;
 
-function opt(data) {
+function baseOpt() {
   return {
     backgroundColor: 'transparent',
     tooltip: {
@@ -52,39 +94,41 @@ function opt(data) {
         var c1 = lt ? '#333' : '#e2e8f0', c2 = lt ? '#666' : '#94a3b8', c3 = lt ? 'rgba(99,102,241,0.6)' : 'rgba(167,139,250,0.6)';
         var h = '<div style="font-size:13px;font-weight:700;color:' + c1 + '">' + (d._icon || '') + ' ' + d.name + '</div>';
         if (d._desc) h += '<div style="font-size:10px;color:' + c2 + ';margin-top:2px">' + d._desc + '</div>';
+        if (d._childCount) h += '<div style="font-size:9px;color:' + c3 + ';margin-top:2px">' + d._childCount + '个二级行业</div>';
         if (d._cos && d._cos.length) {
           h += '<div style="font-size:9px;color:' + c3 + ';margin-top:4px">关联企业：</div>';
           d._cos.forEach(function(co) {
-            var hl = CL[co] ? 'style="color:#34d399"' : '';
-            h += '<div ' + hl + ' style="font-size:9px;padding:1px 0">' + (CL[co] ? '📄 ' : '· ') + co + '</div>';
+            h += '<div ' + (CL[co] ? 'style="color:#34d399"' : '') + ' style="font-size:9px;padding:1px 0">' + (CL[co] ? '📄 ' : '· ') + co + '</div>';
           });
         }
         return h;
       }
     },
-    series: [{
-      type: 'graph', layout: 'force', roam: true,
-      force: {repulsion: 300, edgeLength: [50, 150], gravity: 0.05},
-      data: data.n, links: data.l,
-      label: {show: true, fontSize: 9, color: '#94a3b8'},
-      lineStyle: {color: 'rgba(255,255,255,0.1)', width: 0.5},
-      emphasis: {focus: 'adjacency'},
-      nodeClick: false,
-    }]
   };
 }
 
 function l1() {
   view = 'l1'; curId = null;
-  var n = [{name: '\uD83C\uDF0C \u4EA7\u4E1A\u661F\u56FE', symbolSize: 32, itemStyle: {color: '#a78bfa'}, id: 'h'}];
+  var n = [{name: '\uD83C\uDF0C 产业星图', symbolSize: 30, itemStyle: {color: '#a78bfa', shadowBlur: 25, shadowColor: 'rgba(167,139,250,0.5)'}, id: 'h'}];
   var l = [];
   SW.forEach(function(d) {
+    var cnt = (d.children || []).length;
     var sz = IL[d.name] ? 24 : 20;
-    n.push({name: d.icon + ' ' + d.name, symbolSize: sz, itemStyle: {color: d.color || '#6366f1'}, id: d.id, _s: d});
+    n.push({name: d.icon + ' ' + d.name + ' ' + cnt, symbolSize: sz, itemStyle: {color: d.color || '#6366f1', shadowBlur: IL[d.name] ? 12 : 4, shadowColor: (d.color||'#6366f1')+'40'}, id: d.id, _s: d, _icon: d.icon, _childCount: cnt, _hasResearch: !!IL[d.name]});
     l.push({source: 'h', target: d.id});
   });
-  chart.setOption(opt({n: n, l: l}));
-  document.getElementById('bc').innerHTML = '<span class="cur">\uD83C\uDF0C \u5168\u884C\u4E1A</span>';
+  var o = baseOpt();
+  o.series = [{
+    type: 'graph', layout: 'force', roam: true,
+    force: {repulsion: 350, edgeLength: [40, 160], gravity: 0.04},
+    data: n, links: l,
+    label: {show: true, fontSize: 9, color: '#94a3b8'},
+    lineStyle: {color: 'rgba(255,255,255,0.06)', width: 0.3},
+    emphasis: {focus: 'adjacency', scale: 1.25, lineStyle: {width: 2, opacity: 0.4, color: 'rgba(167,139,250,0.6)'}},
+    nodeClick: false,
+  }];
+  chart.setOption(o);
+  document.getElementById('bc').innerHTML = '<span class="cur">\uD83C\uDF0C 全行业</span>';
 }
 
 function l2(id) {
@@ -92,7 +136,8 @@ function l2(id) {
   var s = SW.find(function(d) { return d.id === id; });
   if (!s) return;
   var hi = !!IL[s.name], n = [], l = [];
-  n.push({name: s.icon + ' ' + s.name, symbolSize: 28, itemStyle: {color: s.color || '#a78bfa', shadowBlur: 15, shadowColor: (s.color || '#a78bfa') + '80'}, id: id, _is: true, _icon: s.icon});
+  var hubSz = 30;
+  n.push({name: s.icon + ' ' + s.name, symbolSize: hubSz, itemStyle: {color: s.color || '#a78bfa', shadowBlur: 20, shadowColor: (s.color || '#a78bfa') + '60'}, id: id, _is: true, _icon: s.icon});
   n.push({name: '\u2190', symbolSize: 12, itemStyle: {color: 'rgba(167,139,250,0.2)'}, id: 'b'});
   l.push({source: 'b', target: id});
   (s.children || []).forEach(function(c) {
@@ -101,14 +146,24 @@ function l2(id) {
     var hasCos = cos.length > 0;
     var il = IL[c];
     var sz = hasCos ? 16 : (il ? 14 : 12);
-    var clr = il ? '#22d3ee' : (hasCos ? '#34d399' : s.color || '#94a3b8');
-    var op = 1;
+    var clr = il ? '#22d3ee' : (hasCos ? '#34d399' : '#94a3b8');
     var mark = il ? ' \uD83D\uDD2C' : (hasCos ? ' \uD83D\uDCC4' : '');
-    n.push({name: c + mark, symbolSize: sz, itemStyle: {color: clr, opacity: op}, id: 's-' + c, _cos: cos, _icon: '\uD83D\uDCC2', _desc: hasCos ? cos.length + '家关联企业' : (il ? '有行业研究' : ''), _s2: c, _il: il});
+    var bGlow = (il || hasCos) ? 10 : 0;
+    n.push({name: c + mark, symbolSize: sz, itemStyle: {color: clr, shadowBlur: bGlow, shadowColor: clr+'50'}, id: 's-' + c, _cos: cos, _icon: '\uD83D\uDCC2', _desc: hasCos ? cos.length + '家关联企业' : (il ? '有行业百科' : ''), _s2: c, _il: il});
     l.push({source: id, target: 's-' + c});
   });
-  chart.setOption(opt({n: n, l: l}));
-  document.getElementById('bc').innerHTML = '<span onclick="l1()" style="cursor:pointer">\uD83C\uDF0C</span><span style="color:rgba(148,163,184,0.15)"> \u203A </span><span class="cur">' + s.icon + ' ' + s.name + '</span>';
+  var o = baseOpt();
+  o.series = [{
+    type: 'graph', layout: 'force', roam: true,
+    force: {repulsion: 250, edgeLength: [50, 180], gravity: 0.08, friction: 0.15},
+    data: n, links: l,
+    label: {show: true, fontSize: 8.5, color: '#94a3b8'},
+    lineStyle: {color: 'rgba(255,255,255,0.08)', width: 0.4},
+    emphasis: {focus: 'adjacency', scale: 1.25, lineStyle: {width: 2, opacity: 0.4, color: 'rgba(167,139,250,0.5)'}},
+    nodeClick: false,
+  }];
+  chart.setOption(o);
+  document.getElementById('bc').innerHTML = '<span onclick="l1()" style="cursor:pointer">\uD83C\uDF0C</span><span style="color:rgba(148,163,184,0.15)"> › </span><span class="cur">' + s.icon + ' ' + s.name + '</span>';
 }
 
 chart.on('click', function(params) {
@@ -121,40 +176,28 @@ chart.on('click', function(params) {
     if (sw && IL[sw.name]) window.open(IL[sw.name], '_blank');
     return;
   }
-  // Secondary industry click
   if (d._il) { window.open(d._il, '_blank'); return; }
-  if (d._cos && d._cos.length) {
-    // Show company list in tooltip - already handled by formatter
-    // Optionally could open a popup here
-  }
+  if (d._cos && d._cos.length) { /* tooltip handles display */ }
 });
 
 function srch(v) {
   var q = v.trim().toLowerCase();
-  if (!q) {
-    var o = document.getElementById('sr');
-    if (o) o.remove();
-    return;
-  }
+  if (!q) { var o = document.getElementById('sr'); if (o) o.remove(); return; }
   var r = [];
   SW.forEach(function(d) {
-    if (d.name.toLowerCase().includes(q)) r.push({t: d.icon + ' ' + d.name, a: function() { l2(d.id); }});
-    (d.children || []).forEach(function(c) {
-      if (c.toLowerCase().includes(q)) r.push({t: '\uD83D\uDCC1 ' + c, a: function() { l2(d.id); }});
-    });
+    if (d.name.toLowerCase().includes(q)) r.push({t: d.icon + ' ' + d.name + ' (' + (d.children||[]).length + '个二级)', a: function() { l2(d.id); }});
+    (d.children || []).forEach(function(c) { if (c.toLowerCase().includes(q)) r.push({t: '\uD83D\uDCC1 ' + c, a: function() { l2(d.id); }}); });
   });
   for (var k in CSW2) {
     if (k.toLowerCase().includes(q) && CL[k]) {
-      (function(kk) {
-        r.push({t: '\uD83C\uDFE2 ' + kk, a: function() { window.open(CL[kk], '_blank'); }});
-      })(k);
+      (function(kk) { r.push({t: '\uD83C\uDFE2 ' + kk, a: function() { window.open(CL[kk], '_blank'); }}); })(k);
     }
   }
   if (!r.length) return;
   r = r.filter(function(i, x, a) { return a.findIndex(function(j) { return j.t === i.t; }) === x; }).slice(0, 8);
   var e = document.createElement('div');
   e.id = 'sr';
-  e.style.cssText = 'position:fixed;top:34px;right:10px;z-index:99;background:rgba(10,10,30,0.95);border:1px solid rgba(167,139,250,0.1);border-radius:6px;padding:4px;max-height:180px;overflow-y:auto;min-width:120px';
+  e.style.cssText = 'position:fixed;top:34px;right:10px;z-index:99;background:rgba(10,10,30,0.95);backdrop-filter:blur(12px);border:1px solid rgba(167,139,250,0.1);border-radius:6px;padding:4px;max-height:180px;overflow-y:auto;min-width:130px';
   e.innerHTML = r.map(function(i) {
     return '<div class="sr-item" onclick="var s=document.getElementById(\'sr\');if(s)s.remove();document.getElementById(\'in\').value=\'\';(' + i.a.toString() + ')()">' + i.t + '</div>';
   }).join('');
@@ -164,10 +207,7 @@ function srch(v) {
 }
 
 document.addEventListener('click', function(e) {
-  if (!e.target.closest('#in') && !e.target.closest('#sr')) {
-    var o = document.getElementById('sr');
-    if (o) o.remove();
-  }
+  if (!e.target.closest('#in') && !e.target.closest('#sr')) { var o = document.getElementById('sr'); if (o) o.remove(); }
 });
 
 function applyTheme(t) { document.body.classList.toggle('light', t === 'light'); }
@@ -182,11 +222,8 @@ function applyTheme(t) { document.body.classList.toggle('light', t === 'light');
 })();
 
 function goBack() {
-  if (window.parent && window.parent !== window) {
-    window.parent.postMessage({backToIndustrySelect: true}, '*');
-  } else {
-    window.location.href = 'index.html';
-  }
+  if (window.parent && window.parent !== window) { window.parent.postMessage({backToIndustrySelect: true}, '*'); }
+  else { window.location.href = 'index.html'; }
 }
 
 l1();
@@ -195,7 +232,7 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') { if (view === 'l2') l1(); else goBack(); }
 });
 setTimeout(function() { var h = document.getElementById('hint'); if (h) h.style.opacity = '0'; }, 5000);
-console.log('Starmap v3 loaded');
+console.log('Starmap v4 loaded');
 </script>
 </body>
 </html>
